@@ -37,7 +37,7 @@ displayLines <- function(filename, nlines, final = "") {
 ```
 
 ```{r capturetxt, echo = FALSE, comment = ""} 
-displayLines("data1/hareCH6capt.txt", 6, "...")
+displayLines("data/hareCH6capt.txt", 6, "...")
 ```
  
 \vspace{12pt}
@@ -48,7 +48,7 @@ The trap layout file "hareCH6trap.txt" has one row per trap and columns for the 
 
 ```{r trapstxt, echo = FALSE, comment = ""} 
 options(digits = 6, width = 85)       
-displayLines("data1/hareCH6trap.txt", 6, "...")
+displayLines("data/hareCH6trap.txt", 6, "...")
 ```
 
 \vspace{12pt}
@@ -56,7 +56,7 @@ displayLines("data1/hareCH6trap.txt", 6, "...")
 We load **secr** and read the data files to construct a capthist object. The detectors are single-catch traps (maximum of one capture per animal per occasion and one capture per trap per occasion).
 
 ```{r setwd, echo = FALSE, message=FALSE}
-opar <- setwd('data1')
+opar <- setwd('data')
 on.exit(setwd(opar))
 ```
 

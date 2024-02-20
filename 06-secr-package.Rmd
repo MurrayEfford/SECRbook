@@ -29,7 +29,7 @@ Table: (\#tab:essentialclasses) Essential classes in **secr**.
 |  secr   | fitted SECR model|
   
 ```{r schematic, eval = TRUE, echo = FALSE, out.width = '80%', fig.cap = "Essentials of the **secr** package"}
-knitr::include_graphics('figures2/schematic3.png')
+knitr::include_graphics('figures/schematic3.png')
 ```
 
 - Each object class (shaded box) comes with methods to display and manipulate the data it contains (e.g. `print`, `summary`, `plot`, `rbind`, `subset`)[^2]. 

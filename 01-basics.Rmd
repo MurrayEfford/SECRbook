@@ -59,7 +59,7 @@ of population density (and other parameters) by jointly fitting the state and ob
 In order to estimate density from a sample we must account for the sampling process. The process is inherently spatial: each animal is more likely to be detected near its AC, and less likely to be detected far away. Sampling filters the geographic locations of animals as indicated in Fig.  \@ref(fig:example).
 
 ```{r example, eval = TRUE, echo = FALSE, out.width = '60%', out.height = '60%', fig.cap = "Distance-dependent detection of uniformly distributed activity centres (open circles; filled if captured)"}
-knitr::include_graphics('figures2/example.png')
+knitr::include_graphics('figures/example.png')
 ```
 
 The true locations of animals are not known, and therefore the distance-dependent probabilities cannot be calculated directly. The model is fitted by marginalising (integrating over) animal locations.

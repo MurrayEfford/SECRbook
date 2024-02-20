@@ -172,11 +172,11 @@ In this section we report results from trials with four very different datasets.
 The reference scale was $\sigma$ estimated earlier by fitting a half-normal detection model. In each case masks were constructed with constant buffer width $4\sigma$ and different spacings in the range $0.2\sigma$ to $3\sigma$. This resulted in widely varying numbers of mask points (Fig. \@ref(fig:maskpoints)).
 
 ```{r maskpoints, eval = TRUE, echo = FALSE, out.width = '60%', fig.cap="Effect of mask spacing on number of mask points for four test datasets. Detector configurations varied: a single searched square (horned lizards), a single elongated hollow grid of mistnets (ovenbirds), multiple hollow grids of cage traps (Waitarere possums), hair snares along a dense irregular network of trails (black bears)"}
-knitr::include_graphics('figures7/maskrows.png')
+knitr::include_graphics('figures/maskrows.png')
 ```
 
 ```{r maskspacing, eval = TRUE, echo = FALSE, out.width = '90%', fig.cap="Effect of mask spacing on estimates of density from null model. Bias is relative to the estimate using the narrowest spacing. The Arizona horned lizard data appeared especially robust to mask spacing, which may be due to the method (search of a large contiguous area) or duration (14 sampling occasions) [@ry08]"}
-knitr::include_graphics('figures7/maskspacing.png')
+knitr::include_graphics('figures/maskspacing.png')
 ```
 
 The results in Fig. \@ref(fig:maskspacing) suggest that, for a uniform density model, any mask spacing less than $\sigma$ is adequate; $0.6\sigma$ provides a considerable safety margin. The effect of detector spacing on the relationship has not been examined. Referring back to Fig. \@ref(fig:maskpoints), a mask of about 1000 points will usually be adequate with a $4\sigma$ buffer.
@@ -186,7 +186,7 @@ The default spacing in `secr.fit` and `make.mask` is determined by dividing the 
 For completeness, we revisit the question of buffer width using the `esa.plot` function with each of the four test datasets (Fig. \@ref(fig:bufferbias)).
 
 ```{r bufferbias, eval = TRUE, echo = FALSE, out.width = '75%', fig.cap="Approximate relative bias due to mask truncation for four datasets. Bias is relative to the estimate using the widest buffer"}
-knitr::include_graphics('figures7/maskesa.png')
+knitr::include_graphics('figures/maskesa.png')
 ```
 
 ## Excluding areas of non-habitat
@@ -195,7 +195,7 @@ Our focus so far has been on choosing a buffer width to set the outer boundary o
 
 
 ```{r masktypes, eval = TRUE, echo = FALSE, out.width = '100%', fig.cap="Types of habitat mask (grey mesh) defined in relation to habitat (green) and detectors (red dots). (a) mask of convenience defined by a buffer around detectors in continuous habitat, (b) mask of convenience excluding non-habitat (c) fully sampled habitat island"}
-knitr::include_graphics('figures7/masktypes.png')
+knitr::include_graphics('figures/masktypes.png')
 ```
 
 Exclusion of non-habitat (Fig. \@ref(fig:masktypes) b,c) is achieved by providing `make.mask` with a digital map of the habitat in the 'poly' argument. The digital map may be an R object defining spatial polygons as described in [secr-spatialdata.pdf], or simply a 2-column matrix or dataframe of coordinates. This simple example uses the coordinates in `possumarea`:
