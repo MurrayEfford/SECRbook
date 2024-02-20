@@ -56,7 +56,7 @@ displayLines("data1/hareCH6trap.txt", 6, "...")
 We load **secr** and read the data files to construct a capthist object. The detectors are single-catch traps (maximum of one capture per animal per occasion and one capture per trap per occasion).
 
 ```{r setwd, echo = FALSE, message=FALSE}
-opar <- setwd('d:/density communication/book/data1')
+opar <- setwd('data1')
 on.exit(setwd(opar))
 ```
 
@@ -138,7 +138,7 @@ plot(fit, limits = TRUE)
 
 ## Revisiting buffer width
 
-Choosing a buffer width is a common stumbling block. We used `buffer = 250` without any explanation. Here it is. As far as we know, the snowshoe hare traps were surrounded by suitable habitat. We limit our attention to the area immediately around the traps by specifying a habitat buffer. The `buffer` argument is a short-cut for defining the potential habitat (area of integration); the alternative is to provide a habitat mask in the `mask` argument. Buffers and habitat masks are covered at length in [secr-habitatmasks.pdf].
+Choosing a buffer width is a common stumbling block. We used `buffer = 250` without any explanation. Here it is. As far as we know, the snowshoe hare traps were surrounded by suitable habitat. We limit our attention to the area immediately around the traps by specifying a habitat buffer. The `buffer` argument is a short-cut for defining the potential habitat (area of integration); the alternative is to provide a habitat mask in the `mask` argument. Buffers and habitat masks are covered at length in Chapter \@ref(Habitat).
 
 Buffer width is not critical as long as it is wide enough that animals at the edge have effectively zero chance of appearing in our sample, so that increasing the buffer has negligible effect on estimates. For half-normal detection (the default) a buffer of $4\sigma$ is usually enough[^footnote3f]. We check the present model with the function `esa.plot`. The estimated density[^footnote3g] has easily reached a plateau at the chosen buffer width (dashed red line):
 
@@ -189,14 +189,8 @@ legend(0.75, 0.45*nm, legend = c('All mask', '100 - 200 m', '< 100 m'), fill = c
 
 <!-- Pdot fig \@ref(fig:pdot) -->
 
-[snowshoehare]: snowshoeharefromotisetal1978.pdf 
-[otisetal]: otisetal.png
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
 [secr-overview.pdf]: https://www.otago.ac.nz/density/pdfs/secr-overview.pdf
-
-[density surfaces]: https://www.otago.ac.nz/density/pdfs/secr-densitysurfaces.pdf
-[secr-densitysurfaces.pdf]: https://www.otago.ac.nz/density/pdfs/secr-densitysurfaces.pdf
-[secr-habitatmasks.pdf]: https://www.otago.ac.nz/density/pdfs/secr-habitatmasks.pdf
 [secr-multisession.pdf]: https://www.otago.ac.nz/density/pdfs/secr-multisession.pdf
 [secr-noneuclidean.pdf]: https://www.otago.ac.nz/density/pdfs/secr-noneuclidean.pdf
 [secr-spatialdata.pdf]: https://www.otago.ac.nz/density/pdfs/secr-spatialdata.pdf
