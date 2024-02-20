@@ -1,6 +1,6 @@
 
 # 2024-01-22
-png(file = 'figures2/example.png', 450,450, pointsize = 15)
+png(file = 'figures/example.png', 450,450, pointsize = 15)
 
 set.seed(123456)
 grd2 <- make.grid(nx = 6, ny = 6, spacing = 2, origin=c(6,6), detector = 'single')
