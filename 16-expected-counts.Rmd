@@ -1,0 +1,89 @@
+# (APPENDIX) Appendices {-} 
+
+# Expected counts {#Expected}
+
+It can be useful to predict various count statistics from a fitted model or from hypothetical parameter values or from a design that has been altered without changing parameter values. Here we repeat and extend formulae from @eb19. See **secrdesign** and [secrdesign-Enrm.pdf] for an implementation.
+
+For convenience we formulate the detection process in terms of hazard $\lambda(d_k(\vec x))$ rather than probability $g(d_k(\vec x))$, but the two are interchangeable[^footnote4i]. The overall detection rate on occasion $s$ of an AC at location $\vec x$ is 
+\begin{equation}
+ \Lambda_s(\vec x) = \sum_K \lambda(d_k(\vec x)),
+\end{equation}
+and aggregating over occasions gives $\Lambda(\vec x) = \sum_s \Lambda_s(\vec x)$.
+
+[^footnote4i]: $\lambda(d_k(\vec x)) = -\log[1 - g(d_k(\vec x))]$.
+
+If all potential detections are recorded then $\Lambda_s(\vec x)$ is the expected total number of detections on one occasion for an animal centred at $\vec x$. Only Poisson proximity detectors are assumed to act like this. Other detector types collect binary data (e.g. binary proximity detectors record only whether an individual appeared at least once or not at all at a detector on a certain occasion). Nevertheless, $\Lambda_s(\vec x)$ is useful for predicting the outcome for binary detector types as shown later. Single-catch traps are a special case for which there are not closed-form expressions for $\mbox{E} (n)$ and $\mbox{E} (r)$.
+
+## Number of individuals $n$
+
+The expected number of individuals detected at least once is $$E(n) = \int [1 - \exp\{-\Lambda(\vec x) \} ] \times  D(\vec x) \; d \vec x.$$ This is the same for all detector types in which individuals are detected independently of each other ('multi', 'binary proximity' or 'Poisson proximity'). Integration is over all locations in the plane from which an individual might be detected. The region of integration is represented in practice by a discretized 'habitat mask', and integration is performed by summing over cells.
+
+## Number of detections $C$
+
+The total number of detections $C$ depends on the detector type, as follows.
+
+### Detector type 'Poisson proximity'
+
+This is the simplest case --
+ $$E(C) = \int \Lambda(\vec x) \times D(\vec x) \; d\vec x.$$
+ 
+### Detector type 'multi-catch trap'
+ 
+ Data from 'multi' detectors are binary at the level of each animal $\times$ occasion, with Bernoulli probability $p_s = 1 - \exp\{- \Lambda_s(\vec x)\}$. This leads to the overall number of detections -- $$E(C) = \int \sum_s p_s(\vec x) \times D(\vec x) \; d \vec x.$$
+ 
+### Detector type 'binary proximity'
+ 
+ Data from binary proximity detectors are binary at the level of each animal $\times$ detector $\times$ occasion, with Bernoulli probability $p_{ks}(\vec x) = 1 - \exp\{- \lambda(d_k(\vec x))\}$. This leads to the overall number of detections -- $$E(C) = \int \sum_s \sum_k p_{ks}(\vec x) \times D(\vec x) \; d\vec x.$$ 
+ 
+ <!-- These calculations assume a homogeneous distribution of animals across space, leading to a constant hazard for each detector. That is never the case, because the hazard for each individual is peaked near its activity centre and individuals are distributed at random, leading to more or less rough hazard surface. Variance in the per-detector hazard leads to systematic bias. -->
+ 
+## Number of recaptures $r$
+ 
+ For all detector types the expected number of recaptures is simply $E(r) = E(C) - E(n).$
+ 
+## Number of movements $m$
+ 
+ A movement is a recapture (redetection) at a site other than the previous one. Movements are a subset of recaptures. We calculate the expected number of movements by considering each recapture event in turn and calculating the conditional probability that it is at the same site as before. This is a sum of squared detector-wise conditional probabilities.
+
+Conditional on detection somewhere, the probability of detection in detector $k$ is $q_k(\vec x) = \lambda(d_k(\vec x)) / \sum_k \lambda(d_k(\vec x))$. For clarity in the following detector-specific expressions we use $a(\vec x) = 1 - \exp\{-\Lambda(\vec x)\})$ and $b(\vec x) = 1-\sum_k q_k(\vec x)^2$.
+
+### Detector type 'Poisson proximity'
+
+$$E(m) = \int \{ \Lambda(\vec x) - a(\vec x)\} \times b(\vec x) \times D(\vec x) \; d\vec x.$$
+ 
+### Detector type 'multi-catch trap'
+ 
+ $$E(m) = \int \{\sum_s p_s(\vec x) - a(\vec x)\} \times b(\vec x) \times D(\vec x) \; d\vec x.$$
+
+### Detector type 'binary proximity'
+  
+  $$E(m) = \int \{ \sum_s \sum_k p_{ks}(\vec x)  - a(\vec x) \} \times b(\vec x) \times D(\vec x) \; d\vec x.$$
+   
+### Caveat
+   
+   If an animal may be detected more than once on one occasion (as with 'proximity' and 'count' detector types) and time of detection is not recorded within each occasion (the norm in **secr**) then the temporal sequence of detections is not fully observed. The number of observed (apparent) movements is then less than or equal to the true number. Results from the `moves` function in **secr** are also not to be trusted: they effectively assume any repeat detections at the same site precede other redetections rather than being interspersed in time. Precise formulae are not available for the expected number of observed movements among proximity and count detectors. There should be little discrepancy between observed and true numbers when detections are sparse. The predicted number of movements is close to the apparent number in simulations (see later section; this deserves further investigation). 
+  
+## Individuals detected at two or more detectors $n_2$
+  
+  This count is related to the optimization criterion $Q_{p_m}$ of @drns21. The value is simply the total count $\mbox{E}(n)$ minus the number detected at only one detector $\mbox{E}(n_1)$. For 
+  independent detectors (proximity detectors of any sort) the calculation follows from @drns21: setting $p_0(\vec x) = \exp (-S\Lambda(\vec x))$ and $p_k(\vec x) = \exp\{-S \lambda[d_k(\vec x)]\}$,
+  
+  $$E(n_1) = \int p_0(\vec x) \sum_k \frac{p_k(\vec x)}{1 - p_k(\vec x)} \times D(\vec x) \; d \vec x.$$
+   Then $\mbox{E}(n_2) = \mbox{E}(n) - \mbox{E}(n_1)$.
+  
+  The calculation of $\mbox{E}(n_1)$ is more messy for non-independent detectors, specifically multi-catch traps. Using $p_{ks}(\vec x) = [1 - \exp(-\Lambda(\vec x))] \; \lambda(d_k(\vec x)) / \Lambda(\vec x)$ for the probability an individual at $\vec x$ is caught at $k$ on a particular occasion, and  $p^*_{ks}(\vec x) = [1 - \exp(-\Lambda(\vec x))] \; (1 - \lambda(d_k(\vec x)) / \Lambda(\vec x))$ for the probability it is caught elsewhere:
+   
+   $$E(n_1) = \int \sum_k \left( 1 - [1-p_{ks}(\vec x)]^S \right) \;  [1-p^*_{ks}(\vec x)]^{S-1} \times D(\vec x) \; d \vec x.$$
+   
+   
+## Single-catch traps
+   
+   All the preceding calculations assume independence among animals. If traps can catch only one animal at a time then animals effectively compete for access (the first arrival is most likely to be caught). This depresses the realised hazard of detection $\lambda(d_k(\vec x); \theta)$; the effect increases with density. No closed-form expressions exist for this case. The computed $\mbox{E}(n)$, $\mbox{E}(r)$ and $\mbox{E}(m)$ for multi-catch traps (detector 'multi') will exceed the true values for the single-catch traps (detector 'single') *given the same detection parameters*. That final caveat is significant because a pilot value of $\hat \lambda_0$ from fitting a multi-catch model to single-catch data will be an underestimate [@ebb09].
+  
+  
+## Number of animals detected at detector $k$
+  
+[To be added]
+  
+[secrdesign-vignette.pdf]: https://www.otago.ac.nz/density/pdfs/secrdesign-vignette.pdf
+[secrdesign-Enrm.pdf]: https://www.otago.ac.nz/density/pdfs/secrdesign-Enrm.pdf

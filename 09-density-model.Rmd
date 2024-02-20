@@ -1,0 +1,558 @@
+# Density model {#Density}
+\index{Density model}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+```{r initialvar, echo = FALSE}
+computefigures <- TRUE
+# for png figures
+workdir <- "figures6"
+```
+
+Spatially explicit capture--recapture models allow for population density to vary over space [@be08]. Density is the intensity of a spatial Poisson process for activity centres. Models for density may include spatial covariates (e.g., vegetation type, elevation) and spatial trend. 
+
+In Chapter \@ref(Detection) we introduced [linear submodels](#linear-submodels) for detection parameters. Here we consider SECR models in which the population density at any point, considered on the link scale, is also a linear function of $K$  covariates[^densitydesignmatrix]. For density this means 
+
+\begin{equation}
+D(\vec x; \phi) = f^{-1}[\phi_0 + \sum_{k=1}^K c_k(\vec x) \, \phi_k],
+\end{equation}
+where $c_k(\vec x)$ is the value of the $k$-th covariate at point $\vec x$, $\phi_0$ is the intercept, $\phi_k$ is the coefficient for the $k$-th covariate, and $f^{-1}$ is the inverse of the link function. Commonly we model the logarithm of density and $f^{-1}$ is the exponential function. 
+
+[^densitydesignmatrix]: We can also express the model as before $\vec y = \vec X \pmb {\beta}$, where $\vec X$ is the design matrix, $\pmb{\beta}$ is a vector of coefficients, and $\vec y$ is the resulting vector of densities on the link scale. Rows of $\vec X$ and elements of $\vec y$ correspond to points on the habitat mask, possibly replicated in the case of group and session effects.
+
+Although $D(\vec x;\phi)$ is often a smooth function, in **secr** we evaluate it only at the fixed points of the habitat mask (Chapter \@ref(Habitat)). A mask defines the region of habitat relevant to a particular study: in the simplest case it is a buffered zone inclusive of the detector locations. More complex masks may exclude interior areas of non-habitat or have an irregular outline.
+
+A density model $D(\vec x;\phi)$ is specified in the 'model' argument of `secr.fit`[^footnote6a]. Spatial covariates, if any, are needed for each mask point; they are stored in the 'covariates' attribute of the mask. Results from fitting the model (including the estimated coefficients $\phi$) are saved in an object of class 'secr'. To visualise a fitted
+density model we first evaluate it at each point on a mask with the function `predictDsurface` to create an object of class 'Dsurface'. A Dsurface is a mask with added density data, and plotting a Dsurface is like plotting a mask covariate.
+
+To model variation in a density surface we need to maximise the full likelihood. Maximising the conditional likelihood (conditional on $n$, the number of observed individuals) is a way to estimate the observation model; to go from there to a Horvitz-Thompson estimate of density we assume that density is homogeneous. Here we are concerned with inhomogeneous models that are all fitted with `CL = FALSE` in `secr.fit`.
+
+Table: (\#tab:Dexamples) Some examples of models for density in `secr.fit`
+
+| Formula        | Effect                                   |
+|:----------------|:------------------------------------------|
+| D $\sim$ cover | density varies with 'cover', a variable in covariates(mask) |
+| list(D $\sim$ g, g0 $\sim$ g) | both density and g0 differ between groups |
+| D $\sim$ session | session-specific density |
+
+[^footnote6a]: Technically, it may also be specified in a user-written function supplied to
+`secr.fit` (see [Appendix 1](#userfnappendix)), but you are unlikely to need this.
+
+## Brushtail possum example
+\index{Brushtail possum}
+
+For illustration we use a brushtail possum (*Trichosurus vulpecula*) dataset from the Orongorongo Valley, New Zealand. Possums were live-trapped in mixed evergreen forest near Wellington for nearly 40 years [@ec04]. Single-catch traps were set for 5 consecutive nights, three times a year. The dataset 'OVpossumCH' has data from the years 1996 and 1997. The study grid was bounded by a shingle riverbed to the north and west. See ?OVpossum in **secr** for more details.
+
+First we import data for the habitat mask from a polygon shapefile included with the package:
+```{r densitystartup, eval = TRUE, warning = FALSE, message = FALSE}
+library(secr)
+nc <- setNumThreads(18)    # machine dependent
+datadir <- system.file("extdata", package = "secr")
+OVforest <- sf::st_read (paste0(datadir, "/OVforest.shp"), quiet = TRUE)
+# drop some points we don't need
+leftbank <- read.table(paste0(datadir,"/leftbank.txt"))[21:195,]  
+options(digits = 6, width = 95)       
+```
+
+OVforest is now a simple features (sf) object defined in package **sf**. We build a habitat mask object, selecting the first two polygons in OVforest and discarding the third that lies across the river. The attribute table of the shapefile (and hence OVforest) includes a categorical variable 'forest' that is either 'beech' (*Nothofagus* spp.) or 'nonbeech' (mixed podocarp-hardwood); `addCovariates' attaches these data to each cell in the mask.
+```{r ovmask, cache = TRUE, warning = FALSE}
+ovtrap <- traps(OVpossumCH[[1]])
+ovmask <- make.mask(ovtrap, buffer = 120, type = "trapbuffer",
+    poly = OVforest[1:2,], spacing = 7.5, keep.poly = FALSE)
+ovmask <- addCovariates(ovmask, OVforest[1:2,])
+```
+
+Plotting is easy:
+```{r ovmaskplot, eval = TRUE, message=FALSE, fig.width = 6, fig.height = 5, fig.cap = "Orongorongo Valley possum study area"}
+par(mar = c(1,6,2,8))
+forestcol <- terrain.colors(6)[c(4,2)]
+plot(ovmask, cov="forest", dots = FALSE, col = forestcol)
+plot(ovtrap, add = TRUE)
+par(cex = 0.8)
+terra::sbar(d = 200, xy = c(2674670, 5982930), type = 'line', divs = 2, 
+            below = "metres", labels = c("0","100","200"), ticks = 10)
+terra::north(xy = c(2674670, 5982830), d = 40, label = "N")
+```
+
+We fit some simple models to data from February 1996 (session 49). Some warnings 
+are suppressed for clarity.
+```{r OVfits1, strip.white=TRUE, cache = TRUE, warning = FALSE}
+args <- list(capthist = OVpossumCH[[1]], mask = ovmask, trace = FALSE)
+models <- list(D ~ 1, D ~ x + y, D ~ x + y + x2 + y2 + xy, D ~ forest)
+names <- c('null','Dxy','Dxy2', 'Dforest')
+fits <- list.secr.fit(model = models, constant = args, names = names)
+```
+```{r OVAIC, eval = TRUE, strip.white = TRUE}
+AIC(fits, criterion = "AIC")[,-c(2,5,6)]
+```
+
+Each of the inhomogeneous models seems marginally better than the null model, but there is little to choose among them. 
+
+To visualise the entire surface we compute predicted density at each mask point. For example, we can plot the quadratic surface like this:
+```{r OVsurface, eval = TRUE, fig.width = 6, fig.height = 5, fig.cap = "Quadratic possum density surface"}
+par(mar = c(1,6,1,8))
+surfaceDxy2 <- predictDsurface(fits$Dxy2)
+plot(surfaceDxy2, plottype = "shaded", poly = FALSE, breaks = seq(0,22,2), 
+     title = "Density / ha", text.cex = 1)
+# Various graphical elements may be added, including contours of the Dsurface:
+plot(ovtrap, add = TRUE)
+plot(surfaceDxy2, plottype = "contour", poly = FALSE, breaks = seq(0,22,2), 
+     add = TRUE)
+lines(leftbank)
+```
+
+Following sections expand on the options for specifying and displaying density models.
+
+## Using the 'model' argument in secr.fit
+
+The model argument of `secr.fit` is a list of formulae, one for each 'real' parameter[^footnote6b] in both the state model (usually just D for density) and the observation model (typically g0 or lambda0, and sigma). A model formula defines variation in each parameter as a function of covariates (including geographic coordinates and their polynomial terms) that is linear on the 'link' scale, as in a generalized linear model.
+
+[^footnote6b]: Null formulae such as `D ~ 1` may be omitted, and if a single formula is used, it may be presented on its own rather than in list() form.
+  
+The options differ between the state and observation models. D may vary with respect to group, session or point in space; g0, lambda0, and sigma may vary by group, session, occasion or latent class (finite mixture), but not with respect to continuous space. This was a choice made in the software design, aiming to tame the complexity that would result if g0 and sigma were allowed to vary continuously in space.
+
+The predictors 'group' and 'session' behave for D as they do for other real parameters. They determine variation in the expected density for each group or session that is (by default) uniform across space, leading to a homogeneous Poisson model and a flat surface. No further explanation is therefore needed.
+
+### Link function
+\index{Link function, density model}
+
+The default link for D is 'log'. It is equally feasible in most cases to choose 'identity' as the link (see the `secr.fit` argument 'link'), and for the null model D $\sim$ 1 the estimate will be the same to numerical accuracy, as will estimates involving only categorical variables (e.g., session). However, with an 'identity' link the usual (asymptotic) confidence limits will be symmetrical (unless truncated at zero) rather than asymmetrical. In models with continuous predictors, including spatial trend surfaces, the link function will affect the result, although the difference may be small when the amplitude of variation on the surface is small. Otherwise, serious thought is needed regarding which model is biologically more appropriate: logarithmic or linear.
+
+The 'identity' link may cause problems when density is very small or very large because, by default, the maximisation method assumes all parameters have similar scale (e.g., `typsize = c(1,1,1)` for default constant models). Setting `typsize` manually in a call to `secr.fit` can fix the problem and speed up fitting. For example, if density is around 0.001/ha (10 per 100 km$^2$) then call `secr.fit(..., typsize = c(0.001,1,1))` (`typsize` has one element for each beta parameter). See [Appendix 2](#linkappendix) for more on link functions.
+
+You may wonder why `secr.fit` is ambivalent regarding the link function: link functions have seemed a necessary part of the machinery for capture--recapture modelling since Lebreton et al. (1992). Their key role is to keep the 'real' parameter within feasible bounds (e.g., 0-1 for probabilities). In `secr.fit` any modelled value of D that falls below zero is truncated at zero (of course this condition will not arise with a log link).
+
+### Built-in variables
+
+`secr.fit` automatically recognises the spatial variables x, y, x2, y2 and xy if they appear in the formula for D. These refer to the x-coordinate, y-coordinate, x-coordinate^2^ etc. for each mask point, and will be constructed automatically as needed.
+
+The formula for D may also include the non-spatial variables g (group), session (categorical), and Session (continuous), defined as for modelling g0 and sigma (see [secr-overview.pdf]).
+
+The built-in variables offer limited model possibilities:
+
+| Formula | Interpretation |
+| ------- | -------------- |
+| D ~ 1  | flat surface (default) |
+| D ~ x + y | linear trend surface (planar) |
+| D ~ x + x2 | quadratic trend in east-west direction only |
+| D ~ x + y + x2 + y2 + xy | quadratic trend surface  |
+
+
+<!---
+% \subsection*{Orthogonal polynomials}
+%
+% Specifying a quadratic trend surface as in the previous section is
+% both ugly and undesirable because the terms (x, x2 etc.) tend to be
+% highly correlated. The easy alternative is to specify an orthogonal
+% polynomial (OP) with the R function `poly`. Orthogonal polynomials
+% are transformations of the original polynomial variables that have the
+% property of 'orthogonality'. You don't need to know how to compute
+% them - it's automatic. The last three models could better be expressed:
+%
+% \begin{tabular} { l l}
+% D $\sim$ poly(x,y) & OP linear trend surface (planar) \\
+% D $\sim$ poly(x,2) & OP quadratic trend in east-west direction only \\
+% D $\sim$ poly(x,y, degree = 2) & OP quadratic trend surface \\
+% etc. & \\
+% \end{tabular}
+% (The argument name 'degree' must be spelled out if there is more than
+% one predictor).
+% Orthogonal polynomials are new in **secr} 2.9.0. Prediction from
+% OP models is tricky -- it requires the 'secr' model object to retain
+% the details of how the OP were constructed -- but transparent to the
+% user.
+%
+% Polynomial surfaces (OP and otherwise) take a very limited range of
+% shapes. They are also prone to extrapolation errors: the predicted
+% surface outside the detector array is often unrealistically high or
+% low because it is unconstrained by the data.
+--->
+
+### User-provided variables
+
+More interesting models can be made with variables provided by the user. These are stored in a data frame as the 'covariates' attribute of a mask object. Covariates must be defined for every point on a mask.
+
+Variables may be categorical (a factor or character value that can be coerced to a factor) or continuous (a numeric vector). The habitat variable 'habclass' constructed in the Examples section of the `skink` help is an example of a two-class categorical covariate. Remember that categorical variables entail one additional
+parameter for each extra level.
+
+There are several ways to create or input mask covariates.
+
+ 1. Read columns of covariates along with the x- and y-coordinates
+  when creating a mask from a dataframe or external file
+  (`read.mask`)
+
+ 2. Read the covariates dataframe separately from an external file
+  (`read.table`)
+
+ 3. Infer covariate values by computation on in existing mask (see below).
+
+ 4. Infer values for points on an existing mask from a GIS data source, such as a polygon shapefile or other spatial data source (see [secr-spatialdata.pdf]).
+
+Use the function `addCovariates` for the third and fourth options.
+
+### Covariates computed from coordinates
+
+Higher-order polynomial terms may be added as covariates if required. For example,
+```{r cubic}
+covariates(ovmask)[,"x3"] <- covariates(ovmask)$x^3 
+```
+allows a model like D ~ x + x2 + x3.
+
+If you have a strong prior reason to suspect a particular 'grain' to the landscape then this may be also be computed as a new, artificial covariate. This code gives a covariate representing a northwest -- southeast trend:
+
+```{r nwse}
+covariates(ovmask)[,"NWSE"] <- ovmask$y - ovmask$x - mean(ovmask$y - ovmask$x)
+```
+
+Another trick is to compute distances to a mapped landscape feature. For example, possum density in our Orongorongo example may relate to distance from the river; this corresponds roughly to elevation, which we do not have to hand. The `distancetotrap` function of **secr** computes distances from mask cells to the nearest vertex on the riverbank, which are precise enough for our purpose.
+
+```{r DTR}
+covariates(ovmask)[,"DTR"] <- distancetotrap(ovmask, leftbank)
+```
+
+```{r dtrplot, eval = TRUE, fig.width = 6, fig.height = 5, fig.cap = "Orongorongo Valley possum study: distance to river"}
+par(mar = c(1,6,1,8))
+plot(ovmask, covariate = "DTR", breaks = seq(0,500,50), 
+     title = "Distance to river m", dots = FALSE, inset= 0.07)
+```
+
+### Pre-computed resource selection functions
+
+A resource selection function (RSF) was defined by @bvns02 as "any model that yields values proportional to the probability of use of a resource unit". An RSF combines habitat information from multiple sources in a single variable. Typically the function is estimated from telemetry data on marked individuals, and primarily describes individual-level behaviour [3rd-order habitat selection of @j80]. 
+
+However, the individual-level RSF is also a plausible hypothesis for 2nd-order habitat selection i.e. for modelling the relationship between habitat and population density. Then we interpret the RSF as a single variable that is believed to be proportional to the expected population density in each cell of a habitat mask.  
+
+Suppose, for example, in folder datadir we have a polygon shapefile (RSF.shp, RSF.dbf etc.) with the attribute "rsf" defined for each polygon. Given mask and capthist objects "habmask" and "myCH", this code fits a SECR model that calibrates the RSF in terms of population density: 
+```{r rsfdemo, eval = FALSE}
+rsfshape <- sf::st_read(paste0(datadir, "/RSF.shp"))
+habmask <- addCovariates(habmask, rsfshape, columns = "rsf")
+secr.fit (myCH, mask = habmask, model = D ~ rsf - 1)
+```
+
+- "rsf" must be known for every pixel in the habitat mask 
+- Usually it make sense to fit the density model through the origin (rsf = 0 implies D = 0). This is not true of habitat suitability indices in general.
+
+This is a quite different approach to fitting multiple habitat covariates within **secr**, and one that should be considered. There are usually too few individuals in a SECR study to usefully fit models with multiple covariates of density, even given a large dataset such as our possum example. However, 3rd-order and 2nd-order habitat selection are conceptually distinct, and their relationship is an interesting research topic.
+
+### Regression splines
+\index{Regression spline, density}
+
+Regression splines are a flexible alternative to polynomials for spatial trend analysis. Regression splines are familiar as the smooth terms in 'generalized additive models' (gams) implemented (differently) in the base R package **gam** and in R package **mgcv** [@w06].
+
+Some of the possible smooth terms from **mgcv** can be used in model formulae for `secr.fit` -- see the help page for 'smooths' in **secr**. Smooths are specified with terms that look like calls to the functions `s` and `te`. Smoothness is determined by the number of knots which is set by the user via the argument 'k'. The number of knots cannot be determined automatically by the penalty algorithms of **mgcv**.
+
+Here we fit a regression spline with the same number of parameters as a quadratic polynomial,  a linear effect of the 'distance to river' covariate on log(D), and a nonlinear smooth.
+
+```{r OVfits2, cache = TRUE, warning = FALSE}
+args <- list(capthist = OVpossumCH[[1]], mask = ovmask, trace = FALSE)
+models <- list(D ~ s(x,y, k = 6), D ~ DTR, D ~ s(DTR, k = 3))
+RSfits <- list.secr.fit(model = models, constant = args, prefix = "RS")
+```
+
+Now add these to the AIC table and plot the 'AIC-best' model:
+
+```{r OVAIC2, strip.white=TRUE}
+AIC(c(fits, RSfits), criterion = "AIC")[,-c(2,5,6)]
+```
+
+```{r OVdtr, eval = TRUE, fig.width = 6, fig.height = 5, fig.cap = "Possum density vs distance to river: regression spline *k* = 3" }
+tmp <- predict(RSfits$RS3, newdata = data.frame(DTR = seq(0,400,5)))
+par(mar=c(5,8,2,4), pty = "s")
+plot(seq(0,400,5), sapply(tmp, "[", "D","estimate"), ylim = c(0,20),
+     xlab = "Distance from river (m)", ylab = "Density / ha", type = "l")
+
+```
+
+Confidence intervals are computed in `predictDsurface` by back-transforming $\pm$ 2SE from the link (log) scale:
+```{r CIplot, eval = TRUE, fig.width = 6, fig.height = 5, fig.cap = "Confidence surfaces"}
+par(mar = c(1,1,1,1), mfrow = c(1,2), xpd = FALSE)
+surfaceDDTR3 <- predictDsurface(RSfits$RS3, cl.D = TRUE)
+plot(surfaceDDTR3, covariate= "lcl", breaks = seq(0,22,2), legend = FALSE)
+mtext(side=3,line=-1.5,"Lower 95% confidence limit of D (possums / ha)")
+plot(surfaceDDTR3, plottype = "contour", breaks = seq(0,22,2), add = TRUE)
+lines(leftbank)
+plot(surfaceDDTR3, covariate= "ucl", breaks = seq(0,22,2), legend = FALSE)
+mtext(side=3,line=-1.5,"Upper 95% confidence limit of D (possums / ha)")
+plot(surfaceDDTR3, covariate = "ucl", plottype = "contour", breaks = seq(0,22,2), 
+     add = TRUE)
+lines(leftbank)
+mtext(side=3, line=-1, outer=TRUE, "s(DTR, k = 3) model")
+```
+
+<!---
+strip.legend(c(2674460, 5982886), legend = seq(0,22,2), col = terrain.colors(11), title="Density / ha" , text.cex = 1)
+--->
+
+Multiple predictors may be included in one 's' smooth term, implying interaction. This assumes isotropy -- equality of scales on the different predictors -- which is appropriate for geographic coordinates such as x and y in this example. In other cases, predictors may be measured on different scales (e.g., structural complexity of vegetation and elevation) and isotropy cannot be assumed. In these cases a tensor-product smooth (`te`) is appropriate because it is scale-invariant. For `te`, 'k' represents the order of the smooth on each axis, and we must fix the number of knots with 'fx = TRUE' to override automatic selection. 
+
+For more on the use of regression splines see the documentation for **mgcv**, the **secr** help page `?smooths', @w06,and @bk14.
+
+## Prediction and plotting
+\index{Density model, prediction and plotting}
+
+Fitting a model provides estimates of its coefficients or 'beta parameters'; use the `coef` method to extract these from an secr object. The coefficients are usually of little use in themselves, but we can use them to make predictions. In order to plot a fitted model we first predict the height of the density surface at each point on a mask. As we have seen, this is done with `predictDsurface`, which has arguments `(object, mask = NULL, se.D = FALSE, cl.D = FALSE, alpha = 0.05)`. By default, prediction is at the mask points used when fitting the model (i.e. object$mask); specify the mask argument to extrapolate the model to a different area. 
+
+The output from `predictDsurface` is a specialised mask object called a Dsurface (class "c('Dsurface', 'mask', 'data.frame')"). The covariate dataframe of a Dsurface has columns for the predicted density of each group (D.0 if there is only one). Usually when you print a mask you see only the x- and y-coordinates. The `print` method for Dsurface objects displays both the coordinates and the density values as one dataframe, as also do the `head` and `tail` methods.
+
+Use the arguments 'se.D' and 'cl.D' to request computation of the estimated standard error and/or upper and lower confidence limits for each mask point[^footnote6c]. If requested, values are saved as additional covariates of the output Dsurface (SE.0, lcl.0, and ucl.0 if there is only one group).
+
+[^footnote6c]: Option available only for models specified in generalized linear model form with the 'model' argument of secr.fit, not for user-defined functions.
+
+The plot method for a Dsurface object has arguments `(x, covariate = "D", group = NULL, plottype = "shaded", scale = 1, ...)`. `covariate` may either be a prefix (one of "D", "SE", "lcl", "ucl") or any full covariate name. 'plottype' may be one of "shaded", "dots", "persp", or "contour". A coloured legend is displayed centre-right (see ?plot.mask and ?strip.legend for options). 
+
+For details on how to specify colours, levels etc. read the help pages for `plot.mask`, `contour` and `persp` (these functions may be controlled by extra arguments to `plot.Dsurface`, using the 'dots' convention). 
+
+A plot may be enhanced by the addition of contours. This is a challenge, because the `contour` function in R requires a rectangular matrix of values, and our mask is not rectangular. We could make it so with the **secr** function `rectangularMask`, which makes a rectangular Dsurface with missing (NA) values of density at all the external points. `plot.Dsurface` recognises an irregular mask and attempts to fix this with an internal call to `rectangularMask`.
+
+## Scaling
+
+So far we have ignored the scaling of covariates, including geographic coordinates. 
+
+`secr.fit` scales the x- and y-coordinates of mask points to mean = 0, SD = 1 before using the coordinates in a model. Remember this when you come to use the coefficients of a density model. Functions such as `predictDsurface` take care of scaling automatically. `predict.secr` uses the scaled values ('newdata' x = 0, y = 0), which provides the predicted density at the mask centroid. The mean and SD used in scaling are those saved as the `meanSD' attribute of a mask (dataframe with columns 'x' and 'y' and rows 'mean' and 'SD'). 
+
+Scaling of covariates other than x and y is up to the user. It is not usually needed.
+
+The numerical algorithms for maximising the likelihood work best when the absolute expected values are roughly similar for all parameters on their respective 'link' scales (i.e. all beta parameters) rather than varying by orders of magnitude. The default link function for D and sigma (log) places the values of these parameters on a scale that is not wildly different to the variation in g0 or lambda0, so this is seldom an issue. In extreme cases you may want to make allowance by setting the `typsize` argument of `nlm` or the `parscale` control argument of `optim` (via the ... argument of `secr.fit`).
+
+Scaling is not performed routinely by `secr.fit` for distance calculations. Sometimes, large numeric values in coordinates can cause loss of precision in distance calculations (there are a lot of them at each likelihood evaluation). The problem is serious in datasets that combine large coordinates with small detector spacing, such as the Lake Station `skink` dataset. Set `details = list(centred = TRUE)` to force scaling; this may become the default setting in a future version of **secr**.
+
+## Potential problems
+\index{Density model, troubleshooting}
+
+Modelling density surfaces can be tricky.  Recognise when model fitting has failed. If there is no asymptotic variance-covariance matrix, the estimates cannot be trusted. Some forensic work may be needed. If in doubt, try repeating the fit, perhaps starting from the previously fitted values (you can use `secr.fit(..., start = last.model)` where `last.model` is a previously fitted secr object) or from new arbitrary values. Problems may result when the discretization is too coarse, so try with smaller mask cells.
+
+You can try another optimization method; `method = "Nelder-Mead"` is generally more robust than the default gradient-based method. Any method may fail to find the true maximum from a given starting point. We have no experience with simulated annealing ('SANN' in `optim`); it is reputedly effective, but slow. In the `optim` help it is stated ominously that "the 'SANN' method depends critically on the settings of the control parameters. It is not a general-purpose method".
+
+Avoid using '[' to extract subsets from mask, capthist and other secr objects. Use the provided `subset` methods. It is generally safe to use '[[' to extract one session from a multi-session object, as in our possum example, but this is not guaranteed. With care, it is also possible to replace selected elements in situ, but note that any change in coordinates will require the attribute 'meanSD' to be recalculated (see `?getMeanSD`).
+
+Do you really want to model density on the log scale? If not, change the link.
+
+## This is not a density surface
+\index{Density model, not}
+
+The surfaces we have fitted involve inhomogeneous Poisson models for the distribution of animal home range centres. The models have parameters that determine the relationship of expected density to location or to habitat covariates. 
+
+Another type of plot is sometimes presented and described as a 'density surface' -- the summed posterior distribution of estimated range centres from a Bayesian fit of a homogeneous Poisson model. A directly analogous plot may be obtained from the **secr** function `fx.total` (see also @be08 Section 4.3). The contours associated with the home range centre of each detected individual essentially represent 2-D confidence intervals for its home range centre, given the fitted observation model. Summing these gives a summed probability density surface for the centres of the observed individuals ('D.fx'), and to this we can add an equivalent scaled probability density surface for the individuals that escaped detection ('D.nc'). Both components are reported by `fx.total`, along with their sum ('D.sum') which we plot here for the flat possum model: 
+
+```{r OVfxsurface, cache = TRUE}
+fxsurface <- fx.total(fits$fit.null)
+```
+
+```{r OVfxsurfaceplt, echo=TRUE, eval = TRUE, cache = TRUE, fig.width = 6, fig.height = 5, fig.cap = "Total fx surface"}
+par(mar = c(1,6,1,8))
+plot(fxsurface, covariate = "D.sum", breaks = seq(0,30,2), poly = FALSE)
+plot(ovtrap, add = TRUE)
+```
+
+The plot concerns only one realisation from the underlying Poisson model. It visually invites us to interpret patterns in that realisation that we have not modelled. There are serious problems with the interpretation of such plots as 'density surfaces':
+
+ - attention is focussed on the individuals that were detected; others that were present but not detected are represented by a smoothly varying base level that dominates in the outer region of the plot (contrast this figure with the previous quadratic and DTR3 models).
+ 
+ - the surface depends on sampling intensity, and as more data are added it will change shape systematically. Ultimately, the surface near the centre of a detector array becomes a set of spikes on a barren plain
+ 
+ - the 'summed confidence interval' plot is easily confused with the 2-D surface obtained by summing utilisation distributions across animals
+ 
+ - confidence intervals are not available for the height of the probability density surface.
+
+The plots are also prone to artefacts. In some examples we see concentric clustering of estimated centres around the trapping grids, apparently 'repelled' from the traps themselves (e.g., plot below for a null model of the Waitarere 'possumCH' dataset in **secr**). This phenomenon appears to relate to lack of model fit (unpubl. results). 
+
+```{r fxsurfacew, cache = TRUE}
+fxsurfaceW <- fx.total(possum.model.0)
+```
+
+```{r fxsurfaceWplt, eval = TRUE, fig.width = 6, fig.height = 5, fig.cap = "Waitarere possum fx surface"}
+par(mar = c(1,5,1,8))
+plot(fxsurfaceW, covariate = "D.sum", breaks = seq(0,5,0.5), poly = FALSE)
+plot(traps(possumCH), add = TRUE)
+```
+
+See @Durbach2024 for further critique.
+
+## Relative density {#relativedensity2}
+\index{Density model, relative}
+
+In rare cases it is useful to model the relative density of tagged animals. This is the best that can be done with data for which the tagged sample was not collected in a way that allows the initial detections to be modelled spatially. One scenario involves acoustic telemetry or other automated detection for which the only animals at risk of detection are those previously marked (cf resighting data, in which unmarked animals are detected and counted, but not identified).
+
+The theory for relative density models was given [earlier](#relativedensity1). A spatial model for relative density is fitted in **secr** by setting `details = list(relativeD = TRUE)` in the call to `secr.fit` (**secr** $\ge$ 4.6.5). For example
+
+```{r relativeD, cache = TRUE, warning = FALSE, fig.width = 6, fig.height = 5, fig.cap = "Orongorongo Valley relative density"}
+# relative density fit, assuming uniform probability of tagging
+fitrd1 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, trace = FALSE,
+         model = D ~ s(DTR, k=3), details = list(relativeD = TRUE))
+plot(predictDsurface(fitrd1), title = 'Naive relative D')
+plot(traps(OVpossumCH[[1]]), add = TRUE)
+```
+
+This surface combines the population density and the probability that an animal was captured at least once, which varies spatially and is therefore confounded with relative population density. Densities are given relative to the intercept of the density model (assigned the arbitrary value 1.0). Absolute densities are not available because the model is fitted by 
+maximising the likelihood conditional on $n$. The relative model has one fewer coefficients than the absolute density model.
+
+A better predictor of the relative density of tagged animals is an approximation to the probability of detection, computed as a mask covariate. We invert the covariate so that the intercept corresponds to the (approximate) maximum relative density.
+
+```{r relativeD2, cache = TRUE, warning = FALSE}
+# construct a detection covariate using ballpark detection parameters
+covariates(ovmask)$pd <- 1-pdot(ovmask, traps(OVpossumCH[[1]]), 
+	detectpar = list(g0 = 0.0974198, sigma = 27.6354961), noccasions = 5)  
+# fit relative density model with new predictor...
+fitrd2 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, trace = FALSE,
+         model = D ~ pd, details = list(relativeD = TRUE))
+# ...and with both predictors
+fitrd3 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, trace = FALSE,
+         model = D ~ pd + s(DTR,k=3), details = list(relativeD = TRUE))
+```
+
+```{r relativeD3, fig.width = 6, fig.height = 5, fig.cap = "Orongorongo Valley relative density of tagged possums"}
+# compare and plot
+AIC(fitrd1, fitrd2, fitrd3, criterion = 'AIC')[,-c(2,5,6)]
+plot(predictDsurface(fitrd3), title = 'Relative D, tagged')
+plot(traps(OVpossumCH[[1]]), add = TRUE)
+```
+
+<!-- An alternative is to feed the likelihood a pre-calculated probability of detection, coincidentally available as the mask covariate 'pd'.  -->
+<!-- ```{r relativeD4} -->
+<!-- fit4 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, trace = FALSE, -->
+<!--          model = D ~ DTR, details = list(externalpdot = 'pd')) -->
+<!-- coef(fit4) -->
+<!-- ``` -->
+
+## Appendix 1. User-provided model functions {#userfnappendix}
+
+Some density models cannot be coded in the generalized linear model form of the model argument. To alleviate this problem, a model may be specified as an R function that is passed to `secr.fit`, specifically as the component 'userDfn' of the list argument 'details'. We document this feature here, although you may never use it.
+
+The userDfn function must follow some rules.
+
+ -  It should accept four arguments, the first a vector of parameter
+  values or a character value (below), and the second a 'mask' object, a
+  data frame of x and y coordinates for points at which density must
+  be predicted.
+
+    | Argument | Description | 
+    | -------- | ----------- |
+    | Dbeta | coefficients of density model, or one of c('name', 'parameters') |
+    | mask | habitat mask object |
+    | ngroup | number of groups |
+    | nsession | number of sessions |
+
+ - When called with `Dbeta = "name"`, the function should return a character string to identify the density model in
+  output. (This should not depend on the values of other arguments).
+
+ - When called with `Dbeta = 'parameters'`, the function should return a character vector naming each parameter. (When used this way, the call always includes the `mask` argument, so information regarding the model may be retrieved from any attributes of `mask` that have been set by the user).
+
+ - Otherwise, the function should return a numeric array with `dim = c(nmask, ngroup, nsession)` where nmask is the number of points (rows in mask). Each element in the array is the predicted density (natural scale, in animals / hectare) for each point, group and session. This is simpler than it sounds, as usually there will be a single session and single group.
+
+The coefficients form the density part of the full vector of beta coefficients used by the likelihood maximization function (`nlm` or `optim`). Ideally, the first one should correspond to an intercept or overall density, as this is what appears in the output of `predict.secr`. If transformation of density to the `link' scale is required then it should be
+hard-coded in userDfn.
+
+Covariates are available to user-provided functions, but within the function they must be extracted 'manually' (e.g., `covariates(mask)$habclass` rather than just 'habclass'). To pass other arguments (e.g., a basis for splines),
+add attribute(s) to the mask.
+
+It will usually be necessary to specify starting values for optimisation manually with the start argument of `secr.fit`.
+
+If the parameter values in `Dbeta` are invalid the function should return an array of all zero values.
+
+Here is a 'null' userDfn that emulates D $\sim$ 1 with log link
+
+```{r userDfn}
+userDfn0 <- function (Dbeta, mask, ngroup, nsession) {
+    if (Dbeta[1] == "name") return ("0")
+    if (Dbeta[1] == "parameters") return ("intercept")
+    D <- exp(Dbeta[1])   # constant for all points
+    tempD <- array(D, dim = c(nrow(mask), ngroup, nsession))
+    return(tempD)
+}
+```
+
+We can compare the result using userDfn0 to a fit of the same model using the 'model' argument. Note how the model description combines 'user.' and the name '0'.
+
+```{r userDfnfits, cache = TRUE, warning = FALSE}
+model.0 <- secr.fit(captdata, model = D ~ 1, trace = FALSE)
+userDfn.0 <- secr.fit(captdata, details = list(userDfn = userDfn0), trace = FALSE)
+AIC(model.0, userDfn.0)[,-c(2,5,6)]
+predict(model.0)
+predict(userDfn.0)
+```
+
+Not very exciting, maybe, but reassuring!
+
+Now let's try a more complex example. First create a test dataset with an east-west density step (this could be done more precisely with `sim.popn` + `sim.capthist`):
+
+```{r stepch, fig.width = 6, fig.height = 5, fig.cap = "Test data"}
+set.seed(123)
+ch <- subset(captdata, centroids(captdata)[,1]>500 | runif(76)>0.75)
+plot(ch)
+# also make a mask and assign the x coordinate to covariate 'X'
+msk <- make.mask(traps(ch), buffer = 100, type = 'trapbuffer')
+covariates(msk)$X <- msk$x
+```
+
+Now define a sigmoid function of covariate X:
+```{r stepfn}
+sigmoidfn <- function (Dbeta, mask, ngroup, nsession) {
+    scale <- 7.5   # arbitrary 'width' of step
+    if (Dbeta[1] == "name") return ("sig")
+    if (Dbeta[1] == "parameters") return (c("D1", "threshold", "D2"))
+    X2 <- (covariates(mask)$X - Dbeta[2]) / scale
+    D <- Dbeta[1] + 1 / (1+exp(-X2)) * (Dbeta[3] - Dbeta[1])
+    tempD <- array(D, dim = c(nrow(mask), ngroup, nsession))
+    return(tempD)
+}
+```
+
+Fit null model and sigmoid model:
+```{r fitsigmoid, cache = TRUE}
+fit.0 <- secr.fit(ch, mask = msk, link = list(D = "identity"), trace = FALSE)
+fit.sigmoid <- secr.fit(ch, mask = msk, details = list(userDfn = sigmoidfn), 
+    start=c(2.7, 500, 5.8, -1.2117, 3.4260), link = list(D = "identity"),
+    trace = FALSE)
+coef(fit.0)
+coef(fit.sigmoid)
+AIC(fit.0, fit.sigmoid)[,-c(2,5,6)]
+```
+
+The sigmoid model has improved fit, but there is a lot of uncertainty in the two density levels. The average of the fitted levels D1 and D2 (`r round(mean(coef(fit.sigmoid)[c('D.D1','D.D2'),'beta']),4)`) is not far from the fitted homogeneous level (`r round(coef(fit.0)[1,1],4)`).
+
+```{r stepplot, fig.width = 4.5, fig.cap = "Step function"}
+beta <- coef(fit.sigmoid)[1:3,'beta']
+X2 <- (300:700 - beta[2]) / 15
+D <- beta[1] + 1 / (1+exp(-X2)) * (beta[3] - beta[1])
+plot (300:700, D, type = 'l', xlab='X', ylab = 'Density', ylim=c(0,7))
+abline(v=beta[2], lty=2)
+abline(h=coef(fit.0)[1,1], lty=1, col='blue')
+rug(unique(traps(ch)$x), col = 'red')
+text(400, 2.2, 'D1')
+text(620, 6.4, 'D2')
+```
+
+## Appendix 2. More on link functions {#linkappendix}
+
+From **secr** 4.5.0 there is a scaled identity link 'i1000' that multiplies each real parameter value by 1000. Then `secr.fit(..., link = list(D = 'i1000'))` is a fast alternative to specifying `typsize` for low absolute density.
+
+Going further, you can even define your own *ad hoc* link function. To do this, provide the following functions in your workspace (your name 'xxx' combined with standard  prefixes) and use your name to specify the link:
+
+| Name | Purpose | Example |
+|-------|-----------------|--------------------------------|
+| xxx     | transform to link scale | i100 <- function(x) x * 100 |
+| invxxx  | transform from link scale | invi100 <- function(x) x / 100 |
+| se.invxxx | transform SE from link scale | se.invi100 <- function (beta, sebeta) sebeta / 100 |
+| se.xxx    | transform SE to link scale | se.i100 <- function (real, sereal) sereal * 100 |
+
+Following this example, you would call `secr.fit(..., link = list(D = 'i100'))`.
+To see the internal transformations for the standard link functions, type `secr:::transform`, `secr:::untransform`, `secr:::se.untransform` or `secr:::se.transform`.
+
+[secr-manual.pdf]: https://www.otago.ac.nz/density/pdfs/secr-manual.pdf
+[OVmask]:ovmask.png
+[quadsurface]:quadsurface.png
+[DTR]:DTR.png
+[DTR3]:DTR3.png
+[CIplot]:CIplot.png
+[spline]:spline.png
+[fxsurface]:fxsurface.png
+[fxsurfaceW]:fxsurfaceW.png
+[secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
+[secr-overview.pdf]: https://www.otago.ac.nz/density/pdfs/secr-overview.pdf
+[density surfaces]: https://www.otago.ac.nz/density/pdfs/secr-densitysurfaces.pdf
+[secr-densitysurfaces.pdf]: https://www.otago.ac.nz/density/pdfs/secr-densitysurfaces.pdf
+[secr-habitatmasks.pdf]: https://www.otago.ac.nz/density/pdfs/secr-habitatmasks.pdf
+[secr-multisession.pdf]: https://www.otago.ac.nz/density/pdfs/secr-multisession.pdf
+[secr-noneuclidean.pdf]: https://www.otago.ac.nz/density/pdfs/secr-noneuclidean.pdf
+[secr-spatialdata.pdf]: https://www.otago.ac.nz/density/pdfs/secr-spatialdata.pdf
+[secr-tutorial.pdf]: https://www.otago.ac.nz/density/pdfs/secr-tutorial.pdf

@@ -1,0 +1,26 @@
+book_filename: "SECRbook"
+language:
+  ui:
+    chapter_name: "Chapter "
+delete_merged_file: true
+rmd_files: ["index.Rmd",
+    "01-basics.Rmd",
+    "02-example.Rmd",
+    "03-theory.Rmd",
+    "04-theory-area-search.Rmd",
+    "05-theory-special-topics.Rmd",
+    "06-secr-package.Rmd",
+    "07-habitat.Rmd",
+    "08-detection-model.Rmd",
+    "08-finite-mixtures.Rmd",
+    "09-density-model.Rmd",
+    "10-secrfit.Rmd",
+    # "11-performance.Rmd",
+    "12-studydesign.Rmd",
+    "13-simulation.Rmd",
+    "14-applications.Rmd",
+    "16-expected-counts.Rmd",
+    "15-topics-not-covered.Rmd",
+    "17-datasets.Rmd",
+    "17-references.Rmd"]
+new_session: no

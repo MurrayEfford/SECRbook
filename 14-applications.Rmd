@@ -1,0 +1,24 @@
+# (PART\*) Applications {-} 
+
+# Applications
+
+This section selects a few applications that demonstrate the methods in action.
+
+I have selected published examples in which SECR methods have been employed to answer substantive research questions, avoiding demonstrations of methods and more light-weight applications.
+
+* Clarke et al Tennessee black bears
+* Tobler jaguar
+* Fishers in Ireland
+* Tigers in India?
+* Hedgehogs in NZ?
+* Carnivores in Norway \& Sweden
+
+## Modelling sex differences {#sex}
+
+* groups
+* hcov
+* individual covariate
+* sessions
+* finite mixtures
+
+<!-- cf Greg Distiller post -->

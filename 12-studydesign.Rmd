@@ -1,0 +1,18 @@
+# (PART\*) Study design {-} 
+
+# Study design {#studydesign}
+
+## Criteria
+
+### Bias
+### Precision
+### Robustness
+
+## Pilot values of detection parameters
+
+### literature
+### ad hoc
+#### sigma from home range area
+#### lambda0 from n
+
+## Region of interest

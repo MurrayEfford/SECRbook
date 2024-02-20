@@ -1,0 +1,80 @@
+--- 
+title: "Spatially Explicit Capture--Recapture"
+author: "Murray Efford"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [d:/jabref/SECR.bib]
+biblio-style: apalike
+link-citations: yes
+description: "A handbook of SECR methods."
+---
+
+# Preface {-}
+
+This book is about the methods for describing animal populations that have
+come to be called 'spatially explicit capture--recapture' or simply 'spatial 
+capture--recapture'. We use 'SECR' as a general label for these data and models.
+
+SECR data are observations of marked animals at known locations. The observations are from a well-defined regime of spatial sampling, most commonly with traps, cameras, or some other type of passive detector. SECR models are used to estimate parameters of the animal population, 
+particularly the population density. 
+
+```{r colorize, file = "utils.R", echo = FALSE}
+```
+
+## Why SECR? {-}
+
+Non-spatial capture--recapture methods are highly developed and powerful [@obwa78; @wnc02; @cw]. SECR plugs some gaps in non-spatial methods (particularly with respect to density estimation), and has some unexpected benefits:
+
+1. *Freedom from edge effects*  
+Estimation of density with non-spatial capture--recapture is dogged by uncertain edge effects. SECR explicitly accounts for edge effects so density estimates are unbiased. 
+2. *Reduced individual heterogeneity*  
+Unmodelled individual heterogeneity of detection is a universal source of bias in capture--recapture [e.g., @lc24]. Spatial sampling is a potent source of heterogeneity, due to differential access to detectors. SECR models this component of heterogeneity, which then ceases to be a problem.
+3. *Scaleable detection model*  
+The core detection model in SECR describes the interaction between a single individual and a single detector. Parameter estimates can therefore be used to simulate sampling with novel detector configurations.
+4. *Coherent adjustment for effort*  
+Known variation in effort, including incomplete use of a detector array, can be modelled without ad hoc covariates.
+5. *Spatial pattern (covariates)*  
+SECR allows density to be modelled as a function of continuous spatial covariates.
+
+## Why this book? {-}
+
+The literature of SECR has grown beyond the attention spans and time budgets of most users. Major SECR publications are @e04, @be08, @rcsg14, @bf16, @srl19 and @Turek2021.
+
+This book provides both a gentle introduction, in the spirit of [@cw], and more in-depth treatment of important topics. It is software oriented and therefore unashamedly partial and incomplete. Much of the content is drawn from earlier papers and the documentation of R [@R-base] packages.
+
+Part II is mostly independent of software. Other chapters lean heavily on the R package **secr**.
+
+## Software {-}
+
+The R package **secr** [@R-secr] provides most of the functionality we will need. 
+It performs maximum likelihood estimation for a range of closed-population SECR models[^footnote1]. The Windows application [DENSITY](https://www.otago.ac.nz/density/) [@edr04] has been superceded, although its graphical interface can still come in handy.
+
+[^footnote1]:A closed population is one in which the composition of the population and the activity distributions of individuals can be assumed fixed for the duration of sampling.
+
+Bayesian approaches using Markov chain Monte Carlo (MCMC) methods are a flexible alternative to maximum likelihood. The R package [nimbleSCR](https://CRAN.R-project.org/package=nimbleSCR) promises to make these methods more accessible[^footnote2]. 
+ 
+[^footnote2]: The earlier Bayesian SECR package **SPACECAP** [@SPACECAP] is no longer maintained and has been archived from CRAN.
+ 
+Add-on packages extend the capability of **secr**:
+
+* **secrlinear** enables the estimation of linear density (e.g., animals per km) for populations in linear habitats such as stream networks ([secrlinear-vignette.pdf](https://CRAN.R-project.org/package=secrlinear/vignettes/secrlinear-vignette.pdf)). 
+* **ipsecr** fits models by simulation and inverse prediction, rather than maximum likelihood; this is a rigorous way to analyse data from single-catch traps ([ipsecr-vignette.pdf](https://CRAN.R-project.org/package=ipsecr/vignettes/ipsecr-vignette.pdf)). 
+* **secrdesign** enables the assessment of alternative study designs by  Monte Carlo simulation; scenarios may differ in detector (trap) layout, sampling intensity, and other characteristics ([secrdesign-vignette.pdf](https://www.otago.ac.nz/density/pdfs/secrdesign-vignette.pdf])).
+* **openCR**  [@es20] implements open-population models. 
+
+These packages are available from the [CRAN](https://cran.r-project.org/) repository -- just open R and type `install.packages('xxxx')` where xxxx is the package name.
+
+Other R packages for SECR may be found outside CRAN. A distinct maximum-likelihood implementation by @srl19 is available on GitHub (https://github.com/jaroyle/oSCR). Open-population packages by Ben Augustine and Richard Glennie are also available on GitHub (https://github.com/benaug/OpenPopSCR; https://github.com/r-glennie/openpopscr). 
+
+## Acknowledgments  {-}
+
+Joanne Potts and Gurutzeta Guillera-Arroita gave helpful comments on an early version of the habitat chapter.
+
+```{r, eval = TRUE, echo = FALSE, out.width = '15%'}
+knitr::include_graphics('by-nc-sa.png')
+```
+
+The online version of this book is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License]( https://creativecommons.org/licenses/by-nc-sa/4.0/).
+

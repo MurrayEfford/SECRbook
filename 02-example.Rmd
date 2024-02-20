@@ -1,0 +1,203 @@
+# Simple example {#Example}
+\index{Snowshoe hare}
+
+We use the Alaskan snowshoe hare data of Burnham and Cushwa [@obwa78][^footnote3a].
+
+[^footnote3a]: This is a shortened version of the tutorial in [secr-tutorial.pdf].
+
+```{r, eval = TRUE, echo = FALSE, out.width = '40%', fig.show = 'hold'}
+knitr::include_graphics(c('figures1/snowshoehare.png','figures1/otisetal.png'))
+```
+
+\vspace{20pt}
+
+>"In 1972, Burnham and Cushwa (pers. comm.) laid out a livetrapping grid in a black spruce forest 30 miles (48.3 km) north of Fairbanks, Alaska. The basic grid was 10 x 10, with traps spaced 200 feet (61 m) apart. Trapping for snowshoe hares \textit{Lepus americanus} was carried out for 9 consecutive days in early winter. Traps were not baited for the first 3 days, and therefore we have chosen to analyze the data from the last 6 days of trapping."
+>
+> @obwa78[p. 36]
+
+## Input data
+
+The raw data are in two text files, the capture file and the trap layout file. Data from @obwa78 have been transformed for **secr** (code in [secr-tutorial.pdf]). The files may be downloaded to the current directory with
+```{r download}
+localnames <- c("hareCH6capt.txt", "hareCH6trap.txt")
+url <- paste0('https://www.otago.ac.nz/density/examples/', localnames)
+download.file(url, localnames, method = "libcurl")
+```
+
+The capture file "hareCH6capt.txt" has one line per capture and four columns (header lines are commented out and are not needed). Here we display the first 6 lines. The first column is a session label derived from the original study name; here there is only one session.
+
+```{r displaylines, echo = FALSE}
+# First define a function to peek at text files:
+displayLines <- function(filename, nlines, final = "") {
+    con <- file(filename)
+    cat(readLines(con,nlines), sep='\n')
+    if (final != "") cat(final, "\n")
+    close(con)
+}
+```
+
+```{r capturetxt, echo = FALSE, comment = ""} 
+displayLines("data1/hareCH6capt.txt", 6, "...")
+```
+ 
+\vspace{12pt}
+
+The trap layout file "hareCH6trap.txt" has one row per trap and columns for the detector label and x- and y-coordinates. We display the first 6 lines. The detector label is used to link captures to trap sites. Coordinates can relate to any rectangular coordinate system; **secr** will assume distances are in metres. These coordinates simply describe a 10 $\times$ 10 square grid with spacing 60.96 m. Do not use unprojected geographic coordinates (latitude and longitude)[^footnote3b]. 
+
+[^footnote3b]: See [secr-spatialdata.pdf].
+
+```{r trapstxt, echo = FALSE, comment = ""} 
+options(digits = 6, width = 85)       
+displayLines("data1/hareCH6trap.txt", 6, "...")
+```
+
+\vspace{12pt}
+
+We load **secr** and read the data files to construct a capthist object. The detectors are single-catch traps (maximum of one capture per animal per occasion and one capture per trap per occasion).
+
+```{r setwd, echo = FALSE, message=FALSE}
+opar <- setwd('d:/density communication/book/data1')
+on.exit(setwd(opar))
+```
+
+```{r readcapthist, message=TRUE}
+library(secr)
+hareCH6 <- read.capthist("hareCH6capt.txt", "hareCH6trap.txt", 
+                         detector = "single")
+```
+
+The capthist object `hareCH6` now contains almost all the information needed to fit a model. 
+
+## Check data
+
+Type `summary(hareCH6)` for a summary of the data. These are *spatial* data so we learn a lot by mapping them. The `plot` method for capthist objects has additional arguments; set `tracks = TRUE` to join consecutive captures of each individual.
+
+```{r cap, fig.width = 3.5, fig.height = 4, fig.align = "center", fig.cap = "Snowshoe hare spatial capture data. Trap sites (red crosses) are 61 m apart. Grid lines (grey) are 100 m apart (use arguments `gridl` and `gridsp` to suppress the grid or vary its spacing). Colours help distinguish individuals, but some are recycled."}
+par(mar = c(1,1,3,1))  # reduce margins
+plot (hareCH6, tracks = TRUE)
+```
+
+The most important insight is that individuals tend to be recaptured near their site of first capture. This is expected when the individuals of a species occupy home ranges. In SECR models the tendency for detections to be localised is reflected in the spatial scale parameter $\sigma$. Good estimation of $\sigma$ and density $D$ requires spatial recaptures (i.e. captures at sites other than the site of first capture).
+
+Successive trap-revealed movements can be extracted with the `moves` function and summarised with `hist`:
+```{r moves, fig.width = 3.5, fig.height = 2.6, fig.align = "center", fig.cap = "Trap-revealed movements of snowshoe hares"}
+m <- unlist(moves(hareCH6))
+par(mar = c(3.2,4,2,1), mgp = c(2.1,0.6,0))  # reduce margins
+hist(m, breaks = seq(-61/2, 500,61), xlab = "Movement  m", main = "")
+```
+
+About 30% of trap-revealed movements were of $>$ 100 m (Fig. \@ref(fig:moves); try also `plot(ecdf(m))`), so we can be sure that peripheral hares stood a good chance of being trapped even if their home ranges were centred well outside the area plotted in Fig. \@ref(fig:cap).
+
+## Fit a simple model
+
+Next we fit the simplest possible SECR model with function `secr.fit`. The `buffer` argument determines the habitat extent - we take a stab at this and check it later. Setting `trace = FALSE` suppresses printing of intermediate likelihood evaluations; it doesn't hurt to leave it out. We save the fitted model with the name 'fit'. Fitting is much faster if we use parallel processing in multiple threads - the number will depend on your machine, but 7 is OK for Windows with a quad-core processor.
+
+```{r fit, cache = TRUE}
+fit <- secr.fit (hareCH6, buffer = 250, trace = FALSE, ncores = 7)
+```
+A warning is generated. The data are from single-catch traps, but there is no usable theory for likelihood-based estimation from single-catch traps. This is not the obstacle it might seem, because simulations seem to show that the alternative likelihood for multi-catch traps may be used without damaging the density estimates [@ebb09]. It is safe to ignore the warning for now[^footnote3c]. 
+<!-- We could avoid the warning by resetting the detector type to "multi". -->
+<!-- ```{r multi} -->
+<!-- detector(traps(hareCH6)) <- "multi" -->
+<!-- ``` -->
+
+[^footnote3c]: While noting that estimates of the detection parameter g0 are biased. For unbiased estimates see **[ipsecr](https://CRAN.R-project.org/package=ipsecr)** and @Efford2023.
+
+## Output
+
+The output from `secr.fit` is an object of class 'secr'. If you investigate the structure of `fit` with `str(fit)` it will seem to be a mess: it is a list with more than 25 components, none of which contains the final estimates you are looking for. 
+
+To examine model output or extract particular results you should use one of the functions defined for the purpose. Technically, these are S3 methods for the class 'secr'. The key methods are `print,` `plot,` `AIC,` `coef,` `vcov,` and `predict.` Append '.secr' when seeking help e.g. `?print.secr`.
+
+Typing the name of the fitted model at the R prompt invokes the print method for `secr` objects and displays a more useful report.
+```{r printsecr}
+fit
+```
+
+\vspace{12pt}
+The report comprises these sections:
+
+* function call and time stamp
+* summary of the data
+* description of the model, including the maximized log likelihood, Akaike's Information Criterion AIC
+* estimates of model coefficients ('beta' parameters)
+* estimates of variance-covariance matrix of the coefficients
+* estimates of the 'real' parameters
+
+The last three items are generated by the `coef`, `vcov` and `predict` methods respectively. The final table of estimates is the most interesting, but it is derived from the other two. For our simple model there is one beta parameter for each real parameter[^footnote3d]. The estimated density is `r round(predict(fit)['D','estimate'],2)` hares per hectare, 95% confidence interval `r paste(round(predict(fit)['D',c('lcl','ucl')],2), collapse="--")` hares per hectare[^footnote3e].
+
+[^footnote3d]: We can get from beta parameter estimates to real parameter estimates by applying the inverse of the link function e.g. $\hat D = \exp(\hat \beta_D)$, and similarly for confidence limits; standard errors require a delta-method approximation (Lebreton et al. 1992).
+
+[^footnote3e]: One hectare (ha) is 10000 m^2^ or 0.01 km^2^.
+
+The other two real parameters jointly determine the detection function that you can easily plot with 95% confidence limits:
+```{r plotfit, fig.width=3.5, fig.height=3.7, fig.align="center", fig.cap = "Fitted halfnormal detection function, with 95% confidence limits"}
+par(mar = c(5,4,2,1))  # adjust white margins
+plot(fit, limits = TRUE)
+```
+
+## Revisiting buffer width
+
+Choosing a buffer width is a common stumbling block. We used `buffer = 250` without any explanation. Here it is. As far as we know, the snowshoe hare traps were surrounded by suitable habitat. We limit our attention to the area immediately around the traps by specifying a habitat buffer. The `buffer` argument is a short-cut for defining the potential habitat (area of integration); the alternative is to provide a habitat mask in the `mask` argument. Buffers and habitat masks are covered at length in [secr-habitatmasks.pdf].
+
+Buffer width is not critical as long as it is wide enough that animals at the edge have effectively zero chance of appearing in our sample, so that increasing the buffer has negligible effect on estimates. For half-normal detection (the default) a buffer of $4\sigma$ is usually enough[^footnote3f]. We check the present model with the function `esa.plot`. The estimated density[^footnote3g] has easily reached a plateau at the chosen buffer width (dashed red line):
+
+[^footnote3f]: This is not just the tail probability of a normal deviate; think about how the probability of an individual being detected at least once changes with (i) the duration of sampling (ii) the density of detector array.
+
+[^footnote3g]: These are Horvitz-Thompson-like estimates of density obtained by dividing the observed number of individuals $n$ by effective sampling areas (Borchers and Efford 2008) computed as the cumulative sum over mask cells ordered by distance from the traps. The algorithm treats the detection parameters as known and fixed.
+
+```{r esaplot, fig.width = 4.5, fig.height = 4, fig.align = "center", fig.cap = "Post hoc evaluation of buffer width using `esa.plot()` "}
+par(mar = c(5,4,2,1))  # adjust white margins
+esa.plot(fit)
+abline(v = 250, lty = 2, col = 'red')
+```
+
+## Overall probability of detection
+
+As a final flourish, we plot contours of the overall probability of detection $p_\cdot(\vec x; \theta)$ as a function of AC location $\vec x$, given the fitted model. The white line is the outer edge of the automatic mask generated by `secr.fit` with a 250-m buffer.
+
+```{r pdot, out.width='65%', out.height='60%', fig.cap = "Contour plot of overall detection probability."}
+tr <- traps(hareCH6)   # just the traps
+dp <- detectpar(fit)   # extract detection parameters from simple model
+mask300 <- make.mask(tr, nx = 128, buffer = 300)  
+covariates(mask300)$pd <- pdot(mask300, tr, detectpar = dp, noccasions = 6)
+par(mar = c(1,1,1,5))  # adjust white margin
+plot(mask300, cov = 'pd', dots = FALSE, border = 1, inset = 0.1, title = 'p.(x)')
+plot(tr, add = TRUE)   # over plot trap locations
+pdot.contour(tr, nx = 128, detectfn = 'HN', detectpar = dp, noccasions = 6, 
+             add = TRUE)
+plotMaskEdge(make.mask(tr, 250, type = 'trapbuffer'), add = TRUE, col = 'white')
+```
+
+```{r pdotdist, eval = TRUE, echo = FALSE, out.width='65%', out.height='60%', fig.cap = "Distribution of overall detection probability for AC locations at varying distance from traps."}
+covariates(mask300)$pd <- pdot(mask300, tr, detectpar = dp, noccasions = 6)
+covariates(mask300)$d <- distancetotrap(mask300, tr)
+covariates(mask300)$dclass <- cut(distancetotrap(mask300, tr), c(0,100,200,400))
+par(mar = c(4,4,2,2))
+f <- c(0,0.1,0.2,0.3,0.4,0.5)
+nm <- nrow(mask300)
+hist(covariates(mask300)$pd, xlim = c(0,1), ylim = c(0,nm/2), 
+     breaks = seq(0,1,0.05), col = 'forestgreen', axes=F,
+     ylab = "Fraction of mask population",
+     xlab = "Overall probability of detection", main = "")
+axis(1)
+axis(2, at = nm * f, labels = f)
+hist(covariates(mask300)$pd[covariates(mask300)$d<200], breaks=seq(0,1,0.05), add = T, col = 'orange')
+hist(covariates(mask300)$pd[covariates(mask300)$d<100], breaks=seq(0,1,0.05), add = T, col = 'yellow')
+legend(0.75, 0.45*nm, legend = c('All mask', '100 - 200 m', '< 100 m'), fill = c('forestgreen','orange','yellow'))
+```
+
+<!-- Pdot fig \@ref(fig:pdot) -->
+
+[snowshoehare]: snowshoeharefromotisetal1978.pdf 
+[otisetal]: otisetal.png
+[secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
+[secr-overview.pdf]: https://www.otago.ac.nz/density/pdfs/secr-overview.pdf
+
+[density surfaces]: https://www.otago.ac.nz/density/pdfs/secr-densitysurfaces.pdf
+[secr-densitysurfaces.pdf]: https://www.otago.ac.nz/density/pdfs/secr-densitysurfaces.pdf
+[secr-habitatmasks.pdf]: https://www.otago.ac.nz/density/pdfs/secr-habitatmasks.pdf
+[secr-multisession.pdf]: https://www.otago.ac.nz/density/pdfs/secr-multisession.pdf
+[secr-noneuclidean.pdf]: https://www.otago.ac.nz/density/pdfs/secr-noneuclidean.pdf
+[secr-spatialdata.pdf]: https://www.otago.ac.nz/density/pdfs/secr-spatialdata.pdf
+[secr-tutorial.pdf]: https://www.otago.ac.nz/density/pdfs/secr-tutorial.pdf

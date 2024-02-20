@@ -1,0 +1,66 @@
+# Performance
+
+Range of topics, both general and software-specific 
+
+## Robustness
+
+Robustness of estimates
+
+@Sollmann2024 Mt
+
+@Royle2015 transience
+
+@Efford2019 non circularity
+
+Challenged by @McLellan2023
+
+@Theng2022 general robustness; mechanistic simulation
+
+@Gerber2015 known population
+
+### Bias
+
+### CI coverage
+
+## Goodness-of-fit
+
+`secr.test`
+
+<!-- new simulation paper MEE-23-11-662 -->
+<!-- "A foundational development in frequentist methods for diagnosing fit in spatial capture-recapture" -->
+
+## Data requirements
+
+### Pathological cases
+### Determinants of precision
+
+"spatial recaptures"
+
+## Speed
+
+### Multi-threading
+
+### Scaling with mask points etc.
+
+### Restricted mask
+
+### Speed tips
+
+[secr-manual.pdf]: https://www.otago.ac.nz/density/pdfs/secr-manual.pdf
+[secr-overview.pdf]: https://www.otago.ac.nz/density/pdfs/secr-overview.pdf
+[secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
+[secr-densitysurfaces.pdf]: https://www.otago.ac.nz/density/pdfs/secr-densitysurfaces.pdf
+[secr-finitemixtures.pdf]: https://www.otago.ac.nz/density/pdfs/secr-finitemixtures.pdf
+[secr-habitatmasks.pdf]: https://www.otago.ac.nz/density/pdfs/secr-habitatmasks.pdf
+[secr-markresight.pdf]: https://www.otago.ac.nz/density/pdfs/secr-markresight.pdf
+[secr-models.pdf]: https://www.otago.ac.nz/density/pdfs/secr-models.pdf
+[secr-multisession.pdf]: https://www.otago.ac.nz/density/pdfs/secr-multisession.pdf
+[secr-noneuclidean.pdf]: https://www.otago.ac.nz/density/pdfs/secr-noneuclidean.pdf
+[secr-polygondetectors.pdf]: https://www.otago.ac.nz/density/pdfs/secr-polygondetectors.pdf
+[secr-sound.pdf]: https://www.otago.ac.nz/density/pdfs/secr-sound.pdf
+[secr-spatialdata.pdf]: https://www.otago.ac.nz/density/pdfs/secr-spatialdata.pdf
+[secr-telemetry.pdf]: https://www.otago.ac.nz/density/pdfs/secr-telemetry.pdf
+[secr-trend.pdf]: https://www.otago.ac.nz/density/pdfs/secr-trend.pdf
+[secr-tutorial.pdf]: https://www.otago.ac.nz/density/pdfs/secr-tutorial.pdf
+[secr-troubleshooting.pdf]: https://www.otago.ac.nz/density/pdfs/secr-troubleshooting.pdf
+[secr-varyingeffort.pdf]: https://www.otago.ac.nz/density/pdfs/secr-varyingeffort.pdf

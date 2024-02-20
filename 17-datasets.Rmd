@@ -1,0 +1,18 @@
+# Datasets {#Datasets}
+
+These datasets are included in **secr**. See each help page for details e.g., ?deermouse. Code for model fitting is in [secr-version4.pdf](https://www.otago.ac.nz/density/pdfs/secr-version4.pdf).
+
+| Dataset | Description |
+ |:------------|:-----------------------------------------------------------|
+ |`deermouse` |*Peromyscus maniculatus* live-trapping data of V. H. Reid published as a CAPTURE example by @obwa78 |
+ | `hornedlizard`	 | Repeated searches of a quadrat in Arizona for flat-tailed horned lizards *Phrynosoma mcallii* [@ry08] |
+ | `housemouse` | *Mus musculus* live-trapping data of H. N. Coulombe published as a CAPTURE example by @obwa78 |
+ | `ovenbird` | Multi-year mist-netting study of ovenbirds *Seiurus aurocapilla* at a site in Maryland, USA [@de09]|
+ | `ovensong` | Acoustic detections of ovenbirds [@de09] |
+ | `OVpossum` | Brushtail possum *Trichosurus vulpecula* live trapping in the Orongorongo Valley, Wellington, New Zealand 1996--1997 [@ec04] |
+ | `possum` | Brushtail possum *Trichosurus vulpecula* live trapping at Waitarere, North Island, New Zealand April 2002 [@ewcb05] |
+ | `secrdemo` | Simulated data 'captdata', and some fitted models |
+ | `skink` | Multi-session lizard (*Oligosoma infrapunctatum* and *O. lineoocellatum*) pitfall trapping data from Lake Station, Upper Buller Valley, South Island, New Zealand (Efford et al. in prep) | 
+ | `stoatDNA` | Stoat *Mustela erminea* hair tube DNA data from Matakitaki Valley, South Island, New Zealand [@ebb09] |
+ 
+ 

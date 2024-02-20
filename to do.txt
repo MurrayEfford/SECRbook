@@ -1,0 +1,7 @@
+To do
+
+BUG h3?  check link
+
+Test for MLE using Hessian
+
+Polygon assignment cf Ecosphere ms?

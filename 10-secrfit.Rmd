@@ -1,0 +1,53 @@
+# Fitting models 
+<!--  or troubleshooting? -->
+
+This chapter covers issues that can arise regardless of the particular model to be fitted.
+
+## Multi-threading
+\index{Multi-threading}
+
+
+**RcppParallel** @R-RcppParallel
+
+
+## Strategy: sequential model selection: detection then density?
+
+## Fitted model
+
+### Bias check
+\index{Bias check, automatic}
+
+
+### predict
+
+Grouping models: secrlist
+
+(predictDsurface separate)
+
+
+## Model comparison 
+
+### LR.test
+### AIC, AICwt etc.
+### Compatibility
+### Score tests
+
+Need for strictly identical data
+
+### Small sample adjustment AICc
+
+What is the sample size?
+ 
+## Goodness of fit
+ 
+To be added; `secr.test`
+
+## Common problems
+
+### Use only one of 'buffer' or 'mask'
+
+### Do not obsess about buffer width
+
+## Recognizing failure-to-fit
+
+### Speed
