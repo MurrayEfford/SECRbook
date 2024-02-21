@@ -16,3 +16,26 @@
 #### lambda0 from n
 
 ## Region of interest
+
+<!-- ## Detector clusters -->
+
+<!-- For surveying large areas it is efficient to use groups of detectors: within a group the detectors are close enough that animals may be re-detected at multiple points, while groups of detectors may be distributed across a region according to a probability design to sample possible spatial variation in density. **secr** allows for detector groups with the 'cluster' data structure. This is an attribute of a traps object that records which detectors belong to which cluster[^3]. -->
+
+<!-- [^3]:Clusters are assumed to share the same geometry (number of detectors, -->
+<!-- within-cluster spacing etc.). -->
+
+<!-- Functions are provided to generate detector arrays with a clustered -->
+<!-- structure (`trap.builder`, `make.systematic`), to extract or replace -->
+<!-- the cluster attribute (`clusterID`), to compute the geometric centres -->
+<!-- and numbers of detections per cluster (`cluster.centres`, -->
+<!-- `cluster.counts`), etc. -->
+
+<!-- A lacework design (Efford in prep.) is an alternative to a clustered design that is suitable when the region is intermediate size. Lacework designs may be constructed with `make.lacework`. -->
+
+<!-- Data from a large, clustered design may often be analysed more quickly -->
+<!-- if the 'capthist' object is first collapsed into one using the -->
+<!-- geometry of a single cluster (the object retains a memory of the -->
+<!-- number of individuals from each original cluster in the attribute -->
+<!-- 'n.mash'). Use the function `mash` for this. Functions `derived`, -->
+<!-- `derivedMash` and the method `predict.secr` use 'n.mash' to adjust -->
+<!-- their output density, SE, and confidence limits. -->

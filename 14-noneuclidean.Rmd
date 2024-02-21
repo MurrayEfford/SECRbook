@@ -1,0 +1,15 @@
+# Non-Euclidean distances
+
+<!-- More content in secr-noneuclidean.rmd -->
+
+<!-- ## Non-Euclidean distances -->
+ 
+ <!-- 'Distance' in SECR models usually, and by default, means the -->
+ <!-- Euclidean distance $d = \sqrt{(x_1-x_2)^2 + (y_1 - y_2)^2}$. The -->
+  <!-- observation model can be customised by replacing the Euclidean -->
+  <!-- distance with one that 'warps' space in some ecologically meaningful -->
+  <!-- way. There are innumerable ways to do this. Royle et al. (2013) -->
+  <!-- envisioned an 'ecological distance' that is a function of landscape covariates. Redefining distance is a way to model spatial variation in the size of home ranges, and hence the spatial scale of movement $\sigma$; Efford et al. (2016) use this to model inverse covariation between density and home range size. Distances measured along a linear habitat network such as a river system are also non-Euclidean (see package **secrlinear**). -->
+  
+  <!-- **secr** provides general tools for specifying and modelling non-Euclidean distance, via the `secr.fit` details component 'userdist'. This may be a user-specified function or a pre-computed matrix. See [secr-noneuclidean.pdf] for a full explanation and examples. -->
+  

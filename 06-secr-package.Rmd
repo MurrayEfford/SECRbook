@@ -153,29 +153,16 @@ Models are defined symbolically in **secr** using R formula notation. A separate
 
 For example, in `secr.fit(captdata, model = g0~t)` the real parameter g0 is no longer constant, but takes a unique value on each sampling occasion. [Predictors](#linear-submodels) such as `t` are either names from a list known to **secr** or covariates provided by the user.
 
-Other 'real' parameters appear in particular contexts. 'z' is a shape parameter that is used only when the [detection function] has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter 'lambda0' in place of 'g0'. A further 'real' parameter is the mixing proportion 'pmix', used in [finite mixture models](#finite-mixtures) and [hybrid mixture models](#hybrid-mixtures).
+Other 'real' parameters appear in particular contexts. 'z' is a shape parameter that is used only when the [detection function](#detectfn) has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter 'lambda0' in place of 'g0'. A further 'real' parameter is the mixing proportion 'pmix', used in [finite mixture models](#finite-mixtures) and [hybrid mixture models](#hybrid-mixtures).
 
 ## Model fitting and estimation
 
-Models are fitted in `secr.fit` by numerically maximizing the
-likelihood. The likelihood integrates over the unknown
-locations of the animals' activity centres. This is achieved in practice
-by summing over points in the [habitat mask](#Habitat), which has some
-implications for the user. Computation may be slow, especially if
-there are many points in the mask, and estimates may be sensitive to
-the particular choice of mask (either explicitly in `make.mask`
-or implicitly via the 'buffer' argument).
+Models are fitted in `secr.fit` by numerically maximizing the likelihood. The likelihood integrates over the unknown
+locations of the animals' activity centres. This is achieved in practice by summing over points in the [habitat mask](#Habitat), which has some implications for the user. Computation may be slow, especially if there are many points in the mask, and estimates may be sensitive to the particular choice of mask (either explicitly in `make.mask` or implicitly via the 'buffer' argument).
 
-The default maximization algorithm is Newton-Raphson in the function
-`stats::nlm`. By default, all reported variances, covariances,
-standard errors and confidence limits are asymptotic and based on a
-numerical estimate of the information matrix, as described [here](#confidenceintervals). 
+The default maximization algorithm is Newton-Raphson in the function `stats::nlm`. By default, all reported variances, covariances, standard errors and confidence limits are asymptotic and based on a numerical estimate of the information matrix, as described [here](#confidenceintervals). 
 
-The Newton-Raphson algorithm is fast, but it sometimes fails to compute the information
-matrix correctly, causing some standard errors to be set to NA; see
-the 'method' argument of `secr.fit` for alternatives. Use
-`confint.secr` for profile likelihood intervals and `sim.secr`
-for parametric bootstrap intervals (both are slow).
+The Newton-Raphson algorithm is fast, but it sometimes fails to compute the information matrix correctly, causing some standard errors to be set to NA; see the 'method' argument of `secr.fit` for alternatives. Use `confint.secr` for profile likelihood intervals and `sim.secr` for parametric bootstrap intervals (both are slow).
 
 <!-- ## Miscellaneous topics -->
 
@@ -218,51 +205,9 @@ for parametric bootstrap intervals (both are slow).
 
 <!-- Mark--resight data include sampling occasions on which previously marked animals were recorded, but new animals were not distinguished from each other. **secr** 4.6 provides a suite of spatial models for these data, as documented in [secr-markresight.pdf]. Two general classes of spatial mark--resight model are included: those in which the marking process is modelled (we call these spatial capture--mark--resight models), and those in which the process is not modelled and pre-marked animals are assumed to follow some distribution (e.g., uniform across a known area) (sighting-only or mark--resight models). Mark--resight models in **secr** 4.6 discard some spatial information in the unmarked sightings -- information that is used in the models of Chandler and Royle (2013) and Sollmann et al. (2013). This results in some (probably small) loss of precision, and requires an adjustment for overdispersion to ensure confidence intervals have good coverage properties. The vignette [secr-markresight.pdf] should be consulted. -->
 
-<!-- ## Detector clusters -->
-
-<!-- For surveying large areas it is efficient to use groups of detectors: within a group the detectors are close enough that animals may be re-detected at multiple points, while groups of detectors may be distributed across a region according to a probability design to sample possible spatial variation in density. **secr** allows for detector groups with the 'cluster' data structure. This is an attribute of a traps object that records which detectors belong to which cluster[^3]. -->
-
-<!-- [^3]:Clusters are assumed to share the same geometry (number of detectors, -->
-<!-- within-cluster spacing etc.). -->
-
-<!-- Functions are provided to generate detector arrays with a clustered -->
-<!-- structure (`trap.builder`, `make.systematic`), to extract or replace -->
-<!-- the cluster attribute (`clusterID`), to compute the geometric centres -->
-<!-- and numbers of detections per cluster (`cluster.centres`, -->
-<!-- `cluster.counts`), etc. -->
-
-<!-- A lacework design (Efford in prep.) is an alternative to a clustered design that is suitable when the region is intermediate size. Lacework designs may be constructed with `make.lacework`. -->
-
-<!-- Data from a large, clustered design may often be analysed more quickly -->
-<!-- if the 'capthist' object is first collapsed into one using the -->
-<!-- geometry of a single cluster (the object retains a memory of the -->
-<!-- number of individuals from each original cluster in the attribute -->
-<!-- 'n.mash'). Use the function `mash` for this. Functions `derived`, -->
-<!-- `derivedMash` and the method `predict.secr` use 'n.mash' to adjust -->
-<!-- their output density, SE, and confidence limits. -->
-
 ## Parallel processing
 
 On processors with multiple cores it is possible to speed up computation by using cores in parallel. In **secr** 4.6 this happens automatically in `secr.fit` and a few other functions using the multi-threading paradigm of **RcppParallel** [@R-RcppParallel]. The number of threads may be set directly with the function `setNumThreads`, or via the 'ncores' argument of several functions. 
-
-Earlier versions of **secr** relied on parallel processing with the **parallel** package (invoked when the argument ncores was set greater than 1). The benefits of that form of parallel processing were variable (considerable with simulations in `sim.secr`, but otherwise unimpressive). 
-
-The functions `par.secr.fit`, `par.region.N` and `par.derived` allowed models to be fitted or analysed in parallel, one per core. The greater speed of `secr.fit` in **secr** 4.6 makes `par.secr.fit` redundant. All three functions now appear to run faster with ncores=1 than with ncores>1. They are retained because it is sometimes useful to process several models at once.
-
-<!-- ## Regression splines -->
-
-<!-- The standard models for 'real' parameters in **secr** are linear on the link scale, much like a generalised linear model. Semi-parametric 'regression spline' smooths provide more flexibility. These are implemented in **secr** using a method suggested by Borchers and Kidney (2014): Simon Wood's R package **mgcv** is used to parse s() and te() terms in model formulae and construct basis functions that are used like linear covariates within **secr**. Any 'real' parameter may be modelled with regression splines (D, lambda0, sigma, noneuc etc.). For details see the help page (?smooths) and the documentation for **mgcv**. -->
-
-<!-- ## Non-Euclidean distances -->
-
-<!-- 'Distance' in SECR models usually, and by default, means the -->
-<!-- Euclidean distance $d = \sqrt{(x_1-x_2)^2 + (y_1 - y_2)^2}$. The -->
-<!-- observation model can be customised by replacing the Euclidean -->
-<!-- distance with one that 'warps' space in some ecologically meaningful -->
-<!-- way. There are innumerable ways to do this. Royle et al. (2013) -->
-<!-- envisioned an 'ecological distance' that is a function of landscape covariates. Redefining distance is a way to model spatial variation in the size of home ranges, and hence the spatial scale of movement $\sigma$; Efford et al. (2016) use this to model inverse covariation between density and home range size. Distances measured along a linear habitat network such as a river system are also non-Euclidean (see package **secrlinear**). -->
-
-<!-- **secr** provides general tools for specifying and modelling non-Euclidean distance, via the `secr.fit` details component 'userdist'. This may be a user-specified function or a pre-computed matrix. See [secr-noneuclidean.pdf] for a full explanation and examples. -->
 
 <!-- Laake, J. and Rexstad E. (2014) Appendix C. RMark - an alternative approach to building linear models in MARK. In: Cooch, E. and White, G. (eds) *Program MARK: A Gentle -->
 <!--     Introduction*. 13th edition. http://www.phidot.org/software/mark/docs/book/. -->
