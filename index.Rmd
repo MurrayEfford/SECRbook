@@ -73,8 +73,8 @@ Other R packages for SECR may be found outside CRAN. A distinct maximum-likeliho
 Joanne Potts and Gurutzeta Guillera-Arroita gave helpful comments on an early version of the habitat chapter.
 
 ```{r, eval = TRUE, echo = FALSE, out.width = '15%'}
-knitr::include_graphics('by-nc-sa.png')
+knitr::include_graphics('figures/by-nc-sa.png')
 ```
 
-The online version of this book is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License]( https://creativecommons.org/licenses/by-nc-sa/4.0/).
+The online version of this book is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
