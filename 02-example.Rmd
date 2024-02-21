@@ -6,7 +6,7 @@ We use the Alaskan snowshoe hare data of Burnham and Cushwa [@obwa78][^footnote3
 [^footnote3a]: This is a shortened version of the tutorial in [secr-tutorial.pdf].
 
 ```{r, eval = TRUE, echo = FALSE, out.width = '40%', fig.show = 'hold'}
-knitr::include_graphics(c('figures1/snowshoehare.png','figures1/otisetal.png'))
+knitr::include_graphics(c('figures/snowshoehare.png','figures/otisetal.png'))
 ```
 
 \vspace{20pt}
