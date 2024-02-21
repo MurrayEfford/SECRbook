@@ -66,6 +66,10 @@ hareCH6 <- read.capthist("hareCH6capt.txt", "hareCH6trap.txt",
                          detector = "single")
 ```
 
+```{r cleanup, echo = FALSE}
+file.remove(localnames)
+```
+
 The capthist object `hareCH6` now contains almost all the information needed to fit a model. 
 
 ## Check data

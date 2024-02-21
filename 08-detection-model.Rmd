@@ -65,7 +65,7 @@ The variety of detection functions is daunting. You could try them all and selec
 ```{r setupdf, echo = FALSE, results = "hide", warning = FALSE, message = FALSE}
 library(secr)
 setNumThreads(18)
-hareCH6 <- read.capthist("hareCH6capt.txt", "hareCH6trap.txt", detector = "single")
+hareCH6 <- read.capthist("data/hareCH6capt.txt", "data/hareCH6trap.txt", detector = "single")
 ```
 
 ```{r choicedf, warning = FALSE, cache = TRUE, message = FALSE}
