@@ -335,7 +335,7 @@ The surfaces we have fitted involve inhomogeneous Poisson models for the distrib
 Another type of plot is sometimes presented and described as a 'density surface' -- the summed posterior distribution of estimated range centres from a Bayesian fit of a homogeneous Poisson model. A directly analogous plot may be obtained from the **secr** function `fx.total` (see also @be08 Section 4.3). The contours associated with the home range centre of each detected individual essentially represent 2-D confidence intervals for its home range centre, given the fitted observation model. Summing these gives a summed probability density surface for the centres of the observed individuals ('D.fx'), and to this we can add an equivalent scaled probability density surface for the individuals that escaped detection ('D.nc'). Both components are reported by `fx.total`, along with their sum ('D.sum') which we plot here for the flat possum model: 
 
 ```{r OVfxsurface, cache = TRUE}
-fxsurface <- fx.total(fits$fit.null)
+fxsurface <- fx.total(fits$null)
 ```
 
 ```{r OVfxsurfaceplt, echo=TRUE, eval = TRUE, cache = TRUE, fig.width = 6, fig.height = 5, fig.cap = "Total fx surface"}
