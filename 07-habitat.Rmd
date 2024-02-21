@@ -2,7 +2,7 @@
 
 A mask represents habitat in the vicinity of detectors that is potentially occupied by the species of interest. Understanding habitat masks and how to define and manipulate them is central to spatially explicit capture--recapture. This chapter summarises what users need to know about masks in **secr**. Early sections apply regardless of software. 
 
-```{r colorize7, file = "utils.R", echo = FALSE}
+```{r colorize7, file = "miscellaneous.R", echo = FALSE}
 ```
 
 ## Background

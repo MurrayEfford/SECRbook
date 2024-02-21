@@ -26,7 +26,7 @@ Area-search analogues exist for each of the [point detector types](#pointdetecto
  ```{r overlapplot, echo = FALSE, cache = TRUE, fig.width = 5.5, fig.height = 4, fig.align = "center", fig.cap = "Hazard of detection for an animal centered at the blue dot on an irregular searched polygon (red outline). The cumulative hazard is modelled by the quantitative overlap (grey shading) between a radially symmetrical probability density (circular contours) and the searched area."}
  # Yellow dots indicate a random sample of cues from this animal.
  par(mfrow=c(1,1), mar=c(0,0,0,4))
- polyexample1 <- read.traps(file = 'polygonexample.txt', detector = 'polygon')
+ polyexample1 <- read.traps(file = 'data/polygonexample.txt', detector = 'polygon')
  msk <- make.mask(polyexample1, buffer=150, spacing=2.5)
  covariates(msk) <- data.frame(d1 = sqrt((msk$x+30)^2+(msk$y-60)^2))
  covariates(msk)$h <- 3 * exp(-covariates(msk)$d1^2/2/100^2)
