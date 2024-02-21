@@ -3,7 +3,9 @@
 .RData
 _book
 _bookdown_files
+SECRbook_cache
 SECRbook_files
 SECRbook.log
+SECRbook.Rmd
 rsconnect
 ^.*\.Rproj$
