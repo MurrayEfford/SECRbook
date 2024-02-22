@@ -7,6 +7,9 @@ Dealing with multiple sessions adds another layer of complexity, and raises some
 ```{r multisessionstartup, echo = FALSE, message = FALSE, warning = FALSE, results = 'hide'}
 library(secr)
 setNumThreads(18)   # adjust as required
+```
+```{r multisessionsimulation, echo = FALSE, eval = FALSE}
+# no need to execute this each time chapter is built
 set.seed(123)
 grid <- make.grid(nx = 8, ny = 8, detector = 'multi')
 msCH <- sim.capthist(grid, popn = list(D = 10, buffer = 100), detectfn = 'HHN',
@@ -14,7 +17,7 @@ msCH <- sim.capthist(grid, popn = list(D = 10, buffer = 100), detectfn = 'HHN',
 for (sess in 1:3) 
     covariates(msCH[[sess]]) <- data.frame(sex = sample(c('f','m'), nrow(msCH[[sess]]),
                                                       replace = TRUE))
-write.capthist(msCH, filestem = 'msCH', tonumeric = FALSE, covariates = TRUE)
+write.capthist(msCH, filestem = 'data/msCH', tonumeric = FALSE, covariates = TRUE)
 ```
 
 ## Input
