@@ -2,7 +2,7 @@
 
 # Concepts and terminology {#Basics}
 
-This chapter briefly introduces the concepts and terminology of SECR. The following chapter provides a [simple example](#Example), and the [Theory] chapter provides technical details.
+This chapter briefly introduces the concepts and terminology of SECR. The following chapter provides a [simple example](#Example), and the [Theory] chapter provides technical details. 
 
 ## Spatial population
 
