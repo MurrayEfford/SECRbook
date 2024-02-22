@@ -3,7 +3,7 @@
 # R package secr
 \index{**secr**}
 
-This chapter provides an overview of **secr** [@R-secr]. See the following chapters for details.
+This chapter provides an overview of **secr** [@R-secr]. See the following chapters for details. Text in `this font` refers to R objects that are documented in online help for the **secr** package, or in base R.
 
 ## History
 
@@ -14,31 +14,26 @@ This chapter provides an overview of **secr** [@R-secr]. See the following chapt
 
 **secr** defines a set of R classes[^1] and methods for data from detector arrays and models fitted to those data. To perform an SECR analysis you construct each of these objects in turn. Fig. \@ref(fig:schematic) indicates the relationships among the classes. 
 
-[^1]:Technically, these are S3 classes. A 'class' in R specifies a
-  particular type of data object and the functions (methods) by which
-  it is manipulated (computed, printed, plotted etc). See the R
-  documentation for further explanation.
+[^1]:Technically, these are S3 classes. A 'class' in R specifies a   particular type of data object and the functions (methods) by which it is manipulated (computed, printed, plotted etc). See the R documentation for further explanation.
 
 Table: (\#tab:essentialclasses) Essential classes in **secr**.
 
 | Class   | Data                                        |
 |:---------|:---------------------------------------------|
-|  traps  | locations of detectors; detector type ('proximity', 'multi', etc.) |
-|  capthist | spatial detection histories, including a 'traps' object |
-|  mask   | raster map of habitat near the detectors |
-|  secr   | fitted SECR model|
+| `traps`  | locations of detectors; detector type ('proximity', 'multi', etc.) |
+| `capthist` | spatial detection histories, including a 'traps' object |
+| `mask`   | raster map of habitat near the detectors |
+| `secr`   | fitted SECR model|
   
 ```{r schematic, eval = TRUE, echo = FALSE, out.width = '80%', fig.cap = "Essentials of the **secr** package"}
 knitr::include_graphics('figures/schematic3.png')
 ```
 
-- Each object class (shaded box) comes with methods to display and manipulate the data it contains (e.g. `print`, `summary`, `plot`, `rbind`, `subset`)[^2]. 
+- Each object class (shaded box) comes with methods to display and manipulate the data it contains (e.g. `print`, `summary`, `plot`, `rbind`, `subset`). 
 - The function `read.capthist` forms a 'capthist' object from input in two files, one the detector layout (saved as attribute 'traps') and the other the capture data. 
 - By default, a habitat mask is generated automatically by `secr.fit` using a specified buffer around the detectors (traps). The function `make.mask` gives greater control over this step.
 - Any of the objects input to `secr.fit` (traps, capthist, mask) may include a dataframe of covariates  saved as an attribute. Covariate names may be used in model formulae; the `covariates` method is used to extract or replace covariates. Use `addCovariates` for covariates from spatial data sources (e.g., shapefile or 'sf' object)
 - Fitted secr models may be manipulated with the methods shown on the right. 
-
-[^2]:Text in this font refers to R objects that are documented in online help for the **secr** package, or in base R.
 
 ## Functions
 \index{**secr** !core functions}
@@ -85,13 +80,13 @@ Table: (\#tab:specialdetectortypes) Specialised detector types in **secr**
 
 | Detector   | Description                               |
 |:------------|:-------------------------------------------|
-| capped | proximity detector with maximum one animal at a time |
-| polygon | counts from searching one or more areas |
-| transect | counts from searching one or more transects |
-| polygonX | binary data from mutually exclusive areas |
-| transectX | binary data from mutually exclusive transects |
-| signal | detections and signal strengths at multiple microphones |
-| telemetry | locations from radiotelemetry |
+| "capped" | proximity detector with maximum one animal at a time |
+| "polygon" | counts from searching one or more areas |
+| "transect" | counts from searching one or more transects |
+| "polygonX" | binary data from mutually exclusive areas |
+| "transectX" | binary data from mutually exclusive transects |
+| "signal" | detections and signal strengths at multiple microphones |
+| "telemetry" | locations from radiotelemetry |
 
 Polygon and transect detectors are for binary or count data from [searches](#areasearches)
 (e.g., number of detections per animal per polygon per occasion, supplemented by the x-y coordinates of each detection). 
@@ -110,6 +105,7 @@ Data input is covered in the data input vignette [secr-datainput.pdf]. One optio
 Function `secr.fit` returns an object of class `secr`. This is an R list with many components. Assigning the output to a named object saves both the fit and the data for further manipulation. Typing the object name at the R prompt invokes `print.secr` which formats the key results. These include the dataframe of estimates from the `predict` method for `secr` objects. Functions are provided for further computations on `secr` objects (e.g., AIC model selection, model averaging, profile-likelihood confidence intervals, and likelihood-ratio tests). Several of these are listed in Table \@ref(tab:corefunctions).
 
 \index{Units}
+
 One system of units is used throughout **secr**. Distances are in metres and areas are in hectares (ha). The unit of density for 2-dimensional habitat is animals per hectare. 1 ha = 10000 m^2^ = 0.01 km^2^. To convert density to animals per km^2^, multiply by 100. Density in linear habitats (see package **secrlinear**) is expressed in animals per km.
 
 ## Documentation
@@ -155,7 +151,7 @@ For example, in `secr.fit(captdata, model = g0~t)` the real parameter g0 is no l
 
 Other 'real' parameters appear in particular contexts. 'z' is a shape parameter that is used only when the [detection function](#detectfn) has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter 'lambda0' in place of 'g0'. A further 'real' parameter is the mixing proportion 'pmix', used in [finite mixture models](#finite-mixtures) and [hybrid mixture models](#hybrid-mixtures).
 
-## Model fitting and estimation
+## Fitting models
 
 Models are fitted in `secr.fit` by numerically maximizing the likelihood. The likelihood integrates over the unknown
 locations of the animals' activity centres. This is achieved in practice by summing over points in the [habitat mask](#Habitat), which has some implications for the user. Computation may be slow, especially if there are many points in the mask, and estimates may be sensitive to the particular choice of mask (either explicitly in `make.mask` or implicitly via the 'buffer' argument).
@@ -163,47 +159,6 @@ locations of the animals' activity centres. This is achieved in practice by summ
 The default maximization algorithm is Newton-Raphson in the function `stats::nlm`. By default, all reported variances, covariances, standard errors and confidence limits are asymptotic and based on a numerical estimate of the information matrix, as described [here](#confidenceintervals). 
 
 The Newton-Raphson algorithm is fast, but it sometimes fails to compute the information matrix correctly, causing some standard errors to be set to NA; see the 'method' argument of `secr.fit` for alternatives. Use `confint.secr` for profile likelihood intervals and `sim.secr` for parametric bootstrap intervals (both are slow).
-
-<!-- ## Miscellaneous topics -->
-
-<!-- ## Modelling sex differences {#modellingsex} -->
-
-<!-- There are many ways to model sex differences in **secr**. Here we -->
-<!-- sketch some possibilities, in order of usefulness (your mileage may -->
-<!-- vary). -->
-
-<!-- 1. Fit a hybrid mixture model as described in the online help -->
-<!--   (?hcov). This accommodates occasional missing values and estimates -->
-<!--   the sex ratio (pmix). -->
-
-<!-- 2. Use conditional likelihood (`CL = TRUE`) and include a -->
-<!--   categorical (factor) covariate in model formulae (e.g., g0 $\sim$ -->
-<!--   sex). To get sex-specific densities then specify `groups = -->
-<!--     "sex"` in `derived`. -->
-
-<!-- 3. Use full likelihood (`CL = FALSE`) and separate data for -->
-<!--   the two sexes as different sessions (most easily, by coding 'female' -->
-<!--   or 'male' in the first column of the capture file read with -->
-<!--   `read.capthist`). Then include a group term 'session' in -->
-<!--   relevant model formulae (e.g., g0 $\sim$ session). -->
-
-<!-- 4. Use full likelihood (`CL = FALSE`), define `groups = "sex"` or -->
-<!--     similar, and include a group term 'g' in relevant formulae (e.g., -->
-<!--     g0 $\sim$ g). -->
-
-<!-- 'CL' and 'groups' are arguments of `secr.fit`. Possibilities 1--4 should not be mixed for comparing AIC. Sex differences in home-range size (and hence sigma) may be mitigated by compensatory -->
-<!-- variation in g0 or lambda0 (Efford and Mowat 2014). -->
-
-<!-- ## Varying effort -->
-
-<!-- The probability of observing an individual at a particular detector may depend directly on a known quantity such as how long the detector was exposed on a particular occasion. In the extreme, a detector may not have been operated. The terms 'effort' and 'usage' are used here -->
-<!-- interchangeably for variation in the duration of exposure and similar known effects. Usage is an attribute of the detectors in a traps object (a traps x occasions matrix); it may be entered with the detector coordinates in a trap layout file or added later (see ?usage). Models fitted to data including a usage attribute will adjust automatically for varying usage across detectors and occasions. Usage may take any non-negative value. This simplifies the modelling of data aggregated over varying numbers of occasions or nearby sites. -->
-
-<!-- See the separate document [secr-varyingeffort.pdf] and Efford et al. (2013) for more. -->
-
-<!-- ## Mark--resight -->
-
-<!-- Mark--resight data include sampling occasions on which previously marked animals were recorded, but new animals were not distinguished from each other. **secr** 4.6 provides a suite of spatial models for these data, as documented in [secr-markresight.pdf]. Two general classes of spatial mark--resight model are included: those in which the marking process is modelled (we call these spatial capture--mark--resight models), and those in which the process is not modelled and pre-marked animals are assumed to follow some distribution (e.g., uniform across a known area) (sighting-only or mark--resight models). Mark--resight models in **secr** 4.6 discard some spatial information in the unmarked sightings -- information that is used in the models of Chandler and Royle (2013) and Sollmann et al. (2013). This results in some (probably small) loss of precision, and requires an adjustment for overdispersion to ensure confidence intervals have good coverage properties. The vignette [secr-markresight.pdf] should be consulted. -->
 
 ## Parallel processing
 
