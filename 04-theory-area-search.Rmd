@@ -1,6 +1,8 @@
 # Area search {#areasearches}
 
-Area searches differ from other modes of detection in that each detection may have different coordinates, and the coordinates are continuously distributed rather than constrained to fixed points by the field design. Searched areas may comprise one or more polygons, each of which can be considered a 'detector'. @e11 gave technical background on the fitting of polygon models to spatially explicit capture--recapture data by maximum likelihood. @ry08 and @rcsg14 provide a Bayesian solution. Before launching into some rather heavy theory, we note that this can all be avoided by treating polygon data as if they were collected at many point detectors (pixel centres) obtained by discretizing the polygon(s).
+Area searches differ from other modes of detection in that each detection may have different coordinates, and the coordinates are continuously distributed rather than constrained to fixed points by the field design. Searched areas may comprise one or more polygons, each of which can be considered a 'detector'. @e11 gave technical background on the fitting of polygon models to spatially explicit capture--recapture data by maximum likelihood. @ry08 and @rcsg14 provide a Bayesian solution. 
+
+Before launching into some rather heavy theory, we note that this can all be avoided by treating polygon data as if they were collected at many point detectors (pixel centres) obtained by discretizing the polygon(s).
 
 ## Detector types for area search 
 \index{Detectors !area search}
