@@ -130,7 +130,7 @@ some ghost reflections about pmix = 0.5 that can be ignored. If multimodality is
 
 Maximization algorithms (argument 'method' of `secr.fit`) differ in their tendency to settle on local maxima; 'Nelder-Mead' is probably better than the default 'Newton-Raphson'. Simulated annealing is sometimes advocated, but it is slow and has not been tried with SECR models.
 
-## Mitigating factors
+## Mitigating factors {#mitigation}
 
 Heterogeneity may be demonstrably present yet have little effect on density estimates. Bias in density is a non-linear function of the coefficient of variation of $a_i(\theta)$. For CV $<20\%$ the bias is likely to be negligible [@em14].
 
