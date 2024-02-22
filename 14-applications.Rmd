@@ -13,12 +13,3 @@ I have selected published examples in which SECR methods have been employed to a
 * Hedgehogs in NZ?
 * Carnivores in Norway \& Sweden
 
-## Modelling sex differences {#sex}
-
-* groups
-* hcov
-* individual covariate
-* sessions
-* finite mixtures
-
-<!-- cf Greg Distiller post -->
