@@ -1,10 +1,9 @@
 # Detection model {#Detection}
 
-```{r setup, echo = FALSE, warning = FALSE, message = FALSE, results = "hide"}
-library(secr)
-setNumThreads(18)
-options(digits = 5)
+```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
+# startup code, including library(secr) etc.
 ```
+
 The detection model in SECR most commonly models the probability that an individual with a particular activity centre will be detected on a particular occasion at a particular place (detector). If the detector type allows for multiple detections (cues or visits) the model describes the number of detections rather than probability.
 
 A bare-bones detection model is a distance-detection function (or simply 'detection function') with two parameters, intercept and spatial scale. There are three sources of complexity and opportunities for customisation: 
@@ -63,8 +62,6 @@ The 'hazard variable power' function[^whynoVP] is a 3-parameter function modelle
 The variety of detection functions is daunting. You could try them all and select the "best" by AIC, but we do not recommend this. Fortunately, the choice of function is not critical. We illustrate this with the [snowshoe hare dataset](#Example) and `list.secr.fit`[^list.secr.fit]. Warnings due to the use of a multi-catch likelihood for single-catch traps are suppressed both here and in other examples. 
 
 ```{r setupdf, echo = FALSE, results = "hide", warning = FALSE, message = FALSE}
-library(secr)
-setNumThreads(18)
 hareCH6 <- read.capthist("data/hareCH6capt.txt", "data/hareCH6trap.txt", detector = "single")
 ```
 

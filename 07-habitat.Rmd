@@ -2,7 +2,8 @@
 
 A mask represents habitat in the vicinity of detectors that is potentially occupied by the species of interest. Understanding habitat masks and how to define and manipulate them is central to spatially explicit capture--recapture. This chapter summarises what users need to know about masks in **secr**. Early sections apply regardless of software. 
 
-```{r colorize7, file = "miscellaneous.R", echo = FALSE}
+```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
+# startup code, including library(secr) etc.
 ```
 
 ## Background
@@ -49,9 +50,6 @@ A habitat mask is represented in **secr** by a set of *square* grid cells. Their
 
 A mask is used whenever a model is fitted with the function `secr.fit`, even if none is specified in the 'mask' argument. When no mask is provided, one is constructed automatically using the value of the 'buffer' argument. For example
 
-```{r startup, message = FALSE, warning = FALSE, echo = FALSE}
-library(secr)
-```
 ```{r habitatfit1, cache = TRUE, warning = FALSE}
 library(secr)
 fit <- secr.fit(captdata, buffer = 80, trace = FALSE)

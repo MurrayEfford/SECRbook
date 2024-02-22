@@ -46,10 +46,9 @@ For illustration we use a brushtail possum (*Trichosurus vulpecula*) dataset fro
 First we import data for the habitat mask from a polygon shapefile included with the package:
 ```{r densitystartup, eval = TRUE, warning = FALSE, message = FALSE}
 library(secr)
-nc <- setNumThreads(18)    # machine dependent
 datadir <- system.file("extdata", package = "secr")
 OVforest <- sf::st_read (paste0(datadir, "/OVforest.shp"), quiet = TRUE)
-# drop some points we don't need
+# drop points we don't need
 leftbank <- read.table(paste0(datadir,"/leftbank.txt"))[21:195,]  
 options(digits = 6, width = 95)       
 ```

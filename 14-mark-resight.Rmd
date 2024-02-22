@@ -1,5 +1,9 @@
 # Mark-resight models {#mark-resight}
 
+```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
+# startup code, including library(secr) etc.
+```
+
 <!-- ## Mark--resight -->
 
 <!-- Mark--resight data include sampling occasions on which previously marked animals were recorded, but new animals were not distinguished from each other. **secr** 4.6 provides a suite of spatial models for these data, as documented in [secr-markresight.pdf]. Two general classes of spatial mark--resight model are included: those in which the marking process is modelled (we call these spatial capture--mark--resight models), and those in which the process is not modelled and pre-marked animals are assumed to follow some distribution (e.g., uniform across a known area) (sighting-only or mark--resight models). Mark--resight models in **secr** 4.6 discard some spatial information in the unmarked sightings -- information that is used in the models of Chandler and Royle (2013) and Sollmann et al. (2013). This results in some (probably small) loss of precision, and requires an adjustment for overdispersion to ensure confidence intervals have good coverage properties. The vignette [secr-markresight.pdf] should be consulted. -->
@@ -96,12 +100,8 @@ The function `addSightings` may be used to merge these matrices of sighting data
 
 Let's assume you have prepared the files `MRCHcapt.txt`, `MRCHcapt.txt`, `Tu.txt` and `Tm.txt`. [Simulated examples](#appendix5) can be found in the extdata folder of the **secr** distribution (version 4.4.3 and above). This code can be used to build a mark--resight capthist object:
 
-```{r markresightstartup, message = FALSE, warning = FALSE}
-library(secr)
-setNumThreads(7)
-```
-
 ```{r readMRCH, message = FALSE, results = "hold"}
+library(secr)
 olddir <- setwd(system.file("extdata", package = "secr"))
 MRCH <- read.capthist("MRCHcapt.txt", "MRCHtrap.txt", detector = c("multi", 
                       rep("proximity",4)), markocc = c(1,0,0,0,0))

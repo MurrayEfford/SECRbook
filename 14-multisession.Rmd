@@ -1,13 +1,13 @@
 # Multiple sessions
 
+```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
+# startup code, including library(secr) etc.
+```
+
 A 'session' in **secr** is a block of sampling that may be treated as independent from all other sessions. For example, sessions may correspond to trapping grids that are far enough apart that they sample non-overlapping sets of animals. Multi-session data and models combine data from several sessions. Sometimes this is merely a convenience, but it also enables the fitting of models with parameter values that apply across sessions -- data are then effectively pooled with respect to those parameters.
 
 Dealing with multiple sessions adds another layer of complexity, and raises some entirely new issues. This chapter tries for a coherent view of multi-session analyses, covering material that is otherwise scattered.
 
-```{r multisessionstartup, echo = FALSE, message = FALSE, warning = FALSE, results = 'hide'}
-library(secr)
-setNumThreads(18)   # adjust as required
-```
 ```{r multisessionsimulation, echo = FALSE, eval = FALSE}
 # no need to execute this each time chapter is built
 set.seed(123)

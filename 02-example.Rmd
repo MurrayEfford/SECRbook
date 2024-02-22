@@ -1,6 +1,10 @@
 # Simple example {#Example}
 \index{Snowshoe hare}
 
+```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
+# startup code, including library(secr) etc.
+```
+
 We use the Alaskan snowshoe hare data of Burnham and Cushwa [@obwa78][^footnote3a].
 
 [^footnote3a]: This is a shortened version of the tutorial in [secr-tutorial.pdf].

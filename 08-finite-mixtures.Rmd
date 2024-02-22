@@ -1,6 +1,10 @@
 # Individual heterogeneity {#individual-heterogeneity}
 \index{Individual heterogeneity}
 
+```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
+# startup code, including library(secr) etc.
+```
+
 In addition to the variation that can be attributed to covariates (e.g., sex) or specific effects (occasion, learned responses etc.) there may be variation in detection parameters among individuals that is unrelated to known predictors. This goes by the name 'individual heterogeneity'. Unmodelled individual heterogeneity can be a major source of bias in non-spatial capture--recapture estimates of population size [@obwa78]. 
 
 It has long been recognised that SECR removes one major source of individual heterogeneity by modelling differential access to detectors. However, each detection parameter ($g_0, \lambda_0, \sigma$) is potentially heterogeneous and a source of bias in SECR estimates of density.
@@ -27,11 +31,8 @@ The distinction between a finite mixture model and one in which the classes of i
 
 **secr** allows 2- or 3-class finite mixture models for any 'real' detection parameter (e.g., g0, lambda0 or sigma of a halfnormal detection function). Consider a simple example in which we specify a 2-class mixture by adding the predictor 'h2' to the model formula:
 
-```{r library, echo = FALSE, warning = FALSE, message = FALSE, results = "hide"}
-library(secr)
-setNumThreads(18)
+```{r hareCH6, echo = FALSE, warning = FALSE, message = FALSE, results = "hide"}
 hareCH6 <- read.capthist("data/hareCH6capt.txt", "data/hareCH6trap.txt", detector = "single")
-options(digits = 6, width = 85)       
 ```
 
 Continuing with the snowshoe hares:

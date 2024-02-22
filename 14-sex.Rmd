@@ -1,8 +1,14 @@
 # Sex differences {#sex}
 
+```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
+# startup code, including library(secr) etc.
+```
+
 It is common for males and females to differ in their behaviour in relation to detectors. Sex is commonly recorded for trapped animals or those detected with automatic cameras, and hair samples used to identify individuals can also reveal sex given suitable sex-specific markers. SECR models that allow for sex differences are therefore of particular interest.
 
 There are many ways to model sex differences in **secr**, and each of these has already been mentioned in a general context. Here we enumerate the possibilities and comment on their usefulness.
+
+Unlike some effects, the relevance of sex may be obvious from the beginning and you may therefore be happy to structure other aspects of the model around your chosen way to include sex. Alternately, other desiderata may constrain the treatment of sex. The example below shows that several different ways of including sex lead to the same estimates.
 
 In order of usefulness (your mileage may vary).
 
@@ -11,16 +17,109 @@ In order of usefulness (your mileage may vary).
 3. Separate sessions
 4. Full likelihood with groups
 
-1. Fit a hybrid mixture model. This accommodates occasional missing values and estimates the sex ratio (pmix).
+We illustrate the methods with the deermouse dataset considered before.
 
-2. Use conditional likelihood (`CL = TRUE`) and include a categorical (factor) covariate in model formulae (e.g., g0 $\sim$
+## Hybrid mixtures
+
+This accommodates occasional missing values and estimates the sex ratio (pmix). The method works for both conditional and full likelihood. If estimated (`CL = FALSE`) density $D$ is common to the two classes.
+
+## Individual covariate
+
+Including an individual covariate in the model directly requires conditional likelihood (`CL = TRUE`). Spatial variation in density cannot be modelled. include a categorical (factor) covariate in model formulae (e.g., g0 $\sim$
   sex). To get sex-specific densities then specify `groups = "sex"` in `derived`.
 
-3. Use full likelihood (`CL = FALSE`) and separate data for the two sexes as different sessions (most easily, by coding 'female' or 'male' in the first column of the capture file read with `read.capthist`). Then include a group term 'session' in relevant model formulae (e.g., g0 $\sim$ session).
+## Sex as session
 
-4. Use full likelihood (`CL = FALSE`), define `groups = "sex"` or similar, and include a group term 'g' in relevant formulae (e.g., g0 $\sim$ g).
+It is possible to model data for the two sexes as different sessions (most easily, by coding 'female' or 'male' in the first column of the capture file read with `read.capthist`). Sex differences are then modelled by including a 'session' term in relevant model formulae (e.g., g0 $\sim$ session).
 
-'CL' and 'groups' are arguments of `secr.fit`. Possibilities 1--4 should not be mixed for comparing AIC. Sex differences in home-range size (and hence $\sigma$) may be mitigated by compensatory variation in $g_0$ or $\lambda_0$ [@em14] (see also [Mitigating factors](#mitigation) in Chapter \@ref(individual-heterogeneity)).
+## Groups
 
+[Groups](#groups) were described earlier. Use full likelihood (`CL = FALSE`), define `groups = "sex"` or similar, and include a group term 'g' in relevant formulae (e.g., g0 $\sim$ g).
+
+'CL' and 'groups' are arguments of `secr.fit`. 
+
+## Demonstration
+
+We re-analyse the morning house mouse data already analysed in Chapter \@ref(individual-heterogeneity).
+
+```{r sexdata}
+morning <- subset(housemouse, occ = c(1,3,5,7,9)) # includes one mouse with sex unknown
+morningx <- subset(housemouse, !is.na(covariates(housemouse)$sex), occ = c(1,3,5,7,9))
+morningxs <- split(morningx, covariates(morningx)$sex)  # split into two sessions
+```
+
+```{r sexmodels1, cache = TRUE, warning = FALSE}
+# conditional likelihood
+hybridxCL  <- secr.fit(morningx, model = list(lambda0~h2, sigma~h2),
+             CL = TRUE, buffer = 25, detectfn = 'HEX', trace = FALSE,  hcov = 'sex')
+xCL        <- secr.fit(morningx, model = list(lambda0~sex, sigma~sex), 
+             CL = TRUE, buffer = 25, detectfn = 'HEX', trace = FALSE)
+sessionxCL <- secr.fit(morningxs, model = list(lambda0~session, sigma~session), 
+             CL = TRUE, buffer = 25, detectfn = 'HEX', trace = FALSE)
+```
+
+```{r sexmodelcomparison1, cache = TRUE, warning = FALSE}
+fitsCL <- secrlist(hybridxCL,xCL,sessionxCL)
+predict(fitsCL, all.levels = TRUE)
+```
+
+```{r sexmodels2, cache = TRUE, warning = FALSE}
+# full likelihood
+hybridx  <- secr.fit(morningx, model = list(lambda0~h2, sigma~h2), hcov = 'sex', 
+             CL = FALSE, buffer = 25, detectfn = 'HEX', trace = FALSE)
+sessionx <- secr.fit(morningxs, model = list(D ~ session, lambda0~session, sigma~session), 
+             CL = FALSE, buffer = 25, detectfn = 'HEX', trace = FALSE)
+groupx   <- secr.fit(morningx, model = list(D ~ g, lambda0~g, sigma~g), groups = 'sex', 
+             CL = FALSE, buffer = 25, detectfn = 'HEX', trace = FALSE)
+```
+
+```{r sexmodelcomparison2, cache = TRUE, warning = FALSE}
+fits <- secrlist(hybridx,sessionx, groupx)
+predict(fits, all.levels = TRUE)
+```
+
+### Post hoc groups
+
+```{r posthoc}
+derived(xCL, groups = 'sex')
+derived(sessionxCL)
+```
+
+Differences:
+
+### Decision chart?
+
+How to model sex effects
+
+Need to model density?
+
+Yes - excludes CL methods, leaving groups, hcov, session
+
+Other session structure? time/space
+
+Yes - avoid session sex model as too complex
+
+No ?
+
+Care about pmix, sex-specific density?
+
+
+### Common mistakes
+
+Forgetting to model density difference (sessionx, groupx) (unwelcome trap)
+
+Incompatible AIC
+
+
+
+## Final comments
+
+Only hybrid mixtures can cope with missing values.
+
+Groups implementation less comprehensive.
+
+The possibilities should not be mixed for comparing AIC.
+
+Sex differences in home-range size (and hence $\sigma$) may be mitigated by compensatory variation in $g_0$ or $\lambda_0$ [@em14] (see also [Mitigating factors](#mitigation) in Chapter \@ref(individual-heterogeneity)).
 
 <!-- cf Greg Distiller post -->

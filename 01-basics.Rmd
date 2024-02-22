@@ -2,6 +2,10 @@
 
 # Concepts and terminology {#Basics}
 
+```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
+# startup code, including library(secr) etc.
+```
+
 This chapter briefly introduces the concepts and terminology of SECR. The following chapter provides a [simple example](#Example), and the [Theory] chapter provides technical details. 
 
 ## Spatial population
@@ -66,7 +70,6 @@ The true locations of animals are not known, and therefore the distance-dependen
 
 Distance-dependent detection is represented by a 'detection function' with intercept, scale, and possibly shape, determined by parameters to be estimated[^footnote2b].
 ```{r detectionfunctions, echo = FALSE, message = FALSE, fig.width=6, fig.height=4.5, fig.cap = "Some detection functions"}
-library(secr)
 par(mar=c(6,4,4,4), mgp=c(2.6,0.7, 0))
 par(lwd = 1.5, bty = 'l', mar = c(4,4,2,6))
 detectfnplot (detectfn = 0, c(0.7, 80), ylim=c(0,0.75), ylab = 'Probability', col = 'black',
@@ -100,8 +103,6 @@ We sometimes use the terminology of 'beta' parameters (coefficients on the link 
 There are several ways to estimate the parameters of the SECR probability model, all of them computer-intensive. We focus on numerical maximisation of the log likelihood [@be08]. In outline, a function to compute the log likelihood from a vector of beta parameters is passed, along with the data, to an optimization function --- **secr** uses `nlm` from the **stats** package [@R-base] that allows various methods. Optimization is iterative. For illustration, Fig. \@ref(fig:MLE) shows the sequence of likelihood evaluations with two maximization algorithms when the parameter vector consists of only the intercept and spatial scale of detection. Optimization returns the maximized log likelihood, a vector of parameter values at the maximum, and the Hessian matrix from which the variance-covariance matrix of the estimates may be obtained.
 
 ```{r MLE, cache = TRUE, message = FALSE, echo = FALSE, warning = FALSE, fig.width=7, fig.height = 3.5, out.width = "100%", fig.cap = "Numerical maximization of conditional likelihood by two methods; triangle -- initial values; filled circle -- estimates. Both converge on the same estimates (dashed lines). Newton-Raphson is the default method in **secr**."}
-library(secr)
-nt <- setNumThreads(18)
 getL <- function(start = list(g0 = 0.2, sigma = 20), method = 'Newton-Raphson', 
                  skip = 3, ...) {
  tf <- tempfile()

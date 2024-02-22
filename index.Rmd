@@ -20,7 +20,8 @@ capture--recapture'. We use 'SECR' as a general label for these data and models.
 SECR data are observations of marked animals at known locations. The observations are from a well-defined regime of spatial sampling, most commonly with traps, cameras, or some other type of passive detector. SECR models are used to estimate parameters of the animal population, 
 particularly the population density. 
 
-```{r colorize, file = "miscellaneous.R", echo = FALSE}
+```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
+# startup code, including library(secr) etc.
 ```
 
 ## Why SECR? {-}
