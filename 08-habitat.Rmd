@@ -10,9 +10,7 @@ A mask represents habitat in the vicinity of detectors that is potentially occup
 
 We start with an intuitive explanation of the need for habitat masks. Devices such as traps or cameras record animals moving in a general region. If the devices span a patch of habitat with a known boundary then we use a mask to define that geographical unit. More commonly, detectors are placed in continuous habitat and the boundary of the region sampled is ill-defined. This is because the probability of detecting an animal tapers off gradually with distance. 
 
-Vagueness regarding the region sampled is addressed in spatially explicit capture--recapture by considering a larger and more inclusive region, the habitat mask[^mask]. Its extent is not critical, except that it should be at least large enough to account for all detected animals.
-
-<!-- [^mask]:A habitat mask in **secr** is equivalent to a 'mesh' in DENSITY and the 'state space' in Bayesian implementations. -->
+Vagueness regarding the region sampled is addressed in spatially explicit capture--recapture by considering a larger and more inclusive region, the habitat mask. Its extent is not critical, except that it should be at least large enough to account for all detected animals.
 
 Next we refine this intuitive explanation for each of the dominant methods for fitting SECR models: maximum likelihood and Markov-chain Monte Carlo (MCMC) sampling. Each grapples in a slightly different way with the awkward fact that, although we wish to model detection as a function of distance from the activity centre, the activity centre of each animal is at an unknown location.
 

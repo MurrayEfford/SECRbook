@@ -1,0 +1,4 @@
+# Detector locations exported from 'traps(teCH)' 
+# Sat Jan 14 4:44:04 p.m. 2017 
+# Detector  x  y 
+1 0 0

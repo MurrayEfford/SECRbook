@@ -9,3 +9,4 @@ SECRbook.log
 SECRbook.Rmd
 rsconnect
 ^.*\.Rproj$
+^to do.txt$

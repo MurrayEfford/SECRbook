@@ -1,7 +1,7 @@
 # (PART\*) Practical guide {-} 
 
 # R package secr
-\index{**secr**}
+\index{R packages ! secr}
 
 This chapter provides an overview of **secr** [@R-secr]. See the following chapters for details. Text in `this font` refers to R objects that are documented in online help for the **secr** package, or in base R.
 
@@ -10,7 +10,8 @@ This chapter provides an overview of **secr** [@R-secr]. See the following chapt
 **secr** supercedes the Windows program DENSITY, an earlier graphical interface to SECR methods  [@edr04; @e12]. The package was first released in March 2010 and continues to be developed. It implements almost all the methods described by @be08, @ebb09, @e11, @ef13, @ebm13 and @em14. External C++ code [@R-Rcpp] is used for computationally intensive operations. Multi-threading on multiple CPUs with **RcppParallel** [@R-RcppParallel] gives major speed gains. The package is available from [CRAN](https://CRAN.R-project.org/package=ipsecr); the development version is on [GitHub](https://github.com/MurrayEfford/secr).
 
 ## Object classes
-\index{**secr** !object classes}
+\index{R packages | secr}
+\index{Object classes}
 
 **secr** defines a set of R classes[^1] and methods for data from detector arrays and models fitted to those data. To perform an SECR analysis you construct each of these objects in turn. Fig. \@ref(fig:schematic) indicates the relationships among the classes. 
 
@@ -36,7 +37,8 @@ knitr::include_graphics('figures/schematic3.png')
 - Fitted secr models may be manipulated with the methods shown on the right. 
 
 ## Functions
-\index{**secr** !core functions}
+\index{R packages | secr}
+\index{Core functions}
 
 For details of how to use **secr** see the help pages and vignettes. 
 
@@ -60,7 +62,8 @@ Table: (\#tab:corefunctions)  Core functions of **secr**. S3 methods are marked 
 
 
 ## Detector types
-\index{**secr** !detector types}
+\index{R packages | secr}
+\index{Detector types}
 
 Detector type is a character value, an attribute of the 'traps' object. See also Table \@ref(tab:detectortypes).
 
@@ -109,7 +112,7 @@ Function `secr.fit` returns an object of class `secr`. This is an R list with ma
 One system of units is used throughout **secr**. Distances are in metres and areas are in hectares (ha). The unit of density for 2-dimensional habitat is animals per hectare. 1 ha = 10000 m^2^ = 0.01 km^2^. To convert density to animals per km^2^, multiply by 100. Density in linear habitats (see package **secrlinear**) is expressed in animals per km.
 
 ## Documentation
-\index{**secr** !documentation}
+\index{R packages ! secr}
 
 The primary documentation for **secr** is in the help pages that accompany the package. Help for a function is obtained in the usual way by typing a question mark at the R prompt, followed by the function name. Note the 'Index' link at the bottom of each help page -- you will probably need to scroll down to find it. The index may also be accessed with `help(package = secr)`.
 

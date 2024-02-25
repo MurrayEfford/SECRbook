@@ -1,5 +1,3 @@
-# (APPENDIX) Appendices {-} 
-
 # Expected counts {#Expected}
 
 It can be useful to predict various count statistics from a fitted model or from hypothetical parameter values or from a design that has been altered without changing parameter values. Here we repeat and extend formulae from @eb19. See **secrdesign** and [secrdesign-Enrm.pdf] for an implementation.

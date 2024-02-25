@@ -43,12 +43,12 @@ SECR allows density to be modelled as a function of continuous spatial covariate
 
 The literature of SECR has grown beyond the attention spans and time budgets of most users. Major SECR publications are @e04, @be08, @rcsg14, @bf16, @srl19 and @Turek2021.
 
-This book provides both a gentle introduction, in the spirit of [@cw], and more in-depth treatment of important topics. It is software oriented and therefore unashamedly partial and incomplete. Much of the content is drawn from earlier papers and the documentation of R [@R-base] packages.
+This book provides both a gentle introduction, in the spirit of [@cw], and more in-depth treatment of important topics. It is software oriented and therefore unashamedly partial and incomplete. Much of the content is drawn from earlier papers and the documentation of R [@R-base] packages. Some topics are yet to be included (e.g., acoustic data) but documentation may be found on the [DENSITY](https://www.otago.ac.nz/density/SECRinR.html) website. Others such as partial identity models [@Augustine2018] have yet to be considered at all.
 
 Part II is mostly independent of software. Other chapters lean heavily on the R package **secr**.
 
 ## Software {-}
-
+\index{R packages}
 The R package **secr** [@R-secr] provides most of the functionality we will need. 
 It performs maximum likelihood estimation for a range of closed-population SECR models[^footnote1]. The Windows application [DENSITY](https://www.otago.ac.nz/density/) [@edr04] has been superceded, although its graphical interface can still come in handy.
 
@@ -72,6 +72,13 @@ Other R packages for SECR may be found outside CRAN. A distinct maximum-likeliho
 ## Acknowledgments  {-}
 
 Joanne Potts and Gurutzeta Guillera-Arroita gave helpful comments on an early version of the habitat chapter.
+
+Thanks for data - 
+
+* Ken Burnham snowshoe hare data \@ref(Example)
+* Garth Mowat Selkirk grizzly bears Appendix \@ref(Noneuclidean) 
+* Chris Sutherland non0euclidean simulation Appendix \@ref(Noneuclidean)
+* Kevin Young horned lizards Appendix \@ref(areasearches) 
 
 ```{r, eval = TRUE, echo = FALSE, out.width = '15%'}
 knitr::include_graphics('figures/by-nc-sa.png')

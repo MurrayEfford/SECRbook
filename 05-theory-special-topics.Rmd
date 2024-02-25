@@ -150,9 +150,7 @@ where $a(\theta_u) = \int p_\cdot(\vec x ; \theta_{u}) \; d\vec x$.
 ## Alternative parameterisations {#parameterisations}
 \index{Parameterisations}
 
-The 'real' parameters in SECR are typically assumed to be independent (orthogonal). However, some parameter pairs co-vary in predictable ways owing to constraints on animal behaviour. The intercept of the detection function $\lambda_0$[^footnote4e] declines with increasing $\sigma$, all else being equal [@em14]. This is inevitable if detection is strictly proportional to time spent near a point, given a bivariate home range utilisation model (pdf for activity). Also, home-range size and the SECR parameter $\sigma$ decline with population density [@edjq16]. Allowing for covariation may improve biological insight and lead to more parsimonious models. See the papers and [secr-parameterisations.pdf] for more.
-
-[^footnote4e]: Here it is much more straightforward to work with the hazard detection functions.
+The 'real' parameters in SECR are typically assumed to be independent (orthogonal). However, some parameter pairs co-vary in predictable ways owing to constraints on animal behaviour. Here it is more straightforward to work with the hazard detection functions.mThe intercept of the detection function $\lambda_0$ declines with increasing $\sigma$, all else being equal [@em14]. This is inevitable if detection is strictly proportional to time spent near a point, given a bivariate home range utilisation model (pdf for activity). Also, home-range size and the SECR parameter $\sigma$ decline with population density [@edjq16]. Allowing for covariation may improve biological insight and lead to more parsimonious models. 
 
 Covariation may be 'hard-wired' into SECR models by reparameterization. In each case a new 'surrogate' parameter is proportional to a combination of the co-varying parameters. One of the co-varying parameters is seen as driving variation, while the other is inferred from the surrogate and the driver. Deviations from the expected covariation are implied when the surrogate is found to vary (i.e. a model with varying surrogate is superior to a model with constant surrogate).
 
@@ -160,15 +158,13 @@ Covariation may be 'hard-wired' into SECR models by reparameterization. In each 
 
 <!-- The effective sampling area $a(\theta)$ meaningfully combines the detection parameters. However, inverting the integration is computationally expensive and will usually be avoided. -->
 
-These parameterizations[^parameterizations] implement the two covariation models mentioned before, with a third option combining the two:
+These parameterizations implement the two covariation models mentioned before, with a third option combining the two:
 
 * $(D, a_0, \sigma)$ where $a_0 = 2 \pi \lambda_0 \sigma^2$ and $\lambda_0 = a_0 / (2 \pi \sigma^2)$
 * $(D, \lambda_0, k)$ where $k = \sigma \sqrt D$ and $\sigma = k/\sqrt D$ 
 * $(D, a_0, k)$ where $\sigma = k/\sqrt D$ and $\lambda_0 = a_0 / (2 \pi \sigma^2)$ 
 
 In the first option $\sigma$ is the independent (driver) variable; in the other two options $D$ is the driver.
-
-[^parameterizations]: These correspond respectively to 'details' param codes 3, 4 \& 5 in `secr.fit`.
 
 ## Model-based location of AC (fxi)
 \index{Activity centre !estimated location}
@@ -181,3 +177,6 @@ f(\vec x | \omega_i; \hat \phi, \hat \theta) = \frac{ \mbox{Pr} (\omega_i | \vec
 \end{equation}
 This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See `fxi.secr` and related functions in **secr**. For known $\theta$ and known $\phi$ (unless $D(\vec x; \phi)$ uniform) the modal location of the AC for animal $i$ may be estimated by maximising $\mbox{Pr} (\omega_i | \vec x; \theta)D(\vec x; \phi)$ with respect to $\vec x$. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.
 
+## Telemetry {#telemetrylikelihood}
+
+[to be added]

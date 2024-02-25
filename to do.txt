@@ -5,3 +5,8 @@ BUG h3?  check link
 Test for MLE using Hessian
 
 Polygon assignment cf Ecosphere ms?
+
+
+# 2024-02-25
+Echoed code always <= 65 ch
+Indent 4

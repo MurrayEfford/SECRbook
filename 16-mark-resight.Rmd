@@ -20,7 +20,7 @@ The historical development of mark--resight models has stressed the resighting c
 
 Rather than modelling the marking process we may take the traditional path, i.e. assume a certain spatial distribution for the marked individuals. Typically, the distribution is assumed to be uniform over a known area (e.g., @sgpsmspo13, @rksnmapdbed14). The number of marked individuals remaining at the time of resighting may be known or [unknown](#unknownmarked). We use 'capture--mark--resight' for models that include the marking process and 'sighting-only' for models in which the spatial distribution of marks is assumed.
 
-Not all detector types and options in **secr** will work with mark--resight data. See [Limitations](#limitations) for a list of known constraints (some will be mentioned along the way). See the [step-by-step guide](#appendix1) for a quick introduction.
+Not all detector types and options in **secr** will work with mark--resight data. See [Limitations](#MRlimitations) for a list of known constraints (some will be mentioned along the way). See the [step-by-step guide](#appendix1) for a quick introduction.
 
 ## Overview
 
@@ -295,9 +295,9 @@ Fitted models may be compared by AIC or AICc. Models can be compared when they d
 
 2. Do not compare sighting-only models with different pre-marking assumptions (the `marking` covariate of the mask).
 
-## Limitations {#limitations}
+## Limitations {#MRlimitations}
 
-These limitations apply when fitting mark--resight models in **secr** 4.6:
+These limitations apply when fitting mark--resight models in **secr**:
 
 * only 'multi', 'proximity' and 'count' detector types are allowed
 * groups (g) are not allowed
