@@ -49,6 +49,7 @@ Part II is mostly independent of software. Other chapters lean heavily on the R 
 
 ## Software {-}
 \index{R packages}
+
 The R package **secr** [@R-secr] provides most of the functionality we will need. 
 It performs maximum likelihood estimation for a range of closed-population SECR models[^footnote1]. The Windows application [DENSITY](https://www.otago.ac.nz/density/) [@edr04] has been superceded, although its graphical interface can still come in handy.
 
@@ -75,10 +76,11 @@ Joanne Potts and Gurutzeta Guillera-Arroita gave helpful comments on an early ve
 
 Thanks for data - 
 
-* Ken Burnham snowshoe hare data \@ref(Example)
+* Ken Burnham snowshoe hares Chapter \@ref(Example)
+* Jared Laufenburg black bears Chapter \@ref(Habitat)
+* Kevin Young horned lizards Appendix \@ref(Areaandtransectsearches) 
 * Garth Mowat Selkirk grizzly bears Appendix \@ref(Noneuclidean) 
-* Chris Sutherland non0euclidean simulation Appendix \@ref(Noneuclidean)
-* Kevin Young horned lizards Appendix \@ref(areasearches) 
+* Chris Sutherland non-euclidean simulation Appendix \@ref(Noneuclidean)
 
 ```{r, eval = TRUE, echo = FALSE, out.width = '15%'}
 knitr::include_graphics('figures/by-nc-sa.png')

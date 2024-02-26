@@ -23,9 +23,9 @@ knitr::include_graphics(c('figures/snowshoehare.png','figures/otisetal.png'))
 
 The raw data are in two text files, the capture file and the trap layout file. Data from @obwa78 have been transformed for **secr** (code in [secr-tutorial.pdf]). The files may be downloaded to the current directory with
 ```{r download}
-localnames <- c("hareCH6capt.txt", "hareCH6trap.txt")
-url <- paste0('https://www.otago.ac.nz/density/examples/', localnames)
-download.file(url, localnames, method = "libcurl")
+fnames <- c("hareCH6capt.txt", "hareCH6trap.txt")
+url <- paste0('https://www.otago.ac.nz/density/examples/', fnames)
+download.file(url, fnames, method = "libcurl")
 ```
 
 The capture file "hareCH6capt.txt" has one line per capture and four columns (header lines are commented out and are not needed). Here we display the first 6 lines. The first column is a session label derived from the original study name; here there is only one session.
@@ -71,7 +71,7 @@ hareCH6 <- read.capthist("hareCH6capt.txt", "hareCH6trap.txt",
 ```
 
 ```{r cleanup, echo = FALSE}
-file.remove(localnames)
+file.remove(fnames)
 ```
 
 The capthist object `hareCH6` now contains almost all the information needed to fit a model. 
@@ -91,7 +91,7 @@ Successive trap-revealed movements can be extracted with the `moves` function an
 ```{r moves, fig.width = 3.5, fig.height = 2.6, fig.align = "center", fig.cap = "Trap-revealed movements of snowshoe hares"}
 m <- unlist(moves(hareCH6))
 par(mar = c(3.2,4,2,1), mgp = c(2.1,0.6,0))  # reduce margins
-hist(m, breaks = seq(-61/2, 500,61), xlab = "Movement  m", main = "")
+hist(m, breaks = seq(0,500,61), xlab = "Movement  m", main = "")
 ```
 
 About 30% of trap-revealed movements were of $>$ 100 m (Fig. \@ref(fig:moves); try also `plot(ecdf(m))`), so we can be sure that peripheral hares stood a good chance of being trapped even if their home ranges were centred well outside the area plotted in Fig. \@ref(fig:cap).
@@ -168,19 +168,24 @@ As a final flourish, we plot contours of the overall probability of detection $p
 tr <- traps(hareCH6)   # just the traps
 dp <- detectpar(fit)   # extract detection parameters from simple model
 mask300 <- make.mask(tr, nx = 128, buffer = 300)  
-covariates(mask300)$pd <- pdot(mask300, tr, detectpar = dp, noccasions = 6)
+covariates(mask300)$pd <- pdot(mask300, tr, detectpar = dp, 
+     noccasions = 6)
 par(mar = c(1,1,1,5))  # adjust white margin
-plot(mask300, cov = 'pd', dots = FALSE, border = 1, inset = 0.1, title = 'p.(x)')
+plot(mask300, cov = 'pd', dots = FALSE, border = 1, inset = 0.1, 
+     title = 'p.(x)')
 plot(tr, add = TRUE)   # over plot trap locations
-pdot.contour(tr, nx = 128, detectfn = 'HN', detectpar = dp, noccasions = 6, 
-             add = TRUE)
-plotMaskEdge(make.mask(tr, 250, type = 'trapbuffer'), add = TRUE, col = 'white')
+pdot.contour(tr, nx = 128, detectfn = 'HN', detectpar = dp, 
+     noccasions = 6, add = TRUE)
+plotMaskEdge(make.mask(tr, 250, type = 'trapbuffer'), add = TRUE, 
+     col = 'white')
 ```
 
 ```{r pdotdist, eval = TRUE, echo = FALSE, out.width='65%', out.height='60%', fig.cap = "Distribution of overall detection probability for AC locations at varying distance from traps."}
-covariates(mask300)$pd <- pdot(mask300, tr, detectpar = dp, noccasions = 6)
+covariates(mask300)$pd <- pdot(mask300, tr, detectpar = dp, 
+    noccasions = 6)
 covariates(mask300)$d <- distancetotrap(mask300, tr)
-covariates(mask300)$dclass <- cut(distancetotrap(mask300, tr), c(0,100,200,400))
+covariates(mask300)$dclass <- cut(distancetotrap(mask300, tr),
+    c(0,100,200,400))
 par(mar = c(4,4,2,2))
 f <- c(0,0.1,0.2,0.3,0.4,0.5)
 nm <- nrow(mask300)
@@ -190,9 +195,12 @@ hist(covariates(mask300)$pd, xlim = c(0,1), ylim = c(0,nm/2),
      xlab = "Overall probability of detection", main = "")
 axis(1)
 axis(2, at = nm * f, labels = f)
-hist(covariates(mask300)$pd[covariates(mask300)$d<200], breaks=seq(0,1,0.05), add = T, col = 'orange')
-hist(covariates(mask300)$pd[covariates(mask300)$d<100], breaks=seq(0,1,0.05), add = T, col = 'yellow')
-legend(0.75, 0.45*nm, legend = c('All mask', '100 - 200 m', '< 100 m'), fill = c('forestgreen','orange','yellow'))
+hist(covariates(mask300)$pd[covariates(mask300)$d<200], breaks =
+      seq(0,1,0.05), add = T, col = 'orange')
+hist(covariates(mask300)$pd[covariates(mask300)$d<100], breaks =
+      seq(0,1,0.05), add = T, col = 'yellow')
+legend(0.75, 0.45*nm, legend = c('All mask', '100 - 200 m', 
+      '< 100 m'), fill = c('forestgreen','orange','yellow'))
 ```
 
 <!-- Pdot fig \@ref(fig:pdot) -->

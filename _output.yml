@@ -16,5 +16,6 @@ bookdown::pdf_book:
   citation_package: natbib
   keep_tex: yes
   toc_bib: yes
+  toc_appendix: yes
 bookdown::epub_book: default
 bookdown::bs4_book: default

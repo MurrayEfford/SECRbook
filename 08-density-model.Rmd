@@ -47,7 +47,8 @@ First we import data for the habitat mask from a polygon shapefile included with
 ```{r densitystartup, eval = TRUE, warning = FALSE, message = FALSE}
 library(secr)
 datadir <- system.file("extdata", package = "secr")
-OVforest <- sf::st_read (paste0(datadir, "/OVforest.shp"), quiet = TRUE)
+OVforest <- sf::st_read (paste0(datadir, "/OVforest.shp"), 
+    quiet = TRUE)
 # drop points we don't need
 leftbank <- read.table(paste0(datadir,"/leftbank.txt"))[21:195,]  
 options(digits = 6, width = 95)       
@@ -62,41 +63,45 @@ ovmask <- addCovariates(ovmask, OVforest[1:2,])
 ```
 
 Plotting is easy:
-```{r ovmaskplot, eval = TRUE, message=FALSE, fig.width = 6, fig.height = 5, fig.cap = "Orongorongo Valley possum study area"}
+```{r ovmaskplot, eval = TRUE, message=FALSE, fig.width = 6, fig.height = 5, out.width="95%", fig.cap = "Orongorongo Valley possum study area"}
 par(mar = c(1,6,2,8))
 forestcol <- terrain.colors(6)[c(4,2)]
 plot(ovmask, cov="forest", dots = FALSE, col = forestcol)
 plot(ovtrap, add = TRUE)
 par(cex = 0.8)
-terra::sbar(d = 200, xy = c(2674670, 5982930), type = 'line', divs = 2, 
-            below = "metres", labels = c("0","100","200"), ticks = 10)
+terra::sbar(d = 200, xy = c(2674670, 5982930), type = 'line', 
+    divs = 2, below = "metres", labels = c("0","100","200"), 
+    ticks = 10)
 terra::north(xy = c(2674670, 5982830), d = 40, label = "N")
 ```
 
 We fit some simple models to data from February 1996 (session 49). Some warnings 
 are suppressed for clarity.
 ```{r OVfits1, strip.white=TRUE, cache = TRUE, warning = FALSE}
-args <- list(capthist = OVpossumCH[[1]], mask = ovmask, trace = FALSE)
-models <- list(D ~ 1, D ~ x + y, D ~ x + y + x2 + y2 + xy, D ~ forest)
+args <- list(capthist = OVpossumCH[[1]], mask = ovmask, trace = 
+    FALSE)
+models <- list(D ~ 1, D ~ x + y, D ~ x + y + x2 + y2 + xy, 
+    D ~ forest)
 names <- c('null','Dxy','Dxy2', 'Dforest')
-fits <- list.secr.fit(model = models, constant = args, names = names)
+fits <- list.secr.fit(model = models, constant = args, 
+    names = names)
 ```
 ```{r OVAIC, eval = TRUE, strip.white = TRUE}
-AIC(fits, criterion = "AIC")[,-c(2,5,6)]
+AIC(fits, criterion = "AIC")[,-c(1,2,5,6)]
 ```
 
 Each of the inhomogeneous models seems marginally better than the null model, but there is little to choose among them. 
 
 To visualise the entire surface we compute predicted density at each mask point. For example, we can plot the quadratic surface like this:
-```{r OVsurface, eval = TRUE, fig.width = 6, fig.height = 5, fig.cap = "Quadratic possum density surface"}
+```{r OVsurface, eval = TRUE, fig.width = 6, fig.height = 5, out.width="95%", fig.cap = "Quadratic possum density surface"}
 par(mar = c(1,6,1,8))
 surfaceDxy2 <- predictDsurface(fits$Dxy2)
-plot(surfaceDxy2, plottype = "shaded", poly = FALSE, breaks = seq(0,22,2), 
-     title = "Density / ha", text.cex = 1)
-# Various graphical elements may be added, including contours of the Dsurface:
+plot(surfaceDxy2, plottype = "shaded", poly = FALSE, breaks = 
+      seq(0,22,2), title = "Density / ha", text.cex = 1)
+# graphical elements to be added, including contours of Dsurface
 plot(ovtrap, add = TRUE)
-plot(surfaceDxy2, plottype = "contour", poly = FALSE, breaks = seq(0,22,2), 
-     add = TRUE)
+plot(surfaceDxy2, plottype = "contour", poly = FALSE, breaks = 
+    seq(0,22,2), add = TRUE)
 lines(leftbank)
 ```
 
@@ -243,37 +248,45 @@ Some of the possible smooth terms from **mgcv** can be used in model formulae fo
 Here we fit a regression spline with the same number of parameters as a quadratic polynomial,  a linear effect of the 'distance to river' covariate on log(D), and a nonlinear smooth.
 
 ```{r OVfits2, cache = TRUE, warning = FALSE}
-args <- list(capthist = OVpossumCH[[1]], mask = ovmask, trace = FALSE)
+args <- list(capthist = OVpossumCH[[1]], mask = ovmask, trace = 
+    FALSE)
 models <- list(D ~ s(x,y, k = 6), D ~ DTR, D ~ s(DTR, k = 3))
-RSfits <- list.secr.fit(model = models, constant = args, prefix = "RS")
+RSfits <- list.secr.fit(model = models, constant = args, 
+    prefix = "RS")
 ```
 
 Now add these to the AIC table and plot the 'AIC-best' model:
 
 ```{r OVAIC2, strip.white=TRUE}
-AIC(c(fits, RSfits), criterion = "AIC")[,-c(2,5,6)]
+AIC(c(fits, RSfits), criterion = "AIC")[,-c(1,2,5,6)]
 ```
 
-```{r OVdtr, eval = TRUE, fig.width = 6, fig.height = 5, fig.cap = "Possum density vs distance to river: regression spline *k* = 3" }
-tmp <- predict(RSfits$RS3, newdata = data.frame(DTR = seq(0,400,5)))
+```{r OVdtr, eval = TRUE, fig.width = 6, fig.height = 5, out.width="95%", fig.cap = "Possum density vs distance to river: regression spline *k* = 3" }
+newdat <- data.frame(DTR = seq(0,400,5))
+tmp <- predict(RSfits$RS3, newdata = newdat)
 par(mar=c(5,8,2,4), pty = "s")
-plot(seq(0,400,5), sapply(tmp, "[", "D","estimate"), ylim = c(0,20),
-     xlab = "Distance from river (m)", ylab = "Density / ha", type = "l")
-
+plot(seq(0,400,5), sapply(tmp, "[", "D","estimate"), 
+    ylim = c(0,20), xlab = "Distance from river (m)", 
+    ylab = "Density / ha", type = "l")
 ```
 
 Confidence intervals are computed in `predictDsurface` by back-transforming $\pm$ 2SE from the link (log) scale:
-```{r CIplot, eval = TRUE, fig.width = 6, fig.height = 5, fig.cap = "Confidence surfaces"}
+```{r CIplot, eval = TRUE, fig.width = 6, fig.height = 5, out.width="95%", fig.cap = "Confidence surfaces"}
 par(mar = c(1,1,1,1), mfrow = c(1,2), xpd = FALSE)
 surfaceDDTR3 <- predictDsurface(RSfits$RS3, cl.D = TRUE)
-plot(surfaceDDTR3, covariate= "lcl", breaks = seq(0,22,2), legend = FALSE)
-mtext(side=3,line=-1.5,"Lower 95% confidence limit of D (possums / ha)")
-plot(surfaceDDTR3, plottype = "contour", breaks = seq(0,22,2), add = TRUE)
+plot(surfaceDDTR3, covariate= "lcl", breaks = seq(0,22,2), 
+    legend = FALSE)
+mtext(side = 3,line = -1.5,
+      "Lower 95% confidence limit of D (possums / ha)")
+plot(surfaceDDTR3, plottype = "contour", breaks = seq(0,22,2), 
+    add = TRUE)
 lines(leftbank)
-plot(surfaceDDTR3, covariate= "ucl", breaks = seq(0,22,2), legend = FALSE)
-mtext(side=3,line=-1.5,"Upper 95% confidence limit of D (possums / ha)")
-plot(surfaceDDTR3, covariate = "ucl", plottype = "contour", breaks = seq(0,22,2), 
-     add = TRUE)
+plot(surfaceDDTR3, covariate= "ucl", breaks = seq(0,22,2), 
+    legend = FALSE)
+mtext(side = 3, line = -1.5,
+    "Upper 95% confidence limit of D (possums / ha)")
+plot(surfaceDDTR3, covariate = "ucl", plottype = "contour", 
+    breaks = seq(0,22,2), add = TRUE)
 lines(leftbank)
 mtext(side=3, line=-1, outer=TRUE, "s(DTR, k = 3) model")
 ```
@@ -337,9 +350,10 @@ Another type of plot is sometimes presented and described as a 'density surface'
 fxsurface <- fx.total(fits$null)
 ```
 
-```{r OVfxsurfaceplt, echo=TRUE, eval = TRUE, cache = TRUE, fig.width = 6, fig.height = 5, fig.cap = "Total fx surface"}
+```{r OVfxsurfaceplt, echo=TRUE, eval = TRUE, cache = TRUE, fig.width = 6, fig.height = 5, out.width="95%", fig.cap = "Total fx surface"}
 par(mar = c(1,6,1,8))
-plot(fxsurface, covariate = "D.sum", breaks = seq(0,30,2), poly = FALSE)
+plot(fxsurface, covariate = "D.sum", breaks = seq(0,30,2), 
+     poly = FALSE)
 plot(ovtrap, add = TRUE)
 ```
 
@@ -359,9 +373,10 @@ The plots are also prone to artefacts. In some examples we see concentric cluste
 fxsurfaceW <- fx.total(possum.model.0)
 ```
 
-```{r fxsurfaceWplt, eval = TRUE, fig.width = 6, fig.height = 5, fig.cap = "Waitarere possum fx surface"}
+```{r fxsurfaceWplt, eval = TRUE, fig.width = 6, fig.height = 5, out.width="95%", fig.cap = "Waitarere possum fx surface"}
 par(mar = c(1,5,1,8))
-plot(fxsurfaceW, covariate = "D.sum", breaks = seq(0,5,0.5), poly = FALSE)
+plot(fxsurfaceW, covariate = "D.sum", breaks = seq(0,5,0.5), 
+     poly = FALSE)
 plot(traps(possumCH), add = TRUE)
 ```
 
@@ -376,8 +391,9 @@ The theory for relative density models was given [earlier](#relativedensity1). A
 
 ```{r relativeD, cache = TRUE, warning = FALSE, fig.width = 6, fig.height = 5, fig.cap = "Orongorongo Valley relative density"}
 # relative density fit, assuming uniform probability of tagging
-fitrd1 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, trace = FALSE,
-         model = D ~ s(DTR, k=3), details = list(relativeD = TRUE))
+fitrd1 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, 
+    trace = FALSE, model = D ~ s(DTR, k=3), details = 
+    list(relativeD = TRUE))
 plot(predictDsurface(fitrd1), title = 'Naive relative D')
 plot(traps(OVpossumCH[[1]]), add = TRUE)
 ```
@@ -390,16 +406,19 @@ A better predictor of the relative density of tagged animals is an approximation
 ```{r relativeD2, cache = TRUE, warning = FALSE}
 # construct a detection covariate using ballpark detection parameters
 covariates(ovmask)$pd <- 1-pdot(ovmask, traps(OVpossumCH[[1]]), 
-	detectpar = list(g0 = 0.0974198, sigma = 27.6354961), noccasions = 5)  
+	   detectpar = list(g0 = 0.0974198, sigma = 27.6354961), 
+	   noccasions = 5)  
 # fit relative density model with new predictor...
-fitrd2 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, trace = FALSE,
-         model = D ~ pd, details = list(relativeD = TRUE))
+fitrd2 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, 
+    trace = FALSE, model = D ~ pd, details = 
+    list(relativeD = TRUE))
 # ...and with both predictors
-fitrd3 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, trace = FALSE,
-         model = D ~ pd + s(DTR,k=3), details = list(relativeD = TRUE))
+fitrd3 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, 
+    trace = FALSE, model = D ~ pd + s(DTR,k=3), 
+    details = list(relativeD = TRUE))
 ```
 
-```{r relativeD3, fig.width = 6, fig.height = 5, fig.cap = "Orongorongo Valley relative density of tagged possums"}
+```{r relativeD3, fig.width = 6, fig.height = 5, out.width="95%", fig.cap = "Orongorongo Valley relative density of tagged possums"}
 # compare and plot
 AIC(fitrd1, fitrd2, fitrd3, criterion = 'AIC')[,-c(2,5,6)]
 plot(predictDsurface(fitrd3), title = 'Relative D, tagged')
@@ -464,7 +483,8 @@ We can compare the result using userDfn0 to a fit of the same model using the 'm
 
 ```{r userDfnfits, cache = TRUE, warning = FALSE}
 model.0 <- secr.fit(captdata, model = D ~ 1, trace = FALSE)
-userDfn.0 <- secr.fit(captdata, details = list(userDfn = userDfn0), trace = FALSE)
+userDfn.0 <- secr.fit(captdata, details = list(userDfn = 
+    userDfn0), trace = FALSE)
 AIC(model.0, userDfn.0)[,-c(2,5,6)]
 predict(model.0)
 predict(userDfn.0)
@@ -476,7 +496,8 @@ Now let's try a more complex example. First create a test dataset with an east-w
 
 ```{r stepch, fig.width = 6, fig.height = 5, fig.cap = "Test data"}
 set.seed(123)
-ch <- subset(captdata, centroids(captdata)[,1]>500 | runif(76)>0.75)
+ch <- subset(captdata, centroids(captdata)[,1]>500 | 
+    runif(76) > 0.75)
 plot(ch)
 # also make a mask and assign the x coordinate to covariate 'X'
 msk <- make.mask(traps(ch), buffer = 100, type = 'trapbuffer')
@@ -498,10 +519,11 @@ sigmoidfn <- function (Dbeta, mask, ngroup, nsession) {
 
 Fit null model and sigmoid model:
 ```{r fitsigmoid, cache = TRUE}
-fit.0 <- secr.fit(ch, mask = msk, link = list(D = "identity"), trace = FALSE)
-fit.sigmoid <- secr.fit(ch, mask = msk, details = list(userDfn = sigmoidfn), 
-    start=c(2.7, 500, 5.8, -1.2117, 3.4260), link = list(D = "identity"),
+fit.0 <- secr.fit(ch, mask = msk, link = list(D = "identity"), 
     trace = FALSE)
+fit.sigmoid <- secr.fit(ch, mask = msk, details = 
+    list(userDfn = sigmoidfn), start=c(2.7, 500, 5.8, -1.2117, 
+    3.4260), link = list(D = "identity"), trace = FALSE)
 coef(fit.0)
 coef(fit.sigmoid)
 AIC(fit.0, fit.sigmoid)[,-c(2,5,6)]
@@ -513,9 +535,10 @@ The sigmoid model has improved fit, but there is a lot of uncertainty in the two
 beta <- coef(fit.sigmoid)[1:3,'beta']
 X2 <- (300:700 - beta[2]) / 15
 D <- beta[1] + 1 / (1+exp(-X2)) * (beta[3] - beta[1])
-plot (300:700, D, type = 'l', xlab='X', ylab = 'Density', ylim=c(0,7))
-abline(v=beta[2], lty=2)
-abline(h=coef(fit.0)[1,1], lty=1, col='blue')
+plot (300:700, D, type = 'l', xlab = 'X', ylab = 'Density', 
+      ylim = c(0,7))
+abline(v = beta[2], lty = 2)
+abline(h = coef(fit.0)[1,1], lty = 1, col = 'blue')
 rug(unique(traps(ch)$x), col = 'red')
 text(400, 2.2, 'D1')
 text(620, 6.4, 'D2')

@@ -2,6 +2,7 @@ book_filename: "SECRbook"
 language:
   ui:
     chapter_name: "Chapter "
+    appendix_name: "Appendix "
 delete_merged_file: true
 rmd_files: ["index.Rmd",
     "01-basics.Rmd",
@@ -30,6 +31,7 @@ rmd_files: ["index.Rmd",
     "16-polygondetectors.Rmd",
     "16-mark-resight.Rmd",
     "16-noneuclidean.Rmd",
+    "16-trend.Rmd",
     "16-telemetry.Rmd",
     "16-expected-counts.Rmd",
     "17-datasets.Rmd",

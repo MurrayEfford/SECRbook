@@ -78,11 +78,20 @@ fits <- secrlist(hybridx,sessionx, groupx)
 predict(fits, all.levels = TRUE)
 ```
 
+Execution time varies considerably:
+
+```{r sexmodelcomparison3, echo = FALSE}
+cat("Timing, conditional likelihood\n")
+sapply(fitsCL, '[[', 'proctime')
+cat("Timing, full likelihood\n")
+sapply(fits, '[[', 'proctime')
+```
+
 ## Choosing a model {#decisionchart}
 
 ### Sex-specific detection
 
-We suggest the decision chart in Fig. \@ref(fig:chart). This omits 'session' approaches that we previously included for [comparison](#demonstration) because they are rather clunky in practice and group models are equivalent.
+We suggest the decision chart in Fig. \@ref(fig:chart). This omits 'session' approaches that we previously included for [comparison](#demonstration), because they are rather slow and clunky and group models are equivalent.
 
 ```{r makechart, echo = FALSE}
 # see https://graphviz.org/documentation/
@@ -119,7 +128,7 @@ rsvg::rsvg_png(chartsvg, "figures/chart.png")
 rsvg::rsvg_pdf(chartsvg, "figures/chart.pdf")  
 ```
 
-```{r chart, echo = FALSE, out.height="350pt", out.width="500pt", include = TRUE, fig.cap="Decision chart for including sex in detection model. 'sexcov' is a character value naming a 2-level character or factor individual covariate"}
+```{r chart, echo = FALSE, out.width='95%', include = TRUE, fig.cap="Decision chart for including sex in detection model. 'sexcov' is a character value naming a 2-level character or factor individual covariate"}
 # after some trial and error with out.width units etc.
 knitr::include_graphics("figures/chart.png")
 ```

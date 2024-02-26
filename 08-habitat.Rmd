@@ -208,9 +208,10 @@ clippedmask <- make.mask(traps(possumCH), type = 'trapbuffer', buffer = 400,
 par(mfrow = c(1,1), mar = c(1,1,1,1))
 plot(clippedmask, border = 100, ppoly = FALSE)
 polygon(possumarea, col = 'lightgreen', border = NA)
-plot(clippedmask, dots = FALSE, mesh = grey(0.4), col = NA, add = TRUE,
-     polycol = 'blue')
-plot(traps(possumCH), detpar = list(pch = 16, cex = 0.8), add = TRUE)
+plot(clippedmask, dots = FALSE, mesh = grey(0.4), col = NA, 
+    add = TRUE, polycol = 'blue')
+plot(traps(possumCH), detpar = list(pch = 16, cex = 0.8), 
+    add = TRUE)
 ```
 
 The virtue of clipping non-habitat is that the estimate of density then relates to the area of habitat rather than the sum of habitat and non-habitat. For most uses habitat-based density would seem the more meaningful parameter.
@@ -226,12 +227,14 @@ Masks may have a 'covariates' attribute that is a dataframe just like the 'covar
 
 Mask covariates are always added after a mask is first constructed. Extending the earlier example, we can add a covariate for the computed distance to shore:
 ```{r distancetoshore}
-covariates(clippedmask) <- data.frame(d.to.shore = distancetotrap(clippedmask, possumarea))
+covariates(clippedmask) <- data.frame(d.to.shore = 
+    distancetotrap(clippedmask, possumarea))
 ```
 
 The function `addCovariates` makes it easy to extract data for each mask cell from a spatial data source. Its usage is
 ```{r, eval = FALSE}
-addCovariates (object, spatialdata, columns = NULL, strict = FALSE, replace = FALSE)
+addCovariates (object, spatialdata, columns = NULL, 
+    strict = FALSE, replace = FALSE)
 ```
 Values are extracted for the point in the data source corresponding to the centre point of each grid cell. The spatial data source (`spatialdata`) should be one of 
 
@@ -255,7 +258,8 @@ repair <- function (mask, covariate, ...) {
     NAcov <- is.na(covariates(mask)[,covariate])
     OK <- subset(mask, !NAcov)
     require(akima)
-    irect <- akima::interp (x = OK$x, y = OK$y, z = covariates(OK)[,covariate],...)
+    irect <- akima::interp (x = OK$x, y = OK$y, z = 
+        covariates(OK)[,covariate],...)
     irectxy <- expand.grid(x = irect$x, y = irect$y)
     i <- nearesttrap(mask[NAcov,], irectxy)
     covariates(mask)[,covariate][NAcov] <- irect[[3]][i]
@@ -275,11 +279,11 @@ The interpolation may potentially be improved by varying the `interp` arguments 
 Categorical covariates pose a larger problem. Simply copying the closest valid value may suffice to allow modelling to proceed, and this is a good solution for the few NA cells in Fig. \@ref(fig:fillindemo)c. The result should always be checked visually by plotting the covariate: strange patterns may result.
 
 ```{r closest, cache = TRUE}
-copynearest <- function (mask, covariate) {
-    NAcov <- is.na(covariates(mask)[,covariate])
+copynearest <- function (mask, cov) {
+    NAcov <- is.na(covariates(mask)[,cov])
     OK <- subset(mask, !NAcov)
     i <- nearesttrap(mask, OK)
-    covariates(mask)[,covariate][NAcov] <- covariates(OK)[i[NAcov],covariate]
+    covariates(mask)[,cov][NAcov] <- covariates(OK)[i[NAcov],cov]
     mask
 }
 completed <- copynearest(repaired, 'd.to.shore')
@@ -318,8 +322,8 @@ Function `region.N` calculates $\hat N$ for a previously fitted SECR model (secr
 The default plot of a mask shows each point as a grey dot. We have used `dots = FALSE` throughout this document to emphasise the gridcell structure. That is especially handy when we use the plot method to display mask covariates:
 ```{r plotmask, fig.width=6.5, fig.height=3, fig.align='center', fig.cap="Plot of a computed continuous covariate across a clipped mask, with outer margin"}
 par(mar=c(1,1,2,6), xpd=TRUE)
-plot(clippedmask, covariate = 'd.to.shore', dots = FALSE, border = 100, 
-     title = 'Distance to shore m', polycol = 'blue')
+plot(clippedmask, covariate = 'd.to.shore', dots = FALSE, 
+    border=100, title = 'Distance to shore m', polycol = 'blue')
 plotMaskEdge(clippedmask, add = TRUE)
 ```
 
@@ -331,15 +335,13 @@ The legend may be suppressed with `legend = FALSE`. See `?plot.mask` for details
 
 The usage statement for `make.mask` is included as a reminder of various options and defaults that have not been covered in this vignette. See `?make.mask` for details.
 
-\vspace{8pt}
-
 ```{r, eval=FALSE}
-make.mask (traps, buffer = 100, spacing = NULL, nx = 64, ny = 64, type = 
-     c("traprect", "trapbuffer", "pdot", "polygon", "clusterrect", 
-       "clusterbuffer", "rectangular", "polybuffer"), poly = NULL, 
-     poly.habitat = TRUE, cell.overlap = c("centre", "any", "all"), 
-     keep.poly = TRUE, check.poly = TRUE, pdotmin = 0.001, 
-     random.origin = FALSE, ...)
+make.mask (traps, buffer = 100, spacing = NULL, nx = 64, ny = 64,
+    type = c("traprect", "trapbuffer", "pdot", "polygon", 
+    "clusterrect", "clusterbuffer", "rectangular", "polybuffer"),
+    poly = NULL, poly.habitat = TRUE, cell.overlap = c("centre",
+    "any", "all"), keep.poly = TRUE, check.poly = TRUE, 
+    pdotmin = 0.001, random.origin = FALSE, ...)
 ```
 ### Mask attributes saved by `make.mask`
 

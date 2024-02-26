@@ -213,7 +213,7 @@ The SECR models for various detectors (Table \@ref(tab:pointdetectortypes)) are 
 Table: (\#tab:effort) Including effort in SECR models for various detector types. $p^\prime_{sk}(\vec x)$ and $h^\prime_{sk}(\vec x)$ replace the matching quantities in Table \@ref(tab:pointdetectortypes).
 
 | Detector type | Adjusted probability or hazard |
-|:----------------------|:------------------------------------------------|
+|:--------------------------|:------------------------------------------|
 | Multi-catch trap | $h^\prime_{sk}(\vec x) = h_{sk}(\vec x) T_{sk}$; $H^\prime_s(\vec x) = \sum_k h^\prime_{sk}(\vec x)$|
 | Binary proximity | $p^\prime_{sk}(\vec x) = 1 - (1 - p_{sk}(\vec x))^{T_{sk}}$ |
 | Poisson count proximity| $h^\prime_{sk}(\vec x) = h_{sk}(\vec x) T_{sk}$ |

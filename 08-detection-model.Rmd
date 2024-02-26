@@ -37,7 +37,7 @@ Table: (\#tab:detectfn) Probability detection functions.
 Table: (\#tab:hazarddetectfn) Hazard detection functions.
 
 | Code | Name | Parameters | Function |
-|:---|:-------------|:------|:---------------------|  
+|:---|:---------------|:------|:--------------------|  
 | HHN | hazard halfnormal | $\lambda_0, \sigma$ | $\lambda(d) = \lambda_0 \exp \left(\frac{-d^2} {2\sigma^2} \right)$|
 | HHR | hazard hazard rate | $\lambda_0, \sigma, z$ | $\lambda(d) = \lambda_0 (1 - \exp \{ -(^d/_\sigma)^{-z} \})$|
 | HEX | hazard exponential | $\lambda_0, \sigma$ | $\lambda(d)  = \lambda_0 \exp \{ -(^d/_\sigma) \}$ |
@@ -213,8 +213,8 @@ g0; the effects are additive on the link scale. Table \@ref(tab:examples) has so
 Table: (\#tab:examples) Some examples of the 'model' argument in `secr.fit` 
 
 | Formula        | Effect                                   |
-|:----------------|:------------------------------------------|
-| g0 $\sim$ 1  | g0 is constant across animals, occasions and detectors |
+|:------------------|:-----------------------------------------|
+| g0 $\sim$ 1  | g0 constant across animals, occasions and detectors |
 | g0 $\sim$ b  | learned response affects g0 |
 | list(g0 $\sim$ b, sigma $\sim$ b) | learned response affects both g0 and sigma |
 | g0 $\sim$ h2  | 2-class finite mixture for heterogeneity in g0 |
@@ -287,8 +287,9 @@ We explore these options with Reid's Wet Swizer Gulch deermouse (*Peromyscus man
 ```{r behaviour, cache = TRUE}
 cmod <- paste0('g0~', c('1','b','B','bk','Bk'))
 # convert each character string to a formula and fit the models
-fits <- list.secr.fit(model = sapply(cmod, formula), constant = list(capthist = 
-    'deermouse.WSG', trace = FALSE, buffer = 80), names = cmod)
+fits <- list.secr.fit(model = sapply(cmod, formula), constant = 
+    list(capthist = 'deermouse.WSG', trace = FALSE, buffer = 80), 
+    names = cmod)
 AIC(fits, criterion = 'AIC', sort = FALSE)[c(3:5,7,8)]
 ```
 
@@ -354,9 +355,11 @@ For a more informative example, we simulate data from an array of binary proximi
 
 ```{r simCH, cache = TRUE}
 simgrid <- make.grid(nx = 10, ny = 10, detector = 'proximity')
-usage(simgrid) <- matrix(c(1,2,2,3,3), byrow = TRUE, nrow = 100, ncol = 5)
-simCH <- sim.capthist(simgrid, popn = list(D = 5, buffer = 100), detectpar = 
-    list(g0 = 0.1, sigma = 25), noccasions = 5, seed = 123)
+usage(simgrid) <- matrix(c(1,2,2,3,3), byrow = TRUE, nrow = 100, 
+    ncol = 5)
+simCH <- sim.capthist(simgrid, popn = list(D = 5, buffer = 100), 
+    detectpar = list(g0 = 0.1, sigma = 25), noccasions = 5, 
+    seed = 123)
 summary(simCH)
 ```
 
@@ -364,21 +367,23 @@ Now we fit four models with a half-normal detection function. The firest model (
 
 ```{r effortfitt, cache = TRUE, strip.white=TRUE}
 # shared arguments for model fits 1-4
-timedf <- data.frame(tfactor = factor(c(1,2,2,3,3)), tnumeric = c(1,2,2,3,3))
+timedf <- data.frame(tfactor = factor(c(1,2,2,3,3)), tnumeric = 
+    c(1,2,2,3,3))
 args <- list(capthist = simCH, buffer = 100, biasLimit = NA, 
-        timecov = timedf, trace = FALSE)
+    timecov = timedf, trace = FALSE)
 models <- c(g0 ~ 1, g0 ~ 1, g0 ~ tfactor, g0 ~ tnumeric)
-details <- rep(list(list(ignoreusage = TRUE, fastproximity = FALSE)), 4)
+details <- rep(list(list(ignoreusage = TRUE, fastproximity = 
+    FALSE)), 4)
 details[[2]]$ignoreusage <- FALSE
 
 # review arguments
-data.frame(model = format(models), 
-           ignoreusage = sapply(details, '[[', 'ignoreusage'))
+data.frame(model = format(models), ignoreusage = sapply(details,
+    '[[', 'ignoreusage'))
 
 # fit
-fits <- list.secr.fit(model = models, details = details, constant = args,
-                      names = c('null','usage','tfactor','tnumeric'))
-AIC(fits, criterion = 'AIC')[,-c(2,5,6)]   # omit columns to save space
+fits <- list.secr.fit(model = models, details = details, constant = 
+    args, names = c('null','usage','tfactor','tnumeric'))
+AIC(fits, criterion = 'AIC')[,-c(2,5,6)]
 ```
 
 From the likelihoods we can see that failure to allow for effort (model 'null') dramatically reduces model fit. The model with a factor covariate ('tfactor') captures the variation in detection probability, but at the cost of fitting two additional parameters. The model with built-in adjustment for effort ('usage') has AIC similar to one with effort as a numeric  covariate ('tnumeric'). How do the estimates compare? This is a task for the `collate` function.

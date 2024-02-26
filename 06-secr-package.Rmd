@@ -3,19 +3,23 @@
 # R package secr
 \index{R packages ! secr}
 
-This chapter provides an overview of **secr** [@R-secr]. See the following chapters for details. Text in `this font` refers to R objects that are documented in online help for the **secr** package, or in base R.
+This chapter provides an overview of **secr** [@R-secr]. Following chapters expand on key topics. 
+
+To reproduce examples in the book you will need a recent version of **secr** (4.6.6 or later). Text in `this font` refers to R objects that are documented in online help for the **secr** package, or in base R. R code often generates warnings. These may be merely be reminders e.g., that a key argument has been set to a default. For clarity, we do not display routine warnings for examples in the text.
 
 ## History
 
 **secr** supercedes the Windows program DENSITY, an earlier graphical interface to SECR methods  [@edr04; @e12]. The package was first released in March 2010 and continues to be developed. It implements almost all the methods described by @be08, @ebb09, @e11, @ef13, @ebm13 and @em14. External C++ code [@R-Rcpp] is used for computationally intensive operations. Multi-threading on multiple CPUs with **RcppParallel** [@R-RcppParallel] gives major speed gains. The package is available from [CRAN](https://CRAN.R-project.org/package=ipsecr); the development version is on [GitHub](https://github.com/MurrayEfford/secr).
 
 ## Object classes
-\index{R packages | secr}
+\index{R packages ! secr}
 \index{Object classes}
 
-**secr** defines a set of R classes[^1] and methods for data from detector arrays and models fitted to those data. To perform an SECR analysis you construct each of these objects in turn. Fig. \@ref(fig:schematic) indicates the relationships among the classes. 
+**secr** defines a set of R classes[^S3class] and methods for data from detector arrays and models fitted to those data. To perform an SECR analysis you construct each of these objects in turn. Fig. \@ref(fig:schematic) indicates the relationships among the classes. 
 
-[^1]:Technically, these are S3 classes. A 'class' in R specifies a   particular type of data object and the functions (methods) by which it is manipulated (computed, printed, plotted etc). See the R documentation for further explanation.
+[^S3class]:Technically, these are S3 classes. A 'class' in R specifies a   particular type of data object and the functions (methods) by which it is manipulated (computed, printed, plotted etc). See the R documentation for further explanation.
+
+(ref:esscap) Essentials of the **secr** package.
 
 Table: (\#tab:essentialclasses) Essential classes in **secr**.
 
@@ -26,7 +30,7 @@ Table: (\#tab:essentialclasses) Essential classes in **secr**.
 | `mask`   | raster map of habitat near the detectors |
 | `secr`   | fitted SECR model|
   
-```{r schematic, eval = TRUE, echo = FALSE, out.width = '80%', fig.cap = "Essentials of the **secr** package"}
+```{r schematic, eval = TRUE, echo = FALSE, out.width = '80%', fig.cap = '(ref:esscap)'}
 knitr::include_graphics('figures/schematic3.png')
 ```
 
@@ -37,7 +41,7 @@ knitr::include_graphics('figures/schematic3.png')
 - Fitted secr models may be manipulated with the methods shown on the right. 
 
 ## Functions
-\index{R packages | secr}
+\index{R packages ! secr}
 \index{Core functions}
 
 For details of how to use **secr** see the help pages and vignettes. 
@@ -62,7 +66,7 @@ Table: (\#tab:corefunctions)  Core functions of **secr**. S3 methods are marked 
 
 
 ## Detector types
-\index{R packages | secr}
+\index{R packages ! secr}
 \index{Detector types}
 
 Detector type is a character value, an attribute of the 'traps' object. See also Table \@ref(tab:detectortypes).
@@ -162,10 +166,6 @@ locations of the animals' activity centres. This is achieved in practice by summ
 The default maximization algorithm is Newton-Raphson in the function `stats::nlm`. By default, all reported variances, covariances, standard errors and confidence limits are asymptotic and based on a numerical estimate of the information matrix, as described [here](#confidenceintervals). 
 
 The Newton-Raphson algorithm is fast, but it sometimes fails to compute the information matrix correctly, causing some standard errors to be set to NA; see the 'method' argument of `secr.fit` for alternatives. Use `confint.secr` for profile likelihood intervals and `sim.secr` for parametric bootstrap intervals (both are slow).
-
-## Parallel processing
-
-On processors with multiple cores it is possible to speed up computation by using cores in parallel. In **secr** 4.6 this happens automatically in `secr.fit` and a few other functions using the multi-threading paradigm of **RcppParallel** [@R-RcppParallel]. The number of threads may be set directly with the function `setNumThreads`, or via the 'ncores' argument of several functions. 
 
 <!-- Laake, J. and Rexstad E. (2014) Appendix C. RMark - an alternative approach to building linear models in MARK. In: Cooch, E. and White, G. (eds) *Program MARK: A Gentle -->
 <!--     Introduction*. 13th edition. http://www.phidot.org/software/mark/docs/book/. -->

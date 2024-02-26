@@ -1,43 +1,66 @@
 # Fitting models 
-<!--  or troubleshooting? -->
 
-This chapter covers issues that can arise regardless of the particular model to be fitted.
+This chapter covers issues that arise regardless of the particular model to be fitted.
 
 ## Multi-threading
 \index{Multi-threading}
+\index{R packages ! RcppParallel}
 
+On processors with multiple cores it is possible to speed up computation by using cores in parallel. In **secr** this happens automatically in `secr.fit` and a few other functions using the multi-threading paradigm of **RcppParallel** [@R-RcppParallel]. The number of threads may be set directly with the function `setNumThreads`, or via the 'ncores' argument of several functions. The number is stored in the environment variable 
 
-**RcppParallel** @R-RcppParallel
-
-
-## Strategy: sequential model selection: detection then density?
-
-## Fitted model
-
-### Bias check
+## Bias check
 \index{Bias check, automatic}
 
+If no mask is specified and the 'buffer' argument of `secr.fit` is too narrow then the estimate of density may suffer from truncation bias (see Chapter \@ref(Habitat)). In many cases `secr.fit` will automatically perform a post-hoc check on the fitted model and raise a warning if the predicted bias exceeds the value in the argument 'biasLimit' (default 0.01). To suppress the check set 'biasLimit = NA', or provide a pre-defined mask.
 
-### predict
+The check is performed by a cunning custom algorithm in function `bias.D`. This uses one-dimensional numerical integration of a polar approximation to site-specific detection probability, coupled to a 3-part linear approximation for the length of contours of distance-to-nearest-detector.
 
-Grouping models: secrlist
+## Multiple models
 
-(predictDsurface separate)
+We make extensive use of the function `list.secr.fit` to fit competing models while holding constant other arguments of `secr.fit`. The results are returned as a single 'secrlist' that may be passed to `AIC`, `predict` etc. It is also possible to bundle fitted models together with `secrlist(fit1, fit2,...)`.
 
+## Model selection
 
-## Model comparison 
+### Criterion
 
-### LR.test
-### AIC, AICwt etc.
-### Compatibility
-### Score tests
-
-Need for strictly identical data
+AIC, AICc, BIC
 
 ### Small sample adjustment AICc
 
 What is the sample size?
- 
+
+We prefer AIC because [doesn't raise question of sample size; Fletcher results]
+
+Need for strictly identical data
+
+What to report?
+
+### Strategy: detection then density?
+
+It is almost impossible to fit and compare all plausible models.
+
+### Likelihood ratio
+
+`LR.test`
+
+### AIC, AICwt etc.
+### Score tests
+
+
+## Using the fitted model(s)
+
+### predict
+
+#### newdata argument
+
+### collate
+
+### Model averaging
+
+### predictDsurface
+
+See Chapter \@ref(Density)
+
 ## Goodness of fit
  
 To be added; `secr.test`
@@ -50,4 +73,13 @@ To be added; `secr.test`
 
 ## Recognizing failure-to-fit
 
-### Speed
+## Speed
+
+`setNumThreads`
+
+mask points; trapbuffer
+
+separate sessions where possible
+
+discretize polygons
+
