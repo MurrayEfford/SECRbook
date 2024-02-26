@@ -101,7 +101,7 @@ When a study uses multiple search areas or multiple transects, detections may be
 
 Acoustic 'signal strength' detectors produce a binary detection vector supplemented by measurements of signal strength, as from an array of microphones.
 
-There is limited support in **secr** for the analysis of locational data from telemetry ('telemetry' detector type). Telemetry data are used to augment capture--recapture data (see `addTelemetry` and [secr-telemetry.pdf]).
+There is limited support in **secr** for the analysis of locational data from telemetry ('telemetry' detector type). Telemetry data are used to augment capture--recapture data (Appendix \@ref(Telemetry)).
 
 ## Input
 
@@ -120,25 +120,18 @@ One system of units is used throughout **secr**. Distances are in metres and are
 
 The primary documentation for **secr** is in the help pages that accompany the package. Help for a function is obtained in the usual way by typing a question mark at the R prompt, followed by the function name. Note the 'Index' link at the bottom of each help page -- you will probably need to scroll down to find it. The index may also be accessed with `help(package = secr)`.
 
-The consolidated help pages are in the file [secr-manual.pdf]. Searching this pdf is a powerful way to locate a function for a particular task. 
+The consolidated help pages are in the [manual](https://CRAN.R-project.org/package=secr/secr.pdf). Searching this pdf is a powerful way to locate a function for a particular task. 
 
 Other documentation has traditionally been in the form of pdf vignettes built with **knitr** and available at https://otago.ac.nz/density/SECRinR. That content will be included progressively in this online book.
 
-Table: (\#tab:vignettes) Vignettes for **secr** 4.6, excluding any already in this book.
+Table: (\#tab:vignettes) Vignettes for **secr**, excluding any already in this book.
 
 | Vignette            | Topic                                            |
 |---------------------|--------------------------------------------------|
 | [secr-datainput.pdf] | data formats and input functions |
 | [secr-version4.pdf] | what's new in secr 4.x |
 | [secr-troubleshooting.pdf] | problems with `secr.fit`, including speed issues |
-| [secr-markresight.pdf] | mark--resight models|
-| [secr-multisession.pdf] | data from multiple independent sessions |
-| [secr-noneuclidean.pdf] | non-Euclidean distance models |
-| [secr-parameterisations.pdf] | alternative parameterisations of detection|
-| [secr-polygondetectors.pdf] | using polygon and transect detector types |
 | [secr-sound.pdf] | analysing data from microphone arrays|
-| [secr-spatialdata.pdf] | tips on external spatial data and functions|
-| [secr-telemetry.pdf] | analysing combined telemetry and capture--recapture data|
 
 The **secr** [GitHub repository](https://github.com/MurrayEfford/secr) holds the development version, and bugs may be reported there by raising an Issue. New versions will be posted on [CRAN] and noted on https://www.otago.ac.nz/density/, but there may be a delay. For information on changes in each version, type at the R prompt:
 
@@ -152,7 +145,7 @@ Help may be sought in online forums such as [phidot] and [secrgroup].
 
 By default, the parameters of SECR models are assumed to be constant. We specify more interesting, and often better-fitting, models with the 'model' argument of `secr.fit`.  Here 'models' relates to variation in the parameters that may be explained by known factors and covariates. The workings are explained in detail in Chapters \@ref(Detection) and \@ref(Density).
 
-Models are defined symbolically in **secr** using R formula notation. A separate linear predictor is used for each core parameter.  The core parameters are 'real' parameters in the terminology of MARK [@cw]. Three real parameters are commonly modelled in **secr** 4.6; these are denoted 'D' (for density), 'g0' (or 'lambda0' for 'hazard' models) and 'sigma'.
+Models are defined symbolically in **secr** using R formula notation. A separate linear predictor is used for each core parameter.  The core parameters are 'real' parameters in the terminology of MARK [@cw]. Three real parameters are commonly modelled in **secr**; these are denoted 'D' (for density), 'g0' (or 'lambda0' for 'hazard' models) and 'sigma'.
 
 For example, in `secr.fit(captdata, model = g0~t)` the real parameter g0 is no longer constant, but takes a unique value on each sampling occasion. [Predictors](#linear-submodels) such as `t` are either names from a list known to **secr** or covariates provided by the user.
 

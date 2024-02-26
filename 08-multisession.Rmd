@@ -1,4 +1,4 @@
-# Multiple sessions
+# Multiple sessions {#Multisession}
 
 ```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
 # startup code, including library(secr) etc.
@@ -115,7 +115,7 @@ Override the default buffering mechanism by specifying the 'mask' argument of `s
 1. reduce or increase mask spacing (pixel size; default 1/64 x-range)
 2. clip the mask to exclude non-habitat
 3. include mask covariates (predictors of local density)
-4. define non-Euclidean distances ([secr-noneuclidean.pdf])
+4. define non-Euclidean distances (Appendix \@ref(Noneuclidean))
 5. specify a rectangular mask (type = "traprect" vs type = "trapbuffer")
 
 For any of these you are likely to use the `make.mask` function (the manual alternative is usually too painful to contemplate). If `make.mask` is provided with a list of traps objects as its 'traps' argument then the result is a list of mask objects - effectively, a multi-session mask.
@@ -165,7 +165,15 @@ exp(beta)
 ```
 Confidence intervals may also be back-transformed with `exp`. To back-transform the SE use the delta-method approximation `exp(beta) * sqrt(exp(sebeta^2)-1)` = `r exp(beta) * sqrt(exp(sebeta^2)-1)`.
 
-This is fine for a single overall lambda. However, if you are interested in successive estimates (session 1 to session 2, session 2 to session 3 etc.) the solution is slightly more complicated. A more sophisticated version is provided in Appendix \@ref(Trend).
+This is fine for a single overall lambda. However, if you are interested in successive estimates (session 1 to session 2, session 2 to session 3 etc.) the solution is slightly more complicated. Here we describe a simple option using ‘backward difference’ coding of the levels of the factor session, specified with the details argument ‘contrasts’. This coding is provided by the function `contr.sdif` in the MASS package (e.g., Venables and Ripley 1999 Section 6.2).
+
+```{r simpletrend, echo = TRUE, eval = FALSE}
+fit <- secr.fit(ovenCH, model = D~session, buffer = 300, trace = FALSE,
+    details = list(contrasts = list(session = MASS::contr.sdif)))
+coef(fit)
+```
+
+A more sophisticated version is provided in Appendix \@ref(Trend).
 
 ## Simulation
 
@@ -195,7 +203,7 @@ Numerical maximisation of the likelihood requires a starting set of parameter va
 ```{r autoini, cache = TRUE, eval = FALSE}
 fit0 <- secr.fit(ovenCH, mask = msk, details = list(autoini = 2), trace = FALSE)
 ```
-A further option is to combine the session data into a single-session capthist object with `details = list(autoini = "all")`; the combined capthist is used only by `autoini`. This is experimental in **secr** 4.6.
+A further option is to combine the session data into a single-session capthist object with `details = list(autoini = "all")`; the combined capthist is used only by `autoini`.
 
 
 ### Covariates with incompatible factor levels

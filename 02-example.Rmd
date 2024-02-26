@@ -48,7 +48,7 @@ displayLines("data/hareCH6capt.txt", 6, "...")
 
 The trap layout file "hareCH6trap.txt" has one row per trap and columns for the detector label and x- and y-coordinates. We display the first 6 lines. The detector label is used to link captures to trap sites. Coordinates can relate to any rectangular coordinate system; **secr** will assume distances are in metres. These coordinates simply describe a 10 $\times$ 10 square grid with spacing 60.96 m. Do not use unprojected geographic coordinates (latitude and longitude)[^footnote3b]. 
 
-[^footnote3b]: See [secr-spatialdata.pdf].
+[^footnote3b]: See Appendix \@ref(Spatialdata).
 
 ```{r trapstxt, echo = FALSE, comment = ""} 
 options(digits = 6, width = 85)       
@@ -206,8 +206,4 @@ legend(0.75, 0.45*nm, legend = c('All mask', '100 - 200 m',
 <!-- Pdot fig \@ref(fig:pdot) -->
 
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
-[secr-overview.pdf]: https://www.otago.ac.nz/density/pdfs/secr-overview.pdf
-[secr-multisession.pdf]: https://www.otago.ac.nz/density/pdfs/secr-multisession.pdf
-[secr-noneuclidean.pdf]: https://www.otago.ac.nz/density/pdfs/secr-noneuclidean.pdf
-[secr-spatialdata.pdf]: https://www.otago.ac.nz/density/pdfs/secr-spatialdata.pdf
 [secr-tutorial.pdf]: https://www.otago.ac.nz/density/pdfs/secr-tutorial.pdf

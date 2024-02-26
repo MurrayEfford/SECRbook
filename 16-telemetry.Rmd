@@ -385,7 +385,7 @@ If the 'independent data, distinct-session' solution is inadequate you might try
 
 ### Incompatible with mark--resight
 
-Telemetry data may not be combined with mark-resight in **secr** 4.6 except possibly in distinct sessions (this has not been tested).
+Telemetry data may not be combined with mark-resight except possibly in distinct sessions (this has not been tested).
 
 ### Incompatible with hybrid heterogeneity model
 
@@ -463,6 +463,4 @@ session(teCH) <- 'Telemetry'
 | `fx.total` | |
 | `fxi.contour` | |
 
-
-[schematicfigure]: schematic2.pdf
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf

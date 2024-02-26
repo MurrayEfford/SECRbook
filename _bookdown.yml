@@ -25,7 +25,7 @@ rmd_files: ["index.Rmd",
     # STUDY DESIGN
     "12-studydesign.Rmd",
     "13-simulation.Rmd",
-    "14-applications.Rmd",
+    # "14-applications.Rmd",
     # APPENDICES 
     "16-spatial-data.Rmd",
     "16-polygondetectors.Rmd",

@@ -180,7 +180,7 @@ fit0 <- secr.fit(MRCH, model = list(g0 ~ ts), mask = mask, trace = FALSE)
 predict(fit0, newdata = data.frame(ts = factor(c("M","S"))))
 ```
 
-This example relies on the built-in `autoini` function to provide starting parameter values for the numerical maximization. However, the automatic values may not work with complex mark--resight models. It is not worth continuing if the first likelihood evaluation fails, as indicated by LogLik NaN when `trace = TRUE`. Then you should experiment with the `start` argument until you find values that work (see also [secr-troubleshooting.pdf]).
+This example relies on the built-in `autoini` function to provide starting parameter values for the numerical maximization. However, the automatic values may not work with complex mark--resight models. It is not worth continuing if the first likelihood evaluation fails, as indicated by LogLik NaN when `trace = TRUE`. Then you should experiment with the `start` argument until you find values that work.
 
 ### Adjustment for overdispersion  {#adjustoverdispersion}
 
@@ -268,9 +268,9 @@ Data preparation is exactly as for sighting-only models with known number of mar
 
 ### Covariates, groups and finite mixtures
 
-Conditional-likelihood models are generally not useful for mark-resight analyses. Individual covariates therefore should not be used in mark-resight models in **secr**. Other covariates (at the level of session, occasion, or detector) should work in any of the models. See the help for `secr.fit` and vignettes such as [secr-overview.pdf].
+Conditional-likelihood models are generally not useful for mark-resight analyses. Individual covariates therefore should not be used in mark-resight models in **secr**. Other covariates (at the level of session, occasion, or detector) should work in any of the models. 
 
-The mark--resight models in **secr** 4.6 do not allow groups (g). Finite mixtures, including 'hcov' models, are only partly implemented.
+The mark--resight models in **secr** do not currently allow groups (g). Finite mixtures, including 'hcov' models, are only partly implemented.
 
 ### Discarding unmarked sightings
 
@@ -308,9 +308,9 @@ If the sighting phase is an area or transect search then it may be possible to a
 
 ### Warning
 
-The implementation of spatially explicit mark--resight models in 4.6 is still somewhat limited. It is intended that mark--resight models work across other capabilities of **secr**, particularly
+The implementation of spatially explicit mark--resight models is still somewhat limited. It is intended that mark--resight models work across other capabilities of **secr**, particularly
 
-* data may span multiple sessions ([multi-session] capthist objects can contain mark--resight data)
+* data may span multiple sessions ([multi-session](#Multisession) capthist objects can contain mark--resight data)
 * mark--resight may be augmented with telemetry data (`addTelemetry`), but joint telemetry models have not been tested and should be used with care
 * fxi.contour() and related functions (probability density plots of centres of detected animals)
 * finite mixture (h2) models are allowed for detection parameters, including `pID`
@@ -516,5 +516,4 @@ fit2 <- secr.fit(MRCH6, fixed = list(pID = 1.0), trace = FALSE,
 
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
 [secr-overview.pdf]: https://www.otago.ac.nz/density/pdfs/secr-overview.pdf
-[multi-session]: https://www.otago.ac.nz/density/pdfs/secr-multisession.pdf
 [secr-troubleshooting.pdf]: https://www.otago.ac.nz/density/pdfs/secr-troubleshooting.pdf

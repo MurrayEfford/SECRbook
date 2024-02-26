@@ -2,7 +2,7 @@
 
 **secr** is primarily for estimating closed population density (density at one point in time), but multi-session data may also be modelled to describe population trend over time. This section describes methods specifically for population trend, defined as change in density between sessions and measured by the finite rate of increase $\lambda_t = D_{t+1} / D_t$. 
 
-Simple trend analysis may be achieved with a particular coding of the session factor as described in earlier versions of [secr-multisession.pdf]. The more flexible methods described here allow the direct estimation of $\lambda_t$, possibly including covariate effects. The newer methods require **secr** $\ge 4.6.2$ 2023-09-30.
+Simple trend analysis may be achieved with a particular coding of the session factor as described in Chapter \@ref(Multisession). The more flexible methods described here allow the direct estimation of $\lambda_t$, possibly including covariate effects. 
 
 ### Direct estimation of $\lambda$
 

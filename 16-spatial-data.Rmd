@@ -1,6 +1,6 @@
 # (APPENDIX) Appendices {-} 
 
-# Spatial data {#spatialdata}
+# Spatial data {#Spatialdata}
 
 These notes explain how **secr** uses spatial data. Spatial data are used to
 

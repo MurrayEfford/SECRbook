@@ -224,12 +224,3 @@ For binomial count detectors we use a formulation not based directly on instanta
 [snowshoehare]: snowshoeharefromotisetal1978.pdf 
 [otisetal]: otisetal.png
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
-
-[secr-finitemixtures.pdf]: https://www.otago.ac.nz/density/pdfs/secr-finitemixtures.pdf
-
-[secr-multisession.pdf]: https://www.otago.ac.nz/density/pdfs/secr-multisession.pdf
-
-[secr-noneuclidean.pdf]: https://www.otago.ac.nz/density/pdfs/secr-noneuclidean.pdf
-[secr-spatialdata.pdf]: https://www.otago.ac.nz/density/pdfs/secr-spatialdata.pdf
-
-[secr-parameterisations.pdf]: https://www.otago.ac.nz/density/pdfs/secr-parameterisations.pdf

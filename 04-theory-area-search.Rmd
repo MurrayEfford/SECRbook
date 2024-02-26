@@ -103,5 +103,5 @@ Table: (\#tab:areadetectortypes) Detector-level probabilities for area-search de
 ## Transect search
 \index{Detectors !transect search}
    
-   Transect detectors are the linear equivalent of polygons. Cues may be observed only along the searched zero-width transect. Transect detectors, like polygon detectors, may be independent or exclusive. See [secr-polygondetectors.pdf] for more.
+   Transect detectors are the linear equivalent of polygons. Cues may be observed only along the searched zero-width transect. Transect detectors, like polygon detectors, may be independent or exclusive. See Appendix \@ref(Areaandtransectsearches) for more.
    

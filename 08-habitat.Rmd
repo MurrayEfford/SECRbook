@@ -157,7 +157,7 @@ which is coincidental, but encouraging!
 
 ### Buffer using non-euclidean distances
 
-If you intend to use a non-Euclidean distance metric then it makes sense to use this also when defining the mask, specifically to drop mask points that are distant from any detector according to the metric. See [secr-noneuclidean.pdf] for an example. Modelling with non-Euclidean distances also requires the user to provide `secr.fit` with a matrix of user-computed distances between detectors and mask points.
+If you intend to use a non-Euclidean distance metric then it makes sense to use this also when defining the mask, specifically to drop mask points that are distant from any detector according to the metric. See Appendix \@ref(Noneuclidean) for an example. Modelling with non-Euclidean distances also requires the user to provide `secr.fit` with a matrix of user-computed distances between detectors and mask points.
 
 ## Grid cell size and the effects of discretization {#maskspacing}
 
@@ -194,7 +194,7 @@ Our focus so far has been on choosing a buffer width to set the outer boundary o
 knitr::include_graphics('figures/masktypes.png')
 ```
 
-Exclusion of non-habitat (Fig. \@ref(fig:masktypes) b,c) is achieved by providing `make.mask` with a digital map of the habitat in the 'poly' argument. The digital map may be an R object defining spatial polygons as described in [secr-spatialdata.pdf], or simply a 2-column matrix or dataframe of coordinates. This simple example uses the coordinates in `possumarea`:
+Exclusion of non-habitat (Fig. \@ref(fig:masktypes) b,c) is achieved by providing `make.mask` with a digital map of the habitat in the 'poly' argument. The digital map may be an R object defining spatial polygons as described in Appendix \@ref(Spatialdata), or simply a 2-column matrix or dataframe of coordinates. This simple example uses the coordinates in `possumarea`:
 
 ```{r possummask}
 clippedmask <- make.mask(traps(possumCH), type = 'trapbuffer', buffer = 400, 
@@ -305,7 +305,7 @@ plotMaskEdge(completed, add = TRUE)
 text (2697500, 6078700, 'd.', cex = 1.4)
 ```
 
-See [secr-densitysurfaces.pdf] for more on the use of mask covariates.
+See Chapter \@ref(Density) for more on the use of mask covariates.
 
 ## Regional population size
 
@@ -331,7 +331,7 @@ The legend may be suppressed with `legend = FALSE`. See `?plot.mask` for details
 
 ## More on creating and manipulating masks
 
-### Arguments of `make.mask` in **secr** 4.6
+### Arguments of `make.mask`
 
 The usage statement for `make.mask` is included as a reminder of various options and defaults that have not been covered in this vignette. See `?make.mask` for details.
 
@@ -368,7 +368,7 @@ If the mask you want cannot be obtained directly with `make.mask` then use eithe
 
 ### Multi-session masks
 
-Fitting a SECR model to a multi-session capthist requires a mask for each session. If a single mask is passed to `secr.fit` then it will be replicated and must be appropriate for all sessions. The alternative is to provide a list of masks, one per session, in the correct order; `make.mask` generates such a list from a list of traps objects. See [secr-multisession.pdf] for details.
+Fitting a SECR model to a multi-session capthist requires a mask for each session. If a single mask is passed to `secr.fit` then it will be replicated and must be appropriate for all sessions. The alternative is to provide a list of masks, one per session, in the correct order; `make.mask` generates such a list from a list of traps objects. See Chapter \@ref(Multisession) for details.
 
 ### Artificial habitat maps
 
@@ -388,11 +388,4 @@ Use of an inappropriate mask spacing is a common source of problems. Model fitti
 [otisetal]: otisetal.png
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
 [secr-overview.pdf]: https://www.otago.ac.nz/density/pdfs/secr-overview.pdf
-
-[density surfaces]: https://www.otago.ac.nz/density/pdfs/secr-densitysurfaces.pdf
-[secr-densitysurfaces.pdf]: https://www.otago.ac.nz/density/pdfs/secr-densitysurfaces.pdf
-[secr-habitatmasks.pdf]: https://www.otago.ac.nz/density/pdfs/secr-habitatmasks.pdf
-[secr-multisession.pdf]: https://www.otago.ac.nz/density/pdfs/secr-multisession.pdf
-[secr-noneuclidean.pdf]: https://www.otago.ac.nz/density/pdfs/secr-noneuclidean.pdf
-[secr-spatialdata.pdf]: https://www.otago.ac.nz/density/pdfs/secr-spatialdata.pdf
 [secr-tutorial.pdf]: https://www.otago.ac.nz/density/pdfs/secr-tutorial.pdf

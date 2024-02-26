@@ -201,7 +201,7 @@ Table: (\#tab:predictors) Automatically generated predictor variables for detect
 
 Each design matrix is constructed automatically when `secr.fit` is called, using the data and a model formula. Computation of the linear predictor (Eq. \@ref(eq:linearmodel)) and back-transformation to the real scale are also automatic. Thus the user need never see the design matrix.
 
-The hard-wired structure of the design matrices precludes some possible submodels: there is no direct way to model *spatial* variation in a detection parameter. However, spatial effects may be modelled using detector covariates, i.e. as a function of detector location rather than AC location, and a further workaround for parameter $\sigma$ is shown in [secr-noneuclidean.pdf]: https://www.otago.ac.nz/density/pdfs/secr-noneuclidean.pdf.
+The hard-wired structure of the design matrices precludes some possible submodels: there is no direct way to model *spatial* variation in a detection parameter. However, spatial effects may be modelled using detector covariates, i.e. as a function of detector location rather than AC location, and a further workaround for parameter $\sigma$ is shown in Appendix \@ref(Noneuclidean).
 
 > An aside: linear submodels for parameters are considered by @cw as a *constraint* on a more general model. Their default is for each parameter to be fully-time-specific e.g., a Cormack-Jolly-Seber open population survival model would fit a unique detection probability $p$ and survival rate $\phi$ at each time. Our default is for each parameter to be constant (i.e. maximally constrained), and for linear submodels to introduce variation.
 

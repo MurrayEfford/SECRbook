@@ -130,7 +130,7 @@ You may wonder why `secr.fit` is ambivalent regarding the link function: link fu
 
 `secr.fit` automatically recognises the spatial variables x, y, x2, y2 and xy if they appear in the formula for D. These refer to the x-coordinate, y-coordinate, x-coordinate^2^ etc. for each mask point, and will be constructed automatically as needed.
 
-The formula for D may also include the non-spatial variables g (group), session (categorical), and Session (continuous), defined as for modelling g0 and sigma (see [secr-overview.pdf]).
+The formula for D may also include the non-spatial variables g (group), session (categorical), and Session (continuous), defined as for modelling g0 and sigma in Chapter \@ref(Detection).
 
 The built-in variables offer limited model possibilities:
 
@@ -190,7 +190,7 @@ There are several ways to create or input mask covariates.
 
  3. Infer covariate values by computation on in existing mask (see below).
 
- 4. Infer values for points on an existing mask from a GIS data source, such as a polygon shapefile or other spatial data source (see [secr-spatialdata.pdf]).
+ 4. Infer values for points on an existing mask from a GIS data source, such as a polygon shapefile or other spatial data source (see Appendix \@ref(Spatialdata)).
 
 Use the function `addCovariates` for the third and fourth options.
 
@@ -560,21 +560,5 @@ Going further, you can even define your own *ad hoc* link function. To do this, 
 Following this example, you would call `secr.fit(..., link = list(D = 'i100'))`.
 To see the internal transformations for the standard link functions, type `secr:::transform`, `secr:::untransform`, `secr:::se.untransform` or `secr:::se.transform`.
 
-[secr-manual.pdf]: https://www.otago.ac.nz/density/pdfs/secr-manual.pdf
-[OVmask]:ovmask.png
-[quadsurface]:quadsurface.png
-[DTR]:DTR.png
-[DTR3]:DTR3.png
-[CIplot]:CIplot.png
-[spline]:spline.png
-[fxsurface]:fxsurface.png
-[fxsurfaceW]:fxsurfaceW.png
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
-[secr-overview.pdf]: https://www.otago.ac.nz/density/pdfs/secr-overview.pdf
-[density surfaces]: https://www.otago.ac.nz/density/pdfs/secr-densitysurfaces.pdf
-[secr-densitysurfaces.pdf]: https://www.otago.ac.nz/density/pdfs/secr-densitysurfaces.pdf
-[secr-habitatmasks.pdf]: https://www.otago.ac.nz/density/pdfs/secr-habitatmasks.pdf
-[secr-multisession.pdf]: https://www.otago.ac.nz/density/pdfs/secr-multisession.pdf
-[secr-noneuclidean.pdf]: https://www.otago.ac.nz/density/pdfs/secr-noneuclidean.pdf
-[secr-spatialdata.pdf]: https://www.otago.ac.nz/density/pdfs/secr-spatialdata.pdf
 [secr-tutorial.pdf]: https://www.otago.ac.nz/density/pdfs/secr-tutorial.pdf

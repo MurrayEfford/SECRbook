@@ -204,7 +204,7 @@ knitr::include_graphics("figures/irregular.png")
 
 One solution to 'east-west concavity' is to break the offending polygon into two or more parts. For this you need to know which vertices belong in which part, but that is (usually) easily determined from a plot. In this real example we recognise vertices 11 and 23 as critical, and split the polygon there. Note the need to include the clip vertices in both polygons, and to maintain the order of vertices. Both `polyexample2` and `newpoly` are traps objects.
 
-```{r polylimit, results = "hold", fig.height = 3, fig.cap="Splitting a non-conforming polygon"}
+```{r polylimit, results = "hold", fig.height = 3, out.width="95%", fig.cap="Splitting a non-conforming polygon"}
 examplefile2 <- paste0(datadir, '/polygonexample2.txt')
 polyexample2 <- read.traps(file = examplefile2, detector = 'polygon')
 par(mfrow = c(1,2), mar = c(2,1,1,1))
