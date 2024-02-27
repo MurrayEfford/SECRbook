@@ -104,7 +104,7 @@ The `split` method for capthist objects (`?split.capthist`) may be used to break
 
 ## Fitting
 
-Given multi-session capthist input, `secr.fit` automatically fits a multi-session model by maximising the product of session-specific likelihoods [@ebb09]. For fitting a model separately to each session see the later section on [Faster fitting...](#fasterfitting).
+Given multi-session capthist input, `secr.fit` automatically fits a multi-session model by maximizing the product of session-specific likelihoods [@ebb09]. For fitting a model separately to each session see the later section on [Faster fitting...](#fasterfitting).
 
 ### Habitat masks
 
@@ -149,7 +149,7 @@ Session covariates are extremely flexible. The linear trend of the 'Session' pre
 
 #### Trend across sessions {#simpletrend}
 \index{Trend}
-\index{Trend ! simple}
+\index{Trend!simple}
 
 **secr** is primarily for estimating closed population density (density at one point in time), but multi-session data may also be modelled to describe population trend over time.  A trend model for density may be interesting if the sessions fall in some natural sequence, such as a series of annual samples (as in the ovenbird dataset ovenCH). A model with initial uppercase 'Session' fits a *trend* across sessions using the session number as the predictor. The fitted trend is linear on the link scale; using the default link function for density ('log') this corresponds to exponential growth or decline if samples are equally spaced in time.
 
@@ -199,7 +199,7 @@ There are problems specific to multi-session data.
 
 ### Failure of autoini
 
-Numerical maximisation of the likelihood requires a starting set of parameter values. This is either computed internally with the function `autoini` or provided by the user. Given multi-session data, the default procedure is for `secr.fit` to apply `autoini` to the first session only. If the data for that session are inadequate or result in parameter estimates that are extreme with respect to the remaining sessions then model fitting may abort. One solution is to provide start values manually, but that can be laborious. A quick fix is often to switch the session used to compute starting values by changing the details option 'autoini'. For example
+Numerical maximization of the likelihood requires a starting set of parameter values. This is either computed internally with the function `autoini` or provided by the user. Given multi-session data, the default procedure is for `secr.fit` to apply `autoini` to the first session only. If the data for that session are inadequate or result in parameter estimates that are extreme with respect to the remaining sessions then model fitting may abort. One solution is to provide start values manually, but that can be laborious. A quick fix is often to switch the session used to compute starting values by changing the details option 'autoini'. For example
 ```{r autoini, cache = TRUE, eval = FALSE}
 fit0 <- secr.fit(ovenCH, mask = msk, details = list(autoini = 2), trace = FALSE)
 ```

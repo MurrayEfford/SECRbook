@@ -69,7 +69,7 @@ knitr::include_graphics('figures/example.png')
 The true locations of animals are not known, and therefore the distance-dependent probabilities cannot be calculated directly. The model is fitted by marginalising (integrating over) animal locations.
 
 Distance-dependent detection is represented by a 'detection function' with intercept, scale, and possibly shape, determined by parameters to be estimated[^footnote2b].
-```{r detectionfunctions, echo = FALSE, message = FALSE, fig.width=6, fig.height=4.5, fig.cap = "Some detection functions"}
+```{r detectionfunctions, echo = FALSE, message = FALSE, fig.width=6, fig.height=4.5, out.width="60%", fig.cap = "Some detection functions"}
 par(mar=c(6,4,4,4), mgp=c(2.6,0.7, 0))
 par(lwd = 1.5, bty = 'l', mar = c(4,4,2,6))
 detectfnplot (detectfn = 0, c(0.7, 80), ylim=c(0,0.75), ylab = 'Probability', col = 'black',
@@ -89,18 +89,32 @@ SECR models include a map of potential habitat near the detectors. Here 'potenti
 The habitat map is called a 'habitat mask' in **secr** and a 'state space' in the various Bayesian implementations. It is commonly formed by adding a constant-width buffer around the detectors. For computational convenience the map is discretized as many small pixels. Spatial covariates (vegetation type, elevation, etc.) may be attached to each pixel for use in density models. The choice of buffer width and pixel size are considered later.
 
 ### Link functions {#link}
-\index{Link functions}
-A simple SECR model has three parameters: density $D$, and the intercept $g_0$ and spatial scale $\sigma$ of the detection function. Valid values of each parameter are restricted to part of the number line (positive values for $D$ and $\sigma$, values between zero and one for $g_0$). A straightforward way to constrain estimates to valid values is to conduct maximisation of the likelihood on a transformed ('link') scale: at each evaluation the parameter value is back transformed to the natural scale. Common link functions are log (for positive values) and logit (for values between zero and one)[^footnote2c]. 
+\index{Link function}
+\index{Link function!detection}
+\index{Link function!density}
+A simple SECR model has three parameters: density $D$, and the intercept $g_0$ and spatial scale $\sigma$ of the detection function. Valid values of each parameter are restricted to part of the number line (positive values for $D$ and $\sigma$, values between zero and one for $g_0$). A straightforward way to constrain estimates to valid values is to conduct maximization of the likelihood on a transformed ('link') scale: at each evaluation the parameter value is back transformed to the natural scale. The link function for all commonly used parameters defaults to 'log' (for positive values) except for g0 which defaults to 'logit' (for values between zero and one).
 
-[^footnote2c]: $\mbox{logit}(p) = \log[p/(1-p)]$;  $\mbox{logit}^{-1}(y) = 1 / [1 + \exp(-y)]$
+Table: (\#tab:links) Link functions.
+
+| Name | Function | Inverse |
+|:------|:---------|:----------|
+| log | $y = \log(x)$ | $\exp(y)$ | 
+| logit | $y = \log[p/(1-p)]$ | $1 / [1 + \exp(-y)]$ |
+| identity | $y=x$ | y |
 
 Working on a link scale is especially useful when the parameter is itself a function of covariates. For example, $\log (D) = \beta_0 + \beta_1 c \;$ for a log-linear function of a spatially varying covariate $c$. The coefficients $\beta_0$ and $\beta_1$ are estimated in place of $D$ per se.
 
 We sometimes use the terminology of 'beta' parameters (coefficients on the link scale) and 'real' parameters (on the natural scale) that is derived from MARK [@cw].
 
-### Estimation
+<!-- cloglog -->
 
-There are several ways to estimate the parameters of the SECR probability model, all of them computer-intensive. We focus on numerical maximisation of the log likelihood [@be08]. In outline, a function to compute the log likelihood from a vector of beta parameters is passed, along with the data, to an optimization function --- **secr** uses `nlm` from the **stats** package [@R-base] that allows various methods. Optimization is iterative. For illustration, Fig. \@ref(fig:MLE) shows the sequence of likelihood evaluations with two maximization algorithms when the parameter vector consists of only the intercept and spatial scale of detection. Optimization returns the maximized log likelihood, a vector of parameter values at the maximum, and the Hessian matrix from which the variance-covariance matrix of the estimates may be obtained.
+### Estimation
+\index{Likelihood!maximization}
+\index{Bayesian methods}
+
+There are several ways to estimate the parameters of the SECR probability model, all of them computer-intensive. We focus on numerical maximization of the log likelihood (@be08 and Chapter \@ref(Theory)). The likelihood integrates over the unknown locations of the animals' activity centres. This is achieved in practice by summing over cells in a discretized map of the [habitat](#Habitat).
+
+In outline, a function to compute the log likelihood from a vector of beta parameters is passed, along with the data, to an optimization function. Optimization is iterative. For illustration, Fig. \@ref(fig:MLE) shows the sequence of likelihood evaluations with two maximization algorithms when the parameter vector consists of only the intercept and spatial scale of detection. Optimization returns the maximized log likelihood, a vector of parameter values at the maximum, and the Hessian matrix from which the variance-covariance matrix of the estimates may be obtained.
 
 ```{r MLE, cache = TRUE, message = FALSE, echo = FALSE, warning = FALSE, fig.width=7, fig.height = 3.5, out.width = "100%", fig.cap = "Numerical maximization of conditional likelihood by two methods; triangle -- initial values; filled circle -- estimates. Both converge on the same estimates (dashed lines). Newton-Raphson is the default method in **secr**."}
 getL <- function(start = list(g0 = 0.2, sigma = 20), method = 'Newton-Raphson', 
@@ -133,8 +147,10 @@ plot (1,1, type='n', xlim=c(0.15,0.4), ylim=c(16,80), log='xy', xlab = 'g0', yla
 getL(method = 'Nelder-Mead')
 ```
 
-
 Bayesian methods make use of algorithms that sample from a Markov chain (MCMC) to approximate the posterior distribution of the parameters. MCMC for abundance estimation faces the special problem that an unknown number of individuals, at unknown locations, remain undetected. The issue is addressed by data augmentation [@ry08] or using a semi-complete data likelihood [@Zhang2022]. 
 
-A further method, simulation and inverse prediction, has a niche use for data from single-catch traps [@edr04; @Efford2023].
+Early anxiety about the suitability of MLE and asymptotic variances for SECR with small samples appears to have been mistaken. @Royle2009 believed that "... the practical validity of these procedures cannot be asserted in most situations involving small samples". This has not been borne out by subsequent simulations. The choice between Bayesian and frequentist (MLE) methods is now an issue of convenience for most users. MLE provides fast and repeatable results for established models with a small to medium number of parameters. Bayesian methods have an advantage for novel models and those with many parameters, although the crossover point has not been demonstrated. 
 
+<!-- "As the underlying point process model is made more complex (e.g., containing interactions and conditional dependencies) the integration required for inference by integrated likelihood may become computationally prohibitive. [...] we feel that the biggest practical advantage apparent at this time has to do with the validity of inferences achieved by Bayesian analysis. In particular, classical inference procedures are asymptotic and as such their relevance to small sample situations is questionable. Conversely, Bayesian inferences do not rely on asymptotic arguments and are valid regardless of the sample size. There seems to be a prevailing view in statistical ecology that classical likelihood-based procedures are virtuous because of the availability of simple formulas and procedures for carrying out inference, such as calculating standard errors, doing model selection by AIC, and assessing goodness of fit. In large samples, this is an important practical benefit of classical likelihood-based inference. However, the practical validity of these procedures cannot be asserted in most situations involving small samples." -->
+
+A further method, simulation and inverse prediction, has a niche use for data from single-catch traps [@edr04; @Efford2023].

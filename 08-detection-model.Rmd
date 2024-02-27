@@ -16,7 +16,7 @@ probability or hazard of detection,
 We consider the shape of detection functions in the next section. Modelling parameters as a function of other variables is addressed in the following section on [linear submodels](#linear-submodels). Random effects in **secr** are limited to finite mixture models that we cover in the following chapter on [individual heterogeneity](#individual-heterogeneity).
 
 ## Distance-detection functions {#detectfn}
-\index{Detection !functions}
+\index{Detection!functions}
 
 The probability of detection $g(d)$ at a detector distance $d$ from an activity centre may take one of the simple forms in Table \@ref(tab:detectfn). Alternatively, the probability of detection may be derived from $g(d) = 1 - \exp[-\lambda(d)]$ where $\lambda(d)$ is the hazard of detection, itself modelled with one of the simple parametric forms (Table \@ref(tab:hazarddetectfn))[^nonlineartransform]. 
 Several further options are provided by `secr.fit` (see `? detectfn`), but only 'HN','HR', and 'EX' or their 'hazard' equivalents are commonly used. 
@@ -73,7 +73,7 @@ fits <- list.secr.fit(detectfn = df, constant = list(capthist = hareCH6,
 
 [^list.secr.fit]: The function `list.secr.fit` applies `secr.fit` with multiple settings, in this case different detection functions, and returns an 'secrlist', a list of fitted models. `list.secr.fit` was introduced in **secr** 4.6.6 to replace `par.secr.fit`.
 
-```{r choicedfplot, echo = FALSE, fig.width = 4.5, fig.height = 5, fig.cap = "Four detection functions fitted to snowshoe hare data"}
+```{r choicedfplot, echo = FALSE, fig.width = 4.5, fig.height = 5, out.width="60%", fig.cap = "Four detection functions fitted to snowshoe hare data"}
 cols <- c('red','orange','blue','forestgreen')
 par(cex = 0.85, pty = 's')
 plot(0,0,type='n',xlab='Distance (m)', ylab = 'Detection probability', xlim = c(0,150), ylim = c(0,0.4))
@@ -116,7 +116,7 @@ HVPest <- round(sapply(predict(fitz), '[[', 'D','estimate'),2)
 
 Fitting the HVP function with $z$ fixed to different values is another way to examine the effect of shape (Fig. \@ref(fig:HVPvaryzplot)). Density estimates ranged only from `r HVPest[4]` to `r HVPest[1]`.
 
-```{r HVPvaryzplot, echo = FALSE, fig.width = 4.5, fig.height = 5, fig.cap="HVP function fitted to snowshoe hare data with $z$ parameter fixed at four different values", results = "hide"}
+```{r HVPvaryzplot, echo = FALSE, fig.width = 4.5, fig.height = 5, out.width="60%", fig.cap="HVP function fitted to snowshoe hare data with $z$ parameter fixed at four different values", results = "hide"}
 par(cex = 0.85, pty = 's')
 plot(0,0,type='n', xlim=c(0,150), ylim=c(0,0.4), xlab= 'Distance (m)', 
      ylab = 'Detection probability')
@@ -166,7 +166,7 @@ Given the preceding comments you may wonder why we bother with different detecti
 Also, it is desirable to account for any significant lack of fit due to the detection function before modelling effects that may have a more critical effect on density estimates, such as individual heterogeneity and learned responses.
 
 ## Detection submodels {#linear-submodels}
-\index{Detection !submodels}
+\index{Detection!submodels}
 
 Until now we have assumed that there is a single beta parameter for each real parameter. A much richer set of models is obtained by treating each real parameter as a function of covariates. For convenience, the function is linear on the appropriate [link](#link) scale. The single 'beta' coefficient is then replaced by two or more coefficients (e.g., intercept $\beta_0$ and slope $\beta_1$ of the linear relationship $y = \beta_0 + \beta_1x_1$ where $y$ is a parameter on the link scale and $x_1$ is a covariate). Suppose, for example, that $y$ depends on sampling occasion $s$ then $y(s) = \beta_0 + \beta_1x_1(s)$ and the corresponding real parameter is $y(s)$ back transformed from the link scale.
 
@@ -227,7 +227,7 @@ Table: (\#tab:examples) Some examples of the 'model' argument in `secr.fit`
 The common question of how to model sex differences can be answered in several ways. we devote a [later section](#sex) to the possibilities (groups, individual covariate, hybrid mixtures etc.).
 
 ### Covariates
-\index{Detection !covariates}
+\index{Detection!covariates}
 
 Any name in a formula that is not listed as a variable in Table \@ref(tab:predictors) is assumed to refer to a user-supplied covariate. `secr.fit` looks for user-supplied covariates in data frames embedded in the 'capthist' argument, or supplied in the 'timecov' and 'sessioncov' arguments, or named with the 'timevaryingcov' attribute of a traps object, using the first match (Table \@ref(tab:covariates)).
 
@@ -251,14 +251,14 @@ A continuous covariate that takes many unique values poses problems for the impl
 [^CKM]: In the C++ code, two real-valued 3-dimensional arrays are populated with pre-computed values of $p_{sk}(\vec x)$ (gk) and $h_{sk}(\vec x)$ (hk). The dimensions are the number of unique parameter combinations $C$, the number of detectors $K$ and the number of mask points $M$. The memory requirement for these arrays alone is $2.8.C.K.M$ bytes, which for 200 detectors, 10000 mask points, and 100 parameter levels is `r 2 * 8 * 100 * 200 * 10000 /1e9` Gb. This is on top of the two parameter index arrays requiring $2 . 4 . R. n. S. K. U$ bytes for $R$ sessions and $U$ mixture classes (e.g. 10 sessions, 200 animals, 6 occasions, 200 detectors and 2 mixture classes,  `r 2 * 4 * 10 * 200 * 6 * 200 * 2 /1e9` Gb), and a number of smaller objects.
 
 ### Time-varying trap covariates
-\index{Detection !time-varying covariates}
+\index{Detection!time-varying covariates}
 
 A special mechanism is provided for detector-level covariates that take different values on each occasion. Then we expect the dataframe of detector covariates to include a column for each occasion. 
 
 A 'traps' object may have an attribute 'timevaryingcov' that is a list in which each named component is a vector of indices identifying which covariate column to use on each occasion. The name may be used in model formulae. Use `timevaryingcov()` to extract or replace the attribute. 
 
 ### Regression splines
-\index{Detection !regression splines}
+\index{Detection!regression splines}
 
 [^linklinear]: We use 'link-linear' to describe a linear model on the link scale, where this may be log-linear, logit-linear etc.
 
@@ -276,7 +276,7 @@ There are some drawbacks to using smooth terms. The resulting fitted objects are
 Detailed modelling of detection parameters may be a waste of energy for the same reasons that the [choice of detection function](#whybother1) itself has limited interest. See, for example, the simulation results of @Sollmann2024 on occasion-specific models ($\sim$ t). However, behavioural responses and individual heterogeneity can have a major effect on density estimates, and these deserve attention.
 
 #### Behavioural responses
-\index{Detection ! behavioral response}
+\index{Detection! behavioral response}
 
 An individual behavioral response is a change in the probability or hazard of detection on the occasions that follow a detection. Trapping of small mammals provides evidence of species that routinely become trap happy (presumably because they enjoy the bait) or trap shy (presumably because the experience of capture and handling is unpleasant). Positive or negative responses are modelled as a step change in a detection parameter, usually the intercept of the detection function ($g_0$, $\lambda_0$).
 
@@ -320,7 +320,7 @@ AIC(fitsk, criterion = 'AIC', sort = FALSE)[c(3:5,7,8)]
 The trap-facilitation model fitted to the deermouse data results in a larger and less precise estimate of density (`r round(predict(fitsk[[2]])['D',2],2)`/ha, SE `r round(predict(fitsk[[2]])['D',3],2)`/ha), with AIC intermediate between the null model and bk (facilitation model $\Delta$AIC = `r round(AIC(fitsk, criterion = 'AIC')[2,'dAIC'], 1)` relative to bk).  There is a risk of confusing such an effect with simple heterogeneity in the performance of detectors or clumping of activity centres or an individual local response (bk). More investigation is needed.
 
 ## Varying effort
-\index{Detection !varying effort}
+\index{Detection!varying effort}
 
 Researchers are often painfully aware of glitches in their data gathering - traps that were not set, sampling occasions missed or delayed due to weather etc. Even when the actual estimates are robust, as in an example below, it is desirable (therapeutic and scientific) to allow for known irregularities in the data. This is the role of the 'usage' matrix as [described](#varying-effort) in Chapter \@ref(Theory).
 
@@ -398,10 +398,10 @@ collate(fits)[,,,'D']
 ```
 The density estimates themselves are almost entirely unaffected by the choice of model for g0. This is not unusual [@Sollmann2024]. Nevertheless, the example shows how 'usage' allows unbalanced data to be analysed with a minimum of fuss.
 
-### Other notes on varying effort
+### Further notes on varying effort
 
 1. Adjustment for varying effort will be more critical in analyses where (i) the variation is confounded with temporal (between-session) or spatial variation in density, and (ii) it is important to estimate the temporal or spatial pattern. For example, if detector usage was consistently high in one part of a landscape, while true density was constant, failure to allow for varying usage might produce a spurious density pattern.
-2. The units of usage determine the units of $g_0$ or $\lambda_0$ in the fitted model. This must be considered when choosing starting values for likelihood maximisation. Ordinarily one relies on `secr.fit` to determine starting values automatically (via `autoini`), and a simple linear adjustment for usage, averaged across non-zero detectors and occasions, is applied to the value of g0 from `autoini`.
+2. The units of usage determine the units of $g_0$ or $\lambda_0$ in the fitted model. This must be considered when choosing starting values for likelihood maximization. Ordinarily one relies on `secr.fit` to determine starting values automatically (via `autoini`), and a simple linear adjustment for usage, averaged across non-zero detectors and occasions, is applied to the value of g0 from `autoini`.
 3. When occasions are collapsed or detectors are lumped with the `reduce` method for capthist objects, usage is summed for each aggregated unit.
 4. The function `usagePlot` displays a bubble plot of spatially varying detector usage on one occasion. The arguments 'markused' and 'markvarying' of `plot.traps` may also be useful.
 5. Absolute duration does not always equate with effort. Animal activity may be concentrated in part of the day, or older DNA samples from hair snares may fail to amplify [@ebm13].

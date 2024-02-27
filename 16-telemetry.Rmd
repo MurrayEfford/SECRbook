@@ -32,16 +32,17 @@ par(mfrow = c(1,2), mar = c(2,2,3,2))
 plot(traps(trCH), border = 150, bty = 'o') # base plot
 plot(combinedCH, title = 'Trapping', tracks = TRUE, add = TRUE)
 plot(traps(trCH), border = 150, bty = 'o') # base plot
-plot(combinedCH, title = 'Telemetry', type = 'telemetry', tracks = TRUE, 
-     add = TRUE)
+plot(combinedCH, title = 'Telemetry', type = 'telemetry', 
+     tracks = TRUE, add = TRUE)
 ```
 
 Next we fit trapping-only and joint trapping-and-telemetry models:
 ```{r telemetryfit, cache = TRUE}
-mask <- make.mask(traps(trCH), buffer = 100, type = 'trapbuffer', nx = 32)
+mask <- make.mask(traps(trCH), buffer = 100, type = 'trapbuffer', 
+    nx = 32)
 args <- list(mask = mask, detectfn = 'HHN', trace = FALSE)
 fits <- list.secr.fit(list(trCH, combinedCH), constant = args, 
-                      names = c('tr','combined'))
+    names = c('tr','combined'))
 collate(fits)[1,,,]
 ```
 Here, telemetry data greatly improves the precision of the estimated scale of movement $\sigma$, but the effect on estimates of the other two parameters is small. 
@@ -203,7 +204,8 @@ Note the CC argument (named for @cc58) that is required to scale the result corr
 
 More laboriously:
 ```{r fitindep, cache = TRUE}
-fit0 <- secr.fit(CHt, buffer = 300, detectfn = 'HHN', trace = FALSE)
+fit0 <- secr.fit(CHt, buffer = 300, detectfn = 'HHN', 
+                 trace = FALSE)
 predict(fit0)
 ```
 
@@ -222,7 +224,8 @@ The use of detection functions expressed in terms of the hazard provides a more 
 Our introductory [example](#telemetryexample) fitted a model to single-session composite data. We can compare the results when the telemetry and trapping data are in separate sessions:
 ```{r ms, cache = TRUE, cache.rebuild = FALSE}
 msCH <- MS.capthist(trCH, teCH)
-fit.ms <- secr.fit(msCH, mask=mask, detectfn = 'HHN', trace = FALSE)
+fit.ms <- secr.fit(msCH, mask=mask, detectfn = 'HHN', 
+                   trace = FALSE)
 predict(fit.ms)
 ```
 
@@ -233,7 +236,8 @@ Note: If the order of `teCH` and `trCH` had been reversed in `msCH` we would nee
 The centres of both detected and telemetry-only animals are assumed to lie on the habitat mask. Ensure the mask is large enough to encompass telemetry-only animals. A conservative approach is to buffer around the individual telemetry centroids. Using `teCH` from before:
 
 ```{r mask}
-centroids <- data.frame(t(sapply(telemetryxy(teCH), apply, 2, mean)))
+centroids <- data.frame(t(sapply(telemetryxy(teCH), 
+    apply, 2, mean)))
 mask1 <- make.mask(centroids, buffer = 100, type = 'trapbuffer')
 ```
 
@@ -269,11 +273,12 @@ For independent data there is no specified connection between the populations sa
 te <- make.telemetry()
 tr <- make.grid(nx = 8, ny = 8, detector = "proximity")
 pop1 <- sim.popn(tr, D = 10, buffer = 200)
-pop2 <- sim.popn(core = tr, buffer = 200, Nbuffer = 20, Ndist = 'fixed')
-trCH <- sim.capthist(tr,  popn = pop1, detectfn = "HHN", detectpar = 
-                         list(lambda0 = 0.1, sigma = 25))
-teCH <- sim.capthist(te,  popn = pop2, detectfn = "HHN", detectpar = 
-                         list(sigma = 25), noccasions = 1, exactN = 25)
+pop2 <- sim.popn(core = tr, buffer = 200, Nbuffer = 20, 
+                 Ndist = 'fixed')
+trCH <- sim.capthist(tr,  popn = pop1, detectfn = "HHN", 
+    detectpar = list(lambda0 = 0.1, sigma = 25))
+teCH <- sim.capthist(te,  popn = pop2, detectfn = "HHN", 
+    detectpar = list(sigma = 25), noccasions = 1, exactN = 25)
 CHI <- addTelemetry(trCH, teCH, type = 'independent')
 session(CHI) <- 'Independent'
 summary(CHI)
@@ -286,16 +291,17 @@ For dependent data the telemetry sample is drawn from animals caught during the 
 ```{r simD}
 pop3 <- sim.popn(tr, D = 10, buffer = 200)
 trCH <- sim.capthist(tr,  popn = pop3, detectfn = "HHN", 
-                     detectpar = list(lambda0 = 0.1, sigma = 25), 
-                     renumber = FALSE, savepopn = TRUE)
+    detectpar = list(lambda0 = 0.1, sigma = 25), renumber = 
+    FALSE, savepopn = TRUE)
 
 ## select trapped animals from saved popn
 pop3D <- subset(attr(trCH, 'popn'), rownames(trCH))
 ## sample 12 detected animals for telemetry
 pop3Dt <- subset(pop3D, sample.int(nrow(pop3D), 12))  
 ## simulate telemetry
-teCHD <- sim.capthist(te, popn = pop3Dt, renumber = FALSE, detectfn = "HHN",
-                     detectpar = list(sigma = 25), noccasions = 1, exactN = 25)
+teCHD <- sim.capthist(te, popn = pop3Dt, renumber = FALSE, 
+    detectfn = "HHN", detectpar = list(sigma = 25), 
+    noccasions = 1, exactN = 25)
 CHD <- addTelemetry(trCH, teCHD, type = 'dependent')
 session(CHD) <- 'Dependent'
 summary(CHD)
@@ -310,11 +316,13 @@ set.seed(567)
 pop4 <- sim.popn(tr, D = 10, buffer = 200)
 # select 15 individuals at random from larger population
 pop4C <- subset(pop4, sample.int(nrow(pop4), 15))
-# the original animalID (renumber = FALSE) are needed for matching
-trCH <- sim.capthist(tr,  popn = pop4, renumber = FALSE, detectfn = "HHN",
-                     detectpar = list(lambda0 = 0.1, sigma = 25))
-teCHC <- sim.capthist(te, popn = pop4C, renumber = FALSE, detectfn = "HHN",
-                     detectpar = list(sigma = 25), noccasions = 1, exactN = 25)
+# original animalID (renumber = FALSE) are needed for matching
+trCH <- sim.capthist(tr,  popn = pop4, renumber = FALSE, 
+    detectfn = "HHN", detectpar = list(lambda0 = 0.1, 
+    sigma = 25))
+teCHC <- sim.capthist(te, popn = pop4C, renumber = FALSE, 
+    detectfn = "HHN", detectpar = list(sigma = 25), noccasions =
+    1, exactN = 25)
 CHC <- addTelemetry(trCH, teCHC, type = 'concurrent')
 session(CHC) <- 'Concurrent'
 summary(CHC)
@@ -354,16 +362,19 @@ Fitting joint telemetry and SECR models can be difficult - the usual computation
 
 ```{r telemscale, eval = TRUE, cache = TRUE}
 te <- make.telemetry()
-teCH2 <- sim.capthist(te, popn = list(D = 2, buffer = 200), detectfn = "HHN", 
-  exactN = 100, detectpar = list(sigma = 25), noccasions = 1)
-mask <- make.mask(traps(teCH2), buffer = 300, type = 'trapbuffer')
+teCH2 <- sim.capthist(te, popn = list(D = 2, buffer = 200), 
+    detectfn = "HHN", exactN = 100, detectpar = list(sigma = 25),
+    noccasions = 1)
+mask <- make.mask(traps(teCH2), buffer = 300, type = 
+    'trapbuffer')
 # fails
 fit1 <- secr.fit(teCH2, mask = mask, detectfn = 'HHN', CL = TRUE, 
-                 trace = FALSE, details = list(telemetryscale = 1)) 
+    trace = FALSE, details = list(telemetryscale = 1)) 
 predict(fit1)
 # succeeds
-fit1000 <- secr.fit(teCH2, mask = mask, detectfn = 'HHN', CL = TRUE, 
-                    trace = FALSE, details = list(telemetryscale = 1e3)) 
+fit1000 <- secr.fit(teCH2, mask = mask, detectfn = 'HHN', 
+    CL = TRUE, trace = FALSE, details = list(telemetryscale = 
+    1e3)) 
 predict(fit1000)
 ```
 
@@ -408,19 +419,21 @@ set.seed(123)
 pop4 <- sim.popn(tr, D = 5, buffer = 100, seed = 567)
 # select 12 individuals at random from larger population
 pop4C <- subset(pop4, sample.int(nrow(pop4), 12))
-# the original animalID (renumber = FALSE) are needed for matching
-trCH <- sim.capthist(tr,  popn = pop4, renumber = FALSE, detectfn = "HHN",
-                     detectpar = list(lambda0 = 0.1, sigma = 25), seed = 123)
+# original animalID (renumber = FALSE) are needed for matching
+trCH <- sim.capthist(tr,  popn = pop4, renumber = FALSE, 
+    detectfn = "HHN", detectpar = list(lambda0 = 0.1, 
+    sigma = 25), seed = 123)
 session(trCH) <- 'Trapping'
-teCH <- sim.capthist(te, popn = pop4C, renumber = FALSE, detectfn = "HHN",
-  detectpar = list(lambda0 = 1, sigma = 25), noccasions = 10, seed = 345)
+teCH <- sim.capthist(te, popn = pop4C, renumber = FALSE, 
+    detectfn = "HHN", detectpar = list(lambda0 = 1, sigma = 25),
+    noccasions = 10, seed = 345)
 session(teCH) <- 'Telemetry'
 ```
 
 
 ## Appendix 2.  {#telemetryappendix2}
 
-### Functions for telemetry data
+Table: (\#tab:telemetryfunctions) Functions specifically for telemetry data
 
 |  Function   | Purpose         |
 |-------------|---------------------------------------------|
@@ -432,7 +445,7 @@ session(teCH) <- 'Telemetry'
 | `telemetryxy` | extract or replace telemetry coordinates from capthist |
 | `xy2CH` | make a standalone telemetry capthist from a composite capthist |
 
-#### Telemetry-ready general functions
+Table: (\#tab:telemetrygeneralfunctions) Telemetry-ready general functions
 
 |  Function   | Purpose         |
 |-------------|---------------------------------------------|
@@ -452,7 +465,7 @@ session(teCH) <- 'Telemetry'
 | `verify.traps` | perform integrity checks |
 `*` these functions use the telemetry coordinates if the capthist is telemetry-only, otherwise the detection sites
 
-#### General functions not ready for telemetry
+Table: (\#tab:telemetrynonfunctions) General functions  not ready for telemetry.
 
 |  Function   | Purpose         |
 |-------------|---------------------------------------------|

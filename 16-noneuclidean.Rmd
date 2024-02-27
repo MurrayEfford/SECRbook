@@ -31,7 +31,7 @@ for the distance model, but evaluating the function for each likelihood slows do
 
 ## Static userdist
 
-\index{Non-euclidean distances ! static}
+\index{Non-euclidean distances!static}
 ```{r setup, echo = FALSE, message = FALSE, results = 'hide'}
 library(sp)
 ```
@@ -141,7 +141,7 @@ predict(CSa)
 For completeness, note that Euclidean distances may also be pre-calculated, using the function `edist`. By default, `secr.fit` uses that function internally, and there is usually little speed improvement when the calculation is done separately.
 
 ## Dynamic userdist
-\index{Non-euclidean distances ! dynamic}
+\index{Non-euclidean distances!dynamic}
 
 The userdist function takes three arguments. The first two are simply 2-column matrices with the coordinates of the detectors and animal locations (mask points) respectively. The third is a habitat mask (this may be the same as xy2). The function has this form:
 ```{r userdist, eval = FALSE}
@@ -400,7 +400,7 @@ It is intended that non-Euclidean distances should work with all relevant functi
 You may be tempted to model 'noneuc' as a function of group - after all, D~g is permitted, right? Unfortunately, this will not work. There is only one pre-computed distance matrix, not one matrix per group.
 
 ## Simulation after Sutherland et al. (2015)
-\index{Non-euclidean distances ! simulation}
+\index{Non-euclidean distances!simulation}
 
 @sfr15 simulated SECR data from a population of animals whose movement was channeled to varying extents along a dendritic network (river system). Their model treated the habitat as 2-dimensional and shrank distances for pixels close to water and expanded them for pixels further away. The authors kindly provided data for the network map and detector layout which we use here to emulate their simulations in **secr**. We assume an existing SpatialLinesDataFrame `sample.water` for the network, and a matrix of x-y coordinates for detector locations `gridTrapsXY`. `rivers` is a version of `sample.water` clipped to the habitat mask and used only for plotting.
 
@@ -524,9 +524,9 @@ covariates(sw2Dmask)$predicted.pdot <- pdot(sw2Dmask, tr,
 ```
 ```{r Chris13a, eval=FALSE, echo=FALSE}
 png(file = "figures/predictedpdot.png", width = 600, height = 600)
-par(mar=c(0,6,0,6), cex=1.3)
+par(mar = c(0,6,0,6), cex=1.3)
 plot(sw2Dmask, covariate = "predicted.pdot", dots = FALSE)
-plot(tr, add = TRUE, detpar=list(cex=1.3))
+plot(tr, add = TRUE, detpar = list(cex = 1.3))
 plot(rivers, add = TRUE, col = "blue")
 dev.off()
 ```

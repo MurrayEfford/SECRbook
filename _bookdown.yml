@@ -20,7 +20,7 @@ rmd_files: ["index.Rmd",
     "08-multisession.Rmd",
     "08-sex.Rmd",
     "10-secrfit.Rmd",
-    "11-parameterisations.Rmd",
+    "11-parameterizations.Rmd",
     # "11-performance.Rmd",
     # STUDY DESIGN
     "12-studydesign.Rmd",

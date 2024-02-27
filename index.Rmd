@@ -48,8 +48,8 @@ This book provides both a gentle introduction, in the spirit of [@cw], and more 
 Part II is mostly independent of software. Other chapters lean heavily on the R package **secr**.
 
 ## Software {-}
-\index{R packages}
 
+\index{R packages}
 The R package **secr** [@R-secr] provides most of the functionality we will need. 
 It performs maximum likelihood estimation for a range of closed-population SECR models[^footnote1]. The Windows application [DENSITY](https://www.otago.ac.nz/density/) [@edr04] has been superceded, although its graphical interface can still come in handy.
 

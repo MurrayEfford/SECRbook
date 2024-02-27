@@ -4,9 +4,12 @@
 # startup code, including library(secr) etc.
 ```
 
-The 'polygon' detector type is used for data from searches of one or more areas (polygons). Transect detectors are the linear equivalent of polygons; as the theory and implementation are very similar we mostly refer to polygon detectors and only briefly mention transects. The relevant theory is in Chapter \@ref(areasearches). The method may be used with individually identifiable cues (e.g., faeces) as well as for direct observations of individuals.
+The 'polygon' detector type is used for count data from searches of one or more areas (polygons). Transect detectors are the linear equivalent of polygons; as the theory and implementation are very similar we mostly refer to polygon detectors and only briefly mention transects. The relevant theory is in Chapter \@ref(areasearches). The method may be used with individually identifiable cues (e.g., faeces) as well as for direct observations of individuals.
 
-Polygons may be independent (detector type 'polygon') or exclusive (detector type 'polygonX'). Exclusivity is a particular type of dependence in which an animal may be detected at no more than one polygon on each occasion (i.e. polygons function more like multi-catch traps than 'count' detectors). Transect detectors also may be independent ('transect') or exclusive ('transectX').
+
+Cells of a polygon capthist contain the number of detections per animal per polygon per occasion, supplemented by the x-y coordinates of each detection). 
+
+Polygons may be independent (detector type 'polygon') or exclusive (detector type 'polygonX'). Exclusivity is a particular type of dependence in which an animal may be detected at no more than one polygon on each occasion, resulting in binary data (i.e. polygons function more like multi-catch traps than 'count' detectors). Transect detectors also may be independent ('transect') or exclusive ('transectX').
 
 ## Parameterisation
 
@@ -33,10 +36,11 @@ There are complications:
 
 The lizards were free to move across the boundary of the plot and often buried themselves when approached. Half of the 134 different lizards were seen only once in 14 searches over 17 days. Fig. 2 shows the distribution of detections within the quadrat; lines connect successive detections of the individuals that were recaptured.
 
-```{r FTHLplot, fig.width = 4, fig.height = 4, message = FALSE, fig.cap="Locations of horned lizards on a 9-ha plot in Arizona [@ry08]. Grid lines are 100 m apart."}
+(ref:FTHLplotcap) Locations of horned lizards on a 9-ha plot in Arizona [@ry08]. Grid lines are 100 m apart.
+```{r FTHLplot, fig.width = 4, fig.height = 4, message = FALSE, fig.cap = "(ref:FTHLplotcap)"}
 par(mar=c(1,1,2,1))
-plot(hornedlizardCH, tracks = TRUE, varycol = FALSE, lab1cap = TRUE, 
-     laboffset = 8, border = 10, title ='')
+plot(hornedlizardCH, tracks = TRUE, varycol = FALSE, lab1cap = 
+    TRUE, laboffset = 8, border = 10, title ='')
 ```
 
 ## Data input
@@ -72,21 +76,23 @@ A cue dataset is not readily available, so we simulate some cue data to demonstr
 
 ```{r cuesim, eval = TRUE}
 datadir <- system.file("extdata", package = "secr")
-examplefile1 <- paste0(datadir, '/polygonexample1.txt')
-polyexample1 <- read.traps(file = examplefile1, detector = 'polygon')
-polygonCH <- sim.capthist(polyexample1, popn = list(D = 1, buffer = 200),
-    detectfn = 'HHN', detectpar = list(lambda0 = 5, sigma = 50),
-    noccasions = 1, seed = 123)
+file1 <- paste0(datadir, '/polygonexample1.txt')
+example1 <- read.traps(file = file1, detector = 'polygon')
+polygonCH <- sim.capthist(example1, popn = list(D = 1, 
+    buffer = 200), detectfn = 'HHN', detectpar = list(
+    lambda0 = 5, sigma = 50), noccasions = 1, seed = 123)
 ```
 
-```{r cueplot2, echo = TRUE, eval=TRUE, fig.width = 5, fig.cap="Simulated cue data from a single search of two irregular polygons."}
+(ref:cueplot2cap) Simulated cue data from a single search of two irregular polygons.
+
+```{r cueplot2, echo = TRUE, eval=TRUE, fig.width = 5, fig.cap = "(ref:cueplot2cap)"}
 par(mar = c(1,2,3,2))
-plot(polygonCH, tracks = TRUE, varycol = FALSE, lab1cap = TRUE, laboffset = 15,
-     title = paste("Simulated 'polygon' data", "D = 1, lambda0 = 5, sigma = 50"))
+plot(polygonCH, tracks = TRUE, varycol = FALSE, lab1cap = TRUE,
+    laboffset = 15, title = paste("Simulated 'polygon' data", 
+    "D = 1, lambda0 = 5, sigma = 50"))
 ```
 
-
-Our simulated sampling was a single search (noccasions = 1), and the intercept of the detection function (lambda0 = 5) is the expected number of cues that would be found per animal if the search was unbounded. The plot is slightly misleading because the cues are not ordered in time, but tracks = TRUE serves to link cues from the same animal.
+Our simulated sampling was a single search (noccasions = 1), and the intercept of the detection function (lambda0 = 5) is the expected number of cues that would be found per animal if the search was unbounded. The plot (Fig. \@ref(fig:cueplot2)) is slightly misleading because, although 'tracks = TRUE' serves to link cues from the same animal, the cues are not ordered in time.
 
 To fit the model by maximum likelihood we use `secr.fit` as before:
 
@@ -107,7 +113,8 @@ plot(discreteCH, varycol = FALSE, tracks = TRUE)
 ```
 
 ```{r discretizedfit, warning = FALSE, cache = TRUE}
-discrete.fit <- secr.fit(discreteCH, buffer = 200, detectfn = 'HHN', trace = FALSE)
+discrete.fit <- secr.fit(discreteCH, buffer = 200, detectfn = 
+    'HHN', trace = FALSE)
 predict(discrete.fit)
 ```
 
@@ -120,11 +127,12 @@ We simulate some data for an imaginary wiggly transect.
 
 ```{r transectsimulation, eval = TRUE, cache = TRUE}
 x <- seq(0, 4*pi, length = 20)
-transect <- make.transect(x = x*100, y = sin(x)*300, exclusive = FALSE)
+transect <- make.transect(x = x*100, y = sin(x)*300, 
+    exclusive = FALSE)
 summary(transect)
-transectCH <- sim.capthist(transect, popn = list(D = 2, buffer = 300),
-    detectfn = 'HHN', detectpar = list(lambda0 = 1.0, sigma = 50), 
-    binomN = 0, seed = 123)
+transectCH <- sim.capthist(transect, popn = list(D = 2, 
+    buffer = 300), detectfn = 'HHN', detectpar = list(
+    lambda0 = 1.0, sigma = 50), binomN = 0, seed = 123)
 ```
 
 By setting exclusive = FALSE we signal that there may be more than one detection per animal per occasion on this single transect (i.e. this is a 'transect' detector rather than 'transectX').
@@ -132,7 +140,8 @@ By setting exclusive = FALSE we signal that there may be more than one detection
 Constructing a habitat mask explicitly with `make.mask` (rather than relying on 'buffer' in `secr.fit`) allows us to
 specify the point spacing and discard outlying points (Fig. \@ref(fig:transectmask)).
 
-```{r transectmask, echo = TRUE, eval = TRUE, fig.cap = "Habitat mask (grey dots) and simulated transect data from five searches of a 2.8-km transect. Colours differ between individuals, but are not unique."}
+(ref:transectmaskcap) Habitat mask (grey dots) and simulated transect data from five searches of a 2.8-km transect. Colours differ between individuals, but are not unique.
+```{r transectmask, echo = TRUE, eval = TRUE, fig.cap = "(ref:transectmaskcap)"}
 transectmask <- make.mask(transect, type = 'trapbuffer', buffer = 300, spacing = 20)
 par(mar = c(3,1,3,1))
 plot(transectmask, border = 0)
@@ -143,8 +152,8 @@ plot(transectCH, tracks = TRUE, add = TRUE, title = '')
 Model fitting uses `secr.fit` as before. We specify the distribution of the number of detections per individual per occasion as Poisson (binomN = 0), although this also happens to be the default. Setting method = 'Nelder-Mead' is slightly more likely to yield valid estimates of standard errors than using the default method (see [Technical notes](#technotes)).
 
 ```{r transectfit, warning = FALSE, eval = TRUE, cache = TRUE}
-transect.fit <- secr.fit(transectCH, mask = transectmask, binomN = 0,
-                         method = 'Nelder-Mead', trace = FALSE)
+transect.fit <- secr.fit(transectCH, mask = transectmask, 
+    binomN = 0, method = 'Nelder-Mead', trace = FALSE)
 ```
 Occasional 'ier' error codes may be ignored (see [Technical notes](#technotes)). The estimates are close to the true values except for sigma, which may be positively biased.
 
@@ -162,7 +171,8 @@ snippedCH <- reduce(snippedCH, outputdetector = 'proximity')
 The same may be achieved with `newCH <- discretize(transectCH, spacing = 25)`. We can fit a model using the same mask as before. The result differs in the scaling of the lambda0 parameter, but in other respects is similar to that from the transect model.
 
 ```{r snipfit, eval = TRUE, cache=TRUE}
-snipped.fit <- secr.fit(snippedCH, mask = transectmask, detectfn = 'HHN', trace = FALSE)
+snipped.fit <- secr.fit(snippedCH, mask = transectmask, 
+    detectfn = 'HHN', trace = FALSE)
 predict(snipped.fit)
 ```
 
@@ -194,7 +204,9 @@ Polygons may be irregularly shaped, but there are some limitations in the defaul
 line. Sometimes east-west concavity may be fixed by rotating the polygon and its associated data points (see function
 `rotate`). Polygons should not contain holes, and the polygons used on any one occasion should not overlap.
 
-```{r irregular, echo = FALSE, fig.cap="The polygon on the left is not allowed because its boundary is intersected by a vertical line at more than two points."}
+(ref:irregularcap) The polygon on the left is not allowed because its boundary is intersected by a vertical line at more than two points.
+
+```{r irregular, echo = FALSE, out.width = "90%", fig.cap = "(ref:irregularcap)"}
 knitr::include_graphics("figures/irregular.png")
 ```
 
@@ -202,16 +214,16 @@ knitr::include_graphics("figures/irregular.png")
 
 1. Break into parts
 
-One solution to 'east-west concavity' is to break the offending polygon into two or more parts. For this you need to know which vertices belong in which part, but that is (usually) easily determined from a plot. In this real example we recognise vertices 11 and 23 as critical, and split the polygon there. Note the need to include the clip vertices in both polygons, and to maintain the order of vertices. Both `polyexample2` and `newpoly` are traps objects.
+One solution to 'east-west concavity' is to break the offending polygon into two or more parts. For this you need to know which vertices belong in which part, but that is (usually) easily determined from a plot. In this real example we recognise vertices 11 and 23 as critical, and split the polygon there. Note the need to include the clip vertices in both polygons, and to maintain the order of vertices. Both `example2` and `newpoly` are traps objects.
 
 ```{r polylimit, results = "hold", fig.height = 3, out.width="95%", fig.cap="Splitting a non-conforming polygon"}
-examplefile2 <- paste0(datadir, '/polygonexample2.txt')
-polyexample2 <- read.traps(file = examplefile2, detector = 'polygon')
+file2 <- paste0(datadir, '/polygonexample2.txt')
+example2 <- read.traps(file = file2, detector = 'polygon')
 par(mfrow = c(1,2), mar = c(2,1,1,1))
-plot(polyexample2)
-text(polyexample2$x, polyexample2$y, 1:nrow(polyexample2), cex = 0.7)
-newpoly <- make.poly (list(p1 = polyexample2[11:23,], 
-  p2 = polyexample2[c(1:11, 23:27),]))
+plot(example2)
+text(example2$x, example2$y, 1:nrow(example2), cex = 0.7)
+newpoly <- make.poly (list(p1 = example2[11:23,], 
+  p2 = example2[c(1:11, 23:27),]))
 plot(newpoly, label = TRUE)
 ```
 
@@ -226,9 +238,9 @@ Another solution is to evaluate whether each point chosen dynamically by the int
 Fitting models for polygon detectors with `secr.fit` requires the hazard function to be integrated in two-dimensions many
 times. In **secr** >= 4.4 this is done with repeated one-dimensional Gaussian quadrature using the C++ function 'integrate' in RcppNumerical [R-RcppNumerical].
 
-Polygon and transect SECR models seem to be prone to numerical problems in estimating the information matrix (negative Hessian), which flow on into poor variance estimates and missing values for the standard errors of 'real' parameters. At the time of writing these seem to be overcome by overriding the default maximisation method (Newton-Raphson in 'nlm') and using, for example, "method = 'BFGS'". Another solution, perhaps more reliable, is to compute the information matrix independently by setting 'details = list(hessian = 'fdhess')' in the call to `secr.fit`. Yet another approach is to apply `secr.fit` with "method = 'none'" to a previously fitted model to compute the variances.
+Polygon and transect SECR models seem to be prone to numerical problems in estimating the information matrix (negative Hessian), which flow on into poor variance estimates and missing values for the standard errors of 'real' parameters. At the time of writing these seem to be overcome by overriding the default maximization method (Newton-Raphson in 'nlm') and using, for example, "method = 'BFGS'". Another solution, perhaps more reliable, is to compute the information matrix independently by setting 'details = list(hessian = 'fdhess')' in the call to `secr.fit`. Yet another approach is to apply `secr.fit` with "method = 'none'" to a previously fitted model to compute the variances.
 
-The algorithm for finding a starting point in parameter space for the numerical maximisation is not entirely reliable; it may be necessary to specify the 'start' argument of `secr.fit` manually, remembering that the values should be on the link scale (default log for D, lambda0 and sigma).
+The algorithm for finding a starting point in parameter space for the numerical maximization is not entirely reliable; it may be necessary to specify the 'start' argument of `secr.fit` manually, remembering that the values should be on the link scale (default log for D, lambda0 and sigma).
 
 Data for polygons and transects are unlike those from detectors such as traps in several respects:
 

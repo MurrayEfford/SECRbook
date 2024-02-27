@@ -1,16 +1,16 @@
 # Special topics {#SpecialTopics}
 
 ## Multi-session likelihood
-\index{Likelihood !multi-session}
+\index{Likelihood!multi-session}
 
-The data may comprise multiple independent datasets to be analysed together. We call these 'sessions', following the terminology of **secr**. They may be synchronous spatial samples from non-overlapping populations or samples of the same population widely separated in time. If there are $J$ such datasets we can denote them $\Omega_j, j = 1,...,J$. The likelihood to be maximised is then $\prod_j L(\phi, \theta | \Omega_j)$. While the parameter vector $(\phi, \theta)$ is common to all sessions, the mechanism of [linear submodels](#linear-submodels) allows 'real' parameter values to be specific to a session, common to multiple sessions, or modelled as a function of session-level covariates. 
+The data may comprise multiple independent datasets to be analysed together. We call these 'sessions', following the terminology of **secr**. They may be synchronous spatial samples from non-overlapping populations or samples of the same population widely separated in time. If there are $J$ such datasets we can denote them $\Omega_j, j = 1,...,J$. The likelihood to be maximized is then $\prod_j L(\phi, \theta | \Omega_j)$. While the parameter vector $(\phi, \theta)$ is common to all sessions, the mechanism of [linear submodels](#linear-submodels) allows 'real' parameter values to be specific to a session, common to multiple sessions, or modelled as a function of session-level covariates. 
 
 Failure of the independence assumption in a multi-session analysis results in underestimation of the sampling variance.
 
 ## Groups {#groups}
 \index{Groups}
 
-Users of MARK [@cw] will be familiar with the stratification of a population into 'groups', each with potentially different values for parameters such as survival probability. Grouping requires that each animal is assigned to a group on first detection, and that the assignment is permanent. Then density and any detection parameter may be modelled as a function of the grouping factor. Group models are available in **secr** only when maximising the full likelihood. When maximising the [conditional likelihood](#conditional) the model may specify an individual factor covariate directly, with the same effect as grouping. 
+Users of MARK [@cw] will be familiar with the stratification of a population into 'groups', each with potentially different values for parameters such as survival probability. Grouping requires that each animal is assigned to a group on first detection, and that the assignment is permanent. Then density and any detection parameter may be modelled as a function of the grouping factor. Group models are available in **secr** only when maximizing the full likelihood. When maximizing the [conditional likelihood](#conditional) the model may specify an individual factor covariate directly, with the same effect as grouping. 
 
 The multinomial coefficient in **secr** is stratified by group.
 
@@ -38,7 +38,7 @@ L_n (\theta| \Omega) \propto \prod_{i=1}^n \frac{\int_{R^2} \mbox{Pr}(\omega_i |
 
 Conditioning on $n$ allows individual covariates $z_i$ to be included in the detection model (see later). The effective sampling area then varies among individuals as a function of their covariates. A corresponding Horvitz-Thompson-like derived estimate of density is $\hat D = n / \sum_{i=1}^n a(z_i; \hat \theta)$ [@be08].
 
-When the conditional likelihood is maximised, the inverse Hessian provides variances only for the detection parameters in $\theta$. The variance of the derived (Horvitz-Thompson) estimate of density $\hat D_{HT} = n / \sum_{i=1}^n a(z_i; \hat \theta)$ depends also on the distribution of $n$. Following @h89,
+When the conditional likelihood is maximized, the inverse Hessian provides variances only for the detection parameters in $\theta$. The variance of the derived (Horvitz-Thompson) estimate of density $\hat D_{HT} = n / \sum_{i=1}^n a(z_i; \hat \theta)$ depends also on the distribution of $n$. Following @h89,
 \begin{equation}
 \mbox{var}(\hat D_{HT}) = s^2 + \hat {\vec G}^T_\theta \hat {\vec I} \hat {\vec G}_\theta
 (\#eq:varHT)
@@ -55,9 +55,9 @@ When $N(A)$ is fixed, $n$ is binomial and $s^2 = \sum_{i=1}^n [1 - a(z_i; \hat \
 $\mbox{var}(\hat D_{HT})$ from \@ref(eq:varHT) is on the natural scale, and the Wald confidence interval computed on this scale is symmetrical. Intervals that are symmetric on the log scale and asymmetric on the natural scale have better coverage properties. These are obtained as $(\hat D_{HT}/C, \hat D_{HT}C)$ where $C = \exp \{ z_{\alpha/2} \sqrt{\log[1 + \frac{\mbox{var}(\hat D_{HT})}{\hat D_{HT}^2}]} \}$ [@Burnham1987; @Chao1989].
 
 ## Relative density {#relativedensity1}
-\index{Density !relative}
+\index{Density surface!relative}
 
-A further option is to ignore the process of first detection that determines the set of individuals for which we have capture histories, i.e. to condition on the particular set of detected (tagged) individuals. Then we use $\theta^\prime$ to parameterize a model for their re-detection, and $\phi^\prime$ to describe the spatial distribution of detected individuals. Note that $\phi^\prime$ carries no information about absolute density: the model describes relative density. The parameters may be estimated by maximising
+A further option is to ignore the process of first detection that determines the set of individuals for which we have capture histories, i.e. to condition on the particular set of detected (tagged) individuals. Then we use $\theta^\prime$ to parameterize a model for their re-detection, and $\phi^\prime$ to describe the spatial distribution of detected individuals. Note that $\phi^\prime$ carries no information about absolute density: the model describes relative density. The parameters may be estimated by maximizing
 
 \begin{equation}
 L_r(\phi^\prime, \theta^\prime | \Omega) \propto \prod_{i=1}^n \int_{R^2} \mbox{Pr}(\omega_i | \vec x; \theta^\prime) \, f(\vec x ; \phi^\prime) \; d\vec x.
@@ -83,7 +83,7 @@ $$
 The sampling variance of $\hat N(B)$ follows from Poisson assumptions regarding $D(\vec x)$ [@ef13].
 
 ## Finite mixture models {#finite-mixtures}
-\index{Likelihood !finite mixture}
+\index{Likelihood!finite mixture}
 
 Finite mixture models for individual heterogeneity of capture probability were formalised for non-spatial capture--recapture by @p2000 and remain widely used (e.g., @cw). These are essentially random-effect models in which the distribution of capture probability comprises two or more latent classes, each with a capture probability and probability of membership.
 
@@ -107,7 +107,7 @@ The expected number of detected animals $n$, replacing \@ref(eq:n), is a weighte
  <!-- A two-class finite mixture for a parameter $\theta$ is represented by three further parameters: the values $\theta_1$ and $\theta_2$ for the two classes and  $\pi_1$ for the probability of membership in class 1 ($\pi_2 = 1-\pi_1$ for the alternate class). The mean is $\bar \theta = \sum_i \pi_i \theta_i$. The CV is $\mbox{CV}(\theta) = \sqrt{\sum_i \pi_i (\theta_i - \bar \theta)^2} / \bar \theta$. -->
   
 ## Hybrid finite mixture models {#hybrid-mixtures}
-\index{Likelihood !hybrid mixture}
+\index{Likelihood!hybrid mixture}
   
 We can modify the finite mixture likelihood for data in which the class membership of some or all individuals is known. Indicate the class membership of the $i$-th individual by a variable $u_i$ that may take values 0, 1, ..., $U$, where $u_i = 0$ indicates an individual of unknown class, and the class frequencies are $n_0$, $n_1$, ..., $n_U$ (not to be confused with $n_1$,...,$n_C$ in \@ref(eq:CL)). We assume here that detection histories are sorted by class membership, starting with the unknowns.
  
@@ -147,8 +147,8 @@ For homogeneous density the likelihood simplifies to
 
 where $a(\theta_u) = \int p_\cdot(\vec x ; \theta_{u}) \; d\vec x$.
 
-## Alternative parameterisations {#parameterisations}
-\index{Parameterisations}
+## Alternative parameterizations {#parameterizations}
+\index{Parameterizations}
 
 The 'real' parameters in SECR are typically assumed to be independent (orthogonal). However, some parameter pairs co-vary in predictable ways owing to constraints on animal behaviour. Here it is more straightforward to work with the hazard detection functions.mThe intercept of the detection function $\lambda_0$ declines with increasing $\sigma$, all else being equal [@em14]. This is inevitable if detection is strictly proportional to time spent near a point, given a bivariate home range utilisation model (pdf for activity). Also, home-range size and the SECR parameter $\sigma$ decline with population density [@edjq16]. Allowing for covariation may improve biological insight and lead to more parsimonious models. 
 
@@ -167,7 +167,7 @@ These parameterizations implement the two covariation models mentioned before, w
 In the first option $\sigma$ is the independent (driver) variable; in the other two options $D$ is the driver.
 
 ## Model-based location of AC (fxi)
-\index{Activity centre !estimated location}
+\index{Activity centre!estimated location}
 
 Assume we have fitted a spatial model by integrating over the unknown locations of AC for a given SECR dataset $\Omega = {\omega_1, \omega_2, ..., \omega_n}$. We may retrospectively infer the probability density of the AC corresponding to each detection history, using the model and the estimated parameters:
 \begin{equation}
@@ -175,7 +175,7 @@ f(\vec x | \omega_i; \hat \phi, \hat \theta) = \frac{ \mbox{Pr} (\omega_i | \vec
 {\int_{R^2} \mbox{Pr}(\omega_i | \vec x; \hat \theta) D(\vec x ; \hat \phi) \, d \vec x}.
 (\#eq:fxi)
 \end{equation}
-This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See `fxi.secr` and related functions in **secr**. For known $\theta$ and known $\phi$ (unless $D(\vec x; \phi)$ uniform) the modal location of the AC for animal $i$ may be estimated by maximising $\mbox{Pr} (\omega_i | \vec x; \theta)D(\vec x; \phi)$ with respect to $\vec x$. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.
+This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See `fxi.secr` and related functions in **secr**. For known $\theta$ and known $\phi$ (unless $D(\vec x; \phi)$ uniform) the modal location of the AC for animal $i$ may be estimated by maximizing $\mbox{Pr} (\omega_i | \vec x; \theta)D(\vec x; \phi)$ with respect to $\vec x$. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.
 
 ## Telemetry {#telemetrylikelihood}
 

@@ -43,7 +43,7 @@ The chapters in Part II provide background mostly for reference. They aim to be 
 [^footnote4a]: We use $D(\vec x)$ in preference to $\lambda(\vec x)$ because $\lambda$ has multiple meanings.
 
 ## Likelihood {#Likelihood}
-\index{Likelihood !SECR}
+\index{Likelihood!SECR}
 
 This formulation of the likelihood is based on @be08 with minor changes in notation:
 \begin{equation}
@@ -51,7 +51,7 @@ L(\phi, \theta | \Omega ) = \mbox{Pr}(n| \phi, \theta) \; \mbox{Pr}(\Omega | n, 
 (\#eq:L)
 \end{equation}
 
-Parameters of the state model ($\phi$) and the detection model ($\theta$) are estimated jointly by maximizing the logarithm of the likelihood. When density is constant across space, $\phi$ drops out of the rightmost term, which then relates to the detection (observation) model alone, and maximisation of this component gives unbiased estimates of $\theta$ (see [Conditional likelihood](#conditional)).
+Parameters of the state model ($\phi$) and the detection model ($\theta$) are estimated jointly by maximizing the logarithm of the likelihood. When density is constant across space, $\phi$ drops out of the rightmost term, which then relates to the detection (observation) model alone, and maximization of this component gives unbiased estimates of $\theta$ (see [Conditional likelihood](#conditional)).
 
 ### Number of individuals {#Pr-n}
 
@@ -132,7 +132,7 @@ Table: (\#tab:pointdetectortypes) Summary of point detector types (conditioning 
 2. $H_s = \sum_k h_{sk}(\vec x)$ is the hazard summed over traps  
 
 ### Binary proximity detector
-\index{Detectors !binary proximity}
+\index{Detectors!binary proximity}
 
 A proximity detector records the presence of an individual at or near a point without restricting its movement. The data are binary when any detections after the first are ignored (this avoids worries about the non-independence of repeated visits to a detector). 
 
@@ -142,26 +142,26 @@ Assuming independence among detectors, the distance-detection model applies dire
 <!-- Subscripts $i,s$ are included for generality, allowing individual and temporal variation in detection probability, but more often than not these do not appear in the model ($\theta_{is} = \theta$ for all $i,s$) and $p_k$ is sufficient. -->
 
 ### Poisson count proximity detector
-\index{Detectors !Poisson proximity}
+\index{Detectors!Poisson proximity}
 
 Hazard is the natural scale for the Poisson parameter.
 
 ### Binomial count proximity detector
-\index{Detectors !Binomial proximity}
+\index{Detectors!Binomial proximity}
 
 Binomial counts arise when there is a finite number of opportunities for detection within each occasion that we denote $B_s$. This commonly happens when binary proximity data are collapsed to a single occasion: the initial number of occasions is known ($B_s = S$) and places an upper limit on the count. Collapsing is often efficient. It precludes modelling parameter variation or learned responses across occasions.
 
 Each count is binomial with size $B_s$ and probability equal to the per-occasion detection probability.
 
 ### Multi-catch trap
-\index{Detectors !multi-catch trap}
+\index{Detectors!multi-catch trap}
 
 A trap is a device that detains an animal until it is released, allowing only one detection of that animal per occasion. The single-detector, single-AC probability from a distance-dependent detection function (preceding section) must be modified to allow for prior capture in a different trap: traps effectively "compete" for animals. If the trap remains open for captures of further animals then the solution is a straightforward competing risk model [@be08].
 
 The competing risk model uses the occasion- and trap-specific hazard $h_{sk}$.
 
 ### Single-catch trap
-\index{Detectors !single-catch trap}
+\index{Detectors!single-catch trap}
 
 A single-catch trap can only catch one animal at a time. This entails competition 
 both among traps for animals and among animals for traps. No simple likelihood is available. 

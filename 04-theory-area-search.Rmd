@@ -9,7 +9,7 @@ Area searches differ from other modes of detection in that each detection may ha
 Before launching into some rather heavy theory, we note that this can all be avoided by treating polygon data as if they were collected at many point detectors (pixel centres) obtained by discretizing the polygon(s).
 
 ## Detector types for area search 
-\index{Detectors !area search}
+\index{Detectors!area search}
 
 Area-search analogues exist for each of the [point detector types](#pointdetectors). 
  
@@ -92,7 +92,7 @@ Table: (\#tab:areadetectortypes) Detector-level probabilities for area-search de
    \end{equation}
    
 ### Likelihood
-\index{Likelihood !area search}
+\index{Likelihood!area search}
    
    The likelihood component associated with $\omega_i$, conditional on $\vec x$, is a product of the probability of observing $\omega_{isk}$ cues, and the probability of the within-polygon locations:
     $$
@@ -101,7 +101,7 @@ Table: (\#tab:areadetectortypes) Detector-level probabilities for area-search de
     Inserted in \@ref(eq:CL), along with $f(\vec x | \omega_i>0; \phi, \theta)$ from equation \@ref(eq:f), this provides the likelihood component $\mbox{Pr} (\Omega | n, \phi, \theta)$ of \@ref(eq:L). 
    
 ## Transect search
-\index{Detectors !transect search}
+\index{Detectors!transect search}
    
    Transect detectors are the linear equivalent of polygons. Cues may be observed only along the searched zero-width transect. Transect detectors, like polygon detectors, may be independent or exclusive. See Appendix \@ref(Areaandtransectsearches) for more.
    

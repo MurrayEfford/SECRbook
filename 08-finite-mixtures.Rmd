@@ -85,7 +85,7 @@ Looking on the bright side, it is unlikely that you will ever have enough data t
 
 It is a quirk of mixture models that the labeling of the latent classes is arbitrary: the first class in one fit may become the second class in another. This is the phenomenon of 'label switching' [@Stephens2000]. 
 
-For example, in the house mouse model 'h2.lambda0' the first class is initially dominant, but we can switch that by choosing different starting values for the maximisation:
+For example, in the house mouse model 'h2.lambda0' the first class is initially dominant, but we can switch that by choosing different starting values for the maximization:
 ```{r labels, cache = TRUE, warning = FALSE}
 args <- list(capthist = morning, model = lambda0~h2, buffer = 25, 
     detectfn = 'HEX', trace = FALSE)
@@ -99,7 +99,7 @@ round(collate(fitsl, realnames='pmix')[1,,,],3)
 Class-specific estimates of the detection parameter (here lambda0) are reversed, but estimates of other parameters are unaffected.
 
 ### Multimodality
-\index{Likelihood, multi-modal}
+\index{Likelihood!multi-modal}
 
 The likelihood of a finite mixture model may have multiple modes [@Brooks1997; @p2000]. The risk is ever-present
 that the numerical maximization algorithm will get stuck on a local peak, and in this case the estimates are simply wrong[^multimodal]. Slight differences in starting values or numerical method may result in
@@ -140,7 +140,7 @@ Heterogeneity may be demonstrably present yet have little effect on density esti
 
 Individual variation in $\lambda_0$ and $\sigma$ may be inversely correlated and therefore compensatory, reducing bias in $\hat D$ [@em14]. Bias is a function of heterogeneity in the [effective sampling area](#esa) $a(\theta)$ which may vary less than each of the components $\lambda_0$ and $\sigma$.
 
-It can be illuminating to [re-parameterise](#parameterisations) the detection model. 
+It can be illuminating to [re-parameterize](#parameterizations) the detection model. 
 
 ## Hybrid 'hcov' model
 \index{Hybrid mixture model}

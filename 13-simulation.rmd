@@ -1,7 +1,7 @@
 # Simulation {#Simulation}
 
 ## Population
-\index{Simulation, population}
+\index{Simulation!population}
 
 `sim.popn(D, core, buffer = 100, model2D = c("poisson", "cluster", 
     "IHP", "coastal", "hills", "linear", "even", "rLGCP", "rThomas"), 
@@ -16,11 +16,11 @@
 A specialised use of [masks](#Habitat) arises in `sim.popn` when simulating populations with an arbitrary non-uniform distribution of individuals (`model2D = "IHP"`). Then the argument 'core' should be a habitat mask; cell-specific density (expected number of individuals per hectare) may be given either in a covariate of the mask as named in argument 'D' or as a vector of values in argument 'D'. The covariate option allows you to simulate from a fitted Dsurface (output from `predictDsurface`).
 
 ## Detection
-\index{Simulation, detection}
+\index{Simulation!detection}
 
 `sim.capthist`
 
 ## **secrdesign**
-\index{Simulation, model fitting}
+\index{Simulation!model fitting}
 
 [invalid replicates]
