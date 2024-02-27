@@ -162,6 +162,7 @@ Many minor and infrequently used arguments are grouped as 'details'. See [this l
 
 #### Distribution of $n$ 
 \index{secr.fit!distribution}
+\index{Population size $N(A)$!fixed}
 
 This argument switches between two possibilities for the distribution of $n$: 'poisson' (the default) or 'binomial'. Binomial $n$ conditions on fixed $N(A)$ where $A$ is the area of the habitat mask. This corresponds to point process with a fixed number of activity centres inside an arbitrary boundary. Estimates of density conditional on $N(A)$ have lower variance, but this is usually an artifact of the conditioning.
 

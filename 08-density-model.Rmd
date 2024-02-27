@@ -112,7 +112,7 @@ The options differ between the state and observation models. D may vary with res
 The predictors 'group' and 'session' behave for D as they do for other real parameters. They determine variation in the expected density for each group or session that is (by default) uniform across space, leading to a homogeneous Poisson model and a flat surface. No further explanation is therefore needed.
 
 ### Link function
-\index{Link function!density model}
+\index{Link function!density}
 
 The default link for D is 'log'. It is equally feasible in most cases to choose 'identity' as the link (see the `secr.fit` argument 'link'), and for the null model D $\sim$ 1 the estimate will be the same to numerical accuracy, as will estimates involving only categorical variables (e.g., session). However, with an 'identity' link the usual (asymptotic) confidence limits will be symmetrical (unless truncated at zero) rather than asymmetrical. In models with continuous predictors, including spatial trend surfaces, the link function will affect the result, although the difference may be small when the amplitude of variation on the surface is small. Otherwise, serious thought is needed regarding which model is biologically more appropriate: logarithmic or linear.
 

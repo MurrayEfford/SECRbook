@@ -28,15 +28,15 @@ Animals without natural marks must be marked individually on their first detecti
 
 Confusingly, **secr** uses 'traps' as a generic name for R objects holding detector coordinates and other information. This software-specific jargon should be avoided in publications.
 
-Table: (\#tab:deviceexamples) Examples of device types
+Table: (\#tab:deviceexamples) Examples of SECR sampling
 
-| Device | Type | 
-|:------------|:------------------|
-| Automatic camera | proximity detector | 
-| DNA hair snag | proximity detector | 
-| Sherman trap | single-catch trap | 
-| Ugglan trap | multi-catch trap | 
-| Mist net | multi-catch trap | 
+| Device | Marks | Type | Example | 
+|:-------|:------------|:----------|:------------------|
+| Automatic camera | natural marks: stripes and spot patterns | proximity detector | tiger, @Royle2009 |
+| Hair snag | microsatellite DNA | proximity detector | grizzly bear, @ms00 |
+| Cage trap | numbered ear tag | single-catch trap | brushtail possum, @ewcb05 |
+| Ugglan trap | numbered ear tag | multi-catch trap | field vole, @Ergon2013 |
+| Mist net | numbered leg band | multi-catch trap | red-eyed vireo, @be08 |
 
 ## Sampling across time
 
@@ -62,14 +62,14 @@ of population density (and other parameters) by jointly fitting the state and ob
 
 In order to estimate density from a sample we must account for the sampling process. The process is inherently spatial: each animal is more likely to be detected near its AC, and less likely to be detected far away. Sampling filters the geographic locations of animals as indicated in Fig.  \@ref(fig:example).
 
-```{r example, eval = TRUE, echo = FALSE, out.width = '60%', out.height = '60%', fig.cap = "Distance-dependent detection of uniformly distributed activity centres (open circles; filled if captured)"}
+```{r example, eval = TRUE, echo = FALSE, out.width = "70%", fig.cap = "Distance-dependent detection of uniformly distributed activity centres (open circles; filled if captured)"}
 knitr::include_graphics('figures/example.png')
 ```
 
 The true locations of animals are not known, and therefore the distance-dependent probabilities cannot be calculated directly. The model is fitted by marginalising (integrating over) animal locations.
 
 Distance-dependent detection is represented by a 'detection function' with intercept, scale, and possibly shape, determined by parameters to be estimated[^footnote2b].
-```{r detectionfunctions, echo = FALSE, message = FALSE, fig.width=6, fig.height=4.5, out.width="60%", fig.cap = "Some detection functions"}
+```{r detectionfunctions, echo = FALSE, message = FALSE, fig.width=6, fig.height=4.5, out.width="75%", fig.cap = "Some detection functions"}
 par(mar=c(6,4,4,4), mgp=c(2.6,0.7, 0))
 par(lwd = 1.5, bty = 'l', mar = c(4,4,2,6))
 detectfnplot (detectfn = 0, c(0.7, 80), ylim=c(0,0.75), ylab = 'Probability', col = 'black',

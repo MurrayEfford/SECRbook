@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 _book
+extra
 _bookdown_files
 SECRbook_cache/**
 SECRbook_files/**

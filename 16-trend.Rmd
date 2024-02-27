@@ -8,6 +8,7 @@ This section describes methods specifically for population trend, defined as cha
 
 ## 'Dlambda' parameterization
 \index{Trend!Dlambda}
+\index{Parameterization!Dlambda}
 
 We parameterize the density model in terms of the initial density $D_1$ and the finite rates of increase $\lambda_t$ for the remaining sessions ($\lambda_1$ refers to the density increase between Session 1 and Session 2, etc.). Reparameterization of the density model is achieved internally in `secr.fit` by manipulating the density design matrix to provide a new array of mask-cell- and session-specific densities at each evaluation of the full likelihood. This happens when the details argument 'Dlambda' is set to TRUE. The density model (D~) and the fitted coefficients take on a new meaning determined by the internal function `Dfn2`. More explanation is given [later](#Review).
  

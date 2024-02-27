@@ -54,7 +54,7 @@ L(\phi, \theta | \Omega ) = \mbox{Pr}(n| \phi, \theta) \; \mbox{Pr}(\Omega | n, 
 Parameters of the state model ($\phi$) and the detection model ($\theta$) are estimated jointly by maximizing the logarithm of the likelihood. When density is constant across space, $\phi$ drops out of the rightmost term, which then relates to the detection (observation) model alone, and maximization of this component gives unbiased estimates of $\theta$ (see [Conditional likelihood](#conditional)).
 
 ### Number of individuals {#Pr-n}
-
+\index{Poisson process (2-D)}
 If AC follow an inhomogeneous Poisson process then $n$ has a Poisson distribution with parameter 
 \begin{equation}
 \lambda = \int_{R^2} D(\vec x; \phi) \, p_\cdot(\vec x;\theta) \, d\vec x, 
@@ -169,7 +169,7 @@ Simulation-based methods [@e04; @Efford2023] must be used for unbiased estimatio
 $\theta$ and trend in density unless the time of detection has been recorded [@Distiller2015]. 
 
 ## Fixed $N$ {#fixedN}
-\index{Fixed $N$}
+\index{Population size $N(A)$!fixed}
 
 The formulation of the state model as an inhomogeneous Poisson process (Chapter \@ref(Basics)) does not refer to population size $N$. The state model may also be cast as a 'conditional' or 'binomial' Poisson process' [@illian08]. For an arbitrary area $A$ the number of AC is then considered fixed rather than Poisson.
 

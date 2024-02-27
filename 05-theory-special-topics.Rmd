@@ -68,7 +68,7 @@ The factor $\mbox{Pr}(\omega_i | \vec x; \theta^\prime)$ is the probability of t
 Supposing the tagged sample results from previous capture--recapture sampling of a population with density $D(\vec x; \phi)$ and detection parameters $\theta$, we can expect $f(\vec x; \phi^\prime) \propto p_\cdot(\vec x; \theta) D(\vec x; \phi)$. An example is shown [later](#relativedensity2). A model with flat (constant) $f(\vec x; \phi^\prime)$ is inevitably a poor fit because in reality tagged individuals are concentrated near the detectors.
 
 ## Population size $N$
-\index{Population size}
+\index{Population size $N(A)$!estimation}
 
 Population size[^abundance] is the number of individual AC in a particular region; we denote this $N(A)$ for region $A$. For a flat density surface $N(A) = D.|A|$[^footnote4d]. $D$ and $N(A)$ are interchangeable for specified $A$. In most applications there is no naturally defined region $A$, and therefore $\hat N(A)$ depends on the arbitrary choice of $A$. This weakness is not shared by $\hat D$.
 
@@ -148,7 +148,7 @@ For homogeneous density the likelihood simplifies to
 where $a(\theta_u) = \int p_\cdot(\vec x ; \theta_{u}) \; d\vec x$.
 
 ## Alternative parameterizations {#parameterizations}
-\index{Parameterizations}
+\index{Parameterization}
 
 The 'real' parameters in SECR are typically assumed to be independent (orthogonal). However, some parameter pairs co-vary in predictable ways owing to constraints on animal behaviour. Here it is more straightforward to work with the hazard detection functions.mThe intercept of the detection function $\lambda_0$ declines with increasing $\sigma$, all else being equal [@em14]. This is inevitable if detection is strictly proportional to time spent near a point, given a bivariate home range utilisation model (pdf for activity). Also, home-range size and the SECR parameter $\sigma$ decline with population density [@edjq16]. Allowing for covariation may improve biological insight and lead to more parsimonious models. 
 

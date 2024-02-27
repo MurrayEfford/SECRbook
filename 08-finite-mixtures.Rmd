@@ -27,7 +27,7 @@ Mixture models are prone to fitting problems caused by multimodality of the like
 The distinction between a finite mixture model and one in which the classes of individuals are known is removed in a hybrid ('hcov') model documented [here](#hybrid-mixtures).
 
 ## Finite mixture models in **secr**
-\index{Finite mixture models}
+\index{Mixture models!finite}
 
 **secr** allows 2- or 3-class finite mixture models for any 'real' detection parameter (e.g., g0, lambda0 or sigma of a halfnormal detection function). Consider a simple example in which we specify a 2-class mixture by adding the predictor 'h2' to the model formula:
 
@@ -143,7 +143,7 @@ Individual variation in $\lambda_0$ and $\sigma$ may be inversely correlated and
 It can be illuminating to [re-parameterize](#parameterizations) the detection model. 
 
 ## Hybrid 'hcov' model
-\index{Hybrid mixture model}
+\index{Mixture models!hybrid}
 
 The hybrid mixture model accepts a 2-level categorical (factor) individual covariate for class membership that may be missing (NA) for any fraction of animals. The name of the covariate to use is specified as argument 'hcov' in `secr.fit`. If the covariate is missing for all individuals then a full 2-class finite mixture model will be fitted (i.e. mixture as a random effect). Otherwise, the random effect applies only to the animals of unknown class; others are modelled with detection parameter values appropriate to their known class. If class is known for all individuals the model is equivalent to a covariate (CL = TRUE) or grouped (CL = FALSE) model. When many or all animals are of known class the mixing parameter may be treated as an estimate of population proportions (probability a randomly selected individual belongs to class $u$). This is obviously useful for estimating sex ratio free of detection bias. See the hcov help page (?hcov) for implementation details, and [here](#hybrid-mixtures) for the theory.
 

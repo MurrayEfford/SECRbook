@@ -1,4 +1,5 @@
 # Parameterizations
+\index{Parameterization}
 
 ```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
 # startup code, including library(secr) etc.
@@ -10,9 +11,10 @@ parameterization options in **secr**.
 
 ## Theory
 
-The general idea is to replace a primary detection parameter with a function of other parameter(s) in the SECR model. This may allow constraints to be applied more meaningfully. Specifically, it may make sense to consider a function of the  parameters to be constant, even when one of the primary parameters varies. The new parameter also may be modelled as a function of covariates etc.
+The idea is to replace a primary detection parameter with a function of other parameter(s) in the SECR model. This may allow constraints to be applied more meaningfully. Specifically, it may make sense to consider a function of the  parameters to be constant, even when one of the primary parameters varies. The new parameter also may be modelled as a function of covariates etc.
 
 ### $\lambda_0$ and $\sigma$ 
+\index{Parameterization!a0}
 
 One published example concerns compensatory heterogeneity of detection parameters (Efford and Mowat 2014). Combinations of $\lambda_0$ and $\sigma$ yield the same effective sampling area $a$ when the cumulative hazard of detection ($\lambda(d)$)[^interchangeability] is a linear function of home-range utilisation. Variation in home-range size then has no effect on estimates of density. It would be useful to allow $\sigma$ to vary while holding $a$ constant, but this has some fishhooks because computation of $\lambda_0$ from $a$ and $\sigma$ is not straightforward. A simple alternative is to substitute $a_0 = 2 \pi \lambda_0 \sigma^2$; @em14 called $a_0$ the 'single-detector sampling area'. If the sampling regime is constant, holding $a_0$ constant is almost equivalent to holding $a$ constant (but see [Limitations](#paramlimitations)). Fig. \@ref(fig:paramfig1) illustrates the relationship for 3 levels of $a_0$.
 
@@ -33,7 +35,7 @@ oneline(2000, 32, 0.54)
 ```
 
 ### $\sigma$ and $D$
-
+\index{Parameterization!sigmak}
 Another biologically interesting structural relationship is that between population density and home-range size [@edjq16]. If home ranges have a definite edge and partition all available space then an inverse-square relationship is expected $D = (k / r)^2$ or $r = k / \sqrt D$, where $r$ is a linear measure of home-range size (e.g., grid cell width) and $k$ is a constant of proportionality. In reality, the home-range model that underlies SECR detection functions does not require a hard edge, so the language of 'partitioning' and @Huxley1934['s] 'elastic discs' does not quite fit. However, the inverse-square relationship is empirically useful, and we conjecture that it may also arise from simple models for constant overlap of home ranges when density varies -- a topic for future research. For use in SECR we equate $r$ with the spatial scale of detection $\sigma$, and predict concave-up relationships as in (Fig. \@ref(fig:paramfig2).
 
 The relationship may be modified by adding a constant $c$ to represent the lower asymptote of sigma as density increases ( $\sigma = k / \sqrt D + c$; by default $c = 0$ in **secr**).
