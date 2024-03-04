@@ -159,6 +159,7 @@ par(mar = c(5,4,2,1))  # adjust white margins
 esa.plot(fit)
 abline(v = 250, lty = 2, col = 'red')
 ```
+\index{Bias check, `esa.plot`}
 
 ## Overall probability of detection
 

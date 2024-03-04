@@ -1,5 +1,16 @@
 # Simulation {#Simulation}
 
+Simulation has many goals
+
+* assessing scenarios for study design
+* goodness of fit
+* testing software implementation
+* determining properties of estimators under breaches of assumptions
+* bootstrap confidence intervals
+* estimation (**ipsecr** )
+
+*de novo* vs `sim.secr`
+
 ## Population
 \index{Simulation!population}
 

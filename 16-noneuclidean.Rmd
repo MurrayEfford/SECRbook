@@ -255,7 +255,7 @@ fit2 <- secr.fit(ovposs, mask = ovmask, detectfn = "HHN",
 predict(fit2)
 ```
 
-`r colorize("Tip:","green")` The value of noneuc reported by `predict.secr` is the predicted value at the centroid of the mask, because the model uses standardised mask coordinates.
+(ref:Tip) The value of noneuc reported by `predict.secr` is the predicted value at the centroid of the mask, because the model uses standardised mask coordinates.
 
 ### 3. Continuously varying $\sigma$ using **gdistance**
 

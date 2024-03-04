@@ -1,40 +1,190 @@
-# Performance
+# (PART\*) Study design {-} 
 
-Range of topics, both general and software-specific 
+# Performance {#Performance}
+
+This chapter covers topics related to the performance of SECR methods. It is the foundation for Chapter \@ref(Studydesign) on study design. 
+
+## Data requirements for SECR {#datarequirements}
+
+We list here some minimum data requirements that might be labelled 'assumptions' but are more fundamental:
+
+1. Sampling is representative of the area of interest 
+2. Data are recorded accurately
+3. Individuals are detected more than once
+4. Detectors span at least the scale of detection
+5. Some individuals are detected at more than one detector
+
+Spatial representativeness (1) is often overlooked. This requirement should be addressed by appropriate study design (Chapter \@ref(Studydesign)). 
+
+Requirements (4) and (5) relate to the need for spatial information to estimate the scale of detection ($\sigma$). Deficiencies may be addressed, at least in principle, by combining SECR and [telemetry](#Telemetry), but improved study design is a better solution, and we defer consideration to Chapter \@ref(Studydesign). Requirement (5) does not apply to area searches.
+
+## Assumptions of SECR {#assumptions}
+
+The SECR probability models of Chapter \@ref(Theory) that underlie the methods in this book incorporate certain assumptions. The validity of the methods therefore depends to an extent on how well the field data meet these assumptions. We list these before assessing their impact in practice. Restrictive assumptions may be addressed by specific extensions to the model, indicated here under 'Exceptions'.
+
+We omit a further assumption: that the probability of detection declines to zero for AC at the edge of the habitat mask where the mask is naturally bounded. This is addressed in the analysis by correct choice of [detection function](#detectfn) and [buffer or mask](#Habitat) as covered in Chapter \@ref(Habitat).
+
+<!-- 1. Sampling is representative of the area of interest -->
+<!-- 2. Individuals are identified without error   -->
+<!-- (ref:Exceptions) partial identity models, 'marked, ID uncertain' category of sightings -->
+<!-- 3. Individuals are detected independently of each other -->
+<!-- 4. Each detection of an individual is statistically independent of other detections   -->
+<!-- (ref:Exceptions) multi-catch traps, modelled behavioural response -->
+<!-- 5. Individuals do not differ in their probability of detection   -->
+<!-- (ref:Exceptions) heterogeneity due to access to detectors, modelled covariate or random effects -->
+<!-- 6. Activity centres are fixed for the duration of sampling -->
+<!-- 7. Home ranges are circular (i.e. detection function is isotropic)    -->
+<!-- (ref:Exceptions) oriented randomly wrt detector array, detection model anisotropic  -->
+<!-- 8. The probability of detection is near-zero for AC at the edge of the habitat mask   -->
+<!-- (ref:Exceptions) mask naturally bounded -->
+<!-- 9. Detectors span at least the scale of detection -->
+<!-- 10. Some individuals are detected at more than one detector   -->
+<!-- (ref:Exceptions) area searches -->
+<!-- 11. Data have been recorded accurately. -->
+
+Table: (\#tab:assumptions) Assumptions of SECR
+
+| Assumption | Exceptions |
+|:--------------------------------------------------|:----------------------------|
+|1. Population closed (no animals die or recruit during sampling) | open population models |
+|2. AC locations are independent (not clustered or spaced)||
+|3. Home ranges are circular (detection function isotropic)|HR oriented randomly wrt detector array; detection model anisotropic |
+|4. Individuals are identified without error | partial identity models; 'marked, ID uncertain' category of sightings|
+|5. Individuals are detected independently of each other||
+|6. Each detection of an individual is independent of others |multi-catch traps; modelled behavioural response|
+|7. Activity centres are fixed for the duration of sampling| movement models |
+|8. Individuals do not differ in their probability of detection | modelled covariate effects; modelled random effects|
+
+<!--  partial identity models [@Augustine2018] -->
+
+<!-- except as modelled cf @Efford2019 and option of Augustine in @Murphy2016. -->
 
 ## Robustness
 
-Robustness of estimates
+For assumptions that cannot be met by better design or customized modelling, we fall back on the robustness of SECR estimators. We saw this with the choice of [detection function](#detectfn) in Chapter \@ref(Detection) Fig. \@ref(fig:choicedfparmplot). We care most about estimates of population density, which may be robust even when estimates of other parameters are not. The following treatment concerns density estimates except where stated.
 
-@Sollmann2024 Mt
+Robustness to the failure of a specific assumption is easily assessed by simulation, and there have now been several studies as we review below. Simulation is only part of the answer: we also need to know the real-life magnitude of the breach. The magnitude of some breaches may be assessed from external evidence (e.g. telemetry), but we commonly rely on a more general model that incorporates the effect (e.g., finite mixtures for individual heterogeneity). Ideally, the more general model approaches a naive model when the effect is small. 
 
-@Royle2015 transience
+Another approach is to test specifically for compliance with each assumption. This was popular in the past (e.g. @obwa78) but has lost ground along with the declining credibility of null hypothesis testing, the growth of modelling frameworks, and reliance on the inherent robustness of the methods. 
 
-@Efford2019 non circularity
+### Assumption 1: Population closed
 
-Challenged by @McLellan2023
+Births, deaths and dispersal result in population turnover. Over an extended period of turnover, more animals may be observed than were present at any instant, and density estimates will be biased upwards. Studies using automatic cameras often accumulate data slowly over many days, and study duration has triggered much angst e.g., @Harihar2017. How much does a little turnover matter? Conversely, How long can the sampling period be? Results for non-spatial models [@Kendall1999] cannot be transferred. We distinguish turnover due to movement of AC (considered separately under Assumption 7) from *in situ* births and deaths. 
+
+@Dupont2019 investigated the effect of increasing study duration on the precision and bias of population size estimates. Their results are somewhat complicated by an artefact that caused their Bayesian estimator to be positively biased for short durations [@Dupont2019, p. 669]  
+
+We provide some additional [simulations] in an associated document. Turnover in a constant population resulted in positive bias equal to roughly 70\% of the mortality over the duration of the sampling. Thus 50\% annual mortality (~16\% over 3 months) resulted in about +11\% relative bias in a 3-month study, and coverage of nominal 95\% confidence intervals dropped to about 82\%.
+
+### Assumption 2: AC locations independent
+
+Inhomogeneous Poisson point process
+
+cf clustering @Bischof2020
+
+### Assumption 3: Home ranges circular
+
+Concerns were expressed by @Ivan2013 about the effect of non-circularity of home ranges. Simulations by @Efford2019 generally defused those concerns, with an important caveat: estimates of the spatial scale of detection $\sigma$ and density are unreliable when home ranges are both elongated and aligned to a detector array (Fig. \@ref(fig:alignment)).
+
+(ref:align) SECR models typically assume that home ranges are circular (a). Noncircularity of home ranges does not cause significant bias in density estimates when ranges are oriented at random with respect to the detector array (b). Systematic alignment of ranges to the array (c) causes large bias in $\hat \sigma$ and $\hat D$.
+
+```{r alignment, eval = TRUE, echo = FALSE, out.width = '80%', fig.cap="(ref:align)"}
+knitr::include_graphics('figures/alignment.png')
+```
+
+### Assumption 4: Identification without error
+
+We can reasonably assume accurate identification on recapture of animals trapped and marked by conventional methods such as leg bands or ear tags. However, identification may be unreliable with modern methods for passive sampling using natural marks (DNA from hair or faecal samples, and images from motion-sensitive cameras). These pose problems that are a major limitation for SECR. 
+
+We briefly acknowledge these issues without attempting to provide solutions.
+
+#### DNA sampling and lab issues
+
+Data quality cannot be guaranteed. DNA samples degrade over time exposed to moisture and ultraviolet light, so ... [references in @Lukacs2005 etc. papers]
+
+DNA errors - ghost individuals owing to failure of one allele of heterozygote to amplify
+
+Depends on genetic diversity and level of inbreeding in population PID~sib~
+
+[@ebm13 suggested modelling decline in DNA amplification success with duration of interval and environmental conditions, but that belongs elsewhere]
+
+@Paetkau2003 lab procedures to minimize problem
+
+(Faecal samples appear to give more trouble?)
+@Kubo2023 raccoon dog
+@De2022 Asian elephant faecal samples
+
+@Woodruff2014
+
+
+#### Pelage patterns
+
+A single camera may photograph only the left or right flank of a passing animal. Owing to the asymmetry of patterns, identity cannot be inferred conclusively from a single photograph. This can be addressed in the field by using paired cameras, so that both flanks are recorded (tigers). There may still be a minority of single-sided photographs, and probabilistic models have been suggested to incorporate these [WHO?].
+
+<!-- wolverines, Dusit Ngoprasert sunbears, abb, salamanders -->
+
+#### Unknown identity
+
+Unknown identity can be handled in SECR-like probability models. These generally lack power unless supplemented by detections of known individuals or telemetry.
+
+@cr13
+
+@rcr15
+
+@vanDamBates2024
+
+### Assumption 5: Individuals detected independently
+
+Animals are not detected independently in single-catch traps. 
+
+"Cohesion" @Bischof2020
+
+### Assumption 6: Detections of an individual are independent
+
+Aspects: heterogeneity; 
+
+autocorrelation of location cf; 
+resembles learned response - hard to recognise if occasions collapsed, hence weakness of primary counts as data (shrinks apparent sigma)
+
+### Assumption 7: Fixed activity centres
+
+This may be viewed as a subset of Assumption 6 because if AC are not fixed then successive locations of an individual will be autocorrelated. @Royle2015 modelled movement of AC ('transience').
+
+### Assumption 8: Probability of detection constant
+
+Time, individual [ behaviour]
+Individuals do not differ in their 
+@Sollmann2024 Mt unmodelled OK
+
+
+## General challenges --
 
 @Theng2022 general robustness; mechanistic simulation
 
+Field tests
+
 @Gerber2015 known population
 
-### Bias
+@DespresEinspenner2017 chimpanzees
+
+@McLellan2023: not robust when variation in density and detection are correlated
+
+@Smith2020 "caution against the casual repurposing of non-spatial
+capture-recapture data using SCR"
 
 ### CI coverage
 
+Non-independence = overdispersion
+
+
+
 ## Goodness-of-fit
+
+Why bother?
 
 `secr.test`
 
 <!-- new simulation paper MEE-23-11-662 -->
 <!-- "A foundational development in frequentist methods for diagnosing fit in spatial capture-recapture" -->
-
-## Data requirements
-
-### Pathological cases
-### Determinants of precision
-
-"spatial recaptures"
 
 ## Speed
 
@@ -44,23 +194,8 @@ Challenged by @McLellan2023
 
 ### Restricted mask
 
-### Speed tips
+<!-- @Milleret -->
 
-[secr-manual.pdf]: https://www.otago.ac.nz/density/pdfs/secr-manual.pdf
-[secr-overview.pdf]: https://www.otago.ac.nz/density/pdfs/secr-overview.pdf
-[secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
-[secr-densitysurfaces.pdf]: https://www.otago.ac.nz/density/pdfs/secr-densitysurfaces.pdf
-[secr-finitemixtures.pdf]: https://www.otago.ac.nz/density/pdfs/secr-finitemixtures.pdf
-[secr-habitatmasks.pdf]: https://www.otago.ac.nz/density/pdfs/secr-habitatmasks.pdf
-[secr-markresight.pdf]: https://www.otago.ac.nz/density/pdfs/secr-markresight.pdf
-[secr-models.pdf]: https://www.otago.ac.nz/density/pdfs/secr-models.pdf
-[secr-multisession.pdf]: https://www.otago.ac.nz/density/pdfs/secr-multisession.pdf
-[secr-noneuclidean.pdf]: https://www.otago.ac.nz/density/pdfs/secr-noneuclidean.pdf
-[secr-polygondetectors.pdf]: https://www.otago.ac.nz/density/pdfs/secr-polygondetectors.pdf
-[secr-sound.pdf]: https://www.otago.ac.nz/density/pdfs/secr-sound.pdf
-[secr-spatialdata.pdf]: https://www.otago.ac.nz/density/pdfs/secr-spatialdata.pdf
-[secr-telemetry.pdf]: https://www.otago.ac.nz/density/pdfs/secr-telemetry.pdf
-[secr-trend.pdf]: https://www.otago.ac.nz/density/pdfs/secr-trend.pdf
-[secr-tutorial.pdf]: https://www.otago.ac.nz/density/pdfs/secr-tutorial.pdf
-[secr-troubleshooting.pdf]: https://www.otago.ac.nz/density/pdfs/secr-troubleshooting.pdf
-[secr-varyingeffort.pdf]: https://www.otago.ac.nz/density/pdfs/secr-varyingeffort.pdf
+@Turek2021
+
+[simulations]: https://www.otago.ac.nz/density/simulations/secr-simulations.html

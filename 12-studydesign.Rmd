@@ -1,8 +1,12 @@
-# (PART\*) Study design {-} 
+# Study design {#Studydesign}
 
-# Study design {#studydesign}
+
+
+The questions When does scale become an issue? and How many spatial detections are needed?
 
 ## Criteria
+
+Performance in Chapter \@ref(Performance)
 
 ### Bias
 ### Precision
@@ -16,6 +20,17 @@
 #### lambda0 from n
 
 ## Region of interest
+
+Designs giving representative spatial coverage
+
+* SRS
+* systematic random
+* clustered
+* lacework
+
+## Data requirements
+
+Minimally, avoid pathology
 
 <!-- ## Detector clusters -->
 
@@ -32,10 +47,4 @@
 
 <!-- A lacework design (Efford in prep.) is an alternative to a clustered design that is suitable when the region is intermediate size. Lacework designs may be constructed with `make.lacework`. -->
 
-<!-- Data from a large, clustered design may often be analysed more quickly -->
-<!-- if the 'capthist' object is first collapsed into one using the -->
-<!-- geometry of a single cluster (the object retains a memory of the -->
-<!-- number of individuals from each original cluster in the attribute -->
-<!-- 'n.mash'). Use the function `mash` for this. Functions `derived`, -->
-<!-- `derivedMash` and the method `predict.secr` use 'n.mash' to adjust -->
-<!-- their output density, SE, and confidence limits. -->
+(ref:Tip) Data from a large, clustered design may often be analysed more quickly if the 'capthist' object is first collapsed into one using the geometry of a single cluster (the object retains a memory of the number of individuals from each original cluster in the attribute 'n.mash'). Use the function `mash` for this. Functions `derived`, `derivedMash` and the method `predict.secr` use 'n.mash' to adjust their output density, SE, and confidence limits.

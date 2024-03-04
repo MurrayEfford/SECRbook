@@ -7,7 +7,6 @@ Test for MLE using Hessian
 
 Polygon assignment cf Ecosphere ms?
 
-
 Conventions
 ===========
 
@@ -24,4 +23,19 @@ Decisions outstanding
 
 Repository for code, to relieve some of text?
 
-Refer cloglog link? cf
+Refer cloglog link? cf...
+
+Refer Shiny apps at GitHub, OU Stats server
+
+Chapters to finish
+==================
+
+08 Working with SECR models (AIC, predict etc.)
+
+11 Performance (assumptions, robustness, GoF, speed)
+
+12 Study design
+
+Also:
+
+Ensure all appendices are adequately indicated in main text

@@ -1,0 +1,81 @@
+# Working with fitted models 
+
+This chapter covers issues that arise regardless of the particular model to be fitted. 
+
+You may have fitted one model or several. A convenient way to handle several models is to bundle them together as an `secrlist` - most of the following functions accept both 'secr' and 'secrlist' objects.
+
+## Model selection
+
+The best model is not necessarily the one that most closely fits the data. We need a criterion that penalises unnecessary complexity. For models fitted by maximum likelihood, the obvious and widely used candidate is Akaike's Information Criterion AIC
+
+\begin{equation}
+AIC = -2\log[L(\hat \theta)] +2K
+\end{equation}
+where $K$ is the number of coefficients estimated and $\log[L(\hat \theta)]$ is the maximized log likelihood.
+
+@Burnham2002, who popularised information-theoretic model selection for biologists, advocated the use of a small-sample adjustment due to @Hurvich1989, designated AIC~c~:
+
+\begin{equation}
+\mbox{AIC}_c = -2\log(L(\hat{\theta})) + 2K + \frac{2K(K+1)}{n-K-1}.
+\end{equation}
+
+Here we assume the sample size $n$ is the number of individuals observed at least once (i.e. the number of rows in the capthist). This is somewhat arbitrary, and a reason to question the routine use of AIC~c~. The additional penalty has the effect of decreasing the attractiveness of models with many parameters. The effect is especially large when $n<2K$.
+
+AIC~c~ is widely used and it is the default criterion in **secr**. However, doubts about the correct sample size, and simulation results for generalised linear models cited by @Fletcher2019[p. 60], lead us to use AIC in this book.
+
+We emphasise 
+Need for strictly identical data
+
+What to report?
+
+### Model averaging
+
+Model weights may be used to form model-averaged estimates of real or beta parameters with `modelAverage` (see also @Buckland1997 and @Burnham2002). Model weights are calculated as 
+
+\begin{equation}
+w_i = \frac{\exp(-\Delta_i / 2),}{\sum{\exp(-\Delta_i / 2)}},
+\end{equation}
+where $\Delta$ refers to differences in AIC or AICc. 
+
+Models for which delta exceeds an arbitrary limit (e.g., 10) are given a weight of zero and excluded from the summation. 
+
+### Model selection strategy
+
+It is almost impossible to fit and compare all plausible models.
+
+detection then density?
+
+
+### Likelihood ratio
+
+`LR.test`
+
+### Score tests
+
+
+## Manipulating fitted models
+
+### Prediction
+
+A fitted model (secr object) contains estimates of the coefficients of the model. We note
+
+* the coefficients are on the link scale, and at the very least must be back-transformed to the natural scale, and
+* a real parameter for which there is a [linear sub-model](#linear-submodels) is not unique: it takes a value that depends on covariates and other predictors.
+
+These complexities are handled by the `predict` method for secr objects, as for other fitted models in R (e.g., `lm`). The desired levels of covariates and other predictors appear as columns if the 'newdata' dataframe.
+
+`predict` is commonly called with a fitted model as the only argument; then 'newdata' is constructed automatically by the function `makeNewData`. The default behaviour is disappointing if you really wanted estimates for each level of a predictor. This can be overcome, at the cost of more voluminous output, by setting `all.levels = TRUE`, or simply `all = TRUE`. For more customised output (e.g., for a particular value of a continuous predictor), construct your own 'newdata'.
+
+Density surfaces are a special case. Prediction across space requires the function `predictDsurface`
+as covered in Chapter \@ref(Density).
+
+### `collate`
+
+The `collate` function is a handy way to compare estimates from several models.
+
+## Recognizing failure-to-fit
+
+model = 'none' to re-do Hessian
+
+## Reporting standards
+

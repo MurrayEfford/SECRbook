@@ -110,7 +110,6 @@ We sometimes use the terminology of 'beta' parameters (coefficients on the link 
 
 ### Estimation
 \index{Likelihood!maximization}
-\index{Bayesian methods}
 
 There are several ways to estimate the parameters of the SECR probability model, all of them computer-intensive. We focus on numerical maximization of the log likelihood (@be08 and Chapter \@ref(Theory)). The likelihood integrates over the unknown locations of the animals' activity centres. This is achieved in practice by summing over cells in a discretized map of the [habitat](#Habitat).
 
@@ -148,6 +147,7 @@ getL(method = 'Nelder-Mead')
 ```
 
 Bayesian methods make use of algorithms that sample from a Markov chain (MCMC) to approximate the posterior distribution of the parameters. MCMC for abundance estimation faces the special problem that an unknown number of individuals, at unknown locations, remain undetected. The issue is addressed by data augmentation [@ry08] or using a semi-complete data likelihood [@Zhang2022]. 
+\index{Bayesian methods}
 
 Early anxiety about the suitability of MLE and asymptotic variances for SECR with small samples appears to have been mistaken. @Royle2009 believed that "... the practical validity of these procedures cannot be asserted in most situations involving small samples". This has not been borne out by subsequent simulations. The choice between Bayesian and frequentist (MLE) methods is now an issue of convenience for most users. MLE provides fast and repeatable results for established models with a small to medium number of parameters. Bayesian methods have an advantage for novel models and those with many parameters, although the crossover point has not been demonstrated. 
 

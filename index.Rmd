@@ -24,6 +24,10 @@ particularly the population density.
 # startup code, including library(secr) etc.
 ```
 
+(ref:Tip) `r colorize("Tip:","green")`
+
+(ref:Exceptions) `r colorize("Exceptions:","orange")`
+
 ## Why SECR? {-}
 
 Non-spatial capture--recapture methods are highly developed and powerful [@obwa78; @wnc02; @cw]. SECR plugs some gaps in non-spatial methods (particularly with respect to density estimation), and has some unexpected benefits:

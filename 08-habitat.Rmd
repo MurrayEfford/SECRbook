@@ -97,8 +97,6 @@ The general answer is 'Wide enough that any bias in estimated densities is negli
 
 The penalty for using an over-wide buffer is that fitting will be slower for a given mask spacing. It is usually smart to accept this penalty rather than search for the narrowest acceptable buffer. We therefore avoid detailed investigation of mask truncation bias[^bias].
 
-[^bias]: If you're interested, function `bias.D` computes an approximation to this bias.
-
 Two factors are critical when selecting a buffer width --
 
 1. The spatial scale of detection, which is usually a function of home-range movements.
@@ -132,9 +130,16 @@ When the input is only a capthist object, the suggested buffer width relies on a
 
 Once a model has been fitted with a particular buffer width or mask, the estimated detection parameters may be used to check whether the buffer width is likely to have resulted in mask truncation bias. We highlight two of these:
 
-1. `secr.fit` automatically checks a mask generated from its 'buffer' argument (i.e. when the 'mask' argument is missing), using `bias.D` as in `suggest.buffer`. A warning is given when the predicted truncation bias exceeds a threshold (default 1%). The threshold is controlled by the 'biasLimit' argument, which may be set to NA to suppress the check. The check cannot be performed for some detector types, and the embedded integration can give rise to cryptic error messages.
+\index{Bias check, automatic}
 
-2. `esa.plot` provides a quick visualisation of the change in estimated density as buffer width changes. It is a handy check on any fitted model, and may also be used with pilot parameter values. The name of the function derives from its reliance on calculation of the [effective sampling area](#esa) (esa or $a(\hat \theta)$).
+1. `secr.fit` automatically checks a mask generated from its 'buffer' argument (i.e. when the 'mask' argument is missing), using `bias.D` as in `suggest.buffer`. A warning is given when the predicted truncation bias exceeds a threshold. The threshold is controlled by the 'biasLimit' argument (default 0.01). To suppress the check set 'biasLimit = NA', or provide a pre-defined mask.
+
+The check is performed by a cunning custom algorithm in function `bias.D`. This uses one-dimensional numerical integration of a polar approximation to site-specific detection probability, coupled to a 3-part linear approximation for the length of contours of distance-to-nearest-detector. The check cannot be performed for some detector types, and the embedded integration can give rise to cryptic error messages.
+
+\index{Bias check, `esa.plot`}
+
+2. `esa.plot` provides a quick visualisation of the change in estimated density as buffer width changes. It is a handy 
+check on any fitted model, and may also be used with pilot parameter values. The name of the function derives from its reliance on calculation of the [effective sampling area](#esa) (esa or $a(\hat \theta)$).
 
 ```{r habitatfit3, cache = TRUE, warning = FALSE}
 fit <- secr.fit(captdata, buffer = 100, trace = FALSE)
@@ -201,8 +206,7 @@ clippedmask <- make.mask(traps(possumCH), type = 'trapbuffer', buffer = 400,
                         poly = possumarea)
 ```
 
-`r colorize("Tip:","green")` By default, data for the 'poly' argument are retained as an attribute of the mask. With some data sources this grossly inflates the size of the mask, and it is better to discard the attribute with `keep.poly = FALSE`.
-
+(ref:Tip) By default, data for the 'poly' argument are retained as an attribute of the mask. With some data sources this grossly inflates the size of the mask, and it is better to discard the attribute with `keep.poly = FALSE`.
 
 ```{r plotpossummask, echo = TRUE, fig.width = 4, fig.height=4, fig.align = "center", fig.cap="Mask computed by clipping to a polygon -- the shoreline of the 'peninsula' at Waitarere separating the Tasman Sea (left) from the estuary of the Manawatu River (right)"}
 par(mfrow = c(1,1), mar = c(1,1,1,1))

@@ -105,9 +105,9 @@ fit4  <- secr.fit(ovenCH, model = D~acov, mask = msk,
  
  * If session covariates are used in any model, AICcompatible() expects the argument 'sessioncov' to be included in all models.
  
- `r colorize("Tip:","green")` D for session 1 is constant over space. It is not possible in the present version of **secr** to model simultaneous spatial variation in density or $\lambda$, and using Dlambda with a density model that includes spatial covariates will cause an error.
+(ref:Tip) D for session 1 is constant over space. It is not possible in the present version of **secr** to model simultaneous spatial variation in density or $\lambda$, and using Dlambda with a density model that includes spatial covariates will cause an error.
  
- <!-- `r colorize("Tip:","green")` Underestimation of sampling variance is expected when a trend model is fitted to temporal samples with incomplete population turnover between sessions. The product likelihood assumes a new realisation of the underlying population process for each session. If in actuality much of the sampled population remains the same (the same individuals in the same home ranges) then the precision of the trend coefficient will be overstated.  -->
+ <!-- (ref:Tip) Underestimation of sampling variance is expected when a trend model is fitted to temporal samples with incomplete population turnover between sessions. The product likelihood assumes a new realisation of the underlying population process for each session. If in actuality much of the sampled population remains the same (the same individuals in the same home ranges) then the precision of the trend coefficient will be overstated.  -->
   
   <!-- The effect is often small. Possible solutions are to fit an open population model (e.g., in **openCR** [@es20]) or to apply some form of bootstrapping. -->
   
