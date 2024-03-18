@@ -4,13 +4,21 @@
 
 The questions When does scale become an issue? and How many spatial detections are needed?
 
+
+@Efford2019
+
+Guidance from @Palmero2023 camera trapping: Their workflow Fig. 4 does not mention representativeness. Advocate "...increasing detection probability by focussing camera deployments at highly used sites (Sollmann et al. 2012, Green et al. 2020, Harmsen et al. 2020)"
+
 ## Criteria
 
 Performance in Chapter \@ref(Performance)
 
 ### Bias
 ### Precision
+
 ### Robustness
+
+build in assumption of binary not count proximity
 
 ## Pilot values of detection parameters
 

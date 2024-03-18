@@ -275,8 +275,8 @@ There are some drawbacks to using smooth terms. The resulting fitted objects are
 
 Detailed modelling of detection parameters may be a waste of energy for the same reasons that the [choice of detection function](#whybother1) itself has limited interest. See, for example, the simulation results of @Sollmann2024 on occasion-specific models ($\sim$ t). However, behavioural responses and individual heterogeneity can have a major effect on density estimates, and these deserve attention.
 
-#### Behavioural responses
-\index{Detection model! behavioral response}
+#### Behavioural responses {#behaviouralresponse}
+\index{Detection model! behavioural response}
 
 An individual behavioral response is a change in the probability or hazard of detection on the occasions that follow a detection. Trapping of small mammals provides evidence of species that routinely become trap happy (presumably because they enjoy the bait) or trap shy (presumably because the experience of capture and handling is unpleasant). Positive or negative responses are modelled as a step change in a detection parameter, usually the intercept of the detection function ($g_0$, $\lambda_0$).
 
