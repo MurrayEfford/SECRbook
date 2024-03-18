@@ -80,7 +80,7 @@ We provide some additional [simulations] in an associated document and Fig. \@re
 (ref:closurecap) Simulated effect of study duration on relative bias (RB) for three levels of annual survival $\phi$. Population constant. $\phi = 1$ corresponds to a closed population.
 
 ```{r closure, echo = FALSE, cache = TRUE, out.width = "70%", fig.cap="(ref:closurecap)"}
-sims <- readRDS("data/closuresims.RDS")
+sims <- readRDS("data/CLOsims.RDS")
 RB <- sapply(summary(sims)$OUTPUT, "[", "RB","mean")
 nocc <- seq(4,24,4)
 phi <- split(1:18, rep(1:3,each=6))   # indices of phi groups
@@ -282,7 +282,7 @@ Further [simulations] confirm the lack of bias in $\hat D$, but show that tempor
 
 ```{r Mtfigure, eval = TRUE, echo = FALSE, message=FALSE,  fig.width = 8, fig.height = 4, out.width="90%", fig.cap = "(ref:Mtcap)" }
 library(secrdesign)
-Mtsims <- readRDS(file = 'Mtsims.RDS')
+Mtsims <- readRDS(file = 'data/Mtsims.RDS')
 estD <- estimateSummary(Mtsims)[,-1]
 estL <- estimateSummary(Mtsims, 'lambda0')[,-1]
 estS <- estimateSummary(Mtsims, 'sigma')[,-1]
@@ -315,7 +315,7 @@ If a behavioural response is not modelled then it may cause a heavy bias in dens
 (ref:Mbcap) Relative bias of parameter estimates from null model given behavioural variation in lambda0. Relative bias of density was off-scale (+1.41) for recapture factor 0.25 with a general behavioural response.
 
 ```{r Mbfigure, eval = TRUE, echo = FALSE, fig.width = 8, fig.height = 4, out.width="90%", fig.cap = "(ref:Mbcap)" }
-Mbsims <- readRDS(file = 'Mbsims.RDS')
+Mbsims <- readRDS(file = 'data/Mbsims.RDS')
 estD <- estimateSummary(Mbsims)[,-1]
 estL <- estimateSummary(Mbsims, 'lambda0')[,-1]
 estS <- estimateSummary(Mbsims, 'sigma')[,-1]
