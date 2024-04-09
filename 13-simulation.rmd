@@ -1,5 +1,23 @@
 # Simulation {#Simulation}
 
+<!--    flow chart -->
+<!--     overlap coefficient k -->
+<!--     number of replicates small for RSE -->
+<!--     method = "none" (compare) -->
+
+<!-- Suggest base standard: -->
+
+<!-- large array 12 x 12 -->
+<!-- small array 8 x 8 -->
+
+<!-- HHN -->
+<!-- 2-sigma spacing -->
+<!-- 4-sigma buffer -->
+<!-- 1 occasion, binomial N=5 -->
+<!-- lambda0 = 1 -->
+
+<!-- secr-simulations -->
+
 Simulation has many goals
 
 * assessing scenarios for study design
@@ -26,12 +44,35 @@ Simulation has many goals
 
 A specialised use of [masks](#Habitat) arises in `sim.popn` when simulating populations with an arbitrary non-uniform distribution of individuals (`model2D = "IHP"`). Then the argument 'core' should be a habitat mask; cell-specific density (expected number of individuals per hectare) may be given either in a covariate of the mask as named in argument 'D' or as a vector of values in argument 'D'. The covariate option allows you to simulate from a fitted Dsurface (output from `predictDsurface`).
 
+Gaussian random fields
+
+* Dupont et al. @drns21
+* Efford and Fletcher 2024 @Efford2024
+
 ## Detection
 \index{Simulation!detection}
 
 `sim.capthist`
 
+Gaussian random field detection covariate
+
+* @Royle2013, @e14 cloglog $\alpha_0, \alpha_1, \alpha2$
+* @Moqanaki2021 $\beta_0, \beta_X$ quasi-sq-exponential
+* @Dey2023 $\phi$ exponential
+* @Stevenson2021 $\rho$ exponential, sq-exponential
+* @Hooten2024  
+
+Normalisation:  
+@Moqanaki2021 transformed to uniform (-1.96, 1.96)  
+@e14 normalised (requires all GRF)
+
 ## **secrdesign**
 \index{Simulation!model fitting}
 
 [invalid replicates]
+
+secrdesign tips
+
+* joinsessions
+* CH.function
+* 

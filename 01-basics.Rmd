@@ -100,13 +100,14 @@ Table: (\#tab:links) Link functions.
 |:------|:---------|:----------|
 | log | $y = \log(x)$ | $\exp(y)$ | 
 | logit | $y = \log[p/(1-p)]$ | $1 / [1 + \exp(-y)]$ |
-| identity | $y=x$ | y |
+| identity | $y=x$ | $y$ |
+| cloglog | $y = \log(-\log(1-p))$ | $1 -\exp(-\exp(y))$ |
 
 Working on a link scale is especially useful when the parameter is itself a function of covariates. For example, $\log (D) = \beta_0 + \beta_1 c \;$ for a log-linear function of a spatially varying covariate $c$. The coefficients $\beta_0$ and $\beta_1$ are estimated in place of $D$ per se.
 
-We sometimes use the terminology of 'beta' parameters (coefficients on the link scale) and 'real' parameters (on the natural scale) that is derived from MARK [@cw].
+We sometimes follow MARK [e.g., @cw] and use 'beta parameters' for coefficients on the link scale and 'real parameters' for the core parameters ($D, g_0, \lambda_0, \sigma$) on the natural scale.
 
-<!-- cloglog -->
+(ref:Tip) Using the 'complementary log-log' link function cloglog for a hazard detection function such as $\lambda(d) = \lambda_0 \exp[-d^2/(2\sigma^2)]$ is equivalent to modelling $\lambda$ with a log link, as $p = 1 - \exp(-\lambda)$ and $\lambda = -\log(1-p)$. For a halfnormal function, the quantity $y$ on the cloglog scale is then a linear function of $\exp(-d^2)$ with intercept $\alpha_0 = \log(\lambda_0)$ and slope $\alpha_1 = -1/(2\sigma^2)$ [e.g., @Royle2013].
 
 ### Estimation
 \index{Likelihood!maximization}
@@ -149,7 +150,7 @@ getL(method = 'Nelder-Mead')
 Bayesian methods make use of algorithms that sample from a Markov chain (MCMC) to approximate the posterior distribution of the parameters. MCMC for abundance estimation faces the special problem that an unknown number of individuals, at unknown locations, remain undetected. The issue is addressed by data augmentation [@ry08] or using a semi-complete data likelihood [@Zhang2022]. 
 \index{Bayesian methods}
 
-Early anxiety about the suitability of MLE and asymptotic variances for SECR with small samples appears to have been mistaken. @Royle2009 believed that "... the practical validity of these procedures cannot be asserted in most situations involving small samples". This has not been borne out by subsequent simulations. @Palmero2023 believed that Bayesian methods provide more precise estimates of density, but it is a mistake to compare estimates from MLE models with random $N(A)$ with estimates from Bayesian models with fixed $N(A)$.
+Early anxiety about the suitability of MLE and asymptotic variances for SECR with small samples appears to have been mistaken. @Royle2009 believed that "... the practical validity of these procedures cannot be asserted in most situations involving small samples". This has not been borne out by subsequent simulations. @Palmero2023 reported that Bayesian methods provide more precise estimates of density, but this appears to be an artefact: it is a mistake to compare estimates from MLE models with random $N(A)$ with estimates from Bayesian models with fixed $N(A)$, and Bayesian priors may be informative.
 
 <!-- : "Based on 20 studies that applied both frameworks, the performance of Bayesian methods was significantly better than MLE (P < 0.001)." -->
 <!-- "Our results indicated that Bayesian methods performed better than MLE. This finding is consistent with Royle et al. (2009), who demonstrated that Bayesian methods cope better with small sample sizes." -->

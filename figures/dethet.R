@@ -1,0 +1,22 @@
+# Detector-level heterogeneity cf Royle et al. 2013
+
+RSFsims3 <- readRDS(file = 'D:/Density secr 4.6/knitr/secr-simulations/SARE/RSFsims3.RDS')
+source (file = 'D:/Density secr 4.6/knitr/secr-simulations/setup.R')
+estD <- estimateSummary(RSFsims3, 'D')
+estL <- estimateSummary(RSFsims3, 'lambda0')
+estS <- estimateSummary(RSFsims3, 'sigma')
+
+leg <- c('D', 'lambda0','sigma')
+alpha2 <- seq(0,1.4,0.2)
+par(mfrow=c(1,2), mar=c(5,4,2,2), mgp=c(2.4,0.7,0), pty='s', bty = 'o')
+for (rw in 2:1) {
+    r <- (rw-1)*8+(1:8)
+    plot(1,1, type = 'n', xlim=c(0,1.4), ylim=c(-0.4,0.4), xlab = 'alpha2', ylab = 'RB')
+    abline(h=0, lty=2)
+    addRB(alpha2, estL[r,], pch=21, bg='white', star = 0.4)
+    addRB(alpha2, estS[r,], pch=24, bg='white', star = 0.4)
+    addRB(alpha2, estD[r,], pch=16)
+    legend(0.02, -0.2, legend = leg, pch=c(16,21,24), cex=0.75)
+    mtext(side=3, line=0.75, c('b. normalised','a. unnormalised')[rw], adj = 0)
+}
+

@@ -23,8 +23,6 @@ An interactive graphic user interface to many features of **secr** is provided b
 
 [^S3class]:Technically, these are S3 classes. A 'class' in R specifies a   particular type of data object and the functions (methods) by which it is manipulated (computed, printed, plotted etc). See the R documentation for further explanation.
 
-(ref:esscap) Essentials of the **secr** package.
-
 Table: (\#tab:essentialclasses) Essential classes in **secr**.
 
 | Class   | Data                                        |
@@ -34,6 +32,8 @@ Table: (\#tab:essentialclasses) Essential classes in **secr**.
 | `mask`   | raster map of habitat near the detectors |
 | `secr`   | fitted SECR model|
   
+(ref:esscap) Essentials of the **secr** package.
+
 ```{r schematic, eval = TRUE, echo = FALSE, out.width = '80%', fig.cap = '(ref:esscap)'}
 knitr::include_graphics('figures/schematic3.png')
 ```
