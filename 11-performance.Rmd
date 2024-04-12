@@ -70,7 +70,8 @@ Several authors have found SECR estimates of density to be generally robust.
 > Similar to traditional closed CMR models (Otis et al., 1978; Williams et al., 2002), ignoring temporal variation in p0 in SCR models had little effect on estimates of abundance, the density-covariate relationship, or space use (σ). As such, this study provides yet more evidence that density estimates from SCR models are robust to various forms of mis-specification of the detection model. They have been shown to be robust to unmodeled spatial heterogeneity in detection probability, so long as that heterogeneity is not spatially autocorrelated (Efford et al., 2013; Bischof et al., 2017; Moqanaki et al., 2021), and to a range of misspecifications of the detection function (Efford, 2004; Royle et al., 2014; Dey et al., 2022). In the latter case, though, inference about σ can be strongly affected by choosing the wrong detection function (Dey et al., 2022). In contrast, I found that estimates of σ were robust to ignoring temporal variation in detection. As σ in most applications relates to a stationary activity center and is modeled as constant across occasions, it appears sufficient to take into account spatial variation in p0 to obtain unbiased estimates of σ. It is conceivable that in closed SCR models where activity centers are allowed to move (Royle et al., 2016), not accounting for temporal variation in p0 may affect estimates of σ. Exploring this was beyond the scope of this study.
 
 
-Robustness to the failure of a specific assumption is easily assessed by simulation, and there have now been several studies that we review below and supplement with simulations explained at greater length [elsewhere]. Simulation is only part of the answer: we also need to know the real-life magnitude of the breach. The magnitude of some breaches may be assessed from external evidence (e.g. telemetry), but we commonly rely on a more general model that incorporates the effect (e.g., finite mixtures for individual heterogeneity). Ideally, the more general model approaches a naive model when the effect is small.
+Robustness to the failure of a specific assumption is easily assessed by simulation, and there have now been several studies that we review below and supplement with simulations explained at greater length [elsewhere]. 
+Simulation is only part of the answer: we also need to know the real-life magnitude of the breach. The magnitude of some breaches may be assessed from external evidence (e.g. telemetry), but we commonly rely on a more general model that incorporates the effect (e.g., finite mixtures for individual heterogeneity). Ideally, the more general model approaches a naive model when the effect is small.
 
 Another approach is to test specifically for compliance with each assumption. This was popular in the past [@obwa78], but has lost ground along with the declining credibility of null hypothesis testing, the growth of modelling frameworks, and reliance on the inherent robustness of the spatial methods.
 
@@ -124,7 +125,7 @@ The ability to distinguish individuals is measured by the probability of identit
 
 Simulations in Fig. \ref(fig:MID3figure) illustrate the potential impact of shadow effects on SECR estimates. In a scenario with about 110 detected individuals, PI = $10^{-3}$ resulted in relative bias of --20\% in density estimates. This is very largely due to the inflated spatial footprint of each super individual, and resulting bias in estimates of the spatial scale of detection $\sigma$.
 
-(ref:MID3cap) Relative bias of parameter estimates from null model when some individuals cannot be distinguished ("shadow effects"). Shaded band: |RB| < 10%. Simulation details on [Github]().
+(ref:MID3cap) Relative bias of parameter estimates from null model when some individuals cannot be distinguished ("shadow effects"). Shaded band: |RB| < 10%. Simulation details on [Github](https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/MID/secr-simulations-MID.html).
 
 ```{r MID3figure, echo = FALSE, message = FALSE, warning = FALSE, fig.width= 5, fig.height = 5, out.width = "60%", fig.cap="(ref:MID3cap)"}
 source("figures/MID3figure.R")
@@ -621,4 +622,4 @@ Why bother?
 @Turek2021
 
 [simulations]: https://www.otago.ac.nz/density/simulations/secr-simulations.html
-[elsewhere]: https://www.otago.ac.nz/density/simulations/secr-simulations.html
+[elsewhere]: https://github.com/MurrayEfford/secr-simulations
