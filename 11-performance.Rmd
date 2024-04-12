@@ -30,8 +30,7 @@ The SECR probability models of Chapter \@ref(Theory) that underlie the methods i
 2. Individuals are identified without error
 3. The probability of detecting an animal at a particular detector declines radially from a fixed point, its activity centre AC 
 4. Probability of detection is constant across individuals, detectors and times, conditional on the AC. 
-5. Individuals are detected independently of each other
-6. Each detection of an individual is independent of other detections
+5. Detections are independent, both between individuals and sequentially of a single individual
 
 Restrictive assumptions often may be relaxed under specific extensions to the model. We omit one further assumption: that the probability of detection declines to zero for AC at the edge of the habitat mask where the mask is naturally bounded. This is addressed in the analysis by correct choice of [detection function](#detectfn) and [buffer or mask](#Habitat) as covered in Chapter \@ref(Habitat).
 
@@ -62,6 +61,14 @@ Restrictive assumptions often may be relaxed under specific extensions to the mo
 ## Robustness {#robustness}
 
 For assumptions that cannot be met by better design or customized modelling, we rely on the robustness of SECR estimators. A robust estimator gives estimates that are close to the truth even when assumptions have been breached. We saw this with the choice of [detection function](#detectfn) in Chapter \@ref(Detection) Fig. \@ref(fig:choicedfparmplot). We care most about estimates of population density, which may be robust even when estimates of other parameters are not. The following treatment concerns density estimates under a null model -- one with uniform density and no additional effects on detection -- except where stated.
+
+Several authors have found SECR estimates of density to be generally robust. 
+
+@Royle2015  
+@Sollmann2024  
+
+> Similar to traditional closed CMR models (Otis et al., 1978; Williams et al., 2002), ignoring temporal variation in p0 in SCR models had little effect on estimates of abundance, the density-covariate relationship, or space use (σ). As such, this study provides yet more evidence that density estimates from SCR models are robust to various forms of mis-specification of the detection model. They have been shown to be robust to unmodeled spatial heterogeneity in detection probability, so long as that heterogeneity is not spatially autocorrelated (Efford et al., 2013; Bischof et al., 2017; Moqanaki et al., 2021), and to a range of misspecifications of the detection function (Efford, 2004; Royle et al., 2014; Dey et al., 2022). In the latter case, though, inference about σ can be strongly affected by choosing the wrong detection function (Dey et al., 2022). In contrast, I found that estimates of σ were robust to ignoring temporal variation in detection. As σ in most applications relates to a stationary activity center and is modeled as constant across occasions, it appears sufficient to take into account spatial variation in p0 to obtain unbiased estimates of σ. It is conceivable that in closed SCR models where activity centers are allowed to move (Royle et al., 2016), not accounting for temporal variation in p0 may affect estimates of σ. Exploring this was beyond the scope of this study.
+
 
 Robustness to the failure of a specific assumption is easily assessed by simulation, and there have now been several studies that we review below and supplement with simulations explained at greater length [elsewhere]. Simulation is only part of the answer: we also need to know the real-life magnitude of the breach. The magnitude of some breaches may be assessed from external evidence (e.g. telemetry), but we commonly rely on a more general model that incorporates the effect (e.g., finite mixtures for individual heterogeneity). Ideally, the more general model approaches a naive model when the effect is small.
 
@@ -105,15 +112,43 @@ text (200, 0.25, expression(paste(phi,~ '=' ~ 0.5)), cex = 1.1, xpd = TRUE)
 
 ### Assumption 2: Identification without error {-}
 
-We can reasonably assume accurate identification on recapture of animals trapped and marked by conventional methods such as numbered leg bands or ear tags. However, identification may be unreliable with modern methods for passive sampling using natural marks (DNA from hair or faecal samples, and images from motion-sensitive cameras). This is a major limitation.
+We can generally assume accurate identification on recapture of animals trapped and marked by conventional methods such as numbered leg bands or ear tags. However, identification may be unreliable with modern methods for passive sampling using natural marks (DNA from hair or faecal samples, and images from motion-sensitive cameras). This is a major limitation.
 
 We briefly acknowledge the issues without attempting to provide solutions.
 
 #### DNA sampling and lab issues {-}
 
-DNA samples degrade over time exposed to heat, moisture and UV light [e.g., @Woodruff2014]. This results in both a lower rate of successful DNA amplification, and increasing frequency of genotyping errors. @Lukacs2005 and @Lampa2013 reviewed the early literature, and citations of those reviews are a good entry point to the voluminous recent literature. @Sethi2014 provide technical advice. A key genotyping error is the phenomenon of allelic dropout, when one allele of a heterozygote fails to amplify, resulting in an apparently homozygous 'ghost' individual. The approach of @Paetkau2003 is based on intensive checking and culling of inadequate samples. @Lukacs2005 raised doubts about possible biases due to sample culling, but these have not been confirmed. 
+Genetic sampling carries two categories of risk that lead to misidentification: there may be too little variation at the chosen loci to distinguish all individuals in the sampled population, and genotyping is subject to error. @Mills2000, @Lukacs2005, @Waits2005, and @Lampa2013 reviewed the early literature, and citations of those reviews are a good entry point to the voluminous recent literature. @Sethi2014 provide technical advice. @Augustine2020 provide a useful summary and a model framework that encompasses the various errors.
 
-<!-- Depends on genetic diversity and level of inbreeding in population PID~sib~ -->
+The ability to distinguish individuals is measured by the probability of identity (PI). This is the probability that two individuals drawn at random from the population will have the same genotype at the loci examined. Identity of genotypes was considered by @Mills2000 to cause a "shadow effect", as the existence of some individuals is concealed. The problem for SECR is even greater than in non-spatial capture--recapture. A group of two or more indistinguishable individuals becomes a 'super individual' with more detections, spread over a larger area.
+
+Simulations in Fig. \ref(fig:MID3figure) illustrate the potential impact of shadow effects on SECR estimates. In a scenario with about 110 detected individuals, PI = $10^{-3}$ resulted in relative bias of --20\% in density estimates. This is very largely due to the inflated spatial footprint of each super individual, and resulting bias in estimates of the spatial scale of detection $\sigma$.
+
+(ref:MID3cap) Relative bias of parameter estimates from null model when some individuals cannot be distinguished ("shadow effects"). Shaded band: |RB| < 10%. Simulation details on [Github]().
+
+```{r MID3figure, echo = FALSE, message = FALSE, warning = FALSE, fig.width= 5, fig.height = 5, out.width = "60%", fig.cap="(ref:MID3cap)"}
+source("figures/MID3figure.R")
+```
+
+(ref:MID4cap) Relative bias of density estimates as function of PI for varying density. At low density few individuals are detected, reducing the chance of mis-identification for given PI.
+
+```{r MID4figure, echo = FALSE, message = FALSE, warning = FALSE, fig.width= 5, fig.height = 5, out.width = "70%", fig.cap="(ref:MID4cap)"}
+source("figures/MID4figure.R")
+```
+
+(ref:MID4acap) Threshold of PI at which absolute relative bias of density estimates exceeded the threshold shown, as a function of the expected number of individuals detected.
+
+```{r MID4afigure, echo = FALSE, message = FALSE, warning = FALSE, fig.width= 5, fig.height = 5, out.width = "60%", fig.cap="(ref:MID4acap)"}
+source("figures/MID4afigure.R")
+```
+
+DNA samples degrade over time exposed to heat, moisture and UV light [e.g., @Woodruff2014]. This results in both a lower rate of successful DNA amplification, and increasing frequency of genotyping errors. A key genotyping error is the phenomenon of allelic dropout, when one allele at heterozygous locus fails to amplify, resulting in an apparent homozygote. False alleles may also appear in the laboratory and give the appearance of a distinct genotype and individual. Either error is likely to result in a spurious 'ghost' individual that is never recaptured. 
+
+Unlike shadow effects, ghost individuals have almost no effect on $\hat \sigma$. However, they do cause negative bias in $\hat \lambda_0$ and a reciprocal (positive) bias in density estimates $\hat D$ (Fig. \ref(fig:MID2figure). 
+
+
+
+The approach of @Paetkau2003 is based on intensive checking and culling of inadequate samples. @Lukacs2005 raised doubts about possible biases due to sample culling, but these have not been confirmed. Elimination of poor samples for which identity is uncertain tends to reduce sample size and precision. Precision can be improved by judiciously including samples with fewer loci in models that allow for uncertain identity [@Augustine2020].
 
 <!-- @ebm13 suggested modelling decline in DNA amplification success with duration of interval and environmental conditions, but that belongs elsewhere -->
 
@@ -145,7 +180,7 @@ Concerns were expressed by @Ivan2013 about the effect of non-circularity of home
 
 (ref:align) SECR models typically assume that home ranges are circular (a). Noncircularity of home ranges causes limited bias in density estimates when ranges are oriented at random with respect to a linear detector array (b). Systematic alignment of ranges to the array (c) causes large bias in $\hat \sigma$ and $\hat D$.
 
-```{r alignment, eval = TRUE, echo = FALSE, out.width = "80%", fig.cap="(ref:align)"}
+```{r alignment, eval = TRUE, echo = FALSE, out.width = "70%", fig.cap="(ref:align)"}
 knitr::include_graphics("figures/alignment.png")
 ```
 
@@ -262,16 +297,17 @@ The analogy with SECR is close: we are concerned with unbiased estimation of the
 (ref:OUcap) Relative bias RB of null-model density estimates of density $D$ and spatial scale $\sigma$ from Ornstein-Uhlenbeck model with autocorrelation parameter $\tau$.
 
 ```{r OUfigure, echo = FALSE, message = FALSE, fig.height = 4, fig.width=4, out.width = "50%", fig.cap = "(ref:OUcap)"}
-library(secrdesign)
+source (file = 'figures/setup.R')
 OUsims <- readRDS(file = 'data/OUsims.RDS')
 estD <- estimateSummary(OUsims)[,-1]
 estS <- estimateSummary(OUsims, 'sigma')[,-1]
 taulevels <- c(0.1, 1, 5, 10, 20, 50, 100)[-1]
 par(mfrow=c(1,1), mar=c(4,4,1,1), mgp=c(2.4,0.7,0), bty = 'o', pty='s')
 plot(0.1,0,type='n', xlim=c(1,100), log='x', ylim=c(-0.6,0.3), xlab = expression(tau), ylab='RB')
+shade(0.1)
 abline(h=0, lty=2)
-points(taulevels, estD$RB[-1], type='o', pch=16, cex=1.1)
-points(taulevels, estS$RB[-1], type='o', pch=21, bg = 'white', cex = 1.1)
+addRB(taulevels, estD[-1,], type='o', pch=16, cex=1.1)
+addRB(taulevels, estS[-1,], type='o', pch=21, cex=1.1, bg = 'white')
 legend(1.2, -0.39, legend=c('D','sigma'), pch=c(16,21), pt.bg='white',  pt.cex=1.1)
 ```
 
@@ -284,7 +320,7 @@ Robustness of SECR to movement of home ranges (dispersal) was demonstrated by @R
 We simulated detections over 100 'days' during which each AC underwent a random walk governed by a Gaussian kernel with scale $\sigma_m$. Details are given [elsewhere].
 
 ```{r DNC results1, echo = FALSE, results = "hold"} 
-library(secrdesign)
+source (file = 'figures/setup.R')
 DNCsims <- readRDS('data/DNCsims.RDS')
 moves <- sapply(DNCsims$pop.args, function(x) x$details$move.a)/1000
 estD <- estimateSummary(DNCsims)
@@ -299,12 +335,12 @@ par(mfrow = c(1,1), mar = c(4,4,2,2), pty = 's', yaxs='i', mgp=c(2.4,0.6,0))
 leg <- c('D', 'lambda0', 'sigma')
 plot(0,0, type = 'n', ylim = c(-0.9, 1.2), xlim = c(0,1), 
      xlab = 'Daily HR shift sigma (km)', ylab = 'RB')
+shade(0.1)
 abline (h = 0, lty = 2)
-points(moves, estD$RB, pch = 16, type = 'o', cex = 1.1)
-points(moves, estL$RB, pch = 21, bg = 'white', type = 'o', cex=1.1)
-points(moves, estS$RB, pch = 24, bg = 'white', type = 'o')
+addRB(moves, estD, pch = 16, type = 'o', cex = 1.1)
+addRB(moves, estL, pch = 21, bg = 'white', type = 'o', cex=1.1)
+addRB(moves, estS, pch = 24, bg = 'white', type = 'o')
 legend(0, 1.1, legend=leg, pch=c(16,21,24), pt.bg = 'white', pt.cex=c(1.1,1.1,1))
-
 ```
 
 
@@ -325,7 +361,7 @@ Further [simulations] confirm the lack of bias in $\hat D$, but show that tempor
 (ref:Mtcap) Relative bias of parameter estimates from null model given for temporal variation on lambda0 or sigma.
 
 ```{r Mtfigure, eval = TRUE, echo = FALSE, message=FALSE,  fig.width = 8, fig.height = 4, out.width="90%", fig.cap = "(ref:Mtcap)" }
-library(secrdesign)
+source (file = 'figures/setup.R')
 Mtsims <- readRDS(file = 'data/Mtsims.RDS')
 estD <- estimateSummary(Mtsims)[,-1]
 estL <- estimateSummary(Mtsims, 'lambda0')[,-1]
@@ -338,16 +374,19 @@ cvstext <- expression(paste("CV( ", sigma, " )"))
 
 par(mfrow=c(1,2), mar=c(4,4,1,1), mgp=c(2.4,0.7,0), bty = 'o', bg = 'white')
 plot(0,0,type='n', xlim=c(0,0.4), ylim=c(-0.4,0.4), xlab = cvltext, ylab='RB')
+shade(0.1)
 abline(h=0, lty=2)
-points(x, estD$RB[1:5], type='o', pch=16, cex=1.1)
-points(x, estL$RB[1:5], type='o', pch=21, bg = 'white', cex=1.1)
-points(x, estS$RB[1:5], type='o', pch=24, bg = 'white')
+addRB(x, estL[1:5,], type='o', pch=21, bg = 'white', cex=1.1)
+addRB(x, estS[1:5,], type='o', pch=24, bg = 'white')
+addRB(x, estD[1:5,], type='o', pch=16, cex=1.1)
 legend(0.01, 0.39, legend = leg, pch=c(16,21,24), pt.cex=c(1.2,1.2,1))
+
 plot(0,0,type='n', xlim=c(0,0.4), ylim=c(-0.4,0.4), xlab = cvstext, ylab='RB')
+shade(0.1)
 abline(h=0, lty=2)
-points(x, estD$RB[c(1,6:9)], type='o', pch=16, cex=1.1)
-points(x, estL$RB[c(1,6:9)], type='o', pch=21, bg = 'white', cex=1.1)
-points(x, estS$RB[c(1,6:9)], type='o', pch=24, bg = 'white')
+addRB(x, estD[c(1,6:9),], type='o', pch=16, cex=1.1)
+addRB(x, estL[c(1,6:9),], type='o', pch=21, bg = 'white', cex=1.1)
+addRB(x, estS[c(1,6:9),], type='o', pch=24, bg = 'white')
 legend(0.01, 0.39, legend = leg, pch=c(16,21,24), pt.cex=c(1.2,1.2,1))
 ```
 
@@ -364,27 +403,31 @@ If a behavioural response is not modelled then it may cause a heavy bias in dens
 (ref:Mbcap) Relative bias of parameter estimates from null model given behavioural variation in lambda0. Relative bias of density was off-scale (+1.41) for recapture factor 0.25 with a general behavioural response.
 
 ```{r Mbfigure, eval = TRUE, echo = FALSE, fig.width = 8, fig.height = 4, out.width="90%", fig.cap = "(ref:Mbcap)" }
+source (file = 'figures/setup.R')
 Mbsims <- readRDS(file = 'data/Mbsims.RDS')
 estD <- estimateSummary(Mbsims)[,-1]
 estL <- estimateSummary(Mbsims, 'lambda0')[,-1]
 estS <- estimateSummary(Mbsims, 'sigma')[,-1]
+
 par(mfrow=c(1,2), mar=c(4,4,2.5,1), mgp=c(2.4,0.7,0), bty = 'o')
 x <- c(0.25,0.5,1,1.5,2)
 leg <- c('D','lambda0','sigma')
 
 plot(0,0,type='n', xlim=c(0,2), ylim=c(-0.8,1), xlab = 'Recapture factor', ylab='RB')
+shade(0.1)
 abline(h=0, lty=2)
-points(x, estL$RB[1:5], type='o', pch=21, bg = 'white')
-points(x, estS$RB[1:5], type='o', pch=24, bg = 'white')
-points(x, estD$RB[1:5], type='o', pch=16)
+addRB(x, estL[1:5,], type='o', pch=21, bg = 'white')
+addRB(x, estS[1:5,], type='o', pch=24, bg = 'white')
+addRB(x, estD[1:5,], type='o', pch=16)
 legend(1.33, -0.3, legend = leg, pch=c(16,21,24), pt.bg = 'white', cex=0.9, pt.cex=c(1.1,1.1,1))
 mtext(side=3, line=0.5, 'General behavioural response (b)', cex = 0.9)
 
 plot(0,0,type='n', xlim=c(0,2), ylim=c(-0.8,1), xlab = 'Recapture factor', ylab='RB')
+shade(0.1)
 abline(h=0, lty=2)
-points(x, estL$RB[6:10], type='o', pch=21, bg = 'white')
-points(x, estS$RB[6:10], type='o', pch=24, bg = 'white')
-points(x, estD$RB[6:10], type='o', pch=16)
+addRB(x, estL[6:10,], type='o', pch=21, bg = 'white')
+addRB(x, estS[6:10,], type='o', pch=24, bg = 'white')
+addRB(x, estD[6:10,], type='o', pch=16)
 legend(1.33, -0.3, legend=leg, pch=c(16,21,24), pt.bg = 'white', cex = 0.9, pt.cex=c(1.1,1.1,1))
 mtext(side=3, line=0.5, 'Trap-specific behavioural response (bk)', cex = 0.9)
 ```
@@ -409,17 +452,19 @@ cvstext <- expression(paste("CV( ", sigma^2, " )"))
 
 par(mfrow=c(1,2), mar=c(4,4,1,1), mgp=c(2.4,0.7,0), bty = 'o')
 plot(0,0,type='n', xlim=c(0,0.8), ylim=c(-0.4,0.5), xlab = cvltext, ylab='RB')
+shade(0.1)
 abline(h=0, lty=2)
-points(x, estD$RB[1:5], type='o', pch=16)
-points(x, estL$RB[1:5], type='o', pch=21, bg = 'white')
-points(x, estS$RB[1:5], type='o', pch=24, bg = 'white')
+addRB(x, estD[1:5,], type='o', pch=16)
+addRB(x, estL[1:5,], type='o', pch=21, bg = 'white')
+addRB(x, estS[1:5,], type='o', pch=24, bg = 'white')
 legend(0.03, 0.48, legend=leg, pch=c(16,21,24), cex = 0.9, pt.cex=c(1.1,1.1,1))
 
 plot(0,0,type='n', xlim=c(0,0.8), ylim=c(-0.4,0.5), xlab = cvstext, ylab='RB')
+shade(0.1)
 abline(h=0, lty=2)
-points(x, estD$RB[c(1,6:9)], type='o', pch=16)
-points(x, estL$RB[c(1,6:9)], type='o', pch=21, bg = 'white')
-points(x, estS$RB[c(1,6:9)], type='o', pch=24, bg = 'white')
+addRB(x, estD[c(1,6:9),], type='o', pch=16)
+addRB(x, estL[c(1,6:9),], type='o', pch=21, bg = 'white')
+addRB(x, estS[c(1,6:9),], type='o', pch=24, bg = 'white')
 legend(0.03, 0.48, legend=leg, pch=c(16,21,24), cex = 0.9, pt.cex=c(1.1,1.1,1))
 ```
 
@@ -479,7 +524,9 @@ cf @Moqanaki2021
 
 <!-- claim spatial covariance analogous to temporal covariance (i.e. learned or behavioural effects) in non-spatial capture--recapture. -->
 
-### Assumption 5: Individuals are detected independently {#independentindividuals .unnumbered}
+### Assumption 5: Independence {#independence .unnumbered}
+
+#### Individuals are detected independently {#independentindividuals .unnumbered}
 
 Animals that move in groups are unlikely to be detected independently. @Bischof2020 labelled the phenomenon "cohesion". The primary result is overdispersion and underestimation of the sampling variance. Confidence intervals will be too narrow, resulting in less-than-nominal coverage. Earlier optimism [@Bischof2020] that a measure of overdispersion would correct for the underestimation appears to be unwarranted [@Efford2024].
 
@@ -487,21 +534,15 @@ Animals that move in groups are unlikely to be detected independently. @Bischof2
 
 Animals are not detected independently in single-catch traps. Maximizing the multi-catch likelihood provides unbiased estimates of density and spatial scale in most cases (see @Distiller2015 for an exception), but estimates of the intercept of the detection function ($g_0$, $\lambda_0$) may be strongly biased. The coverage of confidence intervals based on the multi-catch likelihood has yet to be assessed. An algorithm combining simulation and inverse prediction allows unbiased estimation of all parameters [@e04; @Efford2023], but lacks the flexibility of MLE.
 
-### Assumption 6: Detections of an individual are independent {#serialindependence .unnumbered}
+#### Detections of an individual are independent {#serialindependence .unnumbered}
 
-Trapping by definition causes non-independence of detection events: an animal that is captured cannot be caught anywhere else until released. Models exist for non-independence with multi-catch traps as we saw in Chapter \@ref(Theory). These may be used for single-catch traps, with certain caveats, although simulation-based methods may be preferable [@Efford2023].
+Trapping by definition causes non-independence of detection events: an animal that is captured cannot be caught anywhere else until released. The non-independence of detections in multi-catch traps is readily modelled as competing risk, as we saw in Chapter \@ref(Theory). 
 
 A more problematic form of dependence arises when a single visit to a passive detector results in multiple observations. This can happen when DNA is amplified from multiple hair samples left at a hair snag, or when a camera takes multiple photographs of an animal on a single visit. Analysing such data as if they were independent events results in overdispersion and accompanying underestimation of sampling variance. A simple solution is to collapse counts to binary observations.
 
-In the basic SECR model of Chapter \@ref(Theory) the next detection of an individual may happen anywhere in its home range, regardless of where it was last detected. More biologically realistic patterns of movement lead to sequential dependence of locations. This...
+In the basic SECR model of Chapter \@ref(Theory) the next detection of an individual may happen anywhere in its home range, regardless of where it was last detected. More biologically realistic patterns of movement lead to sequential dependence of locations.
 
-### Summary of robustness to breaches of assumptions
-
-General satisfaction with SECR MAYBE LEAD WITH THIS?
-
-@Sollmann2024 -
-
-> Similar to traditional closed CMR models (Otis et al., 1978; Williams et al., 2002), ignoring temporal variation in p0 in SCR models had little effect on estimates of abundance, the density-covariate relationship, or space use (σ). As such, this study provides yet more evidence that density estimates from SCR models are robust to various forms of mis-specification of the detection model. They have been shown to be robust to unmodeled spatial heterogeneity in detection probability, so long as that heterogeneity is not spatially autocorrelated (Efford et al., 2013; Bischof et al., 2017; Moqanaki et al., 2021), and to a range of misspecifications of the detection function (Efford, 2004; Royle et al., 2014; Dey et al., 2022). In the latter case, though, inference about σ can be strongly affected by choosing the wrong detection function (Dey et al., 2022). In contrast, I found that estimates of σ were robust to ignoring temporal variation in detection. As σ in most applications relates to a stationary activity center and is modeled as constant across occasions, it appears sufficient to take into account spatial variation in p0 to obtain unbiased estimates of σ. It is conceivable that in closed SCR models where activity centers are allowed to move (Royle et al., 2016), not accounting for temporal variation in p0 may affect estimates of σ. Exploring this was beyond the scope of this study.
+### Summary of robustness to breaches of assumptions {#robustnesssummary .unnumbered}
 
 Estimates are generally robust or the magnitude of bias is predictable once the effect is known ($\phi$, CV(a))
 
@@ -510,27 +551,26 @@ Table: (\#tab:robustnesssummary) Robustness of null-model density estimates to b
 
 | Breach of assumption | Concern | Mitigated by | Evaluation |
 |:--------------|:---------|:------------|:--------------|
-| Non-closure due to ||||
 
-1. Population closure (no animals die, emigrate or recruit during sampling)  
-[Population closed](#popnclosed)  
+1. Closure
+[Population turnover](#popnclosed)  
 2. Individuals are identified without error  
-3. The probability of detecting an animal at a particular detector declines radially from a fixed point, its activity centre AC   
+3. Home ranges  
 [AC locations independent](#ACindependent)    
 [Home ranges circular](#hrcircular)  
 [Locations independent within home range](#independentwithinhr)  
 [Home ranges stationary](#hrstationary)  
-4. Probability of detection is constant across individuals, detectors and times, conditional on the AC.   
+4. Probability of detection constant  
 [Temporal variation](#temporalvariation)  
 [Behavioural responses](#behaviour)  
-[Homogeneity across individuals](#individualheterogeneity)  
-[Homogeneity across detectors](#homogeneityofdetectors)  
-5. Individuals are detected independently of each other  
-[Mutual indepenence](#independentindividuals)  
+[Individual heterogeneity](#individualheterogeneity)  
+[Detector heterogeneity](#homogeneityofdetectors)  
+5. Individuals are detected independently
+[Mutual independence](#independentindividuals)  
 6. Each detection of an individual is independent of other detections  
 [Serial independence](#serialindependence)  
 
-
+(Relationship of serial independence and stationarity)
 
 Particular problems are
 
