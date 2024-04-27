@@ -2,26 +2,7 @@
 
 # Assumptions and robustness {#Performance}
 
-This chapter covers topics related to the performance of SECR methods. It is the foundation for Chapter \@ref(Studydesign) on study design. 
-
-## Data requirements for SECR {#datarequirements}
-
-We list here some minimum data requirements that might be labelled "assumptions" but are more fundamental:
-
-1. Sampling is representative of the area of interest 
-2. Data are recorded accurately
-3. Many individuals are detected more than once
-4. Detectors span at least the scale of detection
-5. Some individuals are detected at more than one detector
-
-Spatial representativeness (1) is often overlooked. This requirement should be addressed by appropriate study design (Chapter \@ref(Studydesign)). 
-
-Capture--recapture methods do require recaptures (3). The quantitative question (How many is enough?) is addressed in Chapter \@ref(Studydesign).
-
-Requirements 4 and 5 arise from the need for spatial information to estimate the scale of detection $\sigma$. Deficiencies may be addressed, at least in principle, by combining SECR and [telemetry](#Telemetry), but improved study design is a better solution, and we defer consideration to Chapter \@ref(Studydesign). 
-<!-- Efford 2011 polygon simulations Table 3 -->
-
-Requirement 5 refers to what are often called 'spatial recaptures'. These are a *sine qua non* of SECR, but their role in determining precision can be overstated. Spatial recaptures are a consequence of (3) and (4), not an independent effect. An animal detected multiple times in an area search is almost inevitably detected at multiple locations, and (5) then follows from (3).
+This chapter covers topics related to the performance of SECR methods when the minimum data requirements are met. It is the foundation for Chapter \@ref(Studydesign) on study design where we also address minimum data requirements. 
 
 ## Assumptions of SECR {#assumptions}
 
@@ -45,17 +26,21 @@ Another approach is to test specifically for compliance with each assumption. Th
 <!-- Several authors have found SECR estimates of density to be generally robust [@Royle2015, @Sollmann2024].   -->
 <!-- > Similar to traditional closed CMR models (Otis et al., 1978; Williams et al., 2002), ignoring temporal variation in p0 in SCR models had little effect on estimates of abundance, the density-covariate relationship, or space use (σ). As such, this study provides yet more evidence that density estimates from SCR models are robust to various forms of mis-specification of the detection model. They have been shown to be robust to unmodeled spatial heterogeneity in detection probability, so long as that heterogeneity is not spatially autocorrelated (Efford et al., 2013; Bischof et al., 2017; Moqanaki et al., 2021), and to a range of misspecifications of the detection function (Efford, 2004; Royle et al., 2014; Dey et al., 2022). In the latter case, though, inference about σ can be strongly affected by choosing the wrong detection function (Dey et al., 2022). In contrast, I found that estimates of σ were robust to ignoring temporal variation in detection. As σ in most applications relates to a stationary activity center and is modeled as constant across occasions, it appears sufficient to take into account spatial variation in p0 to obtain unbiased estimates of σ. It is conceivable that in closed SCR models where activity centers are allowed to move (Royle et al., 2016), not accounting for temporal variation in p0 may affect estimates of σ. Exploring this was beyond the scope of this study. -->
 
-Robustness to the failure of a specific assumption is easily assessed by simulation. There have now been several simulation studies. We review these below, and supplement them with new simulations. The new simulations are described [elsewhere] with full details and R code. Simulations cannot span the full range of scenarios, so the results are only indicative. Our base scenario uses a square grid of 64 binary proximity detectors operated for 10 occasions; detector spacing is $2\sigma$ for a hazard half-normal detection function with $\lambda_0 = 0.1$. A population with density $0.5\sigma^{-2}$ is distributed uniformly at random in a region extending $4\sigma$ beyond the detectors. We report density estimates under a null model -- one with uniform density and no additional effects on detection -- except where stated. Relative bias of $\hat D$ from the null model is shown with 95\% confidence limits.
+Robustness to the failure of a specific assumption is easily assessed by simulation. There have now been several simulation studies that we review below. We supplement these with new simulations that we outline next and describe in full [elsewhere]. Simulations cannot span the full range of scenarios, so the results are only indicative. 
+
+#### New simulations {#newsimulations .unnumbered}
+
+Our base scenario uses a square grid of 64 binary proximity detectors operated for 10 occasions; detector spacing is $2\sigma$ for a hazard half-normal detection function with $\lambda_0 = 0.1$. A population with density $0.5\sigma^{-2}$ is distributed uniformly at random in a region extending $4\sigma$ beyond the detectors. We report relative bias of density estimates and detection parameters under a null model -- one with uniform density and no additional effects on detection -- except where stated. The range |RB| < 10% is shaded on the graphs, and bars indicate 95\% confidence limits, although these are often obscured by the plotted points. Off-scale values are flagged with an asterisk (*).
 
 ### Assumption 1: Population closed  {#popnclosed .unnumbered}
 
 Births, deaths and dispersal result in population turnover. Over an extended period of turnover, more animals may be observed than were present at any instant, and density estimates will be biased upwards. Studies using automatic cameras often accumulate data slowly over many days, and study duration has triggered much angst e.g., @Harihar2017. How much does a little turnover matter? Conversely, How long can the sampling period be? Results for non-spatial models [@Kendall1999] cannot be transferred. We distinguish turnover due to movement of AC from *in situ* births and deaths, and consider it separately under [Assumption 3d](#hrstationary).
 
-@Dupont2019 investigated the effect of increasing study duration on the precision and bias of population size estimates. Their results are complicated by an artefact that caused their Bayesian estimator to be positively biased for short durations [@Dupont2019, p. 669].
+@Dupont2019 investigated the effect of increasing study duration on the precision and bias of population size estimates. Their results are complicated by an artifact that caused their Bayesian estimator to be positively biased for short durations [@Dupont2019, p. 669].
 
 <!-- Terrible! Unclear net population change during sampling. Use initial population as reference for RB. -->
 
-We provide some additional [simulations] in an associated document and Fig. \@ref(fig:CLOfigure). Turnover in a constant population resulted in positive bias equal to roughly 70\% of the mortality over the duration of the sampling. Thus 50\% annual mortality (~16\% over 3 months) resulted in about +11\% relative bias in a 3-month study, and coverage of nominal 95\% confidence intervals dropped to about 82\%. The new results are broadly consistent with those from the more complex scenarios of @Dupont2019 for 'slow' and 'intermediate' life histories.
+Additional simulations are shown in Fig. \@ref(fig:CLOfigure). Turnover in a constant population resulted in positive bias equal to about 70\% of the mortality over the duration of the sampling. Thus 50\% annual mortality (~16\% over 3 months) resulted in about +11\% relative bias in a 3-month study, and coverage of nominal 95\% confidence intervals dropped to about 82\%. The new results are broadly consistent with those from the more complex scenarios of @Dupont2019 for 'slow' and 'intermediate' life histories.
 
 (ref:CLOcap) Simulated effect of study duration on relative bias of density estimates for three levels of annual survival $\phi$ in a population with constant density. $\phi = 1$ corresponds to a closed population.
 
@@ -107,19 +92,19 @@ The ability to distinguish individuals is measured by the probability of identit
 
 Simulations in Figs. \@ref(fig:MID3figure) and \@ref(fig:MID4figure) illustrate the potential impact of shadow effects on SECR estimates. In a scenario with about 110 detected individuals, PI = $10^{-3}$ resulted in relative bias of --20\% in density estimates. This is largely due to the inflated spatial footprint of each super individual, which causes positive bias in estimates of the spatial scale of detection $\sigma$.
 
-(ref:MID3cap) Relative bias of parameter estimates from null model when some individuals cannot be distinguished ("shadow effects"). Shaded band: |RB| < 10%. Asterisks mark scenarios with $\mbox{RB}(\hat \sigma) > 1.0$ . Simulation details on [Github].
+(ref:MID3cap) Relative bias of parameter estimates from null model when some individuals cannot be distinguished ("shadow effects").
 
 ```{r MID3figure, echo = FALSE, message = FALSE, warning = FALSE, fig.width= 5, fig.height = 5, out.width = "60%", fig.cap="(ref:MID3cap)"}
 source("figures/MID3figure.R")
 ```
 
-(ref:MID4cap) Relative bias of density estimates as function of PI for varying density. At low density few individuals are detected, reducing the chance of mis-identification for given PI. Simulation details on [Github].
+(ref:MID4cap) Relative bias of density estimates as function of PI for varying density. At low density few individuals are detected, reducing the chance of mis-identification for given PI. 
 
 ```{r MID4figure, echo = FALSE, message = FALSE, warning = FALSE, fig.width= 5, fig.height = 5, out.width = "70%", fig.cap="(ref:MID4cap)"}
 source("figures/MID4figure.R")
 ```
 
-(ref:MID4acap) Threshold of PI at which absolute relative bias of density estimates exceeded the threshold shown, as a function of the expected number of individuals detected. Simulation details on [Github].
+(ref:MID4acap) Threshold of PI at which absolute relative bias of density estimates exceeded the threshold shown, as a function of the expected number of individuals detected.
 
 ```{r MID4afigure, echo = FALSE, message = FALSE, warning = FALSE, fig.width= 5, fig.height = 5, out.width = "60%", fig.cap="(ref:MID4acap)"}
 source("figures/MID4afigure.R")
@@ -131,7 +116,7 @@ DNA samples degrade over time exposed to heat, moisture and UV light [e.g., @Woo
 
 We measure the ghost effect by the probability a detection results in a 'ghost' individual. Unlike shadow effects, ghost individuals have almost no effect on $\hat \sigma$. However, they do cause negative bias in $\hat \lambda_0$ and a reciprocal (positive) bias in density estimates $\hat D$ (Fig. \@ref(fig:MID2figure)). 
 
-(ref:MID2cap) Relative bias of parameter estimates from null model when genotyping errors generate 'ghost' individuals. Shaded band: |RB| < 10%. Simulation details on [Github].
+(ref:MID2cap) Relative bias of parameter estimates from null model when genotyping errors generate 'ghost' individuals.
 
 ```{r MID2figure, echo = FALSE, message = FALSE, warning = FALSE, fig.width= 5, fig.height = 5, out.width = "60%", fig.cap="(ref:MID2cap)"}
 source("figures/MID2figure.R")
