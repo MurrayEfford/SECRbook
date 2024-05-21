@@ -51,11 +51,14 @@ morningxs <- split(morningx, covariates(morningx)$sex)  # split into two session
 ```{r sexmodels1, cache = TRUE, warning = FALSE}
 # conditional likelihood
 hybridxCL  <- secr.fit(morningx, model = list(lambda0~h2, sigma~h2),
-             CL = TRUE, buffer = 25, detectfn = 'HEX', trace = FALSE,  hcov = 'sex')
-xCL        <- secr.fit(morningx, model = list(lambda0~sex, sigma~sex), 
-             CL = TRUE, buffer = 25, detectfn = 'HEX', trace = FALSE)
-sessionxCL <- secr.fit(morningxs, model = list(lambda0~session, sigma~session), 
-             CL = TRUE, buffer = 25, detectfn = 'HEX', trace = FALSE)
+                CL = TRUE, buffer = 25, detectfn = 'HEX', 
+                trace = FALSE,  hcov = 'sex')
+xCL        <- secr.fit(morningx, model = list(lambda0~sex, 
+                sigma~sex), CL = TRUE, buffer = 25, detectfn = 'HEX', 
+                trace = FALSE)
+sessionxCL <- secr.fit(morningxs, model = list(lambda0~session, 
+                sigma~session), CL = TRUE, buffer = 25, 
+                detectfn = 'HEX', trace = FALSE)
 ```
 
 ```{r sexmodelcomparison1, cache = TRUE, warning = FALSE}
@@ -65,12 +68,15 @@ predict(fitsCL, all.levels = TRUE)
 
 ```{r sexmodels2, cache = TRUE, warning = FALSE}
 # full likelihood
-hybridx  <- secr.fit(morningx, model = list(lambda0~h2, sigma~h2), hcov = 'sex', 
-             CL = FALSE, buffer = 25, detectfn = 'HEX', trace = FALSE)
-sessionx <- secr.fit(morningxs, model = list(D ~ session, lambda0~session, sigma~session), 
-             CL = FALSE, buffer = 25, detectfn = 'HEX', trace = FALSE)
-groupx   <- secr.fit(morningx, model = list(D ~ g, lambda0~g, sigma~g), groups = 'sex', 
-             CL = FALSE, buffer = 25, detectfn = 'HEX', trace = FALSE)
+hybridx  <- secr.fit(morningx, model = list(lambda0~h2, sigma~h2), 
+              hcov = 'sex', CL = FALSE, buffer = 25, detectfn = 'HEX', 
+              trace = FALSE)
+sessionx <- secr.fit(morningxs, model = list(D ~ session, 
+              lambda0~session, sigma~session), CL = FALSE, buffer = 25,
+              detectfn = 'HEX', trace = FALSE)
+groupx   <- secr.fit(morningx, model = list(D ~ g, lambda0~g, sigma~g), 
+              groups = 'sex', CL = FALSE, buffer = 25, detectfn = 'HEX', 
+              trace = FALSE)
 ```
 
 ```{r sexmodelcomparison2, cache = TRUE, warning = FALSE}
