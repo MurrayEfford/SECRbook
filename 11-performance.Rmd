@@ -568,4 +568,4 @@ Why bother?
 
 [simulations]: https://github.com/MurrayEfford/secr-simulations
 [elsewhere]: https://github.com/MurrayEfford/secr-simulations
-[Github](https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/MID/secr-simulations-MID.html)
+<!-- [Github]: https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/MID/secr-simulations-MID.html -->
