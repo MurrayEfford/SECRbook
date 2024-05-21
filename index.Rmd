@@ -28,7 +28,7 @@ particularly the population density.
 
 (ref:Exceptions) `r colorize("Exceptions:","orange")`
 
-## Why SECR? {-}
+## Why SECR? {#why .unnumbered}
 
 Non-spatial capture--recapture methods are highly developed and powerful [@obwa78; @wnc02; @cw]. SECR plugs some gaps in non-spatial methods (particularly with respect to density estimation), and has some unexpected benefits:
 
@@ -49,7 +49,7 @@ The literature of SECR has grown beyond the attention spans and time budgets of 
 
 This book provides both a gentle introduction, in the spirit of [@cw], and more in-depth treatment of important topics. It is software oriented and therefore unashamedly partial and incomplete. Much of the content is drawn from earlier papers and the documentation of R [@R-base] packages. Some topics are yet to be included (e.g., acoustic data) but documentation may be found on the [DENSITY](https://www.otago.ac.nz/density/SECRinR.html) website. Others such as partial identity models [@Augustine2018] have yet to be considered at all.
 
-Part II is mostly independent of software. Other chapters lean heavily on the R package **secr**.
+Parts II and IV are mostly independent of software. Other chapters lean heavily on the R package **secr**.
 
 ## Software {-}
 
