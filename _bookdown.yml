@@ -20,10 +20,10 @@ rmd_files: ["index.Rmd",
     "08-secrfit.Rmd",
     "08-multisession.Rmd",
     "08-sex.Rmd",
+    "10-simulation.Rmd",
     # STUDY DESIGN
     "11-performance.Rmd",
     "12-studydesign.Rmd",
-    "13-simulation.Rmd",
     # "14-applications.Rmd",
     # APPENDICES 
     "16-spatial-data.Rmd",
