@@ -14,6 +14,9 @@ options(width=100)
 # predefine some colours
 yob5 <- RColorBrewer::brewer.pal(n = 5, name = "YlOrBr")
 blu5 <- RColorBrewer::brewer.pal(n = 5, name = "Blues")
+qual8 <- RColorBrewer::brewer.pal(n = 8, name = "Pastel2")
+qual10 <- RColorBrewer::brewer.pal(n = 9, name = "Pastel1")[c(7,1:9)]
+seq20  <- terrain.colors(20)
 
 # add points to plot
 addRB <- function (x, est, mean = 'RB', se = 'seRB', xoffset = 0, star = 100, ...) {
@@ -61,4 +64,24 @@ countlegend <- function (rows = -5) {
                          'Approximate RSE',
                          'Approximate sigma-hat'))
     print(df[rows,], row.names = FALSE, right = FALSE)
+}
+
+cosaplot <- function (cosa, number = FALSE, outer = TRUE, edges = FALSE, detpar = NULL, ...) {
+    msk <- attr(cosa,'mask')
+    if (is.null(msk)) stop ("use make.spcosa(..., keep.mask = TRUE) to retain subregion mask")
+    plot(msk, cov='stratum', dots = FALSE, ppoly = FALSE, legend = FALSE, ...)
+    if (!is.null(attr(msk, 'polygon')) && outer) {
+        plot(attr(msk, 'polygon'), add = TRUE)
+    }
+    if (edges) {
+        for (i in 1:length(levels(clusterID(cosa5)))) {
+            mski <- subset(msk, covariates(msk)$stratum==i)
+            plotMaskEdge(mski, add = TRUE)
+        }
+    }
+    if (number) {
+        cent <- attr(cosa,'centres')
+        text(cent[,1], cent[,2], 1:nrow(centres))
+    }
+    plot(cosa, add = TRUE, detpar = detpar)
 }
