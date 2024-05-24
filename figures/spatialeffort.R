@@ -1,5 +1,6 @@
 source('d:/density communication/secrbook/figures/setup.R')
 
+# for simulations see secr-simulations/STR
 # VARY USAGE
 
 grid1 <- make.grid(8,8, spacing = 40, detector = 'proximity')
