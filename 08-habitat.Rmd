@@ -194,7 +194,6 @@ knitr::include_graphics('figures/maskesa.png')
 
 Our focus so far has been on choosing a buffer width to set the outer boundary of a habitat mask, assuming that the actual boundary is arbitrary. We can call these 'masks of convenience' (Fig. \@ref(fig:masktypes) a); numerical accuracy and computation speed are the only constraints. At the other extreme, a mask may represent a natural island of habitat surrounded by non-habitat (Fig. \@ref(fig:masktypes) c). A geographical map, possibly in the form of an ESRI shapefile, is then sufficient to define the mask. Between these extremes there are may be a habitat mosaic including both some non-habitat near the detectors and some habitat further away, so neither the buffered mask of convenience nor the habitat island is a good match (Fig. \@ref(fig:masktypes) b). 
 
-
 ```{r masktypes, eval = TRUE, echo = FALSE, out.width = '100%', fig.cap="Types of habitat mask (grey mesh) defined in relation to habitat (green) and detectors (red dots). (a) mask of convenience defined by a buffer around detectors in continuous habitat, (b) mask of convenience excluding non-habitat (c) fully sampled habitat island"}
 knitr::include_graphics('figures/masktypes.png')
 ```

@@ -11,6 +11,9 @@ rmd_files: ["index.Rmd",
     "03-theory.Rmd",
     "04-theory-area-search.Rmd",
     "05-theory-special-topics.Rmd",
+    # ASSUMPTIONS AND STUDY DESIGN
+    "11-performance.Rmd",
+    "12-studydesign.Rmd",
     # PRACTICE
     "06-secr-package.Rmd",
     "08-detection-model.Rmd",
@@ -21,10 +24,9 @@ rmd_files: ["index.Rmd",
     "08-multisession.Rmd",
     "08-sex.Rmd",
     "10-simulation.Rmd",
-    # STUDY DESIGN
-    "11-performance.Rmd",
-    "12-studydesign.Rmd",
-    # "14-applications.Rmd",
+    # VALIDATION AND APPLICATIONS
+    "14-validation.Rmd",
+    "15-applications.Rmd",
     # APPENDICES 
     "16-spatial-data.Rmd",
     "16-parameterizations.Rmd",

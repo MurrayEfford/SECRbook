@@ -1,4 +1,6 @@
 # Study design {#Studydesign}
+\index{Design}
+\index{Study design}
 
 Study design for SECR brings together many disparate considerations, some external to SECR itself (goals, cost, logistics). In this chapter we hope to build an understanding of the working properties of SECR and integrate the external considerations into a strategy for effective study design.
 
@@ -7,11 +9,13 @@ The key variables are the choice of methods for detection and individual identif
 Tools for study design are provided in the R package **secrdesign** and its online interface [secrdesignapp](https://www.stats.otago.ac.nz/secrdesignapp/). Simulation of candidate designs is a central method, but for clarity we defer instruction on that until the next chapter.
 
 ## Studies focussing on design
+\index{Design!Studies}
 
 General issues of study design for SECR were considered by @Sollmann2012, @Tobler2013, @Sun2014, @c19, and @eb19.
 Algorithmic optimisation of detector locations was described by @drns21 and @dbss21. Design issues appeared incidentally in @ewcb05,  @ef13, @Noss2012, and @Palmero2023, among other papers.
 
 ## Data requirements for SECR {#datarequirements}
+\index{Design!Data requirements}
 
 We list here some minimum data requirements that might be labelled "assumptions" but are more fundamental. They should be addressed by appropriate study design.
 
@@ -44,6 +48,7 @@ Some qualification is needed here. We require only that *some* individuals are d
 A poorly designed detector array may give data that cannot be analysed by SECR, or provide highly biased estimates of low precision. Such designs were described by @eb19 as 'pathological'. We seek a non-pathological and representative design that gives the most precise estimates possible for a given cost. 
 
 ## Precision and power
+\index{Design!Statistical power}
 
 Precise estimates have narrow confidence intervals and high power to detect change. Precision and bias jointly determine the accuracy of estimates, measured by the root-mean-square error (the difference between estimates and the true value). Bias is typically a minor component, and for now we assume it is negligible.
 
@@ -64,6 +69,7 @@ We lack a clear guide to required RSE in other studies, for which the effect siz
 The variance of density estimated by the method of [conditional likelihood](#conditional) has two components...
 
 ## Pilot parameter values
+\index{Design!Pilot parameter values}
 
 To evaluate a potential study design we must know something about the target population. Here we describe the population and the behaviour of individuals by a simple SECR model and its parameters: uniform density $D$ and the parameters $\lambda_0$ and $\sigma$ of a hazard half-normal [detection function](#detectfn). Predictions regarding the suitability and performance of any design then depend on the values of *D*, $\lambda_0$ and $\sigma$. This seems like a catch-22 -- impossible until we have estimates -- but for design purposes we can call on approximate values from multiple sources
 
@@ -92,6 +98,7 @@ We can use the close analogy between the detection function and a home-range uti
 <!-- #### lambda0 from n -->
 
 ## Expected sample size {#Enr}
+\index{Design!Sample size}
 
 Given some pilot parameter values, we might proceed directly to simulating data from different designs and computing the resulting SECR estimates. This is effective, but slow. A useful preliminary step is to check the expected sample size of potential designs.
 
@@ -107,7 +114,8 @@ The counts depend also on the detector configuration, the extent of habitat (buf
 
 @eb19 found that E(*n*) and E(*r*) alone were often sufficient to predict the precision of SECR density estimates, and maximum precision was achieved when E(*n*) $\approx$ E(*r*). 
 
-## Array size in relation to home range
+## Array size in relation to home range {#arraysize}
+\index{Design!Array size}
 
 We lack a count statistic matching the second part of Requirement 3 ('Array too small' in Fig. \@ref(fig:goldilocks3)). We therefore define an *ad hoc* measure of sampling scale that we call the 'extent ratio': this is the diameter of the array (the distance between the most extreme detectors) divided by the nominal diameter of a 95\% home range. The 95\% home-range radius is $r_{0.95} \approx 2.45 \sigma$ for a BVN utilisation distribution (from the previous formula).
 
@@ -126,6 +134,7 @@ Simulations described on [GitHub](https://htmlpreview.github.io/?https://github.
 The extent ratio does not provide a precise criterion because it combines two somewhat arbitrary measures (area dimension, 95\% home range diameter). What the simulations reveal about array size can be summed up in a simple rule: the grid or searched area should be at least the size of the home range, and larger arrays provide greater robustness and accuracy.
 
 ## The $n-r$ tradeoff
+\index{Design!n-r tradeoff}
 
 The performance of the SECR density estimator depends on both the number of individuals $n$ and the number of re-detections $r$. However, we cannot maximise their expected values simultaneously. E(*n*) is greatest when detectors are far apart and each detector samples a unique set of individuals (AC). For binary proximity detectors E(*r*) is greatest when detectors are clumped together and declines monotonically with spacing; for multi-catch traps, E(*r*) increases and then declines (Fig. \@ref(fig:nrmplot)).
 
@@ -138,8 +147,9 @@ source('figures/nrmplot.R')
 To maximise the sample size we seek a satisfactory compromise, an intermediate spacing of detectors that yields both high E(*n*) and high E(*r*). There is so far no evidence for weighting one more than the other, so at the optimum E(*n*) $\approx$ E(*r*), as indicated by the vertical lines in Fig. \@ref(fig:nrmplot). The number of movement recaptures $m$ follows the pattern of total recaptures $r$ and need not be considered separately.
 
 ## Spacing and precision {#Spacing}
+\index{Design!Optimal spacing}
 
-We expect precision to improve with sample size. From the last section we understand that sample size depends somewhat subtly on detector spacing: wider spacing increases $n$, but ultimately reduces $r$. We next use simulation to demonstrate the effect on the precision. We define precision as the relative standard error (RSE) of density estimates, $\mbox{RSE} (\hat D) = \widehat {\mbox{SE}} (\hat D) / \hat D$. In the following examples we assume a Poisson distribution for $n$ rather than the binomial distribution that results when $N(A)$ is [fixed](#fixedN).
+We expect precision to improve with sample size. From the last section we understand that sample size depends somewhat subtly on detector spacing: wider spacing increases $n$ because a larger area is sampled, but it ultimately reduces $r$. We next use simulation to demonstrate the effect on the precision. We define precision as the relative standard error (RSE) of density estimates, $\mbox{RSE} (\hat D) = \widehat {\mbox{SE}} (\hat D) / \hat D$. In the following examples we assume a Poisson distribution for $n$ rather than the binomial distribution that results when $N(A)$ is [fixed](#fixedN).
 
 <!-- (ref:spacingplotcap) Effect of detector spacing on precision of SECR density estimates. Simulations ($N = 10$); base scenario as in Fig. \@ref(fig:nrmplot). RSE within the shaded range of spacings is no more than 10\% greater then the minimum. -->
 
@@ -210,7 +220,12 @@ The ratio $R_K = 4\sigma^2K/A$ is a useful guide for planning, where $K$ is the 
 
 <!-- ## Grid square -->
 
+## Number of detectors in fixed region
+
+We have referred to $2\sigma\sqrt{\lambda_0 S}$ as an 'optimum' spacing for the scenario that the number of detectors is fixed. Increasing the number of detectors in an area of interest can be expected to increase sample sizes, particularly $\mbox E(r)$, and hence to improve on precision beyond the 'optimum'. For a non-arbitrary area  $R_K > 1.0$ is entirely appropriate, and cost becomes the decider. The benefit from increasing the density of detectors may be small; for example, trebling the number of detectors in a 10-ha area from $K_0 =  A / (4\sigma^2\lambda_0 S) = 62.5$ resulted in only a 27\% reduction in $\mbox{RSE}(\hat D)$ for the base parameter values of Fig. \@ref(fig:nrmplot).
+
 ## Clustered designs
+\index{Design!Clustered designs}
 
 We have assumed a regular grid of detectors with constant spacing. Regular grids have an almost mystical status in small mammal trapping [@obwa78] that can be justified, for non-spatial capture--recapture, by the need to expose every individual to the same probability of capture. Laying traps in straight lines is also easier than navigating on foot to random points. 
 
@@ -246,6 +261,7 @@ source('figures/cluster3x3.R')
 Truncation of subgrids at the edge of the region of interest reduces the size and value of marginal clusters. Two other geometrical designs avoid this problem: a lacework design (available in @R-secr) and a spatial coverage design,following @Walvoort2010.
 
 #### Lacework {#lacework .unnumbered}
+\index{Design!Lacework}
 
 In a lacework design, detectors are placed along two sets of equally spaced lines that cross at right angles to form a lattice (Fig. \@ref(fig:lace)). By making the spacing of the lattice lines (lattice spacing $a$) an integer multiple of the spacing of detectors along lines (detector spacing $b$) we avoid odd spacing at the intersections. The expected number of points on a lacework design is given by E(*K*) = *A/a^2^ (2a/b - 1)*.
 
@@ -272,6 +288,7 @@ data.frame(
 ```
 
 #### Spatial coverage {#spcosa .unnumbered}
+\index{Design!Spatial coverage}
 
 Spatial coverage may be achieved by first dividing the region of interest into equal-sized strata and then placing a subgrid in each stratum. A *k*-means algorithm is used to form the strata as compact clusters of pixels [@Walvoort2010]. A detector cluster may be centred or placed at random within each stratum (Fig. \@ref(fig:cosa)). We include the spatial coverage approach here because it uses nested subgrids, although the result is not strictly systematic.
 
@@ -292,12 +309,12 @@ source('figures/srsgrts.R')
 ```
 
 #### Algorithmic optimisation {#algopt .unnumbered}
+\index{Design!Algorithmic optimisation}
+\index{Design!Genetic algorithm}
 
 Choosing a set of detector locations may be reduced to finding a subset of potential locations that maximises some criterion (benefit function). A genetic algorithm is a robust way to search the vast set of possible layouts, and the R implementation of @w15 was applied by @drns21 and @dbss21 to SECR. The set of potential locations may simply be a fine grid of points, excluding points that are deemed inaccessible or fall in non-habitat. Results depend on the choice of criterion: @dbss21 used the minimum of E(*n*) and E(*n*), following the suggestion of @eb19 that this often leads to near-maximal precision of $\hat D$. Optimisation may take many iterations and results are not unique.
 
 A larger criticism is that the resulting layouts are not spatially representative. The example in Fig. \@ref(fig:algopt) shows 100 detectors placed "optimally" when *R~K~* = 0.16. Detectors are clumped to maximise the precision criterion min(E(*n*), E(*r*)) without regard to spatial balance. We view this to be a major weakness and discourage general use of the method except for exploratory purposes.
-
-
 
 Algorithmic optimisation has revealed one point that makes intuitive sense and is otherwise hidden. AC near the edge tend to have access to fewer detectors than central AC, and increased density of detectors near the edge is beneficial for increasing *n*, but may reduce *r* [@drns21].
 
@@ -348,6 +365,7 @@ source('figures/clusternumber.R')
 ```
 
 ## Designing for spatial variation in parameters
+\index{Design!Spatial variation}
 
 We have so far treated the parameters of the SECR model as constant across space. How should designs be modified to allow for spatial variation? 
 
@@ -357,11 +375,11 @@ Some aspects of sampling intensity are under the control of the experimenter: th
 
 Other variation in sampling intensity may be due to behavioural or habitat factors that drive spatial variation in detection parameters (e.g., $\lambda_0, \sigma$) unknown to the experimenter.
 
-We illustrate six scenarios for the interaction between spatial variation density, effort and detection in Fig. \@ref(fig:spatialeffort). The estimate of overall density is unbiased when effort and detection are homogeneous (Fig. \@ref(fig:spatialeffort) a,d). Uncorrelated variation in effort does not bias $\hat D$ (Fig. \@ref(fig:spatialeffort) b). Selectively reducing effort in low-density areas (Fig. \@ref(fig:spatialeffort) c) causes significant bias, although this may be eliminated by including an area effect in the density model. 
+We illustrate six scenarios for the interaction between spatial variation in density and effort, and between density and detection in Fig. \@ref(fig:spatialeffort). The estimate of overall density is unbiased when effort and detection are homogeneous (Fig. \@ref(fig:spatialeffort) a,d). Uncorrelated variation in effort does not bias $\hat D$ (Fig. \@ref(fig:spatialeffort) b). Selectively reducing effort in low-density areas (Fig. \@ref(fig:spatialeffort) c) causes significant bias, although this may be eliminated by including an area effect in the density model. 
 
 Variation in detection parameters causes bias even when not correlated with density (Fig. \@ref(fig:spatialeffort) e). This is the effect of [inhomogeneous detection](#homogeneityofdetectors) noted previously. The effect is large when density and detection are correlated (Fig. \@ref(fig:spatialeffort) f and @McLellan2023).
 
-(ref:spatialeffortcap) Effect of spatially varying effort (grid size 6 x 6 vs 8 x 8) and detection ($\lambda_0$ orange low vs red high) on estimate of overall density when density of AC (white dots) varies spatially between low (light green) and high (light blue).
+(ref:spatialeffortcap) Effect of spatially varying effort (grid size 6 x 6 vs 8 x 8) and detection ($\lambda_0$ orange low vs red high) on estimate of overall density when density of AC (white dots) varies spatially between low (light green) and high (light blue). See [GitHub](https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/STR/secr-simulations-STR.html) for simulation results.
 
 ```{r spatialeffort, eval = TRUE, cache = FALSE, echo = FALSE, message = FALSE, warning = FALSE, fig.width = 9, fig.height = 4.5, out.width = "100%", fig.cap = "(ref:spatialeffortcap)", results = "hide"}
 source('figures/spatialeffort.R')
@@ -369,7 +387,8 @@ source('figures/spatialeffort.R')
 
 Spatially representative sampling aims to avoid correlation between density and effort (Fig. \@ref(fig:spatialeffort) c). A strong spatial model for density overcomes the problem, but it cannot usually be guaranteed that suitable covariates will be found, and representative sampling insures against failure.
 
-### Stratification {.unnumbered}
+### Stratified sampling {.unnumbered}
+\index{Design!Stratified sampling}
 
 Deliberate stratification of effort is a special case. Stratification is used in conventional sampling to increase the precision of estimates for a given effort [e.g., @c77; @Thompson2012]. We note that in SECR only detected individuals and their re-detections contribute to the estimation of detection parameters and, in this respect, effort in low-density areas is mostly wasted. Greater precision may therefore be achieved in some studies by concentrating effort where high density is expected. This requires care. A stratified analysis combines stratum-specific density estimates as follows.
 
@@ -378,29 +397,55 @@ The weight for each region is based on its area: $W_h = A_h/A$ and $\sum_h W_h =
 
 Then an estimate of overall density is $\hat D = \sum_h W_h \hat D_h$ and an estimate of the sampling variance is $\widehat {\mbox{var}} (\hat D) = \sum_{h=1}^H W_h^2 \widehat {\mbox{var}} (D_h)$.
 
-The benefits of stratification for SECR have yet to be fully analysed. They are likely to be greatest when strata of contrasting density are easily distinguished, and when uncertainty regarding detection parameters (and hence the effective sampling area) dominates over var(n) (cf [Components of variance](#componentsofvariance)).
+The benefits of stratification for SECR have yet to be fully analysed. They are likely to be greatest when strata of contrasting density are easily distinguished, and when uncertainty regarding detection parameters (and hence the effective sampling area) dominates over var(n) (cf [Components of variance](#componentsofvariance)). 
+
+We conducted a simulation experiment with two density strata (40\% and 160\% of the overall average) and a constant total effort allocated differentially (Fig. \@ref(fig:stratifiedeffort)). Details are on [GitHub](https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/STR/secr-simulations-STR.html). For this example precision was best when about 70\% of detectors were placed in the high-density stratum, but the improvement over equal allocation was tiny ($\Delta\mbox{RSE} \approx 0.005$) for 10 occasions and small ($\Delta\mbox{RSE} \approx 0.013$) for 4 occasions. Effort may also be stratified by varying the number of sampling occasions.
 
 It may help to assume that detection parameters are uniform throughout (i.e. shared among strata); a formal test of detection homogeneity is likely have low power.
 
+(ref:stratifiedeffortcap) Design for evaluation of stratified effort.
+
+```{r stratifiedeffort, eval = TRUE, echo = FALSE, fig.width=8, fig.height=2.5, out.width = '100%', fig.cap = "(ref:stratifiedeffortcap)"}
+source('figures/stratifiedeffort.R')
+```
+
+(ref:stratifiedRSEcap) Precision of overall density estimated with stratified effort. Grey line indicates minimum RSE when 88 of 128 detectors were placed in the high-density stratum (4 occasions, 0.129; 10 occasions, 0.069).
+
+```{r stratifiedRSE, eval = TRUE, echo = FALSE, fig.width=7, fig.height=5.5, out.width = '70%', fig.cap = "(ref:stratifiedRSEcap)"}
+source('figures/stratifiedRSE.R')
+```
+
 #### Density model as alternative to representative sampling {.unnumbered}
 
-An apparent alternative to representative sampling is to construct a spatial model by deliberate sampling across covariate gradients.
+Our emphasis on representative sampling may seem over the top. SECR is model-based and variance estimates do not depend on the design. Sampling deliberately across environmental gradients may well provide the best information on particular covariate effects, and a fitted model with these covariates may be extrapolated across the region of interest to estimate average density. We advocate representative sampling because it protects against vulnerabilities of a purely model-based approach: the reliance on a particular model, the assumption that it applies in unsampled parts of the region, and the hazard from extrapolation to unobserved values of the covariate(s).
 
-The 'model-based' alternative is to deliberately sample across spatial covariates and to predict density across the region of interest from a fitted model in which density is a function of the spatial covariates.
+However, modelling is our only tool for handling heterogeneous detection.
 
+<!-- ## Other topics -->
 
-## Other topics
+<!-- ### Site selection -->
 
-### Site selection
+<!-- Constraints on detector location may require deviation from a regular grid. Exactly how constraints should be included is an open question.  @drns21 and @dbss21 simply removed infeasible sites from the set of candidate sites for algorithmic optimisation. -->
 
-Constraints on detector location may require deviation from a regular grid. Exactly how constraints should be included is an open question.  @drns21 and @dbss21 simply removed infeasible sites from the set of candidate sites for algorithmic optimisation.
+<!-- Often in context of random-within-grid-square designs that are convenient for planning, maintaining consistent intensity across surveys (given equal duration) -->
 
-Often in context of random-within-grid-square designs that are convenient for planning, maintaining consistent intensity across surveys (given equal duration)
-
-Guidance from @Palmero2023 camera trapping: Their workflow Fig. 4 does not mention representativeness. Advocate "...increasing detection probability by focussing camera deployments at highly used sites (Sollmann et al. 2012, Green et al. 2020, Harmsen et al. 2020)"
+<!-- Guidance from @Palmero2023 camera trapping: Their workflow Fig. 4 does not mention representativeness. Advocate "...increasing detection probability by focussing camera deployments at highly used sites (Sollmann et al. 2012, Green et al. 2020, Harmsen et al. 2020)"
+@DespresEinspenner2017 also promote selective placement Acknowledge biology?-->
 
 ## Summary
 
-Design flowchart?
+The SECR method is very flexible, within limits. Our approach to study design for SECR is not prescriptive. Users should bear in mind these principles:
 
-[expected counts]: https://www.otago.ac.nz/density/pdfs/secrdesign-Enrm.pdf
+* sampling should be representative of the region of interest
+* without large samples a study may lack the statistical power to answer real-world questions (this is not unique to SECR)
+* two scales are important - the size of the region of interest and the scale of movement/detection
+* robustness to model misspecification is greatest when the sampling scale is well-matched to the scale of detection
+* precise estimation of density requires both many individuals (*n*) and many recaptures (*r*) and these aspects of sample size often entail a design tradeoff
+* large areas may be sampled with clustered detectors in various configurations
+* logistic feasibility and cost considerations may override power in deciding among designs
+* spatially heterogeneous density is not problematic in itself, but becomes so when confounded with spatially heterogeneous detection
+* stratified sampling (concentrating sampling effort where density is predicted to be greater) has the potential to increase precision, but in our exploratory simulation the gains were minimal.
+
+It should be stressed that our simulation results (e.g., Figs. \@ref(fig:ARRplot), \@ref(fig:spacingplot2), \@ref(fig:spacingvocc), \@ref(fig:stratifiedRSE), and Table \@ref(tab:designcomparison)) relate to particular scenarios, and the conclusions we draw may be reversed in other scenarios.
+
+<!-- Design flowchart? -->

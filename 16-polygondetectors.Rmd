@@ -118,7 +118,7 @@ discrete.fit <- secr.fit(discreteCH, buffer = 200, detectfn =
 predict(discrete.fit)
 ```
 
-Post-hoc discretization is also considered by @Russell2012 and @Milleret2018.
+Post-hoc discretization is also considered by @Russell2012, @Milleret2018 and @Paterson2019.
 
 ## Transect search {#transectsearch}
 

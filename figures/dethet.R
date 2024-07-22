@@ -1,6 +1,6 @@
 # Detector-level heterogeneity cf Royle et al. 2013
 
-RSFsims3 <- readRDS(file = 'D:/Density secr 4.6/knitr/secr-simulations/SARE/RSFsims3.RDS')
+RSFsims3 <- readRDS(file = 'data/RSFsims3.RDS')
 source (file = 'figures/setup.R')
 estD <- estimateSummary(RSFsims3, 'D')
 estL <- estimateSummary(RSFsims3, 'lambda0')

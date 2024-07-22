@@ -18,12 +18,15 @@ NZ for general language: modelled not modeled, centres not centers etc.
 BUT
 -ize for discretize, maximize, parameterize
 
+DO NOT
+======
+
+Include [] except has defined link
+
 Decisions outstanding
 =====================
 
 Repository for code, to relieve some of text?
-
-Refer cloglog link? cf...
 
 Refer Shiny apps at GitHub, OU Stats server
 
@@ -34,8 +37,34 @@ Chapters to finish
 
 11 Performance (assumptions, robustness, GoF, speed)
 
+    What to draw from robustness?
+    Standardize simulations
+
 12 Study design
 
+13 Simulations
+
 Also:
+=====
 
 Ensure all appendices are adequately indicated in main text
+
+Points to include
+=================
+
+
+Unsupported claims
+==================
+
+Role of spatial recaptures
+  Not precisely defined: is a,b,b one vs b,a,b two?
+  Temporal sequence not modelled/recorded
+  e.g. @Augustine2020
+  
+Bayes superior to MLE
+  Palmero et al. 2023
+  
+Bugs
+====
+
+readRDS() doesn't like closuresims.RDS downloaded from DENSITY/simulations

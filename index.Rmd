@@ -47,9 +47,9 @@ SECR allows density to be modelled as a function of continuous spatial covariate
 
 The literature of SECR has grown beyond the attention spans and time budgets of most users. Major SECR publications are @e04, @be08, @rcsg14, @bf16, @srl19 and @Turek2021.
 
-This book provides both a gentle introduction, in the spirit of [@cw], and more in-depth treatment of important topics. It is software oriented and therefore unashamedly partial and incomplete. Much of the content is drawn from earlier papers and the documentation of R [@R-base] packages. Some topics are yet to be included (e.g., acoustic data) but documentation may be found on the [DENSITY](https://www.otago.ac.nz/density/SECRinR.html) website. Others such as partial identity models [@Augustine2018] have yet to be considered at all.
+This book provides both a gentle introduction, in the spirit of @cw, and more in-depth treatment of important topics. It is software oriented and therefore unashamedly partial and incomplete. Much of the content is drawn from earlier papers and the documentation of R [@R-base] packages. Some topics are yet to be included (e.g., acoustic data) but documentation may be found on the [DENSITY](https://www.otago.ac.nz/density/SECRinR.html) website. Others such as partial identity models [@Augustine2018] have yet to be considered at all.
 
-Parts II and IV are mostly independent of software. Other chapters lean heavily on the R package **secr**.
+Part I introduces SECR with a simple example. Part II establishes the necessary theory. Part III addresses the performance of SECR: Which assumptions really matter? and How should studies be designed? Part IV is a practical guide to SECR modelling. Parts II and III are mostly independent of software, whereas Part IV leans on the R package **secr**.
 
 ## Software {-}
 

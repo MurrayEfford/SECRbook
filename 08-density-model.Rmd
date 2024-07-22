@@ -385,50 +385,24 @@ See @Durbach2024 for further critique.
 
 In rare cases it is useful to model the relative density of tagged animals. This is the best that can be done with data for which the tagged sample was not collected in a way that allows the initial detections to be modelled spatially. One scenario involves acoustic telemetry or other automated detection for which the only animals at risk of detection are those previously marked (cf resighting data, in which unmarked animals are detected and counted, but not identified).
 
-The theory for relative density models was given [earlier](#relativedensity1). A spatial model for relative density is fitted in **secr** by setting `details = list(relativeD = TRUE)` in the call to `secr.fit` (**secr** $\ge$ 4.6.5). For example
+The theory for relative density models was given [earlier](#relativedensity1). A spatial model for relative density is fitted in **secr** by setting `details = list(relativeD = TRUE)` in the call to `secr.fit` (**secr** $\ge$ 4.6.8[^relativeDbug]). For example
 
-```{r relativeD, cache = TRUE, warning = FALSE, fig.width = 6, fig.height = 5, fig.cap = "Orongorongo Valley relative density"}
+[^relativeDbug]: earlier versions 4.6.5--4.6.7 contained a bug in the likelihood for relative density.
+
+(ref:OVrd1cap) Relative possum density: quadratic surface.
+
+```{r relativeD, cache = TRUE, warning = FALSE, fig.width = 6, fig.height = 5, fig.cap = "(ref:OVrd1cap)"}
 # relative density fit, assuming uniform probability of tagging
 fitrd1 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, 
-    trace = FALSE, model = D ~ s(DTR, k=3), details = 
+    trace = FALSE, model = D ~ x + y + x2 + y2 + xy, details = 
     list(relativeD = TRUE))
-plot(predictDsurface(fitrd1), title = 'Naive relative D')
+plot(predictDsurface(fitrd1), title = 'Relative D')
 plot(traps(OVpossumCH[[1]]), add = TRUE)
 ```
 
-This surface combines the population density and the probability that an animal was captured at least once, which varies spatially and is therefore confounded with relative population density. Densities are given relative to the intercept of the density model (assigned the arbitrary value 1.0). Absolute densities are not available because the model is fitted by 
-maximizing the likelihood conditional on $n$. The relative model has one fewer coefficients than the absolute density model.
+Densities are given relative to the intercept of the density model (assigned the arbitrary value 1.0). Absolute densities are not available because the model is fitted by maximizing the likelihood conditional on $n$. The relative density model has one fewer coefficients than the absolute density model.
 
-A better predictor of the relative density of tagged animals is an approximation to the probability of detection, computed as a mask covariate. We invert the covariate so that the intercept corresponds to the (approximate) maximum relative density.
-
-```{r relativeD2, cache = TRUE, warning = FALSE}
-# detection covariate using ballpark detection parameters
-covariates(ovmask)$pd <- 1-pdot(ovmask, traps(OVpossumCH[[1]]), 
-	   detectpar = list(g0 = 0.0974198, sigma = 27.6354961), 
-	   noccasions = 5)  
-# fit relative density model with new predictor...
-fitrd2 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, 
-    trace = FALSE, model = D ~ pd, details = 
-    list(relativeD = TRUE))
-# ...and with both predictors
-fitrd3 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, 
-    trace = FALSE, model = D ~ pd + s(DTR,k=3), 
-    details = list(relativeD = TRUE))
-```
-
-```{r relativeD3, fig.width = 6, fig.height = 5, out.width="95%", fig.cap = "Orongorongo Valley relative density of tagged possums"}
-# compare and plot
-AIC(fitrd1, fitrd2, fitrd3, criterion = 'AIC')[,-c(2,5,6)]
-plot(predictDsurface(fitrd3), title = 'Relative D, tagged')
-plot(traps(OVpossumCH[[1]]), add = TRUE)
-```
-
-<!-- An alternative is to feed the likelihood a pre-calculated probability of detection, coincidentally available as the mask covariate 'pd'.  -->
-<!-- ```{r relativeD4} -->
-<!-- fit4 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, trace = FALSE, -->
-<!--          model = D ~ DTR, details = list(externalpdot = 'pd')) -->
-<!-- coef(fit4) -->
-<!-- ``` -->
+The relative density in Fig. \@ref(fig:relativeD) matches the absolute density in Fig. \@ref(fig:OVsurface). This will not be the case if the relative density model is fitted to data from animals tagged elsewhere or on a subset of the area. Tagging then imposes differential spatial weighting that must be made explicit in the model to recover the correct pattern of density in relation to covariates.
 
 ## Appendix 1. User-provided model functions {#userfnappendix}
 
