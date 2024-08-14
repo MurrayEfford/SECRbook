@@ -18,10 +18,6 @@
 
 <!-- secr-simulations -->
 
-```{r simstart, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
-# startup code, including library(secr) etc.
-```
-
 Simulation has many uses in SECR; we focus particularly on
 
 * determining properties of estimators under breaches of assumptions (Chapter \@ref(Performance)), 
@@ -74,7 +70,9 @@ fit <- secr.fit(ch, buffer = 100, trace = FALSE)
 predict(fit)
 ```
 
-This is rather laborious and it's easy to slip up. We next outline the **secr** functions `sim.popn` and `sim.capthist` that conveniently wrap Steps 1 & 2, respectively, along with many extensions. A further level of wrapping is provided by package [**secrdesign**](#secrdesign) that manages simulation scenarios, their replicated execution (Steps 1--3), and the summarisation of results.
+This is rather laborious and it's easy to slip up. We next outline the **secr** functions `sim.popn` and `sim.capthist` that conveniently wrap Steps 1 & 2, respectively, along with many extensions. 
+
+A further level of wrapping is provided by package [**secrdesign**](#secrdesign) that manages simulation scenarios, their replicated execution (Steps 1--3), and the summarisation of results.
 
 ## Simulating AC distributions with `sim.popn`
 \index{Simulation!population}
@@ -150,6 +148,7 @@ cat ("rRMSE ", sqrt(mean((Dhat-trueD)^2)) / mean(Dhat), '\n')
 
 ## **secrdesign** {#secrdesign}
 \index{Simulation!model fitting}
+\index{R packages!secrdesign}
 
 The R package **secrdesign** takes care of a lot of the coding needed to specify, 
 execute and summarise SECR simulations. Full details are in its documentation, particularly 

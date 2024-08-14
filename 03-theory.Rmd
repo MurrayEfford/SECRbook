@@ -53,6 +53,7 @@ Parameters of the state model ($\phi$) and the detection model ($\theta$) are es
 
 ### Number of individuals {#Pr-n}
 \index{Poisson process (2-D)}
+\index{Activity centres}
 If AC follow an inhomogeneous Poisson process then $n$ has a Poisson distribution with parameter 
 \begin{equation}
 \lambda = \int_{R^2} D(\vec x; \phi) \, p_\cdot(\vec x;\theta) \, d\vec x, 
@@ -85,6 +86,8 @@ f(\vec x| \omega_i>0, \phi, \theta) = \frac{D(\vec x ; \phi) p_\cdot(\vec x ; \t
 [^integration]: Integration is commonly performed by summing over many small cells for a finite region near the detectors, as both $\mbox{Pr}(\omega_i)$ and $f(\vec x)$ decline to zero at greater distances. We state the model in terms of the real plane and defer discussion of the region of integration to Chapter \@ref(Habitat).
 
 ## Distance-dependent detection
+
+\index{Detection model!functions}
 
 The key idea of SECR is that the probability of detecting a particular animal at a particular detector on one occasion can be represented as a function of the distance between its AC and the detector. The function should decline effectively to zero at large distances. Distances are not observed directly, and we rely on functions of somewhat arbitrary shape. Fortunately, the estimates are not very sensitive to the choice. Detection functions are covered in detail in Chapter \@ref(Detection). Either probability $g(d)$ or hazard $\lambda(d)$ may be modelled as a function of distance. A halfnormal form is commonly used (e.g., $g(d) = g_0 \exp (-d^2/2/\sigma^2)$). The shapes of, e.g., halfnormal $g(d)$ and halfnormal $\lambda_0(d)$ are only subtly different, but $\lambda(d)$ is preferred because it lends itself to mathematical manipulation and occurs more widely in the literature (often with different notation).
 

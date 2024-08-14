@@ -1,10 +1,6 @@
 # Non-Euclidean distances {#Noneuclidean}
 \index{Non-euclidean distances}
 
-```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
-# startup code, including library(secr) etc.
-```
-
 <!-- More content in secr-noneuclidean.rmd -->
 
 <!-- ## Non-Euclidean distances -->
@@ -48,9 +44,9 @@ selectedlakes <- c(1730, 2513, 2514, 2769, 2686, 2749)
 plot(BLKS_BC[selectedlakes,], col="blue", add=T)
 text(1546000, 510000, "a.", xpd=T, col="black")
 
-CSmask2000 <- make.mask (CStraps, buffer = 30000, type = 
-    "trapbuffer", spacing = 2000, poly = BLKS_BC, poly.habitat = 
-     FALSE, keep.poly = FALSE)
+CSmask2000 <- make.mask (CStraps, buffer = 30000, 
+    type = "trapbuffer", spacing = 2000, poly = BLKS_BC, 
+    poly.habitat = FALSE, keep.poly = FALSE)
 plot(CStraps, gridl = FALSE, border = 30000, hidetr = TRUE)
 plot(CSmask2000, dots = FALSE, add = TRUE)
 plot(CStraps, add = TRUE); par(col="black", cex=1.8)
@@ -88,8 +84,9 @@ As an example, take the 1996 DNA survey of the grizzly bear population in the Ce
 
 We start with the hair snag locations `CStraps` and a SpatialPolygonsDataFrame object `BLKS_BC` representing the large lakes (Fig. \@ref(fig:nefig)a). Buffering 30 km around the detectors gives a naive mask (Fig. \@ref(fig:nefig)b); we use a 2-km pixel size and reject points centred in a lake. The shortest dry path from many points on the naive mask to the nearest detector is much longer than the straight line distance.
 ```{r static1, eval = TRUE, cache = TRUE}
-CSmask2000 <- make.mask (CStraps, buffer = 30000, type = "trapbuffer", 
-      spacing = 2000, poly = BLKS_BC, poly.habitat = F, keep.poly = F)
+CSmask2000 <- make.mask (CStraps, buffer = 30000, 
+    type = "trapbuffer", spacing = 2000, poly = BLKS_BC, 
+    poly.habitat = FALSE, keep.poly = FALSE)
 ```
 
 ```{r nefig, echo = FALSE, out.width = "95%", fig.cap = "(a) Central Selkirk grizzly bear hair snag locations, (b) Mask using naive 30-km buffer around hair snags, (c) Example map of dry-path distances from an arbitrary point, and (d) Efficient mask rejecting dry-path distances >30km."}
@@ -212,9 +209,9 @@ fn1a <- function (xy1, xy2, mask) {
   euc <- edist(xy1, xy2) 
   euc / sig
 }
-fit1a <- secr.fit(ovposs, mask = ovmask, detectfn = "HHN", trace = FALSE,
-                 details = list(userdist = fn1a), model = noneuc ~ x + y + x2 + y2 + xy,
-                 fixed = list(sigma = 1))
+fit1a <- secr.fit(ovposs, mask = ovmask, detectfn = "HHN", trace = 
+    FALSE, details = list(userdist = fn1a), model = noneuc ~ 
+        x + y + x2 + y2 + xy, fixed = list(sigma = 1))
 ```
 ```{r predictfit1a, eval = TRUE, cache = TRUE}
 predict(fit1a)
@@ -317,9 +314,9 @@ fn4 <- function (xy1, xy2, mask) {
   # costDistance
   costDistance(tr, as.matrix(xy1), as.matrix(xy2))
 }
-fit4 <- secr.fit(ovposs, mask = ovmask, detectfn = "HHN", trace = FALSE,
-                 details = list(userdist = fn4), fixed = list(sigma = 1),
-                 model = list(noneuc ~ 1, D ~ x + y + x2 + y2 + xy))
+fit4 <- secr.fit(ovposs, mask = ovmask, detectfn = "HHN", trace = 
+    FALSE, details = list(userdist = fn4), fixed = list(sigma = 1),
+    model = list(noneuc ~ 1, D ~ x + y + x2 + y2 + xy))
 ```
 ```{r predictfit4, eval = TRUE, cache = TRUE}
 predict(fit4)
@@ -389,8 +386,8 @@ What if we want non-Euclidean distances, but do not want to estimate noneuc? Thi
 
 Providing a suitable initial value for 'noneuc' can be a problem. The argument 'start' of `secr.fit` may be a named, and possibly incomplete, list of real parameter values, so a call such as this is valid:
 ```{r startexample, eval = TRUE, cache = TRUE, warning = FALSE}
-secr.fit (captdata, model = noneuc~1, details = list(userdist=fn2), trace = FALSE, 
-          start = list(noneuc = 25), fixed = list(sigma = 1))
+secr.fit (captdata, model = noneuc~1, details = list(userdist=fn2), 
+    trace = FALSE, start = list(noneuc = 25), fixed = list(sigma = 1))
 ```
 
 We have ignored the parameter $\lambda_0$. This is almost certainly a mistake, as large variation in $\sigma$ without compensatory or normalising variation in $\lambda_0$ is biologically implausible and can lead to improbable results [@em14, @e14].
@@ -409,9 +406,9 @@ load('d:/density communication/linear habitat/chris/connectivitySpace.RData')
 ```
 
 ```{r Chris1, message = FALSE, strip.white=TRUE}
-# use package secrlinear to create a discretised version of the network,
-# as a handy way to get distance to water 
-# loading this package also loads secr
+# use package secrlinear to create a discretised version of the 
+# network as a handy way to get distance to water 
+# loading secrlinear also loads secr
 library(secrlinear)
 library(gdistance)
 ```

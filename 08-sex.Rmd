@@ -1,9 +1,5 @@
 # Sex differences {#sex}
 
-```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
-# startup code, including library(secr) etc.
-```
-
 It is common for males and females to differ in their behaviour in relation to detectors. Sex is commonly recorded for trapped animals or those detected with automatic cameras, and hair samples used to identify individuals by their DNA can also reveal sex given suitable sex-specific markers. SECR models that allow for sex differences are therefore of particular interest.
 
 There are many ways to model sex differences in **secr**, and each of these has already been mentioned in a general context. Here we enumerate the possibilities and comment on their usefulness.

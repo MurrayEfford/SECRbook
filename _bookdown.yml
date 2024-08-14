@@ -1,4 +1,5 @@
 book_filename: "SECRbook"
+before_chapter_script: ["commoncode.R"]
 language:
   ui:
     chapter_name: "Chapter "

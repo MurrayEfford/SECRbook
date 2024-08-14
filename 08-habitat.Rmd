@@ -1,10 +1,8 @@
 # Habitat mask {#Habitat}
 
-A mask represents habitat in the vicinity of detectors that is potentially occupied by the species of interest. Understanding habitat masks and how to define and manipulate them is central to spatially explicit capture--recapture. This chapter summarises what users need to know about masks in **secr**. Early sections apply regardless of software. 
+\index{Habitat mask}
 
-```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
-# startup code, including library(secr) etc.
-```
+A mask represents habitat in the vicinity of detectors that is potentially occupied by the species of interest. Understanding habitat masks and how to define and manipulate them is central to spatially explicit capture--recapture. This chapter summarises what users need to know about masks in **secr**. Early sections apply regardless of software. 
 
 ## Background
 
@@ -22,7 +20,11 @@ In **secr** the habitat mask equates to the area of integration: the likelihood 
 
 ### MCMC and the Bayesian 'state space'
 
+\index{Habitat mask!vs state space}
+
 MCMC methods for spatial capture--recapture developed by Royle and coworkers [@rcsg14] take a slightly different tack. The activity centres are treated as a large number of unobserved (latent) variables. The MCMC algorithm 'samples' from the posterior distribution of location for each animal, whether detected or not. The term 'state space' is used for the set of permitted locations; usually this is a continuous (not discretized) rectangular region. 
+
+\index{Habitat mask!uses}
 
 ## What is a mask for? {#maskwhatfor}
 
@@ -93,6 +95,8 @@ cat("Number of rows in hollow mask =", nrow(fit2$mask), "\n")
 
 ## How wide should the buffer be?  {#bufferwidth}
 
+\index{Habitat mask!buffer width}
+
 The general answer is 'Wide enough that any bias in estimated densities is negligible'. Excessive truncation of the mask results in positive bias that depends on the sampling regime (detector layout and sampling duration) and the detection function, particularly its spatial scale and shape. 
 
 The penalty for using an over-wide buffer is that fitting will be slower for a given mask spacing. It is usually smart to accept this penalty rather than search for the narrowest acceptable buffer. We therefore avoid detailed investigation of mask truncation bias[^bias].
@@ -130,13 +134,13 @@ When the input is only a capthist object, the suggested buffer width relies on a
 
 Once a model has been fitted with a particular buffer width or mask, the estimated detection parameters may be used to check whether the buffer width is likely to have resulted in mask truncation bias. We highlight two of these:
 
-\index{Bias check, automatic}
+\index{Bias check!automatic}
 
 1. `secr.fit` automatically checks a mask generated from its 'buffer' argument (i.e. when the 'mask' argument is missing), using `bias.D` as in `suggest.buffer`. A warning is given when the predicted truncation bias exceeds a threshold. The threshold is controlled by the 'biasLimit' argument (default 0.01). To suppress the check set 'biasLimit = NA', or provide a pre-defined mask.
 
 The check is performed by a cunning custom algorithm in function `bias.D`. This uses one-dimensional numerical integration of a polar approximation to site-specific detection probability, coupled to a 3-part linear approximation for the length of contours of distance-to-nearest-detector. The check cannot be performed for some detector types, and the embedded integration can give rise to cryptic error messages.
 
-\index{Bias check, `esa.plot`}
+\index{Bias check!`esa.plot`}
 
 2. `esa.plot` provides a quick visualisation of the change in estimated density as buffer width changes. It is a handy 
 check on any fitted model, and may also be used with pilot parameter values. The name of the function derives from its reliance on calculation of the [effective sampling area](#esa) (esa or $a(\hat \theta)$).
@@ -166,6 +170,8 @@ If you intend to use a non-Euclidean distance metric then it makes sense to use 
 
 ## Grid cell size and the effects of discretization {#maskspacing}
 
+\index{Habitat mask!discretization}
+
 Using a set of discrete locations (mask points) to represent the locations of animals is numerically convenient, and by making grid cells small enough we can certainly eliminate any effect of discretization. However, reducing cell size increases the number of cells and slows down model fitting. Trials with varying cell size (mask spacing) provide reassurance that discretization has not distorted the analysis. 
 
 In this section we report results from trials with four very different datasets. Three of these are datasets from **secr** (Maryland ovenbirds, ovenCH; Waitarere possums, possumCH; Arizona horned lizards, hornedlizardCH) for which details are given in the **secr** documentation. A fourth dataset is from a 2003 black bear (*Ursus americanus*) study by Jared Laufenberg, Frank van Manen and Joe Clark in the Great Smoky Mountains of Tennessee using hair snares and DNA microsatellites. 
@@ -191,6 +197,8 @@ knitr::include_graphics('figures/maskesa.png')
 ```
 
 ## Excluding areas of non-habitat
+
+\index{Habitat mask!excluding non-habitat}
 
 Our focus so far has been on choosing a buffer width to set the outer boundary of a habitat mask, assuming that the actual boundary is arbitrary. We can call these 'masks of convenience' (Fig. \@ref(fig:masktypes) a); numerical accuracy and computation speed are the only constraints. At the other extreme, a mask may represent a natural island of habitat surrounded by non-habitat (Fig. \@ref(fig:masktypes) c). A geographical map, possibly in the form of an ESRI shapefile, is then sufficient to define the mask. Between these extremes there are may be a habitat mosaic including both some non-habitat near the detectors and some habitat further away, so neither the buffered mask of convenience nor the habitat island is a good match (Fig. \@ref(fig:masktypes) b). 
 
@@ -220,6 +228,8 @@ plot(traps(possumCH), detpar = list(pch = 16, cex = 0.8),
 The virtue of clipping non-habitat is that the estimate of density then relates to the area of habitat rather than the sum of habitat and non-habitat. For most uses habitat-based density would seem the more meaningful parameter.
 
 ## Mask covariates
+
+\index{Habitat mask!covariates}
 
 Masks may have a 'covariates' attribute that is a dataframe just like the 'covariates' attributes of traps and capthist objects. The data frame has one row for each row (point) on the mask, and one column for each covariate. Covariates may be categorical (factor-valued) or continuous[^footnote7a]. Mask covariates are used for modelling [density surfaces] (D), not for modelling detection parameters (g0, lambda0, sigma)[^footnote7b]. The dataframe may include unused covariates.
 
@@ -311,6 +321,8 @@ text (2697500, 6078700, 'd.', cex = 1.4)
 See Chapter \@ref(Density) for more on the use of mask covariates.
 
 ## Regional population size
+
+\index{Population size $N(A)$}
 
 Population density $D$ is the primary parameter in this implementation of spatially explicit capture--recapture (SECR). The number of individuals (population size $N(A)$) is treated as a derived parameter. The rationale for this is that population size is ill-defined in many classical sampling scenarios in continuous habitat (Figs. 7a,b). Population size is well-defined for a habitat island (Fig. \@ref(fig:masktypes) c). Population size may also be well-defined for a persistent swarm, colony, herd, pack or flock, although group living is incompatible with the usual SECR assumption of independence e.g. @Bischof2020.
 

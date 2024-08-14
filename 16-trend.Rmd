@@ -1,9 +1,5 @@
 # Trend revisited {#Trend}
 
-```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
-# startup code, including library(secr) etc.
-```
-
 This section describes methods specifically for population trend, defined as change in density between sessions and measured by the finite rate of increase $\lambda_t = D_{t+1} / D_t$. The flexible methods described here allow the direct estimation of $\lambda_t$, possibly including covariate effects. 
 
 ## 'Dlambda' parameterization

@@ -1,9 +1,5 @@
 # Area and transect search {#Areaandtransectsearches}
 
-```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
-# startup code, including library(secr) etc.
-```
-
 The 'polygon' detector type is used for count data from searches of one or more areas (polygons). Transect detectors are the linear equivalent of polygons; as the theory and implementation are very similar we mostly refer to polygon detectors and only briefly mention transects. The relevant theory is in Chapter \@ref(areasearches). The method may be used with individually identifiable cues (e.g., faeces) as well as for direct observations of individuals.
 
 

@@ -122,6 +122,8 @@ You may wonder why `secr.fit` is ambivalent regarding the link function: link fu
 
 ### Built-in variables
 
+\index{Habitat mask!covariates}
+
 `secr.fit` automatically recognises the spatial variables x, y, x2, y2 and xy if they appear in the formula for D. These refer to the x-coordinate, y-coordinate, x-coordinate^2^ etc. for each mask point, and will be constructed automatically as needed.
 
 The formula for D may also include the non-spatial variables g (group), session (categorical), and Session (continuous), defined as for modelling g0 and sigma in Chapter \@ref(Detection).
@@ -167,6 +169,8 @@ The built-in variables offer limited model possibilities:
 --->
 
 ### User-provided variables
+
+\index{habitat mask!covariates}
 
 More interesting models can be made with variables provided by the user. These are stored in a data frame as the 'covariates' attribute of a mask object. Covariates must be defined for every point on a mask.
 
@@ -216,6 +220,8 @@ plot(ovmask, covariate = "DTR", breaks = seq(0,500,50),
 ```
 
 ### Pre-computed resource selection functions
+
+\index{Density surface!resource selection function}
 
 A resource selection function (RSF) was defined by @bvns02 as "any model that yields values proportional to the probability of use of a resource unit". An RSF combines habitat information from multiple sources in a single variable. Typically the function is estimated from telemetry data on marked individuals, and primarily describes individual-level behaviour [3rd-order habitat selection of @j80]. 
 

@@ -1,9 +1,5 @@
 # Simple example {#Example}
-\index{Snowshoe hare}
-
-```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
-# startup code, including library(secr) etc.
-```
+\index{Snowshoe hare example}
 
 In this chapter we use the R package **secr** to fit an SECR model to the Alaskan snowshoe hare data of Burnham and Cushwa [@obwa78][^footnote3a].
 
@@ -159,7 +155,7 @@ par(mar = c(5,4,2,1))  # adjust white margins
 esa.plot(fit)
 abline(v = 250, lty = 2, col = 'red')
 ```
-\index{Bias check, `esa.plot`}
+\index{Bias check!`esa.plot`}
 
 ## Overall probability of detection
 

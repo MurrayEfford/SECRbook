@@ -28,7 +28,7 @@ This is a scalar *effective* area for which $\hat D = n / a(\hat \theta)$ is an 
 
 @em14 defined a 'single-detector sampling area' $a_0(\theta) = 2\pi \lambda_0 \sigma^2$ that is equal to \@ref(eq:esa) for an isolated detector with [detection functions](#detectfn) HHN or HEX. For $K$ isolated detectors $a(\theta) = Ka_0(\theta)$, but overlap of the 'catchment areas' of adjacent detectors leads to $a(\theta) < Ka_0(\theta)$. 
 
-CHECK Royal and Dorazio 2008 effective sampling area cited as excellent  'approaches for estimating effective sample area...' by Hooten et al. 2024 p4.
+<!-- CHECK Royal and Dorazio 2008 effective sampling area cited as excellent  'approaches for estimating effective sample area...' by Hooten et al. 2024 p4. -->
 
 ## Conditional estimation of $\theta$ {#conditional}
 \index{Conditional estimation}

@@ -1,10 +1,6 @@
 # Parameterizations
 \index{Parameterization}
 
-```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
-# startup code, including library(secr) etc.
-```
-
 At the heart of SECR there is usually a set of three primary model parameters: one for population density ($D$) and two for the detection function. The detection function is commonly parameterized in terms of its intercept (the probability $g_0$ or cumulative hazard $\lambda_0$ of detection for a detector at the centre of the home range) and a spatial scale parameter $\sigma$. Although this parameterization is simple and uncontroversial, it is not inevitable. Sometimes the
 biology leads us to expect a structural relationship between primary parameters. The relationship may be 'hard-wired' into the model by replacing a primary parameter with a function of other parameter(s). This often makes for a more parsimonious model, and model comparisons may be used to evaluate the hypothesized relationship. Here we outline some
 parameterization options in **secr**.

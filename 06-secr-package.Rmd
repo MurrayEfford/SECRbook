@@ -45,8 +45,7 @@ knitr::include_graphics('figures/schematic3.png')
 - Fitted secr models may be manipulated with the methods shown on the right. 
 
 ## Functions
-\index{R packages!secr}
-\index{Core functions}
+\index{R packages!secr!core functions}
 
 For details of how to use **secr** see the help pages and vignettes. 
 
@@ -70,8 +69,7 @@ Table: (\#tab:corefunctions)  Core functions of **secr**. S3 methods are marked 
 
 
 ## Detector types
-\index{R packages!secr}
-\index{Detectors}
+\index{R packages!secr!detectors}
 
 Detector type (Table \@ref(tab:basicdetectortypes)) is a character value, an attribute of the 'traps' object.
 

@@ -2,14 +2,11 @@
 
 # Concepts and terminology {#Basics}
 
-```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
-# startup code, including library(secr) etc.
-```
-
 This chapter briefly introduces the concepts and terminology of SECR. The following chapter provides a [simple example](#Example), and the [Theory] chapter provides technical details. 
 
 ## Spatial population
 
+\index{Activity centres}
 An animal population in SECR is a spatial point pattern. Each point 
 represents the location of an animal's activity centre, often abbreviated AC\index{Activity centre}[^footnote2a]. 
 Density is a property of the spatial point process of which the pattern is one instance. The usual process model is a 2-dimensional Poisson process\index{Poisson process (2-D)} (Fig.  \@ref(fig:example)). By fitting the SECR model we can estimate the intensity surface of the Poisson process that we represent by $D(\vec x)$ where $\vec x$ stands for the x,y coordinates of a point. Density may be *homogeneous* (a flat surface, with constant $D(\vec x)$) or *inhomogeneous* (varying). 
@@ -41,6 +38,7 @@ Table: (\#tab:deviceexamples) Examples of SECR sampling
 ## Sampling across time
 
 For most vertebrates we expect population turnover (births, deaths, AC movement) on time scales of months or years. Population change is often negligible over shorter spans (days or weeks, depending on the species). Sampling over shorter spans can therefore treat the size and composition of a population as fixed: it is said to be 'closed'. This greatly simplifies analysis. We assume closure except when considering [breaches of assumptions](#popnclosed).
+\index{Population closure}
 
 A 'session' in **secr** parlance is a set of samples from a closed population on one or more 'occasions' (possibly consecutive days). 
 
@@ -68,6 +66,8 @@ In order to estimate density from a sample we must account for the sampling proc
 knitr::include_graphics('figures/example.png')
 ```
 
+\index{Detection model!functions}
+
 The true locations of animals are not known, and therefore the distance-dependent probabilities cannot be calculated directly. The model is fitted by marginalising (integrating over) animal locations.
 
 Distance-dependent detection is represented by a 'detection function' with intercept, scale, and possibly shape, determined by parameters to be estimated[^footnote2b].
@@ -85,6 +85,8 @@ legend (140, 0.7, legend = c('halfnormal','exponential','hazard rate'), lty=rep(
 [^footnote2b]: All detection functions have intercept ($g_0$, $\lambda_0$) and scale ($\sigma$) parameters; some such as the hazard rate function have a further parameter that controls some aspect of shape.
 
 ### Habitat
+
+\index{Habitat mask}
 
 SECR models include a map of potential habitat near the detectors. Here 'potential' means 'feasible locations for the AC of detected animals'. Excluded are sites that are known *a priori* to be unoccupied, and sites that are so distant that an animal centred there has negligible chance of detection. 
 

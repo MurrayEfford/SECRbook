@@ -25,10 +25,6 @@ capture--recapture'. We use 'SECR' as a general label for these data and models.
 
 SECR data are observations of marked animals at known locations. The observations are from a well-defined regime of spatial sampling, most commonly with traps, cameras, or some other type of passive detector. SECR models are used to estimate parameters of the animal population, particularly the population density. 
 
-```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
-# startup code, including library(secr) etc.
-```
-
 (ref:Tip) `r colorize("Tip:","green")`
 
 (ref:Exceptions) `r colorize("Exceptions:","orange")`
@@ -70,9 +66,13 @@ Bayesian approaches using Markov chain Monte Carlo (MCMC) methods are a flexible
  
 Add-on packages extend the capability of **secr**:
 
+\index{R packages!secrlinear}
 * **secrlinear** enables the estimation of linear density (e.g., animals per km) for populations in linear habitats such as stream networks ([secrlinear-vignette.pdf](https://CRAN.R-project.org/package=secrlinear/vignettes/secrlinear-vignette.pdf)). 
+\index{R packages!ipsecr}
 * **ipsecr** fits models by simulation and inverse prediction, rather than maximum likelihood; this is a rigorous way to analyse data from single-catch traps ([ipsecr-vignette.pdf](https://CRAN.R-project.org/package=ipsecr/vignettes/ipsecr-vignette.pdf)). 
+\index{R packages!secrdesign}
 * **secrdesign** enables the assessment of alternative study designs by  Monte Carlo simulation; scenarios may differ in detector (trap) layout, sampling intensity, and other characteristics ([secrdesign-vignette.pdf](https://www.otago.ac.nz/density/pdfs/secrdesign-vignette.pdf])).
+\index{R packages!openCR}
 * **openCR**  [@es20] implements open-population models. 
 
 These packages are available from the [CRAN](https://cran.r-project.org/) repository -- just open R and type `install.packages('xxxx')` where xxxx is the package name.

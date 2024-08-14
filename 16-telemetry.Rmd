@@ -1,9 +1,5 @@
 # Telemetry {#Telemetry}
 
-```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
-# startup code, including library(secr) etc.
-```
-
 In some capture--recapture studies there are additional data from radiotelemetry of a sample of animals. Telemetry fixes provide an unbiased sample of animal activity, unlike detections at fixed points (traps, cameras or hair snares) or from searching circumscribed areas. Telemetry data therefore provide a direct estimate of the spatial scale of activity, which is represented in spatially explicit capture--recapture (SECR) by the parameter $\sigma$. Telemetry data also reduce uncertainty regarding the location of animals' centres relative to detectors, so detection histories of telemetered animals may improve estimates of other parameters.
 
 Previous examples are @sgpsmspo13, @whc18, @Linden2018. Combining data types has been considered generally by @Gopalaswamy2012, @Chandler2021, @Margenau2022 etc.

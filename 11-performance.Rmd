@@ -10,6 +10,8 @@ SECR has become popular for the benefits noted in the [Preface](#why). These do 
 
 ## Assumptions of SECR {#assumptions}
 
+\index{Assumptions}
+
 The SECR probability models of Chapter \@ref(Theory) that underlie the methods in this book incorporate certain assumptions. The validity and reliability of the methods therefore depends to an extent on how well the field data meet the assumptions. We list these before assessing their impact in practice - the topic of [Robustness](#robustness). 
 1. The population is closed (no animals die, emigrate or recruit during sampling)
 2. Individuals are identified without error
@@ -20,6 +22,8 @@ The SECR probability models of Chapter \@ref(Theory) that underlie the methods i
 Restrictive assumptions often may be relaxed under specific extensions to the SECR model, including the various 'submodels' of Chapter \@ref(Detection). We omit one further assumption: that the probability of detection declines to zero for AC at the edge of the habitat mask where the mask is naturally bounded. This is addressed in the analysis by correct choice of [detection function](#detectfn) and the [buffer or mask](#Habitat) as covered in Chapter \@ref(Habitat).
 
 ## Robustness {#robustness}
+
+\index{Robustness}
 
 For assumptions that cannot be met by better design or customized modelling, we rely on the robustness of SECR estimators. A robust estimator gives estimates that are close to the truth even when assumptions have been breached. 
 <!-- We saw this with the choice of [detection function](#detectfn) in Chapter \@ref(Detection) Fig. \@ref(fig:choicedfparmplot).  -->
@@ -37,6 +41,7 @@ Robustness to the failure of a specific assumption is easily assessed by simulat
 Our base scenario uses a square grid of 64 binary proximity detectors operated for 10 occasions; detector spacing is $2\sigma$ for a hazard half-normal detection function with $\lambda_0 = 0.1$. A population with density $0.5\sigma^{-2}$ is distributed uniformly at random in a region extending $4\sigma$ beyond the detectors. We report relative bias of density estimates and detection parameters under a null model -- one with uniform density and no additional effects on detection -- except where stated. The range |RB| < 10% is shaded on the graphs, and bars indicate 95\% confidence limits, although these are often obscured by the plotted points. Off-scale values are flagged with an asterisk (*).
 
 ### Assumption 1: Population closed  {#popnclosed .unnumbered}
+\index{Assumptions!population closure}
 
 Births, deaths and dispersal result in population turnover. Over an extended period of turnover, more animals may be observed than were present at any instant, and density estimates will be biased upwards. Studies using automatic cameras often accumulate data slowly over many days, and study duration has triggered much angst e.g., @Harihar2017. How much does a little turnover matter? Conversely, How long can the sampling period be? Results for non-spatial models [@Kendall1999] cannot be transferred. We distinguish turnover due to movement of AC from *in situ* births and deaths, and consider it separately under [Assumption 3d](#hrstationary).
 
@@ -79,6 +84,8 @@ text (200, 0.25, expression(paste(phi,~ '=' ~ 0.5)), cex = 1.1, xpd = TRUE)
 This overlaps with Assumption 3 and is covered [later](#hrstationary).
 
 ### Assumption 2: Identification without error {#noIDerror .unnumbered}
+
+\index{Assumptions!identification}
 
 We can generally assume accurate identification on recapture of animals trapped and marked by conventional methods such as numbered leg bands or ear tags. However, identification may be unreliable with modern methods for passive sampling using natural marks (DNA from hair or faecal samples, and images from motion-sensitive cameras). This is a major limitation.
 
@@ -150,9 +157,13 @@ The spatial component of spatially explicit capture--recapture rests on quite sp
 
 #### Assumption 3a: AC locations independent {#ACindependent .unnumbered}
 
+\index{Assumptions!AC independent}
+
 The SECR model of @be08 treats activity centres as distributed independently according to an inhomogeneous Poisson point process. This allows local density to vary according to habitat or other persistent effects. It does not allow for the spacing behaviour of the animals themselves, which can lead either to contagion or repulsion of AC. Several authors have ventured into this area [@Russell2012; @Reich2014; @LopezBao2018; @Bischof2020; @McLaughlin2020; @Efford2024]. The general conclusion is that point estimates of density from SECR are robust to clustering of AC due to social behaviour, but the implied overdispersion leads to confidence limits that are too narrow. Non-independence of detection is a distinct issue ([Assumption 4](#independentindividuals)).
 
 #### Assumption 3b: Home ranges circular {#hrcircular .unnumbered}
+
+\index{Assumptions!circular home range}
 
 Concerns were expressed by @Ivan2013 about the effect of non-circularity of home ranges. Simulations by @Efford2019 generally defused those concerns, with an important caveat: estimates of the spatial scale of detection $\sigma$ and density are unreliable when elongated home ranges are sampled with a linear array of detectors. Simulations of randomly oriented elliptical ranges with an aspect ratio of 3:1 resulted in bias on the order of +13\% for a linear array [@Efford2019: Fig. 2]. Bias is extreme [often >50\%, @Efford2019: Table 1] when home ranges are both elongated and have a common alignment to the array (Fig. \@ref(fig:alignment)c). Modelling the anisotropy can be beneficial when the alignment is predictable from the landscape [@Murphy2016; @Efford2019] and the array is not exactly linear, but the method is not universally applicable.
 
@@ -163,6 +174,8 @@ knitr::include_graphics("figures/alignment.png")
 ```
 
 #### Assumption 3c: Locations independent within home range {#independentwithinhr .unnumbered}
+
+\index{Assumptions!uncorrelated locations}
 
 It is entirely likely that animals use their home ranges in a nested fashion (i.e., activity during any sub-interval localised in part of the range) or that some AC move during sampling. This may be viewed as a subset of Assumption 6 because if AC are not fixed during sampling then successive locations of an individual will be autocorrelated.
 
@@ -266,6 +279,8 @@ Fig. \@ref(fig:OUfigure) confirms the robustness of SECR null-model density esti
 
 #### Assumption 3d. Home ranges stationary {#hrstationary .unnumbered}
 
+\index{Assumptions!AC stationary}
+
 Robustness of SECR to movement of home ranges (dispersal) was demonstrated by @Royle2015. [@Harihar2017] expressed a further concern that movement over a long sampling duration would breaches Assumption 1 (closure). 
 
 We simulated detections over 100 'days' during which each AC underwent a random walk governed by a Gaussian kernel with scale $\sigma_m$. Details are given [elsewhere].
@@ -295,6 +310,8 @@ legend(0, 1.1, legend=leg, pch=c(21,21,24), pt.bg = c(yob5[3],'white','white'), 
 ```
 
 ### Assumption 4: Probability of detection constant {-}
+
+\index{Assumptions!homogeneous detection}
 
 @obwa78 classified non-spatial capture--recapture models according to three possible sources of variation in detection probability: time (t -- sampling occasion), behaviour (b -- learned response to capture) and heterogeneity (h -- persistent individual differences). Models may accommodate any one of these sources (t, b, h) or their combinations (tb, th, bh, tbh). Space adds other sources of variation -- most simply, detection probability may also vary between detectors (d) -- and more complex potential interactions. 
 
@@ -458,15 +475,15 @@ Large bias can arise when the sample is assumed to come from a detector array la
 
 Further complexity is possible. @Stevenson2021 suggested modelling a latent Gaussian random field for each individual and showed how the parameters of the GRF could be estimated, assuming these to be shared across individuals. It is unclear how the latent GRF should be interpreted biologically. Activity is not normalised, so the combination of detection function and latent GRF does not describe a utilisation distribution.
 
-IN PROGRESS:
+<!-- IN PROGRESS: -->
 
-Correlated variation in density and detection is a headache. @McLellan2023 simulated covariation with density.
+<!-- Correlated variation in density and detection is a headache. @McLellan2023 simulated covariation with density. -->
 
-The phenomenon causes bias in density estimates from single-catch traps...
+<!-- The phenomenon causes bias in density estimates from single-catch traps... -->
 
-@Marrotte2022 heterogeneity vs non-euclidean distance
+<!-- @Marrotte2022 heterogeneity vs non-euclidean distance -->
 
-cf @Moqanaki2021
+<!-- cf @Moqanaki2021 -->
 <!-- "Highly-autocorrelated spatial heterogeneity in detection probability (Moran’s I = 0.85–0.96), -->
 <!-- modulated by the magnitude of the unmodeled heterogeneity, can lead to pronounced negative bias -->
 <!-- (up to 65%, or about 44-fold decrease compared to the reference scenario), reduction in precision (249% or 2.5-fold) and coverage probability of the 95% credible intervals associated with abundance estimates to 0. Conversely, at low levels of spatial autocorrelation (median Moran’s I = 0), even severe unmodeled -->
@@ -477,6 +494,8 @@ cf @Moqanaki2021
 <!-- claim spatial covariance analogous to temporal covariance (i.e. learned or behavioural effects) in non-spatial capture--recapture. -->
 
 ### Assumption 5: Independence {#independence .unnumbered}
+
+\index{Assumptions!individuals independent}
 
 #### 5a. Individuals are detected independently {#independentindividuals .unnumbered}
 
@@ -544,7 +563,8 @@ Simulation is only part of the answer: we also need to know the real-life magnit
 
 <!-- cf historical advice on multiple methods for non-spatial capture-recapture to overcome individual heterogeneity; @lc24 -->
 
-(desirability of crossover recaptures)
+<!-- (desirability of crossover recaptures) -->
+
 [simulations]: https://github.com/MurrayEfford/secr-simulations
 [elsewhere]: https://github.com/MurrayEfford/secr-simulations
 <!-- [Github]: https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/MID/secr-simulations-MID.html -->
