@@ -2,15 +2,13 @@
 
 # Likelihood {#Theory}
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-
-The chapters in Part II provide background mostly for reference. They aim to be independent of any particular implementation of SECR, although some cross-references to **secr** creep in. The notation and terminology originated with @be08, extensions from @ebb09, @e11 and elsewhere. 
+Part II provides background on the theory of SECR that is mostly for reference. These chapters aim to be independent of any particular implementation, although some cross-references to **secr** creep in. The notation and terminology originated in @be08, with extensions from @ebb09, @e11 and elsewhere. 
 
 ## Notation
 \index{Notation}
 
 | Category | Symbol |  Meaning           |
-|:---|:---|:----------------------------|
+|:---|:----|:----------------------------|
 | General ||
 || AC         | activity centre |
 || $\vec x$   | point $(x,y)$ in the plane |
@@ -21,7 +19,7 @@ The chapters in Part II provide background mostly for reference. They aim to be 
 || $\omega_i$ | spatial detection history of the $i$-th animal |
 || $\Omega$   | set of all detection histories $\omega_i, i = 1..n$ |
 | Parameters  ||
-|| $D(\vec x; \phi)$[^footnote4a] | intensity surface of AC Poisson point process at $\vec x$ |
+|| $D(\vec x; \phi)$[^footnote4a] | intensity at $\vec x$ of AC Poisson point process  |
 || $\phi$     | parameter vector for AC point process (scalar density if surface flat) |
 || $\theta$   | vector of detection parameters (minimally $(g_0, \sigma)$ or $(\lambda_0,\sigma)$)|
 || $g_0$      | intercept of distance-probability-of-detection function |   
