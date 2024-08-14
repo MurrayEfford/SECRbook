@@ -63,7 +63,7 @@ Table: (\#tab:corefunctions)  Core functions of **secr**. S3 methods are marked 
 | [`predict`]*	       | compute 'real' parameters for arbitrary levels of predictor variables |
 | [`predictDsurface`] | evaluate density surface at each point of a mask |
 | [`read.capthist`]   | input captures and trap layout from Density format, one call |
-|	[`region.N`]*       | compute expected and realised population size in specified region |
+| [`region.N`]*       | compute expected and realised population size in specified region |
 | [`secr.fit`]        | maximum likelihood fit; result is a fitted 'secr' object | 
 | [`summary`]*        | summarise capthist, traps, mask, or fitted model |
 | [`traps`]           | extract or replace traps object in capthist |
