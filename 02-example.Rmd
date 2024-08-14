@@ -5,7 +5,7 @@
 # startup code, including library(secr) etc.
 ```
 
-We use the Alaskan snowshoe hare data of Burnham and Cushwa [@obwa78][^footnote3a].
+In this chapter we use the R package **secr** to fit an SECR model to the Alaskan snowshoe hare data of Burnham and Cushwa [@obwa78][^footnote3a].
 
 [^footnote3a]: This is a shortened version of the tutorial in [secr-tutorial.pdf].
 
