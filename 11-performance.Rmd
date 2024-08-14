@@ -6,72 +6,11 @@ This chapter covers topics related to the performance of SECR methods when the m
 
 ## How reliable is SECR?
 
-SECR has become popular for the benefits noted in the [Preface](#why). These do not ensure that results are trustworthy. That is a more subtle question depending on the adequacy of particular field data and the performance of the methods when assumptions are not strictly met. We briefly review some published assessments of SECR before embarking on a systematic treatment of the assumptions.
-
-Critical evaluations of SECR have relied overwhelmingly on simulation. Empirical validation has seldom been attempted [@ewcb05; @Gerber2015; @DespresEinspenner2017].
-
-<!-- Not everyone has fallen over themselves to endorse the robustness of SECR density estimates. Criterion of 'plausibility' (!) Right to reject implausible estimates. -->
-
-### Empirical tests
-
-@ewcb05 live-trapped brushtail possums (*Trichosurus vulpecula*) on a coastal peninsula and compared the results to an attempted total removal by leg-hold trapping and acute poisoning. SECR estimates of density from five hollow grids were consistent with the removal estimate. 
-
-@DespresEinspenner2017 chimpanzees empirical
-
-These results are reassuring. However, the evidence from empirical validation studies is inevitably weak, owing to the wide confidence intervals and methodological constraints. For example, in the brushtail possum study, the live-trapping data were compromised by tag loss (documented in **secr**), the landward boundary of the removal area was somewhat arbitrary, and sampling may have been inadequate to represent density variation across the peninsula.
-
-One major evaluation has questioned the reliability of SECR. @Gerber2015 re-analysed live-trapping data for rodents of several taxa confined to pens in New Mexico. The main study was followed by intensive removal using live traps to obtain the absolute density of each taxon. SECR provided instances of both over- and under-estimation, and its performance was "sometimes underwhelming". The authors focussed on heterogeneity of detection and asymmetry of home ranges as possible explanations, although direct evidence is lacking. Traps did not sample the full extent of each pen; perfect correspondence with the (pen-wide) exhaustive trapping is not to be expected if there is random or systematic variation in density of the peripheral zone. Density models with a distance-to-wall covariate provided better fit than a null model in 50\% of cases (unpubl. results).
-
-@Fleming2021 cover boards : empirically evaluate the effects of design configuration on inference
-
-@Twining2022 comparison live tr, camera, DNA
-
-### Simulation (consider in later sections)
-
-@ebb09 
-
-@Theng2022 general robustness; mechanistic simulation
-
-@McLellan2023: not robust when variation in density and detection are correlated; see also @Paterson2019; @Howe2022.
-
-@Royle2013; @e14 RSF
-
-@Royle2015 transience
-
-@Paterson2019 mountain lions simulation
-
-@Dey2022 misspecified detection function
-
-@Dey2023 SARE
-
-@Dupont2023 ungulates simulation vs chamois (*Rupicapra rupicapra*), red deer (*Cervus elaphus*), and wild boar (*Sus scrofa*) wrt group
-
-@Smith2020 simulation scenarios "caution against the casual repurposing of non-spatial capture-recapture data using SCR"
-
-@Efford2019 noncircular
-
-@eb19 fast design
-
-@ef13
-
-@em14
-
-@Efford2024
-
-@Bischof2020
-
-@c19
-
-@Distiller2015
-
-@Dupont2019
-
-Pitfalls of selective sampling? 
+SECR has become popular for the benefits noted in the [Preface](#why). These do not ensure that results are trustworthy. That is a more subtle question depending on the adequacy of particular field data and the performance of the methods when assumptions are not strictly met. Here we list the assumptions and assess each by simulation. See Chapter \@ref(Validation) for empirical evidence.
 
 ## Assumptions of SECR {#assumptions}
 
 The SECR probability models of Chapter \@ref(Theory) that underlie the methods in this book incorporate certain assumptions. The validity and reliability of the methods therefore depends to an extent on how well the field data meet the assumptions. We list these before assessing their impact in practice - the topic of [Robustness](#robustness). 
-
 1. The population is closed (no animals die, emigrate or recruit during sampling)
 2. Individuals are identified without error
 3. The probability of detecting an animal at a particular detector declines radially from a fixed point, its activity centre AC 
@@ -179,7 +118,7 @@ source("figures/MID4afigure.R")
 
 DNA samples degrade over time exposed to heat, moisture and UV light [e.g., @Woodruff2014]. This results in both a lower rate of successful DNA amplification, and increasing frequency of genotyping errors. A key genotyping error is the phenomenon of allelic dropout, when one allele at a heterozygous locus fails to amplify, resulting in an apparent homozygote. False alleles may also appear in the laboratory and give the appearance of a distinct genotype and individual. Either error is likely to result in a spurious 'ghost' individual that is never recaptured. 
 
-We measure the ghost effect by the probability a detection results in a 'ghost' individual. Unlike shadow effects, ghost individuals have almost no effect on $\hat \sigma$. However, they do cause negative bias in $\hat \lambda_0$ and a reciprocal (positive) bias in density estimates $\hat D$ (Fig. \@ref(fig:MID2figure)). 
+We measure the ghost effect by the probability a detection results in a 'ghost' individual. Unlike shadow effects, ghost individuals have almost no effect on $\hat \sigma$. However, they do cause negative bias in $\hat \lambda_0$ and a reciprocal (positive) bias in density estimates $\hat D$ (Fig. \@ref(fig:MID2figure)). More extensive simulations were published by @Kodi2024.
 
 (ref:MID2cap) Relative bias of parameter estimates from null model when genotyping errors generate 'ghost' individuals.
 
@@ -199,7 +138,8 @@ source("figures/MID2figure.R")
 
 Given sufficient diversity at the chosen loci, culling of inadequate samples and intensive checking of doubtful genotypes is generally sufficient to ensure adequate data [@Paetkau2003]. @Lukacs2005 raised doubts about possible biases due to sample culling, but these have not been confirmed. Elimination of poor samples for which identity is uncertain tends to reduce sample size and precision. Precision can be improved by judiciously including samples with fewer loci in models that allow for uncertain identity [@Augustine2020].
 
-Unknown identity can be handled in SECR-like probability models. These generally lack power unless supplemented by detections of known individuals or telemetry (references in Appendix \@ref(Telemetry)).
+Unknown identity can be handled in SECR-like probability models. These generally lack power unless supplemented by detections of known individuals or telemetry (references in Appendix \@ref(Telemetry)). Bias due to ghost individuals may be reduced in some circumstances by modelling only detection histories with more than one detection [@Kodi2024].
+
 <!-- [@cr13; @rcr15; @vanDamBates2024; @Ruprecht2021] -->
 
 ### Assumption 3: Detection declines radially from randomly located, fixed AC {-}
