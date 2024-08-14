@@ -10,11 +10,11 @@ This chapter briefly introduces the concepts and terminology of SECR. The follow
 
 ## Spatial population
 
-An animal population in SECR is a spatial point pattern, where each point 
-represents the location of an animal's activity centre\index{Activity centre}[^footnote2a]. 
-Density is a property of the spatial point process of which the pattern is one instance. The usual process model is a 2-dimensional Poisson process\index{Poisson process (2-D)} (Fig.  \@ref(fig:example)). By fitting the SECR model we can estimate the intensity surface of the Poisson process that we represent by $D(\vec x)$ where $\vec x$ stands for the x,y coordinates of a point. The surface may be *homogeneous* (flat, with constant $D(\vec x)$) or *inhomogeneous* (varying). 
+An animal population in SECR is a spatial point pattern. Each point 
+represents the location of an animal's activity centre, often abbreviated AC\index{Activity centre}[^footnote2a]. 
+Density is a property of the spatial point process of which the pattern is one instance. The usual process model is a 2-dimensional Poisson process\index{Poisson process (2-D)} (Fig.  \@ref(fig:example)). By fitting the SECR model we can estimate the intensity surface of the Poisson process that we represent by $D(\vec x)$ where $\vec x$ stands for the x,y coordinates of a point. Density may be *homogeneous* (a flat surface, with constant $D(\vec x)$) or *inhomogeneous* (varying). 
 
-The intensity surface is better represented as depending on a vector of parameters $\phi$, hence $D(\vec x; \phi)$. For constant density $\phi$ is a single value.
+An inhomogeneous intensity surface is considered to depend on a vector of parameters $\phi$, hence $D(\vec x; \phi)$. For constant density $\phi$ is a single value.
 
 [^footnote2a]: 'Activity centre' is often used in preference to 'home range centre' because it appears more neutral: 'home range' implies a particular pattern of behaviour and spatial familiarity. In reality, SECR relies on the very pattern of behaviour (persistent use) that distinguishes a home range, so it is safe to use the terms interchangeably in this context.
 
@@ -22,7 +22,7 @@ The intensity surface is better represented as depending on a vector of paramete
 \index{Detectors}
 SECR uses sampling devices placed at known locations. We need to recognise individuals whenever they are detected. The accumulated detections of each known individual are its 'detection history'. Device types differ according to how they affect animal behaviour and the data they collect; each type corresponds to a probability model, as covered later.
 
-Detection may be entirely passive and non-invasive when individuals carry unique natural marks (e.g., pelage patterns) or their DNA can be sampled. We call such devices "proximity detectors". Proximity detectors may be split according to the distribution of the number of detections per animal per occasion (binary, Poisson, or binomial), with binary the most common.
+Detection may be entirely passive and non-invasive if individuals carry unique natural marks (e.g., pelage patterns) or their DNA can be sampled. Devices that record detections passively are "proximity detectors". Proximity detectors may be split according to the distribution of the number of detections per animal per occasion (binary, Poisson, or binomial), with binary being the most common.
 
 Animals without natural marks must be marked individually on their first detection. This implies capture and handling. Only devices that hold an animal until it is released can truly be called 'traps'. The probability model for trapping must allow for exclusivity: an animal can be found at only one trap on any occasion, and some traps ('single-catch' traps) also exclude other individuals after the first.
 
@@ -40,9 +40,11 @@ Table: (\#tab:deviceexamples) Examples of SECR sampling
 
 ## Sampling across time
 
-For most vertebrates we expect population turnover (births, deaths, AC movement) to happen on time scales of months or years. A population sampled over shorter intervals (days or weeks) can therefore be considered closed. A 'session' in **secr** parlance is a set of samples from a closed population on one or more 'occasions' (possibly consecutive days). 
+For most vertebrates we expect population turnover (births, deaths, AC movement) on time scales of months or years. Population change is often negligible over shorter spans (days or weeks, depending on the species). Sampling over shorter spans can therefore treat the size and composition of a population as fixed: it is said to be 'closed'. This greatly simplifies analysis. We assume closure except when considering [breaches of assumptions](#popnclosed).
 
-Distinguishing occasions within a session is necessary for trap-type detectors (there would otherwise be no recaptures). For proximity-type detectors the role of 'occasions' is more subtle, and data may usually be collapsed to animal- and detector-specific counts. The spatial pattern of binary detections alone is sufficient to obtain an estimate of density [@edb09].
+A 'session' in **secr** parlance is a set of samples from a closed population on one or more 'occasions' (possibly consecutive days). 
+
+For trap-type detectors there must be multiple occasions within a session to obtain recaptures. For proximity-type detectors the role of 'occasions' is more subtle, and data may usually be collapsed to animal- and detector-specific counts. The spatial pattern of binary detections alone is sufficient to obtain an estimate of density [@edb09].
 
 It is not necessary for all detectors to be used on all occasions. Incomplete usage [and other variation in effort per occasion -- @ebm13] may be recorded for each detector as an attribute of 'traps' objects.
 
