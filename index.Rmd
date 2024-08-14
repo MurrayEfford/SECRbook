@@ -1,5 +1,7 @@
 --- 
-title: "Spatially Explicit Capture--Recapture"
+title: |
+  ![](images/Nickinsnow2.png){width=2in}  
+  Spatially Explicit Capture--Recapture
 author: "Murray Efford"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -9,7 +11,11 @@ bibliography: [d:/jabref/SECR.bib]
 biblio-style: apalike
 link-citations: yes
 description: "A handbook of SECR methods."
+github-repo: MurrayEfford/SECRbook
+cover-image: "images/Nickinsnow2.png"
 ---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
 
 # Preface {-}
 
@@ -17,8 +23,7 @@ This book is about the methods for describing animal populations that have
 come to be called 'spatially explicit capture--recapture' or simply 'spatial 
 capture--recapture'. We use 'SECR' as a general label for these data and models.
 
-SECR data are observations of marked animals at known locations. The observations are from a well-defined regime of spatial sampling, most commonly with traps, cameras, or some other type of passive detector. SECR models are used to estimate parameters of the animal population, 
-particularly the population density. 
+SECR data are observations of marked animals at known locations. The observations are from a well-defined regime of spatial sampling, most commonly with traps, cameras, or some other type of passive detector. SECR models are used to estimate parameters of the animal population, particularly the population density. 
 
 ```{r, file = "commoncode.R", echo = FALSE, warning=FALSE, message = FALSE, results="hide"}
 # startup code, including library(secr) etc.
@@ -73,6 +78,10 @@ Add-on packages extend the capability of **secr**:
 These packages are available from the [CRAN](https://cran.r-project.org/) repository -- just open R and type `install.packages('xxxx')` where xxxx is the package name.
 
 Other R packages for SECR may be found outside CRAN. A distinct maximum-likelihood implementation by @srl19 is available on GitHub (https://github.com/jaroyle/oSCR). Open-population packages by Ben Augustine and Richard Glennie are also available on GitHub (https://github.com/benaug/OpenPopSCR; https://github.com/r-glennie/openpopscr). 
+
+## Recommended citation
+
+(to be added)
 
 ## Acknowledgments  {-}
 
