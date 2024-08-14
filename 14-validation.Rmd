@@ -1,8 +1,8 @@
 # (PART\*) Validation and applications {-} 
 
-# Empirical validation
+# Empirical validation {#Validation}
 
-There have been few attempts to validate empirically the estimates of density from SECR. Validation requires a reliable estimate of the true density, usually from counting the individuals with activity centres in a known area. Enumeration may be by intensive observation of conspicuous diurnal species or by sampling until no new individual is found. Delineation of the relevant area is straightforward when the habitat is a natural island or fenced area. 
+There have been few attempts to validate empirically the estimates of density from SECR: critical evaluations have relied overwhelmingly on simulation. Empirical validation requires a reliable estimate of the true density, usually from counting the individuals with activity centres in a known area. Enumeration may be by intensive observation of conspicuous diurnal species or by sampling until no new individual is found. Delineation of the relevant area is straightforward when the habitat is a natural island or fenced area. 
 
 We describe four attempts at empirical validation, each with a different approach. The evidence from empirical validation studies tends to be weak, owing to the wide confidence intervals and methodological constraints. None is entirely convincing, as we shall see.
 
@@ -43,3 +43,44 @@ source("figures/sevilleta.R")
 <!-- @Fleming2021 cover boards : empirically evaluate the effects of design configuration on inference -->
 
 <!-- @Twining2022 comparison live tr, camera, DNA -->
+
+
+<!-- ## Simulations -->
+
+<!-- @ebb09  -->
+
+<!-- @Theng2022 general robustness; mechanistic simulation -->
+
+<!-- @McLellan2023: not robust when variation in density and detection are correlated; see also @Paterson2019; @Howe2022. -->
+
+<!-- @Royle2013; @e14 RSF -->
+
+<!-- @Royle2015 transience -->
+
+<!-- @Paterson2019 mountain lions simulation -->
+
+<!-- @Dey2022 misspecified detection function -->
+
+<!-- @Dey2023 SARE -->
+
+<!-- @Dupont2023 ungulates simulation vs chamois (*Rupicapra rupicapra*), red deer (*Cervus elaphus*), and wild boar (*Sus scrofa*) wrt group -->
+
+<!-- @Smith2020 simulation scenarios "caution against the casual repurposing of non-spatial capture-recapture data using SCR" -->
+
+<!-- @Efford2019 noncircular -->
+
+<!-- @eb19 fast design -->
+
+<!-- @ef13 -->
+
+<!-- @em14 -->
+
+<!-- @Efford2024 -->
+
+<!-- @Bischof2020 -->
+
+<!-- @c19 -->
+
+<!-- @Distiller2015 -->
+
+<!-- @Dupont2019 -->
