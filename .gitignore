@@ -1,8 +1,17 @@
 .Rproj.user
 .Rhistory
 .RData
-_book
+_book/*.html
+_book/*.txt
+_book/figures
+_book/images
+_book/libs
+_book/*.json
+_book/SECRbook_files
+_book/*.css
+_book/*.tex
 extra
+scrbook data
 _bookdown_files
 SECRbook_cache/**
 SECRbook_files/**
@@ -10,4 +19,4 @@ SECRbook.log
 SECRbook.Rmd
 rsconnect
 ^.*\.Rproj$
-^to do.txt$
+todo.txt
