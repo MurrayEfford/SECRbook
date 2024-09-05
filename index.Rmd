@@ -79,7 +79,7 @@ These packages are available from the [CRAN](https://cran.r-project.org/) reposi
 
 Other R packages for SECR may be found outside CRAN. A distinct maximum-likelihood implementation by @srl19 is available on GitHub (https://github.com/jaroyle/oSCR). Open-population packages by Ben Augustine and Richard Glennie are also available on GitHub (https://github.com/benaug/OpenPopSCR; https://github.com/r-glennie/openpopscr). 
 
-## Recommended citation
+## Recommended citation {-}
 
 (to be added)
 
