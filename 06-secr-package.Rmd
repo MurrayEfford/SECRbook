@@ -157,28 +157,6 @@ By default, each 'real' parameter is assumed to be constant over time, space and
 
 [^anyfit]: This applies even with a full-likelihood fit.
 
-### `details` -- miscellaneous arguments, mostly minor {#details}
-\index{secr.fit!details}
-
-Many minor and infrequently used arguments are grouped as 'details'. See [this link] for a list. We mention only the most important here: others appear in later chapters.
-
-#### Distribution of $n$ 
-\index{secr.fit!distribution}
-\index{Population size $N(A)$!fixed}
-
-This argument switches between two possibilities for the distribution of $n$: 'poisson' (the default) or 'binomial'. Binomial $n$ conditions on fixed $N(A)$ where $A$ is the area of the habitat mask. This corresponds to point process with a fixed number of activity centres inside an arbitrary boundary. Estimates of density conditional on $N(A)$ have lower variance, but this is usually an artifact of the conditioning.
-
-#### Fast proximity
-\index{secr.fit!fastproximity}
-
-Binary and count data collected over several occasions may be collapsed to a single occasion, given certain conditions. Collapsed data lead to the same estimates (e.g., @edb09) with a considerable saving in execution time. Data from binary proximity detectors are modelled as binomial with size equal to the number of occasions. The requirement is that no information is lost that is relevant to the model. This really depends on the model: collapsed data are inadequate for time-dependent models, including those with behavioural responses (Chapter \@ref(Detection)).
-
-By default, data are automatically collapsed to speed up processing when the model allows. This is inconvenient if you wish to use AIC to compare a variety of models. The problem is solved by setting 'details = list(fastproximity = FALSE)' for all models. Fitting will be slow.
-
-#### Fixing coefficients
-
-The 'details' component 'fixedbeta' may be used to fix certain coefficients while allowing others to vary.
-
 ### `method` -- maximization algorithm
 
 \index{secr.fit!method}
@@ -195,6 +173,40 @@ Numerical maximization has some implications for the user. Computation may be sl
 \index{R packages!RcppParallel}
 
 On processors with multiple cores it is possible to speed up computation by using cores in parallel. In **secr** this happens automatically in `secr.fit` and a few other functions using the multi-threading paradigm of **RcppParallel** [@R-RcppParallel]. The number of threads may be set directly with the 'ncores' argument or with the separate function `setNumThreads`. Either way, the number of threads is stored in the environment variable RCPP_PARALLEL_NUM_THREADS.
+
+### `details` -- miscellaneous arguments {#details}
+\index{secr.fit!details}
+
+Many minor or infrequently used arguments are grouped as 'details'. We mention only the most important ones here:
+
+* distribution
+* fastproximity
+* fixedbeta
+* LLonly
+
+See the `details` help page for a full list and description.
+
+#### Distribution of $n$ 
+\index{secr.fit!distribution}
+\index{Population size $N(A)$!fixed}
+
+This details argument switches between two possibilities for the distribution of $n$: 'poisson' (the default) or 'binomial'. Binomial $n$ conditions on fixed $N(A)$ where $A$ is the area of the habitat mask. This corresponds to point process with a fixed number of activity centres inside an arbitrary boundary. Estimates of density conditional on $N(A)$ have lower variance, but this is usually an artifact of the conditioning.
+
+#### Fast proximity
+\index{secr.fit!fastproximity}
+
+Binary and count data collected over several occasions may be collapsed to a single occasion, given certain conditions. Collapsed data lead to the same estimates (e.g., @edb09) with a considerable saving in execution time. Data from binary proximity detectors are modelled as binomial with size equal to the number of occasions. The requirement is that no information is lost that is relevant to the model. This really depends on the model: collapsed data are inadequate for time-dependent models, including those with behavioural responses (Chapter \@ref(Detection)).
+
+By default, data are automatically collapsed to speed up processing when the model allows. This is inconvenient if you wish to use AIC to compare a variety of models. The problem is solved by setting 'details = list(fastproximity = FALSE)' for all models. Fitting will be slow.
+
+#### Fixing coefficients
+
+The 'fixed' argument of `secr.fit` has the effect of fixing one or more 'real' parameters.
+The 'details' component 'fixedbeta' provides control at a finer level: it may be used to fix certain coefficients while allowing others to vary. It is a vector of values, one for each coefficient *in the order they appear in the model*. Coefficients that are not fixed appear as NA. Check the order by applying `coef` to a fitted model, or by starting to fit a model with `trace = TRUE`. 
+
+#### Single likelihood evaluation
+
+Setting LLonly = TRUE returns a single evaluation of the likelihood at the parameter values specified in `start`.
 
 [secr-overview.pdf]: https://www.otago.ac.nz/density/pdfs/secr-overview.pdf
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
