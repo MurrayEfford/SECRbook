@@ -127,10 +127,10 @@ chart <- DiagrammeR::grViz("digraph {
 
 chartsvg <- charToRaw(DiagrammeRsvg::export_svg(chart))
 rsvg::rsvg_png(chartsvg, "figures/chart.png")
-rsvg::rsvg_pdf(chartsvg, "figures/chart.pdf")  
+# rsvg::rsvg_pdf(chartsvg, "figures/chart.pdf")  
 ```
 
-```{r chart, echo = FALSE, out.width='95%', include = TRUE, fig.cap="Decision chart for including sex in detection model. 'sexcov' is a character value naming a 2-level character or factor individual covariate"}
+```{r chart, echo = FALSE, out.width='95%', include = TRUE, fig.cap="Decision chart for including sex in detection model. `sexcov' is a character value naming a 2-level character or factor individual covariate"}
 # after some trial and error with out.width units etc.
 knitr::include_graphics("figures/chart.png")
 ```
@@ -156,7 +156,7 @@ We note
 
 * Only hybrid mixtures can cope with missing values.
 * The implementation of groups is less comprehensive and may not be available for extensions in the Appendices.
-* Options should not be mixed for comparing AIC.
+* Options should not be mixed for comparing model fit by AIC.
 
 Sex differences in home-range size (and hence $\sigma$) may be mitigated by compensatory variation in $g_0$ or $\lambda_0$ [@em14] (see also [Mitigating factors](#mitigation) in Chapter \@ref(individual-heterogeneity)).
 
