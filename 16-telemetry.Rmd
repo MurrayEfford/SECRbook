@@ -469,7 +469,7 @@ Table: (\#tab:telemetrynonfunctions) General functions  not ready for telemetry.
 | `sim.secr` | parametric bootstrap fitted model|
 | `simulate` | simulate from fitted model |
 | `secr.test` | another parametric boostrap |
-| `fx.total` | |
-| `fxi.contour` | |
+| `fxTotal` | |
+| `fxiContour` | |
 
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf

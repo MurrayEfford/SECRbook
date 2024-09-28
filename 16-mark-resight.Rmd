@@ -311,7 +311,7 @@ The implementation of spatially explicit mark--resight models is still somewhat 
 
 * data may span multiple sessions ([multi-session](#Multisession) capthist objects can contain mark--resight data)
 * mark--resight may be augmented with telemetry data (`addTelemetry`), but joint telemetry models have not been tested and should be used with care
-* fxi.contour() and related functions (probability density plots of centres of detected animals)
+* fxiContour() and related functions (probability density plots of centres of detected animals)
 * finite mixture (h2) models are allowed for detection parameters, including `pID`
 * modelAverage() and collate() 
 * linear habitat masks are allowed (as in the package **secrlinear**)

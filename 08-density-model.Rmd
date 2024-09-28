@@ -348,10 +348,10 @@ Do you really want to model density on the log scale? If not, change the link.
 
 The surfaces we have fitted involve inhomogeneous Poisson models for the distribution of animal home range centres. The models have parameters that determine the relationship of expected density to location or to habitat covariates. 
 
-Another type of plot is sometimes presented and described as a 'density surface' -- the summed posterior distribution of estimated range centres from a Bayesian fit of a homogeneous Poisson model. A directly analogous plot may be obtained from the **secr** function `fx.total` (see also @be08 Section 4.3). The contours associated with the home range centre of each detected individual essentially represent 2-D confidence intervals for its home range centre, given the fitted observation model. Summing these gives a summed probability density surface for the centres of the observed individuals ('D.fx'), and to this we can add an equivalent scaled probability density surface for the individuals that escaped detection ('D.nc'). Both components are reported by `fx.total`, along with their sum ('D.sum') which we plot here for the flat possum model: 
+Another type of plot is sometimes presented and described as a 'density surface' -- the summed posterior distribution of estimated range centres from a Bayesian fit of a homogeneous Poisson model. A directly analogous plot may be obtained from the **secr** function `fxTotal` (see also @be08 Section 4.3). The contours associated with the home range centre of each detected individual essentially represent 2-D confidence intervals for its home range centre, given the fitted observation model. Summing these gives a summed probability density surface for the centres of the observed individuals ('D.fx'), and to this we can add an equivalent scaled probability density surface for the individuals that escaped detection ('D.nc'). Both components are reported by `fx.total`, along with their sum ('D.sum') which we plot here for the flat possum model: 
 
 ```{r OVfxsurface, cache = TRUE}
-fxsurface <- fx.total(fits$null)
+fxsurface <- fxTotal(fits$null)
 ```
 
 ```{r OVfxsurfaceplt, echo=TRUE, eval = TRUE, cache = TRUE, fig.width = 6, fig.height = 5, out.width="95%", fig.cap = "Total fx surface"}
@@ -374,7 +374,7 @@ The plot concerns only one realisation from the underlying Poisson model. It vis
 The plots are also prone to artefacts. In some examples we see concentric clustering of estimated centres around the trapping grids, apparently 'repelled' from the traps themselves (e.g., plot below for a null model of the Waitarere 'possumCH' dataset in **secr**). This phenomenon appears to relate to lack of model fit (unpubl. results). 
 
 ```{r fxsurfacew, cache = TRUE}
-fxsurfaceW <- fx.total(possum.model.0)
+fxsurfaceW <- fxTotal(possum.model.0)
 ```
 
 ```{r fxsurfaceWplt, eval = TRUE, fig.width = 6, fig.height = 5, out.width="95%", fig.cap = "Waitarere possum fx surface"}

@@ -130,13 +130,13 @@ This applies to the following functions and arguments:
 
 | **secr** function |  Argument | 
 |--------|--------|
-| buffer.contour  | poly |
+| bufferContour  | poly |
 | deleteMaskPoints | poly |
-| esa.plot  | poly |
+| esaPlot  | poly |
 | make.mask | poly | 
 | make.systematic  | region | 
 | mask.check | poly | 
-| pdot.contour  | poly | 
+| pdotContour  | poly | 
 | PG  | poly | 
 | pointsInPolygon | poly\* | 
 | region.N  | region\* | 

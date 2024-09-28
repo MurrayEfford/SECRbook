@@ -144,18 +144,18 @@ plot(fit, limits = TRUE)
 
 Choosing a buffer width is a common stumbling block. We used `buffer = 250` without any explanation. Here it is. As far as we know, the snowshoe hare traps were surrounded by suitable habitat. We limit our attention to the area immediately around the traps by specifying a habitat buffer. The `buffer` argument is a short-cut for defining the potential habitat (area of integration); the alternative is to provide a habitat mask in the `mask` argument. Buffers and habitat masks are covered at length in Chapter \@ref(Habitat).
 
-Buffer width is not critical as long as it is wide enough that animals at the edge have effectively zero chance of appearing in our sample, so that increasing the buffer has negligible effect on estimates. For half-normal detection (the default) a buffer of $4\sigma$ is usually enough[^footnote3f]. We check the present model with the function `esa.plot`. The estimated density[^footnote3g] has easily reached a plateau at the chosen buffer width (dashed red line):
+Buffer width is not critical as long as it is wide enough that animals at the edge have effectively zero chance of appearing in our sample, so that increasing the buffer has negligible effect on estimates. For half-normal detection (the default) a buffer of $4\sigma$ is usually enough[^footnote3f]. We check the present model with the function `esaPlot`. The estimated density[^footnote3g] has easily reached a plateau at the chosen buffer width (dashed red line):
 
 [^footnote3f]: This is not just the tail probability of a normal deviate; think about how the probability of an individual being detected at least once changes with (i) the duration of sampling (ii) the density of detector array.
 
 [^footnote3g]: These are Horvitz-Thompson-like estimates of density obtained by dividing the observed number of individuals $n$ by effective sampling areas (Borchers and Efford 2008) computed as the cumulative sum over mask cells ordered by distance from the traps. The algorithm treats the detection parameters as known and fixed.
 
-```{r esaplot, fig.width = 4.5, fig.height = 4, fig.align = "center", fig.cap = "Post hoc evaluation of buffer width using `esa.plot()` "}
+```{r esaplot, fig.width = 4.5, fig.height = 4, fig.align = "center", fig.cap = "Post hoc evaluation of buffer width using `esaPlot()` "}
 par(mar = c(5,4,2,1))  # adjust white margins
-esa.plot(fit)
+esaPlot(fit)
 abline(v = 250, lty = 2, col = 'red')
 ```
-\index{Bias check!`esa.plot`}
+\index{Bias check!`esaPlot`}
 
 ## Overall probability of detection
 
@@ -171,7 +171,7 @@ par(mar = c(1,1,1,5))  # adjust white margin
 plot(mask300, cov = 'pd', dots = FALSE, border = 1, inset = 0.1, 
      title = 'p.(x)')
 plot(tr, add = TRUE)   # over plot trap locations
-pdot.contour(tr, nx = 128, detectfn = 'HN', detectpar = dp, 
+pdotContour(tr, nx = 128, detectfn = 'HN', detectpar = dp, 
      noccasions = 6, add = TRUE)
 plotMaskEdge(make.mask(tr, 250, type = 'trapbuffer'), add = TRUE, 
      col = 'white')

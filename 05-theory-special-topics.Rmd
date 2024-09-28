@@ -177,7 +177,7 @@ f(\vec x | \omega_i; \hat \phi, \hat \theta) = \frac{ \mbox{Pr} (\omega_i | \vec
 {\int_{R^2} \mbox{Pr}(\omega_i | \vec x; \hat \theta) D(\vec x ; \hat \phi) \, d \vec x}.
 (\#eq:fxi)
 \end{equation}
-This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See `fxi.secr` and related functions in **secr**. For known $\theta$ and known $\phi$ (unless $D(\vec x; \phi)$ uniform) the modal location of the AC for animal $i$ may be estimated by maximizing $\mbox{Pr} (\omega_i | \vec x; \theta)D(\vec x; \phi)$ with respect to $\vec x$. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.
+This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See `fxi` and related functions in **secr**. For known $\theta$ and known $\phi$ (unless $D(\vec x; \phi)$ uniform) the modal location of the AC for animal $i$ may be estimated by maximizing $\mbox{Pr} (\omega_i | \vec x; \theta)D(\vec x; \phi)$ with respect to $\vec x$. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.
 
 ## Telemetry {#telemetrylikelihood}
 

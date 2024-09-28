@@ -45,13 +45,13 @@ webnull <- list.secr.fit(webCH[1], constant = list(mask=mask, verify=FALSE, trac
 
 par(mfrow=c(1,2), mar = c(2,2,2,2))
 plot(mask, dots = FALSE)
-cont <- pdot.contour(traps, border = 55, nx = 128, detectfn = 0, detectpar = detectpar(gridnull[[1]]), 
+cont <- pdotContour(traps, border = 55, nx = 128, detectfn = 0, detectpar = detectpar(gridnull[[1]]), 
                      noccasions = 5, levels = c(0.1,0.25,0.5,0.75), add = TRUE, col = 'white')
 plot(traps, add = TRUE)
 text(-130,130,'a.', cex = 1.1)
 
 plot(mask, dots = FALSE)
-contw <- pdot.contour(webtraps, border = 5, nx = 128, detectfn = 0, detectpar = detectpar(webnull[[1]]), 
+contw <- pdotContour(webtraps, border = 5, nx = 128, detectfn = 0, detectpar = detectpar(webnull[[1]]), 
                       noccasions = 5, levels = c(0.1,0.25,0.5,0.75), add = TRUE, col = 'white')
 plot(webtraps,add = TRUE)
 text(-130,130,'b.', cex = 1.1)

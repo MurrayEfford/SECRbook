@@ -140,9 +140,9 @@ Once a model has been fitted with a particular buffer width or mask, the estimat
 
 The check is performed by a cunning custom algorithm in function `bias.D`. This uses one-dimensional numerical integration of a polar approximation to site-specific detection probability, coupled to a 3-part linear approximation for the length of contours of distance-to-nearest-detector. The check cannot be performed for some detector types, and the embedded integration can give rise to cryptic error messages.
 
-\index{Bias check!`esa.plot`}
+\index{Bias check!`esaPlot`}
 
-2. `esa.plot` provides a quick visualisation of the change in estimated density as buffer width changes. It is a handy 
+2. `esaPlot` provides a quick visualisation of the change in estimated density as buffer width changes. It is a handy 
 check on any fitted model, and may also be used with pilot parameter values. The name of the function derives from its reliance on calculation of the [effective sampling area](#esa) (esa or $a(\hat \theta)$).
 
 ```{r habitatfit3, cache = TRUE, warning = FALSE}
@@ -150,13 +150,13 @@ fit <- secr.fit(captdata, buffer = 100, trace = FALSE)
 ```
 ```{r habitatesaplot, fig.height = 3.5, fig.width = 3.5, fig.align = "center", fig.cap="Effect of varying buffer width on estimated density (y-axis). Vertical line indicates rule-of-thumb buffer width"}
 par(pty = "s", mar = c(4,4,2,2), mgp = c(2.5,0.8,0), las = 1)
-esa.plot(fit, ylim = c(0,10))
+esaPlot(fit, ylim = c(0,10))
 abline(v = 4 * 25.6, col = "red", lty = 2)
 ```
 
 The esa plot supports the prediction that increasing buffer width beyond the rule-of-thumb value has no discernable effect on the estimated density (Fig. \@ref(fig:habitatesaplot)).
 
-The function `mask.check` examines the effect of buffer width and mask spacing (cell size) by computing the likelihood or re-fitting an entire model. The function generates either the log likelihood or the estimated density for each cell in a matrix where rows correspond to different buffer widths and columns correspond to different mask spacings. The function is limited to single-session models and is slow compared to `esa.plot`. See `?mask.check` for more.
+The function `mask.check` examines the effect of buffer width and mask spacing (cell size) by computing the likelihood or re-fitting an entire model. The function generates either the log likelihood or the estimated density for each cell in a matrix where rows correspond to different buffer widths and columns correspond to different mask spacings. The function is limited to single-session models and is slow compared to `esaPlot`. See `?mask.check` for more.
 
 Note also that `suggest.buffer` may be used retrospectively (with a fitted model as input), and
 ```{r suggestbuffer2, cache = TRUE, fig.capt=""}
@@ -190,7 +190,7 @@ The results in Fig. \@ref(fig:maskspacing) suggest that, for a uniform density m
 
 The default spacing in `secr.fit` and `make.mask` is determined by dividing the x-dimension of the buffered area by 64. The resulting mask typically has about 4000 points, which is overkill. Substantial improvements in speed can be obtained with coarser masks, obtained by reducing 'nx' or 'spacing' arguments of `make.mask`.
 
-For completeness, we revisit the question of buffer width using the `esa.plot` function with each of the four test datasets (Fig. \@ref(fig:bufferbias)).
+For completeness, we revisit the question of buffer width using the `esaPlot` function with each of the four test datasets (Fig. \@ref(fig:bufferbias)).
 
 ```{r bufferbias, eval = TRUE, echo = FALSE, out.width = '75%', fig.cap="Approximate relative bias due to mask truncation for four datasets. Bias is relative to the estimate using the widest buffer"}
 knitr::include_graphics('figures/maskesa.png')
