@@ -4,7 +4,9 @@
 
 There have been few attempts to validate empirically the estimates of density from SECR: critical evaluations have relied overwhelmingly on simulation. Empirical validation requires a reliable estimate of the true density, usually from counting the individuals with activity centres in a known area. Enumeration may be by intensive observation of conspicuous diurnal species or by sampling until no new individual is found. Delineation of the relevant area is straightforward when the habitat is a natural island or fenced area. 
 
-We describe four attempts at empirical validation, each with a different approach. The evidence from empirical validation studies tends to be weak, owing to the wide confidence intervals and methodological constraints. None is entirely convincing, as we shall see.
+We describe four attempts at empirical validation of density estimates, each with a different approach. The evidence from empirical validation studies tends to be weak, owing to the wide confidence intervals and methodological constraints. None is entirely convincing, as we shall see. 
+
+A fifth study suggests that detection parameters may vary between detector layouts. This limits the value of simulation to compare study designs.
 
 ## Brushtail possums in New Zealand
 
@@ -40,7 +42,11 @@ source("figures/sevilleta.R")
 
 @DespresEinspenner2017 applied SECR to automatic camera records of chimpanzees *Pan troglodytes* in a single group territory. Group size (27 excluding unweaned young) was known from intensive observations. The authors reported a good match between the estimated and known populations. However, $\sigma$ could not be estimated because individuals moved throughout the territory and cameras were not placed outside it (see also [Study design](#arraysize)). This required them to treat the extent of the population as known (confined within the independently determined territory boundary). The resulting analysis is in essence non-spatial, and does not validate SECR.
 
-<!-- @Fleming2021 cover boards : empirically evaluate the effects of design configuration on inference -->
+## Red-backed salamanders in Massachusetts
+
+@Fleming2021 examined the effect of varying configurations of cover boards used to survey red-backed salamanders (*Plethodon cinereus*). Cover boards are artificial refuges placed on the ground. Data on salamanders found under cover boards are analysed as if they were multi-catch traps. The authors' concern was that SECR estimates of salamander density might depend on the layout and interfere with comparisons and aggregation of data across studies. Estimates of detection parameters (half-normal intercept $g_0$ and spatial scale $\sigma$) were sensitive to the extent and spacing of cover board arrays, whereas density estimates were mostly robust. Salamanders appeared more mobile (larger $\hat \sigma$) when cover boards were further apart. @Fleming2021 suggested salamanders might move directly to the next cover board even if it was further away.  
+
+<!-- Bad choice of detectfn? Behavioural model? -->
 
 <!-- @Twining2022 comparison live tr, camera, DNA -->
 
