@@ -174,7 +174,7 @@ If you intend to use a non-Euclidean distance metric then it makes sense to use 
 
 Using a set of discrete locations (mask points) to represent the locations of animals is numerically convenient, and by making grid cells small enough we can certainly eliminate any effect of discretization. However, reducing cell size increases the number of cells and slows down model fitting. Trials with varying cell size (mask spacing) provide reassurance that discretization has not distorted the analysis. 
 
-In this section we report results from trials with four very different datasets. Three of these are datasets from **secr** (Maryland ovenbirds, ovenCH; Waitarere possums, possumCH; Arizona horned lizards, hornedlizardCH) for which details are given in the **secr** documentation. A fourth dataset is from a 2003 black bear (*Ursus americanus*) study by Jared Laufenberg, Frank van Manen and Joe Clark in the Great Smoky Mountains of Tennessee using hair snares and DNA microsatellites. 
+In this section we report results from trials with four very different datasets for which details are given in the **secr** documentation: Maryland ovenbirds (ovenCH), Waitarere possums (possumCH), Arizona horned lizards (hornedlizardCH) and Tennessee black bears (blackbearCH). These studies used respectively mist nets, cage trapping, area search and DNA identification of hairs from barbed wire snares. 
 
 The reference scale was $\sigma$ estimated earlier by fitting a half-normal detection model. In each case masks were constructed with constant buffer width $4\sigma$ and different spacings in the range $0.2\sigma$ to $3\sigma$. This resulted in widely varying numbers of mask points (Fig. \@ref(fig:maskpoints)).
 
@@ -186,7 +186,7 @@ knitr::include_graphics('figures/maskrows.png')
 knitr::include_graphics('figures/maskspacing.png')
 ```
 
-The results in Fig. \@ref(fig:maskspacing) suggest that, for a uniform density model, any mask spacing less than $\sigma$ is adequate; $0.6\sigma$ provides a considerable safety margin. The effect of detector spacing on the relationship has not been examined. Referring back to Fig. \@ref(fig:maskpoints), a mask of about 1000 points will usually be adequate with a $4\sigma$ buffer.
+The results in Fig. \@ref(fig:maskspacing) suggest that, for a uniform density model, any mask spacing less than the half-normal $\sigma$ is adequate; $0.6\sigma$ provides a considerable safety margin. The effect of detector spacing on the relationship has not been examined. Referring back to Fig. \@ref(fig:maskpoints), a mask of about 1000 points will usually be adequate with a $4\sigma$ buffer.
 
 The default spacing in `secr.fit` and `make.mask` is determined by dividing the x-dimension of the buffered area by 64. The resulting mask typically has about 4000 points, which is overkill. Substantial improvements in speed can be obtained with coarser masks, obtained by reducing 'nx' or 'spacing' arguments of `make.mask`.
 
