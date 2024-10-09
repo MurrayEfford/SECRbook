@@ -129,7 +129,7 @@ oven0509bs <- secr.fit(ovenCH, model = list(D ~ session, sigmak ~ 1,
 The effect of including both sigmak and a0 in the model is to force parameterization (5). The model estimates a different density in each year, as in the previous model. Annual variation in $D$ drives annual variation in $\sigma$ through the relation $\sigma_y = k / \sqrt{D_y}$ where $k$ (= sigmak/100) is a parameter to be estimated and the subscript $y$ indicates year. The detection function 'HHN' is the hazard-half-normal which has parameters $\sigma$ and $\lambda_0$. We already have year-specific $\sigma_y$, and this drives annual variation in $\lambda_0$: $\lambda_{0y} = a_{0X} / (2 \pi \sigma_y^2)$ where $a_{0X}$ takes one of two different values depending on whether the bird in question has been caught previously in this net.
 
 This is a behaviourally plausible and fairly complex model, but it uses just 8 parameters compared to 16 in a full annual model with net shyness. It may be compared by AIC with the full model (the model structure differs but the data are the same). Although the new model has somewhat higher deviance (`r round(-2*logLik(oven0509bs),1)` vs `r round(-2*logLik(oven0509b),1)`), the reduced number of parameters results in a substantially lower AIC ($\Delta$AIC = 
-`r round(AIC(oven0509bs, oven0509b, criterion='AIC')$dAIC[2],1)`). 
+`r round(AIC(oven0509bs, oven0509b)$dAIC[2],1)`). 
 
 In Fig. \@ref(fig:paramfig3) we illustrate the results by overplotting the fitted curve for $\sigma_y$ on a scatter plot of the separate annual estimates from the full model. A longer run of years was analysed by @edjq16.
 

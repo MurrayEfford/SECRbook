@@ -50,7 +50,7 @@ The ovenbird population appeared to increase in density for two years and then d
  
  Model selection procedures apply as usual:
 ```{r msAIC}
- AIC(fit1, fit2, fit3, criterion = 'AIC')[,-c(2,5,6)]
+ AIC(fit1, fit2, fit3)[,-c(2,5,6)]
 ```
  
 Session covariates are readily applied. The covariate for the second session predicts $\lambda_1 = D_2/D_1$, for the third session predicts $\lambda_2 = D_3/D_2$, etc. The covariate for the first session is discarded (remember $D_1$ is constant). This all may be confusing, but you can work it out, and it saves extra coding.

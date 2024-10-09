@@ -393,7 +393,7 @@ predict(fitts, newdata = data.frame(ts = c("M","S")))
 ```
 
 ```{r step8a}
-AIC(fit0, fitts, criterion = "AIC")[,-c(2,6)]
+AIC(fit0, fitts)[,-c(2,6)]
 ```
 
 Better model fit was achieved by estimating different detection rates on marking and sighting occasions, and the estimates from the null model should be discarded. We now reveal that the data were simulated with D = 30 animals/ha, g0(marking) = 0.3, g0(sighting) = 0.1, sigma = 25 m and pID = 0.7: confidence intervals for the estimates from model 'fitts' comfortably cover these values.

@@ -57,11 +57,11 @@ fits <- list.secr.fit(model = models, constant = args, names =
 ```
 
 ```{r demoh22}
-AIC(fits, criterion = 'AIC', sort = FALSE)[, c(3,4,7,8)]
+AIC(fits, sort = FALSE)[, c(3,4,7,8)]
 collate(fits, realnames = "D")[1,,,]
 ```
 
-Although the best mixture model fits substantially better than the null model ($\Delta$AIC = `r round(AIC(fits, criterion = 'AIC')['null', 7],1)`), there is only a 
+Although the best mixture model fits substantially better than the null model ($\Delta$AIC = `r round(AIC(fits)['null', 7],1)`), there is only a 
 `r Dhat <- collate(fits, realnames = "D")[1,,1,]; round((max(Dhat)/min(Dhat)-1) * 100,1)`% difference in $\hat D$.
 More complex models are allowed. For example, one might, somewhat outlandishly, fit a learned response to capture that differs between two latent classes, while also allowing sigma to differ between classes:
 ```{r fitmodels2, eval = FALSE}
@@ -88,7 +88,7 @@ args <- list(capthist = morning, model = lambda0~h2, buffer = 25,
 starts <- list(NULL, c(7,2,1.3,2,0))
 fitsl <- list.secr.fit(start = starts, constant = args, 
     names = c('start1', 'start2'))
-AIC(fitsl, criterion = 'AIC')[,c(2,3,7,8)]
+AIC(fitsl)[,c(2,3,7,8)]
 round(collate(fitsl, realnames='pmix')[1,,,],3)
 ```
 

@@ -374,7 +374,7 @@ Now that we have a bunch of fitted models, let's see which does the best:
 ```{r neAIC, eval = TRUE, cache = TRUE}
 fits <- secrlist(fit0, fit0a, fit1, fit1a, fit2, fit3, fit4, 
                  fit4a, fit5)
-AIC(fits, criterion = "AIC")[, -c(2,4,6)]
+AIC(fits)[, -c(2,4,6)]
 ```
 ...the model with a quadratic or spline trend in density and density-dependent sigma.
 

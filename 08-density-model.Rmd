@@ -81,7 +81,7 @@ fits <- list.secr.fit(model = models, constant = args,
     names = names)
 ```
 ```{r OVAIC, eval = TRUE, strip.white = TRUE}
-AIC(fits, criterion = "AIC")[,-c(1,2,5,6)]
+AIC(fits)[,-c(1,2,5,6)]
 ```
 
 Each of the inhomogeneous models seems marginally better than the null model, but there is little to choose among them. 
@@ -259,7 +259,7 @@ RSfits <- list.secr.fit(model = models, constant = args,
 Now add these to the AIC table and plot the 'AIC-best' model:
 
 ```{r OVAIC2, strip.white=TRUE}
-AIC(c(fits, RSfits), criterion = "AIC")[,-c(1,2,5,6)]
+AIC(c(fits, RSfits))[,-c(1,2,5,6)]
 ```
 
 (ref:OVdtrcap) Possum density vs distance to river: regression spline *k* = 3.

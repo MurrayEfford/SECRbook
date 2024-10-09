@@ -21,7 +21,7 @@ where $K$ is the number of coefficients estimated and $\log[L(\hat \theta)]$ is 
 
 Here we assume the sample size $n$ is the number of individuals observed at least once (i.e. the number of rows in the capthist). This is somewhat arbitrary, and a reason to question the routine use of AIC~c~. The additional penalty has the effect of decreasing the attractiveness of models with many parameters. The effect is especially large when $n<2K$.
 
-AIC~c~ is widely used and it is the default criterion in **secr**. However, doubts about the correct sample size, and simulation results for generalised linear models cited by @Fletcher2019[p. 60], lead us to use AIC in this book.
+AIC~c~ is widely used. However, doubts about the correct sample size, and simulation results for generalised linear models cited by @Fletcher2019[p. 60], lead us to use AIC in this book.
 
 We emphasise 
 Need for strictly identical data

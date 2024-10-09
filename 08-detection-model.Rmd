@@ -79,7 +79,7 @@ legend(100,0.4, legend=df, lwd=2, col=cols)
 
 The relative fit of the HHR, HVP and HEX models is essentially the same, whereas HHN is distinctly worse:
 ```{r choicedfAIC, warning = FALSE, message = FALSE, collapse = TRUE}
-AIC(fits, criterion = 'AIC')[, c(2,3,4,7,8)]
+AIC(fits)[, c(2,3,4,7,8)]
 ```
 
 ```{r choicedfparmplot, echo = FALSE, fig.width = 6.3, fig.height = 2.6, fig.cap = "Parameter estimates from four detection functions (95% CI)."}
@@ -286,7 +286,7 @@ cmod <- paste0('g0~', c('1','b','B','bk','Bk'))
 fits <- list.secr.fit(model = sapply(cmod, formula), constant = 
     list(capthist = 'deermouse.WSG', trace = FALSE, buffer = 80), 
     names = cmod)
-AIC(fits, criterion = 'AIC', sort = FALSE)[c(3:5,7,8)]
+AIC(fits, sort = FALSE)[c(3:5,7,8)]
 ```
 
 All response models are preferred to the null model, but the differences among them are marked: the evidence supports a persistent local response (bk). The density estimates for bk and Bk are close to the null model, whereas the b and B estimates are greater. In our experience this is a common result: a local response is preferred by AIC and has less impact on density estimates than a global response, and there is  little penalty for omitting the response from the model.
@@ -310,10 +310,10 @@ cmod <- paste0('g0~', c('1','k','K', 'bk'))
 fitsk <- list.secr.fit(model = sapply(cmod, formula), 
      constant = list(capthist = 'deermouse.WSG', trace = FALSE, buffer = 80),
      names = cmod)
-AIC(fitsk, criterion = 'AIC', sort = FALSE)[c(3:5,7,8)]
+AIC(fitsk, sort = FALSE)[c(3:5,7,8)]
 ```
 
-The trap-facilitation model fitted to the deermouse data results in a larger and less precise estimate of density (`r round(predict(fitsk[[2]])['D',2],2)`/ha, SE `r round(predict(fitsk[[2]])['D',3],2)`/ha), with AIC intermediate between the null model and bk (facilitation model $\Delta$AIC = `r round(AIC(fitsk, criterion = 'AIC')[2,'dAIC'], 1)` relative to bk).  There is a risk of confusing such an effect with simple heterogeneity in the performance of detectors or clumping of activity centres or an individual local response (bk). More investigation is needed.
+The trap-facilitation model fitted to the deermouse data results in a larger and less precise estimate of density (`r round(predict(fitsk[[2]])['D',2],2)`/ha, SE `r round(predict(fitsk[[2]])['D',3],2)`/ha), with AIC intermediate between the null model and bk (facilitation model $\Delta$AIC = `r round(AIC(fitsk)[2,'dAIC'], 1)` relative to bk).  There is a risk of confusing such an effect with simple heterogeneity in the performance of detectors or clumping of activity centres or an individual local response (bk). More investigation is needed.
 
 ## Varying effort
 \index{Detection model!varying effort}
@@ -379,7 +379,7 @@ data.frame(model = format(models), ignoreusage = sapply(details,
 # fit
 fits <- list.secr.fit(model = models, details = details, constant = 
     args, names = c('null','usage','tfactor','tnumeric'))
-AIC(fits, criterion = 'AIC')[,-c(2,5,6)]
+AIC(fits)[,-c(2,5,6)]
 ```
 
 From the likelihoods we can see that failure to allow for effort (model 'null') dramatically reduces model fit. The model with a factor covariate ('tfactor') captures the variation in detection probability, but at the cost of fitting two additional parameters. The model with built-in adjustment for effort ('usage') has AIC similar to one with effort as a numeric  covariate ('tnumeric'). How do the estimates compare? This is a task for the `collate` function.
