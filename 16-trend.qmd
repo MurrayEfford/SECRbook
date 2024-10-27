@@ -1,4 +1,4 @@
-# Trend revisited {#Trend}
+# Trend revisited {#sec-trend}
 
 This section describes methods specifically for population trend, defined as change in density between sessions and measured by the finite rate of increase $\lambda_t = D_{t+1} / D_t$. The flexible methods described here allow the direct estimation of $\lambda_t$, possibly including covariate effects. 
 
@@ -8,8 +8,10 @@ This section describes methods specifically for population trend, defined as cha
 
 We parameterize the density model in terms of the initial density $D_1$ and the finite rates of increase $\lambda_t$ for the remaining sessions ($\lambda_1$ refers to the density increase between Session 1 and Session 2, etc.). Reparameterization of the density model is achieved internally in `secr.fit` by manipulating the density design matrix to provide a new array of mask-cell- and session-specific densities at each evaluation of the full likelihood. This happens when the details argument 'Dlambda' is set to TRUE. The density model (D~) and the fitted coefficients take on a new meaning determined by the internal function `Dfn2`. More explanation is given [later](#Review).
  
- Now, fitting the ovenbird model with D~1 results in two density parameters (density in session 1, constant finite rate of increase across remaining sessions):
-```{r direct, cache = TRUE}
+ Now, fitting the ovenbird model \index{Ovenbird} with D~1 results in two density parameters (density in session 1, constant finite rate of increase across remaining sessions):
+```{r}
+#| label: direct
+#| cache: true
  msk <- make.mask(traps(ovenCH[[1]]), buffer = 300, nx = 32)
  fit1  <- secr.fit(ovenCH, model = D~1, mask = msk, trace = 
      FALSE, details = list(Dlambda = TRUE))
@@ -22,7 +24,9 @@ We parameterize the density model in terms of the initial density $D_1$ and the 
  
  To make the most of the reparameterization we need the special prediction function `predictDlambda` to extract the lambda estimates (the simple `predict` method does not work).
  
-```{r predictDfn2, cache = TRUE}
+```{r}
+#| label: predictDfn2
+#| cache: true
  predictDlambda (fit1)
 ```
  
@@ -32,7 +36,9 @@ We parameterize the density model in terms of the initial density $D_1$ and the 
  
  The method allows many covariate models for $\lambda$. We can fit a time trend in $\lambda$ using:
   
-```{r direct2, cache = TRUE}
+```{r}
+#| label: direct2
+#| cache: true
  fit2  <- secr.fit(ovenCH, model = D~Session, mask = msk, 
      trace = FALSE, details = list(Dlambda = TRUE))
  predictDlambda (fit2)
@@ -40,7 +46,9 @@ We parameterize the density model in terms of the initial density $D_1$ and the 
  
  Session-specific $\lambda$ (lower-case 'session') provide a direct comparison with the original analysis:
   
-```{r direct3, cache = TRUE}
+```{r}
+#| label: direct3
+#| cache: true
  fit3  <- secr.fit(ovenCH, model = D~session, mask = msk, 
      trace = FALSE, details = list(Dlambda = TRUE))
  predictDlambda (fit3)
@@ -49,13 +57,16 @@ We parameterize the density model in terms of the initial density $D_1$ and the 
 The ovenbird population appeared to increase in density for two years and then decline for two years, but the effects are far from significant.
  
  Model selection procedures apply as usual:
-```{r msAIC}
+```{r}
+#| label: msAIC
  AIC(fit1, fit2, fit3)[,-c(2,5,6)]
 ```
  
 Session covariates are readily applied. The covariate for the second session predicts $\lambda_1 = D_2/D_1$, for the third session predicts $\lambda_2 = D_3/D_2$, etc. The covariate for the first session is discarded (remember $D_1$ is constant). This all may be confusing, but you can work it out, and it saves extra coding.
  
-```{r direct4, cache = TRUE}
+```{r}
+#| label: direct4
+#| cache: true
 covs <- data.frame(acov = c(0,2,1,1,2))  # fabricated covariate
 fit4  <- secr.fit(ovenCH, model = D~acov, mask = msk, 
     trace = FALSE, details = list(Dlambda = TRUE), 
@@ -67,7 +78,9 @@ fit4  <- secr.fit(ovenCH, model = D~acov, mask = msk,
  
  Another possibility is to fit the model with fixed trend (the second beta coefficient corresponds to lambda, before). 
  
-```{r fixedbeta, cache = TRUE}
+```{r}
+#| label: fixedbeta
+#| cache: true
  fit5 <- secr.fit(ovenCH, model = D~1, mask = msk, trace = FALSE,
     details = list(Dlambda = TRUE, fixedbeta = 
     c(NA, log(0.9), NA, NA)))
@@ -97,13 +110,17 @@ fit4  <- secr.fit(ovenCH, model = D~acov, mask = msk,
  
  * The method is not (yet) suitable for group models.
  
- * The default start values for D in `secr.fit` work well: all lambda are initially 1.0 ($\mbox{log}(\lambda_t) = 0$ for all $t$).
+ * The default start values for D in `secr.fit` work well: all lambda are initially 1.0 ($\mathrm{log}(\lambda_t) = 0$ for all $t$).
  
  * If session covariates are used in any model, AICcompatible() expects the argument 'sessioncov' to be included in all models.
  
-(ref:Tip) D for session 1 is constant over space. It is not possible in the present version of **secr** to model simultaneous spatial variation in density or $\lambda$, and using Dlambda with a density model that includes spatial covariates will cause an error.
- 
- <!-- (ref:Tip) Underestimation of sampling variance is expected when a trend model is fitted to temporal samples with incomplete population turnover between sessions. The product likelihood assumes a new realisation of the underlying population process for each session. If in actuality much of the sampled population remains the same (the same individuals in the same home ranges) then the precision of the trend coefficient will be overstated.  -->
+::: {.callout-tip}
+D for session 1 is constant over space. It is not possible in the present version of **secr** to model simultaneous spatial variation in density or $\lambda$, and using Dlambda with a density model that includes spatial covariates will cause an error.
+:::
+
+<!-- ::: {.callout-tip} -->
+<!-- Underestimation of sampling variance is expected when a trend model is fitted to temporal samples with incomplete population turnover between sessions. The product likelihood assumes a new realisation of the underlying population process for each session. If in actuality much of the sampled population remains the same (the same individuals in the same home ranges) then the precision of the trend coefficient will be overstated. -->
+<!-- ::: -->
   
   <!-- The effect is often small. Possible solutions are to fit an open population model (e.g., in **openCR** [@es20]) or to apply some form of bootstrapping. -->
   

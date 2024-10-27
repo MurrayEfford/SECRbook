@@ -1,4 +1,4 @@
-# Telemetry {#Telemetry}
+# Telemetry {#sec-telemetry}
 
 In some capture--recapture studies there are additional data from radiotelemetry of a sample of animals. Telemetry fixes provide an unbiased sample of animal activity, unlike detections at fixed points (traps, cameras or hair snares) or from searching circumscribed areas. Telemetry data therefore provide a direct estimate of the spatial scale of activity, which is represented in spatially explicit capture--recapture (SECR) by the parameter $\sigma$. Telemetry data also reduce uncertainty regarding the location of animals' centres relative to detectors, so detection histories of telemetered animals may improve estimates of other parameters.
 
@@ -9,32 +9,78 @@ This chapter explains and demonstrates the use of telemetry data in the R packag
 
 A word of warning. Telemetry is used in **secr** to augment SECR analyses, particularly the estimation of population density. **secr** is not intended for the detailed analysis of telemetry data *per se*. There is no provision in the data structure for recording the time of each fix, except as each relates to a discrete sampling occasion. Nor is there provision for associating behavioural or environmental covariates with each fix. 
 
-## Example  {#telemetryexample}
+## Example  {#sec-telemetryexample}
 
-We start with a concrete example based on a simulated dataset. The code for the simulation is in [Appendix 1](#telemetryappendix1).
+We start with a concrete example based on a simulated dataset. 
+```{r}
+#| label: demosims
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show simulation code"
+
+# Code to simulate capthist objects (trCH, teCH)
+
+# detectors
+te <- make.telemetry()
+tr <- make.grid(detector = "multi", nx = 8, ny = 8)
+
+# spatial population
+set.seed(123)
+pop4 <- sim.popn(tr, D = 5, buffer = 100, seed = 567)
+
+# select 12 telemetered individuals from larger population
+pop4C <- subset(pop4, sample.int(nrow(pop4), 12))
+
+# renumber = FALSE (keep original animalID) needed for matching
+trCH <- sim.capthist(tr,  popn = pop4, renumber = FALSE, 
+    detectfn = "HHN", detectpar = list(lambda0 = 0.1, 
+    sigma = 25), seed = 123)
+session(trCH) <- 'Trapping'
+teCH <- sim.capthist(te, popn = pop4C, renumber = FALSE, 
+    detectfn = "HHN", detectpar = list(lambda0 = 1, sigma = 25),
+    noccasions = 10, seed = 345)
+session(teCH) <- 'Telemetry'
+```
 
 The first step is to combine the capthist objects `trCH` (trapping data) and `teCH` (telemetry fixes).
 
-```{r chunk1, ref.label="demosims", echo = FALSE}
+```{r}
+#| label: chunk1
+#| echo: false
+#| ref-label: demosims
 ```
 
-```{r load, message = FALSE, warning = FALSE}
+```{r}
+#| label: load
+#| message: false
+#| warning: false
 combinedCH <- addTelemetry(trCH, teCH)
 ```
 
 Generating plots is straightforward. By default, `plot.capthist` displays the captures and ignores telemetry fixes. The plot type "telemetry" displays the fixes and distinguishes those of animals that also appear in the (unplotted) capture data of the combined object.
 
-```{r telemetryfig, fig.width=6, fig.height=3.5, fig.cap="Simulated trapping and telemetry data. The 5-day trapping study (left) yielded `r sum(trCH)-nrow(trCH)` recaptures. Telemetry data were obtained on 10 occasions for each of 12 animals (right). Points for animals that were both trapped and telemetered are ringed in black. Colours distinguish individuals."}
+```{r}
+#| label: fig-telemetryfig
+#| fig-width: 6
+#| fig-height: 3.5
+#| fig-cap: |
+#|   Simulated trapping and telemetry data. The 5-day trapping study (left) yielded
+#|   29 recaptures. Telemetry data were obtained on 10 occasions
+#|   for each of 12 animals (right). Points for animals that were both trapped and telemetered
+#|   are ringed in black. Colours distinguish individuals.
 par(mfrow = c(1,2), mar = c(2,2,3,2))
 plot(traps(trCH), border = 150, bty = 'o') # base plot
-plot(combinedCH, title = 'Trapping', tracks = TRUE, add = TRUE)
+plot(combinedCH, title = 'Trapping', tracks = TRUE, rad = 4, add = TRUE)
 plot(traps(trCH), border = 150, bty = 'o') # base plot
 plot(combinedCH, title = 'Telemetry', type = 'telemetry', 
      tracks = TRUE, add = TRUE)
 ```
 
 Next we fit trapping-only and joint trapping-and-telemetry models:
-```{r telemetryfit, cache = TRUE}
+```{r}
+#| label: telemetryfit
+#| cache: true
 mask <- make.mask(traps(trCH), buffer = 100, type = 'trapbuffer', 
     nx = 32)
 args <- list(mask = mask, detectfn = 'HHN', trace = FALSE)
@@ -54,7 +100,8 @@ Telemetry data differ from all other SECR data in that the detection process doe
 
 The function `make.telemetry` generates a suitable object:
 
-```{r demotelem}
+```{r}
+#| label: demotelem
 te <- make.telemetry()
 summary(te)
 str(te)
@@ -95,7 +142,8 @@ etc.
 The first column is a session code, the next an animal identifier ('10', '101'), the third an occasion number (1..noccasions) and the last two are the x and y coordinates. GPS coordinates should be projected (i.e. not latitude and longitude), and in metres if possible. 
 
 A file named 'telemetrydemo.txt' may be read with
-```{r readtelemetry}
+```{r}
+#| label: readtelemetry
 CHt <- read.telemetry(file = "data/telemetrydemo.txt")
 head(CHt)
 telemetryxy(CHt)[['10']]  # coordinates of first animal
@@ -105,7 +153,8 @@ Input may be from a text file (named in argument 'file') or dataframe (argument 
 The body of the resulting capthist object merely tallies the number of detections per animal per session and occasion. The fixes for one session are stored separately in an attribute that is a list of dataframes, one per animal. Use `telemetryxy(CHt)` to retrieve this list.
 
 The summary of a telemetry-only capthist is quirky: 
-```{r summarytelemetry}
+```{r}
+#| label: summarytelemetry
 summary(CHt)
 ```
 
@@ -120,7 +169,16 @@ For the purpose of density estimation and modelling, standalone telemetry data a
 **secr** distinguishes three types of telemetry data -- independent, dependent and concurrent -- that differ in how they relate to other SECR samples (capture--recapture data). Each type corresponds to a particular [probability model](#telemetrylikelihood).
 
 
-```{r telemetryschematic, eval = TRUE, echo = FALSE, fig.width = 6, fig.asp=0.6, out.width="90%", fig.cap="Schematic relationship of capture--recapture data to three types of telemetry data. Vertical overlap indicates individuals that appear in both datasets."}
+```{r}
+#| label: fig-telemetryschematic
+#| eval: true
+#| echo: false
+#| fig-width: 6
+#| fig-asp: 0.6
+#| out-width: 90%
+#| fig-cap: |
+#|   Schematic relationship of capture--recapture data to three types of telemetry
+#|   data. Vertical overlap indicates individuals that appear in both datasets.
 par(mfrow=c(1,1), mar = c(0,3,2,2), xpd = TRUE, cex=1)
 txtcex <- 0.85
 plot (0,0, type='n', xlim=c(0,160), ylim=c(0,60), xlab='', ylab='', axes = F)
@@ -194,13 +252,16 @@ We use `addTelemetry` to combine telemetry data and capture--recapture data from
 ### Standalone telemetry data
 
 We can estimate $\sigma$ for a half-normal circular home-range model directly:
-```{r rpsv}
+```{r}
+#| label: rpsv
 RPSV (CHt, CC = TRUE)
 ```
 Note the CC argument (named for @cc58) that is required to scale the result correctly.
 
 More laboriously:
-```{r fitindep, cache = TRUE}
+```{r}
+#| label: fitindep
+#| cache: true
 fit0 <- secr.fit(CHt, buffer = 300, detectfn = 'HHN', 
                  trace = FALSE)
 predict(fit0)
@@ -214,12 +275,15 @@ See [Technical notes](#technotes) for potential numerical problems.
 
 ### Composite telemetry and capture--recapture data
 
-Fitting a model to composite data should raise no further problems: `secr.fit` receives all the information it requires in the composite capthist input. The likelihood is a straightforward extension of the usual SECR likelihood, with some subtle differences in the case of dependent or concurrent telemetry (Chapter \@ref(SpecialTopics), [Telemetry](telemetrylikelihood).
+Fitting a model to composite data should raise no further problems: `secr.fit` receives all the information it requires in the composite capthist input. The likelihood is a straightforward extension of the usual SECR likelihood, with some subtle differences in the case of dependent or concurrent telemetry (@sec-specialtopics, [Telemetry](05-theory-special-topics.qmd#telemetrylikelihood)).
 
 The use of detection functions expressed in terms of the hazard provides a more natural link between the model for the activity distribution and the model for detection probability.  When a hazard function is used `secr.fit` automatically flips the default model for the first detection parameter from 'g0 ~ 1' to 'lambda0 ~ 1'.
 
-Our introductory [example](#telemetryexample) fitted a model to single-session composite data. We can compare the results when the telemetry and trapping data are in separate sessions:
-```{r ms, cache = TRUE, cache.rebuild = FALSE}
+Our introductory [example](#sec-telemetryexample) fitted a model to single-session composite data. We can compare the results when the telemetry and trapping data are in separate sessions:
+```{r}
+#| label: ms
+#| cache: true
+#| cache-rebuild: false
 msCH <- MS.capthist(trCH, teCH)
 fit.ms <- secr.fit(msCH, mask=mask, detectfn = 'HHN', 
                    trace = FALSE)
@@ -232,19 +296,27 @@ Note: If the order of `teCH` and `trCH` had been reversed in `msCH` we would nee
 
 The centres of both detected and telemetry-only animals are assumed to lie on the habitat mask. Ensure the mask is large enough to encompass telemetry-only animals. A conservative approach is to buffer around the individual telemetry centroids. Using `teCH` from before:
 
-```{r mask}
+```{r}
+#| label: mask
 centroids <- data.frame(t(sapply(telemetryxy(teCH), 
     apply, 2, mean)))
 mask1 <- make.mask(centroids, buffer = 100, type = 'trapbuffer')
 ```
 
 For composite telemetry and capture--recapture, buffering should include the detector sites:
-```{r mask2}
+```{r}
+#| label: mask2
 tmpxy <- rbind(centroids, data.frame(traps(trCH))) 
 mask2 <- make.mask(tmpxy, buffer = 100, type = 'trapbuffer')
 ```
 
-```{r maskplot, fig.width=6, fig.height=3.5, fig.cap="Habitat masks prepared by buffering around telemetry sites (left) or both telemetry and detector sites (right)."}
+```{r}
+#| label: fig-maskplot
+#| fig-width: 6
+#| fig-height: 3.5
+#| fig-cap: |
+#|   Habitat masks prepared by buffering around telemetry sites (left) or both
+#|   telemetry and detector sites (right).
 par(mfrow = c(1,2))
 plot(mask1)
 plot(teCH, add = TRUE, title = 'Telemetry only')
@@ -265,7 +337,8 @@ We choose to fix the number of observations per animal at 25 using the `exactN` 
 
 For independent data there is no specified connection between the populations sampled, so we separately generate telemetry and capture--recapture datasets and stick them together. 
 
-```{r simI}
+```{r}
+#| label: simI
 # detectors
 te <- make.telemetry()
 tr <- make.grid(nx = 8, ny = 8, detector = "proximity")
@@ -285,7 +358,8 @@ summary(CHI)
 
 For dependent data the telemetry sample is drawn from animals caught during the capture--recapture phase. This example uses the previously constructed 'traps' objects (`tr` and `te`). The original numbering of animals must be conserved (`renumber = FALSE`).
 
-```{r simD}
+```{r}
+#| label: simD
 pop3 <- sim.popn(tr, D = 10, buffer = 200)
 trCH <- sim.capthist(tr,  popn = pop3, detectfn = "HHN", 
     detectpar = list(lambda0 = 0.1, sigma = 25), renumber = 
@@ -308,7 +382,8 @@ summary(CHD)
 
 For concurrent telemetry a sample of animals is taken from the regional population without reference to whether or not each animal was detected in the capture--recapture phase. The original numbering of animals must be conserved (`renumber = FALSE`), as for dependent telemetry.
 
-```{r simC}
+```{r}
+#| label: simC
 set.seed(567) 
 pop4 <- sim.popn(tr, D = 10, buffer = 200)
 # select 15 individuals at random from larger population
@@ -327,7 +402,16 @@ summary(CHC)
 
 ### Plotting to compare simulated data
 
-```{r plotsim, fig.width=6, fig.height=2.5, fig.cap="Simulated telemetry data in relation to a capture--recapture grid (red crosses). Independently telemetered individuals are not recognised if they are caught on the grid. Dependent telemetry is restricted to animals caught on the grid. Individuals telemetered concurrently may or may not be caught, but are recognised when they are."}
+```{r}
+#| label: fig-plotsim
+#| fig-width: 6
+#| fig-height: 2.5
+#| fig-cap: |
+#|   Simulated telemetry data in relation to a capture--recapture grid (red crosses).
+#|   Independently telemetered individuals are not recognised if they are caught on the
+#|   grid. Dependent telemetry is restricted to animals caught on the grid. Individuals
+#|   telemetered concurrently may or may not be caught, but are recognised when they
+#|   are.
 par(mfrow = c(1,3), mar = c(2,2,4,2), xpd = TRUE)
 plot(traps(CHI), border = 200, gridlines = FALSE, bty = 'o')
 plot(CHI, type = 'telemetry', tracks = TRUE, add = TRUE)
@@ -357,7 +441,10 @@ The assumption may be avoided altogether by modelling distinct values of $\sigma
 
 Fitting joint telemetry and SECR models can be difficult - the usual computations in **secr** may fail to return a likelihood. The problem is often due to a near-zero value in a component of the telemetry likelihood. This occurs particularly in large datasets. The problem may be fixed by scaling the offending values by an arbitrary large number given in the details argument 'telemetryscale'. The required magnitude for 'telemetryscale' may be found by experimentation (try 1e3, 1e6, 1e9, 1e12 etc.). This ad hoc solution must be applied consistently if models are to be compared by AIC.
 
-```{r telemscale, eval = TRUE, cache = TRUE}
+```{r}
+#| label: telemscale
+#| eval: true
+#| cache: true
 te <- make.telemetry()
 teCH2 <- sim.capthist(te, popn = list(D = 2, buffer = 200), 
     detectfn = "HHN", exactN = 100, detectpar = list(sigma = 25),
@@ -383,7 +470,7 @@ Learned responses (b, bk) are not expected in telemetry data. However, they may 
 
 ## Limitations {#telemetrylimitations}
 
-In **secr** some important functions have yet to be updated to work with telemetry data. These are listed in [Appendix 2](#telemetryappendix2). Other limitations are described here.
+Some important functions of **secr** have yet to be updated to work with telemetry data. These are listed in @sec-telemetryappendix2. Other limitations are described here.
 
 ### Incompatible with area search
 
@@ -403,34 +490,7 @@ The `secr.fit` code for hybrid heterogeneity models (hcov) has yet to be updated
 
 Non-Euclidean distance methods cannot be used with telemetry data at present (a very large distance matrix would be required).
 
-## Appendix 1. Code used to simulate data for initial demonstration {#telemetryappendix1}
-
-```{r demosims, message = FALSE, warning = FALSE}
-# simulate capthist objects (trCH, teCH)
-library(secr)
-# detectors
-te <- make.telemetry()
-tr <- make.grid(detector = "multi", nx = 8, ny = 8)
-
-set.seed(123)
-pop4 <- sim.popn(tr, D = 5, buffer = 100, seed = 567)
-# select 12 individuals at random from larger population
-pop4C <- subset(pop4, sample.int(nrow(pop4), 12))
-# original animalID (renumber = FALSE) are needed for matching
-trCH <- sim.capthist(tr,  popn = pop4, renumber = FALSE, 
-    detectfn = "HHN", detectpar = list(lambda0 = 0.1, 
-    sigma = 25), seed = 123)
-session(trCH) <- 'Trapping'
-teCH <- sim.capthist(te, popn = pop4C, renumber = FALSE, 
-    detectfn = "HHN", detectpar = list(lambda0 = 1, sigma = 25),
-    noccasions = 10, seed = 345)
-session(teCH) <- 'Telemetry'
-```
-
-
-## Appendix 2.  {#telemetryappendix2}
-
-Table: (\#tab:telemetryfunctions) Functions specifically for telemetry data
+## Lists of telemetry-related functions.  {#sec-telemetryappendix2}
 
 |  Function   | Purpose         |
 |-------------|---------------------------------------------|
@@ -442,7 +502,7 @@ Table: (\#tab:telemetryfunctions) Functions specifically for telemetry data
 | `telemetryxy` | extract or replace telemetry coordinates from capthist |
 | `xy2CH` | make a standalone telemetry capthist from a composite capthist |
 
-Table: (\#tab:telemetrygeneralfunctions) Telemetry-ready general functions
+: Functions specifically for telemetry data.  {#tbl-telemetryfunctions .sm}
 
 |  Function   | Purpose         |
 |-------------|---------------------------------------------|
@@ -460,9 +520,11 @@ Table: (\#tab:telemetrygeneralfunctions) Telemetry-ready general functions
 | `summary.capthist` | summary |
 | `verify.capthist` | perform integrity checks |
 | `verify.traps` | perform integrity checks |
-`*` these functions use the telemetry coordinates if the capthist is telemetry-only, otherwise the detection sites
 
-Table: (\#tab:telemetrynonfunctions) General functions  not ready for telemetry.
+: Telemetry-ready general functions.  {#tbl-telemetrygeneralfunctions .sm}
+
+`*` these functions use the telemetry coordinates if the capthist is telemetry-only, 
+otherwise the detection sites
 
 |  Function   | Purpose         |
 |-------------|---------------------------------------------|
@@ -472,5 +534,7 @@ Table: (\#tab:telemetrynonfunctions) General functions  not ready for telemetry.
 | `secr.test` | another parametric boostrap |
 | `fxTotal` | |
 | `fxiContour` | |
+
+: General functions  not ready for telemetry.  {#tbl-telemetrynonfunctions .sm}
 
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf

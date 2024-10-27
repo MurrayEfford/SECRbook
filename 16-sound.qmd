@@ -1,6 +1,6 @@
-# Acoustic SECR {#Sound}
+# Acoustic SECR {#sec-sound}
 
-Sounds recorded at an array of microphones may be analysed to provide an estimate of the 'population density' of sound sources using an extension of the usual methods for spatially explicit capture-recapture (SECR) [@e09, @de09]. This vignette shows how the analysis may be performed in package **secr**, using as an example the dataset `ovensong` from an acoustic survey of ovenbirds (*Seiurus aurocapilla*). Input of signal data from a text file is covered in [secr-datainput.pdf].
+Sounds recorded at an array of microphones may be analysed to provide an estimate of the 'population density' of sound sources using an extension of the usual methods for spatially explicit capture-recapture (SECR) [@e09, @de09]. This vignette shows how the analysis may be performed in package **secr**, using as an example the dataset `ovensong` from an acoustic survey of ovenbirds (*Seiurus aurocapilla*). Input of signal data from a text file is covered in [secr-datainput.pdf]. \index{Ovenbird}
 
 More recent work should be consulted before relying on the analyses here:
 
@@ -50,7 +50,8 @@ value (range 38.4 dB to 80.4 dB) and all detection histories are
 complete (1,1,1,1) across microphones. Some of these
 'signal' measurements will be largely noise.
 
-```{r setup}
+```{r}
+#| label: setup
 library(secr)
 setNumThreads(7)  # adjust as needed
 summary(signalCH)
@@ -66,14 +67,16 @@ By applying this threshold we lose 16 of the 76 original sounds (those that did 
 
 The 'traps' attribute of `signalCH` and its offspring `signalCH.525` holds x-y coordinates for the relative positions of the microphones. In this example each 5-minute recording used the same array layout (a 4-microphone square centred on each point) and data are pooled across the 75 points.
 
-```{r traps}
+```{r}
+#| label: traps
 traps(signalCH.525)
 ```
 
 `signal(signalCH.525)` displays a vector of signal strengths, one for each detection. The data become more intelligible if we collapse the detection histories to a matrix and replace 1's with the matching
 signal strengths:
 
-```{r signal}
+```{r}
+#| label: signal
 temp <- signalCH.525[,1,]
 temp[temp>0] <- round(signal(signalCH.525),1)
 head(temp,8)
@@ -92,11 +95,15 @@ default (100 m) to ensure that sounds at the edge of the mask are
 very unlikely to be detected (given what we eventually learn about
 attenuation). We use 'trace = FALSE' to suppress output of the log
 likelihood during numerical maximisation. Fitting is straightforward:
-```{r ostart}
+```{r}
+#| label: ostart
 omask <- make.mask(traps(signalCH), buffer = 200)
 ostart <- c(log(20), 80, log(0.1), log(2))
 ```
-```{r sound fit 1, cache = TRUE, strip.white=TRUE}
+```{r}
+#| label: sound fit 1
+#| cache: true
+#| strip-white: true
 setNumThreads(7)
 sound.1 <- secr.fit(signalCH.525, mask = omask, start = ostart, 
               model = list(beta0 ~ 1, beta1 ~ 1), trace = FALSE)
@@ -113,10 +120,11 @@ probability is given by $g(d) = F((c - (\beta_0 + \beta_1 d)) /
 \sigma_s)$ where $F$ is the standard cumulative normal distribution,
 $c$ is the signal threshold.
 
-The `print` method for secr objects displays data summaries and
+The `print` method for **secr** objects displays data summaries and
 parameter estimates and other useful results:
 
-```{r sound1print}
+```{r}
+#| label: sound1print
 sound.1
 ```
 
@@ -151,13 +159,17 @@ To fit a model with spherical spreading we specify 'detectfn = 11',
 rather than the default 'detectfn = 10' (numeric codes for detection
 functions are listed on the 'Detection functions' help page).
 
-```{r sound fit 2, eval = TRUE, cache = TRUE}
+```{r}
+#| label: sound fit 2
+#| eval: true
+#| cache: true
 sound.2 <- secr.fit(signalCH.525, detectfn = 11, mask = omask, start = ostart, 
                     model = list(beta0 ~ 1, beta1 ~ 1), trace = FALSE)
 ```
 
-We can compare the fit of the models with the AIC method for secr objects:
-```{r AIC}
+We can compare the fit of the models with the AIC method for **secr** objects:
+```{r}
+#| label: AIC
 AIC (sound.1, sound.2)
 ```
 
@@ -167,7 +179,8 @@ does this have on the density estimates? The collate function in
 **secr** is a convenient way to compare parameter estimates. Here
 we select density estimates from the first session (there's only one)
 and adjust for replication:
-```{r collate}
+```{r}
+#| label: collate
 collate(sound.1, sound.2)[1,,,'D']/75
 ```
 
@@ -181,11 +194,15 @@ In acoustic SECR, the detection model (probability of detection as a function of
 extract the real coefficients of the log-linear and spherical-spreading models and then plot the respective attenuation curves. We also show the effect of spherical spreading alone by
 setting beta1 to zero (dashed line).
 
-```{r predict}
+```{r}
+#| label: predict
 pars1 <- predict(sound.1)[c('beta0', 'beta1'), 'estimate']
 pars2 <- predict(sound.2)[c('beta0', 'beta1'), 'estimate']
 ```
-```{r attenuationplot, fig.width=3.5, fig.height=3.5}
+```{r}
+#| label: attenuationplot
+#| fig-width: 3.5
+#| fig-height: 3.5
 par(mar=c(5,5,2,2), bty = 'l')
 attenuationplot(pars1, xval=0:150, spherical = FALSE, ylim = c(40,110))
 attenuationplot(pars2, xval=0:150, spherical = TRUE, add = TRUE, col = 'red')
@@ -196,12 +213,15 @@ attenuationplot(pars2, xval=0:150, spherical = TRUE, add = TRUE, lty = 2)
 **Fig. 1** Attenuation model fitted to `ovensong' data.
 \vspace{14pt}
 
-The `plot` method for secr model objects is a direct way to display the
+The `plot` method for 'secr' model objects is a direct way to display the
 detection function. With 'limits = TRUE', `plot.secr` also shows 95% confidence
 limits for the detection function. These use the asymptotic variance
 estimates and a first-order delta-method approximation.
 
-```{r detectionfunction, fig.width=4, fig.height=3}
+```{r}
+#| label: detectionfunction
+#| fig-width: 4
+#| fig-height: 3
 par(mar=c(5,5,2,2), bty = 'l')
 plot(sound.2, limits = TRUE, col = 'blue')
 ```
@@ -213,7 +233,7 @@ plot(sound.2, limits = TRUE, col = 'blue')
 
 Including a spherical spreading term in the sound attenuation model
 causes the likelihood surface to become multimodal, at least in this
-example. Newton-Raphson, the default maximization method in secr.fit,
+example. Newton-Raphson, the default maximization method in `secr.fit`,
 is particularly inclined to settle on a local maximum, so care is
 needed. In the example above we cheated by specifying starting values
 for ($D, \beta_0, \beta_1, \sigma_s$) on their respective link scales
@@ -222,10 +242,16 @@ the likelihood surface. Here we investigate the issue further by
 plotting the log likelihood surface for the spherical spreading
 model. $D$ (0.191 / ha) and $\sigma_s$ (1.68 dB) are held constant while
 $\beta_0$ and $\beta_1$ are varied. We use the `LLsurface`
-method for `secr` objects to generate a data matrix that we
+method for 'secr' objects to generate a data matrix that we
 then use for a customised plot.
 
-```{r bimodalityplot, echo = TRUE, eval = TRUE, cache = TRUE, fig.width=4, fig.height=4}
+```{r}
+#| label: bimodalityplot
+#| echo: true
+#| eval: true
+#| cache: true
+#| fig-width: 4
+#| fig-height: 4
 beta0 <- seq(99, 107, 0.25)
 beta1 <- seq(-0.135, -0.085, 0.00125)
 LL <- LLsurface(sound.2, betapar=c('beta0','beta1'), xval = beta0, yval = beta1, 
