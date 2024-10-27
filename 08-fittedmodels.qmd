@@ -1,0 +1,295 @@
+# Working with fitted models {#sec-fittedmodels}
+
+This chapter covers issues that arise regardless of the particular model to be fitted. 
+
+## Bundling fitted models
+
+You may have fitted one model or several. A convenient way to handle several models 
+is to bundle them together as an object of class 'secrlist': 
+
+```{r}
+#| label: ovenlist
+ovenlist <- secrlist(ovenbird.model.1, ovenbird.model.D)     
+```
+
+Most of the following functions accept both 'secr' and 'secrlist' objects. 
+The multi-model fitting function `list.secr.fit` returns an secrlist. 
+
+## Recognizing failure-to-fit
+
+Sometimes a model may appear to have fitted, but on inspection some values are 
+missing or implausible (near zero or very large). The maximization function `nlm` 
+may return the arcane 'code 3', or there may be message that a variance calculation failed. 
+
+These conditions must be taken seriously, but they are not always fatal to the analysis. See @sec-troubleshooting for diagnosis and possible solutions.
+
+## Model selection
+\index{Model selection}
+
+The best model is not necessarily the one that most closely fits the data. We need a criterion that penalises unnecessary complexity. For models fitted by maximum likelihood, the obvious and widely used candidate is Akaike's Information Criterion AIC
+
+$$
+\mathrm{AIC} = -2\log[L(\hat \theta)] +2K
+$$
+where $K$ is the number of coefficients estimated and $\log[L(\hat \theta)]$ is the maximized log likelihood.
+
+@Burnham2002, who popularised information-theoretic model selection for biologists, advocated the use of a small-sample adjustment due to @Hurvich1989, designated AIC~c~:
+
+$$
+\mathrm{AIC}_c = -2\log(L(\hat{\theta})) + 2K + \frac{2K(K+1)}{n-K-1}.
+$$
+
+Here we assume the sample size $n$ is the number of individuals observed at least once (i.e. the number of rows in the capthist). This is somewhat arbitrary, and a reason to question the routine use of AIC~c~. The additional penalty has the effect of decreasing the attractiveness of models with many parameters. The effect is especially large when $n<2K$.
+
+Model selection by information-theoretic methods is open to misinterpretation.  We do not attempt here to deal with the many subtleties, but raise some caveats:
+
+* Models to be compared by AIC must be based on identical data. Some options in `secr.fit` silently change the structure of the data and make models incompatible ('CL', 'fastproximity', 'groups', 'hcov', 'binomN'). Comparisons should be made only within the family of models defined by constant settings of these options. A check of compatibility (standalone function `AICcompatible`) is applied automatically in **secr**, but this is not guaranteed to catch all misuse.
+
+* AIC~c~ is widely used. However, there are doubts about the correct sample size for AIC~c~, and AIC may be a better basis for model averaging, as demonstrated by simulation for generalised linear models [@Fletcher2019 p. 60]. We use AIC in this book.
+
+* AIC values indicate the relative performance of models. Reporting AIC values *per se* is not helpful; present the differences $\Delta \mathrm{AIC}$ between each model and the 'best' model.
+
+### Model averaging
+\index{Model averaging}
+
+Model weights may be used to form model-averaged estimates of real or beta parameters with `modelAverage` (see also @Buckland1997 and @Burnham2002). Model weights are calculated as 
+
+$$
+w_i = \frac{\exp(-\Delta_i / 2),}{\sum{\exp(-\Delta_i / 2)}},
+$$
+where $\Delta$ refers to differences in AIC or AICc. 
+
+Models for which $\Delta_i$ exceeds an arbitrary limit (e.g., 10) are given a weight of zero and excluded from the summation. 
+
+### Likelihood ratio
+\index{Likelihood ratio test}
+
+If you have only two models, one a more general version of the other, then a [likelihood-ratio test](https://en.wikipedia.org/wiki/Likelihood-ratio_test) is appropriate. 
+Here we compare an ovenbird model with density constant over time to one with a log-linear 
+trend over years. \index{Ovenbird}
+
+```{r}
+#| label: ovenlrtest
+LR.test(ovenbird.model.1, ovenbird.model.D)
+```
+
+There is no evidence of a trend.
+
+### Model selection strategy
+\index{Model selection}
+
+It is almost impossible to fit and compare all plausible SECR models. A strategy is 
+needed to find a path through the possibilities. However, the available strategies are 
+*ad hoc* and we cannot offer strong, evidence-based advice. 
+
+One strategy is to determine the best model for the detection process before 
+proceeding to consider models for density. This is intuitively attractive.
+
+<!-- Goal: prediction vs x -->
+<!-- The modeller should include variables of interest cf Buckland; Fletcher? -->
+
+@Doherty2010 used simulation to assess model selection strategies for 
+Cormack-Jolly-Seber survival analysis. They reported that the choice of strategy
+had little effect on bias or precision, but could affect model weights and 
+hence affect model-averaged estimates.
+
+We are not aware of any equivalent study for SECR.
+<!-- but check @McLellan2023 black bears? -->
+
+### Score tests
+\index{Score tests}
+
+Models must usually be fitted to compare them by AIC. Score tests allow models at the 
+next level in a tree of nested models to be assessed without fitting [@McCrea2011]. 
+Only the 'best' model at each level is fitted, perhaps spawning a further set of 
+comparisons. This method is provided in **secr** (see [?score.test](https://www.otago.ac.nz/density/html/score.test.html)), but it has 
+received little attention and its limits are unknown.
+
+## Manipulating fitted models
+
+### Prediction
+
+A fitted model ('secr' object) contains estimates of the coefficients of the model. We note
+
+* the coefficients are on the link scale, and must at the very least be back-transformed to the natural scale, and
+* a real parameter for which there is a [linear sub-model](#linear-submodels) is not unique: it takes a value that depends on covariates and other predictors.
+
+These complexities are handled by the `predict` method for secr objects, as for other fitted models in R (e.g., `lm`). The desired levels of covariates and other predictors appear as columns of the 'newdata' dataframe.
+
+`predict` is commonly called with a fitted model as the only argument; then 'newdata' is constructed automatically by the function `makeNewData`. The default behaviour is disappointing if you really wanted estimates for each level of a predictor. This can be overcome, at the cost of more voluminous output, by setting `all.levels = TRUE`, or simply `all = TRUE`. For more customised output (e.g., for a particular value of a continuous predictor), construct your own 'newdata'.
+
+Density surfaces are a special case. Prediction across space requires the function `predictDsurface`
+as covered in @sec-density.
+
+### Tabulation of estimates
+
+The `collate` function is a handy way to assemble a table of estimates from 
+several fitted models. The input may be individual models or an secrlist. 
+The output is a 4-dimensional array, typically with dimensions corresponding to
+
+* session
+* model
+* statistic (estimate, SE, lcl, ucl)
+* parameter (D, g0, sigma)
+
+The parameters must be common to all models.
+
+```{r}
+#| label: collate
+# [1,,,] drops 'session' dimension for printing
+collate(secrdemo.0, secrdemo.CL, realnames = c('g0','sigma'))[1,,,]
+```
+
+Here we see that the full- and conditional-likelihood fits produce identical 
+estimates for the detection parameters of a Poisson model.
+
+## Assessing model fit {#sec-modelfit}      
+\index{Goodness of fit}
+
+Rigor would seem to require that a model used for inference has been shown to fit the data. This premise has many fishhooks. Tests of 'goodness-of-fit' for SECR have uniformly low power. Assumptions are inevitably breached to some degree, and we rely in practice on soft criteria (experience, judgement and the property of [robustness](#sec-assumptions)).
+
+Nevertheless, tests of goodness-of-fit are potentially informative regarding ways a model might be improved. Early maximum likelihood and Bayesian approaches to SECR spawned different approaches to goodness-of-fit testing - the parametric bootstrap and Bayesian p-values. We present these in an updated context as this is an area of active research. Each test is introduced, along with a recent approach that attempts to bridge the divide by emulating Bayesian p-values for models fitted by maximum likelihood. 
+
+<!-- We focus on the observation model, leaving comments on the spatial distribution of AC to the end.  -->
+
+### Parametric bootstrap
+
+If an SECR model fits a dataset then a goodness-of-fit statistic computed from the data will lie close to the median of that statistic from replicated Monte Carlo simulations. @be08, following an earlier edition of @cw, suggested using a test based on the scaled deviance i.e. $[-2\mathrm{log}{\hat L} + 2 \mathrm{log}L_{sat}] / \Delta df$ where $\hat L$ is the likelihood evaluated at its maximum, $L_{sat}$ is the likelihood of the saturated model (@tbl-saturated), and $\Delta df$ is the difference in degrees of freedom between the two. The distribution of the test statistic was estimated by a parametric bootstrap i.e. by simulation from the fitted model with parameters fixed at the MLE.
+
+| Model | Likelihood of saturated model |
+|-------|----------------------|
+| conditional | $\log (n!) - \sum_\omega \log(n_\omega!) + \sum_\omega n_\omega \log(\frac{n_\omega}{n})$ |
+| Poisson | $n\log(n) - n - \sum_\omega \log(n_\omega!) + \sum_\omega n_\omega \log(\frac{n_\omega}{n})$ |
+| Binomial | $n\log(\frac{n}{N}) - (N-n)\log(\frac{N-n}{N}) + \log(\frac{N!}{(N-n)!})- \sum_\omega \log(n_\omega!) + \sum_\omega n_\omega \log(\frac{n_\omega}{n})$ |
+
+: Expressions for the saturated likelihood of conditional, full Poisson and full binomial SECR likelihoods. 
+$n_\omega$ is the number of individuals with detection history $\omega$ and summation is over the unique histories; $N$ is the population in the area $A$ and for evaluation we use an estimate $\hat N = \hat D.|A|$. {#tbl-saturated tbl-colwidths="[12,88]" .sm}
+
+::: {.callout-warning}
+Saturated likelihoods are shown in @tbl-saturated for the simplest models. There may be complications for models with groups, individual covariates etc. [cf @cw Section 5.1].
+:::
+
+### Bayesian p-values
+
+@rcsg14 (pp. 232--243) treated the problem of assessing model fit in the context of Bayesian SECR using Bayesian p-values [@Gelman1996].
+
+In essence, Bayesian p-values compare two discrepancies: the discrepancy between the observed and expected values, and the discrepancy between simulated and expected values. A discrepancy is a scalar summary statistic for the match between two sets of counts; @rcsg14 used the Freeman-Tukey statistic [e.g., @Brooks2000] in preference to the conventional Pearson statistic. The statistic has this general form for $M$ counts $y_m$ with expected value $\mathrm{E}(y_m)$:
+$T = \sum_m \left[\sqrt {y_m} - \sqrt{E(y_m)}\right]^2.$
+
+Each pair of discrepancy statistics provides a binary outcome (Was the observed discrepancy greater than the simulated discrepancy?) and these are summarised as a 'Bayesian p value' i.e. the proportion of replicates in which the observed discrepancy exceeds the simulated discrepancy. The p value is expected to be around 0.5 for a model that fits.
+
+### Emulation of Bayesian p values
+
+@Choo2024 proposed novel simulation-based tests for SECR models fitted by maximum 
+likelihood. Their idea was to emulate Bayesian p values by repeatedly --
+
+1. resampling density and detection parameters from a multivariate normal distribution based on the estimated variance-covariance matrix
+2. conditioning on the known (detected individuals) and locating each according to its post-hoc probability distribution (fxi in **secr**), using the resampled detection parameters
+3. simulating additional individuals from the post-hoc distribution of unobserved individuals, as required to make up the resampled density, also using the resampled detection parameters
+4. computing the expected values of chosen summary statistics (e.g. margins of the capthist array)
+5. computing two discrepancy statistics (e.g. Freeman-Tukey) for each realisation: observed vs expected and simulated vs expected.
+
+The explicit 'point of difference' of the @Choo2024 approach is the propagation of uncertainty in the parameter values instead of relying on the central estimates for a parametric bootstrap. This alone would not be expected to increase the power of the test over a conventional test, and might even reduce power. However, the comparison of observed vs expected and simulated vs expected is performed separately for each realisation of the parameters, *including the distribution of AC*, and this may add power (think of a paired t-test).
+
+### Implementation in **secr**
+
+The parametric bootstrap is implemented in `secr::secr.test` and the @Choo2024 emulation of Bayesian p-values is implemented in `secr::MCgof`.  We have been unable to find a 
+convincing application of goodness-of-fit to SECR data. Rather than promote either method we prefer to await developments.
+
+<!-- ### Comparison of methods for Tennessee black bears -->
+
+<!-- We first fit two models to the Tennessee black bear dataset of J. Laufenberg et al. that is included in **secr**: -->
+
+<!-- ```{r} -->
+<!-- #| label: black bear models -->
+<!-- #| cache: true -->
+<!-- #| code-fold: true -->
+<!-- #| code-summary: code for fitting black bear models -->
+<!-- #| warning: false -->
+<!-- # fit null and learned response models -->
+<!-- # restrict habitat to Great Smoky Mountains NP -->
+<!-- # a binomial (fastproximity) model cannot be used with a learned response -->
+<!-- msk <- make.mask(traps(blackbearCH), buffer = 6000, type = 'trapbuffer', poly = GSM)   -->
+<!-- baseargs <- list(capthist = blackbearCH, mask = msk, trace = FALSE,  -->
+<!--                  details = list(fastproximity = FALSE), ncores = 8) -->
+<!-- fits  <- list.secr.fit(model = list(g0~1, g0~bk), constant = baseargs,  -->
+<!--                        names = c('null','bk')) -->
+<!-- ``` -->
+
+<!-- There is strong support for a site-specific learned response (model bk): -->
+<!-- ```{r} -->
+<!-- #| label: black bear AIC -->
+<!-- #| cache: false -->
+<!-- #| eval: true -->
+<!-- AIC(fits) -->
+<!-- ``` -->
+
+<!-- #### Parametric bootstrap -->
+
+<!-- Conventional goodness-of-fit tests for SECR models fitted by MLE may be performed with the function `secr.test`. However, the results in @fig-testresults are hard to reconcile with the AIC comparison: neither model registers lack of fit. -->
+<!-- ```{r} -->
+<!-- #| label: black bear secr.test -->
+<!-- #| cache: true -->
+<!-- #| eval: true -->
+<!-- tests <- lapply(fits, secr.test,  fit = TRUE, nsim = 199, trace = 0) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| label: fig-testresults -->
+<!-- #| eval: true -->
+<!-- #| echo: false -->
+<!-- #| fig-width: 8 -->
+<!-- #| fig-height: 3.5 -->
+<!-- #| out.width: "95%" -->
+<!-- #| fig-cap: | -->
+<!-- #|   Goodness-of-fit statistics for black bear data and models (red line) compared  -->
+<!-- #|   to distributions simulated from fitted null (g0~1) and learned response (g0~bk) -->
+<!-- #|   models. p-values refer to the  -->
+<!-- #|   quantile of the observed statistic in the simulated distribution. -->
+
+<!-- par(mfrow=c(1,2)) -->
+<!-- plot(tests$null, xlim = c(0,30), xlab = 'deviance / residual df', -->
+<!--     main = paste0('g0~1, p = ', tests$null$output$p)) -->
+<!-- plot(tests$bk, xlim = c(0,30), xlab = 'deviance / residual df', -->
+<!--     main = paste0('g0~bk, p = ', tests$bk$output$p)) -->
+<!-- ``` -->
+
+<!-- #### Emulated Bayesian p values -->
+
+<!-- The @Choo2024 tests are provided in the new **secr** function `MCgof`:  -->
+
+<!-- ```{r} -->
+<!-- #| label: black bear MCgof -->
+<!-- #| cache: true -->
+<!-- gof <- lapply(fits, MCgof, nsim = 100, ncores = 4, quiet = TRUE) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| label: fig-discrepancies -->
+<!-- #| eval: true -->
+<!-- #| echo: false -->
+<!-- #| fig.width: 8 -->
+<!-- #| fig.height: 6 -->
+<!-- #| out.width: "95%" -->
+<!-- #| fig-cap: | -->
+<!-- #|     Discrepancy plots for black bear models -->
+<!-- par(mfrow=c(2,3), las=1, oma=c(0,0,1,0), mgp=c(2.4,0.6,0), pty='s', cex=0.9, -->
+<!--     mar=c(4,4,2,2)) -->
+<!-- plot (gof[[1]]) -->
+<!-- mtext(side=3, outer = TRUE, line = -0.5, adj = 0.03, 'a. Null model', cex=1.05) -->
+<!-- plot (gof[[2]]) -->
+<!-- mtext(side=3, outer = TRUE, line=-16.4, adj = 0.03, 'b. bk model', cex=1.05) -->
+
+<!-- ``` -->
+
+<!-- These results are also hard to interpret. Although fitting a detector-specific  -->
+<!-- learned response has improved fit with respect to the counts per animal and detector (criterion yik), this appears to come at the price of overfitting variation among detectors (criterion yk). -->
+
+<!-- We note that the margins chosen (yik, yi, yk) may fail to capture learned responses, which imply animal-specific changes in the time dimension (yij). -->
+
+<!-- ### Spatial randomness -->
+
+<!-- The question of complete spatial randomness is of limited importance, as estimates of both average density and its sampling variance are now understood to be robust to inhomogeneity of a Poisson process for AC [@Efford2024]. @rcsg14 addressed the problem of spatial randomness, but acknowledged that their proposed solutions, based on binning the state space, were subject to problems regarding bin size and the arbitrary extent of the state space.  -->
+
+<!-- Information on the spatial distribution of AC is provided only by the spatial pattern of detections. A straightforward test can therefore be performed by comparing the observed and expected counts of the number of individuals detected at each detector. Fletcher's c-hat is a suitable statistic, and its distribution under the model can be determined by a parametric bootstrap. -->
+

@@ -1,0 +1,298 @@
+# Simulation {#sec-simulation}
+
+<!--    flow chart -->
+<!--     overlap coefficient k -->
+<!--     number of replicates small for RSE -->
+<!--     method = "none" (compare) -->
+
+<!-- Suggest base standard: -->
+
+<!-- large array 12 x 12 -->
+<!-- small array 8 x 8 -->
+
+<!-- HHN -->
+<!-- 2-sigma spacing -->
+<!-- 4-sigma buffer -->
+<!-- 1 occasion, binomial N=5 -->
+<!-- lambda0 = 1 -->
+
+<!-- secr-simulations -->
+
+Simulation has many uses in SECR; we focus particularly on
+
+* determining properties of estimators under breaches of assumptions (@sec-assumptions), 
+* assessing candidate study designs (@sec-studydesign), and
+* assessing goodness of fit (@sec-fittedmodels).
+
+The first two of these are not related to the analysis of a dataset and the required 'de novo' simulations follow essentially the same steps in **secr**, as detailed below. The third entails simulation from a particular model fitted to data, as considered [earlier](08-fittedmodels.qmd#sec-modelfit). Other uses of simulation are more niche -- parameter estimation [@Efford2023], testing software implementations, and the computation of parametric bootstrap confidence intervals.
+
+This chapter aims to demystify simulation and make it available to a wider range of SECR users. We start by breaking a simulation down into the component steps, showing how each of these may be performed in **secr**. Later we introduce the package **secrdesign** that manages these steps for greater efficiency.
+
+## Simulation step by step
+
+The essential steps for each replicate of a *de novo* SECR simulation are
+
+1. Generate an instance of the population process, i.e. the distribution of activity centres AC.
+2. Generate a set of 'observed' spatial detection histories from the AC distribution according to some study design (detector layout, sampling duration), and detection parameters (e.g., $\lambda_0, \sigma$).
+3. Fit an SECR model to estimate parameters of the population and detection processes, along with their sampling variances.
+
+It is simple enough to perform steps 1 \& 2 directly in R without the use of **secr** functions. We give an example before describing functions that cover many variations with less code.
+
+```{r}
+#| label: manual
+#| cache: true
+# Step 1. Generate population
+D     <- 20                               # AC per hectare
+EN    <- D * 9                            # expected number in 9 ha
+N     <- rpois(1, EN)                     # realised number of AC
+popxy <- matrix(runif(2*N)*300, ncol = 2) # points in 300-m square
+
+# Step 2. Sample from population with central 6 x 6 detector array
+detxy <- expand.grid(x = seq(100,200,20), y = seq(100,200,20))
+K     <- nrow(detxy)                      # number of detectors
+S     <- 5                                # number of occasions
+g0    <- 0.2                              # detection parameter
+sigma <- 20                               # detection parameter
+d     <- secr::edist(popxy, detxy)        # distance to detectors
+p     <- g0 * exp(-d^2/2/sigma^2)         # probability detected
+detected <- as.numeric(runif(N*K*S) < rep(p,S))
+ch    <- array(detected, dim = c(N,K,S), dimnames = list(1:N, 1:K, 1:S))
+ch    <- ch[apply(ch,1,sum)>0,,]          # reject null histories
+```
+
+For analysis in **secr** the simulated detection data should be recast as a 'capthist' object with the detector array as an attribute:
+```{r}
+#| label: manual2
+#| cache: true
+class(detxy)    <- c('traps', 'data.frame')
+detector(detxy) <- 'proximity'
+ch              <- aperm(ch, c(1,3,2))   # permute dim to N, S, K
+class(ch)       <- 'capthist'
+traps(ch)       <- detxy
+```
+
+Now that the data are in the right shape we can proceed to fit a model:
+```{r}
+#| label: manual3
+#| cache: true
+# Step 3. Fit model to simulated capthist
+fit <- secr.fit(ch, buffer = 100, trace = FALSE)
+predict(fit)
+```
+
+This is rather laborious and it's easy to slip up. We next outline the **secr** functions `sim.popn` and `sim.capthist` that conveniently wrap Steps 1 & 2, respectively, along with many extensions. 
+
+A further level of wrapping is provided by package [**secrdesign**](#secrdesign) that manages simulation scenarios, their replicated execution (Steps 1--3), and the summarisation of results.
+
+### Simulating AC distributions with `sim.popn`
+\index{Simulation!population}
+
+A simulated AC distribution is an object of class 'popn' in **secr**. This is usually a distribution of points within a rectangular region that is the bounding box of a 'core' object (most likely a 'traps' object) inflated by a certain 'buffer' distance in metres. `sim.popn` generates a 'popn' object, for which there is a `plot` method. 
+
+```{r}
+#| label: fig-simpopn
+#| out-width: 70%
+tr <- make.grid()  # a traps object, for demonstration
+pop <- sim.popn(D = 10, core = tr, buffer = 100, 
+    model2D = "poisson")
+par(mar = c(1,1,1,1))
+plot(pop)
+plot(tr, add = TRUE)
+```
+
+The default 2-D distribution is random uniform - a Poisson distribution, as shown here. The expected number of activity centres E(*N~A~*) is determined by the argument D, the density in AC per hectare. By default *N~A~* is a Poisson random variable, but it may be fixed by setting `Ndist = "fixed"`. Published simulations often fix *N~A~* for reasons of convenience such as avoiding realisations that may be hard to model or reducing the variance among replicates. Comparisons must therefore be made with care.
+
+For `Ndist = "poisson"` the choice of buffer is not critical so long as it is large enough to include all potentially detected AC. Simulated populations with excessively large *N~A~* take longer to sample (the next step - generating a capthist object), but the ultimate capthist is no larger and model fitting takes the same time.
+
+Inhomogeneous alternatives to a uniform random distribution may be specified using the arguments 'model2D' and 'details'. We elaborate on these [later](#inhomogeneous).
+
+### Simulating detection with `sim.capthist`
+
+\index{Simulation!detection}
+
+To simulate sampling of a given population we specify the type and spatial distribution of detectors, the detection function, and the duration of sampling. Detectors are prepared in advance as an object of class 'traps', either input from a data file or generated by one of the functions for a specific geometry (`make.grid`, `trap.builder`, `make.systematic`, `make.circle` etc.).
+
+```{r}
+#| label: fig-simcapthist
+#| out-width: 70%
+ch <- sim.capthist(traps = tr, popn = pop, detectpar = list(
+    g0 = 0.1, sigma = 20), noccasions = 5, renumber = FALSE)
+summary(ch)
+par(mar = c(1,1,1,1))
+plot(ch, tracks = TRUE)
+plot(pop, add = TRUE)
+captured <- subset(pop, rownames(pop) %in% rownames(ch))
+plot(captured, pch = 16, add = TRUE)
+```
+
+### Combining data generation and model fitting
+
+We loop over the AC-generation, sampling, and model-fitting steps, recording the results for later. 
+```{r}
+#| label: combined
+#| cache: true
+tr <- make.grid()  # a traps object
+nrepl <- 10
+set.seed(123)
+out <- list()
+for (r in 1:nrepl) {
+    pop <- sim.popn(D = 20, core = tr, buffer = 100, 
+        model2D = "poisson")
+    ch <- sim.capthist(traps = tr, popn = pop, detectpar = list(
+        g0 = 0.2, sigma = 20), noccasions = 5)
+    fit <- secr.fit(ch, buffer=100, trace = FALSE)
+    out[[r]] <- predict(fit)
+}
+```
+
+Each output returned by the `predict` method is a dataframe from which we extract the density estimate and its standard error to form the summary:
+```{r}
+#| label: combinedsummary
+#| results: hold
+trueD  <- 20
+Dhat   <- sapply(out, '[', 'D', 'estimate')
+seDhat <- sapply(out, '[', 'D', 'SE.estimate')
+cat ("mean  ", mean(Dhat), '\n')
+cat ("RB    ", (mean(Dhat)-trueD) / trueD, '\n')
+cat ("RSE   ", mean(seDhat / Dhat), '\n')
+cat ("rRMSE ", sqrt(mean((Dhat-trueD)^2)) / mean(Dhat), '\n')
+```
+
+<!-- (Duration may vary by detector) -->
+
+<!-- ``` -->
+<!-- sim.capthist (traps, popn = list(D = 5, buffer = 100, Ndist = "poisson"),  -->
+<!--     detectfn = 0, detectpar = list(), noccasions = 5, nsessions = 1,  -->
+<!--     renumber = TRUE, seed = NULL, etc.) -->
+<!-- ``` -->
+
+## Simulation in **secrdesign** {#secrdesign}
+\index{Simulation!model fitting}
+\index{R packages!secrdesign}
+
+The R package **secrdesign** takes care of a lot of the coding needed to specify, 
+execute and summarise SECR simulations. Full details are in its documentation, particularly 
+[secrdesign-vignette.pdf].
+
+The heart of **secrdesign** is a dataframe of one or more *scenarios*. Usually there is one row per scenario. The scenario dataframe is constructed with `make.scenarios`. Some properties of scenarios, such as expected sample sizes, may be extracted without simulation using `scenarioSummary`. This is a good first check. 
+
+Simulations are executed with `run.scenarios`, with or without model fitting. The resulting object is summarised either directly (with the `summary` method) or after further processing to select fields and statistics. Several arguments of `run.scenarios` comprise lookup lists from which each scenario selects according to a numeric index field. For example, 'trapset' is a list of detector layouts, from which each scenario selects via its 'trapsindex' column. Likewise 'pop.args', 'det.args', and 'fit.args' are lists corresponding to the 'popindex', 'detindex' and 'fitindex' columns of the scenario data.frame. These  optionally provide fine control of `sim.popn`, `sim.capthist` and `secr.fit`, respectively. The saved output may be customized via the 'extractfn' argument.
+
+This small demonstration repeats the simulation in the preceding code. 'xsigma' specifies the buffer width as a multiple of 'sigma'.
+
+```{r}
+#| label: load secrdesign
+#| echo: false
+#| message: false
+# in case following chunk cached
+library(secrdesign, quietly = TRUE)
+```
+
+```{r}
+#| label: demo secrdesign
+#| cache: true
+#| results: hold
+#| collapse: true
+library(secrdesign)
+tr   <- make.grid()  
+scen <- make.scenarios (D = 20, g0 = 0.2, sigma = 20, 
+    noccasions = 5)
+sims <- run.scenarios(10, scen, tr, xsigma = 5, fit = TRUE, 
+    seed = 123)    
+```
+
+We can get a compact summary like this:
+```{r}
+#| label: simulation output
+estimateSummary(sims)
+```
+
+The default sampling function `sim.capthist` is usually adequate, but an alternative may be specified via the argument 'CH.function'.
+
+Simulation quite often results in data that are too sparse for analysis, and other malfunctions are possible. As a user you should be on your guard for meaningless, extreme values in the estimates. The `validate` function provides a mechanism for filtering these out.
+
+## Advanced simulations
+
+### Inhomogeneous populations {#inhomogeneous}
+
+Variations on a uniform distribution of AC are selected with the `sim.popn` argument 'model2D'. This may be done directly, as when we first introduced `sim.popn`, or indirectly via the 'pop.args' argument of `run.scenarios`. While almost any process may be used to generate data, only the parameters of an inhomogeneous Poisson process may be estimated by fitting models in **secr**. Alternative methods are available for some other generating models [e.g., @Stevenson2021; @Dey2023].
+
+We next consider three types of point process that may be used to simulate inhomogeneous distributions of activity centres in `sim.popn`. 
+
+#### Inhomogeneous Poisson Process
+
+An inhomogeneous Poisson process (IHPP) is specified by setting 'model2D = "IHP"'. The argument 'core' should be a [habitat mask](#Habitat). Cell-specific density (expected number of individuals per hectare) may be given either in a covariate of the mask (named in argument 'D') or as a vector of values in argument 'D'. The covariate option allows you to simulate from a previously fitted Dsurface (output from `predictDsurface`). Special cases of IHPP are provided in the 'hills' and 'coastal' options for 'model2D'.
+
+#### Cox Processes {#LGCP}
+
+In a Cox process the expected density surface of the IHPP varies randomly between realisations (i.e. replicates). For example, **secr** has the function `randomDensity` that may be used in `sim.popn` to generate a new binary density mosaic at each call (see Examples on its help page).
+
+A flexible model for continuous variation in density is the log-Gaussian Cox Process (LGCP) [@Johnson2010; @drns21; @Efford2024]. The IHPP log-intensity surface of a LGCP is Gaussian (normally distributed) at each point, but adjacent points co-vary; autocorrelation declines with distance. The notation and parameterisation can be confusing. The term 'Gaussian' refers to the marginal intensity, not the autocorrelation function which is commonly exponential. The Gaussian variance is on the log scale, so even a variance as low as 1.0 indicates substantial heterogeneity. The exponential scale parameter naturally has the same units as the SECR detection function, although @drns21 rescaled it as 6\% or 100\% of the width of the study area. **secr** uses the function `rLGCP` from **spatstat** [@Baddeley2015] which in turn depends on **RandomFields** [@Schlather2015]. 
+
+<!-- GRF parameters for inhomogeneous Poisson process i.e. LGCP -->
+<!-- (i) mean density -->
+<!-- (ii) marginal variance $\sigma_D^2$ -->
+<!-- (iii) spatial correlation function -->
+<!-- (problem that lack intuitive interpretation; R package **RandomFields** not on CRAN; idiosyncratic variations) -->
+
+#### Cluster Processes
+
+The points in a 2-D cluster process are no longer independent, as in an IHPP. Each belongs to a cluster. For the Thomas process that has been applied in SECR [e.g., ebb09] there is a Poisson distribution of 'parents' and a bivariate-normal scatter of offspring points about each parent. Both the number of parents and the number of offspring per parent are Poisson variables, and hence some clusters may be empty. Thomas processes belong to the broader class of Neyman-Scott cluster processes. **secr** implements an interface to the function `rThomas` from **spatstat** [@Baddeley2015] ('model2D = "rThomas"').
+
+### Summary of inhomogeneous options
+
+Both Cox and cluster processes require additional parameters to be specified in the 'details' argument of `sim.popn` (@tbl-model2D). @fig-model2D provides examples.
+
+| Type            | model2D       | details | Note |
+|:----------------------------|:--------------|:--------------|:------|
+| Uniform | "poisson" | --- | |
+| IHPP | "IHP"   | --- | cell densities pre-computed |
+|  | "hills" | hills  | sine-curve density in 2-D |
+|  | "coastal" | Beta | extreme gradients  cf @fb04 |
+| Cox process | "rLGCP" | var, scale| |
+| Cluster process | "rThomas" | mu, scale| |
+
+: Distribution of activity centres in `sim.popn` controlled by argument 'model2D' with additional parameters specified in the 'details' argument {#tbl-model2D .sm}
+
+```{r}
+#| label: fig-model2D
+#| eval: true
+#| echo: false
+#| fig-width: 8
+#| fig-height: 5
+#| out-width: 100%
+#| fig-cap: |
+#|   Examples of AC distributions simulated with `sim.popn`. Yellow dots indicate 
+#|   location of cluster 'parents', some of which lie outside the frame.
+source('figures/model2D.R')
+```
+
+### Spatial repulsion
+
+We can imagine scenarios in which AC are distributed more evenly than expected from a random uniform distribution, perhaps due to territorial behaviour. A point process model with repulsion between AC was considered by @Reich2014. There is no equivalent model in `sim.popn`. However, the option 'model2D = "even"' goes some way towards it: space is divided into notional square grid cells of area *1/D* and one AC is located randomly within each cell (@fig-model2D).
+
+### Inhomogeneous detection
+
+Simulating spatial variation in detection parameters is a minefield: there are many subtly different approaches and *ad hoc* variations [@Royle2013; @e14; @Moqanaki2021; @Dey2023; @Stevenson2021; @Hooten2024]. 
+
+The first question is whether to focus on the location of the detector or the location of the activity centres. We label these approaches 'detector-centric' and 'AC-centric'. Focusing on detectors is simpler as they comprise a few discrete locations whereas AC are at unknown locations in continuous space.
+
+`sim.capthist` allows values of g0 and lambda0 to be detector-specific. Values are provided as an occasion x detector matrix. 
+
+The authors cited at the start of this section were mainly concerned with [detector-centric] spatially auto-correlated random effects ('SARE', following @Dey2023). Random variation among detectors may be modelled on the link scale by a Gaussian random field. Simulation is simpler than the [LGCP](#LGCP) for AC because values are required only at the *K* detectors. Deviates are obtained from a random *K*-dimensional multivariate normal distribution with distance-dependent covariance matrix [e.g., @Moqanaki2021]. Simulation in **secr** uses custom functions, for which there are several examples on [GitHub](https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/SARE/secr-simulations-SARE.html) with comments on parameterisation.
+
+A purely detector-centric approach does not allow for a model in which the activity of an individual at one point in its home range depends on resource availability both there and at other points. Normalisation of activity must then account for resource distribution in continuous space [see @e14 and the preceding GitHub site]. @Moqanaki2021 transformed to uniform (-1.96, 1.96)  
+
+There are more arcane options for simulating AC-centric variation in detection:
+
+* covariates 'lambda0' and 'sigma' may be added to simulated populations on the basis of the x-y coordinates of the AC, and used in `sim.capthist` by setting 'detectpar = list(individual = TRUE)' (requires **secr** $\ge$ 4.6.7)
+* the 'userdist' argument may be used to 'warp' space and hence the effective sigma (cf @sec-noneuclidean)
+* discrete non-overlapping populations may be simulated and pasted together *post hoc*.
+
+<!-- * @Royle2013, @e14 cloglog $\alpha_0, \alpha_1, \alpha2$ -->
+<!-- * @Moqanaki2021 $\beta_0, \beta_X$ quasi-sq-exponential -->
+<!-- * @Dey2023 $\phi$ exponential -->
+<!-- * @Stevenson2021 $\rho$ exponential, sq-exponential -->
+<!-- * @Hooten2024   -->
+
+[secrdesign-vignette.pdf]: https://www.otago.ac.nz/density/pdfs/secrdesign-vignette.pdf
