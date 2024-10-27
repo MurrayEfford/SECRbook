@@ -1,24 +1,24 @@
-# Mark-resight models {#mark-resight}
+# Mark-resight models {#sec-mark-resight}
 
-<!-- ## Mark--resight -->
+<!-- Mark--resight data include sampling occasions on which previously marked animals were recorded, but new animals were not distinguished from each other. secr 4.6 provides a suite of spatial models for these data, as documented in [secr-markresight.pdf]. Two general classes of spatial mark--resight model are included: those in which the marking process is modelled (we call these spatial capture--mark--resight models), and those in which the process is not modelled and pre-marked animals are assumed to follow some distribution (e.g., uniform across a known area) (sighting-only or mark--resight models). Mark--resight models in secr 4.6 discard some spatial information in the unmarked sightings -- information that is used in the models of Chandler and Royle (2013) and Sollmann et al. (2013). This results in some (probably small) loss of precision, and requires an adjustment for overdispersion to ensure confidence intervals have good coverage properties. The vignette [secr-markresight.pdf] should be consulted. -->
 
-<!-- Mark--resight data include sampling occasions on which previously marked animals were recorded, but new animals were not distinguished from each other. **secr** 4.6 provides a suite of spatial models for these data, as documented in [secr-markresight.pdf]. Two general classes of spatial mark--resight model are included: those in which the marking process is modelled (we call these spatial capture--mark--resight models), and those in which the process is not modelled and pre-marked animals are assumed to follow some distribution (e.g., uniform across a known area) (sighting-only or mark--resight models). Mark--resight models in **secr** 4.6 discard some spatial information in the unmarked sightings -- information that is used in the models of Chandler and Royle (2013) and Sollmann et al. (2013). This results in some (probably small) loss of precision, and requires an adjustment for overdispersion to ensure confidence intervals have good coverage properties. The vignette [secr-markresight.pdf] should be consulted. -->
+## How is mark-resight different?
 
 In capture--recapture, all newly detected unmarked animals become marked and are distinguishable in future. Some field protocols also involve 'resighting' occasions on which previously marked animals are identified but newly detected animals are not marked. We call these 'mark--resight' data. @mw12 provide an excellent summary of non-spatial mark--resight methods. The extension of spatially explicit capture--recapture models for mark--resight data was begun by @sgpsmspo13, and spatial mark--resight models were applied by @rksnmapdbed14 and @rswmd15. @whc18 describe a major Bayesian application. 
 
-Here we follow the implementation of spatially explicit mark--resight models for closed populations by @eh18. They discards some spatial information in the unmarked sightings -- information that is used in the models of @cr13 and @sgpsmspo13. This results in some (probably small) loss of precision, and requires an adjustment for overdispersion to ensure confidence intervals have good coverage properties.
-
 <!-- Include eh18 in Theory? -->
 
-The historical development of mark--resight models has stressed the resighting component of mark--resight data; the sampling process leading to marking is not modelled. Modelling of the sighting data then requires some assumption about the distribution of the marked animals. Most commonly, marked animals are assumed to be a random sample from a defined population, and that may be achievable in some situations[^naturalmarks]. However, when a spatially distributed population is sampled with localized detectors such as traps, animals living near the traps have a higher chance of becoming marked, and the marked animals are not representative of a well-defined population. The difficulty may be overcome by spatially modelling both the marking and resighting processes. This requires that data on detection locations were collected during the marking phase, and that the spatial distribution of marking effort was recorded. @mmpcl13 analysed non-spatial capture--recapture--resighting data jointly with counts of unmarked individuals, and the core capture--mark--resight models in **secr** are their spatial equivalent (see also @whc18).
+## Distribution of marked animals
 
-[^naturalmarks]: An important case is when some animals carry natural marks and others don't, as in the puma study of @rksnmapdbed14.
+The historical development of mark--resight models has stressed the resighting component of mark--resight data; the sampling process leading to marking is not modelled. Modelling of the sighting data then requires some assumption about the distribution of the marked animals. Most commonly, marked animals are assumed to be a random sample from a defined population, and that may be achievable in some situations. An important case is when some animals carry natural marks and others don't, as in the puma study of @rksnmapdbed14. 
+
+However, when a spatially distributed population is sampled with localized detectors such as traps, animals living near the traps have a higher chance of becoming marked, and the marked animals are not representative of a well-defined population. The difficulty may be overcome by spatially modelling both the marking and resighting processes. This requires that data on detection locations were collected during the marking phase, and that the spatial distribution of marking effort was recorded. @mmpcl13 analysed non-spatial capture--recapture--resighting data jointly with counts of unmarked individuals, and the core capture--mark--resight models in **secr** are their spatial equivalent (see also @whc18).
 
 Rather than modelling the marking process we may take the traditional path, i.e. assume a certain spatial distribution for the marked individuals. Typically, the distribution is assumed to be uniform over a known area (e.g., @sgpsmspo13, @rksnmapdbed14). The number of marked individuals remaining at the time of resighting may be known or [unknown](#unknownmarked). We use 'capture--mark--resight' for models that include the marking process and 'sighting-only' for models in which the spatial distribution of marks is assumed.
 
-Not all detector types and options in **secr** will work with mark--resight data. See [Limitations](#MRlimitations) for a list of known constraints (some will be mentioned along the way). See the [step-by-step guide](#appendix1) for a quick introduction.
+## Overview of implementation in **secr**
 
-## Overview
+The implementation in **secr** follows @eh18. The models discard some spatial information in the unmarked sightings -- information that is used in the models of @cr13 and @sgpsmspo13. This results in some (probably small) loss of precision, and requires an adjustment for overdispersion to ensure confidence intervals have good coverage properties.
 
 Following @eh18, 
 
@@ -29,22 +29,25 @@ Following @eh18,
 
 Unidentified sightings of marked animals are treated as independent of identified sightings. This is an approximation, but its effect on estimates is believed to be negligible. 
 
-The core models are listed in Table \@ref(tab:MRclassification). These may be customized in various ways, particularly by specifying the assumed distribution of marked animals for sighting-only models. Each model may be fitted with or without a parameter for incomplete identification of marked animals when they are resighted ([`pID`](#pID)).
+The core models are listed in @tbl-MRclassification. These may be customized in various ways, particularly by specifying the assumed distribution of marked animals for sighting-only models. Each model may be fitted with or without a parameter for incomplete identification of marked animals when they are resighted ([`pID`](#pID)).
 
-Table: (\#tab:MRclassification) Classification of mark--resight models available in **secr**. 'Capture--mark--resight' models include the marking process; 'sighting-only' models rest on prior knowledge or assumptions regarding where animals have been marked. For sighting-only data some detection histories may be all-zero.
- 
 | Data                    | Pre-marking^1^  | Code | 
-|:-------------|:--------|:--------------------|
+|:------------------------|:--------------|:--------------------|
 | Capture--mark--resight  | none          | NA                | 
 | Sighting-only           | Known $n_0$   | `details = list(knownmarks = TRUE)`  |
 |                         | Unknown $n_0$ | `details = list(knownmarks = FALSE)` |
+
+: Classification of mark--resight models available in **secr**. 'Capture--mark--resight' models include the marking process; 'sighting-only' models rest on prior knowledge or assumptions regarding where animals have been marked. For sighting-only data some detection histories may be all-zero. {#tbl-MRclassification tbl-colwidths="[25,20,55]" .sm}
+
 1. $n_0$ is the number of marked individuals in the study area at the time of the sighting surveys.
   
-Mark--resight data are represented in **secr** by a capthist data object, with minor extensions (Table \@ref(tab:MRattributes)). We describe the structure for a single-session capthist object, which records detections of each marked animal over $S$ occasions at any of $K$ detectors. Detectors on sighting occasions may be of the usual binary proximity ('proximity') or count proximity ('count') types[^countdetectors]. Detectors on marking occasions may be any combination of these types and multi-catch traps. Area search ('polygon') and transect search ('transect') types are not yet supported for either phase when there are sighting occasions: [discretization](#areasearches) is recommended.
+Mark--resight data are represented in **secr** by a capthist data object, with minor extensions (@tbl-MRattributes). We describe the structure for a single-session capthist object, which records detections of each marked animal over $S$ occasions at any of $K$ detectors. Detectors on sighting occasions may be of the usual binary proximity ('proximity') or count proximity ('count') types[^countdetectors]. Detectors on marking occasions may be any combination of these types and multi-catch traps. Area search ('polygon') and transect search ('transect') types are not yet supported for either phase when there are sighting occasions: [discretization](#areasearches) is recommended.
 
 [^countdetectors]:'Count' detectors most closely approximate sampling with replacement (McClintock and White 2012); sampling strictly without replacement implies detection at no more than one site per occasion (detector type 'multi') that has yet to be implemented for mark--resight data, and may prove difficult.
 
-Table: (\#tab:MRattributes) Special attributes of data objects for mark--resight analysis in **secr**.
+::: {.callout-warning}
+Not all detector types and options in **secr** will work with mark--resight data. See [Limitations](#MRlimitations) for a list of known constraints (some will be mentioned along the way). See the [step-by-step guide](#secappendix1) for a quick introduction.
+:::
 
 | Object | Attribute  | Description |
 |:----- |:----------|:----------------------------------------------------------|
@@ -53,6 +56,9 @@ Table: (\#tab:MRattributes) Special attributes of data objects for mark--resight
 | capthist| `Tm` | Counts of marked animals not identified |
 | capthist| `Tn` | Counts of sightings with unknown mark status (not modelled) |
 | mask    | `marking`^1^ | Distribution of pre-marked animals ([sighting-only data]( #areaspecification); optional) |
+
+: Special attributes of data objects for mark--resight analysis in **secr**.  {#tbl-MRattributes .sm}
+
 1. `marking` is the name of a special mask covariate, accessed like other covariates.
 
 ### Marking and sighting occasions
@@ -84,7 +90,7 @@ Sightings for which the mark status could not be determined are a further catego
 
 ### Unresolved sightings {#unresolvedsightings}
 
-Sometimes the sighting method does not allow marked animals to be distinguished from unmarked animals. Sighting occasions of this type are coded with '-1' in the markocc vector. On these occasions the counts of all sightings ('unresolved sightings') stored in the appropriate column of `Tn`, the corresponding columns of `Tu` and `Tm` are all-zero, and no sightings of marked animals appear in the capthist object. Models comprising one or more marking occasions and only unresolved sightings (e.g., `markocc <- c(1, -1, -1, -1, -1)`) may be fitted in **secr**, but there are constraints (see [Sighting without attention to marking](#appendix2)).
+Sometimes the sighting method does not allow marked animals to be distinguished from unmarked animals. Sighting occasions of this type are coded with '-1' in the markocc vector. On these occasions the counts of all sightings ('unresolved sightings') stored in the appropriate column of `Tn`, the corresponding columns of `Tu` and `Tm` are all-zero, and no sightings of marked animals appear in the capthist object. Models comprising one or more marking occasions and only unresolved sightings (e.g., `markocc <- c(1, -1, -1, -1, -1)`) may be fitted in **secr**, but there are constraints (see [Sighting without attention to marking](#sec-appendix2)).
 
 ## Data preparation
 
@@ -92,11 +98,14 @@ Data on marked animals may be formatted and read as usual with `read.capthist` (
 
 Sighting data for unmarked animals (Tu) are provided separately as a $K \times S$ matrix, where $K$ is the number of detectors and $S$ is the total number of occasions (including marking occasions). Elements in the matrix are either binary (0/1) for proximity detectors, or whole numbers (0, 1, 2,...) for count, polygon and transect detectors. Sightings of marked animals that are not identified to individual (Tm) are optionally provided in a separate $K \times S$ matrix. Usually you will read these data from separate text files or spreadsheets. Sightings with unknown mark status (Tn) may also be provided, but will be ignored in analyses except for occasions with code -1 in `markocc`. 
 
-The function `addSightings` may be used to merge these matrices of sighting data with an existing mark--resight capthist object, i.e. to set its attributes `Tu` and `Tm`. There are also custom extraction and replacement functions for sighting-related attributes (`markocc`, `Tu` and `Tm`). `addSightings` also allows input from text files in which the first column is a session identifier (see [Step-by-step guide](#appendix1) for an example).
+The function `addSightings` may be used to merge these matrices of sighting data with an existing mark--resight capthist object, i.e. to set its attributes `Tu` and `Tm`. There are also custom extraction and replacement functions for sighting-related attributes (`markocc`, `Tu` and `Tm`). `addSightings` also allows input from text files in which the first column is a session identifier (see [Step-by-step guide](#sec-appendix1) for an example).
 
-Let's assume you have prepared the files `MRCHcapt.txt`, `MRCHcapt.txt`, `Tu.txt` and `Tm.txt`. [Simulated examples](#appendix5) can be found in the extdata folder of the **secr** distribution (version 4.4.3 and above). This code can be used to build a mark--resight capthist object:
+Let's assume you have prepared the files `MRCHcapt.txt`, `MRCHcapt.txt`, `Tu.txt` and `Tm.txt`. [Simulated examples](#sec-appendix5) can be found in the extdata folder of the **secr** distribution (version 4.4.3 and above). This code can be used to build a mark--resight capthist object:
 
-```{r readMRCH, message = FALSE, results = "hold"}
+```{r}
+#| label: readMRCH
+#| message: false
+#| results: hold
 library(secr)
 olddir <- setwd(system.file("extdata", package = "secr"))
 MRCH <- read.capthist("MRCHcapt.txt", "MRCHtrap.txt", detector = 
@@ -110,7 +119,8 @@ setwd(olddir)
 
 The `summary` method for capthist objects recognises mark--resight data and provides a summary of the `markocc`, `Tu`, and `Tm` attributes. 
 
-```{r summaryMRCH}
+```{r}
+#| label: summaryMRCH
 summary(MRCH)
 ```
 
@@ -120,7 +130,16 @@ On sighting occasions the row 'detections' in Counts by occasion corresponds to 
 
 The default plot of a mark--resight capthist object shows only marked and identified individuals. To make a separate plot of the sightings of unmarked individuals, either use the same function with `type = "sightings"` or use `sightingPlot`:
 
-```{r plotMRCH, fig.height = 4, fig.width = 6, fig.cap = "Two ways to plot sightings of unmarked animals. Petals in the lefthand plot indicate the number of sightings, except that marking occcasions are shown as a solid dot. `mean = FALSE` causes `sightingPlot` to use the total over all occasions rather than the mean. Other settings are used here only to customise the layout and colour of the plots."}
+```{r}
+#| label: fig-plotMRCH
+#| fig-height: 4
+#| fig-width: 6
+#| fig-cap: |
+#|   Two ways to plot sightings of unmarked animals. Petals in the lefthand plot
+#|   indicate the number of sightings, except that marking occcasions are shown as a
+#|   solid dot. `mean = FALSE` causes `sightingPlot` to use the total over all occasions
+#|   rather than the mean. Other settings are used here only to customise the layout
+#|   and colour of the plots.
 par(mar = c(1,3,3,3), mfrow = c(1,2), pty = 's')
 # petal plot with key
 plot(MRCH, type = "sightings", border = 20)
@@ -146,13 +165,15 @@ Checks are performed by default when a model is fitted with `secr.fit`, or when 
 
 ### Different layouts for marking and sighting
 
-Detector layouts are likely to differ between marking and sighting occasions. This can be accommodated within a single, merged detector layout using detector- and occasion-specific usage codes. See [here](#appendix3) for a function to create a single-session mark--resight traps object from two components.
+Detector layouts are likely to differ between marking and sighting occasions. This can be accommodated within a single, merged detector layout using detector- and occasion-specific usage codes. See [here](#sec-appendix3) for a function to create a single-session mark--resight traps object from two components.
 
 ### Simulating mark--resight data
 
 Mark--resight data may be generated with function `sim.resight`. In this example, one grid of detectors is used for both marking and for resighting, but the detection rate is higher on the initial (marking) occasion.
 
-```{r simresight, cache = TRUE}
+```{r}
+#| label: simresight
+#| cache: true
 grid <- make.grid(detector = c("multi", rep("proximity",4)))
 markocc(grid) <- c(1, 0, 0, 0, 0)
 g0mr <- c(0.3, 0.1, 0.1, 0.1, 0.1)
@@ -172,7 +193,9 @@ Properly prepared, a capthist object includes all the data for fitting a mark--r
 
 [^footnote8]: A slight exception is the optional [`marking`]( #areaspecification) mask covariate used for sighting-only data.
 
-```{r fitMRCH, cache = TRUE}
+```{r}
+#| label: fitMRCH
+#| cache: true
 mask <- make.mask(traps(MRCH), nx = 32, buffer = 100)
 fit0 <- secr.fit(MRCH, model = list(g0 ~ ts), mask = mask, 
     trace = FALSE)
@@ -191,7 +214,9 @@ The default confidence intervals have poor coverage when the data include counts
 
 Steps (2) and (3) may be performed together in one call to `secr.fit`. In the example below, the first line repeats the model specification, while the second line provides the previously fitted model as a starting point and calls for `nsim` simulations to estimate overdispersion (c-hat in MARK parlance).
 
-```{r refit, cache = TRUE}
+```{r}
+#| label: refit
+#| cache: true
 fit1 <- secr.fit(MRCH, model = list(g0~ts), mask = mask, 
     trace = FALSE, start = fit0, details = list(nsim = 10000))
 predict(fit1, newdata = data.frame(ts = factor(c("M","S"))))
@@ -201,10 +226,11 @@ predict(fit1, newdata = data.frame(ts = factor(c("M","S"))))
 
 For this dataset the adjustment had a small effect on the confidence intervals (`r round(100 * (diff(unlist(predict(fit1)['D',c('lcl','ucl')])) / diff(unlist(predict(fit0)['D',c('lcl','ucl')])) - 1))`% increase in interval length). The estimates of overdispersion are saved in the `details$chat` component of the fitted model, and we can see that they are close to 1.0. Note that the adjustment is strictly for overdispersion in the unmarked sightings, and the effect of that overdispersion is 'diluted' by other components of the likelihood.
 
-```{r chat}
+```{r}
+#| label: chat
 fit1$details$chat[1:2]
 ```
-A shortcut is to specify `method = "none"` at Step 3 to block re-maximization of the pseudolikelihood: then only the variance-covariance matrix, likelihood and related parameters will be re-computed. Pre-determined values of $\hat c$ may be provided as input in the `chat` component of `details`; if `nsim = 0` the input `chat` will be used without further simulation (example in [Step-by-step guide](#appendix1) Step 8).
+A shortcut is to specify `method = "none"` at Step 3 to block re-maximization of the pseudolikelihood: then only the variance-covariance matrix, likelihood and related parameters will be re-computed. Pre-determined values of $\hat c$ may be provided as input in the `chat` component of `details`; if `nsim = 0` the input `chat` will be used without further simulation (example in [Step-by-step guide](#sec-appendix1) Step 8).
 
 Stochasticity in the estimate of overdispersion causes parameter estimates to vary. The problem is minimized by running many simulations (say, `nsim = 10000`), which has relatively little effect on total execution time. 
 
@@ -245,7 +271,9 @@ Only a subset of the usual predictors is appropriate for `pID`. Use of predictor
 
 By default, animals in a sighting-only dataset are assumed to have been marked throughout the habitat mask. However, uniform marking across a subregion of the habitat mask, or any other known distribution, may be specified by including a mask covariate named 'marking'. For example,
 
-```{r markingsubregion, eval = FALSE}
+```{r}
+#| label: markingsubregion
+#| eval: false
 mask <- make.mask(grid)
 d <- distancetotrap(mask, grid)
 covariates(mask) <- data.frame(marking = d < 60)
@@ -275,7 +303,9 @@ The mark--resight models in **secr** do not currently allow groups (g). Finite m
 
 Sighting data can be highly problematic because of difficulty in reading marks and determining when consecutive sightings are independent. A conservative approach is to discard the counts of unmarked sightings (Tu) and unidentified marked animals (Tm), while retaining sighting data on marked animals. This works for capture--mark--resight data (marking occasions included), but not for all-sighting data (which rely on unmarked sightings to estimate detection parameters). The parameter pID is confounded with the sighting-phase g0 so we fix it at 1.0. The likelihood does not require adjustment for overdispersion of unmarked sightings.
 
-```{r discardunmarked, cache = TRUE}
+```{r}
+#| label: discardunmarked
+#| cache: true
 Tu(MRCH) <- NULL
 Tm(MRCH) <- NULL
 mask <- make.mask(traps(MRCH), nx = 32, buffer = 100)
@@ -324,7 +354,7 @@ It is unclear what sample size should be used for sample-size-adjusted AIC (AICc
 
 The likelihood for the sighting-only model with unknown number of marks (Model 3) has a boundary corresponding to the density of detected marks in the marking mask (true density cannot be less than this). This is ordinarily not a problem (estimated density will usually be larger). However, for multi-session data with a common density parameter it is quite possible for the number of marks in a particular session to exceed the threshold. The log-likelihood function then returns 'NA'; although maximization may proceed, variance estimation is likely to fail. A possible (but slow) workaround is to combine the multiple sessions in a single-session capthist (you're on your own here - there is no function for this).
 
-## Step-by-step guide {#appendix1}
+## Step-by-step guide {#sec-appendix1}
 
 This guide should help you get started on a simple mark--resight analysis.
 
@@ -346,7 +376,9 @@ This guide should help you get started on a simple mark--resight analysis.
 
 4. Input data
 
-```{r step4, eval = TRUE}
+```{r}
+#| label: step4
+#| eval: true
 library(secr)
 datadir <- system.file("extdata", package = "secr")  # or choose your own
 olddir <- setwd(datadir)
@@ -359,24 +391,31 @@ setwd(olddir)   # return to original folder
 
 5. Review data
 
-```{r step5}
+```{r}
+#| label: step5
 summary(CH)
 ```
 
 RPSV with `CC = TRUE` gives a crude estimate of the spatial scale parameter `sigma`.
-```{r step5a}
+```{r}
+#| label: step5a
 RPSV(CH, CC = TRUE)   
 ```
 
 6. Design an appropriate habitat mask, representing the region from which animals are potentially detected (sighted). Most simply this is got by buffering around the detectors, for example applying a 100-m buffer:
 
-```{r step6, eval = TRUE}
+```{r}
+#| label: step6
+#| eval: true
 mask <- make.mask(traps(CH), nx = 32, buffer = 100)
 ```
 
 7. Fit a null model and adjust for overdispersion
 
-```{r step7, eval = TRUE, cache = TRUE}
+```{r}
+#| label: step7
+#| eval: true
+#| cache: true
 fit0 <- secr.fit(CH, mask = mask, trace = FALSE)
 fit0 <- secr.fit(CH, mask = mask, trace = FALSE, start = fit0, 
                  details = list(nsim = 10000))
@@ -386,13 +425,16 @@ predict(fit0)
 8. Consider other detection models
 
 *  model with different marking and sighting rates
-```{r step8, cache = TRUE}
+```{r}
+#| label: step8
+#| cache: true
 fitts <- secr.fit(CH, model = g0 ~ ts, mask = mask, trace = FALSE,
     details = list(chat = fit0$details$chat))
 predict(fitts, newdata = data.frame(ts = c("M","S")))
 ```
 
-```{r step8a}
+```{r}
+#| label: step8a
 AIC(fit0, fitts)[,-c(2,6)]
 ```
 
@@ -405,7 +447,9 @@ We have used the initial null-model estimates of $\hat c$ to adjust the later mo
 * marked animals all identified on resighting
 
 In this case we would want to block estimation of the parameter `pID` by fixing it at 1.0:
-```{r step9a, eval = FALSE}
+```{r}
+#| label: step9a
+#| eval: false
 fit <- secr.fit(CH, mask = mask, fixed = list(pID = 1), 
     trace = FALSE)
 fit <- secr.fit(CH, mask = mask, fixed = list(pID = 1), 
@@ -414,7 +458,9 @@ predict(fit)
 ```
 
 * sighting-only data with unknown number of marks (assume previous marking uniform throughout mask)
-```{r step9b, eval = FALSE}
+```{r}
+#| label: step9b
+#| eval: false
 fit <- secr.fit(CH, mask = mask, trace = FALSE, 
                 details = list(knownmarks = FALSE))
 fit <- secr.fit(CH, mask = mask, trace = FALSE, 
@@ -424,7 +470,7 @@ predict(fit)
 
 ## Miscellaneous
 
-### Sighting without attention to marking {#appendix2}
+### Sighting without attention to marking {#sec-appendix2}
 
 When sighting occasions never distinguish between marked and unmarked animals, the parameter `pID` is redundant and cannot be estimated. If no action is taken it will appear in the fitted model as the starting value (default 0.7) with zero variance. It is preferable to suppress this by fixing it to some arbitrary value (e.g., `fixed = list(pID = 1.0)`).
 
@@ -435,11 +481,12 @@ The contribution of unresolved sightings to the estimates is likely to be small.
 
 Nevertheless, it may be useful to model unresolved counts in a joint analysis of a larger dataset. 
 
-### Combining marking and sighting detector layouts {#appendix3}
+### Combining marking and sighting detector layouts {#sec-appendix3}
 
 Here is a function to create a single-session mark--resight traps object from two components. 'trapsM' and 'trapsR' are **secr** traps objects for marking and resighting occasions respectively. 'markocc' is an integer vector distinguishing marking (1) and sighting (-1, 0) occasions. The value returned is a combined traps object with usage attribute based on `markocc`. Detectors shared between the marking and sighting layouts are duplicated in the result; this may slow down model fitting, but it is otherwise not a problem.
 
-```{r trapmergefn}
+```{r}
+#| label: trapmergefn
 trapmerge <- function (trapsM, trapsR, markocc){
     if (!is.null(usage(trapsM)) | !is.null(usage(trapsR)))
         warning("discarding existing usage data")
@@ -462,7 +509,8 @@ trapmerge <- function (trapsM, trapsR, markocc){
 }
 ```
 This demonstration uses only 9 marking points and 25 re-sighting points.
-```{r trapmergeexample}
+```{r}
+#| label: trapmergeexample
 gridM <- make.grid(nx = 3, ny = 3, detector = "multi")
 gridR <- make.grid(nx = 5, ny = 5, detector = "proximity")
 combined <- trapmerge(gridM, gridR, c(1,1,0,0,0))
@@ -471,11 +519,15 @@ detector(combined)
 usage(combined)[1:16,]
 ```
 
-### Simulation code {#appendix5}
+### Simulation code {#sec-appendix5}
 
 This code was used to simulate data for the initial demonstration.
 
-```{r simMRCH, eval = FALSE, message = FALSE, warning = FALSE}
+```{r}
+#| label: simMRCH
+#| eval: false
+#| message: false
+#| warning: false
 library(secr)
 grid <- make.grid(detector = c("multi", rep("proximity",4)))
 markocc(grid) <- c(1, 0, 0, 0, 0)
@@ -492,9 +544,13 @@ write.table(Tm.char, file = "Tm.txt", col.names = F, row.names = F,
     quote = FALSE)
 ```
 
-### Sighting-only example {#appendix6}
+### Sighting-only example {#sec-appendix6}
 
-```{r simMRCH5, message = FALSE, warning = FALSE, cache = TRUE}
+```{r}
+#| label: simMRCH5
+#| message: false
+#| warning: false
+#| cache: true
 library(secr)
 grid <- make.grid(detector = 'proximity')
 markocc(grid) <- c(0, 0, 0, 0, 0)
@@ -509,7 +565,10 @@ fit1 <- secr.fit(MRCH5, fixed = list(pID = 1.0), start = fit0,
                  trace = FALSE)
 ```
 
-```{r simMRCH6, message = FALSE, warning = FALSE}
+```{r}
+#| label: simMRCH6
+#| message: false
+#| warning: false
 MRCH6 <- sim.resight(grid, detectpar=list(g0 = 0.3, sigma = 25), 
     unsighted = FALSE, popn = list(D = 30), pID = 1.0, seed = 123)
 Tm(MRCH6) <- NULL
