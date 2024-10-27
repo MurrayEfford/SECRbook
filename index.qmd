@@ -1,0 +1,97 @@
+# Foreword {.unnumbered}
+
+This book is about the methods for describing animal populations that have come to be called 'spatially explicit capture--recapture' or simply 'spatial capture--recapture'. We use 'SECR' as a general label for these data and models.
+
+SECR data are observations of marked animals at known locations. The observations are from a well-defined regime of spatial sampling, most often with traps, cameras, or some other type of passive detector. SECR models are used to estimate parameters of the animal population, particularly the population density. We focus on 'closed' populations whose composition does not change during sampling.
+
+## Why SECR? {#sec-why .unnumbered}
+
+Non-spatial capture--recapture methods are highly developed and powerful [@obwa78; @wnc02; @cw]. SECR plugs some gaps in non-spatial methods (particularly with respect to density estimation), and has some unexpected benefits:
+
+1.  *Freedom from edge effects*\
+    Estimation of density with non-spatial capture--recapture is dogged by uncertain edge effects. SECR explicitly accounts for edge effects so density estimates are unbiased.
+2.  *Reduced individual heterogeneity*\
+    Unmodelled individual heterogeneity of detection is a universal source of bias in capture--recapture [e.g., @lc24]. Spatial sampling is a potent source of heterogeneity, due to differential access to detectors. SECR models this component of heterogeneity, which then ceases to be a problem.
+3.  *Scaleable detection model*\
+    The detection model in SECR is built from components describing the interaction between a single individual and a single detector. Parameter estimates can therefore be used to simulate sampling with novel detector configurations.
+4.  *Coherent adjustment for effort*\
+    Known variation in effort, including incomplete use of a detector array, can be modelled without ad hoc covariates.
+5.  *Spatial pattern (covariates)*\
+    SECR allows density to be modelled as a function of continuous spatial covariates.
+
+## Why this book? {.unnumbered}
+
+The literature of SECR has grown beyond the attention spans and time budgets of most users. Major SECR publications are @e04, @be08, @rcsg14, @bf16, @srl19 and @Turek2021.
+
+This book provides both a gentle introduction, in the spirit of @cw, and more in-depth treatment of important topics. It is software oriented and therefore unashamedly partial and incomplete. Much of the content is drawn from earlier papers and the documentation of R [@R-base] packages. Some topics are yet to be included (e.g., acoustic data) but documentation may be found on the [DENSITY](https://www.otago.ac.nz/density/SECRinR.html) website. Others such as partial identity models [@Augustine2018] have yet to be considered at all.
+
+SECR has become popular for the potential benefits noted above. But are the results reliable? Understanding the real-world performance of SECR is an active research area with its own questions. Are particular field data adequate? Are results robust when assumptions are not strictly met? How can we design better studies? We assemble the evidence in a form that we hope will be useful to practitioners.
+
+## Organisation {.unnumbered}
+
+Part I introduces the concepts of SECR and walks the reader through a simple example. Part II establishes the necessary theory. Part III provides substantial new material on the performance of SECR: Which assumptions really matter? and How should studies be designed? Part IV is a practical guide to SECR modelling with the R package **secr**. Appendices provide detail on specialised topics such as area and transect searches, spatial mark-resight and non-euclidean distances.
+
+We expect that most readers will start with Part I and thereafter jump to topics of interest. Cross-references are provided to fill in relevant detail that may have been missed.
+
+## Software {.unnumbered}
+
+\index{R packages} The R package **secr** [@R-secr] provides most of the functionality we will need. It performs maximum likelihood estimation for a range of closed-population SECR models. The Windows application [DENSITY](https://www.otago.ac.nz/density/) [@edr04] has been superceded, although its graphical interface can still come in handy.
+
+Bayesian approaches using Markov chain Monte Carlo (MCMC) methods are a flexible alternative to maximum likelihood. The R package [nimbleSCR](https://CRAN.R-project.org/package=nimbleSCR) promises to make these methods more accessible.
+
+Add-on packages extend the capability of **secr**:
+
+\index{R packages!secrlinear}
+
+-   [secrlinear](https://CRAN.R-project.org/package=secrlinear) enables the estimation of linear density (e.g., animals per km) for populations in linear habitats such as stream networks ([secrlinear-vignette.pdf](https://CRAN.R-project.org/package=secrlinear/vignettes/secrlinear-vignette.pdf)).
+
+\index{R packages!ipsecr}
+
+-   [ipsecr](https://CRAN.R-project.org/package=ipsecr) fits models by simulation and inverse prediction, rather than maximum likelihood; this is a rigorous way to analyse data from single-catch traps ([ipsecr-vignette.pdf](https://CRAN.R-project.org/package=ipsecr/vignettes/ipsecr-vignette.pdf)). \index{Traps!single-catch}
+
+\index{R packages!secrdesign}
+
+-   [secrdesign](https://CRAN.R-project.org/package=secrdesign) enables the assessment of alternative study designs by Monte Carlo simulation; scenarios may differ in detector (trap) layout, sampling intensity, and other characteristics ([secrdesign-vignette.pdf](https://www.otago.ac.nz/density/pdfs/secrdesign-vignette.pdf%5D)).
+
+\index{R packages!openCR}
+
+-   [openCR](https://CRAN.R-project.org/package=openCR) implements the open-population models of @es20.
+
+These packages are available from the [CRAN](https://cran.r-project.org/) repository -- just open R and type `install.packages('xxxx')` where xxxx is the package name.
+
+Other R packages for SECR may be found outside CRAN. A distinct maximum-likelihood implementation by @srl19 is available on GitHub (https://github.com/jaroyle/oSCR). Open-population packages by Ben Augustine ([OpenPopScr](https://github.com/benaug/OpenPopSCR)) and Richard Glennie ([openpopscr](https://github.com/r-glennie/openpopscr)) are also available on GitHub.
+
+## Recommended citation {.unnumbered}
+
+(to be finalised)
+
+Efford, M. G. and Schofield, M. R. (2024) Spatially explicit capture--recapture. A handbook of statistical methods. *Zenodo* https://doi.org/10.5281/zenodo.XXXX
+
+## Feedback
+
+This is work in progress. If you find an error or would like to make a suggestion, please raise an issue on [GitHub](https://github.com/MurrayEfford/secr) or contact the authors directly.  
+
+## Acknowledgments {.unnumbered}
+
+Joanne Potts and Gurutzeta Guillera-Arroita gave helpful comments on an early version of the habitat chapter.
+
+Thanks for data -
+
+-   Ken Burnham snowshoe hares @sec-example
+-   Jared Laufenburg black bears @sec-habitat
+-   Kevin Young horned lizards @sec-areaandtransectsearches
+-   Garth Mowat Selkirk grizzly bears @sec-noneuclidean
+-   Chris Sutherland non-euclidean simulation @sec-noneuclidean
+
+```{r}
+#| eval: true
+#| echo: false
+#| out-width: 15%
+knitr::include_graphics('figures/by-nc-sa.png')
+```
+
+The online version of this book is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+Murray Efford  
+Matt Schofield  
+Dunedin, November 2024  

@@ -12,3 +12,6 @@ pre {
 pre code {
   white-space: inherit;
 }
+caption, .table-caption {
+    text-align: left;
+}

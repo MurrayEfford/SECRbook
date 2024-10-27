@@ -1,0 +1,138 @@
+project:
+  type: book
+  output-dir: _book
+  
+lightbox: auto
+
+crossref:
+  fig-prefix: Fig.
+  eq-prefix: Eq.
+  fig-title: Figure
+  tbl-title: Table
+  title-delim: ": "
+
+citation:
+  type: book
+  url: https://www.otago.ac.nz/density
+
+book: 
+  title: Spatially Explicit Capture--Recapture
+
+  subtitle: |
+    |
+    | A handbook of statistical methods. 
+    | DRAFT only
+    |  
+    |   
+    | ![](images/Nickinsnow2.png){width=60%}"
+    
+  author: 
+    - name: Murray Efford
+    - name: Matthew Schofield
+      affiliation: University of Otago, New Zealand
+    
+  date: today
+  license: "CC BY-NC-SA"
+  
+  reader-mode: true
+
+  # cover-image: images/Nickinsnow2.png
+
+  chapters:
+    - index.qmd
+    
+    - part: "Basics"
+      chapters:
+      - 01-basics.qmd
+      - 02-example.qmd
+  
+    - part: "Theory"
+      chapters:
+      - 03-theory.qmd
+      - 04-theory-area-search.qmd
+      - 05-theory-special-topics.qmd
+  
+    - part: "Performance"
+      chapters:
+      - 11-assumptions.qmd
+      - 14-validation.qmd
+      - 12-studydesign.qmd
+  
+    - part: "Practice"
+      chapters:
+      - 06-secr-package.qmd
+      - 08-detection-model.qmd
+      - 08-finite-mixtures.qmd
+      - 08-density-model.qmd
+      - 08-habitat.qmd
+      - 08-fittedmodels.qmd
+      - 08-multisession.qmd
+      - 08-sex.qmd
+      - 10-simulation.qmd
+    
+  appendices:
+    - 16-troubleshooting.qmd
+    - 16-speed.qmd
+    - 16-polygondetectors.qmd
+    - 16-mark-resight.qmd
+    - 16-noneuclidean.qmd
+    - 16-telemetry.qmd
+    - 16-parameterizations.qmd
+    - 16-densityappendix.qmd
+    - 16-trend.qmd
+    - 16-spatial-data.qmd
+    - 16-expected-counts.qmd
+    - 17-datasets.qmd
+
+    - 17-references.qmd
+
+bibliography: [d:/jabref/SECR.bib]
+# csl: journal-of-the-royal-statistical-society.csl
+csl: methods-in-ecology-and-evolution.csl
+
+github-repo: MurrayEfford/SECRbook
+  
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    code-link: true
+    code-overflow: wrap
+    html-math-method: katex
+    page-layout: full
+  
+  pdf:
+    documentclass: scrreprt
+    papersize: A4
+    
+    toc: true
+    toc-depth: 2
+    include-in-header:
+    - text: |
+        \usepackage{booktabs}
+        \usepackage{amsthm}
+        \usepackage{imakeidx}
+        \usepackage{amsmath}
+        \usepackage{bm}
+        
+        \usepackage{framed}
+        \usepackage{quoting}
+        \quotingsetup{vskip=0pt}
+        
+        \makeatletter
+        \def\thm@space@setup{%
+          \thm@preskip=8pt plus 2pt minus 4pt
+          \thm@postskip=\thm@preskip
+        }
+        \makeatother
+        % documentclass book uses \bibname; otherwise \refname
+        \renewcommand{\bibname}{References}
+        % remove blank pages
+        % https://tex.stackexchange.com/questions/542803/removing-blank-pages
+        \let\cleardoublepage=\clearpage
+        \makeindex[intoc=true]
+    include-after-body:
+      text: |
+        \printindex
+
