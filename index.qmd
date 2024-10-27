@@ -69,7 +69,7 @@ Efford, M. G. and Schofield, M. R. (2024) Spatially explicit capture--recapture.
 
 ## Feedback
 
-This is work in progress. If you find an error or would like to make a suggestion, please raise an issue on [GitHub](https://github.com/MurrayEfford/secr) or contact the authors directly.  
+This is work in progress. If you find an error or would like to make a suggestion, please raise an issue on [GitHub](https://github.com/MurrayEfford/SECRbook) or contact the authors directly.  
 
 ## Acknowledgments {.unnumbered}
 

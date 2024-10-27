@@ -55,6 +55,10 @@ source("figures/sevilleta.R")
 
 @Fleming2021 examined the effect of varying the configuration of cover boards used to survey red-backed salamanders (*Plethodon cinereus*). Cover boards are artificial refuges placed on the ground. Data on salamanders found under cover boards are analysed as if cover boards were multi-catch traps. The authors' concern was that SECR estimates of salamander density might depend on the layout and interfere with comparisons and aggregation of data across studies. Estimates of detection parameters (half-normal intercept $g_0$ and spatial scale $\sigma$) were sensitive to the extent and spacing of cover board arrays, whereas density estimates were mostly robust. Salamanders appeared more mobile (larger $\hat \sigma$) when cover boards were further apart. @Fleming2021 suggested salamanders might move directly to the next cover board, presumably within some distance limit.  
 
+## Summary
+
+None of these field studies fully validates SECR methods, but there is at least no strong counter evidence. We encourage field researchers to test SECR further. Where discrepancies are found it is important to investigate the cause. The assumption of independence among detectors underpins the compounding of single-detector distance-detection functions to predict array-level detection probability. Evidence supporting this assumption might relieve the need for elaborate models such as @Stevenson2021.
+
 <!-- Bad choice of detectfn? Behavioural model? -->
 
 <!-- @Twining2022 comparison live tr, camera, DNA -->
