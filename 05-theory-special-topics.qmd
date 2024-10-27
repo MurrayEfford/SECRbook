@@ -1,0 +1,195 @@
+# Special topics {#sec-specialtopics}
+
+The utility of SECR is enhanced by several extensions to the basic theory in the preceding chapters.
+
+The most important of these are the linear submodels for [detection](08-detection-model.qmd#linear-submodels) and [density](08-density-model.qmd#sec-density) that we describe in their respective chapters. Others we list here.
+
+## Multi-session likelihood
+\index{Likelihood!multi-session}
+
+The data may comprise multiple independent datasets to be analysed together. We call these 'sessions', following the terminology of **secr**. They may be synchronous spatial samples from non-overlapping populations or samples of the same population widely separated in time. If there are $J$ such datasets we can denote them $\Omega_j, j = 1,...,J$. The likelihood to be maximized is then $\prod_j L(\phi, \theta | \Omega_j)$. While the parameter vector $(\phi, \theta)$ is common to all sessions, the mechanism of [linear submodels](#linear-submodels) allows 'real' parameter values to be specific to a session, common to multiple sessions, or modelled as a function of session-level covariates. 
+
+Failure of the independence assumption in a multi-session analysis results in underestimation of the sampling variance.
+
+## Groups {#groups}
+\index{Groups}
+
+Users of MARK [@cw] will be familiar with the stratification of a population into 'groups', each with potentially different values for parameters such as survival probability. Grouping requires that each animal is assigned to a group on first detection, and that the assignment is permanent. Then density and any detection parameter may be modelled as a function of the grouping factor. Group models are available in **secr** only when maximizing the full likelihood. When maximizing the [conditional likelihood](#conditional) the model may specify an individual factor covariate directly, with the same effect as grouping. 
+
+The multinomial coefficient in **secr** is stratified by group.
+
+## Effective sampling area {#esa}
+\index{Effective sampling area}
+
+The effective sampling area is defined [@be08] as 
+$$
+a(\theta) \equiv \int_{R^2} p_\cdot(\mathbf x; \theta) \, d\mathbf x. 
+$$ {#eq-esa}
+
+
+This is a scalar *effective* area for which $\hat D = n / a(\hat \theta)$ is an unbiased estimate of density. It does not correspond to a geographic region or delimited polygon on the ground. It bears *no* relation to the traditional 'effective trapping area' $A_W$ [e.g., @obwa78] for which $\hat D = \hat N / A_W$, given a non-spatial population estimate $\hat N$ and boundary strip width $W$. Variation in $a(\theta)$ depends not only on obviously spatial quantities such as the extent of the detector array and the spatial scale of detection $\sigma$, but also on non-spatial quantities such as sampling effort (e.g., the number of days of trapping) and the intercept of the distance-dependent detection function ($g_0, \lambda_0$). 
+
+@grw09 and @rnug09 defined an 'effective trapping area' or 'effective sample area' $A_e$ somewhat differently, omitting the intercept of the detection function. To our knowledge their definition has not found further use. A version closer to ours appears in @rcsg14[Section 5.12].
+
+@em14 defined a 'single-detector sampling area' $a_0(\theta) = 2\pi \lambda_0 \sigma^2$ that is equal to @eq-esa for an isolated detector with [detection functions](#sec-detectfn) HHN or HEX. For $K$ isolated detectors $a(\theta) = Ka_0(\theta)$, but overlap of the 'catchment areas' of adjacent detectors leads to $a(\theta) < Ka_0(\theta)$. 
+
+<!-- CHECK Royal and Dorazio 2008 effective sampling area cited as excellent  'approaches for estimating effective sample area...' by Hooten et al. 2024 p4. -->
+
+## Conditional estimation {#conditional}
+\index{Conditional estimation}
+
+When density is constant, the detection parameters ($\theta$) may be estimated by maximizing the likelihood conditional on $n$, i.e. @eq-CL. This reduces to  
+$$
+L_n (\theta| \Omega) \propto \prod_{i=1}^n \frac{\int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \theta) \; d\mathbf x}{a(\theta)}.
+$$
+Conditioning on $n$ allows individual covariates $\mathbf{z}_i$ to be included in the detection model, so that the parameter vector takes a potentially unique value $\theta_i = f(\mathbf{z}_i)$ for each individual. The effective sampling area then varies among individuals as a function of their covariates. A corresponding Horvitz-Thompson-like derived estimate of density is $\hat D_{HT} = n / \sum_{i=1}^n a(\hat \theta_i)$ [@be08].
+
+When the conditional likelihood is maximized, the inverse Hessian provides variances for $\theta$. The variance of the derived estimate of density depends also on the distribution of $n$. Following @h89,
+$$
+\mathrm{var}(\hat D_{HT}) = s^2 + \hat {\mathbf G}^T_\theta \hat {\mathbf I} \hat {\mathbf G}_\theta
+$$ {#eq-varHT}
+where $s^2$ is the variance of $\hat D$ when $\theta$ is known, $\hat {\mathbf I}$ is the estimated information matrix (inverse
+Hessian), and $\hat {\mathbf G}$ is a vector containing the gradients of $\hat D$ with respect to the elements
+of $\theta$, evaluated at the maximum likelihood estimates. Numerical evaluation of the second term is straightforward. 
+
+When the distribution of AC is inhomogeneous Poisson and detections are independent we expect $n$ to have a Poisson distribution. If $n$ is Poisson then $s^2 = \sum_{i=1}^n a(\hat \theta_i)^{-2}$. This simplifies to $n/a(\hat \theta)^2$ in the absence of individual covariates. 
+
+When $N(A)$ is fixed, $n$ is binomial and $s^2 = \sum_{i=1}^n [1 - a(\hat \theta_i)/|A|] / a(\hat \theta_i)^2$.
+<!-- or $s^2 = n [1 - a(\hat \theta)/|A|] / a(\hat \theta)^2$. -->
+
+The variance from @eq-varHT is on the natural scale, and the Wald confidence interval computed on this scale is symmetrical. Intervals that are symmetric on the log scale and asymmetric on the natural scale have better coverage properties. These are obtained as $(\hat D_{HT}/C, \hat D_{HT}C)$ where $C = \exp \{ z_{\alpha/2} \sqrt{\log[1 + \frac{\mathrm{var}(\hat D_{HT})}{\hat D_{HT}^2}]} \}$ [@Burnham1987; @Chao1989].
+
+## Relative density {#relativedensity1}
+\index{Density surface!relative}
+
+A further option is to ignore the process of first detection that determines the set of individuals for which we have capture histories, i.e. to condition on the particular set of detected (tagged) individuals. Then we use $\theta^\prime$ to parameterize a model for their re-detection, and $\phi^\prime$ to describe the spatial distribution of detected individuals. Note that $\phi^\prime$ carries no information about absolute density: the model describes relative density. The parameters may be estimated by maximizing
+
+$$
+L_r(\phi^\prime, \theta^\prime | \Omega) \propto \prod_{i=1}^n \int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \theta^\prime) \, f(\mathbf x ; \phi^\prime) \; d\mathbf x.
+$$
+
+The factor $\mathrm{Pr}(\omega_i | \mathbf x; \theta^\prime)$ is the probability of the observed detection history of animal $i$ given that its activity centre was at $\mathbf x$. The factor $f(\mathbf x ; \phi^\prime)$ describes the spatial distribution of *tagged* animals under the model with no allowance for how they came to be tagged.
+
+Supposing the tagged sample results from previous capture--recapture sampling of a population with density $D(\mathbf x; \phi)$ and detection parameters $\theta$, we can expect $f(\mathbf x; \phi^\prime) \propto p_\cdot(\mathbf x; \theta) D(\mathbf x; \phi)$. An example is shown [later](#relativedensity2). A model with flat (constant) $f(\mathbf x; \phi^\prime)$ is inevitably a poor fit because in reality tagged individuals are concentrated near the detectors.
+
+## Population size $N$
+\index{Population size $N(A)$!estimation}
+
+Population size is the number of individual AC in a particular region; we denote this $N(A)$ for region $A$. For a flat density surface $\mathrm{E}[N(A)] = D.|A|$ where $|A|$ is the area of $A$. 
+
+$D$ and $N(A)$ are interchangeable for specified $A$. In most applications of SECR there is no naturally defined region $A$, and therefore $\hat N(A)$ depends on the arbitrary choice of $A$. This weakness is not shared by $\hat D$.
+
+::: {.callout-note collapse=true}
+## Abundance
+Population size is sometimes termed 'abundance'. We avoid this usage because 'abundance' has also been used as an umbrella term for density and population size, and its overtones are vague and biblical rather than scientific.
+:::
+
+The population size of any region $B$ may be predicted *post hoc* from a fitted density model using 
+$$
+\hat N(B) = \int_B \hat D(\mathbf x) \, d\mathbf x.
+$$
+The prediction variance of $\hat N(B)$ follows from Poisson assumptions regarding $D(\mathbf x)$ [@ef13].
+
+## Finite mixture models {#finite-mixtures}
+\index{Likelihood!finite mixture}
+
+Finite mixture models for individual heterogeneity of capture probability were formalised for non-spatial capture--recapture by @p2000 and remain widely used (e.g., @cw). These are essentially random-effect models in which the distribution of capture probability comprises two or more latent classes, each with a capture probability and probability of membership.
+
+@be08[p. 381] gave the likelihood for a Poisson SECR model with $U$ latent classes in proportions $\psi$ = ($\psi_1$, ..., $\psi_U$). In all examples we have tried $U$ is 2 or 3. For each class $u$ there is an associated vector of detection parameters $\theta_u$ (collectively $\theta$). Omitting the constant multinomial term,
+$$
+\mathrm{Pr}(\Omega | n, \phi,\theta, \psi) \propto \prod_{i=1}^n \sum_{u=1}^U\int\frac{\mathrm{Pr}\{\omega_i | \mathbf x; \theta_u\}}{p_\cdot(\mathbf x; \theta_u)}
+f(\mathbf x, u |\omega_i>0) \,d\mathbf x
+$$
+where 
+$$
+ f(\mathbf x, u | \omega_i > 0) = \frac{D(\mathbf x; \phi) p_\cdot(\mathbf x; \theta_u) \psi_u}{\sum_{u=1}^U \int D(\mathbf x; \phi) p_\cdot(\mathbf x; \theta_u) \psi_u \; d\mathbf x}.
+$$
+ 
+The expected number of detected animals $n$, replacing @eq-n, is a weighted sum over latent classes:
+$$
+\lambda = \sum_{u=1}^U \psi_u \int D(\mathbf x; \phi) p_\cdot(\mathbf x;\theta_u) \; d\mathbf x.
+$$ {#eq-lambdau}
+ Integration is over points in potential habitat, as usual. 
+ 
+ <!-- A two-class finite mixture for a parameter $\theta$ is represented by three further parameters: the values $\theta_1$ and $\theta_2$ for the two classes and  $\pi_1$ for the probability of membership in class 1 ($\pi_2 = 1-\pi_1$ for the alternate class). The mean is $\bar \theta = \sum_i \pi_i \theta_i$. The CV is $\mathrm{CV}(\theta) = \sqrt{\sum_i \pi_i (\theta_i - \bar \theta)^2} / \bar \theta$. -->
+  
+## Hybrid finite mixture models {#hybrid-mixtures}
+\index{Likelihood!hybrid mixture}
+  
+We can modify the finite mixture likelihood for data in which the class membership of some or all individuals is known. Indicate the class membership of the $i$-th individual by a variable $u_i$ that may take values 0, 1, ..., $U$, where $u_i = 0$ indicates an individual of unknown class, and the class frequencies are $n_0$, $n_1$, ..., $n_U$ (not to be confused with $n_1$,...,$n_C$ in @eq-CL). We assume here that detection histories are sorted by class membership, starting with the unknowns.
+ 
+ The expression for $\lambda$ in @eq-lambdau is unchanged, but we must split $\mathrm{Pr}(\Omega | n, \phi, \theta, \psi)$ and include a multinomial term for the observed distribution over classes:
+  
+$$
+\begin{split}
+ \mathrm{Pr}(\Omega | n, \phi,\theta, \psi) \propto \; &\prod_{i=1}^{n_0}\sum_{u=1}^U\int\frac{\mathrm{Pr}\{\omega_i | x; \theta_u\}}{p_\cdot(\mathbf x ; \theta_u)}
+ f(\mathbf x ,u|\omega_i>0) \; d\mathbf x  \\
+ &\times
+ \prod_{i={n_0+1}}^n  \int \frac{\mathrm{Pr}\{\omega_i | x; \theta_{u_i}\}}{p_\cdot(\mathbf x ; \theta_{u_i})}
+ f'(\mathbf x  | \omega_i>0; u_i) \; d\mathbf x  \\
+&\times {n - n_0 \choose n_1, ...,n_U}
+\prod_{u=1}^U \left[  \frac{\lambda_u}{\lambda} \right] ^{n_u},
+\end{split}
+$$ {#eq-hybrid}
+
+where $\lambda_u = \psi_u \int D(\mathbf x ) p_\cdot(\mathbf x ; \theta_u) \; d\mathbf x$, and the multinomial coefficient ${n - n_0 \choose n_1, ...,n_U}$ is a constant that can be omitted. Rather than representing the joint probability density of $\mathbf x$ and $u_i$ as in $f(\cdot)$ previously, $f'(\cdot)$ is the probability density of $\mathbf x$ for given $u_i$:
+$$
+  f'(\mathbf x  | \omega_i > 0; u_i) = \frac{D(\mathbf x )p_\cdot(\mathbf x ; \theta_{u_i})}{\int D(\mathbf x )p_\cdot(\mathbf x ; \theta_{u_i}) d\mathbf x }.
+$$
+
+The likelihood conditions on the number of known-class animals detected ($n-n_0$), rather than modelling class identification as a random process. It assumes that the probability that class will be recorded does not depend on class, and that such recording when it happens is without error.
+
+For homogeneous density the likelihood simplifies to
+$$
+\begin{split}
+\mathrm{Pr}(\Omega | n, \phi,\theta, \psi) \propto &\prod_{i=1}^{n_0}\sum_{u=1}^U\int\frac{\mathrm{Pr}\{\omega_i | x; \theta_u\} \psi_u} {\sum_u a(\theta_u) \psi_u } \; d\mathbf x  
+\\
+&\times
+\prod_{i={n_0+1}}^n  \int \frac{\mathrm{Pr}\{\omega_i | x; \theta_{u_i}\}}{a(\theta_{u_i})} \; 
+ d\mathbf x  
+\prod_{u=1}^U {  \left[ \frac{a(\theta_u)\psi_u} {\sum_u a(\theta_u) \psi_u } \right] ^{n_u}},
+\end{split}
+$$
+
+where $a(\theta_u) = \int p_\cdot(\mathbf x ; \theta_{u}) \; d\mathbf x$.
+
+## Alternative parameterizations {#parameterizations}
+\index{Parameterization}
+
+The 'real' parameters in SECR are typically assumed to be independent (orthogonal). However, some parameter pairs co-vary in predictable ways owing to constraints on animal behaviour. Here it is more straightforward to work with the hazard detection functions. The intercept of the detection function $\lambda_0$ declines with increasing $\sigma$, all else being equal [@em14]. This is inevitable if detection is strictly proportional to time spent near a point, given a bivariate home range utilisation model (pdf for activity). Also, home-range size and the SECR parameter $\sigma$ decline with population density [@edjq16]. Allowing for covariation may improve biological insight and lead to more parsimonious models. 
+
+Covariation may be 'hard-wired' into SECR models by reparameterization. In each case a new 'surrogate' parameter is proportional to a combination of the co-varying parameters. One of the co-varying parameters is seen as driving variation, while the other is inferred from the surrogate and the driver. Deviations from the expected covariation are implied when the surrogate is found to vary (i.e. a model with varying surrogate is superior to a model with constant surrogate).
+
+For concreteness, consider a difference in home range size over the seasons, causing variation in $\sigma$. A reasonable null hypothesis is that there will be reciprocal seasonal variation in $\lambda_0$ such that $a_0 = 2 \pi \lambda_0 \sigma^2$ is constant. Here variation in $\sigma$ is the driver, $a_0$ is the surrogate, and $\lambda_0$ is derived.
+
+<!-- ### $a = \int_{R^2} p_\cdot(\mathbf x; \theta) d\mathbf x$ [@em14] -->
+
+<!-- The effective sampling area $a(\theta)$ meaningfully combines the detection parameters. However, inverting the integration is computationally expensive and will usually be avoided. -->
+
+| Parameters | Driver  | Surrogate | Derived | Effect |
+|----------|-----------|-----------|--------|------|
+| $(D, a_0, \sigma)$ | $\sigma$ | $a_0$ | $\lambda_0 = a_0 / (2 \pi \sigma^2)$ | Reciprocal $\sigma^2, \lambda_0$ |
+| $(D, \lambda_0, k)$ | $D$ | $k$ | $\sigma = k/\sqrt D$  | Density-dependent $\sigma$ |
+| $(D, a_0, k)$ | $D$ | $k, a_0$ | $\sigma = k/\sqrt D$ | both |
+|  |  |  | $\lambda_0 = a_0 / (2 \pi \sigma^2)$ | |
+
+: Parameterizations implementing three covariation models. The third option 
+combines the first two. In **secr**, $a_0$ is called 'a0' and $k$ is called 'sigmak'.
+{#tbl-parameterizations tbl-colwidths="[15,10,15,23,37]" .sm}
+
+See @sec-parameterizations for further detail on alternative parameterizations 
+and their implementation in **secr**.
+
+## Model-based location of AC
+\index{Activity centre!estimated location}
+
+Assume we have fitted a spatial model by integrating over the unknown locations of AC for a given SECR dataset $\Omega = {\omega_1, \omega_2, ..., \omega_n}$. We may retrospectively infer the probability density of the AC corresponding to each detection history, using the model and the estimated parameters:
+$$
+f(\mathbf x | \omega_i; \hat \phi, \hat \theta) = \frac{ \mathrm{Pr} (\omega_i | \mathbf x; \hat \theta) D(\mathbf x ; \hat \phi)} 
+{\int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \hat \theta) D(\mathbf x ; \hat \phi) \, d \mathbf x}.
+$$ {#eq-fxi}
+This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See `fxi` and related functions in **secr**. For known $\theta$ and known $\phi$ (unless $D(\mathbf x; \phi)$ uniform) the modal location of the AC for animal $i$ may be estimated by maximizing $\mathrm{Pr} (\omega_i | \mathbf x; \theta)D(\mathbf x; \phi)$ with respect to $\mathbf x$. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.
+
+<!-- ## Telemetry {#telemetrylikelihood} -->
+
+<!-- [to be added] -->
