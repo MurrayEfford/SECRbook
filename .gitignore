@@ -10,6 +10,7 @@ _book/*.json
 _book/SECRbook_files
 _book/*.css
 _book/*.tex
+_book/site_libs
 extra
 scrbook data
 _bookdown_files
@@ -21,3 +22,7 @@ rsconnect
 ^.*\.Rproj$
 todo.txt
 /.quarto/
+*_cache
+*_files
+comments
+maybe junk
