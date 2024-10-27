@@ -20,3 +20,4 @@ SECRbook.Rmd
 rsconnect
 ^.*\.Rproj$
 todo.txt
+/.quarto/

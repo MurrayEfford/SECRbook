@@ -6,7 +6,7 @@
 ## -- edit the call to setNumThreads as required
 ## -- knit rmarkdown file including source('setup.R') and simulation code
 
-library(secrdesign)
+library(secrdesign, quietly = TRUE)
 nc <- setNumThreads(18)
 options(digits = 5)      # for more readable output
 options(width=100)
