@@ -11,7 +11,8 @@ alpha2 <- seq(0,1.4,0.2)
 par(mfrow=c(1,2), mar=c(5,4,2,2), mgp=c(2.4,0.7,0), pty='s', bty = 'o')
 for (rw in 2:1) {
     r <- (rw-1)*8+(1:8)
-    plot(1,1, type = 'n', xlim=c(0,1.4), ylim=c(-0.4,0.4), xlab = 'alpha2', ylab = 'RB')
+    plot(1,1, type = 'n', xlim=c(0,1.4), ylim=c(-0.4,0.4), 
+         xlab = expression(alpha[2]), ylab = 'RB')
     shade(0.1)
     abline(h=0, lty=2)
     addRB(alpha2, estL[r,], pch=21, bg='white', type = 'o', star = 0.4)
