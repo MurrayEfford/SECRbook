@@ -10,12 +10,29 @@ This chapter briefly introduces the concepts and terminology of SECR.
 The following chapter gives a [simple example](#02-example.qmd).
 Technical details are provided in the [Theory](#03-theory.qmd) chapters.
 
+<br>    
+
 ## Motivation
 
-> "Measurement of the size of animal populations is a full-time job and
-> should be treated as a worthy end in itself." <br><br> S. Charles
-> Kendeigh (1944) Measurement of bird populations. *Ecol. Monogr.* 14:
-> 67--106
+<br>
+
+:::: {layout="[ 57, 43 ]"}
+
+::: {#first-column}
+
+"Measurement of the size of animal populations is a full-time job and
+should be treated as a worthy end in itself."
+
+S. Charles Kendeigh (1944)
+
+:::
+
+::: {#second-column}
+![](images/Kendeigh.png)  
+*Photo: L.L.Getz*
+:::
+
+::::
 
 Only a brave ecologist would make this claim today. Measuring animal populations 
 is now justified in more practical terms - the urgent need for evidence to track 

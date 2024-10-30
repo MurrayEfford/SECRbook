@@ -436,11 +436,7 @@ See @sec-density for more on the use of mask covariates.
 
 Population density $D$ is the primary parameter in this implementation of spatially explicit capture--recapture (SECR). The number of individuals (population size $N(A)$) is treated as a derived parameter. The rationale for this is that population size is ill-defined in many classical sampling scenarios in continuous habitat (Figs. 7a,b). Population size is well-defined for a habitat island (@fig-masktypes c). Population size may also be well-defined for a persistent swarm, colony, herd, pack or flock, although group living is incompatible with the usual SECR assumption of independence e.g. @Bischof2020.
 
-Population size on a habitat island $A$ may be derived from an SECR model by the simple calculation $\hat N = \hat D|A|$ if density is uniform. The same calculation yields the expected population in any area $A^\prime$. Calculations get more tricky if density is not uniform as then $\hat N = \int_{A^\prime} D(\mathbf x) \, d\mathbf x$ (computing the volume under the density surface) [@ef13].
-
-Function `region.N` calculates $\hat N$ for a previously fitted SECR model (**secr** object) and region $A^\prime$, along with standard errors and confidence intervals [@ef13]. The default region is the mask used to fit the model, but this is generally arbitrary, as we have seen, and users would be wise to specify the 'region' argument explicitly. That may be a new mask with different extent[^footnote7d] and cell size. Any covariates used to fit the model must also be present in the new 'region' mask.
-
-[^footnote7d]: Care is needed: the estimates of realised population size (but not expected population size) are meaningless if the new region does not cover all $n$ detected animals. See @ef13 for more on realised and expected population size.
+Population size on a habitat island $A$ may be derived from an SECR model by the simple calculation $\hat N = \hat D|A|$ if density is uniform. The same calculation yields the expected population in any area $A^\prime$. Calculations get more tricky if density is not uniform as then $\hat N = \int_{A^\prime} D(\mathbf x) \, d\mathbf x$ (computing the volume under the density surface) [@ef13]. **secr** provides the function `region.N` for this purpose (@sec-regionN).
 
 ## Plotting masks
 

@@ -23,6 +23,105 @@ may return the arcane 'code 3', or there may be message that a variance calculat
 
 These conditions must be taken seriously, but they are not always fatal to the analysis. See @sec-troubleshooting for diagnosis and possible solutions.
 
+## Prediction
+
+A fitted model ('secr' object) contains estimates of the coefficients of the model. Use the `coef` method for secr objects to display the coefficients (e.g., `coef(secrdemo.0)`). We note
+
+* the coefficients (aka 'beta parameters') are on the link scale, and at the very least must be back-transformed to the natural scale, and
+* a real parameter for which there is a [linear sub-model](#linear-submodels) is not unique: it takes a value that depends on covariates and other predictors.
+
+These complexities are handled by the `predict` method for secr objects, as for other fitted models in R (e.g., `lm`). The desired levels of covariates and other predictors appear as columns of the 'newdata' dataframe. `predict` is called automatically when you print an 'secr' object by typing its name at the R prompt.
+
+`predict` is commonly called with a fitted model as the only argument; then 'newdata' is constructed automatically by the function `makeNewData`. The default behaviour is disappointing if you really wanted estimates for each level of a predictor. This can be overcome, at the cost of more voluminous output, by setting `all.levels = TRUE`, or simply `all = TRUE`. For more customised output (e.g., for a particular value of a continuous predictor), construct your own 'newdata'.
+
+Density surfaces are a special case. Prediction across space requires the function `predictDsurface`
+as covered in @sec-density.
+
+## Tabulation of estimates
+
+The `collate` function is a handy way to assemble tables of coefficients or estimates from 
+several fitted models. The input may be individual models or an secrlist. 
+The output is a 4-dimensional array, typically with dimensions corresponding to
+
+* session
+* model
+* statistic (estimate, SE, lcl, ucl)
+* parameter (D, g0, sigma)
+
+The parameters must be common to all models.
+
+```{r}
+#| label: collate
+# [1,,,] drops 'session' dimension for printing
+collate(secrdemo.0, secrdemo.CL, realnames = c('g0','sigma'))[1,,,]
+```
+
+Here we see that the full- and conditional-likelihood fits produce identical 
+estimates for the detection parameters of a Poisson model.
+
+## Population size {#sec-regionN}
+\index{Population size $N(A)$!estimation}
+
+The primary abundance parameter in **secr** is population density $D$. However, population size, the expected number of AC in a region $A$, may be predicted from any fitted model that includes $D$ as a parameter.
+
+Function `region.N` calculates $\hat N(A)$ along with standard errors and confidence intervals [@ef13]. The default region is the mask used to fit the model, but this is generally arbitrary, as we have seen, and users would be wise to specify the 'region' argument explicitly. 
+
+For an example of `region.N` in action, consider a model fitted to [data on black bears](https://www.otago.ac.nz/density/html/blackbear.html) from DNA hair snags in Great Smoky Mountains National Park, Tennessee.
+
+```{r}
+#| label: black bear model
+#| cache: true
+#| code-fold: true
+#| code-summary: code to fit black bear model
+#| warning: false
+msk <- make.mask(traps(blackbearCH), buffer = 6000, type = 'trapbuffer', 
+                 poly = GSM, keep.poly = FALSE)  # clipped to park boundary
+bbfit <- secr.fit(blackbearCH, model = g0~bk, mask = msk, trace = FALSE)
+```
+
+The region defaults to the extent of the original habitat mask:
+```{r}
+#| label: black bear N
+#| cache: true
+region.N(bbfit)
+```
+
+The two output rows relate to the 'expected' and 'realised' numbers of AC in the region. The distinction between expected (random) $N$ and realised (fixed) $N$ is explained by @ef13. Typically the expected and realised $N(A)$ from `region.N` are the same or nearly so, but deviations occur when the density model is not uniform. The estimated sampling error is less for 'realised' $N(A)$ as part is fixed at the observed $n$.
+
+The nominated region is arbitrary. It may be a new mask with different extent and cell size. If the model used spatial covariates the covariates must also be present in the new mask. If the density model did not use spatial covariates then the region may be a simple polygon.
+
+It is interesting to extrapolate the number of black bears in the entire park (@fig-blackbearplot):
+```{r}
+#| label: black bear GSM N
+#| cache: true
+region.N(bbfit, region = GSM)
+```
+
+```{r}
+#| label: fig-blackbearplot
+#| echo: false
+#| cache: true
+#| out-width: "90%"
+#| fig-cap: |
+#|   Simulated AC of black bears in Great Smoky Mountains National Park, USA. 
+#|   The number of AC (2092) was predicted from a model fitted to hair snags 
+#|   (red crosses) in one sector of the park. The habitat mask used to fit the
+#|    model is shaded.
+par(mar = c(1,1,1,1))
+plot(GSM, lwd=0.6)
+plot(msk, add = TRUE, col = grey(0.9))
+D <- predict(bbfit)[1,2]
+pop <- sim.popn(D = D, poly = GSM)
+plot(pop, add = TRUE, cex = 0.5, pch = 16, col = grey(0.5), collapse = TRUE)
+plot(traps(blackbearCH), add = TRUE)
+terra::sbar(20000, xy = c(295000, 3925000), type = 'bar', labels = c(0,100,200), 
+            below = 'km', adj = c(0.5, -1.2), cex = 0.7)
+```
+
+:::{.callout=warning}
+Estimates of realised population size (but not expected population size) are meaningless if the new region does not cover all $n$ detected animals.
+:::
+
 ## Model selection
 \index{Model selection}
 
@@ -96,6 +195,8 @@ hence affect model-averaged estimates.
 We are not aware of any equivalent study for SECR.
 <!-- but check @McLellan2023 black bears? -->
 
+<!-- BUT is D model independent of detection model, for Poisson? -->
+
 ### Score tests
 \index{Score tests}
 
@@ -104,44 +205,6 @@ next level in a tree of nested models to be assessed without fitting [@McCrea201
 Only the 'best' model at each level is fitted, perhaps spawning a further set of 
 comparisons. This method is provided in **secr** (see [?score.test](https://www.otago.ac.nz/density/html/score.test.html)), but it has 
 received little attention and its limits are unknown.
-
-## Manipulating fitted models
-
-### Prediction
-
-A fitted model ('secr' object) contains estimates of the coefficients of the model. We note
-
-* the coefficients are on the link scale, and must at the very least be back-transformed to the natural scale, and
-* a real parameter for which there is a [linear sub-model](#linear-submodels) is not unique: it takes a value that depends on covariates and other predictors.
-
-These complexities are handled by the `predict` method for secr objects, as for other fitted models in R (e.g., `lm`). The desired levels of covariates and other predictors appear as columns of the 'newdata' dataframe.
-
-`predict` is commonly called with a fitted model as the only argument; then 'newdata' is constructed automatically by the function `makeNewData`. The default behaviour is disappointing if you really wanted estimates for each level of a predictor. This can be overcome, at the cost of more voluminous output, by setting `all.levels = TRUE`, or simply `all = TRUE`. For more customised output (e.g., for a particular value of a continuous predictor), construct your own 'newdata'.
-
-Density surfaces are a special case. Prediction across space requires the function `predictDsurface`
-as covered in @sec-density.
-
-### Tabulation of estimates
-
-The `collate` function is a handy way to assemble a table of estimates from 
-several fitted models. The input may be individual models or an secrlist. 
-The output is a 4-dimensional array, typically with dimensions corresponding to
-
-* session
-* model
-* statistic (estimate, SE, lcl, ucl)
-* parameter (D, g0, sigma)
-
-The parameters must be common to all models.
-
-```{r}
-#| label: collate
-# [1,,,] drops 'session' dimension for printing
-collate(secrdemo.0, secrdemo.CL, realnames = c('g0','sigma'))[1,,,]
-```
-
-Here we see that the full- and conditional-likelihood fits produce identical 
-estimates for the detection parameters of a Poisson model.
 
 ## Assessing model fit {#sec-modelfit}      
 \index{Goodness of fit}

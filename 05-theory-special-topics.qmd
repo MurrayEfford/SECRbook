@@ -38,7 +38,7 @@ This is a scalar *effective* area for which $\hat D = n / a(\hat \theta)$ is an 
 ## Conditional estimation {#conditional}
 \index{Conditional estimation}
 
-When density is constant, the detection parameters ($\theta$) may be estimated by maximizing the likelihood conditional on $n$, i.e. @eq-CL. This reduces to  
+The detection parameters ($\theta$) may be estimated by maximizing the likelihood conditional on $n$ (@eq-CL). When density is constant this reduces to  
 $$
 L_n (\theta| \Omega) \propto \prod_{i=1}^n \frac{\int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \theta) \; d\mathbf x}{a(\theta)}.
 $$
@@ -62,15 +62,29 @@ The variance from @eq-varHT is on the natural scale, and the Wald confidence int
 ## Relative density {#relativedensity1}
 \index{Density surface!relative}
 
-A further option is to ignore the process of first detection that determines the set of individuals for which we have capture histories, i.e. to condition on the particular set of detected (tagged) individuals. Then we use $\theta^\prime$ to parameterize a model for their re-detection, and $\phi^\prime$ to describe the spatial distribution of detected individuals. Note that $\phi^\prime$ carries no information about absolute density: the model describes relative density. The parameters may be estimated by maximizing
-
+Conditioning on $n$ *without* requiring uniform density as in the previous section leads to another result that is sometimes useful. We may be concerned to estimate relative density (the distribution of AC in relation to habitat covariates) rather than absolute density. Then we can discard the first factor in @eq-L and maximize a likelihood based on the second factor alone
 $$
-L_r(\phi^\prime, \theta^\prime | \Omega) \propto \prod_{i=1}^n \int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \theta^\prime) \, f(\mathbf x ; \phi^\prime) \; d\mathbf x.
-$$
+L_r(\phi^\prime, \theta | \Omega) \propto \prod_{i=1}^n \int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \theta) \, f(\mathbf x ; \phi^\prime, \theta) \; d\mathbf x.
+$$ {#eq-rd}
+For a log link the new parameter vector $\phi^\prime$ corresponds to the original $\phi$ with one coefficient, the intercept, fixed at an arbitrary value such as zero. 
 
-The factor $\mathrm{Pr}(\omega_i | \mathbf x; \theta^\prime)$ is the probability of the observed detection history of animal $i$ given that its activity centre was at $\mathbf x$. The factor $f(\mathbf x ; \phi^\prime)$ describes the spatial distribution of *tagged* animals under the model with no allowance for how they came to be tagged.
+<!-- Curiously, this also seems to apply when D~x... If there are no density covariates in the model (i.e. density is assumed uniform) then  -->
 
-Supposing the tagged sample results from previous capture--recapture sampling of a population with density $D(\mathbf x; \phi)$ and detection parameters $\theta$, we can expect $f(\mathbf x; \phi^\prime) \propto p_\cdot(\mathbf x; \theta) D(\mathbf x; \phi)$. An example is shown [later](#relativedensity2). A model with flat (constant) $f(\mathbf x; \phi^\prime)$ is inevitably a poor fit because in reality tagged individuals are concentrated near the detectors.
+This approach makes the same sampling assumptions as the full model, including that individuals enter the sample by a spatial detection process whose parameter vector $\theta$ we estimate from the data. Estimates of detection parameters by maximizing @eq-rd are in fact identical to those of the previous section.
+
+However, in other scenarios, the *only* individuals at risk of detection may be those marked in an earlier phase of the study. This is the case for the automated detection of fish with implanted acoustic telemetry tags or passive integrated transponders (PIT) [@Whoriskey2019]. These data resemble mark--resight data (@sec-mark-resight) except that they do not include counts of unmarked animals. Estimates of $\phi^\prime$ using @eq-rd then describe only the distribution of marked individuals. Even if we can assume that AC are stationary between the two phases, $\phi^\prime$ is biased as a model for population distribution as it incorporates the spatial selectivity of marking.
+
+Lack of information on the marking phase also afflicts mark-resight analyses [e.g., @eh18]. The possible 'solutions' are all ad hoc. We can assume that the probability of becoming marked was independent of location, or we can substitute an externally computed variable for the spatial probability (cf $p_\cdot(\mathbf x|\theta^\prime)$ where $\theta^\prime$ applies to the marking phase). Further work is expected in this area.
+
+<!-- A further option is to ignore the process of first detection that determines the set of individuals for which we have capture histories, i.e. to condition on the particular set of detected (tagged) individuals. Then we use $\theta^\prime$ to parameterize a model for their re-detection, and $\phi^\prime$ to describe the spatial distribution of detected individuals. Note that $\phi^\prime$ carries no information about absolute density: the model describes relative density. The parameters may be estimated by maximizing -->
+
+<!-- $$ -->
+<!-- L_r(\phi^\prime, \theta^\prime | \Omega) \propto \prod_{i=1}^n \int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \theta^\prime) \, f(\mathbf x ; \phi^\prime) \; d\mathbf x. -->
+<!-- $$ -->
+
+<!-- The factor $\mathrm{Pr}(\omega_i | \mathbf x; \theta^\prime)$ is the probability of the observed detection history of animal $i$ given that its activity centre was at $\mathbf x$. The factor $f(\mathbf x ; \phi^\prime)$ describes the spatial distribution of *tagged* animals under the model with no allowance for how they came to be tagged. -->
+
+<!-- Supposing the tagged sample results from previous capture--recapture sampling of a population with density $D(\mathbf x; \phi)$ and detection parameters $\theta$, we can expect $f(\mathbf x; \phi^\prime) \propto p_\cdot(\mathbf x; \theta) D(\mathbf x; \phi)$. An example is shown [later](#relativedensity2). A model with flat (constant) $f(\mathbf x; \phi^\prime)$ is inevitably a poor fit because in reality tagged individuals are concentrated near the detectors. -->
 
 ## Population size $N$
 \index{Population size $N(A)$!estimation}
@@ -98,7 +112,7 @@ Finite mixture models for individual heterogeneity of capture probability were f
 @be08[p. 381] gave the likelihood for a Poisson SECR model with $U$ latent classes in proportions $\psi$ = ($\psi_1$, ..., $\psi_U$). In all examples we have tried $U$ is 2 or 3. For each class $u$ there is an associated vector of detection parameters $\theta_u$ (collectively $\theta$). Omitting the constant multinomial term,
 $$
 \mathrm{Pr}(\Omega | n, \phi,\theta, \psi) \propto \prod_{i=1}^n \sum_{u=1}^U\int\frac{\mathrm{Pr}\{\omega_i | \mathbf x; \theta_u\}}{p_\cdot(\mathbf x; \theta_u)}
-f(\mathbf x, u |\omega_i>0) \,d\mathbf x
+f(\mathbf x, u | \omega_i>0) \,d\mathbf x
 $$
 where 
 $$
@@ -107,7 +121,7 @@ $$
  
 The expected number of detected animals $n$, replacing @eq-n, is a weighted sum over latent classes:
 $$
-\lambda = \sum_{u=1}^U \psi_u \int D(\mathbf x; \phi) p_\cdot(\mathbf x;\theta_u) \; d\mathbf x.
+\Lambda(\phi, \theta,\psi) = \sum_{u=1}^U \psi_u \int D(\mathbf x; \phi) p_\cdot(\mathbf x;\theta_u) \; d\mathbf x.
 $$ {#eq-lambdau}
  Integration is over points in potential habitat, as usual. 
  
@@ -122,10 +136,10 @@ We can modify the finite mixture likelihood for data in which the class membersh
   
 $$
 \begin{split}
- \mathrm{Pr}(\Omega | n, \phi,\theta, \psi) \propto \; &\prod_{i=1}^{n_0}\sum_{u=1}^U\int\frac{\mathrm{Pr}\{\omega_i | x; \theta_u\}}{p_\cdot(\mathbf x ; \theta_u)}
+ \mathrm{Pr}(\Omega | n, \phi,\theta, \psi) \propto \; &\prod_{i=1}^{n_0}\sum_{u=1}^U\int\frac{\mathrm{Pr}\{\omega_i | \mathbf x; \theta_u\}}{p_\cdot(\mathbf x ; \theta_u)}
  f(\mathbf x ,u|\omega_i>0) \; d\mathbf x  \\
  &\times
- \prod_{i={n_0+1}}^n  \int \frac{\mathrm{Pr}\{\omega_i | x; \theta_{u_i}\}}{p_\cdot(\mathbf x ; \theta_{u_i})}
+ \prod_{i={n_0+1}}^n  \int \frac{\mathrm{Pr}\{\omega_i | \mathbf x; \theta_{u_i}\}}{p_\cdot(\mathbf x ; \theta_{u_i})}
  f'(\mathbf x  | \omega_i>0; u_i) \; d\mathbf x  \\
 &\times {n - n_0 \choose n_1, ...,n_U}
 \prod_{u=1}^U \left[  \frac{\lambda_u}{\lambda} \right] ^{n_u},
@@ -142,10 +156,10 @@ The likelihood conditions on the number of known-class animals detected ($n-n_0$
 For homogeneous density the likelihood simplifies to
 $$
 \begin{split}
-\mathrm{Pr}(\Omega | n, \phi,\theta, \psi) \propto &\prod_{i=1}^{n_0}\sum_{u=1}^U\int\frac{\mathrm{Pr}\{\omega_i | x; \theta_u\} \psi_u} {\sum_u a(\theta_u) \psi_u } \; d\mathbf x  
+\mathrm{Pr}(\Omega | n, \phi,\theta, \psi) \propto &\prod_{i=1}^{n_0}\sum_{u=1}^U\int\frac{\mathrm{Pr}\{\omega_i | \mathbf x; \theta_u\} \psi_u} {\sum_u a(\theta_u) \psi_u } \; d\mathbf x  
 \\
 &\times
-\prod_{i={n_0+1}}^n  \int \frac{\mathrm{Pr}\{\omega_i | x; \theta_{u_i}\}}{a(\theta_{u_i})} \; 
+\prod_{i={n_0+1}}^n  \int \frac{\mathrm{Pr}\{\omega_i | \mathbf x; \theta_{u_i}\}}{a(\theta_{u_i})} \; 
  d\mathbf x  
 \prod_{u=1}^U {  \left[ \frac{a(\theta_u)\psi_u} {\sum_u a(\theta_u) \psi_u } \right] ^{n_u}},
 \end{split}

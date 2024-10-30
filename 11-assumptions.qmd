@@ -34,7 +34,6 @@ For SECR, the expected values $\mathrm{E} (\hat \theta - \theta)$ are invariably
 
 Breaches of assumptions may also impair estimates of sampling variance, leading to poor coverage of confidence intervals even when an estimator is unbiased. 'Poor coverage' here means that the true value lies outside the computed confidence interval more often (or sometimes less often) than expected by chance given the nominal level (e.g. 95%). Coverage of simulated intervals is therefore a further criterion.
 
-
 Another approach is to test specifically for compliance with each assumption. This was popular in the past [@obwa78], but has lost ground along with the declining credibility of null hypothesis testing, the growth of modelling frameworks, and reliance on the inherent robustness of the spatial methods. 
 
 <!-- Several authors have found SECR estimates of density to be generally robust [@Royle2015, @Sollmann2024].   -->
@@ -649,47 +648,97 @@ A more problematic form of dependence arises when a single visit to a passive de
 
 In the basic SECR model of @sec-theory the next detection of an individual may happen anywhere in its home range, regardless of where it was last detected. More biologically realistic patterns of movement lead to sequential dependence of locations.
 
-## Summary of robustness {#sec-robustnesssummary}
+## Summary {#sec-robustnesssummary}
+
+Most breaches of assumption can be managed to have only minor effects on density estimates, as we summarise in @tbl-robustness. Simulations only tell part of the story: to evaluate robustness we also need to know the real-life magnitude of any breach. The magnitude of some breaches may be assessed from external evidence (e.g. telemetry), or from a more general model that incorporates the effect (e.g., finite mixtures for individual heterogeneity; spatial random effect models @Dey2023). More work is needed on particular sampling systems and species.
+
+Special care is needed when these effects may apply:
+
+* mis-identification leads to the appearance of super individuals (the shadow effect)
+* a learned (behavioural) response is global rather than specific to detector locations
+* large individual heterogeneity
+* alignment of home ranges with detector array
+
+We have not considered in detail the potential for correlated variation in overall detection ($a$) and density. This was advanced as a major issue by @McLellan2023.
+
+Several breaches lead to underestimation of sampling variance and impaired coverage of confidence intervals. If the magnitude of the breach can be estimated then better confidence intervals may be achieved by simulating from the full model.
+
+Particular detection parameters may be estimated poorly even when density estimates are robust. A common example arises when a multi-catch model is used for single-catch data: the estimated intercept of the detection function is strongly biased while density estimates are generally unbiased.
+
+::: {.content-visible when-format="html"}
 
 | Breach of assumption | | Effect | Mitigating models |
 |:-----------------------|:-|:-----------------|:--------------------|
 1. Closure |||
-&nbsp;&nbsp;&nbsp;[1a. Births and deaths](#popnclosed)    |![*](figures/yob52.png)| Proportional | Open population |
-&nbsp;&nbsp;&nbsp;[1b. Dispersal](#popnclosed)            |![.](figures/yob51.png)| | Open population |
+&nbsp;&nbsp;&nbsp;[1a. Births and deaths](#sec-popnclosed)     |![*](figures/yob52.png)| RB($\hat D$) proportional turnover| Open population |
+&nbsp;&nbsp;&nbsp;[1b. Dispersal](#sec-popnclosed)             |![.](figures/yob51.png)| | Open population |
 2. Identification |||
-&nbsp;&nbsp;&nbsp;[2a. Inadequate marks](#shadow) |![**](figures/yob54.png)| | @Augustine2020 |
-&nbsp;&nbsp;&nbsp;[2b. Marks corrupted](#ghost)   |![*](figures/yob52.png)|  | |
+&nbsp;&nbsp;&nbsp;[2a. Inadequate marks](#sec-shadow)          |![**](figures/yob54.png)| | @Augustine2020 |
+&nbsp;&nbsp;&nbsp;[2b. Marks corrupted](#sec-ghost)            |![*](figures/yob52.png)|  | |
 3. Home range HR |||
-&nbsp;&nbsp;&nbsp;[3a. AC not independent](#ACindependent)   |![.](figures/yob51.png)||
-&nbsp;&nbsp;&nbsp;[3b. HR non-circular](#hrcircular)          |![*](figures/yob5s14.png)||
-&nbsp;&nbsp;&nbsp;[3c. Location autocorrelated](#independentwithinhr)  |![.](figures/yob51.png)||
-&nbsp;&nbsp;&nbsp;[3d. HR non-stationary](#hrstationary)      |![.](figures/yob51.png)|||
+&nbsp;&nbsp;&nbsp;[3a. AC not independent](#sec-ACindependent) |![.](figures/yob51.png)||
+&nbsp;&nbsp;&nbsp;[3b. HR non-circular](#sec-hrcircular)       |![*](figures/yob5s14.png)| severe RB($\hat D$) when HR align with detectors|
+&nbsp;&nbsp;&nbsp;[3c. Location autocorrelated](#sec-independentwithinhr)      |![.](figures/yob51.png)||
+&nbsp;&nbsp;&nbsp;[3d. HR non-stationary](#sec-hrstationary)   |![.](figures/yob51.png)|||
 4. Constant parameters |||
-&nbsp;&nbsp;&nbsp;[4a. Temporal variation](#temporalvariation)             |![.](figures/yob51.png)| | covariate, time-specific |
-&nbsp;&nbsp;&nbsp;[4b. Behavioural responses](#behaviour)                  |![*](figures/yob5s24.png)| | learned response models |
-&nbsp;&nbsp;&nbsp;[4c. Individual heterogeneity](#individualheterogeneity) |![*](figures/yob52.png)| | covariate, finite mixture | 
-&nbsp;&nbsp;&nbsp;[4d. Detector heterogeneity](#homogeneityofdetectors)    |![*](figures/yob5s13.png)| | covariate, GRF |
+&nbsp;&nbsp;&nbsp;[4a. Temporal variation](#sec-temporalvariation) |![.](figures/yob51.png)| | covariate, time-specific |
+&nbsp;&nbsp;&nbsp;[4b. Behavioural responses](#sec-behaviour)      |![*](figures/yob5s24.png)| | learned response |
+&nbsp;&nbsp;&nbsp;[4c. Individual heterogeneity](#sec-individualheterogeneity) |![*](figures/yob52.png)| RB($\hat D$) nonlinear on CV(a) | covariate, finite mixture | 
+&nbsp;&nbsp;&nbsp;[4d. Detector heterogeneity](#sec-homogeneityofdetectors)    |![*](figures/yob5s13.png)| | covariate, GRF |
+5. Independence |||
+&nbsp;&nbsp;&nbsp;[5a. Individuals interact](#sec-independentindividuals)      |![*](figures/yob51.png)| | **ipsecr** |
+&nbsp;&nbsp;&nbsp;[5b. Serial dependence](#sec-serialindependence)             |![.](figures/yob51.png) | ||
+
+: Robustness of SECR models to breaches of assumptions. {#tbl-robustness tbl-colwidths="[30,5,42,23]" .sm}
+
+|||||||||
+|--|--|--|--|--|--|--|--|--|
+| **Legend** Split colours indicate that the effect is generally weak or ignorable, but in some circumstances it is damaging if not modelled. |![.](figures/yob51.png) | ignorable | ![](figures/yob52.png) | minor | ![.](figures/yob53.png) | major |![.](figures/yob54.png) | severe |
+
+: {.borderless tbl-colwidths="[40, 5,10,5,10,5,10,5,10]" .sm}
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+
+| Breach of assumption | | Effect | Mitigating models |
+|:-----------------------|:-|:-----------------|:--------------------|
+1. Closure |||
+&nbsp;&nbsp;&nbsp;[1a. Births and deaths](#sec-popnclosed)     |![*](figures/yob52.png)| RB($\hat D$) proportional turnover| Open population |
+&nbsp;&nbsp;&nbsp;[1b. Dispersal](#sec-popnclosed)             |![.](figures/yob51.png)| | Open population |
+|||||
+2. Identification |||
+&nbsp;&nbsp;&nbsp;[2a. Inadequate marks](#sec-shadow)          |![**](figures/yob54.png)| | @Augustine2020 |
+&nbsp;&nbsp;&nbsp;[2b. Marks corrupted](#sec-ghost)            |![*](figures/yob52.png)|  | |
+|||||
+3. Home range HR |||
+&nbsp;&nbsp;&nbsp;[3a. AC not independent](#sec-ACindependent) |![.](figures/yob51.png)||
+&nbsp;&nbsp;&nbsp;[3b. HR non-circular](#sec-hrcircular)       |![*](figures/yob5s14.png)| severe RB($\hat D$) when HR align with detectors|
+&nbsp;&nbsp;&nbsp;[3c. Location autocorrelated](#sec-independentwithinhr)      |![.](figures/yob51.png)||
+&nbsp;&nbsp;&nbsp;[3d. HR non-stationary](#sec-hrstationary)   |![.](figures/yob51.png)|||
+|||||
+4. Constant parameters |||
+&nbsp;&nbsp;&nbsp;[4a. Temporal variation](#sec-temporalvariation) |![.](figures/yob51.png)| | covariate, time-specific |
+&nbsp;&nbsp;&nbsp;[4b. Behavioural responses](#sec-behaviour)      |![*](figures/yob5s24.png)| | learned response |
+&nbsp;&nbsp;&nbsp;[4c. Individual heterogeneity](#sec-individualheterogeneity) |![*](figures/yob52.png)| RB($\hat D$) nonlinear on CV(a) | covariate, finite mixture | 
+&nbsp;&nbsp;&nbsp;[4d. Detector heterogeneity](#sec-homogeneityofdetectors)    |![*](figures/yob5s13.png)| | covariate, GRF |
+|||||
 5. Independence ||
-&nbsp;&nbsp;&nbsp;[5a. Individuals interact](#independentindividuals)  |![*](figures/yob51.png)| | **ipsecr** |
-&nbsp;&nbsp;&nbsp;[5b. Serial dependence](#serialindependence)         |![.](figures/yob51.png) | ||
+&nbsp;&nbsp;&nbsp;[5a. Individuals interact](#sec-independentindividuals)      |![*](figures/yob51.png)| | **ipsecr** |
+&nbsp;&nbsp;&nbsp;[5b. Serial dependence](#sec-serialindependence)             |![.](figures/yob51.png) | ||
 
-![.](figures/yob51.png) ignorable &nbsp;&nbsp; ![](figures/yob52.png) minor &nbsp;&nbsp; ![.](figures/yob53.png) major &nbsp;&nbsp; ![.](figures/yob54.png) severe. &nbsp;&nbsp;Split colours indicate that the effect is generally weak or ignorable, but in some circumstances it is damaging if not modelled.
+: Robustness of SECR models to breaches of assumptions. {#tbl-robustness tbl-colwidths="[35,5,37,23]" .sm}
 
----
+|||||||||
+|--|--|--|--|--|--|--|--|--|
+| **Legend** Split colours indicate that the effect is generally weak or ignorable, but in some circumstances it is damaging if not modelled. |![.](figures/yob51.png) | ignorable | ![](figures/yob52.png) | minor | ![.](figures/yob53.png) | major |![.](figures/yob54.png) | severe |
 
-Particular problems are
+: {.borderless tbl-colwidths="[40, 5,10,5,10,5,10,5,10]" .sm}
 
-* global behavioural response (vs detector-specific) 
-* super individuals due to mis-identification (shadow effect)
-* large individual heterogeneity
-* correlated variation in detection and density
-* alignment of home ranges with detector array
 
-Several breaches lead to underestimation of sampling variance and impaired coverage of confidence intervals.
+:::
 
-Particular detection parameters may be estimated poorly even when density estimates are robust. A common example arises when a multi-catch model is used for single-catch data: the estimated intercept of the detection function is strongly biased while density estimates are generally unbiased.
-
-Simulation is only part of the answer: we also need to know the real-life magnitude of the breach. The magnitude of some breaches may be assessed from external evidence (e.g. telemetry), or from a more general model that incorporates the effect (e.g., finite mixtures for individual heterogeneity; spatial random effect models @Dey2023). More work is needed on particular sampling systems and species.
 
 <!-- ## Multiple observation processes -->
 
