@@ -23,6 +23,7 @@ rsconnect
 todo.txt
 /.quarto/
 /docs/
+/_site/
 *_cache
 *_files
 comments
