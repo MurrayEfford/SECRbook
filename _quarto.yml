@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: ../docs 
+  output-dir: docs 
   
 lightbox: auto
 
@@ -10,6 +10,9 @@ crossref:
   fig-title: Figure
   tbl-title: Table
   title-delim: ": "
+
+nocite: |
+  @Kendeigh1944
 
 citation:
   type: book
@@ -32,7 +35,7 @@ book:
       affiliation: University of Otago, New Zealand
     
   date: today
-  license: "CC BY-NC-SA"
+  license: "CC BY-NC-ND"
   
   reader-mode: true
 
@@ -85,6 +88,9 @@ book:
     - 17-datasets.qmd
 
     - 17-references.qmd
+    
+  repo-url: https://github.com/MurrayEfford/SECRbook
+
 
 bibliography: [d:/jabref/SECR.bib]
 # csl: journal-of-the-royal-statistical-society.csl
