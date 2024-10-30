@@ -22,6 +22,7 @@ rsconnect
 ^.*\.Rproj$
 todo.txt
 /.quarto/
+/docs/
 *_cache
 *_files
 comments
