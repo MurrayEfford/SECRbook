@@ -82,15 +82,15 @@ Thanks for data -
 -   Kevin Young horned lizards @sec-areaandtransectsearches
 -   Garth Mowat Selkirk grizzly bears @sec-noneuclidean
 -   Chris Sutherland non-euclidean simulation @sec-noneuclidean
-
+    
+    
 ```{r}
 #| eval: true
 #| echo: false
 #| out-width: 15%
-knitr::include_graphics('figures/by-nc-sa.png')
+knitr::include_graphics('figures/by-nc-nd.png')
 ```
-
-The online version of this book is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+This book is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
 Murray Efford  
 Matt Schofield  
