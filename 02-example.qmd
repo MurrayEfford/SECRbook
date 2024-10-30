@@ -275,5 +275,20 @@ hist(covariates(mask300)$pd[covariates(mask300)$pd>i/10], breaks =
 
 ```
 
+```{r}
+#| label: delete temporary files
+#| eval: true
+#| echo: false
+fnames <- c("hareCH6capt.txt", "hareCH6trap.txt")
+for (fn in fnames) 
+if (file.exists(fn)) {
+# Delete file if it exists
+file.remove(fn)
+}
+```
+
+
+```
+
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
 [secr-tutorial.pdf]: https://www.otago.ac.nz/density/pdfs/secr-tutorial.pdf
