@@ -500,9 +500,9 @@ AIC(fits)[, -c(2,4,6)]
 
 ## Notes
 
-The 'real' parameter for spatial scale ($\sigma$) is lurking in the background as part of the detection model. User-defined non-Euclidean distances are used in the detection function just like ordinary Euclidean distances. This means in practice that they are (almost) always divided by ($\sigma$). Formally: the distance $d_{ij}$ between an animal $i$ and a detector $j$ appears in all commonly used detection functions as the ratio $r_{ij} = d_{ij}/\sigma$ (e.g., halfnormal $\lambda = \lambda_0 \exp(-0.5r_{ij}^2)$ and exponential $\lambda = \lambda_0 \exp(-r_{ij})$).
+The 'real' parameter for spatial scale ($\sigma$) is lurking in the background as part of the detection model. User-defined non-Euclidean distances are used in the detection function just like ordinary Euclidean distances. This means in practice that they are (almost) always divided by $\sigma$. Formally: the distance $d_{ij}$ between an animal $i$ and a detector $j$ appears in all commonly used detection functions as the ratio $r_{ij} = d_{ij}/\sigma$ (e.g., halfnormal $\lambda = \lambda_0 \exp(-0.5r_{ij}^2)$ and exponential $\lambda = \lambda_0 \exp(-r_{ij})$).
 
-What if we want non-Euclidean distances, but do not want to estimate noneuc? This is a perfectly reasonable request if sigma is constant across space and the distance computation is determined entirely by the habitat geometry, with no need for an additional parameter. If 'noneuc' is not included in the character vector returned by your userdist function when it is called with no arguments then noneuc is not modelled at all. (This is the default in **secrlinear**).
+What if we want non-Euclidean distances, but do not want to estimate noneuc? This is a perfectly reasonable request if sigma is constant across space and the distance computation is determined entirely by the habitat geometry, with no need for an additional parameter. If 'noneuc' is not included in the character vector returned by your userdist function when it is called with no arguments then noneuc is not modelled at all. This is the default in **secrlinear**.
 
 Providing a suitable initial value for 'noneuc' can be a problem. The argument 'start' of `secr.fit` may be a named, and possibly incomplete, list of real parameter values, so a call such as this is valid:
 ```{r}
