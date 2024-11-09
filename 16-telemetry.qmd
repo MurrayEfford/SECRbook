@@ -502,7 +502,7 @@ Non-Euclidean distance methods cannot be used with telemetry data at present (a 
 | `telemetryxy` | extract or replace telemetry coordinates from capthist |
 | `xy2CH` | make a standalone telemetry capthist from a composite capthist |
 
-: Functions specifically for telemetry data. Functions marked with an asterisk (*) use the telemetry coordinates if the capthist is telemetry-only, otherwise the detection sites. {#tbl-telemetryfunctions .sm}
+: Functions specifically for telemetry data. {#tbl-telemetryfunctions .sm}
 
 |  Function   | Purpose         |
 |-------------|---------------------------------------------|
@@ -521,7 +521,7 @@ Non-Euclidean distance methods cannot be used with telemetry data at present (a 
 | `verify.capthist` | perform integrity checks |
 | `verify.traps` | perform integrity checks |
 
-: Telemetry-ready general functions.  {#tbl-telemetrygeneralfunctions .sm}
+: Telemetry-ready general functions. Functions marked with an asterisk (*) use the telemetry coordinates if the capthist is telemetry-only, otherwise the detection sites. {#tbl-telemetrygeneralfunctions .sm}
 
 |  Function   | Purpose         |
 |-------------|---------------------------------------------|
