@@ -9,9 +9,9 @@ Consider carefully the necessary extent of your habitat mask and the acceptable 
 
 ## Conditional likelihood
 
-The default in `secr.fit` is to maximize the full likelihood (i.e., to jointly fit both the state process and the observation process). If you do not need to model spatial, temporal or group-specific variation in density (the sole real parameter of the state model) then you can save time by first fitting only the observation process[^footnote5]. This is achieved by maximizing only the likelihood conditional on $n$, the number of detected individuals [@be08]. Conditional likelihood maximization is selected in `secr.fit` by setting `CL = TRUE`.
+The default in `secr.fit` is to maximize the full likelihood (i.e., to jointly fit both the state process and the observation process). If you do not need to model spatial, temporal or group-specific variation in density (the sole real parameter of the state model) then you can save time by first fitting only the observation process. This is achieved by maximizing only the likelihood conditional on $n$, the number of detected individuals [@be08]. Conditional likelihood maximization is selected in `secr.fit` by setting `CL = TRUE`.
 
-[^footnote5]: Selecting an observation model with `CL = TRUE` (and first focussing on detection parameters) is a good strategy even if you intend to model density later. It may occasionally be desirable to re-visit the selection if covariates can affect both density and detection parameters.
+Selecting an observation model with `CL = TRUE` (and first focussing on detection parameters) is a good strategy even if you intend to model density later. It may occasionally be desirable to re-visit the selection if covariates can affect both density and detection parameters.
 
 ```{r}
 #| label: startup
