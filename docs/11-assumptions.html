@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Spatially Explicit Capture–Recapture - 6&nbsp; Assumptions and robustness</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./14-validation.html" rel="next">
+<link href="./05-theory-special-topics.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-assumptions.html">Performance</a></li><li class="breadcrumb-item"><a href="./11-assumptions.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Assumptions and robustness</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Spatially Explicit Capture–Recapture</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/MurrayEfford/SECRbook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foreword</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Concepts and terminology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple example</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Likelihood-based SECR</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-theory-area-search.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Area search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-theory-special-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Special topics</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Performance</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-assumptions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Assumptions and robustness</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Empirical validation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-studydesign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Study design</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Practice</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-secr-package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R package secr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-detection-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Detection model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-sex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sex differences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Troubleshooting <strong>secr</strong></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-speed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Faster is better</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-polygondetectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Area and transect search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-mark-resight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Mark-resight models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-noneuclidean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Non-Euclidean distances</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-telemetry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Telemetry</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-parameterizations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Parameterizations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-densityappendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Density revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-trend.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Trend revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-spatial-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Spatial data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-expected-counts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">Expected counts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+<li><a href="#sec-robustness" id="toc-sec-robustness" class="nav-link active" data-scroll-target="#sec-robustness"><span class="header-section-number">6.1</span> Robustness</a></li>
+  <li><a href="#sec-popnclosed" id="toc-sec-popnclosed" class="nav-link" data-scroll-target="#sec-popnclosed">Assumption 1: Population closed</a></li>
+  <li><a href="#sec-noIDerror" id="toc-sec-noIDerror" class="nav-link" data-scroll-target="#sec-noIDerror">Assumption 2: Identification without error</a></li>
+  <li><a href="#assumption-3-detection-declines-radially-from-randomly-located-fixed-ac" id="toc-assumption-3-detection-declines-radially-from-randomly-located-fixed-ac" class="nav-link" data-scroll-target="#assumption-3-detection-declines-radially-from-randomly-located-fixed-ac">Assumption 3: Detection declines radially from randomly located, fixed AC</a></li>
+  <li><a href="#assumption-4-probability-of-detection-constant" id="toc-assumption-4-probability-of-detection-constant" class="nav-link" data-scroll-target="#assumption-4-probability-of-detection-constant">Assumption 4: Probability of detection constant</a></li>
+  <li><a href="#sec-independence" id="toc-sec-independence" class="nav-link" data-scroll-target="#sec-independence">Assumption 5: Independence</a></li>
+  <li><a href="#sec-robustnesssummary" id="toc-sec-robustnesssummary" class="nav-link" data-scroll-target="#sec-robustnesssummary"><span class="header-section-number">6.2</span> Summary</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-assumptions.html">Performance</a></li><li class="breadcrumb-item"><a href="./11-assumptions.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Assumptions and robustness</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-assumptions" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Assumptions and robustness</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>The three chapters in this part address questions we group under the heading of ‘Performance’:</p>
+<ul>
+<li>What is assumed in the analysis and how robust are the estimates? This chapter</li>
+<li>Is there empirical evidence that the methods work? <a href="14-validation.html" class="quarto-xref"><span>Chapter 7</span></a>
+</li>
+<li>How should studies be designed? <a href="12-studydesign.html" class="quarto-xref"><span>Chapter 8</span></a>
+</li>
+</ul>
+<p></p>
+<p>The SECR probability models of <a href="03-theory.html" class="quarto-xref"><span>Chapter 3</span></a> that underlie the methods in this book incorporate certain assumptions. The validity and reliability of the methods therefore depends to an extent on how well the field data meet the assumptions. We list these before assessing their impact in practice - the topic of <a href="#robustness">robustness</a>.</p>
+<ol type="1">
+<li>The population is closed (no animals die, emigrate or recruit during sampling)</li>
+<li>Individuals are identified without error</li>
+<li>The probability of detecting an animal at a particular detector declines radially from a fixed point, its activity centre AC</li>
+<li>The probability of detection is constant across individuals, detectors and times, conditional on the AC.</li>
+<li>Detections of different individuals are independent, as are sequential detections of a single individual.</li>
+</ol>
+<p>Restrictive assumptions often may be relaxed under specific extensions to the SECR model, including the various ‘submodels’ of <a href="08-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a>. We omit one further assumption: that the probability of detection declines to zero for AC at the edge of the habitat mask unless it is naturally bounded. This is addressed in the analysis by correct choice of <a href="./08-detection-model.html#sec-detectfn">detection function</a> and buffer or mask (<a href="08-habitat.html" class="quarto-xref"><span>Chapter 13</span></a>).</p>
+<section id="sec-robustness" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="sec-robustness">
+<span class="header-section-number">6.1</span> Robustness</h2>
+<p></p>
+<p>For assumptions that cannot be met by better design or customized modelling, we rely on the robustness of SECR estimators. A robust estimator gives estimates that are close to the truth even when assumptions have been breached. <!-- We saw this with the choice of [detection function](#sec-detectfn) in @sec-detection @fig-choicedfparmplot.  --> We care most about estimates of population density, which may be robust even when estimates of other parameters are not.</p>
+<p>Our main criterion will be the relative bias of an estimator, abbreviated RB and defined for an estimator <span class="math inline">\hat \theta</span> of any arbitrary parameter <span class="math inline">\theta</span> as <span class="math display">
+\mathrm{RB}(\hat \theta) = \frac{\mathrm{E} (\hat \theta - \theta)}{\theta}.
+</span> Robustness is estimated in practice by obtaining <span class="math inline">\hat \theta</span> for a large sample of simulated datasets. Simulation allows the statistician to control precisely any deviation from the assumptions. There have now been several simulation studies that we review below. We supplement these with new simulations that we outline below and describe in full in the GitHub repo <a href="https://github.com/MurrayEfford/secr-simulations">MurrayEfford/secr-simulations</a>.</p>
+<p>Breaches of assumptions may also impair estimates of sampling variance, leading to poor coverage of confidence intervals even when an estimator is unbiased. ‘Poor coverage’ here means that the true value lies outside the computed confidence interval more often (or sometimes less often) than expected by chance given the nominal level (e.g.&nbsp;95%). Coverage of simulated intervals is therefore a further criterion.</p>
+<p>Simulations cannot span the full range of scenarios, so the results are only indicative. Ideally we would supplement simulations with field validations of the method, but as we see in <a href="14-validation.html" class="quarto-xref"><span>Chapter 7</span></a> these are difficult to execute and interpret.</p>
+<p>Another approach is to test whether a particular dataset is consistent with each assumption. This was popular in the past <span class="citation" data-cites="obwa78">(<a href="17-references.html#ref-obwa78" role="doc-biblioref">Otis et al., 1978</a>)</span>, but has lost ground along with the declining credibility of null hypothesis testing, the growth of modelling frameworks, and reliance on the inherent robustness of the spatial methods.</p>
+<!-- Several authors have found SECR estimates of density to be generally robust [@Royle2015, @Sollmann2024].   -->
+<!-- > Similar to traditional closed CMR models (Otis et al., 1978; Williams et al., 2002), ignoring temporal variation in p0 in SCR models had little effect on estimates of abundance, the density-covariate relationship, or space use (σ). As such, this study provides yet more evidence that density estimates from SCR models are robust to various forms of mis-specification of the detection model. They have been shown to be robust to unmodeled spatial heterogeneity in detection probability, so long as that heterogeneity is not spatially autocorrelated (Efford et al., 2013; Bischof et al., 2017; Moqanaki et al., 2021), and to a range of misspecifications of the detection function (Efford, 2004; Royle et al., 2014; Dey et al., 2022). In the latter case, though, inference about σ can be strongly affected by choosing the wrong detection function (Dey et al., 2022). In contrast, I found that estimates of σ were robust to ignoring temporal variation in detection. As σ in most applications relates to a stationary activity center and is modeled as constant across occasions, it appears sufficient to take into account spatial variation in p0 to obtain unbiased estimates of σ. It is conceivable that in closed SCR models where activity centers are allowed to move (Royle et al., 2016), not accounting for temporal variation in p0 may affect estimates of σ. Exploring this was beyond the scope of this study. -->
+<!-- Robustness to the failure of a specific assumption is easily assessed by simulation.  -->
+<!-- ### New simulations {#sec-newsimulations .unnumbered} -->
+<p>Our simulations use a base scenario of sampling with a square grid of 64 binary proximity detectors operated for 10 occasions; detector spacing is <span class="math inline">2\sigma</span> for a hazard half-normal detection function with <span class="math inline">\lambda_0 = 0.1</span>. A population with density <span class="math inline">0.5\sigma^{-2}</span> is distributed uniformly at random in a region extending <span class="math inline">4\sigma</span> beyond the detectors. We report relative bias of density estimates and detection parameters under a null model – one with uniform density and no additional effects on detection – except where stated. The range |RB| &lt; 10% is shaded on the graphs, and bars indicate 95% confidence limits, although these are often obscured by the plotted points. Off-scale values are flagged with an asterisk (*).</p>
+</section><section id="sec-popnclosed" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="sec-popnclosed">Assumption 1: Population closed</h2>
+<p></p>
+<p>Births, deaths and dispersal result in population turnover. Over an extended period of turnover, more animals may be observed than were present at any instant, and density estimates will be biased upwards. Studies using automatic cameras often accumulate data slowly over many days, and study duration has triggered much angst e.g., <span class="citation" data-cites="Harihar2017">Harihar et al. (<a href="17-references.html#ref-Harihar2017" role="doc-biblioref">2017</a>)</span>. How much does a little turnover matter? Conversely, How long can the sampling period be? Results for non-spatial models <span class="citation" data-cites="Kendall1999">(<a href="17-references.html#ref-Kendall1999" role="doc-biblioref">Kendall, 1999</a>)</span> cannot be transferred. We distinguish turnover due to movement of AC from <em>in situ</em> births and deaths, and consider it separately under <a href="#hrstationary">Assumption 3d</a>.</p>
+<p><span class="citation" data-cites="Dupont2019">Dupont et al. (<a href="17-references.html#ref-Dupont2019" role="doc-biblioref">2019</a>)</span> investigated the effect of increasing study duration on the precision and bias of population size estimates. Their results are complicated by an artifact that caused their Bayesian estimator to be positively biased for short durations <span class="citation" data-cites="Dupont2019">(<a href="17-references.html#ref-Dupont2019" role="doc-biblioref">Dupont et al., 2019, p. 669</a>)</span>.</p>
+<!-- Terrible! Unclear net population change during sampling. Use initial population as reference for RB. -->
+<p>Additional simulations are shown in <a href="#fig-CLOfigure" class="quarto-xref">Fig.&nbsp;<span>6.1</span></a>. Turnover in a constant population resulted in positive bias equal to about 70% of the mortality over the duration of the sampling. Thus 50% annual mortality (~16% over 3 months) resulted in about +11% relative bias in a 3-month study, and coverage of nominal 95% confidence intervals dropped to about 82%. The new results are broadly consistent with those from the more complex scenarios of <span class="citation" data-cites="Dupont2019">Dupont et al. (<a href="17-references.html#ref-Dupont2019" role="doc-biblioref">2019</a>)</span> for ‘slow’ and ‘intermediate’ life histories.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-CLOfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CLOfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="11-assumptions_files/figure-html/fig-CLOfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="11-assumptions_files/figure-html/fig-CLOfigure-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CLOfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: Simulated effect of study duration on relative bias of density estimates for three levels of annual survival <span class="math inline">\phi</span> in a population with constant density. <span class="math inline">\phi = 1</span> corresponds to a closed population.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<section id="noemimm" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="noemimm">Assumption 1b: Population closed to immigration and emigration</h3>
+<p>This overlaps with Assumption 3 and is covered <a href="#hrstationary">later</a>.</p>
+</section></section><section id="sec-noIDerror" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="sec-noIDerror">Assumption 2: Identification without error</h2>
+<p></p>
+<p>We can generally assume accurate identification on recapture of animals trapped and marked by conventional methods such as numbered leg bands or ear tags. However, identification may be unreliable with modern methods for passive sampling using natural marks (DNA from hair or faecal samples, and images from motion-sensitive cameras). This is a major limitation.</p>
+<p>In genetic sampling there are two possible reasons for mis-identification: there may be too little variation at the chosen <!-- microsatellite or SNP  --> loci to distinguish all individuals in the sampled population, and genotyping is subject to error. <span class="citation" data-cites="Mills2000">Mills et al. (<a href="17-references.html#ref-Mills2000" role="doc-biblioref">2000</a>)</span>, <span class="citation" data-cites="Lukacs2005">Lukacs &amp; Burnham (<a href="17-references.html#ref-Lukacs2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="Waits2005">Waits &amp; Paetkau (<a href="17-references.html#ref-Waits2005" role="doc-biblioref">2005</a>)</span>, and <span class="citation" data-cites="Lampa2013">Lampa et al. (<a href="17-references.html#ref-Lampa2013" role="doc-biblioref">2013</a>)</span> reviewed the early literature, and citations of those reviews are a good entry point to the voluminous recent literature. <span class="citation" data-cites="Sethi2014">Sethi et al. (<a href="17-references.html#ref-Sethi2014" role="doc-biblioref">2014</a>)</span> provide technical advice. <span class="citation" data-cites="Augustine2020">Augustine et al. (<a href="17-references.html#ref-Augustine2020" role="doc-biblioref">2020</a>)</span> provide a useful summary and a model framework that encompasses the various errors. <span class="citation" data-cites="Kodi2024">Kodi et al. (<a href="17-references.html#ref-Kodi2024" role="doc-biblioref">2024</a>)</span> is a recent SECR study.</p>
+<p>Natural marks such as coat patterns are prone to identification problems that parallel those from genotyping: individuals may not be distinguishable, leading to shadow effects, or some may be mis-recorded, leading to spurious ghost individuals. The robustness of estimates will depend on the likely magnitude of each effect. We address the bias for varying frequencies of shadow and ghost effects below, with particular reference to genotyping.</p>
+<p>A single camera may photograph only the left or right flank of a passing animal. Owing to the asymmetry of patterns, identity cannot be inferred conclusively from a single photograph. This identification problem can be addressed in the field by using paired cameras, so that both flanks are recorded <span class="citation" data-cites="Karanth1998">(<a href="17-references.html#ref-Karanth1998" role="doc-biblioref">Karanth &amp; Nichols, 1998</a>)</span>. There may still be a minority of single-sided photographs, and probabilistic models have been suggested to incorporate these <span class="citation" data-cites="Augustine2018">(<a href="17-references.html#ref-Augustine2018" role="doc-biblioref">Augustine et al., 2018</a>)</span>.</p>
+<section id="sec-shadow" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-shadow">Assumption 2a. Natural marks sufficiently diverse</h3>
+<p>The ability to distinguish individuals is measured by the probability of identity (PI). This is the probability that two individuals drawn at random from the population will appear the same, i.e.&nbsp;have the same genotype at the loci examined. Identity of genotypes was considered by <span class="citation" data-cites="Mills2000">Mills et al. (<a href="17-references.html#ref-Mills2000" role="doc-biblioref">2000</a>)</span> to cause a “shadow effect”, as the existence of some individuals is concealed. The problem for SECR is even greater than in non-spatial capture–recapture. A group of two or more indistinguishable individuals becomes a ‘super individual’ whose detections spread over a larger area than each occupies individually.</p>
+<p>Simulations in <a href="#fig-MID3figure" class="quarto-xref">Fig.&nbsp;<span>6.2</span></a> and <a href="#fig-MID4figure" class="quarto-xref">Fig.&nbsp;<span>6.3</span></a> illustrate the potential impact of shadow effects on SECR estimates. In a scenario with about 110 detected individuals, PI = <span class="math inline">10^{-3}</span> resulted in relative bias of <span class="math inline">-20\%</span> in density estimates. This is largely due to the inflated spatial footprint of each super individual, which causes positive bias in estimates of the spatial scale of detection <span class="math inline">\sigma</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-MID3figure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-MID3figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="11-assumptions_files/figure-html/fig-MID3figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="11-assumptions_files/figure-html/fig-MID3figure-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MID3figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: Relative bias of parameter estimates from null model when some individuals cannot be distinguished (‘shadow effects’).
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-MID4figure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-MID4figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="11-assumptions_files/figure-html/fig-MID4figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="11-assumptions_files/figure-html/fig-MID4figure-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MID4figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.3: Relative bias of density estimates as function of PI for varying density. Density is expressed in units of animals per <span class="math inline">\sigma^2</span>. At low density few individuals are detected, reducing the chance of mis-identification for given PI.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-MID4afigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-MID4afigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="11-assumptions_files/figure-html/fig-MID4afigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="11-assumptions_files/figure-html/fig-MID4afigure-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MID4afigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.4: Threshold of PI at which absolute relative bias of density estimates exceeded the threshold shown, as a function of the expected number of individuals detected.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="sec-ghost" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-ghost">Assumption 2b. Natural marks not corrupted</h3>
+<p>DNA samples degrade over time exposed to heat, moisture and UV light <span class="citation" data-cites="Woodruff2014">(e.g., <a href="17-references.html#ref-Woodruff2014" role="doc-biblioref">Woodruff et al., 2014</a>)</span>. This results in both a lower rate of successful DNA amplification, and increasing frequency of genotyping errors. A key genotyping error is the phenomenon of allelic dropout, when one allele at a heterozygous locus fails to amplify, resulting in an apparent homozygote. False alleles may also appear in the laboratory and give the appearance of a distinct genotype and individual. Either error is likely to result in a spurious ‘ghost’ individual that is never recaptured.</p>
+<p>We measure the ghost effect by the probability a detection results in a ‘ghost’ individual. Unlike shadow effects, ghost individuals have almost no effect on <span class="math inline">\hat \sigma</span>. However, they do cause negative bias in <span class="math inline">\hat \lambda_0</span> and a reciprocal (positive) bias in density estimates <span class="math inline">\hat D</span> (<a href="#fig-MID2figure" class="quarto-xref">Fig.&nbsp;<span>6.5</span></a>). More extensive simulations were published by <span class="citation" data-cites="Kodi2024">Kodi et al. (<a href="17-references.html#ref-Kodi2024" role="doc-biblioref">2024</a>)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-MID2figure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-MID2figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="11-assumptions_files/figure-html/fig-MID2figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="11-assumptions_files/figure-html/fig-MID2figure-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MID2figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.5: Relative bias of parameter estimates from null model when genotyping errors generate ‘ghost’ individuals.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<!-- @ebm13 suggested modelling decline in DNA amplification success with duration of interval and environmental conditions, but that belongs elsewhere -->
+<!-- (Faecal samples appear to give more trouble?) -->
+<!-- @Kubo2023 raccoon dog -->
+<!-- @De2022 Asian elephant faecal samples -->
+<!-- wolverines, Dusit Ngoprasert sunbears, abb, salamanders -->
+<!-- #### Unknown identity {-} -->
+<p>Given sufficient diversity at the chosen loci, culling of inadequate samples and intensive checking of doubtful genotypes is generally sufficient to ensure adequate data <span class="citation" data-cites="Paetkau2003">(<a href="17-references.html#ref-Paetkau2003" role="doc-biblioref">Paetkau, 2003</a>)</span>. <span class="citation" data-cites="Lukacs2005">Lukacs &amp; Burnham (<a href="17-references.html#ref-Lukacs2005" role="doc-biblioref">2005</a>)</span> raised doubts about possible biases due to sample culling, but these have not been confirmed. Elimination of poor samples for which identity is uncertain tends to reduce sample size and precision. Precision can be improved by judiciously including samples with fewer loci in models that allow for uncertain identity <span class="citation" data-cites="Augustine2020">(<a href="17-references.html#ref-Augustine2020" role="doc-biblioref">Augustine et al., 2020</a>)</span>.</p>
+<p>Unknown identity can be handled in SECR-like probability models. These generally lack power unless supplemented by detections of known individuals or telemetry (references in <a href="16-telemetry.html" class="quarto-xref"><span>Appendix F</span></a>). Bias due to ghost individuals may be reduced in some circumstances by modelling only detection histories with more than one detection <span class="citation" data-cites="Kodi2024">(<a href="17-references.html#ref-Kodi2024" role="doc-biblioref">Kodi et al., 2024</a>)</span>.</p>
+<!-- [@cr13; @rcr15; @vanDamBates2024; @Ruprecht2021] -->
+</section></section><section id="assumption-3-detection-declines-radially-from-randomly-located-fixed-ac" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="assumption-3-detection-declines-radially-from-randomly-located-fixed-ac">Assumption 3: Detection declines radially from randomly located, fixed AC</h2>
+<p>The spatial component of spatially explicit capture–recapture rests on quite specific spatial models for the population (a 2-D distribution of activity centres AC) and for detection (a declining function of distance from the AC). These follow from a biological model in which detection hazard is proportional to each animal’s utilisation distribution i.e., its home range conceived as a stationary 2-dimensional probability density function <span class="citation" data-cites="Winkle1975">(<a href="17-references.html#ref-Winkle1975" role="doc-biblioref">van Winkle, 1975</a>)</span>.</p>
+<section id="sec-ACindependent" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-ACindependent">Assumption 3a: AC locations independent</h3>
+<p></p>
+<p>The SECR model of <span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="17-references.html#ref-be08" role="doc-biblioref">2008</a>)</span> treats activity centres as distributed independently according to an inhomogeneous Poisson point process. This allows local density to vary according to habitat or other persistent effects. It does not allow for the spacing behaviour of the animals themselves, which can lead either to contagion or repulsion of AC. Several authors have ventured into this area <span class="citation" data-cites="Russell2012 Reich2014 LopezBao2018 Bischof2020 McLaughlin2020 Efford2024">(<a href="17-references.html#ref-Bischof2020" role="doc-biblioref">Bischof et al., 2020</a>; <a href="17-references.html#ref-Efford2024" role="doc-biblioref">Efford &amp; Fletcher, 2024</a>; <a href="17-references.html#ref-LopezBao2018" role="doc-biblioref">López-Bao et al., 2018</a>; <a href="17-references.html#ref-McLaughlin2020" role="doc-biblioref">McLaughlin &amp; Bar, 2020</a>; <a href="17-references.html#ref-Reich2014" role="doc-biblioref">Reich &amp; Gardner, 2014</a>; <a href="17-references.html#ref-Russell2012" role="doc-biblioref">Russell et al., 2012</a>)</span>. The general conclusion is that point estimates of density from SECR are robust to clustering of AC due to social behaviour, but the implied overdispersion leads to confidence limits that are too narrow. Non-independence of detection is a distinct issue (<a href="#independentindividuals">Assumption 4</a>).</p>
+</section><section id="sec-hrcircular" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-hrcircular">Assumption 3b: Home ranges circular</h3>
+<p></p>
+<p>Concerns were expressed by <span class="citation" data-cites="Ivan2013">Ivan et al. (<a href="17-references.html#ref-Ivan2013" role="doc-biblioref">2013</a>)</span> about the effect of non-circularity of home ranges. Simulations by <span class="citation" data-cites="Efford2019">Efford (<a href="17-references.html#ref-Efford2019" role="doc-biblioref">2019</a>)</span> generally defused those concerns, with an important caveat: estimates of the spatial scale of detection <span class="math inline">\sigma</span> and density are unreliable when elongated home ranges are sampled with a linear array of detectors. Simulations of randomly oriented elliptical ranges with an aspect ratio of 3:1 resulted in bias on the order of +13% for a linear array <span class="citation" data-cites="Efford2019">(<a href="17-references.html#ref-Efford2019" role="doc-biblioref">Efford, 2019</a>: Fig. 2)</span>. Bias is extreme <span class="citation" data-cites="Efford2019">(often &gt;50%, <a href="17-references.html#ref-Efford2019" role="doc-biblioref">Efford, 2019</a>: Table 1)</span> when home ranges are both elongated and have a common alignment to the array (<a href="#fig-alignment" class="quarto-xref">Fig.&nbsp;<span>6.6</span></a> c). Modelling the anisotropy can be beneficial when the alignment is predictable from the landscape <span class="citation" data-cites="Murphy2016 Efford2019">(<a href="17-references.html#ref-Efford2019" role="doc-biblioref">Efford, 2019</a>; <a href="17-references.html#ref-Murphy2016" role="doc-biblioref">Murphy et al., 2016</a>)</span> and the array is not exactly linear, but the method is not universally applicable.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-alignment" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-alignment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/alignment.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="figures/alignment.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-alignment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.6: SECR models typically assume that home ranges are circular (a). Noncircularity of home ranges causes limited bias in density estimates when ranges are oriented at random with respect to a linear detector array (b). Systematic alignment of ranges to the array (c) causes large bias in <span class="math inline">\hat \sigma</span> and <span class="math inline">\hat D</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="sec-independentwithinhr" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-independentwithinhr">Assumption 3c: Locations independent within home range</h3>
+<p></p>
+<p>It is entirely likely that animals use their home ranges in a nested fashion (i.e., activity during any sub-interval localised in part of the range) or that some AC move during sampling. This may be viewed as a subset of Assumption 6 because if AC are not fixed during sampling then successive locations of an individual will be autocorrelated.</p>
+<p><span class="citation" data-cites="Royle2015">Royle et al. (<a href="17-references.html#ref-Royle2015" role="doc-biblioref">2015</a>)</span> modelled movement patterns they called “transience” (a Gaussian random walk) and “dispersal” (discrete shift of AC). They concluded</p>
+<blockquote class="blockquote">
+<p>… while estimators of density are extremely robust, even to pathological levels of movement (e.g., complete transience), the estimator of the spatial scale parameter of the encounter probability model is confounded with the dispersal/transience scale parameter.</p>
+</blockquote>
+<p>We extend their simulations by considering a model in which the overall home range is stationary but locations within the home range are autocorrelated. The bivariate Ornstein-Uhlenbeck (OU) distribution is a convenient model with these properties <span class="citation" data-cites="Dunn1977 Johnson2008 Hooten2017">(<a href="17-references.html#ref-Dunn1977" role="doc-biblioref">Dunn &amp; Gipson, 1977</a>; <a href="17-references.html#ref-Hooten2017" role="doc-biblioref">Hooten et al., 2017</a>; <a href="17-references.html#ref-Johnson2008" role="doc-biblioref">D. S. Johnson et al., 2008</a>)</span>. The home range as a whole is bivariate normal; we simulate the uncorrelated, circular case with equal variance on both axes. R code and details of the simulations are provided [elsewhere].</p>
+<p><a href="#fig-demoOU1" class="quarto-xref">Fig.&nbsp;<span>6.7</span></a> illustrates OU movement tracks for individuals with increasing autocorrelation parameter <span class="math inline">\tau</span>. Detection is assumed here to happen when an individual is within some small threshold distance <span class="math inline">\epsilon</span> of a detector at the end of a time step. Other detection models are possible.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-demoOU1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-demoOU1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="11-assumptions_files/figure-html/fig-demoOU1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="11-assumptions_files/figure-html/fig-demoOU1-1.png" class="img-fluid figure-img" style="width:80.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-demoOU1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.7: Examples of correlated movement paths over 100 time steps (<span class="math inline">t = 100</span>). Parameter ‘tau’ (<span class="math inline">\tau</span>) controls autocorrelation. Red dot indicates activity centre; grey circle is 95% probability contour of distribution as <span class="math inline">t \to \infty</span> or <span class="math inline">\tau \to 0</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>One consequence of autocorrelated movement is that the overall spatial scale increases with the duration and decreases with autocorrelation. With respect to telemetry, <span class="citation" data-cites="Otis1999">Otis &amp; White (<a href="17-references.html#ref-Otis1999" role="doc-biblioref">1999</a>)</span> concluded that autocorrelation <em>per se</em> did not bias inference so long as summary statistics were not generalized beyond the temporal sampling frame:</p>
+<blockquote class="blockquote">
+<p>Sampling designs that predefine a time frame of interest, and that generate representative samples of an animal’s movement during this time frame, should not be affected by length of the sampling interval and autocorrelation.</p>
+</blockquote>
+<p>The analogy with SECR is close: we are concerned with unbiased estimation of the detection parameters <span class="math inline">\lambda_0, \sigma</span> that describe the detection process <em>over the time frame of sampling</em>. Extrapolation to other time frames would require knowledge of the correlation structure of the data, expressed in a model such as the bivariate Ornstein-Uhlenbeck distribution <span class="citation" data-cites="Dunn1977 Hooten2017">(e.g., <a href="17-references.html#ref-Dunn1977" role="doc-biblioref">Dunn &amp; Gipson, 1977</a>; <a href="17-references.html#ref-Hooten2017" role="doc-biblioref">Hooten et al., 2017</a>)</span>, but that is not relevant to inference for the chosen time frame.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-OUfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-OUfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="11-assumptions_files/figure-html/fig-OUfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8"><img src="11-assumptions_files/figure-html/fig-OUfigure-1.png" class="img-fluid figure-img" style="width:50.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OUfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.8: Relative bias RB of null-model density estimates of density <span class="math inline">D</span> and spatial scale <span class="math inline">\sigma</span> from Ornstein-Uhlenbeck model with autocorrelation parameter <span class="math inline">\tau</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-OUfigure" class="quarto-xref">Fig.&nbsp;<span>6.8</span></a> confirms the robustness of SECR null-model density estimates to serial correlation of location over a broad range of values (<span class="math inline">0 \le \tau \le 50</span>). Bias is apparent in estimates of the global <span class="math inline">\sigma</span>, as expected from the reduced extent of movements in a given time frame. Note here that autocorrelation induces negative bias in <span class="math inline">\hat \sigma</span>. There is no direct analogue of <span class="math inline">\lambda_0</span> in the OU generating model, so we cannot determine the bias in <span class="math inline">\hat \lambda_0</span>.</p>
+</section><section id="sec-hrstationary" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-hrstationary">Assumption 3d. Home ranges stationary</h3>
+<p></p>
+<p>Robustness of SECR to movement of home ranges (dispersal) was demonstrated by <span class="citation" data-cites="Royle2015">Royle et al. (<a href="17-references.html#ref-Royle2015" role="doc-biblioref">2015</a>)</span>. <span class="citation" data-cites="Harihar2017">(<a href="17-references.html#ref-Harihar2017" role="doc-biblioref">Harihar et al., 2017</a>)</span> expressed a further concern that movement over a long sampling duration would breach Assumption 1 (closure).</p>
+<p>We simulated detections over 100 ‘days’ during which each AC underwent a random walk governed by a Gaussian kernel with scale <span class="math inline">\sigma_m</span>. Details are given [elsewhere].</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-DNCfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-DNCfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="11-assumptions_files/figure-html/fig-DNCfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" data-glightbox="description: .lightbox-desc-9"><img src="11-assumptions_files/figure-html/fig-DNCfigure-1.png" class="img-fluid figure-img" style="width:50.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-DNCfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.9: Relative bias of density estimates from studies with varying between-occasion movement. Both <span class="math inline">\hat \lambda_0</span> and <span class="math inline">\hat \sigma</span> are biased by movement, but the net effect on <span class="math inline">\hat D</span> is negligible.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section></section><section id="assumption-4-probability-of-detection-constant" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="assumption-4-probability-of-detection-constant">Assumption 4: Probability of detection constant</h2>
+<p></p>
+<p><span class="citation" data-cites="obwa78">Otis et al. (<a href="17-references.html#ref-obwa78" role="doc-biblioref">1978</a>)</span> classified non-spatial capture–recapture models according to three possible sources of variation in detection probability: time (t – sampling occasion), behaviour (b – learned response to capture) and heterogeneity (h – persistent individual differences). Models may accommodate any one of these sources (t, b, h) or their combinations (tb, th, bh, tbh). Space adds other sources of variation – most simply, detection probability may also vary between detectors (d) – and more complex potential interactions.</p>
+<p>For SECR we have at least two parameters that control detection (<span class="math inline">g_0</span> or <span class="math inline">\lambda_0</span>, and <span class="math inline">\sigma</span>).</p>
+<p>Detection parameters may also be considered a function of AC location, but for (relative) simplicity we stick to t, b, h, and d.</p>
+<section id="sec-temporalvariation" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-temporalvariation">4a. Temporal variation</h3>
+<p><span class="citation" data-cites="Sollmann2024">Sollmann (<a href="17-references.html#ref-Sollmann2024" role="doc-biblioref">2024</a>)</span> reached the conclusion from simulations that temporal variation in the baseline detection probability <span class="math inline">g_0</span> may safely be ignored when fitting SECR models. Comparison of null and temporal models seldom results in different estimates of density.</p>
+<p>Further <a href="https://github.com/MurrayEfford/secr-simulations">simulations</a> confirm the lack of bias in <span class="math inline">\hat D</span>, but show that temporal variation in <span class="math inline">\sigma</span> causes significant bias in estimates of both <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span> under the null model (<a href="#fig-Mtfigure" class="quarto-xref">Fig.&nbsp;<span>6.10</span></a>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-Mtfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-Mtfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="11-assumptions_files/figure-html/fig-Mtfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" data-glightbox="description: .lightbox-desc-10"><img src="11-assumptions_files/figure-html/fig-Mtfigure-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Mtfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.10: Relative bias of parameter estimates from null model given temporal variation in <span class="math inline">\lambda_0</span> or <span class="math inline">\sigma</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="sec-behaviour" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-behaviour">4b. Behavioural responses</h3>
+<p>We introduced behavioural responses in <a href="08-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a>. Behavioural responses may also be treated as a breach of the <a href="#serialindependence">assumption of serial independence</a>, but we keep them here for consistency with the non-spatial literature.</p>
+<p>The discovery of a detector and experience of capture may result in either a positive (trap-happy) or negative (trap-shy) change in detection probability. The response may persist for the duration of sampling or be transient (Markovian) and apply only at the next sampling occasion. In SECR there is the further complication that the response may be general, applying across all detectors, or localised to the initial detector.</p>
+<p>Each of these responses is readily modelled if the sequence of detections is known. This is generally not the case with proximity detectors, for which an animal may visit multiple detectors on one sampling occasion. We therefore restrict consideration of learned responses to trapping data (single-catch and multi-catch traps). This is not a great loss, as proximity detectors are typically non-invasive and less likely than traps to affect behaviour.</p>
+<p>If a behavioural response is not modelled then it may cause a heavy bias in density estimates, positive for trap shyness and negative for trap happiness (<a href="#fig-Mbfigure" class="quarto-xref">Fig.&nbsp;<span>6.11</span></a>). In <a href="https://github.com/MurrayEfford/secr-simulations">simulations</a> we describe the magnitude of the behavioural response by a ‘recapture factor’ by which the initial (naive) hazard is multiplied after first capture. We simulated recapture factors between 0.25 and 2.0, where 1.0 represents no behavioural response. The bias is much reduced if the effect is detector-specific, but then <span class="math inline">\hat \sigma</span> is also biased. For the scenario used in these <a href="https://github.com/MurrayEfford/secr-simulations">simulations</a>, the relative bias of density estimates fell between -10% and +10% for recapture factors between 0.5 and 2. In <a href="08-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a> we estimated a much larger response by <a href="08-detection-model.html#behaviouralresponse">deermice</a> (about 10-fold, but with poor precision), although there was only a small difference in estimated density between the null and bk models. Behavioural responses are potentially important for SECR and deserve closer investigation.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-Mbfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-Mbfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="11-assumptions_files/figure-html/fig-Mbfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" data-glightbox="description: .lightbox-desc-11"><img src="11-assumptions_files/figure-html/fig-Mbfigure-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Mbfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.11: Relative bias of parameter estimates from null model given behavioural variation in lambda0. Relative bias of density was off-scale (+1.41) for recapture factor 0.25 with a general behavioural response.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="sec-individualheterogeneity" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-individualheterogeneity">4c. Individual heterogeneity</h3>
+<p>Individual heterogeneity has long been the bane of capture–recapture. Some of the variation is due to proximity to detectors, and does not bias SECR estimates because it is included in the model. A modest level of additional variation has little effect on null-model estimates: <span class="citation" data-cites="em14">Efford &amp; Mowat (<a href="17-references.html#ref-em14" role="doc-biblioref">2014</a>)</span> found that the relative bias of <span class="math inline">\hat D</span> did not exceed -0.05 when <span class="math inline">\mathrm{CV}(a_0) &lt; 0.3</span> for <span class="math inline">a_0 = 2\pi\lambda_0\sigma^2</span> (based on hazard halfnormal or exponential detection function). We confirmed this in <a href="https://github.com/MurrayEfford/secr-simulations">simulations</a> that varied each of the components <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma^2</span> separately (<a href="#fig-Mhfigure" class="quarto-xref">Fig.&nbsp;<span>6.12</span></a>). Biologically we expect an inverse relationship between <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma^2</span>, so in general <span class="math inline">\mathrm{CV}(a_0)</span> will be less than either <span class="math inline">\mathrm{CV}(\lambda_0)</span> or <span class="math inline">\mathrm{CV}(\sigma^2)</span> on its own <span class="citation" data-cites="em14">(<a href="17-references.html#ref-em14" role="doc-biblioref">Efford &amp; Mowat, 2014</a>)</span>.</p>
+<p>Despite these appeals to robustness, <a href="#fig-Mhfigure" class="quarto-xref">Fig.&nbsp;<span>6.12</span></a> indicates a risk of significant bias in estimates of both density and detection parameters when individual heterogeneity is large.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-Mhfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-Mhfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="11-assumptions_files/figure-html/fig-Mhfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" data-glightbox="description: .lightbox-desc-12"><img src="11-assumptions_files/figure-html/fig-Mhfigure-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Mhfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.12: Relative bias of parameter estimates from null model given individual variation in <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma^2</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="sec-homogeneityofdetectors" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-homogeneityofdetectors">4d. Homogeneity across detectors</h3>
+<p>Spatial (detector-specific) variation in detection parameters is conceptually linked to individual heterogeneity. The location of each individual determines its detection probability via a particular set of AC-to-detector distances, as modelled automatically in SECR. Variation among detectors in efficiency (<span class="math inline">\lambda_{0_k}</span>) adds between-animal heterogeneity because the detectors near a particular AC differ in efficiency from the average (<a href="#fig-inducedhfigure" class="quarto-xref">Fig.&nbsp;<span>6.13</span></a>), and the variation is not modelled automatically.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-inducedhfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-inducedhfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="11-assumptions_files/figure-html/fig-inducedhfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" data-glightbox="description: .lightbox-desc-13"><img src="11-assumptions_files/figure-html/fig-inducedhfigure-1.png" class="img-fluid figure-img" style="width:50.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inducedhfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.13: Variation in detector efficiency induces individual heterogeneity in overall detection probability <span class="math inline">p_\cdot(\vec x)</span>. AC 1–3 have similar exposure to detectors but experience respectively high, low and medium detection probability because of the neighbourhoods in which they are located.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The individual heterogeneity induced by between-detector variation is increased by spatial autocorrelation on the scale of home ranges, because this makes it more likely that all detectors in the neighborhood of an AC will be above average or below average. Variable <span class="math inline">\lambda_{0_k}</span> may also affect null-model estimates indirectly owing to bias in <span class="math inline">\hat \sigma</span> and perhaps <span class="math inline">\hat \lambda_0</span>, but these interactions are poorly understood and we do not consider them further.</p>
+<p>A Gaussian random field (GRF) is a convenient source of random spatial variation. Spatial structure of a GRF is controlled by its covariance function, which is typically exponential with a single scale parameter. Several authors have used a GRF to generate detector-specific variation in detection probability on the link scale (logit or cloglog). Reported bias in null-model density estimates from these simulations was typically in the range 0 to 20% <span class="citation" data-cites="Royle2013">Dey et al. (<a href="17-references.html#ref-Dey2023" role="doc-biblioref">2023</a>)</span>.</p>
+<p>Detector-level variation has several possible origins –</p>
+<ol type="1">
+<li>Habitat-determined variation in detector efficiency,</li>
+<li>Selective use of habitats (third-order selection of <span class="citation" data-cites="j80">D. H. Johnson (<a href="17-references.html#ref-j80" role="doc-biblioref">1980</a>)</span>), or</li>
+<li>Unrecorded variation in sampling intensity <span class="citation" data-cites="Dey2023">(<a href="17-references.html#ref-Dey2023" role="doc-biblioref">Dey et al., 2023</a>)</span>.</li>
+</ol>
+<p>Selective use implies a modification to each animal’s utilisation distribution. Time spent in preferred habitats allows less time in other habitats, and the time spent near any detector depends on the mix of habitats in the neighbourhood. Thus (1) and (2) imply different models of detector-level variation that we characterise as ‘unnormalised’ and ‘normalised’ <span class="citation" data-cites="e14">(<a href="17-references.html#ref-e14" role="doc-biblioref">Efford, 2014</a>)</span>.</p>
+<!-- local variation in density (second-order selection of Johnson (1980)), -->
+<p>We illustrate the effect of (1) and (2) with the scenarios simulated by <span class="citation" data-cites="Royle2013">Royle et al. (<a href="17-references.html#ref-Royle2013" role="doc-biblioref">2013</a>)</span> and <span class="citation" data-cites="e14">Efford (<a href="17-references.html#ref-e14" role="doc-biblioref">2014</a>)</span>. The spatial scale parameter of the exponential covariance function was fixed at <span class="math inline">2.5\sigma</span>, the spacing of a 7 x 7 grid of binary proximity detectors.</p>
+<p>The original model specified the hazard of detection as <span id="eq-dethet"><span class="math display">
+\lambda_k(\mathbf x) = \exp(\alpha_0 -\alpha_1 d^2 + \alpha_2 X_k),
+\tag{6.1}</span></span> where <span class="math inline">d</span> is the distance between an AC at <span class="math inline">\mathbf x</span> and detector <span class="math inline">k</span> and <span class="math inline">X_k</span> is a spatially autocorrelated variable with marginal distribution <span class="math inline">N(0,1)</span>, evaluated at detector <span class="math inline">k</span>. The first two parameters are transformed versions of the parameters of the <strong>secr</strong> hazard-halfnormal detection function (<span class="math inline">\alpha_0 = \log(\lambda_0)</span>, <span class="math inline">\alpha_1 = 1/(2\sigma^2)</span>; <a href="08-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a>). The magnitude of detector-level variation was controlled by parameter <span class="math inline">\alpha_2</span>.</p>
+<p>Bias in density estimates was small (<span class="math inline">\mathrm{RB}(\hat D) &lt; 5\%)</span>) for <span class="math inline">\alpha_2 &lt;0.5</span>, but could become worrying for large <span class="math inline">\alpha_2</span> (<a href="#fig-dethetfigure" class="quarto-xref">Fig.&nbsp;<span>6.14</span></a> a). But what value of <span class="math inline">\alpha_2</span> is realistic? <span class="citation" data-cites="Royle2013">Royle et al. (<a href="17-references.html#ref-Royle2013" role="doc-biblioref">2013</a>)</span> estimated <span class="math inline">\alpha_2 = 0.2</span> for black bear data from DNA hair snares, or <span class="math inline">\alpha_2 = -0.3</span> for a combined hair-snare and telemetry model. </p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dethetfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-dethetfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="11-assumptions_files/figure-html/fig-dethetfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" data-glightbox="description: .lightbox-desc-14"><img src="11-assumptions_files/figure-html/fig-dethetfigure-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dethetfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.14: Relative bias of parameter estimates from null model when <span class="math inline">\lambda_0</span> varies among detectors according to (a) unnormalised model of <span class="citation" data-cites="Royle2013">Royle et al. (<a href="17-references.html#ref-Royle2013" role="doc-biblioref">2013</a>)</span>, and (b) normalised model of <span class="citation" data-cites="e14">Efford (<a href="17-references.html#ref-e14" role="doc-biblioref">2014</a>)</span>. The magnitude of variation depends on the coefficient <span class="math inline">\alpha_2</span> (<a href="#eq-dethet" class="quarto-xref">Eq.&nbsp;<span>6.1</span></a>).
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Normalisation, as implied by third-order habitat selection, attenuates the effect on the bias of density estimates (<a href="#fig-dethetfigure" class="quarto-xref">Fig.&nbsp;<span>6.14</span></a> b). We note also that detector-level covariate effects measured at each detector are readily included in the model; estimates are then nearly unbiased <span class="citation" data-cites="e14">(e.g., <a href="17-references.html#ref-e14" role="doc-biblioref">Efford, 2014</a>)</span>.</p>
+<p>Large bias can arise when the sample is assumed to come from a detector array larger than that actually sampled <span class="citation" data-cites="Moqanaki2021 Dey2023">(<a href="17-references.html#ref-Dey2023" role="doc-biblioref">Dey et al., 2023</a>; <a href="17-references.html#ref-Moqanaki2021" role="doc-biblioref">Moqanaki et al., 2021</a>)</span>. This would seem to come under the heading <a href="#datarequirements">data requirements</a> rather than model robustness.</p>
+<p>Further complexity is possible. <span class="citation" data-cites="Stevenson2021">Stevenson et al. (<a href="17-references.html#ref-Stevenson2021" role="doc-biblioref">2021</a>)</span> suggested modelling a latent Gaussian random field for each individual and showed how the parameters of the GRF could be estimated, assuming these to be shared across individuals. It is unclear how the latent GRF should be interpreted biologically. Activity is not normalised, so the combination of detection function and latent GRF does not describe a utilisation distribution.</p>
+<!-- IN PROGRESS: -->
+<!-- Correlated variation in density and detection is a headache. @McLellan2023 simulated covariation with density. -->
+<!-- The phenomenon causes bias in density estimates from single-catch traps... -->
+<!-- @Marrotte2022 heterogeneity vs non-euclidean distance -->
+<!-- cf @Moqanaki2021 -->
+<!-- "Highly-autocorrelated spatial heterogeneity in detection probability (Moran’s I = 0.85–0.96), -->
+<!-- modulated by the magnitude of the unmodeled heterogeneity, can lead to pronounced negative bias -->
+<!-- (up to 65%, or about 44-fold decrease compared to the reference scenario), reduction in precision (249% or 2.5-fold) and coverage probability of the 95% credible intervals associated with abundance estimates to 0. Conversely, at low levels of spatial autocorrelation (median Moran’s I = 0), even severe unmodeled -->
+<!-- heterogeneity in detection probability did not lead to pronounced bias and only caused slight reductions in precision and coverage of abundance estimates." -->
+<!-- @Stevenson2021 proposed that for each individual there is a latent log-Gaussian random field that modifies its frequency of detection at a particular detector; spatial autocorrelation in the field induces spatial correlation in the rate of detection at adjacent detectors (detection events themselves occur independently). They presented a method for estimating parameters of the latent random field (variance $\sigma_u^2$ and scale of autocorrelation $\rho$) along with the usual SECR parameters. Under their model the detection probability of an AC at a particular location $p_\cdot(\vec x; \theta)$ is a random variable with CV that increases towards the periphery. This individual heterogeneity causes negative bias in estimates of $\lambda_0$ and $\sigma$ (and hence density) when a null SECR model is fitted. For their simulation scenario, the absolute relative bias of $\hat D$ is negligible ($<3\%$) when $\sigma_u < 0.5$ and reaches 10\% when $\sigma_u \approx 0.8$. A log-normal distribution with mean-log 0 and sd-log 0.83 has CV $\approx 100\%$, so the latent random field must add substantial variance before the effect is felt strongly. The authors present an example with CV $\approx x$ and $-18\%$ bias in $\hat D$. -->
+<!-- claim spatial covariance analogous to temporal covariance (i.e. learned or behavioural effects) in non-spatial capture--recapture. -->
+</section></section><section id="sec-independence" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="sec-independence">Assumption 5: Independence</h2>
+<p></p>
+<section id="sec-independentindividuals" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-independentindividuals">5a. Individuals are detected independently</h3>
+<p>Animals that move in groups are unlikely to be detected independently. <span class="citation" data-cites="Bischof2020">Bischof et al. (<a href="17-references.html#ref-Bischof2020" role="doc-biblioref">2020</a>)</span> labelled the phenomenon “cohesion”. The primary result is overdispersion and underestimation of the sampling variance. Confidence intervals will be too narrow, resulting in less-than-nominal coverage. Earlier optimism <span class="citation" data-cites="Bischof2020">(<a href="17-references.html#ref-Bischof2020" role="doc-biblioref">Bischof et al., 2020</a>)</span> that a measure of overdispersion would correct for the underestimation appears to be unwarranted <span class="citation" data-cites="Efford2024">(<a href="17-references.html#ref-Efford2024" role="doc-biblioref">Efford &amp; Fletcher, 2024</a>)</span>.</p>
+<p><span class="citation" data-cites="McLaughlin2020">McLaughlin &amp; Bar (<a href="17-references.html#ref-McLaughlin2020" role="doc-biblioref">2020</a>)</span> modelled random associations between adjacent neighbours; the method has yet to find general application.</p>
+<p>Animals are not detected independently in single-catch traps. Maximizing the multi-catch likelihood provides unbiased estimates of density and spatial scale in most cases (see <span class="citation" data-cites="Distiller2015">Distiller &amp; Borchers (<a href="17-references.html#ref-Distiller2015" role="doc-biblioref">2015</a>)</span> for an exception), but estimates of the intercept of the detection function (<span class="math inline">g_0</span>, <span class="math inline">\lambda_0</span>) may be strongly biased. The coverage of confidence intervals based on the multi-catch likelihood has yet to be assessed. An algorithm combining simulation and inverse prediction allows unbiased estimation of all parameters <span class="citation" data-cites="e04 Efford2023">(<a href="17-references.html#ref-e04" role="doc-biblioref">Efford, 2004</a>, <a href="17-references.html#ref-Efford2023" role="doc-biblioref">2023</a>)</span>, but lacks the flexibility of MLE. </p>
+</section><section id="sec-serialindependence" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-serialindependence">5b. Detections of an individual are independent</h3>
+<p>Trapping by definition causes non-independence of detection events: an animal that is captured cannot be caught anywhere else until released. The non-independence of detections in multi-catch traps is readily modelled as competing risk, as we saw in <a href="03-theory.html" class="quarto-xref"><span>Chapter 3</span></a>.</p>
+<p>A more problematic form of dependence arises when a single visit to a passive detector results in multiple observations. This can happen when DNA is amplified from multiple hair samples left at a hair snag, or when a camera takes multiple photographs of an animal on a single visit. Analysing such data as if they were independent events results in overdispersion and accompanying underestimation of sampling variance. A simple solution is to collapse counts to binary observations.</p>
+<p>In the basic SECR model of <a href="03-theory.html" class="quarto-xref"><span>Chapter 3</span></a> the next detection of an individual may happen anywhere in its home range, regardless of where it was last detected. More biologically realistic patterns of movement lead to sequential dependence of locations.</p>
+</section></section><section id="sec-robustnesssummary" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="sec-robustnesssummary">
+<span class="header-section-number">6.2</span> Summary</h2>
+<p>Most breaches of assumption can be managed to have only minor effects on density estimates, as we summarise in <a href="#tbl-robustness" class="quarto-xref">Table&nbsp;<span>6.1</span></a>. Simulations only tell part of the story: to evaluate robustness we also need to know the real-life magnitude of any breach. The magnitude of some breaches may be assessed from external evidence (e.g.&nbsp;telemetry), or from a more general model that incorporates the effect (e.g., finite mixtures for individual heterogeneity; spatial random effect models <span class="citation" data-cites="Dey2023">Dey et al. (<a href="17-references.html#ref-Dey2023" role="doc-biblioref">2023</a>)</span>). More work is needed on particular sampling systems and species.</p>
+<p>Special care is needed when these effects may apply:</p>
+<ul>
+<li>mis-identification leads to the appearance of super individuals (the shadow effect)</li>
+<li>a learned (behavioural) response is global rather than specific to detector locations</li>
+<li>large individual heterogeneity</li>
+<li>alignment of home ranges with detector array</li>
+</ul>
+<p>We have not considered in detail the potential for correlated variation in overall detection (<span class="math inline">a</span>) and density. This was advanced as a major issue by <span class="citation" data-cites="McLellan2023">McLellan et al. (<a href="17-references.html#ref-McLellan2023" role="doc-biblioref">2023</a>)</span>.</p>
+<p>Several breaches lead to underestimation of sampling variance and impaired coverage of confidence intervals. If the magnitude of the breach can be estimated then better confidence intervals may be achieved by simulating from the full model.</p>
+<p>Particular detection parameters may be estimated poorly even when density estimates are robust. A common example arises when a multi-catch model is used for single-catch data: the estimated intercept of the detection function is strongly biased while density estimates are generally unbiased.</p>
+<div id="tbl-robustness" class="sm quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-robustness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.
+</figcaption><div aria-describedby="tbl-robustness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-sm small table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 5%">
+<col style="width: 42%">
+<col style="width: 23%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">Breach of assumption</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Effect</th>
+<th style="text-align: left;">Mitigating models</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1. Closure</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-popnclosed">1a. Births and deaths</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob52.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" data-glightbox="description: .lightbox-desc-15" title="*"><img src="figures/yob52.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;">RB(<span class="math inline">\hat D</span>) proportional turnover</td>
+<td style="text-align: left;">Open population</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-popnclosed">1b. Dispersal</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" data-glightbox="description: .lightbox-desc-16" title="."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Open population</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2. Identification</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-shadow">2a. Inadequate marks</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob54.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" data-glightbox="description: .lightbox-desc-17" title="**"><img src="figures/yob54.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><span class="citation" data-cites="Augustine2020">Augustine et al. (<a href="17-references.html#ref-Augustine2020" role="doc-biblioref">2020</a>)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-ghost">2b. Marks corrupted</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob52.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" data-glightbox="description: .lightbox-desc-18" title="*"><img src="figures/yob52.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3. Home range HR</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-ACindependent">3a. AC not independent</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" data-glightbox="description: .lightbox-desc-19" title="."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-hrcircular">3b. HR non-circular</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob5s14.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" data-glightbox="description: .lightbox-desc-20" title="*"><img src="figures/yob5s14.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;">severe RB(<span class="math inline">\hat D</span>) when HR align with detectors</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-independentwithinhr">3c. Location autocorrelated</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" data-glightbox="description: .lightbox-desc-21" title="."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-hrstationary">3d. HR non-stationary</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" data-glightbox="description: .lightbox-desc-22" title="."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4. Constant parameters</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-temporalvariation">4a. Temporal variation</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" data-glightbox="description: .lightbox-desc-23" title="."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">covariate, time-specific</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-behaviour">4b. Behavioural responses</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob5s24.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" data-glightbox="description: .lightbox-desc-24" title="*"><img src="figures/yob5s24.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">learned response</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-individualheterogeneity">4c. Individual heterogeneity</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob52.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" data-glightbox="description: .lightbox-desc-25" title="*"><img src="figures/yob52.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;">RB(<span class="math inline">\hat D</span>) nonlinear on CV(a)</td>
+<td style="text-align: left;">covariate, finite mixture</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-homogeneityofdetectors">4d. Detector heterogeneity</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob5s13.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26" data-glightbox="description: .lightbox-desc-26" title="*"><img src="figures/yob5s13.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">covariate, GRF</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5. Independence</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-independentindividuals">5a. Individuals interact</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" data-glightbox="description: .lightbox-desc-27" title="*"><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>ipsecr</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-serialindependence">5b. Serial dependence</a>
+</td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28" data-glightbox="description: .lightbox-desc-28" title="."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<table class="table-borderless table-sm small table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 10%">
+</colgroup>
+<tbody><tr class="odd">
+<td>
+<strong>Legend</strong> Split colours indicate that the effect is generally weak or ignorable, but in some circumstances it is damaging if not modelled.</td>
+<td><img src="figures/yob51.png" class="img-fluid" alt="."></td>
+<td>ignorable</td>
+<td><img src="figures/yob52.png" class="img-fluid"></td>
+<td>minor</td>
+<td><img src="figures/yob53.png" class="img-fluid" alt="."></td>
+<td>major</td>
+<td><img src="figures/yob54.png" class="img-fluid" alt="."></td>
+<td>severe</td>
+</tr></tbody>
+</table>
+<!-- ## Multiple observation processes --><!-- @Tourani2020 --><!-- cf mark-recapture, telemetry, acoustic tagging, harvest samples @Paterson2019 --><!-- cf historical advice on multiple methods for non-spatial capture-recapture to overcome individual heterogeneity; @lc24 --><!-- (desirability of crossover recaptures) --><!-- [Github]: https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/MID/secr-simulations-MID.html --><!-- ## Simulations --><!-- @ebb09  --><!-- @Theng2022 general robustness; mechanistic simulation --><!-- @McLellan2023: not robust when variation in density and detection are correlated; see also @Paterson2019; @Howe2022. --><!-- @Royle2013; @e14 RSF --><!-- @Royle2015 transience --><!-- @Paterson2019 mountain lions simulation --><!-- @Dey2022 misspecified detection function --><!-- @Dey2023 SARE --><!-- @Dupont2023 ungulates simulation vs chamois (*Rupicapra rupicapra*), red deer (*Cervus elaphus*), and wild boar (*Sus scrofa*) wrt group --><!-- @Smith2020 simulation scenarios "caution against the casual repurposing of non-spatial capture-recapture data using SCR" --><!-- @Efford2019 noncircular --><!-- @eb19 fast design --><!-- @ef13 --><!-- @em14 --><!-- @Efford2024 --><!-- @Bischof2020 --><!-- @c19 --><!-- @Distiller2015 --><!-- @Dupont2019 -->
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;6.1: Simulated effect of study duration on relative bias of density estimates for three levels of annual survival <span class="math inline">\phi</span> in a population with constant density. <span class="math inline">\phi = 1</span> corresponds to a closed population.</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;6.2: Relative bias of parameter estimates from null model when some individuals cannot be distinguished (‘shadow effects’).</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;6.3: Relative bias of density estimates as function of PI for varying density. Density is expressed in units of animals per <span class="math inline">\sigma^2</span>. At low density few individuals are detected, reducing the chance of mis-identification for given PI.</span>
+<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;6.4: Threshold of PI at which absolute relative bias of density estimates exceeded the threshold shown, as a function of the expected number of individuals detected.</span>
+<span class="glightbox-desc lightbox-desc-5">Figure&nbsp;6.5: Relative bias of parameter estimates from null model when genotyping errors generate ‘ghost’ individuals.</span>
+<span class="glightbox-desc lightbox-desc-6">Figure&nbsp;6.6: SECR models typically assume that home ranges are circular (a). Noncircularity of home ranges causes limited bias in density estimates when ranges are oriented at random with respect to a linear detector array (b). Systematic alignment of ranges to the array (c) causes large bias in <span class="math inline">\hat \sigma</span> and <span class="math inline">\hat D</span>.</span>
+<span class="glightbox-desc lightbox-desc-7">Figure&nbsp;6.7: Examples of correlated movement paths over 100 time steps (<span class="math inline">t = 100</span>). Parameter ‘tau’ (<span class="math inline">\tau</span>) controls autocorrelation. Red dot indicates activity centre; grey circle is 95% probability contour of distribution as <span class="math inline">t \to \infty</span> or <span class="math inline">\tau \to 0</span>.</span>
+<span class="glightbox-desc lightbox-desc-8">Figure&nbsp;6.8: Relative bias RB of null-model density estimates of density <span class="math inline">D</span> and spatial scale <span class="math inline">\sigma</span> from Ornstein-Uhlenbeck model with autocorrelation parameter <span class="math inline">\tau</span>.</span>
+<span class="glightbox-desc lightbox-desc-9">Figure&nbsp;6.9: Relative bias of density estimates from studies with varying between-occasion movement. Both <span class="math inline">\hat \lambda_0</span> and <span class="math inline">\hat \sigma</span> are biased by movement, but the net effect on <span class="math inline">\hat D</span> is negligible.</span>
+<span class="glightbox-desc lightbox-desc-10">Figure&nbsp;6.10: Relative bias of parameter estimates from null model given temporal variation in <span class="math inline">\lambda_0</span> or <span class="math inline">\sigma</span>.</span>
+<span class="glightbox-desc lightbox-desc-11">Figure&nbsp;6.11: Relative bias of parameter estimates from null model given behavioural variation in lambda0. Relative bias of density was off-scale (+1.41) for recapture factor 0.25 with a general behavioural response.</span>
+<span class="glightbox-desc lightbox-desc-12">Figure&nbsp;6.12: Relative bias of parameter estimates from null model given individual variation in <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma^2</span>.</span>
+<span class="glightbox-desc lightbox-desc-13">Figure&nbsp;6.13: Variation in detector efficiency induces individual heterogeneity in overall detection probability <span class="math inline">p_\cdot(\vec x)</span>. AC 1–3 have similar exposure to detectors but experience respectively high, low and medium detection probability because of the neighbourhoods in which they are located.</span>
+<span class="glightbox-desc lightbox-desc-14">Figure&nbsp;6.14: Relative bias of parameter estimates from null model when <span class="math inline">\lambda_0</span> varies among detectors according to (a) unnormalised model of <span class="citation" data-cites="Royle2013">Royle et al. (<a href="17-references.html#ref-Royle2013" role="doc-biblioref">2013</a>)</span>, and (b) normalised model of <span class="citation" data-cites="e14">Efford (<a href="17-references.html#ref-e14" role="doc-biblioref">2014</a>)</span>. The magnitude of variation depends on the coefficient <span class="math inline">\alpha_2</span> (<a href="#eq-dethet" class="quarto-xref">Eq.&nbsp;<span>6.1</span></a>).</span>
+<span class="glightbox-desc lightbox-desc-15">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-16">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-17">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-18">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-19">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-20">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-21">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-22">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-23">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-24">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-25">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-26">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-27">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-28">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-Augustine2018" class="csl-entry" role="listitem">
+Augustine, B. C., Royle, J. A., Kelly, M. J., Satter, C. B., Alonso, R. S., Boydston, E. E., &amp; Crooks, K. R. (2018). Spatial capture–recapture with partial identity: An application to camera traps. <em>The Annals of Applied Statistics</em>, <em>12</em>(1). <a href="https://doi.org/10.1214/17-aoas1091">https://doi.org/10.1214/17-aoas1091</a>
+</div>
+<div id="ref-Augustine2020" class="csl-entry" role="listitem">
+Augustine, B. C., Royle, J. A., Linden, D. W., &amp; Fuller, A. K. (2020). Spatial proximity moderates genotype uncertainty in genetic tagging studies. <em>Proceedings of the National Academy of Sciences</em>, <em>117</em>(30), 17903–17912. <a href="https://doi.org/10.1073/pnas.2000247117">https://doi.org/10.1073/pnas.2000247117</a>
+</div>
+<div id="ref-Bischof2020" class="csl-entry" role="listitem">
+Bischof, R., Dupont, P., Milleret, C., Chipperfield, J., &amp; Royle, J. A. (2020). Consequences of ignoring group association in spatial capture–recapture analysis. <em>Wildlife Biology</em>, <em>2020</em>(1), 1–10. <a href="https://doi.org/10.2981/wlb.00649">https://doi.org/10.2981/wlb.00649</a>
+</div>
+<div id="ref-be08" class="csl-entry" role="listitem">
+Borchers, D. L., &amp; Efford, M. G. (2008). Spatially explicit maximum likelihood methods for capture-recapture studies. <em>Biometrics</em>, <em>64</em>, 377–385.
+</div>
+<div id="ref-Dey2023" class="csl-entry" role="listitem">
+Dey, S., Moqanaki, E., Milleret, C., Dupont, P., Tourani, M., &amp; Bischof, R. (2023). Modelling spatially autocorrelated detection probabilities in spatial capture-recapture using random effects. <em>Ecological Modelling</em>, <em>479</em>, 110324. <a href="https://doi.org/10.1016/j.ecolmodel.2023.110324">https://doi.org/10.1016/j.ecolmodel.2023.110324</a>
+</div>
+<div id="ref-Distiller2015" class="csl-entry" role="listitem">
+Distiller, G., &amp; Borchers, D. L. (2015). A spatially explicit capture–recapture estimator for single‐catch traps. <em>Ecology and Evolution</em>, <em>5</em>(21), 5075–5087. <a href="https://doi.org/10.1002/ece3.1748">https://doi.org/10.1002/ece3.1748</a>
+</div>
+<div id="ref-Dunn1977" class="csl-entry" role="listitem">
+Dunn, J. E., &amp; Gipson, P. S. (1977). Analysis of radio telemetry data in studies of home range. <em>Biometrics</em>, <em>33</em>(1), 85. <a href="https://doi.org/10.2307/2529305">https://doi.org/10.2307/2529305</a>
+</div>
+<div id="ref-Dupont2019" class="csl-entry" role="listitem">
+Dupont, P., Milleret, C., Gimenez, O., &amp; Bischof, R. (2019). Population closure and the bias‐precision trade‐off in spatial capture–recapture. <em>Methods in Ecology and Evolution</em>, <em>10</em>(5), 661–672. <a href="https://doi.org/10.1111/2041-210x.13158">https://doi.org/10.1111/2041-210x.13158</a>
+</div>
+<div id="ref-e04" class="csl-entry" role="listitem">
+Efford, M. G. (2004). Density estimation in live-trapping studies. <em>Oikos</em>, <em>106</em>, 598–610.
+</div>
+<div id="ref-e14" class="csl-entry" role="listitem">
+Efford, M. G. (2014). Bias from heterogeneous usage of space in spatially explicit capture-recapture analyses. <em>Methods in Ecology and Evolution</em>, <em>5</em>, 599–602.
+</div>
+<div id="ref-Efford2019" class="csl-entry" role="listitem">
+Efford, M. G. (2019). Non‐circular home ranges and the estimation of population density. <em>Ecology</em>, <em>100</em>(2). <a href="https://doi.org/10.1002/ecy.2580">https://doi.org/10.1002/ecy.2580</a>
+</div>
+<div id="ref-Efford2023" class="csl-entry" role="listitem">
+Efford, M. G. (2023). <span class="nocase">ipsecr: An R package for awkward spatial capture–recapture data</span>. <em>Methods in Ecology and Evolution</em>, <em>14</em>(5), 1182–1189. <a href="https://doi.org/10.1111/2041-210x.14088">https://doi.org/10.1111/2041-210x.14088</a>
+</div>
+<div id="ref-Efford2024" class="csl-entry" role="listitem">
+Efford, M. G., &amp; Fletcher, D. (2024). Effect of spatial overdispersion on confidence intervals for population density estimated by spatial capture-recapture. <em>bioRxiv</em>. <a href="https://doi.org/10.1101/2024.03.12.584742">https://doi.org/10.1101/2024.03.12.584742</a>
+</div>
+<div id="ref-em14" class="csl-entry" role="listitem">
+Efford, M. G., &amp; Mowat, G. (2014). Compensatory heterogeneity in spatially explicit capture-recapture data. <em>Ecology</em>, <em>95</em>, 1341–1348.
+</div>
+<div id="ref-Harihar2017" class="csl-entry" role="listitem">
+Harihar, A., Chanchani, P., Pariwakam, M., Noon, B. R., &amp; Goodrich, J. (2017). Defensible inference: Questioning global trends in tiger populations. <em>Conservation Letters</em>, <em>10</em>(5), 502–505. <a href="https://doi.org/10.1111/conl.12406">https://doi.org/10.1111/conl.12406</a>
+</div>
+<div id="ref-Hooten2017" class="csl-entry" role="listitem">
+Hooten, M. B., Johnson, D. S., McClintock, B. T., &amp; Morales, J. M. (2017). <em>Animal movement: Statistical models for telemetry data</em>. CRC Press. <a href="https://doi.org/10.1201/9781315117744">https://doi.org/10.1201/9781315117744</a>
+</div>
+<div id="ref-Ivan2013" class="csl-entry" role="listitem">
+Ivan, J. S., White, G. C., &amp; Shenk, T. M. (2013). Using auxiliary telemetry information to estimate animal density from capture–recapture data. <em>Ecology</em>, <em>94</em>(4), 809–816. <a href="https://doi.org/10.1890/12-0101.1">https://doi.org/10.1890/12-0101.1</a>
+</div>
+<div id="ref-j80" class="csl-entry" role="listitem">
+Johnson, D. H. (1980). The comparison of usage and availability measurements for evaluating resource preference. <em>Ecology</em>, <em>61</em>, 65–71.
+</div>
+<div id="ref-Johnson2008" class="csl-entry" role="listitem">
+Johnson, D. S., London, J. M., Lea, M.-A., &amp; Durban, J. W. (2008). Continuous-time correlated random walk model for animal telemetry data. <em>Ecology</em>, <em>89</em>(5), 1208–1215. <a href="https://doi.org/10.1890/07-1032.1">https://doi.org/10.1890/07-1032.1</a>
+</div>
+<div id="ref-Karanth1998" class="csl-entry" role="listitem">
+Karanth, K. U., &amp; Nichols, J. D. (1998). Estimation of tiger densities in india using photographic captures and recaptures. <em>Ecology</em>, <em>79</em>, 2852–2862.
+</div>
+<div id="ref-Kendall1999" class="csl-entry" role="listitem">
+Kendall, W. L. (1999). Robustness of closed capture–recapture methods to violations of the closure assumption. <em>Ecology</em>, <em>80</em>(8), 2517–2525. <a href="https://doi.org/10.1890/0012-9658(1999)080%5B2517:roccrm%5D2.0.co;2">https://doi.org/10.1890/0012-9658(1999)080[2517:roccrm]2.0.co;2</a>
+</div>
+<div id="ref-Kendeigh1944" class="csl-entry" role="listitem">
+Kendeigh, S. C. (1944). Measurement of bird populations. <em>Ecological Monographs</em>, <em>14</em>, 67–106. <a href="https://doi.org/10.2307/1961632">https://doi.org/10.2307/1961632</a>
+</div>
+<div id="ref-Kodi2024" class="csl-entry" role="listitem">
+Kodi, A. R., Howard, J., Borchers, D. L., Worthington, H., Alexander, J. S., Lkhagvajav, P., Bayandonoi, G., Ochirjav, M., Erdenebaatar, S., Byambasuren, C., Battulga, N., Johansson, Ö., &amp; Sharma, K. (2024). Ghostbusting - reducing bias due to identification errors in spatial capture‐recapture histories. <em>Methods in Ecology and Evolution</em>. <a href="https://doi.org/10.1111/2041-210x.14326">https://doi.org/10.1111/2041-210x.14326</a>
+</div>
+<div id="ref-Lampa2013" class="csl-entry" role="listitem">
+Lampa, S., Henle, K., Klenke, R., Hoehn, M., &amp; Gruber, B. (2013). How to overcome genotyping errors in non-invasive genetic mark-recapture population size estimation-a review of available methods illustrated by a case study: Genotyping errors in CMR-a review. <em>The Journal of Wildlife Management</em>, <em>77</em>(8), 1490–1511. <a href="https://doi.org/10.1002/jwmg.604">https://doi.org/10.1002/jwmg.604</a>
+</div>
+<div id="ref-LopezBao2018" class="csl-entry" role="listitem">
+López-Bao, J. V., Godinho, R., Pacheco, C., Lema, F. J., García, E., Llaneza, L., Palacios, V., &amp; Jiménez, J. (2018). Toward reliable population estimates of wolves by combining spatial capture-recapture models and non-invasive DNA monitoring. <em>Scientific Reports</em>, <em>8</em>(1). <a href="https://doi.org/10.1038/s41598-018-20675-9">https://doi.org/10.1038/s41598-018-20675-9</a>
+</div>
+<div id="ref-Lukacs2005" class="csl-entry" role="listitem">
+Lukacs, P. M., &amp; Burnham, K. P. (2005). Estimating population size from DNA-based closed capture-recapture data incorporating genotyping error. <em>Journal of Wildlife Management</em>, <em>69</em>, 396–403.
+</div>
+<div id="ref-McLaughlin2020" class="csl-entry" role="listitem">
+McLaughlin, P., &amp; Bar, H. (2020). A spatial capture–recapture model with attractions between individuals. <em>Environmetrics</em>, <em>32</em>(1). <a href="https://doi.org/10.1002/env.2653">https://doi.org/10.1002/env.2653</a>
+</div>
+<div id="ref-McLellan2023" class="csl-entry" role="listitem">
+McLellan, B. A., Howe, E., Marrotte, R. R., &amp; Northrup, J. M. (2023). Accounting for heterogeneous density and detectability in spatially explicit capture–recapture studies of carnivores. <em>Ecosphere</em>, <em>14</em>(10). <a href="https://doi.org/10.1002/ecs2.4669">https://doi.org/10.1002/ecs2.4669</a>
+</div>
+<div id="ref-Mills2000" class="csl-entry" role="listitem">
+Mills, L. S., Ciotta, J. C., Lair, K. P., Schwartz, M. K., &amp; Tallmon, D. A. (2000). Estimating animal abundance using noninvasive genetic sampling: Promise and pitfalls. <em>Ecological Applications</em>, <em>10</em>, 283–294.
+</div>
+<div id="ref-Moqanaki2021" class="csl-entry" role="listitem">
+Moqanaki, E. M., Milleret, C., Tourani, M., Dupont, P., &amp; Bischof, R. (2021). Consequences of ignoring variable and spatially autocorrelated detection probability in spatial capture-recapture. <em>Landscape Ecology</em>, <em>36</em>(10), 2879–2895. <a href="https://doi.org/10.1007/s10980-021-01283-x">https://doi.org/10.1007/s10980-021-01283-x</a>
+</div>
+<div id="ref-Murphy2016" class="csl-entry" role="listitem">
+Murphy, S. M., Cox, J. J., Augustine, B. C., Hast, J. T., Guthrie, J. M., Wright, J., McDermott, J., Maehr, S. C., &amp; Plaxico, J. H. (2016). Characterizing recolonization by a reintroduced bear population using genetic spatial capture-recapture: Recolonization by reintroduced bear population. <em>The Journal of Wildlife Management</em>, <em>80</em>(8), 1390–1407. <a href="https://doi.org/10.1002/jwmg.21144">https://doi.org/10.1002/jwmg.21144</a>
+</div>
+<div id="ref-obwa78" class="csl-entry" role="listitem">
+Otis, D. L., Burnham, K. P., White, G. C., &amp; Anderson, D. R. (1978). Statistical inference from capture data on closed animal populations. <em>Wildlife Monographs</em>, <em>62</em>.
+</div>
+<div id="ref-Otis1999" class="csl-entry" role="listitem">
+Otis, D. L., &amp; White, G. C. (1999). Autocorrelation of location estimates and the analysis of radiotracking data. <em>The Journal of Wildlife Management</em>, <em>63</em>(3), 1039. <a href="https://doi.org/10.2307/3802819">https://doi.org/10.2307/3802819</a>
+</div>
+<div id="ref-Paetkau2003" class="csl-entry" role="listitem">
+Paetkau, D. (2003). An empirical exploration of data quality in DNA‐based population inventories. <em>Molecular Ecology</em>, <em>12</em>(6), 1375–1387. <a href="https://doi.org/10.1046/j.1365-294x.2003.01820.x">https://doi.org/10.1046/j.1365-294x.2003.01820.x</a>
+</div>
+<div id="ref-Reich2014" class="csl-entry" role="listitem">
+Reich, B. J., &amp; Gardner, B. (2014). A spatial capture‐recapture model for territorial species. <em>Environmetrics</em>, <em>25</em>(8), 630–637. <a href="https://doi.org/10.1002/env.2317">https://doi.org/10.1002/env.2317</a>
+</div>
+<div id="ref-Royle2013" class="csl-entry" role="listitem">
+Royle, J. A., Chandler, R. B., Sun, C. C., &amp; Fuller, A. K. (2013). Integrating resource selection information with spatial capture–recapture. <em>Methods in Ecology and Evolution</em>, <em>4</em>(6), 520–530. <a href="https://doi.org/10.1111/2041-210x.12039">https://doi.org/10.1111/2041-210x.12039</a>
+</div>
+<div id="ref-Royle2015" class="csl-entry" role="listitem">
+Royle, J. A., Fuller, A. K., &amp; Sutherland, C. (2015). Spatial capture–recapture models allowing markovian transience or dispersal. <em>Population Ecology</em>, <em>58</em>(1), 53–62. <a href="https://doi.org/10.1007/s10144-015-0524-z">https://doi.org/10.1007/s10144-015-0524-z</a>
+</div>
+<div id="ref-Russell2012" class="csl-entry" role="listitem">
+Russell, R. E., Royle, J. A., Desimone, R., Schwartz, M. K., Edwards, V. L., Pilgrim, K. P., &amp; Mckelvey, K. S. (2012). Estimating abundance of mountain lions from unstructured spatial sampling. <em>The Journal of Wildlife Management</em>, <em>76</em>(8), 1551–1561. <a href="https://doi.org/10.1002/jwmg.412">https://doi.org/10.1002/jwmg.412</a>
+</div>
+<div id="ref-Sethi2014" class="csl-entry" role="listitem">
+Sethi, S. A., Cook, G. M., Lemons, P., &amp; Wenburg, J. (2014). Guidelines for MSAT and SNP panels that lead to high-quality data for genetic mark–recapture studies. <em>Canadian Journal of Zoology</em>, <em>92</em>(6), 515–526. <a href="https://doi.org/10.1139/cjz-2013-0302">https://doi.org/10.1139/cjz-2013-0302</a>
+</div>
+<div id="ref-Sollmann2024" class="csl-entry" role="listitem">
+Sollmann, R. (2024). Mt or not mt: Temporal variation in detection probability in spatial capture-recapture and occupancy models. <em>Peer Community Journal</em>, <em>4</em>. <a href="https://doi.org/10.24072/pcjournal.357">https://doi.org/10.24072/pcjournal.357</a>
+</div>
+<div id="ref-Stevenson2021" class="csl-entry" role="listitem">
+Stevenson, B. C., Fewster, R. M., &amp; Sharma, K. (2021). Spatial correlation structures for detections of individuals in spatial capture–recapture models. <em>Biometrics</em>, <em>78</em>(3), 963–973. <a href="https://doi.org/10.1111/biom.13502">https://doi.org/10.1111/biom.13502</a>
+</div>
+<div id="ref-Winkle1975" class="csl-entry" role="listitem">
+van Winkle, W. (1975). Comparison of several probabilistic home-range models. <em>Journal of Wildlife Management</em>, <em>39</em>, 118–123.
+</div>
+<div id="ref-Waits2005" class="csl-entry" role="listitem">
+Waits, L. P., &amp; Paetkau, D. (2005). Noninvasive genetic sampling tools forwildlife biologists: A review of applications and recommendations foraccurate data collection. <em>Journal of Wildlife Management</em>, <em>69</em>, 1419–1433.
+</div>
+<div id="ref-Woodruff2014" class="csl-entry" role="listitem">
+Woodruff, S. P., Johnson, T. R., &amp; Waits, L. P. (2014). Evaluating the interaction of faecal pellet deposition rates and &lt;scp&gt;DNA&lt;/scp&gt; degradation rates to optimize sampling design for &lt;scp&gt;DNA&lt;/scp&gt;‐based mark–recapture analysis of sonoran pronghorn. <em>Molecular Ecology Resources</em>, <em>15</em>(4), 843–854. <a href="https://doi.org/10.1111/1755-0998.12362">https://doi.org/10.1111/1755-0998.12362</a>
+</div>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+      <a href="./05-theory-special-topics.html" class="pagination-link" aria-label="Special topics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Special topics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./14-validation.html" class="pagination-link" aria-label="Empirical validation">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Empirical validation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","loop":false,"selector":".lightbox","openEffect":"zoom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+</body></html>

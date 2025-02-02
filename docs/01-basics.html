@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Spatially Explicit Capture–Recapture - 1&nbsp; Concepts and terminology</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02-example.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-basics.html">Basics</a></li><li class="breadcrumb-item"><a href="./01-basics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Concepts and terminology</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Spatially Explicit Capture–Recapture</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/MurrayEfford/SECRbook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foreword</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-basics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Concepts and terminology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple example</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Likelihood-based SECR</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-theory-area-search.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Area search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-theory-special-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Special topics</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Performance</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Assumptions and robustness</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Empirical validation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-studydesign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Study design</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Practice</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-secr-package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R package secr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-detection-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Detection model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-sex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sex differences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Troubleshooting <strong>secr</strong></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-speed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Faster is better</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-polygondetectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Area and transect search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-mark-resight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Mark-resight models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-noneuclidean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Non-Euclidean distances</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-telemetry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Telemetry</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-parameterizations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Parameterizations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-densityappendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Density revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-trend.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Trend revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-spatial-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Spatial data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-expected-counts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">Expected counts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+<li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation"><span class="header-section-number">1.1</span> Motivation</a></li>
+  <li><a href="#spatial-population" id="toc-spatial-population" class="nav-link" data-scroll-target="#spatial-population"><span class="header-section-number">1.2</span> Spatial population</a></li>
+  <li><a href="#detectors" id="toc-detectors" class="nav-link" data-scroll-target="#detectors"><span class="header-section-number">1.3</span> Detectors</a></li>
+  <li><a href="#sampling-across-time" id="toc-sampling-across-time" class="nav-link" data-scroll-target="#sampling-across-time"><span class="header-section-number">1.4</span> Sampling across time</a></li>
+  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure"><span class="header-section-number">1.5</span> Data structure</a></li>
+  <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting"><span class="header-section-number">1.6</span> Model fitting</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-basics.html">Basics</a></li><li class="breadcrumb-item"><a href="./01-basics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Concepts and terminology</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-basics" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Concepts and terminology</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>This chapter briefly introduces the concepts and terminology of SECR. The following chapter gives a <a href="#02-example.qmd">simple example</a>. Technical details are provided in the <a href="#03-theory.qmd">Theory</a> chapters.</p>
+<p><br></p>
+<section id="motivation" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="motivation">
+<span class="header-section-number">1.1</span> Motivation</h2>
+<p><br></p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[ 55, 5, 40 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 55.0%;justify-content: flex-start;">
+<p>“Measurement of the size of animal populations is a full-time job and should be treated as a worthy end in itself.”<br><br>
+S. Charles Kendeigh (1944)</p>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 5.0%;justify-content: flex-start;">
+<p>&nbsp;&nbsp; <br></p>
+</div>
+<div id="third-column" class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: flex-start;">
+<p><img src="images/Kendeigh.png" class="img-fluid"><br><em>Photo: L.L.Getz</em></p>
+</div>
+</div>
+</div>
+<p>Only a brave ecologist would make this claim today. Measuring animal populations is now justified in more practical terms - the urgent need for evidence to track biodiversity decline or to manage endangered or pest species or those we wish to harvest sustainably. But we rather like Kendeigh’s formulation, to which could be added the lure of the statistical challenges. This book has no more to say about the diverse reasons for measuring populations: we will focus instead on a particular toolkit.</p>
+<p>Populations of some animal species can be censused by direct observation, but many species are elusive or cryptic. Surveying these species requires indirect methods, often using passive devices such as traps or cameras that accumulate records over time. Passive devices encounter animals as they move around. The scale of that movement is unknown, which creates uncertainty regarding the population that is sampled. Furthermore,the number of observed individuals increases indefinitely as more and more peripheral individuals are encountered.</p>
+<p>SECR cuts through this problem by modelling the spatial scale of detection to obtain an unbiased estimate of the stationary density of individuals.</p>
+</section><section id="spatial-population" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="spatial-population">
+<span class="header-section-number">1.2</span> Spatial population</h2>
+<p> An animal population in SECR is a spatial point pattern. Each point represents the location of an animal’s activity centre, often abbreviated AC. Density is a property of the spatial point process of which the pattern is one instance. The usual process model is a 2-dimensional Poisson process (<a href="#fig-example" class="quarto-xref">Fig.&nbsp;<span>1.1</span></a>). By fitting the SECR model we can estimate the intensity surface of the Poisson process that we represent by <span class="math inline">D(\mathbf x)</span> where <span class="math inline">\mathbf x</span> stands for the x,y coordinates of a point. Density may be <em>homogeneous</em> (a flat surface, with constant <span class="math inline">D(\mathbf x)</span>) or <em>inhomogeneous</em> (varying).</p>
+<p>An inhomogeneous intensity surface is considered to depend on a vector of parameters <span class="math inline">\phi</span>, hence <span class="math inline">D(\mathbf x; \phi)</span>. For constant density <span class="math inline">\phi</span> is a single value.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity centre vs home range centre
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>‘Activity centre’ is often used in preference to ‘home range centre’ because it appears more neutral: ‘home range’ implies a particular pattern of behaviour and spatial familiarity. In reality, SECR assumes the very pattern of behaviour (persistent use) that distinguishes a home range, so it is safe to use the terms interchangeably in this context.</p>
+</div>
+</div>
+</section><section id="detectors" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="detectors">
+<span class="header-section-number">1.3</span> Detectors</h2>
+<p> SECR uses sampling devices placed at known locations. We need to recognise individuals whenever they are detected. The accumulated detections of each known individual are its ‘detection history’. Device types differ according to how they affect animal behaviour and the data they collect; each type corresponds to a probability model, as covered later.</p>
+<p>Detection may be entirely passive and non-invasive if individuals carry unique natural marks (e.g., pelage patterns) or their DNA can be sampled. Devices that record detections passively are “proximity detectors”. Proximity detectors may be split according to the distribution of the number of detections per animal per occasion (binary, Poisson, or binomial), with binary being the most common.</p>
+<p>Animals without natural marks must be marked individually on their first detection. This implies capture and handling. Only devices that hold an animal until it is released can truly be called ‘traps’. The probability model for trapping must allow for exclusivity: an animal can be found at only one trap on any occasion, and some traps (‘single-catch’ traps) also exclude other individuals after the first. </p>
+<p>Confusingly, <strong>secr</strong> uses ‘traps’ as a generic name for R objects holding detector coordinates and other information. This software-specific jargon should be avoided in publications.</p>
+<div id="tbl-deviceexamples" class="sm quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-deviceexamples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1.1: Examples of SECR sampling devices
+</figcaption><div aria-describedby="tbl-deviceexamples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-sm small table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 23%">
+<col style="width: 20%">
+<col style="width: 42%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">Device</th>
+<th style="text-align: left;">Marks</th>
+<th style="text-align: left;">Detector type</th>
+<th style="text-align: left;">Example</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Automatic camera</td>
+<td style="text-align: left;">natural marks: stripes and spots</td>
+<td style="text-align: left;">proximity</td>
+<td style="text-align: left;">tiger, <span class="citation" data-cites="Royle2009">Royle et al. (<a href="17-references.html#ref-Royle2009" role="doc-biblioref">2009</a>)</span>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hair snag</td>
+<td style="text-align: left;">microsatellite DNA</td>
+<td style="text-align: left;">proximity</td>
+<td style="text-align: left;">grizzly bear, <span class="citation" data-cites="ms00">Mowat &amp; Strobeck (<a href="17-references.html#ref-ms00" role="doc-biblioref">2000</a>)</span>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cage trap</td>
+<td style="text-align: left;">numbered ear tag</td>
+<td style="text-align: left;">single-catch trap</td>
+<td style="text-align: left;">brushtail possum, <span class="citation" data-cites="ewcb05">Efford et al. (<a href="17-references.html#ref-ewcb05" role="doc-biblioref">2005</a>)</span>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ugglan trap</td>
+<td style="text-align: left;">numbered ear tag</td>
+<td style="text-align: left;">multi-catch trap</td>
+<td style="text-align: left;">field vole, <span class="citation" data-cites="Ergon2013">Ergon &amp; Gardner (<a href="17-references.html#ref-Ergon2013" role="doc-biblioref">2013</a>)</span>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mist net</td>
+<td style="text-align: left;">numbered leg band</td>
+<td style="text-align: left;">multi-catch trap</td>
+<td style="text-align: left;">red-eyed vireo, <span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="17-references.html#ref-be08" role="doc-biblioref">2008</a>)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section><section id="sampling-across-time" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="sampling-across-time">
+<span class="header-section-number">1.4</span> Sampling across time</h2>
+<p>For most vertebrates we expect population turnover (births, deaths, AC movement) on a time scale of months or years. Population change is often negligible over shorter spans (days or weeks, depending on the species). Sampling over shorter spans can therefore treat the size and composition of a population as fixed: it is said to be ‘closed’. This greatly simplifies analysis. We assume closure except when considering <a href="#popnclosed">breaches of assumptions</a>. </p>
+<p>A ‘session’ in <strong>secr</strong> parlance is a set of samples from a closed population on one or more ‘occasions’ (possibly consecutive days).</p>
+<p>For trap-type detectors there must be multiple occasions within a session to obtain recaptures. For proximity-type detectors the role of ‘occasions’ is more subtle, and data may usually be collapsed to animal- and detector-specific counts. The spatial pattern of binary detections alone is sufficient to obtain an estimate of density <span class="citation" data-cites="edb09">(<a href="17-references.html#ref-edb09" role="doc-biblioref">Efford et al., 2009</a>)</span>.</p>
+<p>It is not necessary for all detectors to be used on all occasions. Incomplete usage <span class="citation" data-cites="ebm13">(and other variation in effort per occasion – <a href="17-references.html#ref-ebm13" role="doc-biblioref">Efford et al., 2013</a>)</span> may be recorded for each detector as an attribute of ‘traps’ objects.</p>
+<p>Data collected across multiple sessions potentially include losses of some individuals and gains of others. An open population model is the natural way to go, e.g., <span class="citation" data-cites="es20">Efford &amp; Schofield (<a href="17-references.html#ref-es20" role="doc-biblioref">2020</a>)</span>. However, the complexity of open-population models can be avoided if sessions are treated as independent in a ‘multi-session’ closed population analysis.</p>
+</section><section id="data-structure" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="data-structure">
+<span class="header-section-number">1.5</span> Data structure</h2>
+<p> Data for a single SECR session comprise a 3-dimensional rectangular array with dimensions corresponding to known animals, sampling occasions, and detectors. Data in each cell of the array are usually binary (0/1) but may be integer counts &gt; 1 (e.g., if binary data have been collapsed by occasion). In <strong>secr</strong>, an R Object of class ‘capthist’ holds data in this form, along with the coordinates of the detectors in its ‘traps’ attribute. The user constructs a capthist object from text or spreadsheet input using data entry functions described <a href="https://cran.r-project.org/web/packages/secr/vignettes/secr-datainput.pdf">here</a>.</p>
+</section><section id="model-fitting" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="model-fitting">
+<span class="header-section-number">1.6</span> Model fitting</h2>
+<p>A SECR model combines a model for the point process (the state model) and a model for distance-dependent detection (the observation model). Unbiased estimates of population density (and other parameters) are obtained by jointly fitting the state and observation models.</p>
+<section id="distance-dependent-detection" class="level3" data-number="1.6.1"><h3 data-number="1.6.1" class="anchored" data-anchor-id="distance-dependent-detection">
+<span class="header-section-number">1.6.1</span> Distance-dependent detection</h3>
+<p>In order to estimate density from a sample we must account for the sampling process. The process is inherently spatial: each animal is more likely to be detected near its AC, and less likely to be detected far away. Sampling filters the geographic locations of animals as indicated in <a href="#fig-example" class="quarto-xref">Fig.&nbsp;<span>1.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-example" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/example.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="figures/example.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: Distance-dependent detection of uniformly distributed activity centres (open circles; filled if captured)
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p></p>
+<p>The true locations of animals are not known, and therefore the distance-dependent probabilities cannot be calculated directly. The model is fitted by marginalising (integrating over) animal locations.</p>
+<p>Distance-dependent detection is represented by a ‘detection function’ with intercept, scale, and possibly shape, determined by parameters to be estimated<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-detectionfunctions" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-detectionfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="img-fluid figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-detectionfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: Some detection functions
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="habitat" class="level3" data-number="1.6.2"><h3 data-number="1.6.2" class="anchored" data-anchor-id="habitat">
+<span class="header-section-number">1.6.2</span> Habitat</h3>
+<p></p>
+<p>SECR models include a map of potential habitat near the detectors. Here ‘potential’ means ‘feasible locations for the AC of detected animals’. Excluded are sites that are known <em>a priori</em> to be unoccupied, and sites that are so distant that an animal centred there has negligible chance of detection.</p>
+<p>The habitat map is called a ‘habitat mask’ in <strong>secr</strong> and a ‘state space’ in the various Bayesian implementations. It is commonly formed by adding a constant-width buffer around the detectors. For computational convenience the map is discretized as many small pixels. Spatial covariates (vegetation type, elevation, etc.) may be attached to each pixel for use in density models. The choice of buffer width and pixel size are considered later.</p>
+</section><section id="sec-link" class="level3" data-number="1.6.3"><h3 data-number="1.6.3" class="anchored" data-anchor-id="sec-link">
+<span class="header-section-number">1.6.3</span> Link functions</h3>
+<p> A simple SECR model has three parameters: density <span class="math inline">D</span>, and the intercept <span class="math inline">g_0</span> and spatial scale <span class="math inline">\sigma</span> of the detection function. Valid values of each parameter are restricted to part of the number line (positive values for <span class="math inline">D</span> and <span class="math inline">\sigma</span>, values between zero and one for <span class="math inline">g_0</span>). A straightforward way to constrain estimates to valid values is to conduct maximization of the likelihood on a transformed (‘link’) scale: at each evaluation the parameter value is back transformed to the natural scale. The link function for all commonly used parameters defaults to ‘log’ (for positive values) except for g0 which defaults to ‘logit’ (for values between zero and one).</p>
+<div id="tbl-links" class="sm quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-links-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1.2: Link functions
+</figcaption><div aria-describedby="tbl-links-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-sm small table">
+<thead><tr class="header">
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Inverse</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">log</td>
+<td style="text-align: left;"><span class="math inline">y = \log(x)</span></td>
+<td style="text-align: left;"><span class="math inline">\exp(y)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">logit</td>
+<td style="text-align: left;"><span class="math inline">y = \log[p/(1-p)]</span></td>
+<td style="text-align: left;"><span class="math inline">1 / [1 + \exp(-y)]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">identity</td>
+<td style="text-align: left;"><span class="math inline">y=x</span></td>
+<td style="text-align: left;"><span class="math inline">y</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cloglog</td>
+<td style="text-align: left;"><span class="math inline">y = \log(-\log(1-p))</span></td>
+<td style="text-align: left;"><span class="math inline">1 -\exp(-\exp(y))</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Working on a link scale is especially useful when the parameter is itself a function of covariates. For example, <span class="math inline">\log (D) = \beta_0 + \beta_1 c \;</span> for a log-linear function of a spatially varying covariate <span class="math inline">c</span>. The coefficients <span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span> are estimated in place of <span class="math inline">D</span> per se.</p>
+<p>We sometimes follow MARK <span class="citation" data-cites="cw">(e.g., <a href="17-references.html#ref-cw" role="doc-biblioref">Cooch &amp; White, 2023</a>)</span> and use ‘beta parameters’ for coefficients on the link scale and ‘real parameters’ for the core parameters (<span class="math inline">D, g_0, \lambda_0, \sigma</span>) on the natural scale.</p>
+</section><section id="estimation" class="level3" data-number="1.6.4"><h3 data-number="1.6.4" class="anchored" data-anchor-id="estimation">
+<span class="header-section-number">1.6.4</span> Estimation</h3>
+<p></p>
+<p>There are several ways to estimate the parameters of the SECR probability model, all of them computer-intensive. We focus on numerical maximization of the log likelihood (<span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="17-references.html#ref-be08" role="doc-biblioref">2008</a>)</span> and <a href="03-theory.html" class="quarto-xref"><span>Chapter 3</span></a>). The likelihood integrates over the unknown locations of the animals’ activity centres. This is achieved in practice by summing over cells in a discretized map of the <a href="./08-habitat.html">habitat</a>.</p>
+<p>In outline, a function to compute the log likelihood from a vector of beta parameters is passed, along with the data, to an optimization function. Optimization is iterative. For illustration, <a href="#fig-MLE" class="quarto-xref">Fig.&nbsp;<span>1.3</span></a> shows the sequence of likelihood evaluations with two maximization algorithms when the parameter vector consists of only the intercept and spatial scale of detection. Optimization returns the maximized log likelihood, a vector of parameter values at the maximum, and the Hessian matrix from which the variance-covariance matrix of the estimates may be obtained.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-MLE" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-MLE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="01-basics_files/figure-html/fig-MLE-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="01-basics_files/figure-html/fig-MLE-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MLE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: Numerical maximization of conditional likelihood by two methods; triangle – initial values; filled circle – estimates. Both converge on the same estimates (dashed lines). Newton-Raphson is the default method in secr.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Bayesian methods make use of algorithms that sample from a Markov chain (MCMC) to approximate the posterior distribution of the parameters. MCMC for abundance estimation faces the special problem that an unknown number of individuals, at unknown locations, remain undetected. The issue is addressed by data augmentation <span class="citation" data-cites="ry08">(<a href="17-references.html#ref-ry08" role="doc-biblioref">Royle &amp; Young, 2008</a>)</span> or using a semi-complete data likelihood <span class="citation" data-cites="King2016">(<a href="17-references.html#ref-King2016" role="doc-biblioref">King et al., 2016</a>)</span>. </p>
+<p>Early anxiety about the suitability of MLE and asymptotic variances for SECR with small samples appears to have been mistaken. <span class="citation" data-cites="Royle2009">Royle et al. (<a href="17-references.html#ref-Royle2009" role="doc-biblioref">2009</a>)</span> believed that “… the practical validity of these procedures cannot be asserted in most situations involving small samples”. This has not been borne out by subsequent simulations. The concluding discussion of <span class="citation" data-cites="Gerber2015">Gerber &amp; Parmenter (<a href="17-references.html#ref-Gerber2015" role="doc-biblioref">2015</a>)</span> is pertinent. <span class="citation" data-cites="Palmero2023">Palmero et al. (<a href="17-references.html#ref-Palmero2023" role="doc-biblioref">2023</a>)</span> reported that Bayesian methods provide more precise estimates of density, but this appears to be an artefact: it is a mistake to compare estimates from MLE models with random <span class="math inline">N(A)</span> with estimates from Bayesian models with fixed <span class="math inline">N(A)</span>. There is a further risk that the chosen Bayesian priors constrain the estimates.</p>
+<!-- : "Based on 20 studies that applied both frameworks, the performance of Bayesian methods was significantly better than MLE (P < 0.001)." -->
+<!-- "Our results indicated that Bayesian methods performed better than MLE. This finding is consistent with Royle et al. (2009), who demonstrated that Bayesian methods cope better with small sample sizes." -->
+<p>The choice between Bayesian and frequentist (MLE) methods is now an issue of convenience for most users:</p>
+<ul>
+<li>MLE provides fast and repeatable results for established models with a small to medium number of parameters.</li>
+<li>Bayesian methods have an advantage for novel models and possibly for those with many parameters.</li>
+</ul>
+<!-- "As the underlying point process model is made more complex (e.g., containing interactions and conditional dependencies) the integration required for inference by integrated likelihood may become computationally prohibitive. [...] we feel that the biggest practical advantage apparent at this time has to do with the validity of inferences achieved by Bayesian analysis. In particular, classical inference procedures are asymptotic and as such their relevance to small sample situations is questionable. Conversely, Bayesian inferences do not rely on asymptotic arguments and are valid regardless of the sample size. There seems to be a prevailing view in statistical ecology that classical likelihood-based procedures are virtuous because of the availability of simple formulas and procedures for carrying out inference, such as calculating standard errors, doing model selection by AIC, and assessing goodness of fit. In large samples, this is an important practical benefit of classical likelihood-based inference. However, the practical validity of these procedures cannot be asserted in most situations involving small samples." --><p>A further method, simulation and inverse prediction, has a niche use for data from single-catch traps <span class="citation" data-cites="edr04 Efford2023">(<a href="17-references.html#ref-edr04" role="doc-biblioref">Efford et al., 2004</a>; <a href="17-references.html#ref-Efford2023" role="doc-biblioref">Efford, 2023</a>)</span>. </p>
+
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;1.1: Distance-dependent detection of uniformly distributed activity centres (open circles; filled if captured)</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;1.2: Some detection functions</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;1.3: Numerical maximization of conditional likelihood by two methods; triangle – initial values; filled circle – estimates. Both converge on the same estimates (dashed lines). Newton-Raphson is the default method in secr.</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-be08" class="csl-entry" role="listitem">
+Borchers, D. L., &amp; Efford, M. G. (2008). Spatially explicit maximum likelihood methods for capture-recapture studies. <em>Biometrics</em>, <em>64</em>, 377–385.
+</div>
+<div id="ref-cw" class="csl-entry" role="listitem">
+Cooch, E., &amp; White, G. (Eds.). (2023). <em>Program MARK: A gentle introduction.</em> (23rd ed.). <a href="http://www.phidot.org/software/mark/docs/book/">http://www.phidot.org/software/mark/docs/book/</a>
+</div>
+<div id="ref-Efford2023" class="csl-entry" role="listitem">
+Efford, M. G. (2023). <span class="nocase">ipsecr: An R package for awkward spatial capture–recapture data</span>. <em>Methods in Ecology and Evolution</em>, <em>14</em>(5), 1182–1189. <a href="https://doi.org/10.1111/2041-210x.14088">https://doi.org/10.1111/2041-210x.14088</a>
+</div>
+<div id="ref-ebm13" class="csl-entry" role="listitem">
+Efford, M. G., Borchers, D. L., &amp; Mowat, G. (2013). Varying effort in capture-recapture studies. <em>Methods in Ecology and Evolution</em>, <em>4</em>, 629–636.
+</div>
+<div id="ref-edb09" class="csl-entry" role="listitem">
+Efford, M. G., Dawson, D. K., &amp; Borchers, D. L. (2009). Population density estimated from locations of individuals on a passive detector array. <em>Ecology</em>, <em>90</em>, 2676–2682.
+</div>
+<div id="ref-edr04" class="csl-entry" role="listitem">
+Efford, M. G., Dawson, D. K., &amp; Robbins, C. S. (2004). DENSITY: Software for analysing capture-recapture data from passive detector arrays. <em>Animal Biodiversity and Conservation</em>, <em>27</em>, 217–228.
+</div>
+<div id="ref-es20" class="csl-entry" role="listitem">
+Efford, M. G., &amp; Schofield, M. R. (2020). A spatial open-population capture-recapture model. <em>Biometrics</em>, <em>76</em>, 392–402.
+</div>
+<div id="ref-ewcb05" class="csl-entry" role="listitem">
+Efford, M. G., Warburton, B., Coleman, M. C., &amp; Barker, R. J. (2005). A field test of two methods for density estimation. <em>Wildlife Society Bulletin</em>, <em>33</em>, 731–738.
+</div>
+<div id="ref-Ergon2013" class="csl-entry" role="listitem">
+Ergon, T., &amp; Gardner, B. (2013). Separating mortality and emigration: Modelling space use, dispersal and survival with robust‐design spatial capture–recapture data. <em>Methods in Ecology and Evolution</em>, <em>5</em>(12), 1327–1336. <a href="https://doi.org/10.1111/2041-210x.12133">https://doi.org/10.1111/2041-210x.12133</a>
+</div>
+<div id="ref-Gerber2015" class="csl-entry" role="listitem">
+Gerber, B. D., &amp; Parmenter, R. R. (2015). Spatial capture–recapture model performance with known small‐mammal densities. <em>Ecological Applications</em>, <em>25</em>(3), 695–705. <a href="https://doi.org/10.1890/14-0960.1">https://doi.org/10.1890/14-0960.1</a>
+</div>
+<div id="ref-Kendeigh1944" class="csl-entry" role="listitem">
+Kendeigh, S. C. (1944). Measurement of bird populations. <em>Ecological Monographs</em>, <em>14</em>, 67–106. <a href="https://doi.org/10.2307/1961632">https://doi.org/10.2307/1961632</a>
+</div>
+<div id="ref-King2016" class="csl-entry" role="listitem">
+King, R., McClintock, B. T., Kidney, D., &amp; Borchers, D. (2016). Capture–recapture abundance estimation using a semi-complete data likelihood approach. <em>The Annals of Applied Statistics</em>, <em>10</em>, 264–285. <a href="https://doi.org/10.1214/15-aoas890">https://doi.org/10.1214/15-aoas890</a>
+</div>
+<div id="ref-ms00" class="csl-entry" role="listitem">
+Mowat, G., &amp; Strobeck, C. (2000). Estimating population size of grizzly bears using hair capture, DNA profiling, and mark-recapture analysis. <em>Journal of Wildlife Management</em>, <em>64</em>, 183–193.
+</div>
+<div id="ref-Palmero2023" class="csl-entry" role="listitem">
+Palmero, S., Premier, J., Kramer‐Schadt, S., Monterroso, P., &amp; Heurich, M. (2023). Sampling variables and their thresholds for the precise estimation of wild felid population density with camera traps and spatial capture–recapture methods. <em>Mammal Review</em>, <em>53</em>(4), 223–237. <a href="https://doi.org/10.1111/mam.12320">https://doi.org/10.1111/mam.12320</a>
+</div>
+<div id="ref-Royle2009" class="csl-entry" role="listitem">
+Royle, J. A., Karanth, K. U., Gopalaswamy, A. M., &amp; Kumar, N. S. (2009). Bayesian inference in camera trapping studies for a class of spatial capture–recapture models. <em>Ecology</em>, <em>90</em>(11), 3233–3244. <a href="https://doi.org/10.1890/08-1481.1">https://doi.org/10.1890/08-1481.1</a>
+</div>
+<div id="ref-ry08" class="csl-entry" role="listitem">
+Royle, J. A., &amp; Young, K. V. (2008). A hierarchical model for spatial capture-recapture data. <em>Ecology</em>, <em>89</em>, 2281–2289.
+</div>
+</div>
+</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>All detection functions have intercept (<span class="math inline">g_0</span>, <span class="math inline">\lambda_0</span>) and scale (<span class="math inline">\sigma</span>) parameters; some such as the hazard rate function have a further parameter that controls some aspect of shape.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Foreword">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Foreword</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02-example.html" class="pagination-link" aria-label="Simple example">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple example</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"closeEffect":"zoom","descPosition":"bottom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+</body></html>

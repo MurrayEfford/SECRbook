@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Spatially Explicit Capture–Recapture - Appendix E — Non-Euclidean distances</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./16-telemetry.html" rel="next">
+<link href="./16-mark-resight.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./16-troubleshooting.html">Appendices</a></li><li class="breadcrumb-item"><a href="./16-noneuclidean.html"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Non-Euclidean distances</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Spatially Explicit Capture–Recapture</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/MurrayEfford/SECRbook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foreword</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Concepts and terminology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple example</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Likelihood-based SECR</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-theory-area-search.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Area search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-theory-special-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Special topics</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Performance</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Assumptions and robustness</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Empirical validation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-studydesign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Study design</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Practice</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-secr-package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R package secr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-detection-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Detection model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-sex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sex differences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Troubleshooting <strong>secr</strong></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-speed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Faster is better</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-polygondetectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Area and transect search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-mark-resight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Mark-resight models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-noneuclidean.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Non-Euclidean distances</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-telemetry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Telemetry</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-parameterizations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Parameterizations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-densityappendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Density revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-trend.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Trend revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-spatial-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Spatial data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-expected-counts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">Expected counts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+<li><a href="#basics" id="toc-basics" class="nav-link active" data-scroll-target="#basics"><span class="header-section-number">E.1</span> Basics</a></li>
+  <li><a href="#static-userdist" id="toc-static-userdist" class="nav-link" data-scroll-target="#static-userdist"><span class="header-section-number">E.2</span> Static userdist</a></li>
+  <li><a href="#dynamic-userdist" id="toc-dynamic-userdist" class="nav-link" data-scroll-target="#dynamic-userdist"><span class="header-section-number">E.3</span> Dynamic userdist</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">E.4</span> Examples</a></li>
+  <li><a href="#and-the-winner-is" id="toc-and-the-winner-is" class="nav-link" data-scroll-target="#and-the-winner-is"><span class="header-section-number">E.5</span> And the winner is…</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes"><span class="header-section-number">E.6</span> Notes</a></li>
+  <li><a href="#simulation-after-sutherland-et-al.-2015" id="toc-simulation-after-sutherland-et-al.-2015" class="nav-link" data-scroll-target="#simulation-after-sutherland-et-al.-2015"><span class="header-section-number">E.7</span> Simulation after Sutherland et al.&nbsp;(2015)</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./16-troubleshooting.html">Appendices</a></li><li class="breadcrumb-item"><a href="./16-noneuclidean.html"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Non-Euclidean distances</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-noneuclidean" class="quarto-section-identifier">Appendix E — Non-Euclidean distances</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p></p>
+<!-- More content in secr-noneuclidean.rmd -->
+<!-- ## Non-Euclidean distances -->
+<p><!-- 'Distance' in SECR models usually, and by default, means the --> <!-- Euclidean distance $d = \sqrt{(x_1-x_2)^2 + (y_1 - y_2)^2}$. The --> <!-- observation model can be customised by replacing the Euclidean --> <!-- distance with one that 'warps' space in some ecologically meaningful --> <!-- way. There are innumerable ways to do this. Royle et al. (2013) --> <!-- envisioned an 'ecological distance' that is a function of landscape covariates. Redefining distance is a way to model spatial variation in the size of home ranges, and hence the spatial scale of movement $\sigma$; @edjq16 use this to model inverse covariation between density and home range size. Distances measured along a linear habitat network such as a river system are also non-Euclidean (see package **secrlinear**). --></p>
+<!-- **secr** provides general tools for specifying and modelling non-Euclidean distance, via the `secr.fit` details component 'userdist'. This may be a user-specified function or a pre-computed matrix. -->
+<p>Spatially explicit capture–recapture (SECR) entails a distance-dependent observation model: the expected number of detections (<span class="math inline">\lambda</span>) or the probability of detection (g) declines with increasing distance between a detector and the home-range centre of a focal animal. ‘Distance’ here usually, and by default, means the Euclidean distance <span class="math inline">d = \sqrt{(x_1-x_2)^2 + (y_1 - y_2)^2}</span>. The observation model can be customised by replacing the Euclidean distance with one that ‘warps’ space in some ecologically meaningful way. There are innumerable ways to do this. One is the a non-Euclidean ‘ecological distance’ envisioned by <span class="citation" data-cites="rcgg13">Royle et al. (<a href="17-references.html#ref-rcgg13" role="doc-biblioref">2013</a>)</span>.</p>
+<p>This document shows how to define and use non-Euclidean distances in <strong>secr</strong>. Code is included for the non-Euclidean SECR simulation of <span class="citation" data-cites="sfr15">Sutherland et al. (<a href="17-references.html#ref-sfr15" role="doc-biblioref">2015</a>)</span>.</p>
+<section id="basics" class="level2" data-number="E.1"><h2 data-number="E.1" class="anchored" data-anchor-id="basics">
+<span class="header-section-number">E.1</span> Basics</h2>
+<p>Non-Euclidean distances are defined in <strong>secr</strong> by setting the ‘userdist’ component of the ‘details’ argument of <code>secr.fit</code>. The options are (i) to provide a static <span class="math inline">K \times M</span> matrix containing the distances between the <span class="math inline">K</span> detectors and each of the <span class="math inline">M</span> mask points, or (ii) to provide a function that computes the distances dynamically. A static distance matrix can allow for barriers to movement. Providing a function is more flexible and allows the estimation of a parameter for the distance model, but evaluating the function for each likelihood slows down model fitting.</p>
+</section><section id="static-userdist" class="level2" data-number="E.2"><h2 data-number="E.2" class="anchored" data-anchor-id="static-userdist">
+<span class="header-section-number">E.2</span> Static userdist</h2>
+<p></p>
+<p>A pre-computed non-Euclidean distance matrix may incorporate constraints on movement, particularly mapped barriers to movement, and this is the most obvious reason to employ a static userdist. The function <code>nedist</code> builds a suitable matrix.</p>
+<p>As an example, take the 1996 DNA survey of the grizzly bear population in the Central Selkirk mountains of British Columbia by <span class="citation" data-cites="ms00">Mowat &amp; Strobeck (<a href="17-references.html#ref-ms00" role="doc-biblioref">2000</a>)</span>. Their study area was partly bounded by lakes and reservoirs that we assume are rarely crossed by bears. To treat the lakes as barriers in a SECR model we need a matrix of hair snag – mask point distances for the terrestrial (non-Euclidean) distance between each pair of points.</p>
+<p>We start with the hair snag locations <code>CStraps</code> and a SpatialPolygonsDataFrame object <code>BLKS_BC</code> representing the large lakes (<a href="#fig-nefig" class="quarto-xref">Fig.&nbsp;<span>E.1</span></a> a). Buffering 30 km around the detectors gives a naive mask (<a href="#fig-nefig" class="quarto-xref">Fig.&nbsp;<span>E.1</span></a> b); we use a 2-km pixel size and reject points centred in a lake. The shortest dry path from many points on the naive mask to the nearest detector is much longer than the straight line distance.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">CSmask2000</span> <span class="op">&lt;-</span> <span class="fu">make.mask</span> <span class="op">(</span><span class="va">CStraps</span>, buffer <span class="op">=</span> <span class="fl">30000</span>, </span>
+<span>    type <span class="op">=</span> <span class="st">"trapbuffer"</span>, spacing <span class="op">=</span> <span class="fl">2000</span>, poly <span class="op">=</span> <span class="va">BLKS_BC</span>, </span>
+<span>    poly.habitat <span class="op">=</span> <span class="cn">FALSE</span>, keep.poly <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-nefig" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nefig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/nefig.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="figures/nefig.png" class="img-fluid figure-img" style="width:95.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nefig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;E.1: (a) Central Selkirk grizzly bear hair snag locations, (b) Mask using naive 30-km buffer around hair snags, (c) Example map of dry-path distances from an arbitrary point, and (d) Efficient mask rejecting dry-path distances &gt;30km.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>We next calculate the matrix of all dry detector–mask distances by calling <code>nedist</code> that in turn uses functions from the R package <strong>gdistance</strong> <span class="citation" data-cites="R-gdistance">(<a href="17-references.html#ref-R-gdistance" role="doc-biblioref">van Etten, 2023</a>)</span>. Missing pixels in the mask represent barriers to movement when their combined width exceeds a threshold determined by the adjacency rule in <strong>gdistance</strong>.</p>
+<p>What do we mean by an adjacency rule? <strong>gdistance</strong> finds least-cost distances through a graph formed by joining ‘adjacent’ pixels. Adjacent pixels are defined by the argument ‘directions’, which may be 4 (rook’s case), 8 (queen’s case) or 16 (knight and one-cell queen moves) as in the <strong>raster</strong> function <code>adjacent</code>. The default in <code>nedist</code> is ‘directions = 16’ because that gives the best approximation to Euclidean distances when there are no barriers. The knight’s moves are <span class="math inline">\sqrt 5 \approx 2.24</span> <span class="math inline">\times</span> cell width (‘spacing’), so the width of a polygon intended to map a barrier should be at least 2.24 <span class="math inline">\times</span> cell width.</p>
+<p>Some of the BC lakes are narrow and less than 4.48 km wide. To ensure these act as barriers we could simply reduce the spacing of our mask, but that would slow down model fitting. The alternative is to retain the 2-km mask for model fitting and to define a finer (0.5-km) mask purely for the purpose of computing distances<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">CSmask500</span> <span class="op">&lt;-</span> <span class="fu">make.mask</span> <span class="op">(</span><span class="va">CStraps</span>, buffer <span class="op">=</span> <span class="fl">30000</span>, type <span class="op">=</span> </span>
+<span>    <span class="st">"trapbuffer"</span>, spacing <span class="op">=</span> <span class="fl">500</span>, poly <span class="op">=</span> <span class="va">BLKS_BC</span>, poly.habitat <span class="op">=</span></span>
+<span>     <span class="cn">FALSE</span>, keep.poly <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">userd</span> <span class="op">&lt;-</span> <span class="fu">nedist</span><span class="op">(</span><span class="va">CStraps</span>, <span class="va">CSmask2000</span>, <span class="va">CSmask500</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The first argument of <code>nedist</code> provides the rows of the distance matrix and the second argument the columns; the third (if present) defines an alternative mask on which to base the calculations. To verify the computation, map the distance from a chosen detector <span class="math inline">i</span> to every point in a mask. Here is a short function to do that; see <a href="#fig-nefig" class="quarto-xref">Fig.&nbsp;<span>E.1</span></a> c for an example.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dmap</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">traps</span>, <span class="va">mask</span>, <span class="va">userd</span>, <span class="va">i</span> <span class="op">=</span> <span class="fl">1</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span><span class="op">)</span> <span class="va">i</span> <span class="op">&lt;-</span> <span class="fu">nearesttrap</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/graphics/locator.html">locator</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>, <span class="va">traps</span><span class="op">)</span></span>
+<span>    <span class="fu">covariates</span><span class="op">(</span><span class="va">mask</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>d <span class="op">=</span> <span class="va">userd</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="fu">covariates</span><span class="op">(</span><span class="va">mask</span><span class="op">)</span><span class="op">$</span><span class="va">d</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html">is.finite</a></span><span class="op">(</span><span class="fu">covariates</span><span class="op">(</span><span class="va">mask</span><span class="op">)</span><span class="op">$</span><span class="va">d</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>  </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mask</span>, covariate <span class="op">=</span> <span class="st">"d"</span>, <span class="va">...</span><span class="op">)</span>  </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">traps</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span>, pch <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">dmap</span><span class="op">(</span><span class="va">CStraps</span>, <span class="va">CSmask2000</span>, <span class="va">userd</span>, dots <span class="op">=</span> <span class="cn">F</span>, scale <span class="op">=</span> <span class="fl">0.001</span>, </span>
+<span>    title <span class="op">=</span> <span class="st">"distance  km"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>At this point we could simply use ‘userd’ as our userdist matrix. However, <code>CSmask2000</code> now includes a lot of points that are further than 30 km from any detector. It is better to drop these points and the associated columns of ‘userd’ (Fig. 1d):</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">OK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">userd</span>, <span class="fl">2</span>, <span class="va">min</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">30000</span></span>
+<span><span class="va">CSmask2000b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">CSmask2000</span>, <span class="va">OK</span><span class="op">)</span></span>
+<span><span class="va">userd</span> <span class="op">&lt;-</span> <span class="va">userd</span><span class="op">[</span>,<span class="va">OK</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, we can fit a model using the non-Euclidean distance matrix:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">CSa</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">CS_sexcov_all</span>, mask <span class="op">=</span> <span class="va">CSmask2000b</span>, </span>
+<span>    details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>userdist <span class="op">=</span> <span class="va">userd</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">CSa</span><span class="op">)</span>                </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For completeness, note that Euclidean distances may also be pre-calculated, using the function <code>edist</code>. By default, <code>secr.fit</code> uses that function internally, and there is usually little speed improvement when the calculation is done separately.</p>
+</section><section id="dynamic-userdist" class="level2" data-number="E.3"><h2 data-number="E.3" class="anchored" data-anchor-id="dynamic-userdist">
+<span class="header-section-number">E.3</span> Dynamic userdist</h2>
+<p></p>
+<p>The userdist function takes three arguments. The first two are simply 2-column matrices with the coordinates of the detectors and animal locations (mask points) respectively. The third is a habitat mask (this may be the same as xy2). The function has this form:</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mydistfn</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">xy1</span>, <span class="va">xy2</span>, <span class="va">mask</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html">missing</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">charactervector</span><span class="op">)</span>  </span>
+<span>  <span class="va">...</span></span>
+<span>  <span class="va">distmat</span>  <span class="co"># return nrow(xy1) x nrow(xy2) matrix</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Computation of the distances is entirely under the control of the user – here we indicate that by ‘…’. The calculations may use cell-specific values of two ‘real’ parameters ‘D’ and ‘noneuc’ that as needed are passed by <code>secr.fit</code> as covariates of the mask. ‘D’ is the usual cell-specific expected density in animals per hectare. ‘noneuc’ is a special cell-specific ‘real’ parameter used only here: it means whatever the user wants it to mean.</p>
+<p>Whether ‘noneuc’, ‘D’ or other mask covariates are needed by mydistfn is indicated by the character vector returned by mydistfn when it is called with no arguments. Thus, charactervector may be either a zero-length character vector or a vector of one or more parameter names (“noneuc”, “D”, c(“noneuc”, “D”)).</p>
+<p>‘noneuc’ has its own link scale (default ‘log’) on which it may be modelled as a linear function of any of the predictors available for density (x, y, x2, y2, xy, session, Session, g, or any mask covariate – see <a href="08-density-model.html" class="quarto-xref"><span>Chapter 12</span></a>. It may also, in principle, be modelled using regression splines <span class="citation" data-cites="bk14">(<a href="17-references.html#ref-bk14" role="doc-biblioref">Borchers &amp; Kidney, 2014</a>)</span>, but this is untested. When the model is fitted by <code>secr.fit</code>, the beta parameters for the ‘noneuc’ submodel are estimated along with all the others. To make noneuc available to userdist, ensure that it appears in the ‘model’ argument. Use the formula noneuc ~ 1 if noneuc is constant.</p>
+<p>The function may compute least-cost paths via intervening mask cells using the powerful <strong>igraph</strong> package <span class="citation" data-cites="cn06">(<a href="17-references.html#ref-cn06" role="doc-biblioref">Csardi &amp; Nepusz, 2006</a>)</span>. This is most easily accessed with package <strong>gdistance</strong>, which in turn uses the RasterLayer S4 object class from the package <strong>raster</strong>. To facilitate this we include code in <strong>secr</strong> to treat the ‘mask’ S3 class as a virtual S4 class, and provide a method for the function ‘raster’ to convert a mask to a RasterLayer.</p>
+<p>If the function generates any bad distances (negative, infinite or missing) these will be replaced by 1e10, with a warning.</p>
+</section><section id="examples" class="level2" data-number="E.4"><h2 data-number="E.4" class="anchored" data-anchor-id="examples">
+<span class="header-section-number">E.4</span> Examples</h2>
+<p>We use annotated examples to show how the userdist function may be used to define different models. For illustration we use the Orongorongo Valley brushtail possum dataset from February 1996 (<a href="https://www.otago.ac.nz/density/html/OVpossum.html">OVpossum</a>). The data are captures of possums over 5 nights in single-catch traps at 30-m spacing. We start by extracting the data, defining a habitat mask, and fitting a null model:</p>
+<div class="cell">
+<details class="code-fold"><summary>code to construct ovposs and ovmask</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">datadir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"secr"</span><span class="op">)</span></span>
+<span><span class="va">ovforest</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">datadir</span>, <span class="st">"/OVforest.shp"</span><span class="op">)</span>, </span>
+<span>    quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">ovposs</span> <span class="op">&lt;-</span> <span class="va">OVpossumCH</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>  <span class="co"># select February 1996</span></span>
+<span><span class="va">ovmask</span> <span class="op">&lt;-</span> <span class="fu">make.mask</span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">ovposs</span><span class="op">)</span>, buffer <span class="op">=</span> <span class="fl">120</span>, type <span class="op">=</span> <span class="st">"trapbuffer"</span>, </span>
+<span>    poly <span class="op">=</span> <span class="va">ovforest</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="op">]</span>, spacing <span class="op">=</span> <span class="fl">7.5</span>, keep.poly <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co"># for plotting only</span></span>
+<span><span class="va">leftbank</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">datadir</span>,<span class="st">"/leftbank.txt"</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">21</span><span class="op">:</span><span class="fl">195</span>,<span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit0</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovposs</span>, mask <span class="op">=</span> <span class="va">ovmask</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The warning is routine: we will suppress it in later examples. The distance functions below are not specific to a particular study: each may be applied to other datasets.</p>
+<section id="scale-of-movement-sigma-depends-on-location-of-home-range-centre" class="level3" data-number="E.4.1"><h3 data-number="E.4.1" class="anchored" data-anchor-id="scale-of-movement-sigma-depends-on-location-of-home-range-centre">
+<span class="header-section-number">E.4.1</span> 1. Scale of movement <span class="math inline">\sigma</span> depends on location of home-range centre</h3>
+<p>In this simple case we use the non-Euclidean distance function to model continuous spatial variation in <span class="math inline">\sigma</span>. This cannot be done directly in <strong>secr</strong> because sigma is treated as part of the detection model, which does not allow for continuous spatial variation in its parameters. Instead we model spatial variation in ‘noneuc’ as a stand-in for ‘sigma’</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fn1</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">xy1</span>, <span class="va">xy2</span>, <span class="va">mask</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html">missing</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="st">"noneuc"</span><span class="op">)</span></span>
+<span>  <span class="va">sig</span> <span class="op">&lt;-</span> <span class="fu">covariates</span><span class="op">(</span><span class="va">mask</span><span class="op">)</span><span class="op">$</span><span class="va">noneuc</span>   <span class="co"># sigma(x,y) at mask points</span></span>
+<span>  <span class="va">sig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">sig</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>, nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">xy2</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">euc</span> <span class="op">&lt;-</span> <span class="fu">edist</span><span class="op">(</span><span class="va">xy1</span>, <span class="va">xy2</span><span class="op">)</span> </span>
+<span>  <span class="va">euc</span> <span class="op">/</span> <span class="va">sig</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovposs</span>, mask <span class="op">=</span> <span class="va">ovmask</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>, </span>
+<span>    details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>userdist <span class="op">=</span> <span class="va">fn1</span><span class="op">)</span>, model <span class="op">=</span> <span class="va">noneuc</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span> <span class="op">+</span> </span>
+<span>     <span class="va">x2</span> <span class="op">+</span> <span class="va">y2</span> <span class="op">+</span> <span class="va">xy</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link estimate SE.estimate       lcl      ucl
+D        log 14.68433   1.0914750 12.696150 16.98385
+lambda0  log  0.10852   0.0096263  0.091235  0.12908
+noneuc   log 25.92426   1.3019338 23.495538 28.60404</code></pre>
+</div>
+</div>
+<p>We can take the values of noneuc directly from the mask covariates because we know xy2 and mask are the same points. We may sometimes want to use fn1 in context where this does not hold, e.g., when simulating data.</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fn1a</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">xy1</span>, <span class="va">xy2</span>, <span class="va">mask</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html">missing</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="st">"noneuc"</span><span class="op">)</span></span>
+<span>  <span class="va">xy1</span> <span class="op">&lt;-</span> <span class="fu">addCovariates</span><span class="op">(</span><span class="va">xy1</span>, <span class="va">mask</span><span class="op">)</span></span>
+<span>  <span class="va">sig</span> <span class="op">&lt;-</span> <span class="fu">covariates</span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span><span class="op">$</span><span class="va">noneuc</span>   <span class="co"># sigma(x,y) at detectors</span></span>
+<span>  <span class="va">sig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">sig</span>, nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">xy2</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">euc</span> <span class="op">&lt;-</span> <span class="fu">edist</span><span class="op">(</span><span class="va">xy1</span>, <span class="va">xy2</span><span class="op">)</span> </span>
+<span>  <span class="va">euc</span> <span class="op">/</span> <span class="va">sig</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">fit1a</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovposs</span>, mask <span class="op">=</span> <span class="va">ovmask</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>, trace <span class="op">=</span> </span>
+<span>    <span class="cn">FALSE</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>userdist <span class="op">=</span> <span class="va">fn1a</span><span class="op">)</span>, model <span class="op">=</span> <span class="va">noneuc</span> <span class="op">~</span> </span>
+<span>        <span class="va">x</span> <span class="op">+</span> <span class="va">y</span> <span class="op">+</span> <span class="va">x2</span> <span class="op">+</span> <span class="va">y2</span> <span class="op">+</span> <span class="va">xy</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit1a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link estimate SE.estimate       lcl      ucl
+D        log 14.46194   1.0296892 12.580495 16.62477
+lambda0  log  0.10758   0.0095253  0.090471  0.12792
+noneuc   log 26.12539   1.4198772 23.487423 29.05964</code></pre>
+</div>
+</div>
+<p>We can verify the use of ‘noneuc’ in fn1 by using it to re-fit the null model:</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit0a</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovposs</span>, mask <span class="op">=</span> <span class="va">ovmask</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>, </span>
+<span>    details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>userdist <span class="op">=</span> <span class="va">fn1</span><span class="op">)</span>, model <span class="op">=</span> <span class="va">noneuc</span> <span class="op">~</span> <span class="fl">1</span>, </span>
+<span>    fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link estimate SE.estimate       lcl      ucl
+D        log 14.38019   1.0030932 12.544714 16.48421
+lambda0  log  0.10148   0.0089476  0.085403  0.12058
+sigma    log 27.37646   0.9729686 25.534944 29.35079</code></pre>
+</div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit0a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link estimate SE.estimate       lcl      ucl
+D        log 14.38019   1.0030935 12.544719 16.48422
+lambda0  log  0.10148   0.0089476  0.085403  0.12058
+noneuc   log 27.37646   0.9729682 25.534939 29.35078</code></pre>
+</div>
+</div>
+<p>Here, fitting noneuc as a constant while holding sigma fixed is exactly the same as fitting sigma alone.</p>
+</section><section id="scale-of-movement-sigma-depends-on-locations-of-both-home-range-centre-and-detector" class="level3" data-number="E.4.2"><h3 data-number="E.4.2" class="anchored" data-anchor-id="scale-of-movement-sigma-depends-on-locations-of-both-home-range-centre-and-detector">
+<span class="header-section-number">E.4.2</span> 2. Scale of movement <span class="math inline">\sigma</span> depends on locations of both home-range centre and detector</h3>
+<p>Hypothetically, detections at xy1 of an animal centred at xy2 may depend on both locations (this may also be seen as a approximation to the following case of continuous variation along the path between xy1 and xy2). To model this we need to retrieve the value of noneuc for both locations. Within fn2 we use <code>addCovariates</code> to extract the covariates of the mask (and hence noneuc) for each point in xy1 and xy2. The call to <code>secr.fit</code> is identical except that it uses fn2 instead of fn1:</p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fn2</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">xy1</span>, <span class="va">xy2</span>, <span class="va">mask</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html">missing</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="st">"noneuc"</span><span class="op">)</span></span>
+<span>  <span class="va">xy1</span> <span class="op">&lt;-</span> <span class="fu">addCovariates</span><span class="op">(</span><span class="va">xy1</span>, <span class="va">mask</span><span class="op">)</span></span>
+<span>  <span class="va">xy2</span> <span class="op">&lt;-</span> <span class="fu">addCovariates</span><span class="op">(</span><span class="va">xy2</span>, <span class="va">mask</span><span class="op">)</span></span>
+<span>  <span class="va">sig1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">covariates</span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span><span class="op">$</span><span class="va">noneuc</span><span class="op">)</span> <span class="co"># sigma at detector</span></span>
+<span>  <span class="va">sig2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">covariates</span><span class="op">(</span><span class="va">xy2</span><span class="op">)</span><span class="op">$</span><span class="va">noneuc</span><span class="op">)</span> <span class="co"># sigma at mask pt</span></span>
+<span>  <span class="va">euc</span> <span class="op">&lt;-</span> <span class="fu">edist</span><span class="op">(</span><span class="va">xy1</span>, <span class="va">xy2</span><span class="op">)</span> </span>
+<span>  <span class="va">sig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/outer.html">outer</a></span> <span class="op">(</span><span class="va">sig1</span>, <span class="va">sig2</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">s1</span>, <span class="va">s2</span><span class="op">)</span> <span class="op">(</span><span class="va">s1</span> <span class="op">+</span> <span class="va">s2</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="va">euc</span> <span class="op">/</span> <span class="va">sig</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovposs</span>, mask <span class="op">=</span> <span class="va">ovmask</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>, </span>
+<span>    details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>userdist <span class="op">=</span> <span class="va">fn2</span><span class="op">)</span>, model <span class="op">=</span> <span class="va">noneuc</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span> <span class="op">+</span> </span>
+<span>     <span class="va">x2</span> <span class="op">+</span> <span class="va">y2</span> <span class="op">+</span> <span class="va">xy</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link estimate SE.estimate       lcl      ucl
+D        log 14.54657   1.0580304 12.616267 16.77221
+lambda0  log  0.10781   0.0095493  0.090662  0.12821
+noneuc   log 26.02329   1.3510114 23.507231 28.80866</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The value of noneuc reported by <code>predict.secr</code> is the predicted value at the centroid of the mask, because the model uses standardised mask coordinates.</p>
+</div>
+</div>
+</section><section id="continuously-varying-sigma-using-gdistance" class="level3" data-number="E.4.3"><h3 data-number="E.4.3" class="anchored" data-anchor-id="continuously-varying-sigma-using-gdistance">
+<span class="header-section-number">E.4.3</span> 3. Continuously varying <span class="math inline">\sigma</span> using gdistance</h3>
+<p>A more elegant but slower approach is to find the least-cost path across the network of cells between xy1 and xy2, using noneuc (i.e.&nbsp;sigma ) as the cell-specific cost weighting (large cell-specific sigma equates with greater ‘conductance’, the inverse of friction or cost). For this we use functions from the package <strong>gdistance</strong>, which in turn uses <strong>igraph</strong>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fn3</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">xy1</span>, <span class="va">xy2</span>, <span class="va">mask</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html">missing</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="st">"noneuc"</span><span class="op">)</span></span>
+<span>  <span class="co"># warp distances to be \propto \int_along path sigma(x,y) dp</span></span>
+<span>  <span class="co"># where p is path distance  </span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://AgrDataSci.github.io/gdistance/">gdistance</a></span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span> <span class="op">(</span><span class="st">"install package gdistance to use this function"</span><span class="op">)</span></span>
+<span>  <span class="co"># make raster from mask</span></span>
+<span>  <span class="va">Sraster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span><span class="op">(</span><span class="va">mask</span>, <span class="st">"noneuc"</span><span class="op">)</span></span>
+<span>  <span class="co"># Assume animals can traverse gaps: bridge gaps using mean</span></span>
+<span>  <span class="va">Sraster</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Sraster</span><span class="op">[</span><span class="op">]</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Sraster</span><span class="op">[</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="co"># TransitionLayer</span></span>
+<span>  <span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://AgrDataSci.github.io/gdistance/reference/transition.html">transition</a></span><span class="op">(</span><span class="va">Sraster</span>, transitionFunction <span class="op">=</span> <span class="va">mean</span>, </span>
+<span>                   directions <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></span>
+<span>  <span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://AgrDataSci.github.io/gdistance/reference/geoCorrection.html">geoCorrection</a></span><span class="op">(</span><span class="va">tr</span>, type <span class="op">=</span> <span class="st">"c"</span>, multpl <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>  <span class="co"># costDistance</span></span>
+<span>  <span class="fu"><a href="https://AgrDataSci.github.io/gdistance/reference/costDistance-methods.html">costDistance</a></span><span class="op">(</span><span class="va">tr</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">xy2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">fit3</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovposs</span>, mask <span class="op">=</span> <span class="va">ovmask</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>,</span>
+<span>    details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>userdist <span class="op">=</span> <span class="va">fn3</span><span class="op">)</span>, model <span class="op">=</span> <span class="va">noneuc</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span> <span class="op">+</span> </span>
+<span>     <span class="va">x2</span> <span class="op">+</span> <span class="va">y2</span> <span class="op">+</span> <span class="va">xy</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link estimate SE.estimate       lcl     ucl
+D        log  14.4063   1.0500190 12.490932 16.6154
+lambda0  log   0.1076   0.0095041  0.090529  0.1279
+noneuc   log  26.4338   1.3645755 23.891790 29.2464</code></pre>
+</div>
+</div>
+<p>The <strong>gdistance</strong> function <code>costDistance</code> uses a TransitionLayer object that essentially describes the connections between cells in a RasterLayer. In <code>transition</code> adjacent cells are assigned a positive value for ‘conductance’ and all other cells a zero value. Adjacency is defined by the directions argument as 4 (rook’s case), 8 (queen’s case), 16 (knight and one-cell queen moves) and possibly other values (see ?adjacent in <strong>gdistance</strong>). Values &lt; 16 can considerably distort distances even if conductance is homogeneous. <code>geoCorrection</code> is needed to allow for the greater separation (<span class="math inline">\times \sqrt 2</span>) of cell centres measured along diagonals.</p>
+<p>In <code>ovmask</code> there are two forest blocks separated by a shingle stream bed and low scrub that is easily crossed by possums but does not count as ‘habitat’. Habitat gaps are assumed in <strong>secr</strong> to be traversible. The opposite is assumed by <strong>gdistance</strong>. To coerce <strong>gdistance</strong> to behave like <strong>secr</strong> we here temporarily fill in the gaps.</p>
+<p>The argument ‘transitionFunction’ determines how the conductance values of adjacent cells are combined to weight travel between them. Here we simply average them, but any other single-valued function of 2 inputs can be used.</p>
+<p>Integrating along the path (fn3) takes about 3.6 times as long as the approximation (fn2) and gives quite similar results.</p>
+</section><section id="density-dependent-sigma" class="level3" data-number="E.4.4"><h3 data-number="E.4.4" class="anchored" data-anchor-id="density-dependent-sigma">
+<span class="header-section-number">E.4.4</span> 4. Density-dependent <span class="math inline">\sigma</span>
+</h3>
+<p>A more interesting variation makes sigma a function of the cell-specific density, which may vary independently across space <span class="citation" data-cites="edjq16">(<a href="17-references.html#ref-edjq16" role="doc-biblioref">Efford et al., 2016</a>)</span>. Specifically, <span class="math inline">\sigma(x,y) = k / \sqrt{D(x,y)}</span>, where <span class="math inline">k</span> is the fitted parameter (noneuc).</p>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fn4</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">xy1</span>, <span class="va">xy2</span>, <span class="va">mask</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html">missing</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"noneuc"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://AgrDataSci.github.io/gdistance/">gdistance</a></span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span> <span class="op">(</span><span class="st">"install package gdistance to use this function"</span><span class="op">)</span></span>
+<span>  <span class="co"># make raster from mask</span></span>
+<span>  <span class="va">D</span> <span class="op">&lt;-</span> <span class="fu">covariates</span><span class="op">(</span><span class="va">mask</span><span class="op">)</span><span class="op">$</span><span class="va">D</span></span>
+<span>  <span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">covariates</span><span class="op">(</span><span class="va">mask</span><span class="op">)</span><span class="op">$</span><span class="va">noneuc</span>  </span>
+<span>  <span class="va">Sraster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span><span class="op">(</span><span class="va">mask</span>, values <span class="op">=</span> <span class="va">k</span> <span class="op">/</span> <span class="va">D</span><span class="op">^</span><span class="fl">0.5</span><span class="op">)</span></span>
+<span>  <span class="co"># Assume animals can traverse gaps: bridge gaps using mean</span></span>
+<span>  <span class="va">Sraster</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Sraster</span><span class="op">[</span><span class="op">]</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Sraster</span><span class="op">[</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="co"># TransitionLayer</span></span>
+<span>  <span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://AgrDataSci.github.io/gdistance/reference/transition.html">transition</a></span><span class="op">(</span><span class="va">Sraster</span>, transitionFunction <span class="op">=</span> <span class="va">mean</span>, </span>
+<span>                   directions <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></span>
+<span>  <span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://AgrDataSci.github.io/gdistance/reference/geoCorrection.html">geoCorrection</a></span><span class="op">(</span><span class="va">tr</span>, type <span class="op">=</span> <span class="st">"c"</span>, multpl <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>  <span class="co"># costDistance</span></span>
+<span>  <span class="fu"><a href="https://AgrDataSci.github.io/gdistance/reference/costDistance-methods.html">costDistance</a></span><span class="op">(</span><span class="va">tr</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">xy2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">fit4</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovposs</span>, mask <span class="op">=</span> <span class="va">ovmask</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>, trace <span class="op">=</span> </span>
+<span>    <span class="cn">FALSE</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>userdist <span class="op">=</span> <span class="va">fn4</span><span class="op">)</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>    model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">noneuc</span> <span class="op">~</span> <span class="fl">1</span>, <span class="va">D</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span> <span class="op">+</span> <span class="va">x2</span> <span class="op">+</span> <span class="va">y2</span> <span class="op">+</span> <span class="va">xy</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link  estimate SE.estimate       lcl       ucl
+D        log  15.45492   1.6388853 12.561888  19.01421
+lambda0  log   0.10669   0.0094078  0.089788   0.12678
+noneuc   log 103.22822   5.0334299 93.824939 113.57390</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># or using regression splines with same df</span></span>
+<span><span class="va">fit4a</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovposs</span>, mask <span class="op">=</span> <span class="va">ovmask</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>,</span>
+<span>    details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>userdist <span class="op">=</span> <span class="va">fn4</span><span class="op">)</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>    model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">noneuc</span><span class="op">~</span><span class="fl">1</span>, <span class="va">D</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit4a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link  estimate SE.estimate       lcl       ucl
+D        log  15.76422   1.7715273 12.656615  19.63485
+lambda0  log   0.10681   0.0094169  0.089887   0.12691
+noneuc   log 103.08283   5.0113607 93.719440 113.38171</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="fu">predictDsurface</span><span class="op">(</span><span class="va">fit4a</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">ovposs</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">leftbank</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"figures/surface4a.png"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-surface4a" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-surface4a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/surface4a.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="figures/surface4a.png" class="img-fluid figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surface4a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;E.2: Surface 4a.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="habitat-model-for-connectivity" class="level3" data-number="E.4.5"><h3 data-number="E.4.5" class="anchored" data-anchor-id="habitat-model-for-connectivity">
+<span class="header-section-number">E.4.5</span> 5. Habitat model for connectivity</h3>
+<p>Yet another possibility, in the spirit of <span class="citation" data-cites="rcgg13">Royle et al. (<a href="17-references.html#ref-rcgg13" role="doc-biblioref">2013</a>)</span>, is to model conductance as a function of habitat covariates. As usual in <strong>secr</strong> these are stored as one or more mask covariates. It is easy to add a covariate for forest type (<em>Nothofagus</em>-dominant ‘beech’ vs ‘nonbeech’) to our mask:</p>
+<div class="cell">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ovmask</span> <span class="op">&lt;-</span> <span class="fu">addCovariates</span><span class="op">(</span><span class="va">ovmask</span>, <span class="va">ovforest</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">fit5</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovposs</span>, mask <span class="op">=</span> <span class="va">ovmask</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>,</span>
+<span>    details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>userdist <span class="op">=</span> <span class="va">fn2</span><span class="op">)</span>, model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">D</span> <span class="op">~</span> <span class="va">forest</span>, </span>
+<span>     <span class="va">noneuc</span> <span class="op">~</span> <span class="va">forest</span><span class="op">)</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit5</span>, newdata <span class="op">=</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>forest <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"beech"</span>, <span class="st">"nonbeech"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`forest = beech`
+        link estimate SE.estimate      lcl      ucl
+D        log  9.42514   2.6531346  5.48569 16.19362
+lambda0  log  0.10111   0.0089337  0.08506  0.12019
+noneuc   log 29.55779   3.4060830 23.59975 37.02002
+
+$`forest = nonbeech`
+        link estimate SE.estimate      lcl      ucl
+D        log 15.67451   1.2679351 13.37985 18.36271
+lambda0  log  0.10111   0.0089337  0.08506  0.12019
+noneuc   log 27.23475   1.0319158 25.28618 29.33348</code></pre>
+</div>
+</div>
+<p>Note that we have re-used the userdist function fn2, and allowed both density and noneuc (sigma) to vary by forest type. Strictly, we should have identified “forest” as a required covariate in the (re)definition of fn2, but this is obviously not critical.</p>
+<p>A full analysis should also consider models with variation in lambda0. There is no simple way in <strong>secr</strong> to model continuous spatial variation in lambda0 as a function of home-range location (cf sigma in Example 1 above). However, variation in lambda0 at the point of detection may be modelled with detector-level covariates(<a href="https://www.otago.ac.nz/density/pdfs/secr-overview.pdf">secr-overview.pdf</a>).</p>
+</section></section><section id="and-the-winner-is" class="level2" data-number="E.5"><h2 data-number="E.5" class="anchored" data-anchor-id="and-the-winner-is">
+<span class="header-section-number">E.5</span> And the winner is…</h2>
+<p>Now that we have a bunch of fitted models, let’s see which does the best:</p>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fits</span> <span class="op">&lt;-</span> <span class="fu">secrlist</span><span class="op">(</span><span class="va">fit0</span>, <span class="va">fit0a</span>, <span class="va">fit1</span>, <span class="va">fit1a</span>, <span class="va">fit2</span>, <span class="va">fit3</span>, <span class="va">fit4</span>, </span>
+<span>                 <span class="va">fit4a</span>, <span class="va">fit5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fits</span><span class="op">)</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">6</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                          model npar    AIC   dAIC
+fit4a       D~s(x, y, k = 6) lambda0~1 noneuc~1    8 3098.1  0.000
+fit4  D~x + y + x2 + y2 + xy lambda0~1 noneuc~1    8 3098.5  0.382
+fit1  D~1 lambda0~1 noneuc~x + y + x2 + y2 + xy    8 3101.8  3.704
+fit3  D~1 lambda0~1 noneuc~x + y + x2 + y2 + xy    8 3102.4  4.304
+fit2  D~1 lambda0~1 noneuc~x + y + x2 + y2 + xy    8 3103.5  5.411
+fit1a D~1 lambda0~1 noneuc~x + y + x2 + y2 + xy    8 3105.0  6.862
+fit0                      D~1 lambda0~1 sigma~1    3 3118.1 19.979
+fit0a                    D~1 lambda0~1 noneuc~1    3 3118.1 19.979
+fit5           D~forest lambda0~1 noneuc~forest    5 3118.4 20.280
+       AICwt
+fit4a 0.4549
+fit4  0.3758
+fit1  0.0714
+fit3  0.0529
+fit2  0.0304
+fit1a 0.0147
+fit0  0.0000
+fit0a 0.0000
+fit5  0.0000</code></pre>
+</div>
+</div>
+<p>…the model with a quadratic or spline trend in density and density-dependent sigma.</p>
+</section><section id="notes" class="level2" data-number="E.6"><h2 data-number="E.6" class="anchored" data-anchor-id="notes">
+<span class="header-section-number">E.6</span> Notes</h2>
+<p>The ‘real’ parameter for spatial scale (<span class="math inline">\sigma</span>) is lurking in the background as part of the detection model. User-defined non-Euclidean distances are used in the detection function just like ordinary Euclidean distances. This means in practice that they are (almost) always divided by <span class="math inline">\sigma</span>. Formally: the distance <span class="math inline">d_{ij}</span> between an animal <span class="math inline">i</span> and a detector <span class="math inline">j</span> appears in all commonly used detection functions as the ratio <span class="math inline">r_{ij} = d_{ij}/\sigma</span> (e.g., halfnormal <span class="math inline">\lambda = \lambda_0 \exp(-0.5r_{ij}^2)</span> and exponential <span class="math inline">\lambda = \lambda_0 \exp(-r_{ij})</span>).</p>
+<p>What if we want non-Euclidean distances, but do not want to estimate noneuc? This is a perfectly reasonable request if sigma is constant across space and the distance computation is determined entirely by the habitat geometry, with no need for an additional parameter. If ‘noneuc’ is not included in the character vector returned by your userdist function when it is called with no arguments then noneuc is not modelled at all. This is the default in <strong>secrlinear</strong>.</p>
+<p>Providing a suitable initial value for ‘noneuc’ can be a problem. The argument ‘start’ of <code>secr.fit</code> may be a named, and possibly incomplete, list of real parameter values, so a call such as this is valid:</p>
+<div class="cell">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">secr.fit</span> <span class="op">(</span><span class="va">captdata</span>, model <span class="op">=</span> <span class="va">noneuc</span><span class="op">~</span><span class="fl">1</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>userdist<span class="op">=</span><span class="va">fn2</span><span class="op">)</span>, </span>
+<span>    trace <span class="op">=</span> <span class="cn">FALSE</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>noneuc <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+secr.fit(capthist = captdata, model = noneuc ~ 1, start = list(noneuc = 25), 
+    fixed = list(sigma = 1), details = list(userdist = fn2), 
+    trace = FALSE)
+secr 5.0.1, 15:17:25 11 Oct 2024
+
+Detector type      single 
+Detector number    100 
+Average spacing    30 m 
+x-range            365 635 m 
+y-range            365 635 m 
+
+N animals       :  76  
+N detections    :  235 
+N occasions     :  5 
+Mask area       :  21.227 ha 
+
+Model           :  D~1 g0~1 noneuc~1 
+User distances  :  dynamic (function)
+Fixed (real)    :  sigma = 1 
+Detection fn    :  halfnormal
+Distribution    :  poisson 
+N parameters    :  3 
+Log likelihood  :  -759.03 
+AIC             :  1524.1 
+AICc            :  1524.4 
+
+Beta parameters (coefficients) 
+           beta  SE.beta     lcl      ucl
+D       1.70107 0.117615  1.4705  1.93159
+g0     -0.97849 0.136239 -1.2455 -0.71147
+noneuc  3.37983 0.044415  3.2928  3.46688
+
+Variance-covariance matrix of beta parameters 
+                 D          g0      noneuc
+D       0.01383321  0.00015579 -0.00099076
+g0      0.00015579  0.01856108 -0.00334338
+noneuc -0.00099076 -0.00334338  0.00197273
+
+Fitted (real) parameters evaluated at base levels of covariates 
+        link estimate SE.estimate      lcl      ucl
+D        log  5.47980    0.646741  4.35162  6.90047
+g0     logit  0.27319    0.027051  0.22348  0.32927
+noneuc   log 29.36583    1.304938 26.91757 32.03677</code></pre>
+</div>
+</div>
+<p>We have ignored the parameter <span class="math inline">\lambda_0</span>. This is almost certainly a mistake, as large variation in <span class="math inline">\sigma</span> without compensatory or normalising variation in <span class="math inline">\lambda_0</span> is biologically implausible and can lead to improbable results <span class="citation" data-cites="em14">Efford (<a href="17-references.html#ref-e14" role="doc-biblioref">2014</a>)</span>.</p>
+<p>It is intended that non-Euclidean distances should work with all relevant functions in <strong>secr</strong>.</p>
+<p>You may be tempted to model ‘noneuc’ as a function of group - after all, D~g is permitted, right? Unfortunately, this will not work. There is only one pre-computed distance matrix, not one matrix per group.</p>
+</section><section id="simulation-after-sutherland-et-al.-2015" class="level2" data-number="E.7"><h2 data-number="E.7" class="anchored" data-anchor-id="simulation-after-sutherland-et-al.-2015">
+<span class="header-section-number">E.7</span> Simulation after Sutherland et al.&nbsp;(2015)</h2>
+<p></p>
+<p><span class="citation" data-cites="sfr15">Sutherland et al. (<a href="17-references.html#ref-sfr15" role="doc-biblioref">2015</a>)</span> simulated SECR data from a population of animals whose movement was channeled to varying extents along a dendritic network (river system). Their model treated the habitat as 2-dimensional and shrank distances for pixels close to water and expanded them for pixels further away. The authors kindly provided data for the network map and detector layout which we use here to emulate their simulations in <strong>secr</strong>. We assume an existing SpatialLinesDataFrame <code>sample.water</code> for the network, and a matrix of x-y coordinates for detector locations <code>gridTrapsXY</code>. <code>rivers</code> is a version of <code>sample.water</code> clipped to the habitat mask and used only for plotting.</p>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># use package secrlinear to create a discretised version of the </span></span>
+<span><span class="co"># network as a handy way to get distance to water </span></span>
+<span><span class="co"># loading secrlinear also loads secr</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.otago.ac.nz/density/">secrlinear</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://AgrDataSci.github.io/gdistance/">gdistance</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">swlinearmask</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secrlinear/man/read.linearmask.html">read.linearmask</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sample.water</span>, spacing <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># generate secr traps object from detector locations</span></span>
+<span><span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">gridTrapsXY</span><span class="op">*</span><span class="fl">1000</span><span class="op">)</span>  <span class="co"># convert to metres</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">tr</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>,<span class="st">"y"</span><span class="op">)</span>             </span>
+<span><span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/read.traps.html">read.traps</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">tr</span>, detector <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># generate 2-D habitat mask</span></span>
+<span><span class="va">sw2Dmask</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/make.mask.html">make.mask</a></span><span class="op">(</span><span class="va">tr</span>, buffer <span class="op">=</span> <span class="fl">3950</span>, spacing <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+<span><span class="va">d2w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/distancetotrap.html">distancetotrap</a></span><span class="op">(</span><span class="va">sw2Dmask</span>, <span class="va">swlinearmask</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/covariates.html">covariates</a></span><span class="op">(</span><span class="va">sw2Dmask</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>d2w <span class="op">=</span> <span class="va">d2w</span><span class="op">/</span><span class="fl">1000</span><span class="op">)</span> <span class="co"># km to water</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: attribute variables are assumed to be spatially constant
+throughout all geometries</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">6</span>,<span class="fl">1</span>,<span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">sw2Dmask</span>, covariate <span class="op">=</span> <span class="st">"d2w"</span>, dots <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">tr</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">rivers</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"figures/d2w.png"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-A1fig" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-A1fig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/d2w.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="figures/d2w.png" class="img-fluid figure-img" style="width:95.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-A1fig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;E.3: Shaded plot of distance to water (d2w in km) with detector sites (red crosses) and rivers superimposed. Detector spacing 1.5 km N-S.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The distance function requires a value of the friction parameter ‘noneuc’ for each mask pixel. Distances are approximated using <strong>gdistance</strong> functions as before, except that we interpret the distance-to-water scale as ‘friction’ and invert that for <strong>gdistance</strong>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dfn</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">xy1</span>, <span class="va">xy2</span>, <span class="va">mask</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html">missing</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="st">"noneuc"</span><span class="op">)</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://AgrDataSci.github.io/gdistance/">gdistance</a></span><span class="op">)</span></span>
+<span>    <span class="va">Sraster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span><span class="op">(</span><span class="va">mask</span>, <span class="st">"noneuc"</span><span class="op">)</span></span>
+<span>    <span class="co"># conductance is inverse of friction</span></span>
+<span>    <span class="va">trans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://AgrDataSci.github.io/gdistance/reference/transition.html">transition</a></span><span class="op">(</span><span class="va">Sraster</span>, transitionFunction <span class="op">=</span> </span>
+<span>        <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, directions <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></span>
+<span>    <span class="va">trans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://AgrDataSci.github.io/gdistance/reference/geoCorrection.html">geoCorrection</a></span><span class="op">(</span><span class="va">trans</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://AgrDataSci.github.io/gdistance/reference/costDistance-methods.html">costDistance</a></span><span class="op">(</span><span class="va">trans</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">xy2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <span class="citation" data-cites="rcgg13">Royle et al. (<a href="17-references.html#ref-rcgg13" role="doc-biblioref">2013</a>)</span> and <span class="citation" data-cites="sfr15">Sutherland et al. (<a href="17-references.html#ref-sfr15" role="doc-biblioref">2015</a>)</span> models use an (<span class="math inline">\alpha_0</span>, <span class="math inline">\alpha_1</span>) parameterisation instead of (<span class="math inline">\lambda_0</span>, <span class="math inline">\sigma</span>). Their <span class="math inline">\alpha_2</span> translates directly to a coefficient in the <strong>secr</strong> model, as we’ll see. We consider just one realisation of one scenario (the package <strong>secrdesign</strong> <span class="citation" data-cites="R-secrdesign">Efford (<a href="17-references.html#ref-R-secrdesign" role="doc-biblioref">2023</a>)</span> manages replicated simulations of multiple scenarios).</p>
+<div class="cell">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># parameter values from Sutherland et al. 2014</span></span>
+<span><span class="va">alpha0</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span>   <span class="co"># implies lambda0 = invlogit(-1) = 0.2689414</span></span>
+<span><span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fl">1400</span></span>
+<span><span class="va">alpha1</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fl">2</span> <span class="op">*</span> <span class="va">sigma</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">alpha2</span> <span class="op">&lt;-</span> <span class="fl">5</span>    <span class="co"># just one scenario from the range 0..10</span></span>
+<span><span class="va">K</span>  <span class="op">&lt;-</span> <span class="fl">10</span>       <span class="co"># sampling over 10 occasions, collapsed to 1 occ</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we are ready to build a simulated dataset.</p>
+<div class="cell">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># simulate fixed population of 200 animals in masked area</span></span>
+<span><span class="va">pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/sim.popn.html">sim.popn</a></span> <span class="op">(</span>D <span class="op">=</span> <span class="fl">200</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sw2Dmask</span><span class="op">)</span>, core <span class="op">=</span> <span class="va">tr</span>, </span>
+<span>                 buffer <span class="op">=</span> <span class="fl">3950</span>, Ndist <span class="op">=</span> <span class="st">"fixed"</span><span class="op">)</span>  </span>
+<span><span class="co"># to simulate non-Euclidean detection we attach a mask with </span></span>
+<span><span class="co"># the pixel-specific friction to the simulated popn object</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/covariates.html">covariates</a></span><span class="op">(</span><span class="va">sw2Dmask</span><span class="op">)</span><span class="op">$</span><span class="va">noneuc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">alpha2</span> <span class="op">*</span> </span>
+<span>                                    <span class="fu"><a href="https://rdrr.io/pkg/secr/man/covariates.html">covariates</a></span><span class="op">(</span><span class="va">sw2Dmask</span><span class="op">)</span><span class="op">$</span><span class="va">d2w</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">pop</span>, <span class="st">"mask"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">sw2Dmask</span></span>
+<span><span class="co"># simulate detections, specifying non-Euclidean distance function</span></span>
+<span><span class="va">CH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/sim.capthist.html">sim.capthist</a></span><span class="op">(</span><span class="va">tr</span>, pop <span class="op">=</span> <span class="va">pop</span>, userdist <span class="op">=</span> <span class="va">dfn</span>, </span>
+<span>    noccasions <span class="op">=</span> <span class="fl">1</span>, binomN <span class="op">=</span> <span class="va">K</span>, detectpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>lambda0 <span class="op">=</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/secr/man/logit.html">invlogit</a></span><span class="op">(</span><span class="va">alpha0</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="va">sigma</span><span class="op">)</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">CH</span>, moves <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Object class       capthist 
+Detector type      count 
+Detector number    64 
+Average spacing    1385.7 m 
+x-range            1698699 1708399 m 
+y-range            2387891 2398391 m 
+
+Counts by occasion 
+                    1 Total
+n                  37    37
+u                  37    37
+f                  37    37
+M(t+1)             37    37
+losses              0     0
+detections        109   109
+detectors visited  33    33
+detectors used     64    64
+
+Number of movements per animal
+ 0  1  2  3 
+16 13  7  1 
+
+Distance moved, excluding zero (m)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1386    1386    1443    1552    1500    3151 
+
+Individual covariates
+ sex   
+ F:21  
+ M:16  </code></pre>
+</div>
+</div>
+<p>Model fitting is simple, but the default starting value for noneuc is not suitable and is overridden:</p>
+<div class="cell">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitne1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span> <span class="op">(</span><span class="va">CH</span>, mask <span class="op">=</span> <span class="va">sw2Dmask</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>, </span>
+<span>    binomN <span class="op">=</span> <span class="fl">10</span>, model <span class="op">=</span> <span class="va">noneuc</span> <span class="op">~</span> <span class="va">d2w</span> <span class="op">-</span><span class="fl">1</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    userdist <span class="op">=</span> <span class="va">dfn</span><span class="op">)</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>D <span class="op">=</span> <span class="fl">0.005</span>, lambda0 <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>    sigma <span class="op">=</span> <span class="fl">1000</span>, noneuc <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The warning from nlm indicates a potential problem, but the standard errors and confidence limits below look plausible (they could be checked by running again with method = “none”). Fitting is slow (4 minutes on an aging PC). This is partly because the mask is large (32384 pixels) in order to maintain resolution in relation to the stream network.</p>
+<div class="cell">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fitne1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              beta  SE.beta     lcl      ucl
+D          -5.3042 0.181714 -5.6603 -4.94800
+lambda0    -1.1386 0.169830 -1.4715 -0.80577
+sigma       7.1491 0.091395  6.9699  7.32821
+noneuc.d2w  4.5961 0.503034  3.6102  5.58205</code></pre>
+</div>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fitne1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link   estimate SE.estimate        lcl        ucl
+D        log 4.9709e-03  9.1079e-04 3.4814e-03 7.0976e-03
+lambda0  log 3.2026e-01  5.4784e-02 2.2958e-01 4.4674e-01
+sigma    log 1.2729e+03  1.1658e+02 1.0642e+03 1.5226e+03
+noneuc   log 7.5395e+00  1.6876e+00 4.8881e+00 1.1629e+01</code></pre>
+</div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/region.N.html">region.N</a></span><span class="op">(</span><span class="va">fitne1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    estimate SE.estimate    lcl    ucl  n
+E.N   160.98      29.495 112.74 229.85 37
+R.N   160.98      26.627 118.77 224.97 37</code></pre>
+</div>
+</div>
+<p>The coefficient noneuc.d2w corresponds to alpha2. Estimates of predicted (‘real’) parameters D and lambda0, and the coefficient noneuc.d2w, and are comfortably close to the true values, and all true values are covered by the 95% CI.</p>
+<p>We fit the ‘noneuc’ (friction) parameter through the origin (zero intercept; <span class="math inline">-1</span> in formula). The predicted value of ‘noneuc’ relates to the covariate value for the first pixel in the mask (d2w = 1.133 km), but in this zero-intercept model the meaning of ‘noneuc’ itself is obscure. In effect, the parameter alpha1 (or sigma) serves as the intercept; the same model may be fitted by fixing sigma (<code>fixed = list(sigma = 1)</code>) and estimating an intercept for noneuc (<code>model = noneuc ~ d2w</code>). In this case, ‘noneuc’ may be interpreted as the site-specific sigma (see also examples in the main text).</p>
+<p>It is interesting to plot the predicted detection probability under the simulated model. For plotting we add the pdot value as an extra covariate of the mask. Note that pdot here uses the ‘noneuc’ value previously added as a covariate to <code>sw2Dmask</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/covariates.html">covariates</a></span><span class="op">(</span><span class="va">sw2Dmask</span><span class="op">)</span><span class="op">$</span><span class="va">predicted.pdot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/pdot.html">pdot</a></span><span class="op">(</span><span class="va">sw2Dmask</span>, <span class="va">tr</span>, </span>
+<span>    noccasions <span class="op">=</span> <span class="fl">1</span>, binomN <span class="op">=</span> <span class="fl">10</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>, detectpar <span class="op">=</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/logit.html">invlogit</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="va">sigma</span><span class="op">)</span>, userdist <span class="op">=</span> <span class="va">dfn</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">6</span>,<span class="fl">1</span>,<span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">sw2Dmask</span>, covariate <span class="op">=</span> <span class="st">"predicted.pdot"</span>, dots <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">tr</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">rivers</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"figures/predictedpdot.png"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-predictedpdot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-predictedpdot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/predictedpdot.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="figures/predictedpdot.png" class="img-fluid figure-img" style="width:95.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-predictedpdot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;E.4: Shaded plot of probability animal is detected at least once. Animals living within the detector array and away from a river (about half the population within the array) stand very little chance of being detected because the model confines them to a small home range and lambda0 is constant.
+</figcaption></figure>
+</div>
+</div>
+</div>
+
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;E.1: (a) Central Selkirk grizzly bear hair snag locations, (b) Mask using naive 30-km buffer around hair snags, (c) Example map of dry-path distances from an arbitrary point, and (d) Efficient mask rejecting dry-path distances &gt;30km.</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;E.2: Surface 4a.</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;E.3: Shaded plot of distance to water (d2w in km) with detector sites (red crosses) and rivers superimposed. Detector spacing 1.5 km N-S.</span>
+<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;E.4: Shaded plot of probability animal is detected at least once. Animals living within the detector array and away from a river (about half the population within the array) stand very little chance of being detected because the model confines them to a small home range and lambda0 is constant.</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-bk14" class="csl-entry" role="listitem">
+Borchers, D. L., &amp; Kidney, D. J. (2014). <em>Flexible density surface estimation using regression splines with spatially explicit capture-recapture data</em>. In prep.
+</div>
+<div id="ref-cn06" class="csl-entry" role="listitem">
+Csardi, G., &amp; Nepusz, T. (2006). The igraph software package for complex network research. <em>InterJournal</em>, <em>1695</em>. <a href="http://igraph.org">http://igraph.org</a>
+</div>
+<div id="ref-e14" class="csl-entry" role="listitem">
+Efford, M. G. (2014). Bias from heterogeneous usage of space in spatially explicit capture-recapture analyses. <em>Methods in Ecology and Evolution</em>, <em>5</em>, 599–602.
+</div>
+<div id="ref-R-secrdesign" class="csl-entry" role="listitem">
+Efford, M. G. (2023). <em>Secrdesign: Sampling design for spatially explicit capture-recapture</em>. <a href="https://CRAN.R-project.org/package=secrdesign">https://CRAN.R-project.org/package=secrdesign</a>
+</div>
+<div id="ref-edjq16" class="csl-entry" role="listitem">
+Efford, M. G., Dawson, D. K., Jhala, Y. V., &amp; Qureshi, Q. (2016). Density-dependent home-range size revealed by spatially explicit capture-recapture. <em>Ecography</em>, <em>39</em>, 676–688.
+</div>
+<div id="ref-em14" class="csl-entry" role="listitem">
+Efford, M. G., &amp; Mowat, G. (2014). Compensatory heterogeneity in spatially explicit capture-recapture data. <em>Ecology</em>, <em>95</em>, 1341–1348.
+</div>
+<div id="ref-Kendeigh1944" class="csl-entry" role="listitem">
+Kendeigh, S. C. (1944). Measurement of bird populations. <em>Ecological Monographs</em>, <em>14</em>, 67–106. <a href="https://doi.org/10.2307/1961632">https://doi.org/10.2307/1961632</a>
+</div>
+<div id="ref-ms00" class="csl-entry" role="listitem">
+Mowat, G., &amp; Strobeck, C. (2000). Estimating population size of grizzly bears using hair capture, DNA profiling, and mark-recapture analysis. <em>Journal of Wildlife Management</em>, <em>64</em>, 183–193.
+</div>
+<div id="ref-rcgg13" class="csl-entry" role="listitem">
+Royle, J. A., Chandler, R. B., Gazenski, K. D., &amp; Graves, T. A. (2013). Spatial capture-recapture models for jointly estimating population density and landscape connectivity. <em>Ecology</em>, <em>94</em>, 287–294.
+</div>
+<div id="ref-sfr15" class="csl-entry" role="listitem">
+Sutherland, C., Fuller, A. K., &amp; Royle, J. A. (2015). Modelling non-euclidean movement and landscape connectivity in highly structured ecological networks. <em>Methods in Ecology and Evolution</em>, <em>6</em>, 169–177.
+</div>
+<div id="ref-R-gdistance" class="csl-entry" role="listitem">
+van Etten, J. (2023). <em>Gdistance: Distances and routes on geographical grids</em>. <a href="https://CRAN.R-project.org/package=gdistance">https://CRAN.R-project.org/package=gdistance</a>
+</div>
+</div>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>Mixing 2-km and 0.5-km cells carries a slight penalty: the centres of a few 2-km cells (&lt;1%) do not lie in valid 0.5-km cells; these become inaccessible (infinite distance from all detectors) and are silently dropped in a later step.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+      <a href="./16-mark-resight.html" class="pagination-link" aria-label="Mark-resight models">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Mark-resight models</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./16-telemetry.html" class="pagination-link" aria-label="Telemetry">
+        <span class="nav-page-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Telemetry</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+</body></html>

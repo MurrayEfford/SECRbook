@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Spatially Explicit Capture–Recapture - Appendix D — Mark-resight models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./16-noneuclidean.html" rel="next">
+<link href="./16-polygondetectors.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./16-troubleshooting.html">Appendices</a></li><li class="breadcrumb-item"><a href="./16-mark-resight.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Mark-resight models</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Spatially Explicit Capture–Recapture</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/MurrayEfford/SECRbook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foreword</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Concepts and terminology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple example</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Likelihood-based SECR</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-theory-area-search.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Area search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-theory-special-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Special topics</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Performance</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Assumptions and robustness</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Empirical validation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-studydesign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Study design</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Practice</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-secr-package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R package secr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-detection-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Detection model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-sex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sex differences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Troubleshooting <strong>secr</strong></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-speed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Faster is better</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-polygondetectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Area and transect search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-mark-resight.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Mark-resight models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-noneuclidean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Non-Euclidean distances</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-telemetry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Telemetry</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-parameterizations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Parameterizations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-densityappendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Density revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-trend.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Trend revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-spatial-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Spatial data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-expected-counts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">Expected counts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+<li><a href="#how-is-mark-resight-different" id="toc-how-is-mark-resight-different" class="nav-link active" data-scroll-target="#how-is-mark-resight-different"><span class="header-section-number">D.1</span> How is mark-resight different?</a></li>
+  <li><a href="#distribution-of-marked-animals" id="toc-distribution-of-marked-animals" class="nav-link" data-scroll-target="#distribution-of-marked-animals"><span class="header-section-number">D.2</span> Distribution of marked animals</a></li>
+  <li><a href="#overview-of-implementation-in-secr" id="toc-overview-of-implementation-in-secr" class="nav-link" data-scroll-target="#overview-of-implementation-in-secr"><span class="header-section-number">D.3</span> Overview of implementation in <strong>secr</strong></a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="header-section-number">D.4</span> Data preparation</a></li>
+  <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting"><span class="header-section-number">D.5</span> Model fitting</a></li>
+  <li><a href="#MRlimitations" id="toc-MRlimitations" class="nav-link" data-scroll-target="#MRlimitations"><span class="header-section-number">D.6</span> Limitations</a></li>
+  <li><a href="#sec-appendix1" id="toc-sec-appendix1" class="nav-link" data-scroll-target="#sec-appendix1"><span class="header-section-number">D.7</span> Step-by-step guide</a></li>
+  <li><a href="#miscellaneous" id="toc-miscellaneous" class="nav-link" data-scroll-target="#miscellaneous"><span class="header-section-number">D.8</span> Miscellaneous</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./16-troubleshooting.html">Appendices</a></li><li class="breadcrumb-item"><a href="./16-mark-resight.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Mark-resight models</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-mark-resight" class="quarto-section-identifier">Appendix D — Mark-resight models</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><!-- Mark--resight data include sampling occasions on which previously marked animals were recorded, but new animals were not distinguished from each other. secr 4.6 provides a suite of spatial models for these data, as documented in [secr-markresight.pdf]. Two general classes of spatial mark--resight model are included: those in which the marking process is modelled (we call these spatial capture--mark--resight models), and those in which the process is not modelled and pre-marked animals are assumed to follow some distribution (e.g., uniform across a known area) (sighting-only or mark--resight models). Mark--resight models in secr 4.6 discard some spatial information in the unmarked sightings -- information that is used in the models of Chandler and Royle (2013) and Sollmann et al. (2013). This results in some (probably small) loss of precision, and requires an adjustment for overdispersion to ensure confidence intervals have good coverage properties. The vignette [secr-markresight.pdf] should be consulted. --><section id="how-is-mark-resight-different" class="level2" data-number="D.1"><h2 data-number="D.1" class="anchored" data-anchor-id="how-is-mark-resight-different">
+<span class="header-section-number">D.1</span> How is mark-resight different?</h2>
+<p>In capture–recapture, all newly detected unmarked animals become marked and are distinguishable in future. Some field protocols also involve ‘resighting’ occasions on which previously marked animals are identified but newly detected animals are not marked. We call these ‘mark–resight’ data. <span class="citation" data-cites="mw12">McClintock &amp; White (<a href="17-references.html#ref-mw12" role="doc-biblioref">2012</a>)</span> provide an excellent summary of non-spatial mark–resight methods. The extension of spatially explicit capture–recapture models for mark–resight data was begun by <span class="citation" data-cites="sgpsmspo13">Sollmann et al. (<a href="17-references.html#ref-sgpsmspo13" role="doc-biblioref">2013</a>)</span>, and spatial mark–resight models were applied by <span class="citation" data-cites="rksnmapdbed14">Rich et al. (<a href="17-references.html#ref-rksnmapdbed14" role="doc-biblioref">2014</a>)</span> and <span class="citation" data-cites="rswmd15">Rutledge et al. (<a href="17-references.html#ref-rswmd15" role="doc-biblioref">2015</a>)</span>. <span class="citation" data-cites="whc18">Whittington et al. (<a href="17-references.html#ref-whc18" role="doc-biblioref">2018</a>)</span> describe a major Bayesian application.</p>
+<!-- Include eh18 in Theory? -->
+</section><section id="distribution-of-marked-animals" class="level2" data-number="D.2"><h2 data-number="D.2" class="anchored" data-anchor-id="distribution-of-marked-animals">
+<span class="header-section-number">D.2</span> Distribution of marked animals</h2>
+<p>The historical development of mark–resight models has stressed the resighting component of mark–resight data; the sampling process leading to marking is not modelled. Modelling of the sighting data then requires some assumption about the distribution of the marked animals. Most commonly, marked animals are assumed to be a random sample from a defined population, and that may be achievable in some situations. An important case is when some animals carry natural marks and others don’t, as in the puma study of <span class="citation" data-cites="rksnmapdbed14">Rich et al. (<a href="17-references.html#ref-rksnmapdbed14" role="doc-biblioref">2014</a>)</span>.</p>
+<p>However, when a spatially distributed population is sampled with localized detectors such as traps, animals living near the traps have a higher chance of becoming marked, and the marked animals are not representative of a well-defined population. The difficulty may be overcome by spatially modelling both the marking and resighting processes. This requires that data on detection locations were collected during the marking phase, and that the spatial distribution of marking effort was recorded. <span class="citation" data-cites="mmpcl13">Matechou et al. (<a href="17-references.html#ref-mmpcl13" role="doc-biblioref">2013</a>)</span> analysed non-spatial capture–recapture–resighting data jointly with counts of unmarked individuals, and the core capture–mark–resight models in <strong>secr</strong> are their spatial equivalent (see also <span class="citation" data-cites="whc18">Whittington et al. (<a href="17-references.html#ref-whc18" role="doc-biblioref">2018</a>)</span>).</p>
+<p>Rather than modelling the marking process we may take the traditional path, i.e.&nbsp;assume a certain spatial distribution for the marked individuals. Typically, the distribution is assumed to be uniform over a known area (e.g., <span class="citation" data-cites="sgpsmspo13">Sollmann et al. (<a href="17-references.html#ref-sgpsmspo13" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="rksnmapdbed14">Rich et al. (<a href="17-references.html#ref-rksnmapdbed14" role="doc-biblioref">2014</a>)</span>). The number of marked individuals remaining at the time of resighting may be known or <a href="#unknownmarked">unknown</a>. We use ‘capture–mark–resight’ for models that include the marking process and ‘sighting-only’ for models in which the spatial distribution of marks is assumed.</p>
+</section><section id="overview-of-implementation-in-secr" class="level2" data-number="D.3"><h2 data-number="D.3" class="anchored" data-anchor-id="overview-of-implementation-in-secr">
+<span class="header-section-number">D.3</span> Overview of implementation in <strong>secr</strong>
+</h2>
+<p>The implementation in <strong>secr</strong> follows <span class="citation" data-cites="eh18">Efford &amp; Hunter (<a href="17-references.html#ref-eh18" role="doc-biblioref">2018</a>)</span>. The models discard some spatial information in the unmarked sightings – information that is used in the models of <span class="citation" data-cites="cr13">Chandler &amp; Royle (<a href="17-references.html#ref-cr13" role="doc-biblioref">2013</a>)</span> and <span class="citation" data-cites="sgpsmspo13">Sollmann et al. (<a href="17-references.html#ref-sgpsmspo13" role="doc-biblioref">2013</a>)</span>. This results in some (probably small) loss of precision, and requires an adjustment for overdispersion to ensure confidence intervals have good coverage properties.</p>
+<p>Following <span class="citation" data-cites="eh18">Efford &amp; Hunter (<a href="17-references.html#ref-eh18" role="doc-biblioref">2018</a>)</span>,</p>
+<ul>
+<li>the population is assumed to follow a (possibly inhomogeneous) Poisson distribution in space</li>
+<li>detection histories of marked animals are modelled as usual in SECR</li>
+<li>counts of unmarked sightings are modelled with a Poisson distribution</li>
+<li>overdispersion in the counts (relative to a Poisson distribution) is estimated by simulation and used in a pseudo-likelihood addressed; this has minimal effect on the estimates themselves, but improves coverage of confidence intervals</li>
+</ul>
+<p>Unidentified sightings of marked animals are treated as independent of identified sightings. This is an approximation, but its effect on estimates is believed to be negligible.</p>
+<p>The core models are listed in <a href="#tbl-MRclassification" class="quarto-xref">Table&nbsp;<span>D.1</span></a>. These may be customized in various ways, particularly by specifying the assumed distribution of marked animals for sighting-only models. Each model may be fitted with or without a parameter for incomplete identification of marked animals when they are resighted (<a href="#pID"><code>pID</code></a>).</p>
+<div id="tbl-MRclassification" class="sm quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-MRclassification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;D.1: Classification of mark–resight models available in <strong>secr</strong>. ‘Capture–mark–resight’ models include the marking process; ‘sighting-only’ models rest on prior knowledge or assumptions regarding where animals have been marked. For sighting-only data some detection histories may be all-zero.
+</figcaption><div aria-describedby="tbl-MRclassification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-sm small table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 20%">
+<col style="width: 55%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">Data</th>
+<th style="text-align: left;">Pre-marking<sup>1</sup>
+</th>
+<th style="text-align: left;">Code</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Capture–mark–resight</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sighting-only</td>
+<td style="text-align: left;">Known <span class="math inline">n_0</span>
+</td>
+<td style="text-align: left;"><code>details = list(knownmarks = TRUE)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Unknown <span class="math inline">n_0</span>
+</td>
+<td style="text-align: left;"><code>details = list(knownmarks = FALSE)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<ol type="1">
+<li>
+<span class="math inline">n_0</span> is the number of marked individuals in the study area at the time of the sighting surveys.</li>
+</ol>
+<p>Mark–resight data are represented in <strong>secr</strong> by a capthist data object, with minor extensions (<a href="#tbl-MRattributes" class="quarto-xref">Table&nbsp;<span>D.2</span></a>). We describe the structure for a single-session capthist object, which records detections of each marked animal over <span class="math inline">S</span> occasions at any of <span class="math inline">K</span> detectors. Detectors on sighting occasions may be of the usual binary proximity (‘proximity’) or count proximity (‘count’) types<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Detectors on marking occasions may be any combination of these types and multi-catch traps. Area search (‘polygon’) and transect search (‘transect’) types are not yet supported for either phase when there are sighting occasions: <a href="#areasearches">discretization</a> is recommended.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Not all detector types and options in <strong>secr</strong> will work with mark–resight data. See <a href="#MRlimitations">Limitations</a> for a list of known constraints (some will be mentioned along the way). See the <a href="#secappendix1">step-by-step guide</a> for a quick introduction.</p>
+</div>
+</div>
+<div id="tbl-MRattributes" class="sm quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-MRattributes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;D.2: Special attributes of data objects for mark–resight analysis in <strong>secr</strong>.
+</figcaption><div aria-describedby="tbl-MRattributes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-sm small table">
+<thead><tr class="header">
+<th style="text-align: left;">Object</th>
+<th style="text-align: left;">Attribute</th>
+<th style="text-align: left;">Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">traps</td>
+<td style="text-align: left;"><code>markocc</code></td>
+<td style="text-align: left;">Occasions may be marking (1), sighting (0) or unresolved (-1)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">capthist</td>
+<td style="text-align: left;"><code>Tu</code></td>
+<td style="text-align: left;">Counts of unmarked animals</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">capthist</td>
+<td style="text-align: left;"><code>Tm</code></td>
+<td style="text-align: left;">Counts of marked animals not identified</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">capthist</td>
+<td style="text-align: left;"><code>Tn</code></td>
+<td style="text-align: left;">Counts of sightings with unknown mark status (not modelled)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mask</td>
+<td style="text-align: left;">
+<code>marking</code><sup>1</sup>
+</td>
+<td style="text-align: left;">Distribution of pre-marked animals (<a href="#areaspecification">sighting-only data</a>; optional)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<ol type="1">
+<li>
+<code>marking</code> is the name of a special mask covariate, accessed like other covariates.</li>
+</ol>
+<section id="marking-and-sighting-occasions" class="level3" data-number="D.3.1"><h3 data-number="D.3.1" class="anchored" data-anchor-id="marking-and-sighting-occasions">
+<span class="header-section-number">D.3.1</span> Marking and sighting occasions</h3>
+<p>Sampling occasions (intervals) are either marking occasions or sighting occasions. On marking occasions any recaptured animals are also recorded<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. On sighting occasions newly caught animals are released unmarked. The body of the capthist object has one row for each individual detected on at least one marking occasion, and one column for each occasion, whether marking or sighting.</p>
+<p>The ‘traps’ object, a required attribute of any capthist object, has its own optional attribute <code>markocc</code> to distinguish marking occasions (1) from sighting occasions (0) (e.g., c(1,0,0,0,0) for marking on one occasion followed by four resighting occasions). A capthist object is recognised as a mark–resight dataset if its <code>traps</code> has a <code>markocc</code> attribute with at least one sighting occasion (i.e.&nbsp;<code>!all(markocc)</code>). Marking occasions and sighting occasions may be interspersed.</p>
+</section><section id="sighting-only-data" class="level3" data-number="D.3.2"><h3 data-number="D.3.2" class="anchored" data-anchor-id="sighting-only-data">
+<span class="header-section-number">D.3.2</span> Sighting-only data</h3>
+<p>A sighting-only dataset has a <code>markocc</code> attribute with no marking occasions. Two scenarios are possible: either the capthist object includes a sighting history for each marked animal (including all-zero histories for any not re-sighted), or it includes sighting histories only for the re-sighted animals. In the latter case the number of marked animals at the time of sampling is unknown, and the fitted model must take account of this (see <a href="#unknownmarked">Number of marks unknown</a>).</p>
+</section><section id="sightings-of-unmarked-animals" class="level3" data-number="D.3.3"><h3 data-number="D.3.3" class="anchored" data-anchor-id="sightings-of-unmarked-animals">
+<span class="header-section-number">D.3.3</span> Sightings of unmarked animals</h3>
+<p>In addition to the marking and sighting events of known individuals recorded in the body of the capthist object, there will usually be sightings of unmarked animals. These data take the form of a matrix with the number of detections of unmarked animals at each detector (row) on each sampling occasion (column). A single searched polygon or transect is one detector and hence contributes a single row. Columns corresponding to marking occasions are all-zero. This matrix is stored as attribute <code>Tu</code> of the capthist object.</p>
+<p>Instead of providing <code>Tu</code> as a matrix, the counts may be summed over occasions (<code>Tu</code> is a vector of detector-specific counts), or provided as the grand total (<code>Tu</code> is a single integer). These alternatives have definite limitations:</p>
+<ul>
+<li>occasion-specific or detector-specific models cannot be fitted</li>
+<li>plot, summary and verify are less informative</li>
+<li>cannot subset by occasion or detector</li>
+<li>AIC should not be used compare models differing in summarisation</li>
+<li>cannot mix markocc -1 and 0</li>
+</ul></section><section id="unidentified-sightings-of-marked-animals" class="level3" data-number="D.3.4"><h3 data-number="D.3.4" class="anchored" data-anchor-id="unidentified-sightings-of-marked-animals">
+<span class="header-section-number">D.3.4</span> Unidentified sightings of marked animals</h3>
+<p>An observer may be able to to determine that an animal is marked, but be unable to positively identify it as a particular individual. The number of sightings of marked but unidentified individuals is stored as capthist attribute <code>Tm</code>, which uses the same formats as <code>Tu</code>.</p>
+</section><section id="sightings-of-unknown-status" class="level3" data-number="D.3.5"><h3 data-number="D.3.5" class="anchored" data-anchor-id="sightings-of-unknown-status">
+<span class="header-section-number">D.3.5</span> Sightings of unknown status</h3>
+<p>Sightings for which the mark status could not be determined are a further category of sighting on sighting occasions. For example, the identifying mark may not be visible in a photograph because of the orientation the animal. The number of sightings with unknown mark status is generally not used in the models (but see <a href="#unresolvedsightings">unresolved sightings</a>). However, it is good practice to account for these observations. They may be stored as capthist attribute <code>Tn</code> and will appear in summaries.</p>
+</section><section id="unresolvedsightings" class="level3" data-number="D.3.6"><h3 data-number="D.3.6" class="anchored" data-anchor-id="unresolvedsightings">
+<span class="header-section-number">D.3.6</span> Unresolved sightings</h3>
+<p>Sometimes the sighting method does not allow marked animals to be distinguished from unmarked animals. Sighting occasions of this type are coded with ‘-1’ in the markocc vector. On these occasions the counts of all sightings (‘unresolved sightings’) stored in the appropriate column of <code>Tn</code>, the corresponding columns of <code>Tu</code> and <code>Tm</code> are all-zero, and no sightings of marked animals appear in the capthist object. Models comprising one or more marking occasions and only unresolved sightings (e.g., <code>markocc &lt;- c(1, -1, -1, -1, -1)</code>) may be fitted in <strong>secr</strong>, but there are constraints (see <a href="#sec-appendix2">Sighting without attention to marking</a>).</p>
+</section></section><section id="data-preparation" class="level2" data-number="D.4"><h2 data-number="D.4" class="anchored" data-anchor-id="data-preparation">
+<span class="header-section-number">D.4</span> Data preparation</h2>
+<p>Data on marked animals may be formatted and read as usual with <code>read.capthist</code> (<a href="https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf">secr-datainput.pdf</a>). Each identified sighting of a marked individuals appears as a row in the ‘capture’ file, like any other detection. The <code>markocc</code> attribute may be set as an argument of <code>read.capthist</code> or assigned later.</p>
+<p>Sighting data for unmarked animals (Tu) are provided separately as a <span class="math inline">K \times S</span> matrix, where <span class="math inline">K</span> is the number of detectors and <span class="math inline">S</span> is the total number of occasions (including marking occasions). Elements in the matrix are either binary (0/1) for proximity detectors, or whole numbers (0, 1, 2,…) for count, polygon and transect detectors. Sightings of marked animals that are not identified to individual (Tm) are optionally provided in a separate <span class="math inline">K \times S</span> matrix. Usually you will read these data from separate text files or spreadsheets. Sightings with unknown mark status (Tn) may also be provided, but will be ignored in analyses except for occasions with code -1 in <code>markocc</code>.</p>
+<p>The function <code>addSightings</code> may be used to merge these matrices of sighting data with an existing mark–resight capthist object, i.e.&nbsp;to set its attributes <code>Tu</code> and <code>Tm</code>. There are also custom extraction and replacement functions for sighting-related attributes (<code>markocc</code>, <code>Tu</code> and <code>Tm</code>). <code>addSightings</code> also allows input from text files in which the first column is a session identifier (see <a href="#sec-appendix1">Step-by-step guide</a> for an example).</p>
+<p>Let’s assume you have prepared the files <code>MRCHcapt.txt</code>, <code>MRCHcapt.txt</code>, <code>Tu.txt</code> and <code>Tm.txt</code>. <a href="#sec-appendix5">Simulated examples</a> can be found in the extdata folder of the <strong>secr</strong> distribution (version 4.4.3 and above). This code can be used to build a mark–resight capthist object:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.otago.ac.nz/density/">secr</a></span><span class="op">)</span></span>
+<span><span class="va">olddir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"secr"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">MRCH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/DENSITY.html">read.capthist</a></span><span class="op">(</span><span class="st">"MRCHcapt.txt"</span>, <span class="st">"MRCHtrap.txt"</span>, detector <span class="op">=</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"multi"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"proximity"</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span>, markocc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">MRCH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/addSightings.html">addSightings</a></span><span class="op">(</span><span class="va">MRCH</span>, <span class="st">"Tu.txt"</span>, <span class="st">"Tm.txt"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/session.html">session</a></span><span class="op">(</span><span class="va">MRCH</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"Simulated mark-resight data"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="va">olddir</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="data-summary" class="level3" data-number="D.4.1"><h3 data-number="D.4.1" class="anchored" data-anchor-id="data-summary">
+<span class="header-section-number">D.4.1</span> Data summary</h3>
+<p>The <code>summary</code> method for capthist objects recognises mark–resight data and provides a summary of the <code>markocc</code>, <code>Tu</code>, and <code>Tm</code> attributes.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">MRCH</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Object class       capthist 
+Detector type      multi, proximity (4) 
+Detector number    36 
+Average spacing    20 m 
+x-range            0 100 m 
+y-range            0 100 m 
+
+Marking occasions
+ 1 2 3 4 5
+ 1 0 0 0 0
+
+Counts by occasion 
+                   1  2  3  4  5 Total
+n                 70 15 16 19 17   137
+u                 70  0  0  0  0    70
+f                 28 24 13  3  2    70
+M(t+1)            70 70 70 70 70    70
+losses             0  0  0  0  0     0
+detections        70 17 18 28 23   156
+detectors visited 31 14 15 18 13    91
+detectors used    36 36 36 36 36   180
+
+Sightings by occasion 
+          1  2  3  4  5 Total
+ID        0 17 18 28 23    86
+Not ID    0  8  5 11  7    31
+Unmarked  0  7  9  6  9    31
+Uncertain 0  0  0  0  0     0
+Total     0 32 32 45 39   148</code></pre>
+</div>
+</div>
+<p>The main table of counts is calculated differently for sighting-only and capture–mark–resight data. When <code>markocc</code> includes marking occasions the counts refer to marking, recaptures and sightings of marked animals. This means that u (number of new individuals) is always zero on sighting occasions, and M(t+1) increases only on marking occasions. When <code>markocc</code> records that the data are sighting-only, the main table of counts summarises identified sightings of previously marked animals, accumulating u and M(t+1) as if all occasions were marking occasions.</p>
+<p>On sighting occasions the row ‘detections’ in Counts by occasion corresponds to the number of sightings of marked and identified individuals (‘ID’) in Sightings by occasion. Other detections in the sightings table are additional to the main table.</p>
+<p>The default plot of a mark–resight capthist object shows only marked and identified individuals. To make a separate plot of the sightings of unmarked individuals, either use the same function with <code>type = "sightings"</code> or use <code>sightingPlot</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span>, mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, pty <span class="op">=</span> <span class="st">'s'</span><span class="op">)</span></span>
+<span><span class="co"># petal plot with key</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">MRCH</span>, type <span class="op">=</span> <span class="st">"sightings"</span>, border <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/occasionKey.html">occasionKey</a></span><span class="op">(</span><span class="va">MRCH</span>, cex <span class="op">=</span> <span class="fl">0.7</span>, rad <span class="op">=</span> <span class="fl">5</span>, px <span class="op">=</span> <span class="fl">0.96</span>, py <span class="op">=</span> <span class="fl">0.88</span>, </span>
+<span>            xpd <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># bubble plot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/usagePlot.html">sightingPlot</a></span><span class="op">(</span><span class="va">MRCH</span>, <span class="st">"Tu"</span>, mean <span class="op">=</span> <span class="cn">FALSE</span>, border <span class="op">=</span> <span class="fl">20</span>, fill <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    col <span class="op">=</span> <span class="st">"blue"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, px <span class="op">=</span> <span class="fl">1.0</span>, py <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.85</span>,<span class="fl">0.72</span><span class="op">)</span>,</span>
+<span>    xpd <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-plotMRCH" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plotMRCH-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="16-mark-resight_files/figure-html/fig-plotMRCH-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="16-mark-resight_files/figure-html/fig-plotMRCH-1.png" class="img-fluid figure-img" width="576"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotMRCH-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;D.1: Two ways to plot sightings of unmarked animals. Petals in the lefthand plot indicate the number of sightings, except that marking occcasions are shown as a solid dot. <code>mean = FALSE</code> causes <code>sightingPlot</code> to use the total over all occasions rather than the mean. Other settings are used here only to customise the layout and colour of the plots.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="data-checks" class="level3" data-number="D.4.2"><h3 data-number="D.4.2" class="anchored" data-anchor-id="data-checks">
+<span class="header-section-number">D.4.2</span> Data checks</h3>
+<p>The <code>verify</code> method for capthist objects checks that mark–resight data satisfy</p>
+<ul>
+<li>the length of <code>markocc</code> matches the number of sampling occasions <span class="math inline">S</span>
+</li>
+<li>animals are not marked on sighting occasions, or sighted on marking occasions</li>
+<li>the dimensions of matrices with counts of sighted animals (<code>Tu</code>, <code>Tm</code>) match the rest of the capthist object</li>
+<li>sightings are made only when detector usage is &gt; 0</li>
+<li>counts are whole numbers.</li>
+</ul>
+<p>Checks are performed by default when a model is fitted with <code>secr.fit</code>, or when <code>verify</code> is called independently.</p>
+</section><section id="different-layouts-for-marking-and-sighting" class="level3" data-number="D.4.3"><h3 data-number="D.4.3" class="anchored" data-anchor-id="different-layouts-for-marking-and-sighting">
+<span class="header-section-number">D.4.3</span> Different layouts for marking and sighting</h3>
+<p>Detector layouts are likely to differ between marking and sighting occasions. This can be accommodated within a single, merged detector layout using detector- and occasion-specific usage codes. See <a href="#sec-appendix3">here</a> for a function to create a single-session mark–resight traps object from two components.</p>
+</section><section id="simulating-markresight-data" class="level3" data-number="D.4.4"><h3 data-number="D.4.4" class="anchored" data-anchor-id="simulating-markresight-data">
+<span class="header-section-number">D.4.4</span> Simulating mark–resight data</h3>
+<p>Mark–resight data may be generated with function <code>sim.resight</code>. In this example, one grid of detectors is used for both marking and for resighting, but the detection rate is higher on the initial (marking) occasion.</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/make.traps.html">make.grid</a></span><span class="op">(</span>detector <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"multi"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"proximity"</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/sighting.html">markocc</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">g0mr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="va">simMRCH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/sim.capthist.html">sim.resight</a></span><span class="op">(</span><span class="va">grid</span>, detectpar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>g0 <span class="op">=</span> <span class="va">g0mr</span>, sigma <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>,  </span>
+<span>    popn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>D <span class="op">=</span> <span class="fl">30</span><span class="op">)</span>, pID <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If all elements of <code>markocc</code> are zero then a separate mechanism is used to pre-mark a fraction <code>pmark</code> of individuals selected at random from the population. The resulting sighting-only data may include all-zero sighting histories for marked animals. Use the argument <code>markingmask</code> to simulate marking of animals with centres in a certain subregion.</p>
+</section><section id="input-of-sighting-only-data" class="level3" data-number="D.4.5"><h3 data-number="D.4.5" class="anchored" data-anchor-id="input-of-sighting-only-data">
+<span class="header-section-number">D.4.5</span> Input of sighting-only data</h3>
+<p>For sighting-only data we postulate that the marked animals are a random sample of individuals from a known spatial distribution, possibly a specified region. The body of the capthist object then comprises sightings of known individuals, with other sightings in attributes <code>Tu</code> and <code>Tm</code>. Marked animals that were known to be present but not resighted are included as ‘all-zero’ detection histories in the body of the capthist object. These detection histories are input by including a record in the detection file for each marked-but-unsighted individual, distinguished by 0 (zero) in the ‘occasion’ field, and with an arbitrary (but not missing) detector ID or coordinates in the next field(s).</p>
+</section></section><section id="model-fitting" class="level2" data-number="D.5"><h2 data-number="D.5" class="anchored" data-anchor-id="model-fitting">
+<span class="header-section-number">D.5</span> Model fitting</h2>
+<p>Properly prepared, a capthist object includes all the data for fitting a mark–resight model<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. It is only necessary to call <code>secr.fit</code>. Here is an example in which we use a coarse mask (<code>nx = 32</code> instead of the default <code>nx = 64</code>) to speed things up. The predictor ‘ts’ and the new ‘real’ parameter <a href="#pID"><code>pID</code></a> are explained in following sections.</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mask</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/make.mask.html">make.mask</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/traps.html">traps</a></span><span class="op">(</span><span class="va">MRCH</span><span class="op">)</span>, nx <span class="op">=</span> <span class="fl">32</span>, buffer <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+<span><span class="va">fit0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">MRCH</span>, model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">g0</span> <span class="op">~</span> <span class="va">ts</span><span class="op">)</span>, mask <span class="op">=</span> <span class="va">mask</span>, </span>
+<span>    trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit0</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>ts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"M"</span>,<span class="st">"S"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`ts = M`
+       link estimate SE.estimate      lcl      ucl
+D       log 25.87865    3.410206 20.01038 33.46785
+g0    logit  0.37635    0.053074  0.27923  0.48453
+sigma   log 25.30920    1.972901 21.72831 29.48022
+pID   logit  0.67424    0.054842  0.55923  0.77150
+
+$`ts = S`
+       link  estimate SE.estimate      lcl      ucl
+D       log 25.878646    3.410206 20.01038 33.46785
+g0    logit  0.093003    0.012526  0.07119  0.12063
+sigma   log 25.309198    1.972901 21.72831 29.48022
+pID   logit  0.674240    0.054842  0.55923  0.77150</code></pre>
+</div>
+</div>
+<p>This example relies on the built-in <code>autoini</code> function to provide starting parameter values for the numerical maximization. However, the automatic values may not work with complex mark–resight models. It is not worth continuing if the first likelihood evaluation fails, as indicated by LogLik NaN when <code>trace = TRUE</code>. Then you should experiment with the <code>start</code> argument until you find values that work.</p>
+<section id="adjustoverdispersion" class="level3" data-number="D.5.1"><h3 data-number="D.5.1" class="anchored" data-anchor-id="adjustoverdispersion">
+<span class="header-section-number">D.5.1</span> Adjustment for overdispersion</h3>
+<p>The default confidence intervals have poor coverage when the data include counts in Tu or Tm. This is due to overdispersion of the summed counts, caused by a quirk of the model specification: covariation is ignored in the multivariate Poisson model used to describe the counts. A simple protocol fixes the problem:</p>
+<ol type="1">
+<li>Fit a model assuming no overdispersion,</li>
+<li>Estimate the overdispersion by simulating at the initial estimates, and</li>
+<li>Re-fit the model (or at least re-estimate the variance-covariance matrix) using an overdispersion-adjusted pseudo-likelihood.</li>
+</ol>
+<p>Steps (2) and (3) may be performed together in one call to <code>secr.fit</code>. In the example below, the first line repeats the model specification, while the second line provides the previously fitted model as a starting point and calls for <code>nsim</code> simulations to estimate overdispersion (c-hat in MARK parlance).</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">MRCH</span>, model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">g0</span><span class="op">~</span><span class="va">ts</span><span class="op">)</span>, mask <span class="op">=</span> <span class="va">mask</span>, </span>
+<span>    trace <span class="op">=</span> <span class="cn">FALSE</span>, start <span class="op">=</span> <span class="va">fit0</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nsim <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sims completed</code></pre>
+</div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit1</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>ts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"M"</span>,<span class="st">"S"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`ts = M`
+       link estimate SE.estimate      lcl      ucl
+D       log 24.16171    3.393371 18.37235 31.77537
+g0    logit  0.44435    0.076612  0.30329  0.59499
+sigma   log 25.55233    2.036257 21.86280 29.86449
+pID   logit  0.66566    0.064954  0.52912  0.77914
+
+$`ts = S`
+       link  estimate SE.estimate       lcl      ucl
+D       log 24.161709    3.393371 18.372348 31.77537
+g0    logit  0.094567    0.013523  0.071184  0.12460
+sigma   log 25.552330    2.036257 21.862804 29.86449
+pID   logit  0.665660    0.064954  0.529115  0.77914</code></pre>
+</div>
+</div>
+<p>For this dataset the adjustment had a small effect on the confidence intervals (0% increase in interval length). The estimates of overdispersion are saved in the <code>details$chat</code> component of the fitted model, and we can see that they are close to 1.0. Note that the adjustment is strictly for overdispersion in the unmarked sightings, and the effect of that overdispersion is ‘diluted’ by other components of the likelihood.</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit1</span><span class="op">$</span><span class="va">details</span><span class="op">$</span><span class="va">chat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Tu     Tm 
+1.9408 1.7436 </code></pre>
+</div>
+</div>
+<p>A shortcut is to specify <code>method = "none"</code> at Step 3 to block re-maximization of the pseudolikelihood: then only the variance-covariance matrix, likelihood and related parameters will be re-computed. Pre-determined values of <span class="math inline">\hat c</span> may be provided as input in the <code>chat</code> component of <code>details</code>; if <code>nsim = 0</code> the input <code>chat</code> will be used without further simulation (example in <a href="#sec-appendix1">Step-by-step guide</a> Step 8).</p>
+<p>Stochasticity in the estimate of overdispersion causes parameter estimates to vary. The problem is minimized by running many simulations (say, <code>nsim = 10000</code>), which has relatively little effect on total execution time.</p>
+<p>CAVEAT: the multi-threaded simulation code does not allow for potential non-independence of random number streams across threads. If this is a concern then set ncores = 1 to block multi-threading. See also <code><a href="https://rdrr.io/pkg/secr/man/secrRNG.html">?secrRNG</a></code>.</p>
+</section><section id="ts" class="level3" data-number="D.5.2"><h3 data-number="D.5.2" class="anchored" data-anchor-id="ts">
+<span class="header-section-number">D.5.2</span> Different parameter values on marking and sighting occasions</h3>
+<p>Marking and sighting occasions share parameters by default. This may make sense for the spatial scale parameter (sigma ~ 1), but it is unlikely to hold for the baseline rate (intercept) g0 or lambda0. <em>Density estimates can be very biased if the difference is ignored</em><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. A new canned predictor ‘ts’ is introduced to distinguish marking and sighting occasions. For example g0 ~ ts will fit two levels of g0, one for marking occasions and one for sighting occasions. The same can be achieved with <code>g0 ~ tcov, timecov = factor(2-markocc)</code>.</p>
+<p>To see the values associated with each level of ‘ts’ (i.e., marking and sighting occasions) we specify the <code>newdata</code> argument of <code>predict.secr</code>, as in <a href="#adjustoverdispersion">Adjustment for overdispersion</a>.</p>
+</section><section id="pID" class="level3" data-number="D.5.3"><h3 data-number="D.5.3" class="anchored" data-anchor-id="pID">
+<span class="header-section-number">D.5.3</span> Proportion identified</h3>
+<p>If some sightings are of marked animals that cannot be identified to individual then a further ‘real’ parameter is required for the proportion identified. This is called <code>pID</code> in <strong>secr</strong>. <code>pID</code> is estimated by default, whether or not the capthist object has attribute <code>Tm</code>, because failure to identify marked animals affects the re-detection probability of marked individuals. For data with a single initial marking occasion, a model estimating <code>pID</code> is exactly equivalent to a learned response model (<code>g0 ~ b</code>) in the absence of <code>Tm</code> (same density estimate, same likelihood).</p>
+<p><code>pID</code> may be fixed at an arbitrary value, just like other real parameters. For example, a call to secr.fit with <code>fixed = list(pID = 1.0)</code> implies that every sighted individual that was already marked could be identified.</p>
+<p>Only a subset of the usual predictors is appropriate for <code>pID</code>. Use of predictors other than <code>session</code>, <code>Session</code>, or the names of any session or trap covariate will raise a warning.</p>
+<!-- ##Conditional likelihood -->
+<!-- If density is homogeneous then it is possible to estimate SECR detection parameters by maximizing the likelihood conditioning on $n$, the number of marked individuals (`secr.fit(..., CL = TRUE`). Density is then estimated as a derived parameter $D = n/a(\hat \theta)$ where $a(\hat \theta)$ is the effective sampling area (Borchers and Efford 2008). This expands the set of available models. For example, conditional likelihood models may include individual covariates such as sex: -->
+<!-- ```{r CL, eval = FALSE, cache = TRUE} -->
+<!-- ## generate random 'sex' covariate -->
+<!-- covariates(MRCH) <- data.frame(sex = sample(c("f","m"), nrow(MRCH), TRUE)) -->
+<!-- fitCL <- secr.fit(MRCH, model = g0~ts + sex, CL = TRUE, mask = mask, trace = FALSE) -->
+<!-- derived(fitCL) -->
+<!-- fit <- secr.fit(MRCH, model = g0~ts, mask = mask, trace = FALSE) -->
+<!-- derived(fit) -->
+<!-- ``` -->
+<!-- Counts of unmarked sightings (Tu) cannot be used in CL models because the expected number of sightings depends on density, which is not a parameter in the model. An attempt to use `CL = TRUE` with a capthist object including Tu will raise a warning, and those data will be ignored. Unidentified marked sightings (Tm) will be modelled; this allows `pID` to be estimated, but generally does not improve estimates of density. -->
+</section><section id="areaspecification" class="level3" data-number="D.5.4"><h3 data-number="D.5.4" class="anchored" data-anchor-id="areaspecification">
+<span class="header-section-number">D.5.4</span> Specifying distribution of pre-marked animals (sighting-only models)</h3>
+<p>By default, animals in a sighting-only dataset are assumed to have been marked throughout the habitat mask. However, uniform marking across a subregion of the habitat mask, or any other known distribution, may be specified by including a mask covariate named ‘marking’. For example,</p>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mask</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/make.mask.html">make.mask</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span></span>
+<span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/distancetotrap.html">distancetotrap</a></span><span class="op">(</span><span class="va">mask</span>, <span class="va">grid</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/covariates.html">covariates</a></span><span class="op">(</span><span class="va">mask</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>marking <span class="op">=</span> <span class="va">d</span> <span class="op">&lt;</span> <span class="fl">60</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If the mask is used in <code>secr.fit</code> with a sighting-only dataset, the fitted model will ‘understand’ that animals centred within 60 m of the grid had a uniform probability of marking, and no animals from beyond this limit were marked. Note that the area is supposed to contain the <em>centres</em> of all marked animals; this is not the same as a searched polygon. If the covariate is missing then all animals in the mask are assumed to have had an equal chance of becoming marked. The ‘marking’ covariate is actually more general, in that it can represent any known or assumed probability distribution for the locations of marked animals within the mask: values are automatically normalized by dividing by their sum. Be warned that assumptions about the extent of marking directly affect the estimated density.</p>
+<p>It is possible in principle that the marked animals are distributed over an area larger than the habitat mask. The software does not directly allow for this. An easy solution is to increase the size of the habitat mask, but take care to control its coarseness (<code>spacing</code>), and be aware of the effect on estimates of <span class="math inline">N</span>, and on the sampling variance if <code>distribution = "binomial"</code>.</p>
+</section><section id="unknownmarked" class="level3" data-number="D.5.5"><h3 data-number="D.5.5" class="anchored" data-anchor-id="unknownmarked">
+<span class="header-section-number">D.5.5</span> Number of marks unknown (sighting-only models)</h3>
+<p>Sighting-only datasets may entail the further complication that the number of marked animals in the population at the time of resighting is unknown (Model 3). This can happen if enough time has passed for some marked animals to have died or emigrated. It also arises if individuation relies on unique natural marks, but these are missing from some individuals (Rich et al.&nbsp;2014).</p>
+<p>The resighting data do not include any all-zero detection histories, as the only way to know for certain that a marked animal is still present is to sight it at least once. The theory nevertheless allows a spatial model to be fitted<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+<p>Data preparation is exactly as for sighting-only models with known number of marks, except that there are no all-zero histories. The unknown-marks model is fitted by setting the <code>secr.fit</code> argument <code>details = list(knownmarks = FALSE)</code>, (possibly along with other <code>details</code> components).</p>
+</section><section id="covariates-groups-and-finite-mixtures" class="level3" data-number="D.5.6"><h3 data-number="D.5.6" class="anchored" data-anchor-id="covariates-groups-and-finite-mixtures">
+<span class="header-section-number">D.5.6</span> Covariates, groups and finite mixtures</h3>
+<p>Conditional-likelihood models are generally not useful for mark-resight analyses. Individual covariates therefore should not be used in mark-resight models in <strong>secr</strong>. Other covariates (at the level of session, occasion, or detector) should work in any of the models.</p>
+<p>The mark–resight models in <strong>secr</strong> do not currently allow groups (g). Finite mixtures, including ‘hcov’ models, are only partly implemented.</p>
+</section><section id="discarding-unmarked-sightings" class="level3" data-number="D.5.7"><h3 data-number="D.5.7" class="anchored" data-anchor-id="discarding-unmarked-sightings">
+<span class="header-section-number">D.5.7</span> Discarding unmarked sightings</h3>
+<p>Sighting data can be highly problematic because of difficulty in reading marks and determining when consecutive sightings are independent. A conservative approach is to discard the counts of unmarked sightings (Tu) and unidentified marked animals (Tm), while retaining sighting data on marked animals. This works for capture–mark–resight data (marking occasions included), but not for all-sighting data (which rely on unmarked sightings to estimate detection parameters). The parameter pID is confounded with the sighting-phase g0 so we fix it at 1.0. The likelihood does not require adjustment for overdispersion of unmarked sightings.</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/sighting.html">Tu</a></span><span class="op">(</span><span class="va">MRCH</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/sighting.html">Tm</a></span><span class="op">(</span><span class="va">MRCH</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="va">mask</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/make.mask.html">make.mask</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/traps.html">traps</a></span><span class="op">(</span><span class="va">MRCH</span><span class="op">)</span>, nx <span class="op">=</span> <span class="fl">32</span>, buffer <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+<span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">MRCH</span>, model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">g0</span><span class="op">~</span><span class="va">ts</span><span class="op">)</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pID <span class="op">=</span> <span class="fl">1.0</span><span class="op">)</span>, </span>
+<span>    mask <span class="op">=</span> <span class="va">mask</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit2</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>ts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"M"</span>,<span class="st">"S"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`ts = M`
+       link estimate SE.estimate       lcl      ucl
+D       log  18.1896     2.96620 13.241212 24.98735
+g0    logit   0.9446     0.15067  0.056943  0.99979
+sigma   log  26.8962     2.32808 22.706524 31.85902
+
+$`ts = S`
+       link  estimate SE.estimate       lcl       ucl
+D       log 18.189636   2.9661958 13.241212 24.987354
+g0    logit  0.063549   0.0088513  0.048255  0.083266
+sigma   log 26.896237   2.3280849 22.706524 31.859019</code></pre>
+</div>
+</div>
+<p>Confidence interval length has increased by -12% over the full estimates (we did throw out a lot of data), but we expect the result to be more robust.</p>
+</section><section id="comparing-models" class="level3" data-number="D.5.8"><h3 data-number="D.5.8" class="anchored" data-anchor-id="comparing-models">
+<span class="header-section-number">D.5.8</span> Comparing models</h3>
+<p>Fitted models may be compared by AIC or AICc. Models can be compared when they describe the same data. In practice this means</p>
+<ol type="1">
+<li><p>Do not compare models with and without either sighting attribute (Tu, Tm), and</p></li>
+<li><p>Do not compare sighting-only models with different pre-marking assumptions (the <code>marking</code> covariate of the mask).</p></li>
+</ol></section></section><section id="MRlimitations" class="level2" data-number="D.6"><h2 data-number="D.6" class="anchored" data-anchor-id="MRlimitations">
+<span class="header-section-number">D.6</span> Limitations</h2>
+<p>These limitations apply when fitting mark–resight models in <strong>secr</strong>:</p>
+<ul>
+<li>only ‘multi’, ‘proximity’ and ‘count’ detector types are allowed</li>
+<li>groups (g) are not allowed</li>
+<li>
+<a href="05-theory-special-topics.html#hybrid-mixtures">hybrid mixtures</a> with known class membership (‘hcov’) have not been implemented for mark-resight data</li>
+<li>some <strong>secr</strong> functions do not yet handle mark–resight data or models. These are mostly flagged with a Warning on their documentation page.</li>
+</ul>
+<p>If the sighting phase is an area or transect search then it may be possible to analyse the data by rasterizing the areas or transects (function <code>discretize</code>).</p>
+<section id="warning" class="level3" data-number="D.6.1"><h3 data-number="D.6.1" class="anchored" data-anchor-id="warning">
+<span class="header-section-number">D.6.1</span> Warning</h3>
+<p>The implementation of spatially explicit mark–resight models is still somewhat limited. It is intended that mark–resight models work across other capabilities of <strong>secr</strong>, particularly</p>
+<ul>
+<li>data may span multiple sessions (<a href="#Multisession">multi-session</a> capthist objects can contain mark–resight data)</li>
+<li>mark–resight may be augmented with telemetry data (<code>addTelemetry</code>), but joint telemetry models have not been tested and should be used with care</li>
+<li>fxiContour() and related functions (probability density plots of centres of detected animals)</li>
+<li>finite mixture (h2) models are allowed for detection parameters, including <code>pID</code>
+</li>
+<li>modelAverage() and collate()</li>
+<li>linear habitat masks are allowed (as in the package <strong>secrlinear</strong>)</li>
+</ul>
+<p>However, these uses have not been tested much, where they have been tested at all..</p>
+<p>It is unclear what sample size should be used for sample-size-adjusted AIC (AICc). This is one more reason to use <code>AIC(..., criterion = "AIC")</code>. Currently <strong>secr</strong> uses the number of detection histories of marked individuals, as for other models.</p>
+</section><section id="pitfalls" class="level3" data-number="D.6.2"><h3 data-number="D.6.2" class="anchored" data-anchor-id="pitfalls">
+<span class="header-section-number">D.6.2</span> Pitfalls</h3>
+<p>The likelihood for the sighting-only model with unknown number of marks (Model 3) has a boundary corresponding to the density of detected marks in the marking mask (true density cannot be less than this). This is ordinarily not a problem (estimated density will usually be larger). However, for multi-session data with a common density parameter it is quite possible for the number of marks in a particular session to exceed the threshold. The log-likelihood function then returns ‘NA’; although maximization may proceed, variance estimation is likely to fail. A possible (but slow) workaround is to combine the multiple sessions in a single-session capthist (you’re on your own here - there is no function for this).</p>
+</section></section><section id="sec-appendix1" class="level2" data-number="D.7"><h2 data-number="D.7" class="anchored" data-anchor-id="sec-appendix1">
+<span class="header-section-number">D.7</span> Step-by-step guide</h2>
+<p>This guide should help you get started on a simple mark–resight analysis.</p>
+<ol type="1">
+<li><p>Decide where your study fits in Table 1 and determine the <code>markocc</code> vector. Do you have data for the marking process (capture–mark–resight data), or will this be assumed (sighting-only data)? For capture–mark–resight data, <code>markocc</code> will have ‘1’ for modelled marking occasions and ‘0’ for sighting occasions (e.g., <code>markocc(traps) &lt;- c(1,0,0,0,0)</code> for one marking occasion and four sighting occasions). For sighting-only data, <code>markocc</code> is ‘0’ for every occasion (omit the quotation marks). If you have sighting-only data, is the number of marked animals known or unknown?</p></li>
+<li><p>Prepare a capture file and detector layout file as usual (<a href="https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf">secr-datainput.pdf</a>). Sightings of marked animals are included as if they were recaptures. If your data are sighting-only and the number of marked animals is known then include a capture record with occasion = 0 for any marked animal that was never resighted. If your detector type is ‘count’ (sampling with replacement; repeat observations possible at each detector) then repeat data rows in the capture file as necessary.</p></li>
+<li>
+<p>Prepare separate text files for sightings of unmarked animals (Tu) and unidentified sightings of marked animals (Tm). Each row has a session identifier followed by the number of sightings for one detector on each occasion (always zero in columns corresponding to marking occasions). The session identifier is used to split the file when the data span multiple sessions; it should be constant for a single-session capthist. The files will be read with <code>read.table</code>, so if necessary consult the help for that function. The start of a file for 1 marking occasion and 4 sighting occasions might look like this:</p>
+<pre><code>S1 0 0 0 0 0  
+S1 0 1 0 2 0  
+S1 0 0 1 1 1  
+S1 0 0 0 1 0  
+S1 0 1 0 0 1  
+S1 0 0 2 0 0  
+...  </code></pre>
+</li>
+<li><p>Input data</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.otago.ac.nz/density/">secr</a></span><span class="op">)</span></span>
+<span><span class="va">datadir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"secr"</span><span class="op">)</span>  <span class="co"># or choose your own</span></span>
+<span><span class="va">olddir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="va">datadir</span><span class="op">)</span></span>
+<span><span class="va">CH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/DENSITY.html">read.capthist</a></span><span class="op">(</span><span class="st">"MRCHcapt.txt"</span>, <span class="st">"MRCHtrap.txt"</span>, detector <span class="op">=</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"multi"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"proximity"</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span>, markocc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, </span>
+<span>    verify <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">CH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/addSightings.html">addSightings</a></span><span class="op">(</span><span class="va">CH</span>, <span class="st">"Tu.txt"</span>, <span class="st">"Tm.txt"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>No errors found :-)</code></pre>
+</div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="va">olddir</span><span class="op">)</span>   <span class="co"># return to original folder</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="5" type="1">
+<li>Review data</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">CH</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Object class       capthist 
+Detector type      multi, proximity (4) 
+Detector number    36 
+Average spacing    20 m 
+x-range            0 100 m 
+y-range            0 100 m 
+
+Marking occasions
+ 1 2 3 4 5
+ 1 0 0 0 0
+
+Counts by occasion 
+                   1  2  3  4  5 Total
+n                 70 15 16 19 17   137
+u                 70  0  0  0  0    70
+f                 28 24 13  3  2    70
+M(t+1)            70 70 70 70 70    70
+losses             0  0  0  0  0     0
+detections        70 17 18 28 23   156
+detectors visited 31 14 15 18 13    91
+detectors used    36 36 36 36 36   180
+
+Sightings by occasion 
+          1  2  3  4  5 Total
+ID        0 17 18 28 23    86
+Not ID    0  8  5 11  7    31
+Unmarked  0  7  9  6  9    31
+Uncertain 0  0  0  0  0     0
+Total     0 32 32 45 39   148</code></pre>
+</div>
+</div>
+<p>RPSV with <code>CC = TRUE</code> gives a crude estimate of the spatial scale parameter <code>sigma</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/homerange.html">RPSV</a></span><span class="op">(</span><span class="va">CH</span>, CC <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20.234</code></pre>
+</div>
+</div>
+<ol start="6" type="1">
+<li>Design an appropriate habitat mask, representing the region from which animals are potentially detected (sighted). Most simply this is got by buffering around the detectors, for example applying a 100-m buffer:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mask</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/make.mask.html">make.mask</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/traps.html">traps</a></span><span class="op">(</span><span class="va">CH</span><span class="op">)</span>, nx <span class="op">=</span> <span class="fl">32</span>, buffer <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="7" type="1">
+<li>Fit a null model and adjust for overdispersion</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">CH</span>, mask <span class="op">=</span> <span class="va">mask</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">fit0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">CH</span>, mask <span class="op">=</span> <span class="va">mask</span>, trace <span class="op">=</span> <span class="cn">FALSE</span>, start <span class="op">=</span> <span class="va">fit0</span>, </span>
+<span>                 details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nsim <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sims completed</code></pre>
+</div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       link estimate SE.estimate      lcl      ucl
+D       log 17.28497    2.662204 12.80370 23.33467
+g0    logit  0.22218    0.034771  0.16147  0.29762
+sigma   log 24.51377    1.811885 21.21197 28.32952
+pID   logit  0.28090    0.043528  0.20386  0.37341</code></pre>
+</div>
+</div>
+<ol start="8" type="1">
+<li>Consider other detection models</li>
+</ol>
+<ul>
+<li>model with different marking and sighting rates</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">CH</span>, model <span class="op">=</span> <span class="va">g0</span> <span class="op">~</span> <span class="va">ts</span>, mask <span class="op">=</span> <span class="va">mask</span>, trace <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>chat <span class="op">=</span> <span class="va">fit0</span><span class="op">$</span><span class="va">details</span><span class="op">$</span><span class="va">chat</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fitts</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>ts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"M"</span>,<span class="st">"S"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`ts = M`
+       link estimate SE.estimate      lcl      ucl
+D       log 22.03492    3.372531 16.35254 29.69189
+g0    logit  0.56751    0.128528  0.31981  0.78551
+sigma   log 25.93572    2.123360 22.09666 30.44177
+pID   logit  0.65100    0.085508  0.47148  0.79594
+
+$`ts = S`
+       link  estimate SE.estimate       lcl      ucl
+D       log 22.034921    3.372531 16.352539 29.69189
+g0    logit  0.097751    0.016095  0.070427  0.13415
+sigma   log 25.935717    2.123360 22.096660 30.44177
+pID   logit  0.651001    0.085508  0.471480  0.79594</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit0</span>, <span class="va">fitts</span><span class="op">)</span><span class="op">[</span>,<span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">6</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                        model npar  logLik    AIC   dAIC AICwt
+fitts D~1 g0~ts sigma~1 pID~1    5 -518.81 1047.6  0.000     1
+fit0   D~1 g0~1 sigma~1 pID~1    4 -549.34 1106.7 59.063     0</code></pre>
+</div>
+</div>
+<p>Better model fit was achieved by estimating different detection rates on marking and sighting occasions, and the estimates from the null model should be discarded. We now reveal that the data were simulated with D = 30 animals/ha, g0(marking) = 0.3, g0(sighting) = 0.1, sigma = 25 m and pID = 0.7: confidence intervals for the estimates from model ‘fitts’ comfortably cover these values.</p>
+<p>We have used the initial null-model estimates of <span class="math inline">\hat c</span> to adjust the later model. It may be better to use the <span class="math inline">\hat c</span> of the larger (more general) model. The AIC values compared are strictly quasi-AIC values as they use the pseudolikelihood.</p>
+<ol start="9" type="1">
+<li>Analyses for other data types</li>
+</ol>
+<ul>
+<li>marked animals all identified on resighting</li>
+</ul>
+<p>In this case we would want to block estimation of the parameter <code>pID</code> by fixing it at 1.0:</p>
+<div class="cell">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">CH</span>, mask <span class="op">=</span> <span class="va">mask</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pID <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">CH</span>, mask <span class="op">=</span> <span class="va">mask</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pID <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    trace <span class="op">=</span> <span class="cn">FALSE</span>, start <span class="op">=</span> <span class="va">fit</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nsim <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>sighting-only data with unknown number of marks (assume previous marking uniform throughout mask)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">CH</span>, mask <span class="op">=</span> <span class="va">mask</span>, trace <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>                details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>knownmarks <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">CH</span>, mask <span class="op">=</span> <span class="va">mask</span>, trace <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>knownmarks <span class="op">=</span> <span class="cn">FALSE</span>, nsim <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="miscellaneous" class="level2" data-number="D.8"><h2 data-number="D.8" class="anchored" data-anchor-id="miscellaneous">
+<span class="header-section-number">D.8</span> Miscellaneous</h2>
+<section id="sec-appendix2" class="level3" data-number="D.8.1"><h3 data-number="D.8.1" class="anchored" data-anchor-id="sec-appendix2">
+<span class="header-section-number">D.8.1</span> Sighting without attention to marking</h3>
+<p>When sighting occasions never distinguish between marked and unmarked animals, the parameter <code>pID</code> is redundant and cannot be estimated. If no action is taken it will appear in the fitted model as the starting value (default 0.7) with zero variance. It is preferable to suppress this by fixing it to some arbitrary value (e.g., <code>fixed = list(pID = 1.0)</code>).</p>
+<p>The contribution of unresolved sightings to the estimates is likely to be small.</p>
+<ol type="1">
+<li>Estimation of the spatial scale parameter (sigma) rests entirely on recaptures of marked animals within and between any marking occasions. The unresolved counts carry a little spatial information (Chandler and Royle 2013), but this is discarded in the <strong>secr</strong> implementation and cannot contribute to estimating sigma (see also <a href="#adjustoverdispersion">Adjustment for overdispersion</a>).</li>
+<li>It will usually be necessary to fit a distinct level of the intercept parameter lambda0 on the sighting occasions (perhaps using the predictor <a href="#ts"><code>ts</code></a>).</li>
+</ol>
+<p>Nevertheless, it may be useful to model unresolved counts in a joint analysis of a larger dataset.</p>
+</section><section id="sec-appendix3" class="level3" data-number="D.8.2"><h3 data-number="D.8.2" class="anchored" data-anchor-id="sec-appendix3">
+<span class="header-section-number">D.8.2</span> Combining marking and sighting detector layouts</h3>
+<p>Here is a function to create a single-session mark–resight traps object from two components. ‘trapsM’ and ‘trapsR’ are <strong>secr</strong> traps objects for marking and resighting occasions respectively. ‘markocc’ is an integer vector distinguishing marking (1) and sighting (-1, 0) occasions. The value returned is a combined traps object with usage attribute based on <code>markocc</code>. Detectors shared between the marking and sighting layouts are duplicated in the result; this may slow down model fitting, but it is otherwise not a problem.</p>
+<div class="cell">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trapmerge</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">trapsM</span>, <span class="va">trapsR</span>, <span class="va">markocc</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/usage.html">usage</a></span><span class="op">(</span><span class="va">trapsM</span><span class="op">)</span><span class="op">)</span> <span class="op">|</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/usage.html">usage</a></span><span class="op">(</span><span class="va">trapsR</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>        <span class="kw"><a href="https://rdrr.io/r/base/warning.html">warning</a></span><span class="op">(</span><span class="st">"discarding existing usage data"</span><span class="op">)</span></span>
+<span>    <span class="va">KM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">trapsM</span><span class="op">)</span></span>
+<span>    <span class="va">KR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">trapsR</span><span class="op">)</span></span>
+<span>    <span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">markocc</span><span class="op">)</span></span>
+<span>    <span class="va">notmarking</span> <span class="op">&lt;-</span> <span class="va">markocc</span><span class="op">&lt;</span><span class="fl">1</span></span>
+<span>    <span class="va">newdetector</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/detector.html">detector</a></span><span class="op">(</span><span class="va">trapsM</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, </span>
+<span>                     <span class="fu"><a href="https://rdrr.io/pkg/secr/man/detector.html">detector</a></span><span class="op">(</span><span class="va">trapsR</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="va">notmarking</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/secr/man/detector.html">detector</a></span><span class="op">(</span><span class="va">trapsM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/detector.html">detector</a></span><span class="op">(</span><span class="va">trapsR</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/secr/man/usage.html">usage</a></span><span class="op">(</span><span class="va">trapsM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="op">!</span><span class="va">notmarking</span><span class="op">)</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>                            nrow <span class="op">=</span> <span class="va">KM</span>, ncol <span class="op">=</span> <span class="va">S</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/secr/man/usage.html">usage</a></span><span class="op">(</span><span class="va">trapsR</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">notmarking</span><span class="op">)</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>                            nrow <span class="op">=</span> <span class="va">KR</span>, ncol <span class="op">=</span> <span class="va">S</span><span class="op">)</span></span>
+<span>    <span class="va">trps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">trapsM</span>, <span class="va">trapsR</span><span class="op">)</span></span>
+<span>    <span class="co"># Note: nrow(trps) == KM + KR</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/secr/man/detector.html">detector</a></span><span class="op">(</span><span class="va">trps</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">newdetector</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/secr/man/sighting.html">markocc</a></span><span class="op">(</span><span class="va">trps</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">markocc</span></span>
+<span>    <span class="va">trps</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This demonstration uses only 9 marking points and 25 re-sighting points.</p>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gridM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/make.traps.html">make.grid</a></span><span class="op">(</span>nx <span class="op">=</span> <span class="fl">3</span>, ny <span class="op">=</span> <span class="fl">3</span>, detector <span class="op">=</span> <span class="st">"multi"</span><span class="op">)</span></span>
+<span><span class="va">gridR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/make.traps.html">make.grid</a></span><span class="op">(</span>nx <span class="op">=</span> <span class="fl">5</span>, ny <span class="op">=</span> <span class="fl">5</span>, detector <span class="op">=</span> <span class="st">"proximity"</span><span class="op">)</span></span>
+<span><span class="va">combined</span> <span class="op">&lt;-</span> <span class="fu">trapmerge</span><span class="op">(</span><span class="va">gridM</span>, <span class="va">gridR</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/detector.html">detector</a></span><span class="op">(</span><span class="va">combined</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "multi"     "multi"     "proximity" "proximity" "proximity"</code></pre>
+</div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># show usage for first 16 detectors of 34 in the combined layout</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/usage.html">usage</a></span><span class="op">(</span><span class="va">combined</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span>,<span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   1 2 3 4 5
+1  1 1 0 0 0
+2  1 1 0 0 0
+3  1 1 0 0 0
+4  1 1 0 0 0
+5  1 1 0 0 0
+6  1 1 0 0 0
+7  1 1 0 0 0
+8  1 1 0 0 0
+9  1 1 0 0 0
+10 0 0 1 1 1
+11 0 0 1 1 1
+12 0 0 1 1 1
+13 0 0 1 1 1
+14 0 0 1 1 1
+15 0 0 1 1 1
+16 0 0 1 1 1</code></pre>
+</div>
+</div>
+</section><section id="sec-appendix5" class="level3" data-number="D.8.3"><h3 data-number="D.8.3" class="anchored" data-anchor-id="sec-appendix5">
+<span class="header-section-number">D.8.3</span> Simulation code</h3>
+<p>This code was used to simulate data for the initial demonstration.</p>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.otago.ac.nz/density/">secr</a></span><span class="op">)</span></span>
+<span><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/make.traps.html">make.grid</a></span><span class="op">(</span>detector <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"multi"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"proximity"</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/sighting.html">markocc</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">g0mr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="va">MRCH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/sim.capthist.html">sim.resight</a></span><span class="op">(</span><span class="va">grid</span>, detectpar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>g0 <span class="op">=</span> <span class="va">g0mr</span>, sigma <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>,  </span>
+<span>                    popn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>D <span class="op">=</span> <span class="fl">30</span><span class="op">)</span>, pID <span class="op">=</span> <span class="fl">0.7</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span></span>
+<span><span class="co"># write to files in working directory</span></span>
+<span><span class="va">Tu.char</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span> <span class="op">(</span><span class="st">"S1"</span>, <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/sighting.html">Tu</a></span><span class="op">(</span><span class="va">MRCH</span><span class="op">)</span>, <span class="fl">1</span>, <span class="va">paste</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">Tm.char</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span> <span class="op">(</span><span class="st">"S1"</span>, <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/sighting.html">Tm</a></span><span class="op">(</span><span class="va">MRCH</span><span class="op">)</span>, <span class="fl">1</span>, <span class="va">paste</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/DENSITY.html">write.capthist</a></span><span class="op">(</span><span class="va">MRCH</span>, filestem <span class="op">=</span> <span class="st">"MRCH"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.table</a></span><span class="op">(</span><span class="va">Tu.char</span>, file <span class="op">=</span> <span class="st">"Tu.txt"</span>, col.names <span class="op">=</span> <span class="cn">F</span>, row.names <span class="op">=</span> <span class="cn">F</span>, </span>
+<span>    quote <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.table</a></span><span class="op">(</span><span class="va">Tm.char</span>, file <span class="op">=</span> <span class="st">"Tm.txt"</span>, col.names <span class="op">=</span> <span class="cn">F</span>, row.names <span class="op">=</span> <span class="cn">F</span>, </span>
+<span>    quote <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="sec-appendix6" class="level3" data-number="D.8.4"><h3 data-number="D.8.4" class="anchored" data-anchor-id="sec-appendix6">
+<span class="header-section-number">D.8.4</span> Sighting-only example</h3>
+<div class="cell">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.otago.ac.nz/density/">secr</a></span><span class="op">)</span></span>
+<span><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/make.traps.html">make.grid</a></span><span class="op">(</span>detector <span class="op">=</span> <span class="st">'proximity'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/sighting.html">markocc</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">MRCH5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/sim.capthist.html">sim.resight</a></span><span class="op">(</span><span class="va">grid</span>, detectpar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>g0 <span class="op">=</span> <span class="fl">0.3</span>, sigma <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>, </span>
+<span>    unsighted <span class="op">=</span> <span class="cn">TRUE</span>, popn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>D <span class="op">=</span> <span class="fl">30</span><span class="op">)</span>, pID <span class="op">=</span> <span class="fl">1.0</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/sighting.html">Tm</a></span><span class="op">(</span><span class="va">MRCH5</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">MRCH5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Object class       capthist 
+Detector type      proximity 
+Detector number    36 
+Average spacing    20 m 
+x-range            0 100 m 
+y-range            0 100 m 
+
+Marking occasions
+ 1 2 3 4 5
+ 0 0 0 0 0
+
+Counts by occasion 
+                   1  2  3  4  5 Total
+n                 26 27 25 23 31   132
+u                 26  6  4  4  3    43
+f                  8 11  5  8 11    43
+M(t+1)            26 32 36 40 43    43
+losses             0  0  0  0  0     0
+detections        48 57 49 52 62   268
+detectors visited 25 28 27 25 34   139
+detectors used    36 36 36 36 36   180
+
+Empty histories :  75 
+
+Sightings by occasion 
+           1  2  3  4  5 Total
+ID        48 57 49 52 62   268
+Not ID     0  0  0  0  0     0
+Unmarked  30 30 28 29 34   151
+Uncertain  0  0  0  0  0     0
+Total     78 87 77 81 96   419</code></pre>
+</div>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">MRCH5</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pID <span class="op">=</span> <span class="fl">1.0</span><span class="op">)</span>, trace <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                 details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>knownmarks <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">MRCH5</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pID <span class="op">=</span> <span class="fl">1.0</span><span class="op">)</span>, start <span class="op">=</span> <span class="va">fit0</span>, </span>
+<span>                 details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nsim <span class="op">=</span> <span class="fl">2000</span>, knownmarks <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>                 trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sims completed</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">MRCH6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/sim.capthist.html">sim.resight</a></span><span class="op">(</span><span class="va">grid</span>, detectpar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>g0 <span class="op">=</span> <span class="fl">0.3</span>, sigma <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>, </span>
+<span>    unsighted <span class="op">=</span> <span class="cn">FALSE</span>, popn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>D <span class="op">=</span> <span class="fl">30</span><span class="op">)</span>, pID <span class="op">=</span> <span class="fl">1.0</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/sighting.html">Tm</a></span><span class="op">(</span><span class="va">MRCH6</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">MRCH6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Object class       capthist 
+Detector type      proximity 
+Detector number    36 
+Average spacing    20 m 
+x-range            0 100 m 
+y-range            0 100 m 
+
+Marking occasions
+ 1 2 3 4 5
+ 0 0 0 0 0
+
+Counts by occasion 
+                   1  2  3  4  5 Total
+n                 26 27 25 23 31   132
+u                 26  6  4  4  3    43
+f                  8 11  5  8 11    43
+M(t+1)            26 32 36 40 43    43
+losses             0  0  0  0  0     0
+detections        48 57 49 52 62   268
+detectors visited 25 28 27 25 34   139
+detectors used    36 36 36 36 36   180
+
+Sightings by occasion 
+           1  2  3  4  5 Total
+ID        48 57 49 52 62   268
+Not ID     0  0  0  0  0     0
+Unmarked  30 30 28 29 34   151
+Uncertain  0  0  0  0  0     0
+Total     78 87 77 81 96   419</code></pre>
+</div>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">MRCH6</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pID <span class="op">=</span> <span class="fl">1.0</span><span class="op">)</span>, trace <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                 details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>knownmarks <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;D.1: Two ways to plot sightings of unmarked animals. Petals in the lefthand plot indicate the number of sightings, except that marking occcasions are shown as a solid dot. <code>mean = FALSE</code> causes <code>sightingPlot</code> to use the total over all occasions rather than the mean. Other settings are used here only to customise the layout and colour of the plots.</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-cr13" class="csl-entry" role="listitem">
+Chandler, R. B., &amp; Royle, J. A. (2013). Spatially explicit models for inference about density in unmarked or partially marked populations. <em>Annals of Applied Statistics</em>, <em>7</em>, 936–954.
+</div>
+<div id="ref-eh18" class="csl-entry" role="listitem">
+Efford, M. G., &amp; Hunter, C. M. (2018). Spatial capture-mark-resight estimation of animal population density. <em>Biometrics</em>, <em>74</em>, 411–420. <a href="https://doi.org/10.1111/biom.12766">https://doi.org/10.1111/biom.12766</a>
+</div>
+<div id="ref-Kendeigh1944" class="csl-entry" role="listitem">
+Kendeigh, S. C. (1944). Measurement of bird populations. <em>Ecological Monographs</em>, <em>14</em>, 67–106. <a href="https://doi.org/10.2307/1961632">https://doi.org/10.2307/1961632</a>
+</div>
+<div id="ref-mmpcl13" class="csl-entry" role="listitem">
+Matechou, E., Morgan, B. J. T., Pledger, S., Collazo, J. A., &amp; Lyons, J. E. (2013). Integrated analysis of capture-recapture-resighting data and counts of unmarked birds at stopover sites. <em>Journal of Agricultural, Biological and Environmental Statistics</em>, <em>18</em>, 120–135.
+</div>
+<div id="ref-mw12" class="csl-entry" role="listitem">
+McClintock, B. T., &amp; White, G. C. (2012). From NOREMARK to MARK: Software for estimating demographic parameters using mark-resight methodology. <em>Journal of Ornithology, Supplement 2</em>, <em>152</em>, S641–S650.
+</div>
+<div id="ref-rksnmapdbed14" class="csl-entry" role="listitem">
+Rich, L. N., Kelly, M. J., Sollmann, R., Noss, A. J., Maffei, L., Arispe, R. L., Paviolo, A., De Angelo, C. D., Blanco, D., E., Y., &amp; Di Bitetti, M. S. (2014). Comparing capture-recapture, mark-resight, and spatial mark-resight models for estimating puma densities via camera traps. <em>Journal of Mammalogy</em>, <em>95</em>, 382–391.
+</div>
+<div id="ref-rswmd15" class="csl-entry" role="listitem">
+Rutledge, M. E., Sollmann, R., Washburn, B. E., Moorman, C. E., &amp; DePerno, C. S. (2015). Using novel spatial mark-resight techniques to monitor resident canada geese in a suburban environment. <em>Wildlife Research</em>, <em>41</em>, 447–453.
+</div>
+<div id="ref-sgpsmspo13" class="csl-entry" role="listitem">
+Sollmann, R., Gardner, B., Parsons, A. W., Stocking, J. J., McClintock, B. T., Simons, T. R., Pollock, K. H., &amp; O’Connell, A. F. (2013). A spatial mark-resight model augmented with telemetry data. <em>Ecology</em>, <em>94</em>, 553–559.
+</div>
+<div id="ref-whc18" class="csl-entry" role="listitem">
+Whittington, J., Hebblewhite, M., &amp; Chandler, R. (2018). Generalized spatial mark-resight models with an application to grizzly bears. <em>Journal of Applied Ecology</em>, <em>55</em>, 157–168.
+</div>
+</div>
+</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>‘Count’ detectors most closely approximate sampling with replacement (McClintock and White 2012); sampling strictly without replacement implies detection at no more than one site per occasion (detector type ‘multi’) that has yet to be implemented for mark–resight data, and may prove difficult.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>There may also be marking occasions on which recaptures are ignored, but this possibility has yet to be modelled.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>A slight exception is the optional <a href="#areaspecification"><code>marking</code></a> mask covariate used for sighting-only data.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>This is not an issue for sighting-only models as the marked fraction is not modelled.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>The number of marked individuals may be estimated as a derived parameter if required.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+      <a href="./16-polygondetectors.html" class="pagination-link" aria-label="Area and transect search">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Area and transect search</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./16-noneuclidean.html" class="pagination-link" aria-label="Non-Euclidean distances">
+        <span class="nav-page-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Non-Euclidean distances</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+</body></html>

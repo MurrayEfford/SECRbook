@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Spatially Explicit Capture–Recapture - 14&nbsp; Working with fitted models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./08-multisession.html" rel="next">
+<link href="./08-habitat.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-secr-package.html">Practice</a></li><li class="breadcrumb-item"><a href="./08-fittedmodels.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Spatially Explicit Capture–Recapture</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/MurrayEfford/SECRbook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foreword</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Concepts and terminology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple example</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Likelihood-based SECR</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-theory-area-search.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Area search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-theory-special-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Special topics</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Performance</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Assumptions and robustness</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Empirical validation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-studydesign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Study design</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Practice</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-secr-package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R package secr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-detection-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Detection model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-fittedmodels.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-sex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sex differences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Troubleshooting <strong>secr</strong></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-speed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Faster is better</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-polygondetectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Area and transect search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-mark-resight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Mark-resight models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-noneuclidean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Non-Euclidean distances</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-telemetry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Telemetry</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-parameterizations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Parameterizations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-densityappendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Density revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-trend.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Trend revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-spatial-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Spatial data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-expected-counts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">Expected counts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+<li><a href="#bundling-fitted-models" id="toc-bundling-fitted-models" class="nav-link active" data-scroll-target="#bundling-fitted-models"><span class="header-section-number">14.1</span> Bundling fitted models</a></li>
+  <li><a href="#recognizing-failure-to-fit" id="toc-recognizing-failure-to-fit" class="nav-link" data-scroll-target="#recognizing-failure-to-fit"><span class="header-section-number">14.2</span> Recognizing failure-to-fit</a></li>
+  <li><a href="#prediction" id="toc-prediction" class="nav-link" data-scroll-target="#prediction"><span class="header-section-number">14.3</span> Prediction</a></li>
+  <li><a href="#tabulation-of-estimates" id="toc-tabulation-of-estimates" class="nav-link" data-scroll-target="#tabulation-of-estimates"><span class="header-section-number">14.4</span> Tabulation of estimates</a></li>
+  <li><a href="#sec-regionN" id="toc-sec-regionN" class="nav-link" data-scroll-target="#sec-regionN"><span class="header-section-number">14.5</span> Population size</a></li>
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection"><span class="header-section-number">14.6</span> Model selection</a></li>
+  <li><a href="#sec-modelfit" id="toc-sec-modelfit" class="nav-link" data-scroll-target="#sec-modelfit"><span class="header-section-number">14.7</span> Assessing model fit</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-secr-package.html">Practice</a></li><li class="breadcrumb-item"><a href="./08-fittedmodels.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-fittedmodels" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>This chapter covers issues that arise regardless of the particular model to be fitted.</p>
+<section id="bundling-fitted-models" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="bundling-fitted-models">
+<span class="header-section-number">14.1</span> Bundling fitted models</h2>
+<p>You may have fitted one model or several. A convenient way to handle several models is to bundle them together as an object of class ‘secrlist’:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ovenlist</span> <span class="op">&lt;-</span> <span class="fu">secrlist</span><span class="op">(</span><span class="va">ovenbird.model.1</span>, <span class="va">ovenbird.model.D</span><span class="op">)</span>     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Most of the following functions accept both ‘secr’ and ‘secrlist’ objects. The multi-model fitting function <code>list.secr.fit</code> returns an secrlist.</p>
+</section><section id="recognizing-failure-to-fit" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="recognizing-failure-to-fit">
+<span class="header-section-number">14.2</span> Recognizing failure-to-fit</h2>
+<p>Sometimes a model may appear to have fitted, but on inspection some values are missing or implausible (near zero or very large). The maximization function <code>nlm</code> may return the arcane ‘code 3’, or there may be message that a variance calculation failed.</p>
+<p>These conditions must be taken seriously, but they are not always fatal to the analysis. See <a href="16-troubleshooting.html" class="quarto-xref"><span>Appendix A</span></a> for diagnosis and possible solutions.</p>
+</section><section id="prediction" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="prediction">
+<span class="header-section-number">14.3</span> Prediction</h2>
+<p>A fitted model (‘secr’ object) contains estimates of the coefficients of the model. Use the <code>coef</code> method for secr objects to display the coefficients (e.g., <code>coef(secrdemo.0)</code>). We note</p>
+<ul>
+<li>the coefficients (aka ‘beta parameters’) are on the link scale, and at the very least must be back-transformed to the natural scale, and</li>
+<li>a real parameter for which there is a <a href="08-detection-model.html#linear-submodels">linear sub-model</a> is not unique: it takes a value that depends on covariates and other predictors.</li>
+</ul>
+<p>These complexities are handled by the <code>predict</code> method for secr objects, as for other fitted models in R (e.g., <code>lm</code>). The desired levels of covariates and other predictors appear as columns of the ‘newdata’ dataframe. <code>predict</code> is called automatically when you print an ‘secr’ object by typing its name at the R prompt.</p>
+<p><code>predict</code> is commonly called with a fitted model as the only argument; then ‘newdata’ is constructed automatically by the function <code>makeNewData</code>. The default behaviour is disappointing if you really wanted estimates for each level of a predictor. This can be overcome, at the cost of more voluminous output, by setting <code>all.levels = TRUE</code>, or simply <code>all = TRUE</code>. For more customised output (e.g., for a particular value of a continuous predictor), construct your own ‘newdata’.</p>
+<p>Density surfaces are a special case. Prediction across space requires the function <code>predictDsurface</code> as covered in <a href="08-density-model.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
+</section><section id="tabulation-of-estimates" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="tabulation-of-estimates">
+<span class="header-section-number">14.4</span> Tabulation of estimates</h2>
+<p>The <code>collate</code> function is a handy way to assemble tables of coefficients or estimates from several fitted models. The input may be individual models or an secrlist. The output is a 4-dimensional array, typically with dimensions corresponding to</p>
+<ul>
+<li>session</li>
+<li>model</li>
+<li>statistic (estimate, SE, lcl, ucl)</li>
+<li>parameter (D, g0, sigma)</li>
+</ul>
+<p>The parameters must be common to all models.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># [1,,,] drops 'session' dimension for printing</span></span>
+<span><span class="fu">collate</span><span class="op">(</span><span class="va">secrdemo.0</span>, <span class="va">secrdemo.CL</span>, realnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'g0'</span>,<span class="st">'sigma'</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>,,,<span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , g0
+
+            estimate SE.estimate     lcl     ucl
+secrdemo.0   0.27319    0.027051 0.22348 0.32927
+secrdemo.CL  0.27319    0.027051 0.22348 0.32927
+
+, , sigma
+
+            estimate SE.estimate    lcl    ucl
+secrdemo.0    29.366      1.3049 26.918 32.037
+secrdemo.CL   29.366      1.3050 26.918 32.037</code></pre>
+</div>
+</div>
+<p>Here we see that the full- and conditional-likelihood fits produce identical estimates for the detection parameters of a Poisson model.</p>
+</section><section id="sec-regionN" class="level2" data-number="14.5"><h2 data-number="14.5" class="anchored" data-anchor-id="sec-regionN">
+<span class="header-section-number">14.5</span> Population size</h2>
+<p></p>
+<p>The primary abundance parameter in <strong>secr</strong> is population density <span class="math inline">D</span>. However, population size, the expected number of AC in a region <span class="math inline">A</span>, may be predicted from any fitted model that includes <span class="math inline">D</span> as a parameter.</p>
+<p>Function <code>region.N</code> calculates <span class="math inline">\hat N(A)</span> along with standard errors and confidence intervals <span class="citation" data-cites="ef13">(<a href="17-references.html#ref-ef13" role="doc-biblioref">Efford &amp; Fewster, 2013</a>)</span>. The default region is the mask used to fit the model, but this is generally arbitrary, as we have seen, and users would be wise to specify the ‘region’ argument explicitly.</p>
+<p>For an example of <code>region.N</code> in action, consider a model fitted to <a href="https://www.otago.ac.nz/density/html/blackbear.html">data on black bears</a> from DNA hair snags in Great Smoky Mountains National Park, Tennessee.</p>
+<div class="cell">
+<details class="code-fold"><summary>code to fit black bear model</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msk</span> <span class="op">&lt;-</span> <span class="fu">make.mask</span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">blackbearCH</span><span class="op">)</span>, buffer <span class="op">=</span> <span class="fl">6000</span>, type <span class="op">=</span> <span class="st">'trapbuffer'</span>, </span>
+<span>                 poly <span class="op">=</span> <span class="va">GSM</span>, keep.poly <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>  <span class="co"># clipped to park boundary</span></span>
+<span><span class="va">bbfit</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">blackbearCH</span>, model <span class="op">=</span> <span class="va">g0</span><span class="op">~</span><span class="va">bk</span>, mask <span class="op">=</span> <span class="va">msk</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The region defaults to the extent of the original habitat mask:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">region.N</span><span class="op">(</span><span class="va">bbfit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    estimate SE.estimate    lcl    ucl   n
+E.N    444.6      55.003 349.19 566.08 139
+R.N    444.6      50.801 360.12 561.37 139</code></pre>
+</div>
+</div>
+<p>The two output rows relate to the ‘expected’ and ‘realised’ numbers of AC in the region. The distinction between expected (random) <span class="math inline">N</span> and realised (fixed) <span class="math inline">N</span> is explained by <span class="citation" data-cites="ef13">Efford &amp; Fewster (<a href="17-references.html#ref-ef13" role="doc-biblioref">2013</a>)</span>. Typically the expected and realised <span class="math inline">N(A)</span> from <code>region.N</code> are the same or nearly so, but deviations occur when the density model is not uniform. The estimated sampling error is less for ‘realised’ <span class="math inline">N(A)</span> as part is fixed at the observed <span class="math inline">n</span>.</p>
+<p>The nominated region is arbitrary. It may be a new mask with different extent and cell size. If the model used spatial covariates the covariates must also be present in the new mask. If the density model did not use spatial covariates then the region may be a simple polygon.</p>
+<p>It is interesting to extrapolate the number of black bears in the entire park (<a href="#fig-blackbearplot" class="quarto-xref">Fig.&nbsp;<span>14.1</span></a>):</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">region.N</span><span class="op">(</span><span class="va">bbfit</span>, region <span class="op">=</span> <span class="va">GSM</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    estimate SE.estimate    lcl    ucl   n
+E.N   2091.9      258.80 1643.0 2663.5 139
+R.N   2091.4      254.72 1652.5 2657.6 139</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-blackbearplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-blackbearplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-fittedmodels_files/figure-html/fig-blackbearplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="08-fittedmodels_files/figure-html/fig-blackbearplot-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blackbearplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.1: Simulated AC of black bears in Great Smoky Mountains National Park, USA. The number of AC (2092) was predicted from a model fitted to hair snags (red crosses) in one sector of the park. The habitat mask used to fit the model is shaded.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="{.callout=warning}">
+<p>Estimates of realised population size (but not expected population size) are meaningless if the new region does not cover all <span class="math inline">n</span> detected animals.</p>
+</div>
+</section><section id="model-selection" class="level2" data-number="14.6"><h2 data-number="14.6" class="anchored" data-anchor-id="model-selection">
+<span class="header-section-number">14.6</span> Model selection</h2>
+<p></p>
+<p>The best model is not necessarily the one that most closely fits the data. We need a criterion that penalises unnecessary complexity. For models fitted by maximum likelihood, the obvious and widely used candidate is Akaike’s Information Criterion AIC</p>
+<p><span class="math display">
+\mathrm{AIC} = -2\log[L(\hat \theta)] +2K
+</span> where <span class="math inline">K</span> is the number of coefficients estimated and <span class="math inline">\log[L(\hat \theta)]</span> is the maximized log likelihood.</p>
+<p><span class="citation" data-cites="Burnham2002">Burnham &amp; Anderson (<a href="17-references.html#ref-Burnham2002" role="doc-biblioref">2002</a>)</span>, who popularised information-theoretic model selection for biologists, advocated the use of a small-sample adjustment due to <span class="citation" data-cites="Hurvich1989">Hurvich &amp; Tsai (<a href="17-references.html#ref-Hurvich1989" role="doc-biblioref">1989</a>)</span>, designated AIC<sub>c</sub>:</p>
+<p><span class="math display">
+\mathrm{AIC}_c = -2\log(L(\hat{\theta})) + 2K + \frac{2K(K+1)}{n-K-1}.
+</span></p>
+<p>Here we assume the sample size <span class="math inline">n</span> is the number of individuals observed at least once (i.e.&nbsp;the number of rows in the capthist). This is somewhat arbitrary, and a reason to question the routine use of AIC<sub>c</sub>. The additional penalty has the effect of decreasing the attractiveness of models with many parameters. The effect is especially large when <span class="math inline">n&lt;2K</span>.</p>
+<p>Model selection by information-theoretic methods is open to misinterpretation. We do not attempt here to deal with the many subtleties, but raise some caveats:</p>
+<ul>
+<li><p>Models to be compared by AIC must be based on identical data. Some options in <code>secr.fit</code> silently change the structure of the data and make models incompatible (‘CL’, ‘fastproximity’, ‘groups’, ‘hcov’, ‘binomN’). Comparisons should be made only within the family of models defined by constant settings of these options. A check of compatibility (standalone function <code>AICcompatible</code>) is applied automatically in <strong>secr</strong>, but this is not guaranteed to catch all misuse.</p></li>
+<li><p>AIC<sub>c</sub> is widely used. However, there are doubts about the correct sample size for AIC<sub>c</sub>, and AIC may be a better basis for model averaging, as demonstrated by simulation for generalised linear models <span class="citation" data-cites="Fletcher2019">(<a href="17-references.html#ref-Fletcher2019" role="doc-biblioref">Fletcher, 2019, p. 60</a>)</span>. We use AIC in this book.</p></li>
+<li><p>AIC values indicate the relative performance of models. Reporting AIC values <em>per se</em> is not helpful; present the differences <span class="math inline">\Delta \mathrm{AIC}</span> between each model and the ‘best’ model.</p></li>
+</ul>
+<section id="model-averaging" class="level3" data-number="14.6.1"><h3 data-number="14.6.1" class="anchored" data-anchor-id="model-averaging">
+<span class="header-section-number">14.6.1</span> Model averaging</h3>
+<p></p>
+<p>Model weights may be used to form model-averaged estimates of real or beta parameters with <code>modelAverage</code> (see also <span class="citation" data-cites="Buckland1997">Buckland et al. (<a href="17-references.html#ref-Buckland1997" role="doc-biblioref">1997</a>)</span> and <span class="citation" data-cites="Burnham2002">Burnham &amp; Anderson (<a href="17-references.html#ref-Burnham2002" role="doc-biblioref">2002</a>)</span>). Model weights are calculated as</p>
+<p><span class="math display">
+w_i = \frac{\exp(-\Delta_i / 2),}{\sum{\exp(-\Delta_i / 2)}},
+</span> where <span class="math inline">\Delta</span> refers to differences in AIC or AICc.</p>
+<p>Models for which <span class="math inline">\Delta_i</span> exceeds an arbitrary limit (e.g., 10) are given a weight of zero and excluded from the summation.</p>
+</section><section id="likelihood-ratio" class="level3" data-number="14.6.2"><h3 data-number="14.6.2" class="anchored" data-anchor-id="likelihood-ratio">
+<span class="header-section-number">14.6.2</span> Likelihood ratio</h3>
+<p></p>
+<p>If you have only two models, one a more general version of the other, then a <a href="https://en.wikipedia.org/wiki/Likelihood-ratio_test">likelihood-ratio test</a> is appropriate. Here we compare an ovenbird model with density constant over time to one with a log-linear trend over years. </p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">LR.test</span><span class="op">(</span><span class="va">ovenbird.model.1</span>, <span class="va">ovenbird.model.D</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Likelihood ratio test for two models
+
+data:  ovenbird.model.1 vs ovenbird.model.D
+X-square = 0.83, df = 1, p-value = 0.36</code></pre>
+</div>
+</div>
+<p>There is no evidence of a trend.</p>
+</section><section id="model-selection-strategy" class="level3" data-number="14.6.3"><h3 data-number="14.6.3" class="anchored" data-anchor-id="model-selection-strategy">
+<span class="header-section-number">14.6.3</span> Model selection strategy</h3>
+<p></p>
+<p>It is almost impossible to fit and compare all plausible SECR models. A strategy is needed to find a path through the possibilities. However, the available strategies are <em>ad hoc</em> and we cannot offer strong, evidence-based advice.</p>
+<p>One strategy is to determine the best model for the detection process before proceeding to consider models for density. This is intuitively attractive.</p>
+<!-- Goal: prediction vs x -->
+<!-- The modeller should include variables of interest cf Buckland; Fletcher? -->
+<p><span class="citation" data-cites="Doherty2010">Doherty et al. (<a href="17-references.html#ref-Doherty2010" role="doc-biblioref">2010</a>)</span> used simulation to assess model selection strategies for Cormack-Jolly-Seber survival analysis. They reported that the choice of strategy had little effect on bias or precision, but could affect model weights and hence affect model-averaged estimates.</p>
+<p>We are not aware of any equivalent study for SECR. <!-- but check @McLellan2023 black bears? --></p>
+<!-- Cited by Humm and Clark 2021: Zhang, Z. 2016. Model building strategy for logistic regression: purposeful -->
+<!-- selection. Annals of Translational Medicine 4(6):111. -->
+<!-- BUT is D model independent of detection model, for Poisson? -->
+</section><section id="score-tests" class="level3" data-number="14.6.4"><h3 data-number="14.6.4" class="anchored" data-anchor-id="score-tests">
+<span class="header-section-number">14.6.4</span> Score tests</h3>
+<p></p>
+<p>Models must usually be fitted to compare them by AIC. Score tests allow models at the next level in a tree of nested models to be assessed without fitting <span class="citation" data-cites="McCrea2011">(<a href="17-references.html#ref-McCrea2011" role="doc-biblioref">McCrea &amp; Morgan, 2011</a>)</span>. Only the ‘best’ model at each level is fitted, perhaps spawning a further set of comparisons. This method is provided in <strong>secr</strong> (see <a href="https://www.otago.ac.nz/density/html/score.test.html">?score.test</a>), but it has received little attention and its limits are unknown.</p>
+</section></section><section id="sec-modelfit" class="level2" data-number="14.7"><h2 data-number="14.7" class="anchored" data-anchor-id="sec-modelfit">
+<span class="header-section-number">14.7</span> Assessing model fit</h2>
+<p></p>
+<p>Rigor would seem to require that a model used for inference has been shown to fit the data. This premise has many fishhooks. Tests of ‘goodness-of-fit’ for SECR have uniformly low power. Assumptions are inevitably breached to some degree, and we rely in practice on soft criteria (experience, judgement and the property of <a href="11-assumptions.html">robustness</a>).</p>
+<p>Nevertheless, tests of goodness-of-fit are potentially informative regarding ways a model might be improved. Early maximum likelihood and Bayesian approaches to SECR spawned different approaches to goodness-of-fit testing - the parametric bootstrap and Bayesian p-values. We present these in an updated context as this is an area of active research. Each test is introduced, along with a recent approach that attempts to bridge the divide by emulating Bayesian p-values for models fitted by maximum likelihood.</p>
+<!-- We focus on the observation model, leaving comments on the spatial distribution of AC to the end.  -->
+<section id="parametric-bootstrap" class="level3" data-number="14.7.1"><h3 data-number="14.7.1" class="anchored" data-anchor-id="parametric-bootstrap">
+<span class="header-section-number">14.7.1</span> Parametric bootstrap</h3>
+<p>If an SECR model fits a dataset then a goodness-of-fit statistic computed from the data will lie close to the median of that statistic from replicated Monte Carlo simulations. <span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="17-references.html#ref-be08" role="doc-biblioref">2008</a>)</span>, following an earlier edition of <span class="citation" data-cites="cw">Cooch &amp; White (<a href="17-references.html#ref-cw" role="doc-biblioref">2023</a>)</span>, suggested using a test based on the scaled deviance i.e.&nbsp;<span class="math inline">[-2\mathrm{log}{\hat L} + 2 \mathrm{log}L_{sat}] / \Delta df</span> where <span class="math inline">\hat L</span> is the likelihood evaluated at its maximum, <span class="math inline">L_{sat}</span> is the likelihood of the saturated model (<a href="#tbl-saturated" class="quarto-xref">Table&nbsp;<span>14.1</span></a>), and <span class="math inline">\Delta df</span> is the difference in degrees of freedom between the two. The distribution of the test statistic was estimated by a parametric bootstrap i.e.&nbsp;by simulation from the fitted model with parameters fixed at the MLE.</p>
+<div id="tbl-saturated" class="sm quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-saturated-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.1: Expressions for the saturated likelihood of conditional, full Poisson and full binomial SECR likelihoods. <span class="math inline">n_\omega</span> is the number of individuals with detection history <span class="math inline">\omega</span> and summation is over the unique histories; <span class="math inline">N</span> is the population in the area <span class="math inline">A</span> and for evaluation we use an estimate <span class="math inline">\hat N = \hat D.|A|</span>.
+</figcaption><div aria-describedby="tbl-saturated-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-sm small table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 88%">
+</colgroup>
+<thead><tr class="header">
+<th>Model</th>
+<th>Likelihood of saturated model</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>conditional</td>
+<td><span class="math inline">\log (n!) - \sum_\omega \log(n_\omega!) + \sum_\omega n_\omega \log(\frac{n_\omega}{n})</span></td>
+</tr>
+<tr class="even">
+<td>Poisson</td>
+<td><span class="math inline">n\log(n) - n - \sum_\omega \log(n_\omega!) + \sum_\omega n_\omega \log(\frac{n_\omega}{n})</span></td>
+</tr>
+<tr class="odd">
+<td>Binomial</td>
+<td><span class="math inline">n\log(\frac{n}{N}) - (N-n)\log(\frac{N-n}{N}) + \log(\frac{N!}{(N-n)!})- \sum_\omega \log(n_\omega!) + \sum_\omega n_\omega \log(\frac{n_\omega}{n})</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Saturated likelihoods are shown in <a href="#tbl-saturated" class="quarto-xref">Table&nbsp;<span>14.1</span></a> for the simplest models. There may be complications for models with groups, individual covariates etc. <span class="citation" data-cites="cw">(cf <a href="17-references.html#ref-cw" role="doc-biblioref">Cooch &amp; White, 2023, Section 5.1</a>)</span>.</p>
+</div>
+</div>
+</section><section id="bayesian-p-values" class="level3" data-number="14.7.2"><h3 data-number="14.7.2" class="anchored" data-anchor-id="bayesian-p-values">
+<span class="header-section-number">14.7.2</span> Bayesian p-values</h3>
+<p><span class="citation" data-cites="rcsg14">Royle et al. (<a href="17-references.html#ref-rcsg14" role="doc-biblioref">2014</a>)</span> (pp.&nbsp;232–243) treated the problem of assessing model fit in the context of Bayesian SECR using Bayesian p-values <span class="citation" data-cites="Gelman1996">(<a href="17-references.html#ref-Gelman1996" role="doc-biblioref">Gelman &amp; Stern, 1996</a>)</span>.</p>
+<p>In essence, Bayesian p-values compare two discrepancies: the discrepancy between the observed and expected values, and the discrepancy between simulated and expected values. A discrepancy is a scalar summary statistic for the match between two sets of counts; <span class="citation" data-cites="rcsg14">Royle et al. (<a href="17-references.html#ref-rcsg14" role="doc-biblioref">2014</a>)</span> used the Freeman-Tukey statistic <span class="citation" data-cites="Brooks2000">(e.g., <a href="17-references.html#ref-Brooks2000" role="doc-biblioref">Brooks &amp; Morgan, 2000</a>)</span> in preference to the conventional Pearson statistic. The statistic has this general form for <span class="math inline">M</span> counts <span class="math inline">y_m</span> with expected value <span class="math inline">\mathrm{E}(y_m)</span>: <span class="math inline">T = \sum_m \left[\sqrt {y_m} - \sqrt{E(y_m)}\right]^2.</span></p>
+<p>Each pair of discrepancy statistics provides a binary outcome (Was the observed discrepancy greater than the simulated discrepancy?) and these are summarised as a ‘Bayesian p value’ i.e.&nbsp;the proportion of replicates in which the observed discrepancy exceeds the simulated discrepancy. The p value is expected to be around 0.5 for a model that fits.</p>
+</section><section id="emulation-of-bayesian-p-values" class="level3" data-number="14.7.3"><h3 data-number="14.7.3" class="anchored" data-anchor-id="emulation-of-bayesian-p-values">
+<span class="header-section-number">14.7.3</span> Emulation of Bayesian p values</h3>
+<p><span class="citation" data-cites="Choo2024">Choo et al. (<a href="17-references.html#ref-Choo2024" role="doc-biblioref">2024</a>)</span> proposed novel simulation-based tests for SECR models fitted by maximum likelihood. Their idea was to emulate Bayesian p values by repeatedly –</p>
+<ol type="1">
+<li>resampling density and detection parameters from a multivariate normal distribution based on the estimated variance-covariance matrix</li>
+<li>conditioning on the known (detected individuals) and locating each according to its post-hoc probability distribution (fxi in <strong>secr</strong>), using the resampled detection parameters</li>
+<li>simulating additional individuals from the post-hoc distribution of unobserved individuals, as required to make up the resampled density, also using the resampled detection parameters</li>
+<li>computing the expected values of chosen summary statistics (e.g.&nbsp;margins of the capthist array)</li>
+<li>computing two discrepancy statistics (e.g.&nbsp;Freeman-Tukey) for each realisation: observed vs expected and simulated vs expected.</li>
+</ol>
+<p>The explicit ‘point of difference’ of the <span class="citation" data-cites="Choo2024">Choo et al. (<a href="17-references.html#ref-Choo2024" role="doc-biblioref">2024</a>)</span> approach is the propagation of uncertainty in the parameter values instead of relying on the central estimates for a parametric bootstrap. This alone would not be expected to increase the power of the test over a conventional test, and might even reduce power. However, the comparison of observed vs expected and simulated vs expected is performed separately for each realisation of the parameters, <em>including the distribution of AC</em>, and this may add power (think of a paired t-test).</p>
+</section><section id="implementation-in-secr" class="level3" data-number="14.7.4"><h3 data-number="14.7.4" class="anchored" data-anchor-id="implementation-in-secr">
+<span class="header-section-number">14.7.4</span> Implementation in <strong>secr</strong>
+</h3>
+<p>The parametric bootstrap is implemented in <code><a href="https://rdrr.io/pkg/secr/man/secr.test.html">secr::secr.test</a></code> and the <span class="citation" data-cites="Choo2024">Choo et al. (<a href="17-references.html#ref-Choo2024" role="doc-biblioref">2024</a>)</span> emulation of Bayesian p-values is implemented in <code><a href="https://rdrr.io/pkg/secr/man/MCgof.html">secr::MCgof</a></code>. We have been unable to find a convincing application of goodness-of-fit to SECR data. Rather than promote either method we prefer to await developments.</p>
+<!-- ### Comparison of methods for Tennessee black bears -->
+<!-- We first fit two models to the Tennessee black bear dataset of J. Laufenberg et al. that is included in **secr**: -->
+<!-- ```{r} -->
+<!-- #| label: black bear models -->
+<!-- #| cache: true -->
+<!-- #| code-fold: true -->
+<!-- #| code-summary: code for fitting black bear models -->
+<!-- #| warning: false -->
+<!-- # fit null and learned response models -->
+<!-- # restrict habitat to Great Smoky Mountains NP -->
+<!-- # a binomial (fastproximity) model cannot be used with a learned response -->
+<!-- msk <- make.mask(traps(blackbearCH), buffer = 6000, type = 'trapbuffer', poly = GSM)   -->
+<!-- baseargs <- list(capthist = blackbearCH, mask = msk, trace = FALSE,  -->
+<!--                  details = list(fastproximity = FALSE), ncores = 8) -->
+<!-- fits  <- list.secr.fit(model = list(g0~1, g0~bk), constant = baseargs,  -->
+<!--                        names = c('null','bk')) -->
+<!-- ``` -->
+<!-- There is strong support for a site-specific learned response (model bk): -->
+<!-- ```{r} -->
+<!-- #| label: black bear AIC -->
+<!-- #| cache: false -->
+<!-- #| eval: true -->
+<!-- AIC(fits) -->
+<!-- ``` -->
+<!-- #### Parametric bootstrap -->
+<!-- Conventional goodness-of-fit tests for SECR models fitted by MLE may be performed with the function `secr.test`. However, the results in @fig-testresults are hard to reconcile with the AIC comparison: neither model registers lack of fit. -->
+<!-- ```{r} -->
+<!-- #| label: black bear secr.test -->
+<!-- #| cache: true -->
+<!-- #| eval: true -->
+<!-- tests <- lapply(fits, secr.test,  fit = TRUE, nsim = 199, trace = 0) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- #| label: fig-testresults -->
+<!-- #| eval: true -->
+<!-- #| echo: false -->
+<!-- #| fig-width: 8 -->
+<!-- #| fig-height: 3.5 -->
+<!-- #| out.width: "95%" -->
+<!-- #| fig-cap: | -->
+<!-- #|   Goodness-of-fit statistics for black bear data and models (red line) compared  -->
+<!-- #|   to distributions simulated from fitted null (g0~1) and learned response (g0~bk) -->
+<!-- #|   models. p-values refer to the  -->
+<!-- #|   quantile of the observed statistic in the simulated distribution. -->
+<!-- par(mfrow=c(1,2)) -->
+<!-- plot(tests$null, xlim = c(0,30), xlab = 'deviance / residual df', -->
+<!--     main = paste0('g0~1, p = ', tests$null$output$p)) -->
+<!-- plot(tests$bk, xlim = c(0,30), xlab = 'deviance / residual df', -->
+<!--     main = paste0('g0~bk, p = ', tests$bk$output$p)) -->
+<!-- ``` -->
+<!-- #### Emulated Bayesian p values -->
+<!-- The @Choo2024 tests are provided in the new **secr** function `MCgof`:  -->
+<!-- ```{r} -->
+<!-- #| label: black bear MCgof -->
+<!-- #| cache: true -->
+<!-- gof <- lapply(fits, MCgof, nsim = 100, ncores = 4, quiet = TRUE) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- #| label: fig-discrepancies -->
+<!-- #| eval: true -->
+<!-- #| echo: false -->
+<!-- #| fig.width: 8 -->
+<!-- #| fig.height: 6 -->
+<!-- #| out.width: "95%" -->
+<!-- #| fig-cap: | -->
+<!-- #|     Discrepancy plots for black bear models -->
+<!-- par(mfrow=c(2,3), las=1, oma=c(0,0,1,0), mgp=c(2.4,0.6,0), pty='s', cex=0.9, -->
+<!--     mar=c(4,4,2,2)) -->
+<!-- plot (gof[[1]]) -->
+<!-- mtext(side=3, outer = TRUE, line = -0.5, adj = 0.03, 'a. Null model', cex=1.05) -->
+<!-- plot (gof[[2]]) -->
+<!-- mtext(side=3, outer = TRUE, line=-16.4, adj = 0.03, 'b. bk model', cex=1.05) -->
+<!-- ``` -->
+<!-- These results are also hard to interpret. Although fitting a detector-specific  -->
+<!-- learned response has improved fit with respect to the counts per animal and detector (criterion yik), this appears to come at the price of overfitting variation among detectors (criterion yk). -->
+<!-- We note that the margins chosen (yik, yi, yk) may fail to capture learned responses, which imply animal-specific changes in the time dimension (yij). -->
+<!-- ### Spatial randomness -->
+<!-- The question of complete spatial randomness is of limited importance, as estimates of both average density and its sampling variance are now understood to be robust to inhomogeneity of a Poisson process for AC [@Efford2024]. @rcsg14 addressed the problem of spatial randomness, but acknowledged that their proposed solutions, based on binning the state space, were subject to problems regarding bin size and the arbitrary extent of the state space.  -->
+<!-- Information on the spatial distribution of AC is provided only by the spatial pattern of detections. A straightforward test can therefore be performed by comparing the observed and expected counts of the number of individuals detected at each detector. Fletcher's c-hat is a suitable statistic, and its distribution under the model can be determined by a parametric bootstrap. -->
+
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;14.1: Simulated AC of black bears in Great Smoky Mountains National Park, USA. The number of AC (2092) was predicted from a model fitted to hair snags (red crosses) in one sector of the park. The habitat mask used to fit the model is shaded.</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-be08" class="csl-entry" role="listitem">
+Borchers, D. L., &amp; Efford, M. G. (2008). Spatially explicit maximum likelihood methods for capture-recapture studies. <em>Biometrics</em>, <em>64</em>, 377–385.
+</div>
+<div id="ref-Brooks2000" class="csl-entry" role="listitem">
+Brooks, C., S. P., &amp; Morgan, B. J. T. (2000). Bayesian animal survival estimation. <em>Statistical Science</em>, <em>15</em>, 357–376.
+</div>
+<div id="ref-Buckland1997" class="csl-entry" role="listitem">
+Buckland, S. T., Burnham, K. P., &amp; Augustin, N. H. (1997). Model selection: An integral part of inference. <em>Biometrics</em>, <em>53</em>(2), 603. <a href="https://doi.org/10.2307/2533961">https://doi.org/10.2307/2533961</a>
+</div>
+<div id="ref-Burnham2002" class="csl-entry" role="listitem">
+Burnham, K. P., &amp; Anderson, D. R. (2002). <em>Model selection and multimodel inference: A practical information-theoretic approach</em>. Springer.
+</div>
+<div id="ref-Choo2024" class="csl-entry" role="listitem">
+Choo, Y. R., Sutherland, C., &amp; Johnston, A. (2024). A monte carlo resampling framework for implementing goodness‐of‐fit tests in spatial capture‐recapture models. <em>Methods in Ecology and Evolution</em>. <a href="https://doi.org/10.1111/2041-210x.14386">https://doi.org/10.1111/2041-210x.14386</a>
+</div>
+<div id="ref-cw" class="csl-entry" role="listitem">
+Cooch, E., &amp; White, G. (Eds.). (2023). <em>Program MARK: A gentle introduction.</em> (23rd ed.). <a href="http://www.phidot.org/software/mark/docs/book/">http://www.phidot.org/software/mark/docs/book/</a>
+</div>
+<div id="ref-Doherty2010" class="csl-entry" role="listitem">
+Doherty, P. F., White, G. C., &amp; Burnham, K. P. (2010). Comparison of model building and selection strategies. <em>Journal of Ornithology</em>, <em>152</em>(S2), 317–323. <a href="https://doi.org/10.1007/s10336-010-0598-5">https://doi.org/10.1007/s10336-010-0598-5</a>
+</div>
+<div id="ref-ef13" class="csl-entry" role="listitem">
+Efford, M. G., &amp; Fewster, R. M. (2013). Estimating population size by spatially explicit capture-recapture. <em>Oikos</em>, <em>122</em>, 918–928.
+</div>
+<div id="ref-Fletcher2019" class="csl-entry" role="listitem">
+Fletcher, D. (2019). <em>Model averaging</em>. Springer.
+</div>
+<div id="ref-Gelman1996" class="csl-entry" role="listitem">
+Gelman, M., A., &amp; Stern, H. (1996). Posterior predictive assessment of model fitness via realized disrepancies. <em>Statistica Sinica</em>, <em>6</em>, 733–807.
+</div>
+<div id="ref-Hurvich1989" class="csl-entry" role="listitem">
+Hurvich, C. M., &amp; Tsai, C.-L. (1989). Regression and time series model selection in small samples. <em>Biometrika</em>, <em>76</em>(2), 297–307. <a href="https://doi.org/10.1093/biomet/76.2.297">https://doi.org/10.1093/biomet/76.2.297</a>
+</div>
+<div id="ref-Kendeigh1944" class="csl-entry" role="listitem">
+Kendeigh, S. C. (1944). Measurement of bird populations. <em>Ecological Monographs</em>, <em>14</em>, 67–106. <a href="https://doi.org/10.2307/1961632">https://doi.org/10.2307/1961632</a>
+</div>
+<div id="ref-McCrea2011" class="csl-entry" role="listitem">
+McCrea, R. S., &amp; Morgan, B. J. T. (2011). Multistate mark-recapture model selection using score tests. <em>Biometrics</em>, <em>67</em>, 234–241. <a href="https://doi.org/10.1111/j.1541-0420.2010.01421.x">https://doi.org/10.1111/j.1541-0420.2010.01421.x</a>
+</div>
+<div id="ref-rcsg14" class="csl-entry" role="listitem">
+Royle, J. A., Chandler, R. B., Sollmann, R., &amp; Gardner, B. (2014). <em>Spatial capture-recapture</em>. Academic Press.
+</div>
+</div>
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+      <a href="./08-habitat.html" class="pagination-link" aria-label="Habitat mask">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./08-multisession.html" class="pagination-link" aria-label="Multiple sessions">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":false});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+</body></html>
