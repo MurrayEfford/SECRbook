@@ -22,7 +22,6 @@ rsconnect
 ^.*\.Rproj$
 todo.txt
 /.quarto/
-/docs/
 /_site/
 *_cache
 *_files
