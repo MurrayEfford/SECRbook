@@ -26,24 +26,26 @@ For assumptions that cannot be met by better design or customized modelling, we 
 <!-- We saw this with the choice of [detection function](#sec-detectfn) in @sec-detection @fig-choicedfparmplot.  -->
 We care most about estimates of population density, which may be robust even when estimates of other parameters are not. 
 
-Our main criterion will be the relative bias of an estimator, abbreviated RB and defined for an estimator $\hat \theta$ of an arbitrary parameter $\theta$ as 
+Our main criterion will be the relative bias of an estimator, abbreviated RB and defined for an estimator $\hat \theta$ of any arbitrary parameter $\theta$ as 
 $$
 \mathrm{RB}(\hat \theta) = \frac{\mathrm{E} (\hat \theta - \theta)}{\theta}.
 $$
-For SECR, the expected values $\mathrm{E} (\hat \theta - \theta)$ are invariably estimated by obtaining $\hat \theta$ for a large sample of simulated datasets.
+Robustness is estimated in practice by obtaining $\hat \theta$ for a large sample of simulated datasets. Simulation allows the statistician to control precisely any deviation from the assumptions. There have now been several simulation studies that we review below. We supplement these with new simulations that we outline below and describe in full in the GitHub repo [MurrayEfford/secr-simulations]. 
 
 Breaches of assumptions may also impair estimates of sampling variance, leading to poor coverage of confidence intervals even when an estimator is unbiased. 'Poor coverage' here means that the true value lies outside the computed confidence interval more often (or sometimes less often) than expected by chance given the nominal level (e.g. 95%). Coverage of simulated intervals is therefore a further criterion.
 
-Another approach is to test specifically for compliance with each assumption. This was popular in the past [@obwa78], but has lost ground along with the declining credibility of null hypothesis testing, the growth of modelling frameworks, and reliance on the inherent robustness of the spatial methods. 
+Simulations cannot span the full range of scenarios, so the results are only indicative. Ideally we would supplement simulations with field validations of the method, but as we see in @sec-validation these are difficult to execute and interpret.
+
+Another approach is to test whether a particular dataset is consistent with each assumption. This was popular in the past [@obwa78], but has lost ground along with the declining credibility of null hypothesis testing, the growth of modelling frameworks, and reliance on the inherent robustness of the spatial methods. 
 
 <!-- Several authors have found SECR estimates of density to be generally robust [@Royle2015, @Sollmann2024].   -->
 <!-- > Similar to traditional closed CMR models (Otis et al., 1978; Williams et al., 2002), ignoring temporal variation in p0 in SCR models had little effect on estimates of abundance, the density-covariate relationship, or space use (σ). As such, this study provides yet more evidence that density estimates from SCR models are robust to various forms of mis-specification of the detection model. They have been shown to be robust to unmodeled spatial heterogeneity in detection probability, so long as that heterogeneity is not spatially autocorrelated (Efford et al., 2013; Bischof et al., 2017; Moqanaki et al., 2021), and to a range of misspecifications of the detection function (Efford, 2004; Royle et al., 2014; Dey et al., 2022). In the latter case, though, inference about σ can be strongly affected by choosing the wrong detection function (Dey et al., 2022). In contrast, I found that estimates of σ were robust to ignoring temporal variation in detection. As σ in most applications relates to a stationary activity center and is modeled as constant across occasions, it appears sufficient to take into account spatial variation in p0 to obtain unbiased estimates of σ. It is conceivable that in closed SCR models where activity centers are allowed to move (Royle et al., 2016), not accounting for temporal variation in p0 may affect estimates of σ. Exploring this was beyond the scope of this study. -->
 
-Robustness to the failure of a specific assumption is easily assessed by simulation. There have now been several simulation studies that we review below. We supplement these with new simulations that we outline next and describe in full in the GitHub repo [MurrayEfford/secr-simulations]. Simulations cannot span the full range of scenarios, so the results are only indicative. 
+<!-- Robustness to the failure of a specific assumption is easily assessed by simulation.  -->
 
 <!-- ### New simulations {#sec-newsimulations .unnumbered} -->
 
-Our base scenario uses a square grid of 64 binary proximity detectors operated for 10 occasions; detector spacing is $2\sigma$ for a hazard half-normal detection function with $\lambda_0 = 0.1$. A population with density $0.5\sigma^{-2}$ is distributed uniformly at random in a region extending $4\sigma$ beyond the detectors. We report relative bias of density estimates and detection parameters under a null model -- one with uniform density and no additional effects on detection -- except where stated. The range |RB| < 10% is shaded on the graphs, and bars indicate 95\% confidence limits, although these are often obscured by the plotted points. Off-scale values are flagged with an asterisk (*).
+Our simulations use a base scenario of sampling with a square grid of 64 binary proximity detectors operated for 10 occasions; detector spacing is $2\sigma$ for a hazard half-normal detection function with $\lambda_0 = 0.1$. A population with density $0.5\sigma^{-2}$ is distributed uniformly at random in a region extending $4\sigma$ beyond the detectors. We report relative bias of density estimates and detection parameters under a null model -- one with uniform density and no additional effects on detection -- except where stated. The range |RB| < 10% is shaded on the graphs, and bars indicate 95\% confidence limits, although these are often obscured by the plotted points. Off-scale values are flagged with an asterisk (*).
 
 ## Assumption 1: Population closed  {#sec-popnclosed .unnumbered}
 \index{Assumptions!population closure}
@@ -109,13 +111,13 @@ loci to distinguish all individuals in the sampled population, and genotyping is
 
 Natural marks such as coat patterns are prone to identification problems that parallel those from genotyping: individuals may not be distinguishable, leading to shadow effects, or some may be mis-recorded, leading to spurious ghost individuals. The robustness of estimates will depend on the likely magnitude of each effect. We address the bias for varying frequencies of shadow and ghost effects below, with particular reference to genotyping. 
 
-A single camera may photograph only the left or right flank of a passing animal. Owing to the asymmetry of patterns, identity cannot be inferred conclusively from a single photograph. This identification problem can be addressed in the field by using paired cameras, so that both flanks are recorded [Karanth1998]. There may still be a minority of single-sided photographs, and probabilistic models have been suggested to incorporate these [@Augustine2018].
+A single camera may photograph only the left or right flank of a passing animal. Owing to the asymmetry of patterns, identity cannot be inferred conclusively from a single photograph. This identification problem can be addressed in the field by using paired cameras, so that both flanks are recorded [@Karanth1998]. There may still be a minority of single-sided photographs, and probabilistic models have been suggested to incorporate these [@Augustine2018].
 
 ### Assumption 2a. Natural marks sufficiently diverse {#sec-shadow .unnumbered}
 
 The ability to distinguish individuals is measured by the probability of identity (PI). This is the probability that two individuals drawn at random from the population will appear the same, i.e. have the same genotype at the loci examined. Identity of genotypes was considered by @Mills2000 to cause a "shadow effect", as the existence of some individuals is concealed. The problem for SECR is even greater than in non-spatial capture--recapture. A group of two or more indistinguishable individuals becomes a 'super individual' whose detections spread over a larger area than each occupies individually.
 
-Simulations in @fig-MID3figure and @fig-MID4figure illustrate the potential impact of shadow effects on SECR estimates. In a scenario with about 110 detected individuals, PI = $10^{-3}$ resulted in relative bias of --20\% in density estimates. This is largely due to the inflated spatial footprint of each super individual, which causes positive bias in estimates of the spatial scale of detection $\sigma$.
+Simulations in @fig-MID3figure and @fig-MID4figure illustrate the potential impact of shadow effects on SECR estimates. In a scenario with about 110 detected individuals, PI = $10^{-3}$ resulted in relative bias of $-20\%$ in density estimates. This is largely due to the inflated spatial footprint of each super individual, which causes positive bias in estimates of the spatial scale of detection $\sigma$.
 
 ```{r}
 #| label: fig-MID3figure

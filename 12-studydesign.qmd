@@ -18,20 +18,20 @@ Algorithmic optimisation of detector locations was described by @drns21 and @dbs
 
 We list here some minimum data requirements that might be labelled "assumptions" but are more fundamental. They should be addressed by appropriate study design.
 
-1. **Sampling representative of the area of interest** 
+**Requirement 1. Sampling representative of the area of interest** 
 
-This requirement is important and easy to overlook. The problem takes care of itself when detectors are placed throughout the area of interest, exposing all individuals to a similar probability of detection. This is usually too costly when the area of interest is large. Sub-sampling is then called for, and we consider the options later.
+This requirement is important and easy to overlook. The problem takes care of itself when detectors are placed evenly throughout the area of interest, exposing all individuals to a similar probability of detection. This is usually too costly when the area of interest is large. Sub-sampling is then called for, and we consider the options later.
 
-2. **Many individuals detected more than once **
+**Requirement 2. Many individuals detected more than once **
 
-This requirement is common to all capture--recapture methods. Estimation of detection parameters conditions on the first detection, and detections after the first are needed to estimate a non-zero detection rate. The quantitative question (How many is enough?) is addressed later. 
+This requirement is common to all capture--recapture methods. Estimation of detection parameters conditions on the first detection, and detections after the first are needed to estimate a non-zero detection rate. The question 'How many is enough?' is addressed later. 
 
-3. **Spread adequate to estimate spatial scale of detection**
+**Requirement 3. Spread adequate to estimate spatial scale of detection**
 
-By 'spread' we mean the spatial extent of the *detections of individual*. The spread of detections must be adequate in two respects:
+By 'spread' we mean the spatial extent of the *detections of an individual*. The spread of detections must be adequate in two respects:
 
-a. some individuals are detected at more than one detector, and
-b. detections of an individual should be localised to part of the detector array.
+Requirement 3a. Some individuals are detected at more than one detector, and  
+Requirement 3b. Detections of an individual should be localised to part of the detector array.
 
 Adequate spread is achieved by matching the size and spacing of a detector array to the scale of movement, as shown schematically in @fig-goldilocks3.
  
@@ -172,7 +172,7 @@ The extent ratio does not provide a precise criterion because it combines two so
 ## The $n-r$ tradeoff
 \index{Study design!n-r tradeoff}
 
-The performance of the SECR density estimator depends on both the number of individuals $n$ and the number of re-detections $r$. However, we cannot maximise their expected values simultaneously. E(*n*) is greatest when detectors are far apart and each detector samples a unique set of individuals (AC). For binary proximity detectors E(*r*) is greatest when detectors are clumped together and declines monotonically with spacing; for multi-catch traps, E(*r*) increases and then declines (@fig-nrmplot).
+The performance of the SECR density estimator depends on both the number of individuals $n$ and the number of re-detections $r$. However, we cannot maximise their expected values simultaneously. E(*n*) is greatest when detectors are far apart and each detector samples a different set of individuals (AC). For binary proximity detectors E(*r*) is greatest when detectors are clumped together and declines monotonically with spacing; for multi-catch traps, E(*r*) increases and then declines (@fig-nrmplot).
 
 ```{r}
 #| label: fig-nrmplot
@@ -354,7 +354,7 @@ If subgrids are far apart then few individuals will be caught on more than one s
 source('figures/cluster3x3.R')
 ```
 
-Truncation of subgrids at the edge of the region of interest reduces the size and value of marginal clusters. Two other geometrical designs avoid this problem: a lacework design (available in @R-secr) and a spatial coverage design,following @Walvoort2010.
+Truncation of subgrids at the edge of the region of interest reduces the size and value of marginal clusters. Two other geometrical designs avoid this problem: a lacework design (available in @R-secr) and a spatial coverage design, following @Walvoort2010.
 
 #### Lacework {#sec-lacework .unnumbered}
 \index{Study design!lacework}
