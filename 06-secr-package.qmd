@@ -165,9 +165,7 @@ By default, each 'real' parameter is assumed to be constant over time, space and
 
 ### `CL` -- conditional vs full likelihood {#CL} \index{secr.fit!CL}
 
-'CL' switches between maximizing the likelihood conditional on $n$ (TRUE) or the full likelihood (FALSE). The conditional option is faster because it does not estimate density. Density (assumed uniform) may be estimated from the conditional fit with `derived`[^anyfit]. For Poisson $n$ (the default), the estimate is identical within numerical error to that from the full likelihood. The alternative (binomial $n$) is obtained by setting the [details argument](#details) 'distribution = "binomial"'.
-
-[^anyfit]: This applies even with a full-likelihood fit.
+'CL' switches between maximizing the likelihood conditional on $n$ (TRUE) or the full likelihood (FALSE). The conditional option is faster because it does not estimate absolute density. Uniform absolute density may be estimated from the conditional fit, or indeed any fit, with the `derived` method. For Poisson $n$ (the default), the estimate is identical within numerical error to that from the full likelihood. The alternative (binomial $n$) is obtained by setting the [details argument](#details) 'distribution = "binomial"'. Relative density (density modelled as a function of covariates, without an intercept) may be modelled with `CL = TRUE` in recent versions (see sections on the [theory](05-theory-special-topics.qmd#relativedensity1) and [implementation](08-density-model#relativedensity2) of relative density).
 
 ### `method` -- maximization algorithm \index{secr.fit!method}
 
@@ -184,7 +182,7 @@ Numerical maximization has some implications for the user. Computation may be sl
 
 On processors with multiple cores it is possible to speed up computation by using cores in parallel. In  this happens automatically in `secr.fit` and a few other functions using the multi-threading paradigm of **RcppParallel** [@R-RcppParallel]. The number of threads may be set directly with the 'ncores' argument or with the separate function `setNumThreads`. Either way, the number of threads is stored in the environment variable RCPP_PARALLEL_NUM_THREADS.
 
-### `details` -- miscellaneous arguments {#details} \index{secr.fit!details}
+### `details` -- miscellaneous arguments \index{secr.fit!details}  {#details}
 
 Many minor or infrequently used arguments are grouped as 'details'. We mention only the most important ones here:
 

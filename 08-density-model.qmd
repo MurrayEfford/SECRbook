@@ -3,12 +3,12 @@
 
 Spatially explicit capture--recapture models allow for population density to vary over space [@be08]. Density is the intensity of a spatial Poisson process for activity centres. Models for density may include spatial covariates (e.g., vegetation type, elevation) and spatial trend. 
 
-In @sec-detection we introduced [linear submodels](08-detection-model.qmd#linear-submodels) for detection parameters. Here we consider SECR models in which the population density at any point, considered on the link scale, is also a linear function of $K$  covariates[^densitydesignmatrix]. For density this means 
+In @sec-detection we introduced [linear submodels](08-detection-model.qmd#linear-submodels) for detection parameters. Here we consider SECR models in which the population density at any point, considered on the link scale, is also a linear function of $V$  covariates[^densitydesignmatrix]. For density this means 
 
 \begin{equation}
-D(\mathbf x; \phi) = f^{-1}[\phi_0 + \sum_{k=1}^K c_k(\mathbf x) \, \phi_k],
+D(\mathbf x; \phi) = f^{-1}[\phi_0 + \sum_{v=1}^V c_v(\mathbf x) \, \phi_v],
 \end{equation}
-where $c_k(\mathbf x)$ is the value of the $k$-th covariate at point $\mathbf x$, $\phi_0$ is the intercept, $\phi_k$ is the coefficient for the $k$-th covariate, and $f^{-1}$ is the inverse of the link function. Commonly we model the logarithm of density and $f^{-1}$ is the exponential function. 
+where $c_v(\mathbf x)$ is the value of the $v$-th covariate at point $\mathbf x$, $\phi_0$ is the intercept, $\phi_v$ is the coefficient for the $v$-th covariate, and $f^{-1}$ is the inverse of the link function. Commonly we model the logarithm of density and $f^{-1}$ is the exponential function. 
 
 [^densitydesignmatrix]: We can also express the model as before $\mathbf y = \mathbf X \pmb {\beta}$, where $\mathbf X$ is the design matrix, $\pmb{\beta}$ is a vector of coefficients, and $\mathbf y$ is the resulting vector of densities on the link scale. Rows of $\mathbf X$ and elements of $\mathbf y$ correspond to points on the habitat mask, possibly replicated in the case of group and session effects.
 
@@ -17,7 +17,6 @@ Although $D(\mathbf x;\phi)$ is often a smooth function, in **secr** we evaluate
 A density model $D(\mathbf x;\phi)$ is specified in the 'model' argument of `secr.fit`[^footnote6a]. Spatial covariates, if any, are needed for each mask point; they are stored in the 'covariates' attribute of the mask. Results from fitting the model (including the estimated coefficients $\phi$) are saved in an object of class 'secr'. To visualise a fitted
 density model we first evaluate it at each point on a mask with the function `predictDsurface` to create an object of class 'Dsurface'. A Dsurface is a mask with added density data, and plotting a Dsurface is like plotting a mask covariate.
 
-To model variation in a density surface we need to maximize the full likelihood. Maximizing the conditional likelihood (conditional on $n$, the number of observed individuals) is a way to estimate the observation model; to go from there to a Horvitz-Thompson estimate of density we assume that density is homogeneous. Here we are concerned with inhomogeneous models that are all fitted with `CL = FALSE` in `secr.fit`.
 <br>
 
 | Formula        | Effect                                   |
@@ -27,6 +26,10 @@ To model variation in a density surface we need to maximize the full likelihood.
 | D $\sim$ session | session-specific density |
 
 : Some examples of models for density in `secr.fit`.  {#tbl-Dexamples .sm}
+
+## Absolute vs relative density
+
+The conventional approach to density surfaces is to fit a model of absolute density by maximizing the 'full' likelihood. Until recently, maximizing the likelihood [conditional on $n$](05-theory-special-topics.qmd#conditional), the number detected, was thought to work only when density was assumed to be uniform (homogeneous), placing it outside the scope of this chapter. However, recent extensions to **secr** allow models of *relative* density to be fitted by maximizing the conditional likelihood (`CL = TRUE` in `secr.fit`), and this has some advantages [@Efford2025]. Relative density differs from absolute density by a constant factor. This chapter stresses modelling absolute density and keeps [relative density](#relativedensity2) for a section at the end.
 
 [^footnote6a]: It may also be specified in a user-written function supplied to
 `secr.fit` (see @sec-densityappendix), but you are unlikely to need this.
@@ -143,7 +146,7 @@ The predictors 'group' and 'session' behave for D as they do for other real para
 
 The default link for D is 'log'. It is equally feasible in most cases to choose 'identity' as the link (see the `secr.fit` argument 'link'), and for the null model D $\sim$ 1 the estimate will be the same to numerical accuracy, as will estimates involving only categorical variables (e.g., session). However, with an 'identity' link the usual (asymptotic) confidence limits will be symmetrical (unless truncated at zero) rather than asymmetrical. In models with continuous predictors, including spatial trend surfaces, the link function will affect the result, although the difference may be small when the amplitude of variation on the surface is small. Otherwise, serious thought is needed regarding which model is biologically more appropriate: logarithmic or linear.
 
-The 'identity' link may cause problems when density is very small or very large because, by default, the maximization method assumes all parameters have similar scale (e.g., `typsize = c(1,1,1)` for default constant models). Setting `typsize` manually in a call to `secr.fit` can fix the problem and speed up fitting. For example, if density is around 0.001/ha (10 per 100 km$^2$) then call `secr.fit(..., typsize = c(0.001,1,1))` (`typsize` has one element for each beta parameter). See @sec-densityappendix for more on link functions.
+The 'identity' link may cause problems when density is very small or very large because, by default, the maximization method assumes all parameters have similar scale (e.g., `typsize = c(1,1,1)` for default constant models). Setting `typsize` manually in a call to `secr.fit` can fix the problem and speed up fitting. For example, if density is around 0.001/ha (10 per 100 km$^2$) then call `secr.fit(..., typsize = c(0.001,1,1))` (`typsize` has one element for each beta parameter). Problems with the identity link mostly disappear when modelling relative density (`CL = TRUE`) because coefficients are automatically scaled by the intercept. See @sec-densityappendix for more on link functions.
 
 You may wonder why `secr.fit` is ambivalent regarding the link function: link functions have seemed a necessary part of the machinery for capture--recapture modelling since Lebreton et al. (1992). Their key role is to keep the 'real' parameter within feasible bounds (e.g., 0-1 for probabilities). In `secr.fit` any modelled value of D that falls below zero is truncated at zero (of course this condition will not arise with a log link).
 
@@ -402,7 +405,7 @@ Avoid using '[' to extract subsets from mask, capthist and other **secr** object
 
 Do you really want to model density on the log scale? If not, change the link.
 
-## This is not a density surface
+## This is not a density surface {#not-a-density-surface}
 \index{Density surface!not a}
 
 The surfaces we have fitted involve inhomogeneous Poisson models for the distribution of animal home range centres. The models have parameters that determine the relationship of expected density to location or to habitat covariates. 
@@ -468,9 +471,30 @@ See @Durbach2024 for further critique.
 ## Relative density {#relativedensity2}
 \index{Density surface!relative}
 
-In rare cases it is useful to model the relative density of tagged animals. This is the best that can be done with data for which the tagged sample was not collected in a way that allows the initial detections to be modelled spatially. One scenario involves acoustic telemetry or other automated detection for which the only animals at risk of detection are those previously marked (cf resighting data, in which unmarked animals are detected and counted, but not identified).
+Theory for relative density models was given [earlier](03-theory.qmd#relativedensity1) (see also [Efford2025]). A spatial model for relative density is fitted in **secr** by setting `CL = TRUE` and providing a model for D in the call to `secr.fit` (**secr** $\ge$ 5.2.0). For example
 
-The theory for relative density models was given [earlier](03-theory.qmd#relativedensity1). A spatial model for relative density is fitted in **secr** by setting `details = list(relativeD = TRUE)` in the call to `secr.fit` (**secr** $\ge$ 4.6.8). For example
+```{r}
+#| label: relativeD
+#| cache: true
+#| warning: false
+fitrd1 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, 
+    trace = FALSE, model = D ~ x + y + x2 + y2 + xy, CL = TRUE)
+options(digits = 4)
+coef(fitrd1)[,1:2]
+# compare coefficients from full fit:
+coef(fits$Dxy2)[1:2]
+```
+
+The relative density model is fitted by maximizing the likelihood conditional on $n$ and has one fewer coefficients than the absolute density model. Estimates of other coefficients are the same within numerical error (log link) or are scaled by the intercept (identity link). 
+
+The density intercept and other coefficients may be retrieved with the function `derivedDcoef`:
+
+```{r}
+#| label: relativeD2
+derivedDcoef(fitrd1) # delta-method variance suppressed as unreliable
+```
+
+To plot the full density surface it is first necessary to infer the missing intercept. This is done automatically by the function `derivedDsurface`:
 
 ```{r}
 #| label: fig-relativeD
@@ -479,18 +503,17 @@ The theory for relative density models was given [earlier](03-theory.qmd#relativ
 #| fig-width: 6
 #| fig-height: 5
 #| fig-cap: |
-#|   Relative possum density: quadratic surface relative density fit, assuming 
-#|   uniform probability of tagging.
-fitrd1 <- secr.fit(capthist = OVpossumCH[[1]], mask = ovmask, 
-    trace = FALSE, model = D ~ x + y + x2 + y2 + xy, details = 
-    list(relativeD = TRUE))
-plot(predictDsurface(fitrd1), title = 'Relative D')
-plot(traps(OVpossumCH[[1]]), add = TRUE)
+#|   Possum density derived from quadratic relative density surface. Contour lines are from the previous full fit.
+par(mar = c(1,6,1,8))
+derivedD <- derivedDsurface(fitrd1)
+plot(derivedD, plottype = "shaded", poly = FALSE, breaks = 
+      seq(0,22,2), title = "Density / ha", text.cex = 1)
+plot(surfaceDxy2, plottype = "contour", poly = FALSE, breaks = 
+    seq(0,22,2), add = TRUE)
+lines(leftbank)
 ```
 
-Densities are given relative to the intercept of the density model (assigned the arbitrary value 1.0). Absolute densities are not available because the model is fitted by maximizing the likelihood conditional on $n$. The relative density model has one fewer coefficients than the absolute density model.
-
-The relative density in @fig-relativeD matches the absolute density in @fig-OVsurface. This will not be the case if the relative density model is fitted to data from animals tagged elsewhere or on a subset of the area. Tagging then imposes differential spatial weighting that must be made explicit in the model to recover the correct pattern of density in relation to covariates. 
+The density in @fig-relativeD nearly matches the absolute density in @fig-OVsurface. This will not be the case if the relative density model is fitted to data from animals tagged elsewhere or on a subset of the area. Tagging then imposes differential spatial weighting that must be made explicit in the model to recover the correct pattern of density in relation to covariates. One scenario involves acoustic telemetry or other automated detection for which the only animals at risk of detection are those previously marked (cf resighting data, in which unmarked animals are detected and counted, but not identified).
 
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
 [secr-tutorial.pdf]: https://www.otago.ac.nz/density/pdfs/secr-tutorial.pdf

@@ -134,6 +134,12 @@ text(620, 6.4, 'D2')
 
 ## More on link functions {#sec-linkappendix}
 
+The density model for $V$ covariates with an identity link is defined as 
+
+$$
+D(\mathbf x |  \phi) = \mathrm{max} [\beta_0 + \sum_{v=1}^V \beta_v c_v(\mathbf x), 0].
+$$
+
 From **secr** 4.5.0 there is a scaled identity link 'i1000' that multiplies each real parameter value by 1000. Then `secr.fit(..., link = list(D = 'i1000'))` is a fast alternative to specifying `typsize` for low absolute density.
 
 Going further, you can even define your own *ad hoc* link function. To do this, provide the following functions in your workspace (your name 'xxx' combined with standard  prefixes) and use your name to specify the link:

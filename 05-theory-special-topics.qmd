@@ -62,29 +62,31 @@ The variance from @eq-varHT is on the natural scale, and the Wald confidence int
 ## Relative density {#relativedensity1}
 \index{Density surface!relative}
 
-Conditioning on $n$ *without* requiring uniform density as in the previous section leads to another result that is sometimes useful. We may be concerned to estimate relative density (the distribution of AC in relation to habitat covariates) rather than absolute density. Then we can discard the first factor in @eq-L and maximize a likelihood based on the second factor alone
+Conditioning on $n$ *without* requiring uniform density as in the previous section leads to another result that is useful. We can estimate relative density, the distribution of AC in relation to habitat covariates, rather than absolute density. Conditioning allows individual covariates of detection $\mathbf z_i$ as before, and fitting is faster than for absolute density [@Efford2025]. 
+
+We define relative density by $D^\prime(\mathbf x | \phi^-) \equiv k^{-1} D(\mathbf x | \phi)$ where $\phi^-$ is a reduced vector of coefficients for the density submodel discussed [later](08-density-model.qmd#sec-density) and $k$ is a constant of proportionality. Then we can discard the first factor in @eq-L and maximize a likelihood based on the second factor alone
 $$
-L_r(\phi^\prime, \theta | \Omega) \propto \prod_{i=1}^n \int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \theta) \, f(\mathbf x ; \phi^\prime, \theta) \; d\mathbf x.
+L_r(\phi^-, \theta | \Omega, n) \propto  \prod_{i=1}^n \frac{\int \mathrm{Pr}(\omega_i | \theta, \mathbf x) \, D^\prime(\mathbf x | \phi^-) \, p_\cdot(\mathbf x | \theta, \mathbf z_i) \; d\mathbf x}{\int  D^\prime(\mathbf x | \phi^-) \, p_\cdot(\mathbf x | \theta, \mathbf z_i) \; d\mathbf x}.
 $$ {#eq-rd}
-For a log link the new parameter vector $\phi^\prime$ corresponds to the original $\phi$ with one coefficient, the intercept, fixed at an arbitrary value such as zero. 
+For a log link the new parameter vector $\phi^-$ corresponds to the original $\phi$ with one coefficient, the intercept, fixed at zero. For an identity link the intercept is fixed at 1 and other coefficients are scaled. A derived estimate of the constant of proportionality is 
+$$
+\hat k = \sum_{i=1}^n 1 / \int D^\prime(\mathbf x|\hat \phi^-) p_\cdot(\mathbf x| \hat \theta, \mathbf z_i)\, d \mathbf x.
+$$
+\noindent A derived estimate of the absolute density at point $\mathbf x$ is 
+$$
+\hat D(\mathbf x | n, \hat \phi^-, \hat \theta) = \sum_{i=1}^n \frac{D^\prime(\mathbf x| \hat \phi^-)}{\int D^\prime(\mathbf x| \hat \phi^-) p_\cdot(\mathbf x| \hat \theta, \mathbf z_i)\, d \mathbf x} . 
+$$
 
-<!-- Curiously, this also seems to apply when D~x... If there are no density covariates in the model (i.e. density is assumed uniform) then  -->
+This approach makes the same sampling assumptions as the full model, including that individuals enter the sample by a spatial detection process whose parameter vector $\theta$ we estimate from the data. For poisson-distributed AC, parameter estimates from maximizing @eq-rd are identical to those of the full likelihood except for the missing density intercept.
 
-This approach makes the same sampling assumptions as the full model, including that individuals enter the sample by a spatial detection process whose parameter vector $\theta$ we estimate from the data. Estimates of detection parameters by maximizing @eq-rd are in fact identical to those of the previous section.
+## Adjustment for spatially selective prior marking
+\index{Density surface!prior marking}
 
-However, in other scenarios, the *only* individuals at risk of detection may be those marked in an earlier phase of the study. This is the case for the automated detection of fish with implanted acoustic telemetry tags or passive integrated transponders (PIT) [@Whoriskey2019]. These data resemble mark--resight data (@sec-mark-resight) except that they do not include counts of unmarked animals. Estimates of $\phi^\prime$ using @eq-rd then describe only the distribution of marked individuals. Even if we can assume that AC are stationary between the two phases, $\phi^\prime$ is biased as a model for population distribution as it incorporates the spatial selectivity of marking.
+In some scenarios, the *only* individuals at risk of detection are those that were marked in an earlier phase of the study. This is the case for the automated detection of fish with implanted acoustic telemetry tags or passive integrated transponders (PIT) [@Whoriskey2019]. The data resemble mark--resight data (@sec-mark-resight) except that they do not include counts of unmarked animals. Estimates of $\phi^-$ using @eq-rd then describe only the distribution of the individuals marked previously. Even if we can assume that AC are stationary between the two phases, $\phi^-$ is biased as a model for population distribution as it incorporates the spatial selectivity of marking.
 
-Lack of information on the marking phase also afflicts mark-resight analyses [e.g., @eh18]. The possible 'solutions' are all ad hoc. We can assume that the probability of becoming marked was independent of location, or we can substitute an externally computed variable for the spatial probability (cf $p_\cdot(\mathbf x|\theta^\prime)$ where $\theta^\prime$ applies to the marking phase). Further work is expected in this area.
+Lack of information on the marking phase also afflicts mark-resight analyses [e.g., @eh18]. The possible 'solutions' are all ad hoc. We can assume that the probability of becoming marked was independent of location, or we can scale $p_\cdot(\mathbf x; \phi^-)$ by an externally computed variable $q(\mathbf x)$ that is proportional to the spatial probability of marking. Essentially, $q(\mathbf x)$ is an offset in the model for relative density.
 
-<!-- A further option is to ignore the process of first detection that determines the set of individuals for which we have capture histories, i.e. to condition on the particular set of detected (tagged) individuals. Then we use $\theta^\prime$ to parameterize a model for their re-detection, and $\phi^\prime$ to describe the spatial distribution of detected individuals. Note that $\phi^\prime$ carries no information about absolute density: the model describes relative density. The parameters may be estimated by maximizing -->
-
-<!-- $$ -->
-<!-- L_r(\phi^\prime, \theta^\prime | \Omega) \propto \prod_{i=1}^n \int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \theta^\prime) \, f(\mathbf x ; \phi^\prime) \; d\mathbf x. -->
-<!-- $$ -->
-
-<!-- The factor $\mathrm{Pr}(\omega_i | \mathbf x; \theta^\prime)$ is the probability of the observed detection history of animal $i$ given that its activity centre was at $\mathbf x$. The factor $f(\mathbf x ; \phi^\prime)$ describes the spatial distribution of *tagged* animals under the model with no allowance for how they came to be tagged. -->
-
-<!-- Supposing the tagged sample results from previous capture--recapture sampling of a population with density $D(\mathbf x; \phi)$ and detection parameters $\theta$, we can expect $f(\mathbf x; \phi^\prime) \propto p_\cdot(\mathbf x; \theta) D(\mathbf x; \phi)$. An example is shown [later](#relativedensity2). A model with flat (constant) $f(\mathbf x; \phi^\prime)$ is inevitably a poor fit because in reality tagged individuals are concentrated near the detectors. -->
+An example is shown [later](#relativedensity2). A model with flat (constant) probability of prior marking is inevitably a poor fit because in reality tagged individuals are concentrated near the detectors.
 
 ## Population size $N$
 \index{Population size $N(A)$!estimation}
@@ -203,6 +205,8 @@ f(\mathbf x | \omega_i; \hat \phi, \hat \theta) = \frac{ \mathrm{Pr} (\omega_i |
 {\int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \hat \theta) D(\mathbf x ; \hat \phi) \, d \mathbf x}.
 $$ {#eq-fxi}
 This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See `fxi` and related functions in **secr**. For known $\theta$ and known $\phi$ (unless $D(\mathbf x; \phi)$ uniform) the modal location of the AC for animal $i$ may be estimated by maximizing $\mathrm{Pr} (\omega_i | \mathbf x; \theta)D(\mathbf x; \phi)$ with respect to $\mathbf x$. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.
+
+A later [section](08-density-model.qmd#not-a-density-surface) discusses the use and interpretation of $f(\mathbf x | \omega_i; \hat \phi, \hat \theta)$ (see also @Durbach2024).
 
 <!-- ## Telemetry {#telemetrylikelihood} -->
 
