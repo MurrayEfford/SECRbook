@@ -195,6 +195,9 @@ hence affect model-averaged estimates.
 We are not aware of any equivalent study for SECR.
 <!-- but check @McLellan2023 black bears? -->
 
+<!-- Cited by Humm and Clark 2021: Zhang, Z. 2016. Model building strategy for logistic regression: purposeful -->
+<!-- selection. Annals of Translational Medicine 4(6):111. -->
+
 <!-- BUT is D model independent of detection model, for Poisson? -->
 
 ### Score tests

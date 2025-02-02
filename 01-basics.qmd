@@ -168,7 +168,7 @@ described
 
 A SECR model combines a model for the point process (the state model)
 and a model for distance-dependent detection (the observation model).
-Unbiased estimates of population density (and other parameters) by
+Unbiased estimates of population density (and other parameters) are obtained by
 jointly fitting the state and observation models.
 
 ### Distance-dependent detection

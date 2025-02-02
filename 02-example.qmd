@@ -104,7 +104,7 @@ The capthist object `hareCH6` now contains almost all the information needed to 
 
 ## Check data
 
-First review a summary of the data. See [here](https://www.otago.ac.nz/density/html/summary.capthist.html) for definitions of the summary statistics.
+First review a summary of the data. See [here](https://www.otago.ac.nz/density/html/summary.capthist.html) for definitions of the summary statistics n, u, f etc.
 
 ```{r}
 summary(hareCH6)
@@ -147,7 +147,7 @@ About 30% of trap-revealed movements were of $>$ 100 m (@fig-moves; try also `pl
 
 ## Fit a simple model  \index{secr.fit}
 
-Next we fit the simplest possible SECR model with function `secr.fit`. The `buffer` argument determines the habitat extent - we take a stab at this and check it later. Setting `trace = FALSE` suppresses printing of intermediate likelihood evaluations; it doesn't hurt to leave it out. We save the fitted model with the name 'fit'. Fitting is much faster if we use parallel processing in multiple threads - the number will depend on your machine, but 7 is OK for Windows with a quad-core processor.
+Next we fit the simplest possible SECR model with function `secr.fit`. The `buffer` argument determines the habitat extent - we take a stab at this and check it later. Setting `trace = FALSE` suppresses printing of intermediate likelihood evaluations; it doesn't hurt to leave it out. We save the fitted model with the name 'fit'. Fitting is much faster if we use parallel processing in multiple threads - the number will depend on your machine, but `ncores = 7` is OK in Windows with a quad-core processor.
 
 ```{r}
 #| label: fit
@@ -158,7 +158,7 @@ A warning is generated. The data are from single-catch traps, but there is no us
 
 ## Output
 
-The output from `secr.fit` is an object of class 'secr'. If you investigate the structure of `fit` with `str(fit)` it will seem to be a mess: it is a list with more than 25 components, none of which contains the final estimates you are looking for. 
+The output from `secr.fit` is an R object of class 'secr'. If you investigate the structure of `fit` with `str(fit)` it will seem to be a mess: it is a list with more than 25 components, none of which contains the final estimates you are looking for. 
 
 To examine model output or extract particular results you should use one of the functions defined for the purpose. Technically, these are S3 methods for the class 'secr'. The key methods are `print,` `plot,` `AIC,` `coef,` `vcov,` and `predict.` Append '.secr' when seeking help e.g. `?print.secr`.
 
@@ -169,7 +169,7 @@ fit
 ```
 
 \vspace{12pt}
-The report comprises these sections:
+The report comprises these sections that you should locate in the preceding output:
 
 * function call and time stamp
 * summary of the data
@@ -203,7 +203,7 @@ Buffer width is not critical as long as it is wide enough that animals at the ed
 
 [^footnote3f]: This is not just the tail probability of a normal deviate; think about how the probability of an individual being detected at least once changes with (i) the duration of sampling (ii) the density of detector array.
 
-[^footnote3g]: These are Horvitz-Thompson-like estimates of density obtained by dividing the observed number of individuals $n$ by effective sampling areas (Borchers and Efford 2008) computed as the cumulative sum over mask cells ordered by distance from the traps. The algorithm treats the detection parameters as known and fixed.
+[^footnote3g]: These are Horvitz-Thompson-like estimates of density obtained by dividing the observed number of individuals $n$ by [effective sampling areas](05-theory-special-topics.qmd#esa) (Borchers and Efford 2008) computed as the cumulative sum over mask cells ordered by distance from the traps. The algorithm treats the detection parameters as known and fixed.
 
 ```{r}
 #| label: fig-esaplot
