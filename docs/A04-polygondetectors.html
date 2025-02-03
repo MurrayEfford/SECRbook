@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Spatially Explicit Capture–Recapture - Appendix D — Area and transect search</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./A05-mark-resight.html" rel="next">
+<link href="./A03-spatial-data.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./A01-troubleshooting.html">Appendices</a></li><li class="breadcrumb-item"><a href="./A04-polygondetectors.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Area and transect search</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Spatially Explicit Capture–Recapture</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/MurrayEfford/SECRbook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foreword</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Concepts and terminology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple example</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Likelihood-based SECR</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-theory-area-search.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Area search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-theory-special-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Special topics</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Performance</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Assumptions and robustness</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Empirical validation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-studydesign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Study design</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Practice</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-secr-package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R package secr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-detection-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Detection model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-sex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sex differences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A01-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Troubleshooting <strong>secr</strong></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A02-speed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Faster is better</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A03-spatial-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Spatial data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A04-polygondetectors.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Area and transect search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A05-mark-resight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Mark-resight models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A06-noneuclidean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Non-Euclidean distances</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A07-telemetry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Telemetry</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A08-parameterizations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Parameterizations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A09-densityappendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Density revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A10-trend.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Trend revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A11-expected-counts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">Expected counts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A12-datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A99-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+<li><a href="#parameterisation" id="toc-parameterisation" class="nav-link active" data-scroll-target="#parameterisation"><span class="header-section-number">D.1</span> Parameterisation</a></li>
+  <li><a href="#example-data-flat-tailed-horned-lizards" id="toc-example-data-flat-tailed-horned-lizards" class="nav-link" data-scroll-target="#example-data-flat-tailed-horned-lizards"><span class="header-section-number">D.2</span> Example data: flat-tailed horned lizards </a></li>
+  <li><a href="#data-input" id="toc-data-input" class="nav-link" data-scroll-target="#data-input"><span class="header-section-number">D.3</span> Data input</a></li>
+  <li><a href="#fitting" id="toc-fitting" class="nav-link" data-scroll-target="#fitting"><span class="header-section-number">D.4</span> Fitting</a></li>
+  <li><a href="#cue-data" id="toc-cue-data" class="nav-link" data-scroll-target="#cue-data"><span class="header-section-number">D.5</span> Cue data</a></li>
+  <li><a href="#discretize" id="toc-discretize" class="nav-link" data-scroll-target="#discretize"><span class="header-section-number">D.6</span> Discretizing polygon data</a></li>
+  <li><a href="#transectsearch" id="toc-transectsearch" class="nav-link" data-scroll-target="#transectsearch"><span class="header-section-number">D.7</span> Transect search</a></li>
+  <li><a href="#polygonshape" id="toc-polygonshape" class="nav-link" data-scroll-target="#polygonshape"><span class="header-section-number">D.8</span> More on polygons</a></li>
+  <li><a href="#technotes" id="toc-technotes" class="nav-link" data-scroll-target="#technotes"><span class="header-section-number">D.9</span> Technical notes</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./A01-troubleshooting.html">Appendices</a></li><li class="breadcrumb-item"><a href="./A04-polygondetectors.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Area and transect search</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-areaandtransectsearches" class="quarto-section-identifier">Appendix D — Area and transect search</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>The ‘polygon’ detector type is used in <strong>secr</strong> for count data from searches of one or more areas (polygons). Transect detectors are the linear equivalent of polygons; as the theory and implementation are very similar we mostly refer to polygon detectors and only briefly mention transects. The relevant theory is in <a href="04-theory-area-search.html" class="quarto-xref"><span>Chapter 4</span></a>. The method may be used with individually identifiable cues (e.g., faeces) as well as for direct observations of individuals.</p>
+<p>Cells of a polygon capthist contain the number of detections per animal per polygon per occasion, supplemented by the x-y coordinates of each detection).</p>
+<p>Polygons may be independent (detector type ‘polygon’) or exclusive (detector type ‘polygonX’). Exclusivity is a particular type of dependence in which an animal may be detected at no more than one polygon on each occasion, resulting in binary data (i.e.&nbsp;polygons function more like multi-catch traps than ‘count’ detectors). Transect detectors also may be independent (‘transect’) or exclusive (‘transectX’).</p>
+<section id="parameterisation" class="level2" data-number="D.1"><h2 data-number="D.1" class="anchored" data-anchor-id="parameterisation">
+<span class="header-section-number">D.1</span> Parameterisation</h2>
+<p>The detection model is fundamentally different for polygon detectors and detectors at a point (“single”, “multi”, “proximity”, “count”):</p>
+<ul>
+<li>For point detectors, the detection function directly models the probability of detection or the expected number of detections. All that matters is the distance between the animal’s centre and the detector.</li>
+<li>For polygon detectors, these quantities (probability or expected number) depend also on the geometrical relationships and the integration in <a href="04-theory-area-search.html#eq-hsk" class="quarto-xref">Eq.&nbsp;<span>4.1</span></a>. The detection function serves only to define the <em>potential</em> detections if the search area was unbounded (blue contours in <a href="04-theory-area-search.html#fig-overlapplot" class="quarto-xref">Fig.&nbsp;<span>4.1</span></a>).</li>
+</ul>
+<p>We use a parameterisation that separates two aspects of detection – the expected number of cues from an individual (<span class="math inline">\lambda_c</span>) and their spatial distribution given the animal’s location (<span class="math inline">h(\mathbf u| \mathbf x)</span> normalised by dividing by <span class="math inline">H(\mathbf x)</span> (<a href="04-theory-area-search.html#eq-hsk" class="quarto-xref">Eq.&nbsp;<span>4.1</span></a>). The parameters of <span class="math inline">h()</span> are those of a typical detection function in <strong>secr</strong> (e.g., <span class="math inline">\lambda_0, \sigma</span>), except that the factor <span class="math inline">\lambda_0</span> cancels out of the normalised expression. The expected number of cues, given an unbounded search area, is determined by a different parameter here labelled <span class="math inline">\lambda_c</span>.</p>
+<p>There are complications:</p>
+<ol type="1">
+<li><p>Rather than designate a new ‘real’ parameter lambdac, <strong>secr</strong> grabs the redundant intercept of the detection function (lambda0) and uses that for <span class="math inline">\lambda_c</span>. Bear this in mind when reading output from polygon or transect models.</p></li>
+<li><p>If each animal can be detected at most once per detector per occasion (as with exclusive detector types ‘polygonX’ and ‘transectX’) then instead of <span class="math inline">\lambda(\mathbf x)</span> we require a probability of detection between 0 and 1, say <span class="math inline">g(\mathbf x)</span>. In <strong>secr</strong> the probability of detection is derived from the cumulative hazard using <span class="math inline">g(\mathbf x) = 1-\exp(-\lambda(\mathbf x))</span>. The horned lizard dataset of <span class="citation" data-cites="ry08">Royle &amp; Young (<a href="A99-references.html#ref-ry08" role="doc-biblioref">2008</a>)</span> has detector type ‘polygonX’ and their parameter ‘<span class="math inline">p</span>’ was equivalent to <span class="math inline">1 - \exp(-\lambda_c)</span> (<span class="math inline">0 &lt; p \le 1</span>). For the same scenario and parameter <span class="citation" data-cites="e11">Efford (<a href="A99-references.html#ref-e11" role="doc-biblioref">2011</a>)</span> used <span class="math inline">p_\infty</span>.</p></li>
+<li><p>Unrelated to (2), detection functions in <strong>secr</strong> may model either the probability of detection (HN, HR, EX etc.) or the cumulative hazard of detection (HHN, HHR, HEX etc.) (see <code>?detectfn</code> for a list). Although probability and cumulative hazard are mostly interchangeable for point detectors, it’s not so simple for polygon and transect detectors. The integration always uses the hazard form for <span class="math inline">h(\mathbf u | \mathbf x)</span> (<strong>secr</strong> <span class="math inline">\ge 3.0.0</span>)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and only hazard-based detection functions are allowed (HHN, HHR, HEX, HAN, HCG, HVP). The default function is HHN.</p></li>
+</ol></section><section id="example-data-flat-tailed-horned-lizards" class="level2" data-number="D.2"><h2 data-number="D.2" class="anchored" data-anchor-id="example-data-flat-tailed-horned-lizards">
+<span class="header-section-number">D.2</span> Example data: flat-tailed horned lizards </h2>
+<p><span class="citation" data-cites="ry08">Royle &amp; Young (<a href="A99-references.html#ref-ry08" role="doc-biblioref">2008</a>)</span> reported a Bayesian analysis of data from repeated searches for flat-tailed horned lizards (<em>Phrynosoma mcallii</em>) on a 9-ha square plot in Arizona, USA. Their dataset is included in <strong>secr</strong> as <code>hornedlizardCH</code> and will be used for demonstration. See ‘?hornedlizard’ for more details.</p>
+<p>The lizards were free to move across the boundary of the plot and often buried themselves when approached. Half of the 134 different lizards were seen only once in 14 searches over 17 days. Fig. 2 shows the distribution of detections within the quadrat; lines connect successive detections of the individuals that were recaptured.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">hornedlizardCH</span>, tracks <span class="op">=</span> <span class="cn">TRUE</span>, varycol <span class="op">=</span> <span class="cn">FALSE</span>, lab1cap <span class="op">=</span> </span>
+<span>    <span class="cn">TRUE</span>, laboffset <span class="op">=</span> <span class="fl">8</span>, border <span class="op">=</span> <span class="fl">10</span>, title <span class="op">=</span><span class="st">''</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="A04-polygondetectors_files/figure-html/FTHLplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1" title="Locations of horned lizards on a 9-ha plot in Arizona [@ry08]. Grid lines are 100 m apart."><img src="A04-polygondetectors_files/figure-html/FTHLplot-1.png" class="img-fluid figure-img" width="384" alt="Locations of horned lizards on a 9-ha plot in Arizona (Royle &amp; Young, 2008). Grid lines are 100 m apart."></a></p>
+<figcaption>Locations of horned lizards on a 9-ha plot in Arizona <span class="citation" data-cites="ry08">(<a href="A99-references.html#ref-ry08" role="doc-biblioref">Royle &amp; Young, 2008</a>)</span>. Grid lines are 100 m apart.</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="data-input" class="level2" data-number="D.3"><h2 data-number="D.3" class="anchored" data-anchor-id="data-input">
+<span class="header-section-number">D.3</span> Data input</h2>
+<p>Input of data for polygon and transect detectors is described in <a href="https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf">secr-datainput.pdf</a>. It is little different to input of other data for <strong>secr</strong>. The key function is <code>read.capthist</code>, which reads text files containing the polygon or transect coordinates<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and the capture records. Capture data should be in the ‘XY’ format of Density (one row per record with fields in the order Session, AnimalID, Occasion, X, Y). Capture records are automatically associated with polygons on the basis of X and Y (coordinates outside any polygon give an error). Transect data are also entered as X and Y coordinates and automatically associated with transect lines.</p>
+</section><section id="fitting" class="level2" data-number="D.4"><h2 data-number="D.4" class="anchored" data-anchor-id="fitting">
+<span class="header-section-number">D.4</span> Fitting</h2>
+<p>The function <code>secr.fit</code> is used to fit polygon or transect models by maximum likelihood, exactly as for other detectors. Any model fitting requires a habitat mask – a representation of the region around the detectors possibly occupied by the detected animals (aka the ‘area of integration’ or ‘state space’). It’s simplest to use a simple buffer around the detectors, specified via the ‘buffer’ argument of <code>secr.fit</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. For the horned lizard dataset it is safe to use the default buffer width (100 m) and the default detection function (circular bivariate normal). We use <code>trace = FALSE</code> to suppress intermediate output that would be untidy here.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">FTHL.fit</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">hornedlizardCH</span>, buffer <span class="op">=</span> <span class="fl">80</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">FTHL.fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link estimate SE.estimate      lcl      ucl
+D        log  8.01307    1.061701  6.18740 10.37742
+lambda0  log  0.13171    0.015128  0.10524  0.16485
+sigma    log 18.50490    1.199388 16.29950 21.00871</code></pre>
+</div>
+</div>
+<p>The estimated density is 8.01 / ha, somewhat less than the value given by <span class="citation" data-cites="ry08">Royle &amp; Young (<a href="A99-references.html#ref-ry08" role="doc-biblioref">2008</a>)</span>; see <span class="citation" data-cites="e11">Efford (<a href="A99-references.html#ref-e11" role="doc-biblioref">2011</a>)</span> for an explanation, also <span class="citation" data-cites="mtr11">Marques et al. (<a href="A99-references.html#ref-mtr11" role="doc-biblioref">2011</a>)</span> and <span class="citation" data-cites="d13">Dorazio (<a href="A99-references.html#ref-d13" role="doc-biblioref">2013</a>)</span>. The parameter labelled ‘lambda0’ (i.e.&nbsp;<span class="math inline">\lambda_c</span>) is equivalent to <span class="math inline">p</span> in <span class="citation" data-cites="ry08">Royle &amp; Young (<a href="A99-references.html#ref-ry08" role="doc-biblioref">2008</a>)</span> (using <span class="math inline">\hat p \approx 1 - \exp(-\hat \lambda_c)</span>).</p>
+<p><code>FTHL.fit</code> is an object of class ‘secr’. We would use the ‘plot’ method to graph the fitted detection function :</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">FTHL.fit</span>, xv <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">70</span>, ylab <span class="op">=</span> <span class="st">'p'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="cue-data" class="level2" data-number="D.5"><h2 data-number="D.5" class="anchored" data-anchor-id="cue-data">
+<span class="header-section-number">D.5</span> Cue data</h2>
+<p>By ‘cue’ in this context we mean a discrete sign identifiable to an individual animal by means such as microsatellite DNA. Faeces and passive hair samples may be cues. Animals may produce more than one cue per occasion. The number of cues in a specific polygon then has a discrete distribution such as Poisson, binomial or negative binomial.</p>
+<p>A cue dataset is not readily available, so we simulate some cue data to demonstrate the analysis. The text file ‘polygonexample1.txt’ contains the boundary coordinates.</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">datadir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"secr"</span><span class="op">)</span></span>
+<span><span class="va">file1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">datadir</span>, <span class="st">'/polygonexample1.txt'</span><span class="op">)</span></span>
+<span><span class="va">example1</span> <span class="op">&lt;-</span> <span class="fu">read.traps</span><span class="op">(</span>file <span class="op">=</span> <span class="va">file1</span>, detector <span class="op">=</span> <span class="st">'polygon'</span><span class="op">)</span></span>
+<span><span class="va">polygonCH</span> <span class="op">&lt;-</span> <span class="fu">sim.capthist</span><span class="op">(</span><span class="va">example1</span>, popn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>D <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    buffer <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>, detectfn <span class="op">=</span> <span class="st">'HHN'</span>, detectpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    lambda0 <span class="op">=</span> <span class="fl">5</span>, sigma <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>, noccasions <span class="op">=</span> <span class="fl">1</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">polygonCH</span>, tracks <span class="op">=</span> <span class="cn">TRUE</span>, varycol <span class="op">=</span> <span class="cn">FALSE</span>, lab1cap <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    laboffset <span class="op">=</span> <span class="fl">15</span>, title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Simulated 'polygon' data"</span>, </span>
+<span>    <span class="st">"D = 1, lambda0 = 5, sigma = 50"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-cueplot2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-cueplot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="A04-polygondetectors_files/figure-html/fig-cueplot2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="A04-polygondetectors_files/figure-html/fig-cueplot2-1.png" class="img-fluid figure-img" width="480"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cueplot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;D.1: Simulated cue data from a single search of two irregular polygons.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Our simulated sampling was a single search (noccasions = 1), and the intercept of the detection function (lambda0 = 5) is the expected number of cues that would be found per animal if the search was unbounded. The plot (<a href="#fig-cueplot2" class="quarto-xref">Fig.&nbsp;<span>D.1</span></a>) is slightly misleading because, although ‘tracks = TRUE’ serves to link cues from the same animal, the cues are not ordered in time.</p>
+<p>To fit the model by maximum likelihood we use <code>secr.fit</code> as before:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cuesim.fit</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">polygonCH</span>, buffer <span class="op">=</span> <span class="fl">200</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">cuesim.fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link estimate SE.estimate      lcl     ucl
+D        log   1.1035     0.15366  0.84099  1.4478
+lambda0  log   4.3764     0.41885  3.62938  5.2771
+sigma    log  49.4464     2.43133 44.90613 54.4457</code></pre>
+</div>
+</div>
+</section><section id="discretize" class="level2" data-number="D.6"><h2 data-number="D.6" class="anchored" data-anchor-id="discretize">
+<span class="header-section-number">D.6</span> Discretizing polygon data</h2>
+<p>An alternative way to handle polygon capthist data is to convert it to a raster representation i.e.&nbsp;to replace each polygon with a set of point detectors, each located at the centre of a square pixel. Point detectors (‘multi’, ‘proximity’, ‘count’ etc.) tend to be more robust and models often fit faster. They also allow habitat attributes to be associated with detectors at the scale of a pixel rather than the whole polygon. The <strong>secr</strong> function <code>discretize</code> performs the necessary conversion in a single step. Selection of an appropriate pixel size (<code>spacing</code>) is up to the user. There is a tradeoff between faster execution (larger pixels are better) and controlling artefacts from the discretization, which can be checked by comparing estimates with different levels of <code>spacing</code>.</p>
+<p>Taking our example from before,</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">discreteCH</span> <span class="op">&lt;-</span> <span class="fu">discretize</span> <span class="op">(</span><span class="va">polygonCH</span>, spacing <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">discreteCH</span>, varycol <span class="op">=</span> <span class="cn">FALSE</span>, tracks <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="A04-polygondetectors_files/figure-html/discretize-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3" title="Discretized area search data"><img src="A04-polygondetectors_files/figure-html/discretize-1.png" class="img-fluid figure-img" width="672" alt="Discretized area search data"></a></p>
+<figcaption>Discretized area search data</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">discrete.fit</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">discreteCH</span>, buffer <span class="op">=</span> <span class="fl">200</span>, detectfn <span class="op">=</span> </span>
+<span>    <span class="st">'HHN'</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">discrete.fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link estimate SE.estimate       lcl      ucl
+D        log  1.09535    0.152767  0.834463  1.43780
+lambda0  log  0.11205    0.014492  0.087048  0.14422
+sigma    log 49.83858    2.674017 44.867146 55.36085</code></pre>
+</div>
+</div>
+<p>Post-hoc discretization is also considered by <span class="citation" data-cites="Russell2012">Russell et al. (<a href="A99-references.html#ref-Russell2012" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="Milleret2018">Milleret et al. (<a href="A99-references.html#ref-Milleret2018" role="doc-biblioref">2018</a>)</span> and <span class="citation" data-cites="Paterson2019">Paterson et al. (<a href="A99-references.html#ref-Paterson2019" role="doc-biblioref">2019</a>)</span>.</p>
+</section><section id="transectsearch" class="level2" data-number="D.7"><h2 data-number="D.7" class="anchored" data-anchor-id="transectsearch">
+<span class="header-section-number">D.7</span> Transect search</h2>
+<p>Transect data, as understood here, include the positions from which individuals are detected along a linear route through 2-dimensional habitat. They <em>do not</em> include distances from the route to the location of the individual, at least, not yet. A route may be searched multiple times, and a dataset may include multiple routes, but neither of these is necessary. Searches of linear habitat such as river banks require a different approach - see the package <a href="https://cran.r-project.org/package=secrlinear/vignettes/secrlinear-vignette.pdf">secrlinear</a>.</p>
+<p>We simulate some data for an imaginary wiggly transect.</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">*</span><span class="va">pi</span>, length <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="va">transect</span> <span class="op">&lt;-</span> <span class="fu">make.transect</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span><span class="op">*</span><span class="fl">100</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">*</span><span class="fl">300</span>, </span>
+<span>    exclusive <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">transect</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Object class       traps 
+Detector type      transect 
+Number vertices    20 
+Number transects   1 
+Total length       2756.1 m 
+x-range            0 1256.6 m 
+y-range            -298.98 298.98 m </code></pre>
+</div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">transectCH</span> <span class="op">&lt;-</span> <span class="fu">sim.capthist</span><span class="op">(</span><span class="va">transect</span>, popn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>D <span class="op">=</span> <span class="fl">2</span>, </span>
+<span>    buffer <span class="op">=</span> <span class="fl">300</span><span class="op">)</span>, detectfn <span class="op">=</span> <span class="st">'HHN'</span>, detectpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    lambda0 <span class="op">=</span> <span class="fl">1.0</span>, sigma <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>, binomN <span class="op">=</span> <span class="fl">0</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>By setting exclusive = FALSE we signal that there may be more than one detection per animal per occasion on this single transect (i.e.&nbsp;this is a ‘transect’ detector rather than ‘transectX’).</p>
+<p>Constructing a habitat mask explicitly with <code>make.mask</code> (rather than relying on ‘buffer’ in <code>secr.fit</code>) allows us to specify the point spacing and discard outlying points (<a href="#fig-transectmask" class="quarto-xref">Fig.&nbsp;<span>D.2</span></a>).</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">transectmask</span> <span class="op">&lt;-</span> <span class="fu">make.mask</span><span class="op">(</span><span class="va">transect</span>, type <span class="op">=</span> <span class="st">'trapbuffer'</span>, buffer <span class="op">=</span> <span class="fl">300</span>, spacing <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">transectmask</span>, border <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">transect</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, detpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">transectCH</span>, tracks <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, title <span class="op">=</span> <span class="st">''</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-transectmask" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-transectmask-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="A04-polygondetectors_files/figure-html/fig-transectmask-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="A04-polygondetectors_files/figure-html/fig-transectmask-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transectmask-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;D.2: Habitat mask (grey dots) and simulated transect data from five searches of a 2.8-km transect. Colours differ between individuals, but are not unique.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Model fitting uses <code>secr.fit</code> as before. We specify the distribution of the number of detections per individual per occasion as Poisson (binomN = 0), although this also happens to be the default. Setting method = ‘Nelder-Mead’ is slightly more likely to yield valid estimates of standard errors than using the default method (see <a href="#technotes">Technical notes</a>).</p>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">transect.fit</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">transectCH</span>, mask <span class="op">=</span> <span class="va">transectmask</span>, </span>
+<span>    binomN <span class="op">=</span> <span class="fl">0</span>, method <span class="op">=</span> <span class="st">'Nelder-Mead'</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Occasional ‘ier’ error codes may be ignored (see <a href="#technotes">Technical notes</a>). The estimates are close to the true values except for sigma, which may be positively biased.</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span> <span class="op">(</span><span class="va">transect.fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link estimate SE.estimate      lcl     ucl
+D        log   1.8527    0.196674  1.50552  2.2798
+lambda0  log   1.0415    0.080433  0.89539  1.2114
+sigma    log  53.6290    2.313387 49.28317 58.3581</code></pre>
+</div>
+</div>
+<p>Another way to analyse transect data is to discretize it. We divide the transect into 25-m segments and then change the detector type. In the resulting capthist object the transect has been replaced by a series of proximity detectors, each at the midpoint of a segment.</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">snippedCH</span> <span class="op">&lt;-</span> <span class="fu">snip</span><span class="op">(</span><span class="va">transectCH</span>, by <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span>
+<span><span class="va">snippedCH</span> <span class="op">&lt;-</span> <span class="fu">reduce</span><span class="op">(</span><span class="va">snippedCH</span>, outputdetector <span class="op">=</span> <span class="st">'proximity'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The same may be achieved with <code>newCH &lt;- discretize(transectCH, spacing = 25)</code>. We can fit a model using the same mask as before. The result differs in the scaling of the lambda0 parameter, but in other respects is similar to that from the transect model.</p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">snipped.fit</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">snippedCH</span>, mask <span class="op">=</span> <span class="va">transectmask</span>, </span>
+<span>    detectfn <span class="op">=</span> <span class="st">'HHN'</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">snipped.fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        link estimate SE.estimate      lcl      ucl
+D        log  1.84217    0.195625  1.49689  2.26708
+lambda0  log  0.19312    0.018034  0.16089  0.23182
+sigma    log 53.67901    2.321128 49.31908 58.42437</code></pre>
+</div>
+</div>
+</section><section id="polygonshape" class="level2" data-number="D.8"><h2 data-number="D.8" class="anchored" data-anchor-id="polygonshape">
+<span class="header-section-number">D.8</span> More on polygons</h2>
+<p>The implementation in <strong>secr</strong> allows any number of disjunct polygons or non-intersecting transects.</p>
+<p>Polygons may be irregularly shaped, but there are some limitations in the default implementation. Polygons may not be concave in an east-west direction, in the sense that there are more than two intersections with a vertical line. Sometimes east-west concavity may be fixed by rotating the polygon and its associated data points (see function <code>rotate</code>). Polygons should not contain holes, and the polygons used on any one occasion should not overlap.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="figures/irregular.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5" title="The polygon on the left is not allowed because its boundary is intersected by a vertical line at more than two points."><img src="figures/irregular.png" class="img-fluid figure-img" style="width:90.0%" alt="The polygon on the left is not allowed because its boundary is intersected by a vertical line at more than two points."></a></p>
+<figcaption>The polygon on the left is not allowed because its boundary is intersected by a vertical line at more than two points.</figcaption></figure>
+</div>
+</div>
+</div>
+<section id="solutions-for-non-conforming-polygons" class="level3" data-number="D.8.1"><h3 data-number="D.8.1" class="anchored" data-anchor-id="solutions-for-non-conforming-polygons">
+<span class="header-section-number">D.8.1</span> Solutions for non-conforming polygons</h3>
+<ol type="1">
+<li>Break into parts</li>
+</ol>
+<p>One solution to ‘east-west concavity’ is to break the offending polygon into two or more parts. For this you need to know which vertices belong in which part, but that is (usually) easily determined from a plot. In this real example we recognise vertices 11 and 23 as critical, and split the polygon there. Note the need to include the clip vertices in both polygons, and to maintain the order of vertices. Both <code>example2</code> and <code>newpoly</code> are traps objects.</p>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">file2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">datadir</span>, <span class="st">'/polygonexample2.txt'</span><span class="op">)</span></span>
+<span><span class="va">example2</span> <span class="op">&lt;-</span> <span class="fu">read.traps</span><span class="op">(</span>file <span class="op">=</span> <span class="va">file2</span>, detector <span class="op">=</span> <span class="st">'polygon'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">example2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="va">example2</span><span class="op">$</span><span class="va">x</span>, <span class="va">example2</span><span class="op">$</span><span class="va">y</span>, <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">example2</span><span class="op">)</span>, cex <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span>
+<span><span class="va">newpoly</span> <span class="op">&lt;-</span> <span class="fu">make.poly</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>p1 <span class="op">=</span> <span class="va">example2</span><span class="op">[</span><span class="fl">11</span><span class="op">:</span><span class="fl">23</span>,<span class="op">]</span>, </span>
+<span>  p2 <span class="op">=</span> <span class="va">example2</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">11</span>, <span class="fl">23</span><span class="op">:</span><span class="fl">27</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>No errors found :-)</code></pre>
+</div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">newpoly</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="A04-polygondetectors_files/figure-html/polylimit-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6" title="Splitting a non-conforming polygon"><img src="A04-polygondetectors_files/figure-html/polylimit-1.png" class="img-fluid figure-img" style="width:95.0%" alt="Splitting a non-conforming polygon"></a></p>
+<figcaption>Splitting a non-conforming polygon</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Attributes such as covariates and usage must be rebuilt by hand.</p>
+<ol start="2" type="1">
+<li>Pointwise testing</li>
+</ol>
+<p>Another solution is to evaluate whether each point chosen dynamically by the integration code lies inside the polygon of interest. This is inevitably slower than the default algorithm that assumes all points between the lower and upper intersections lie within the polygon. Select the slower, more general option by setting <code>details = list(convexpolygon = FALSE)</code>.</p>
+</section></section><section id="technotes" class="level2" data-number="D.9"><h2 data-number="D.9" class="anchored" data-anchor-id="technotes">
+<span class="header-section-number">D.9</span> Technical notes</h2>
+<p>Fitting models for polygon detectors with <code>secr.fit</code> requires the hazard function to be integrated in two-dimensions many times. In <strong>secr</strong> &gt;= 4.4 this is done with repeated one-dimensional Gaussian quadrature using the C++ function ‘integrate’ in RcppNumerical [R-RcppNumerical].</p>
+<p>Polygon and transect SECR models seem to be prone to numerical problems in estimating the information matrix (negative Hessian), which flow on into poor variance estimates and missing values for the standard errors of ‘real’ parameters. At the time of writing these seem to be overcome by overriding the default maximization method (Newton-Raphson in ‘nlm’) and using, for example, “method = ‘BFGS’”. Another solution, perhaps more reliable, is to compute the information matrix independently by setting ‘details = list(hessian = ’fdhess’)’ in the call to <code>secr.fit</code>. Yet another approach is to apply <code>secr.fit</code> with “method = ‘none’” to a previously fitted model to compute the variances.</p>
+<p>The algorithm for finding a starting point in parameter space for the numerical maximization is not entirely reliable; it may be necessary to specify the ‘start’ argument of <code>secr.fit</code> manually, remembering that the values should be on the link scale (default log for D, lambda0 and sigma).</p>
+<p>Data for polygons and transects are unlike those from detectors such as traps in several respects:</p>
+<ul>
+<li><p>The association between vertices in a ‘traps’ object and polygons or transects resides in an attribute ‘polyID’ that is out of sight, but may be retrieved with the <code>polyID</code> or <code>transectID</code> functions. If the attribute is NULL, all vertices are assumed to belong to one polygon or transect.</p></li>
+<li><p>The x-y coordinates for each detection are stored in the attribute ‘detectedXY’ of a capthist object. To retrieve these coordinates use the function <code>xy</code>. Detections are ordered by occasion, animal, and detector (i.e., polyID).</p></li>
+<li><p><code>subset</code> or <code>split</code> applied to a polygon or transect ‘traps’ object operate at the level of whole polygons or transects, not vertices (rows).</p></li>
+<li><p><code>usage</code> also applies to whole polygons or transects. The option of specifying varying usage by occasion is not fully tested for these detector types.</p></li>
+<li><p>The interpretation of detection functions and their parameters is subtly different; the detection function must be integrated over 1-D or 2-D rather than yielding a probability directly (see <span class="citation" data-cites="e11">Efford (<a href="A99-references.html#ref-e11" role="doc-biblioref">2011</a>)</span>).</p></li>
+</ul>
+
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Locations of horned lizards on a 9-ha plot in Arizona <span class="citation" data-cites="ry08">(<a href="A99-references.html#ref-ry08" role="doc-biblioref">Royle &amp; Young, 2008</a>)</span>. Grid lines are 100 m apart.</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;D.1: Simulated cue data from a single search of two irregular polygons.</span>
+<span class="glightbox-desc lightbox-desc-3">Discretized area search data</span>
+<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;D.2: Habitat mask (grey dots) and simulated transect data from five searches of a 2.8-km transect. Colours differ between individuals, but are not unique.</span>
+<span class="glightbox-desc lightbox-desc-5">The polygon on the left is not allowed because its boundary is intersected by a vertical line at more than two points.</span>
+<span class="glightbox-desc lightbox-desc-6">Splitting a non-conforming polygon</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-d13" class="csl-entry" role="listitem">
+Dorazio, R. M. (2013). Bayes and empirical bayes estimators of abundance and density from spatial capture-recapture data. <em>PLoS ONE</em>, <em>8</em>, e84017.
+</div>
+<div id="ref-e11" class="csl-entry" role="listitem">
+Efford, M. G. (2011). Estimation of population density by spatially explicit capture-recapture analysis of data from area searches. <em>Ecology</em>, <em>92</em>, 2202–2207.
+</div>
+<div id="ref-Kendeigh1944" class="csl-entry" role="listitem">
+Kendeigh, S. C. (1944). Measurement of bird populations. <em>Ecological Monographs</em>, <em>14</em>, 67–106. <a href="https://doi.org/10.2307/1961632">https://doi.org/10.2307/1961632</a>
+</div>
+<div id="ref-mtr11" class="csl-entry" role="listitem">
+Marques, T. A., Thomas, L., &amp; Royle, J. A. (2011). A hierarchical model for spatial capture-recapture data: comment. <em>Ecology</em>, <em>92</em>, 526–528.
+</div>
+<div id="ref-Milleret2018" class="csl-entry" role="listitem">
+Milleret, C., Dupont, P., Brøseth, H., Kindberg, J., Royle, J. A., &amp; Bischof, R. (2018). Using partial aggregation in spatial capture recapture. <em>Methods in Ecology and Evolution</em>, <em>9</em>(8), 1896–1907. <a href="https://doi.org/10.1111/2041-210x.13030">https://doi.org/10.1111/2041-210x.13030</a>
+</div>
+<div id="ref-Paterson2019" class="csl-entry" role="listitem">
+Paterson, J. T., Proffitt, K., Jimenez, B., Rotella, J., &amp; Garrott, R. (2019). Simulation-based validation of spatial capture-recapture models: A case study using mountain lions. <em>PLOS ONE</em>, <em>14</em>(4), e0215458. <a href="https://doi.org/10.1371/journal.pone.0215458">https://doi.org/10.1371/journal.pone.0215458</a>
+</div>
+<div id="ref-ry08" class="csl-entry" role="listitem">
+Royle, J. A., &amp; Young, K. V. (2008). A hierarchical model for spatial capture-recapture data. <em>Ecology</em>, <em>89</em>, 2281–2289.
+</div>
+<div id="ref-Russell2012" class="csl-entry" role="listitem">
+Russell, R. E., Royle, J. A., Desimone, R., Schwartz, M. K., Edwards, V. L., Pilgrim, K. P., &amp; Mckelvey, K. S. (2012). Estimating abundance of mountain lions from unstructured spatial sampling. <em>The Journal of Wildlife Management</em>, <em>76</em>(8), 1551–1561. <a href="https://doi.org/10.1002/jwmg.412">https://doi.org/10.1002/jwmg.412</a>
+</div>
+</div>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>The logic here is that hazards are additive whereas probabilities are not.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>For constraints on the shape of polygon detectors see <a href="#polygonshape">Polygon shape</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Alternatively, one can construct a mask with <code>make.mask</code> and provide that in the ‘mask’ argument of <code>secr.fit</code>. Note that <code>make.mask</code> defaults to <code>type = 'rectangular'</code>; see <a href="#transectsearch">Transect search</a> for an example in which points are dropped if they are within the rectangle but far from detectors (the default in <code>secr.fit</code>)<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+      <a href="./A03-spatial-data.html" class="pagination-link" aria-label="Spatial data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Spatial data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./A05-mark-resight.html" class="pagination-link" aria-label="Mark-resight models">
+        <span class="nav-page-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Mark-resight models</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":false});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+</body></html>

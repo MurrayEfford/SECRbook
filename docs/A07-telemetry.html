@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Spatially Explicit Capture–Recapture - Appendix G — Telemetry</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./A08-parameterizations.html" rel="next">
+<link href="./A06-noneuclidean.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./A01-troubleshooting.html">Appendices</a></li><li class="breadcrumb-item"><a href="./A07-telemetry.html"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Telemetry</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Spatially Explicit Capture–Recapture</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/MurrayEfford/SECRbook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foreword</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Concepts and terminology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple example</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Likelihood-based SECR</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-theory-area-search.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Area search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-theory-special-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Special topics</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Performance</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Assumptions and robustness</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Empirical validation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-studydesign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Study design</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Practice</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-secr-package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R package secr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-detection-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Detection model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-sex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sex differences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A01-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Troubleshooting <strong>secr</strong></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A02-speed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Faster is better</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A03-spatial-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Spatial data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A04-polygondetectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Area and transect search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A05-mark-resight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Mark-resight models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A06-noneuclidean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Non-Euclidean distances</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A07-telemetry.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Telemetry</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A08-parameterizations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Parameterizations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A09-densityappendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Density revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A10-trend.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Trend revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A11-expected-counts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">Expected counts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A12-datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A99-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+<li><a href="#sec-telemetryexample" id="toc-sec-telemetryexample" class="nav-link active" data-scroll-target="#sec-telemetryexample"><span class="header-section-number">G.1</span> Example</a></li>
+  <li><a href="#standalone-telemetry-data" id="toc-standalone-telemetry-data" class="nav-link" data-scroll-target="#standalone-telemetry-data"><span class="header-section-number">G.2</span> Standalone telemetry data</a></li>
+  <li><a href="#composite" id="toc-composite" class="nav-link" data-scroll-target="#composite"><span class="header-section-number">G.3</span> Combining telemetry and capture–recapture</a></li>
+  <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting"><span class="header-section-number">G.4</span> Model fitting</a></li>
+  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation"><span class="header-section-number">G.5</span> Simulation</a></li>
+  <li><a href="#telemetrytechnotes" id="toc-telemetrytechnotes" class="nav-link" data-scroll-target="#telemetrytechnotes"><span class="header-section-number">G.6</span> Technical notes</a></li>
+  <li><a href="#telemetrylimitations" id="toc-telemetrylimitations" class="nav-link" data-scroll-target="#telemetrylimitations"><span class="header-section-number">G.7</span> Limitations</a></li>
+  <li><a href="#sec-telemetryappendix2" id="toc-sec-telemetryappendix2" class="nav-link" data-scroll-target="#sec-telemetryappendix2"><span class="header-section-number">G.8</span> Telemetry-related functions.</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./A01-troubleshooting.html">Appendices</a></li><li class="breadcrumb-item"><a href="./A07-telemetry.html"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Telemetry</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-telemetry" class="quarto-section-identifier">Appendix G — Telemetry</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>In some capture–recapture studies there are additional data from radiotelemetry of a sample of animals. Telemetry fixes provide an unbiased sample of animal activity, unlike detections at fixed points (traps, cameras or hair snares) or from searching circumscribed areas. Telemetry data therefore provide a direct estimate of the spatial scale of activity, which is represented in spatially explicit capture–recapture (SECR) by the parameter <span class="math inline">\sigma</span>. Telemetry data also reduce uncertainty regarding the location of animals’ centres relative to detectors, so detection histories of telemetered animals may improve estimates of other parameters.</p>
+<p>Previous examples are <span class="citation" data-cites="sgpsmspo13">Sollmann et al. (<a href="A99-references.html#ref-sgpsmspo13" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="whc18">Whittington et al. (<a href="A99-references.html#ref-whc18" role="doc-biblioref">2018</a>)</span>, <span class="citation" data-cites="Linden2018">Linden et al. (<a href="A99-references.html#ref-Linden2018" role="doc-biblioref">2018</a>)</span>. Combining data types has been considered generally by <span class="citation" data-cites="Gopalaswamy2012">Gopalaswamy et al. (<a href="A99-references.html#ref-Gopalaswamy2012" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="Chandler2021">Chandler et al. (<a href="A99-references.html#ref-Chandler2021" role="doc-biblioref">2021</a>)</span>, <span class="citation" data-cites="Margenau2022">Margenau et al. (<a href="A99-references.html#ref-Margenau2022" role="doc-biblioref">2022</a>)</span> and others.</p>
+<p>This chapter explains and demonstrates the use of telemetry data in the R package <strong>secr</strong>, particularly the use of the ‘telemetry’ detector type.</p>
+<p>A word of warning. Telemetry is used in <strong>secr</strong> to augment SECR analyses, particularly the estimation of population density. <strong>secr</strong> is not intended for the detailed analysis of telemetry data <em>per se</em>. There is no provision in the data structure for recording the time of each fix, except as each relates to a discrete sampling occasion. Nor is there provision for associating behavioural or environmental covariates with each fix.</p>
+<section id="sec-telemetryexample" class="level2" data-number="G.1"><h2 data-number="G.1" class="anchored" data-anchor-id="sec-telemetryexample">
+<span class="header-section-number">G.1</span> Example</h2>
+<p>We start with a concrete example based on a simulated dataset.</p>
+<div class="cell">
+<details class="code-fold"><summary>Show simulation code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Code to simulate capthist objects (trCH, teCH)</span></span>
+<span></span>
+<span><span class="co"># detectors</span></span>
+<span><span class="va">te</span> <span class="op">&lt;-</span> <span class="fu">make.telemetry</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu">make.grid</span><span class="op">(</span>detector <span class="op">=</span> <span class="st">"multi"</span>, nx <span class="op">=</span> <span class="fl">8</span>, ny <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># spatial population</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">pop4</span> <span class="op">&lt;-</span> <span class="fu">sim.popn</span><span class="op">(</span><span class="va">tr</span>, D <span class="op">=</span> <span class="fl">5</span>, buffer <span class="op">=</span> <span class="fl">100</span>, seed <span class="op">=</span> <span class="fl">567</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># select 12 telemetered individuals from larger population</span></span>
+<span><span class="va">pop4C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">pop4</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pop4</span><span class="op">)</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># renumber = FALSE (keep original animalID) needed for matching</span></span>
+<span><span class="va">trCH</span> <span class="op">&lt;-</span> <span class="fu">sim.capthist</span><span class="op">(</span><span class="va">tr</span>,  popn <span class="op">=</span> <span class="va">pop4</span>, renumber <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    detectfn <span class="op">=</span> <span class="st">"HHN"</span>, detectpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="fl">0.1</span>, </span>
+<span>    sigma <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span></span>
+<span><span class="fu">session</span><span class="op">(</span><span class="va">trCH</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">'Trapping'</span></span>
+<span><span class="va">teCH</span> <span class="op">&lt;-</span> <span class="fu">sim.capthist</span><span class="op">(</span><span class="va">te</span>, popn <span class="op">=</span> <span class="va">pop4C</span>, renumber <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    detectfn <span class="op">=</span> <span class="st">"HHN"</span>, detectpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="fl">1</span>, sigma <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>,</span>
+<span>    noccasions <span class="op">=</span> <span class="fl">10</span>, seed <span class="op">=</span> <span class="fl">345</span><span class="op">)</span></span>
+<span><span class="fu">session</span><span class="op">(</span><span class="va">teCH</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">'Telemetry'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The first step is to combine the capthist objects <code>trCH</code> (trapping data) and <code>teCH</code> (telemetry fixes).</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">combinedCH</span> <span class="op">&lt;-</span> <span class="fu">addTelemetry</span><span class="op">(</span><span class="va">trCH</span>, <span class="va">teCH</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Generating plots is straightforward. By default, <code>plot.capthist</code> displays the captures and ignores telemetry fixes. The plot type “telemetry” displays the fixes and distinguishes those of animals that also appear in the (unplotted) capture data of the combined object.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">trCH</span><span class="op">)</span>, border <span class="op">=</span> <span class="fl">150</span>, bty <span class="op">=</span> <span class="st">'o'</span><span class="op">)</span> <span class="co"># base plot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">combinedCH</span>, title <span class="op">=</span> <span class="st">'Trapping'</span>, tracks <span class="op">=</span> <span class="cn">TRUE</span>, rad <span class="op">=</span> <span class="fl">4</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">trCH</span><span class="op">)</span>, border <span class="op">=</span> <span class="fl">150</span>, bty <span class="op">=</span> <span class="st">'o'</span><span class="op">)</span> <span class="co"># base plot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">combinedCH</span>, title <span class="op">=</span> <span class="st">'Telemetry'</span>, type <span class="op">=</span> <span class="st">'telemetry'</span>, </span>
+<span>     tracks <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-telemetryfig" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-telemetryfig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="A07-telemetry_files/figure-html/fig-telemetryfig-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="A07-telemetry_files/figure-html/fig-telemetryfig-1.png" class="img-fluid figure-img" width="576"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-telemetryfig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;G.1: Simulated trapping and telemetry data. The 5-day trapping study (left) yielded 29 recaptures. Telemetry data were obtained on 10 occasions for each of 12 animals (right). Points for animals that were both trapped and telemetered are ringed in black. Colours distinguish individuals.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Next we fit trapping-only and joint trapping-and-telemetry models:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mask</span> <span class="op">&lt;-</span> <span class="fu">make.mask</span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">trCH</span><span class="op">)</span>, buffer <span class="op">=</span> <span class="fl">100</span>, type <span class="op">=</span> <span class="st">'trapbuffer'</span>, </span>
+<span>    nx <span class="op">=</span> <span class="fl">32</span><span class="op">)</span></span>
+<span><span class="va">args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mask <span class="op">=</span> <span class="va">mask</span>, detectfn <span class="op">=</span> <span class="st">'HHN'</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">fits</span> <span class="op">&lt;-</span> <span class="fu">list.secr.fit</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">trCH</span>, <span class="va">combinedCH</span><span class="op">)</span>, constant <span class="op">=</span> <span class="va">args</span>, </span>
+<span>    names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'tr'</span>,<span class="st">'combined'</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">collate</span><span class="op">(</span><span class="va">fits</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>,,,<span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , D
+
+         estimate SE.estimate    lcl    ucl
+tr         5.9057      1.3312 3.8175 9.1363
+combined   5.7070      1.2801 3.6967 8.8104
+
+, , lambda0
+
+         estimate SE.estimate      lcl     ucl
+tr       0.118276    0.029911 0.072604 0.19268
+combined 0.073111    0.015752 0.048157 0.11100
+
+, , sigma
+
+         estimate SE.estimate    lcl    ucl
+tr         22.027      2.4031 17.798 27.262
+combined   26.498      1.1295 24.375 28.806</code></pre>
+</div>
+</div>
+<p>Here, telemetry data greatly improves the precision of the estimated scale of movement <span class="math inline">\sigma</span>, but the effect on estimates of the other two parameters is small.</p>
+</section><section id="standalone-telemetry-data" class="level2" data-number="G.2"><h2 data-number="G.2" class="anchored" data-anchor-id="standalone-telemetry-data">
+<span class="header-section-number">G.2</span> Standalone telemetry data</h2>
+<p>Telemetry data are stored in modified <strong>secr</strong> capthist objects. A capthist object may comprise telemetry fixes only (‘standalone telemetry’) or telemetry fixes in association with capture–recapture data (composite telemetry and capture–recapture). In this section I describe standalone telemetry data. A composite capthist is formed by combining a telemetry-only object and a standard capthist object with <code>addTelemetry</code>, as described in the <a href="#composite">next section</a>.</p>
+<section id="the-traps-object-for-telemetry-data" class="level3" data-number="G.2.1"><h3 data-number="G.2.1" class="anchored" data-anchor-id="the-traps-object-for-telemetry-data">
+<span class="header-section-number">G.2.1</span> The ‘traps’ object for telemetry data</h3>
+<p>Telemetry data differ from all other SECR data in that the detection process does not constrain where animals are detected (telemetry provides a spatially unbiased sample of each animal’s activity). That is clearly not the case for area-search and point detectors, which inevitably constrain where animals are detected. Nevertheless, for compatibility with the rest of <strong>secr</strong>, we associate telemetry data with a notional detector located at a point. The ‘traps’ object for telemetry data comprises the coordinates of this point plus the usual attributes of a ‘traps’ object in <strong>secr</strong> (detector type, usage, etc.). Remember that the point is only a ‘notional’ detector - it is never visited.</p>
+<p>The function <code>make.telemetry</code> generates a suitable object:</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">te</span> <span class="op">&lt;-</span> <span class="fu">make.telemetry</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">te</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Object class       traps 
+Detector type      telemetry 
+Telemetry type     independent </code></pre>
+</div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">te</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Classes 'traps' and 'data.frame':   1 obs. of  2 variables:
+ $ x: num 0
+ $ y: num 0
+ - attr(*, "detector")= chr "telemetry"
+ - attr(*, "telemetrytype")= chr "independent"</code></pre>
+</div>
+</div>
+<p>The attribute <code>telemetrytype</code> is always ‘independent’ for standalone telemetry data; other possible values for composite data are described later.</p>
+</section><section id="detector-type" class="level3" data-number="G.2.2"><h3 data-number="G.2.2" class="anchored" data-anchor-id="detector-type">
+<span class="header-section-number">G.2.2</span> Detector type</h3>
+<p>Every ‘traps’ object has an associated detector type (attribute <code>detector</code>, commonly ‘multi’ or ‘proximity’). This may be a vector with a different value for each occasion. The detector type for telemetry data is ‘telemetry’. In a standalone telemetry capthist, all elements of <code>detector</code> are ‘telemetry’.</p>
+</section><section id="but-where-are-the-data" class="level3" data-number="G.2.3"><h3 data-number="G.2.3" class="anchored" data-anchor-id="but-where-are-the-data">
+<span class="header-section-number">G.2.3</span> But where are the data?</h3>
+<p>As for any other detector type, the body of a telemetry capthist is a 3-D array whose elements are the number of detections for each combination of animal, occasion and detector. Coordinates are stored separately in the ‘telemetryxy’ attribute. Use one of these functions to reveal the telemetry component of a capthist object <code>CH</code>:</p>
+<ol type="1">
+<li><code>str(CH)</code></li>
+<li><code>summary(CH)</code></li>
+<li><code>plot(CH, type = 'telemetry')</code></li>
+<li><code>telemetryxy(CH)</code></li>
+</ol>
+<p>The attribute ‘telemetryxy’ is a list with one component for each animal. The fixes of each animal are sorted in chronological order.</p>
+</section><section id="data-input" class="level3" data-number="G.2.4"><h3 data-number="G.2.4" class="anchored" data-anchor-id="data-input">
+<span class="header-section-number">G.2.4</span> Data input</h3>
+<p>Data for a telemetry-only object should be read with function <code>read.telemetry</code>, a simplified version of <code>read.capthist</code>. The input format for telemetry fixes follows the ‘XY’ format for captures, with one line per fix (see <a href="https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf">secr-datainput.pdf</a>).</p>
+<p>The first few lines of a text file containing telemetry data collected on 5 occasions might look like this –</p>
+<pre><code>1  10 1  -83.3  -20.04
+1  10 2  -57.91  -4.77
+1  10 3 -112.96  -7.51
+1  10 4  -77.71 -75.79
+1  10 5  -85.81 -42.45
+1 101 1  143.06 170.48
+1 101 2   99.22 145.49
+etc.</code></pre>
+<p>The first column is a session code, the next an animal identifier (‘10’, ‘101’), the third an occasion number (1..noccasions) and the last two are the x and y coordinates. GPS coordinates should be projected (i.e.&nbsp;not latitude and longitude), and in metres if possible.</p>
+<p>A file named ‘telemetrydemo.txt’ may be read with</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">CHt</span> <span class="op">&lt;-</span> <span class="fu">read.telemetry</span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/telemetrydemo.txt"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>No errors found :-)</code></pre>
+</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">CHt</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Session =  1 
+, , 1
+
+   1 2 3 4 5
+4  1 1 1 1 1
+9  1 1 1 1 1
+10 1 1 1 1 1
+11 1 1 1 1 1
+12 1 1 1 1 1
+14 1 1 1 1 1</code></pre>
+</div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">telemetryxy</span><span class="op">(</span><span class="va">CHt</span><span class="op">)</span><span class="op">[[</span><span class="st">'10'</span><span class="op">]</span><span class="op">]</span>  <span class="co"># coordinates of first animal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        x      y
+1  -83.30 -20.04
+2  -57.91  -4.77
+3 -112.96  -7.51
+4  -77.71 -75.79
+5  -85.81 -42.45</code></pre>
+</div>
+</div>
+<p>Input may be from a text file (named in argument ‘file’) or dataframe (argument ‘data’). The body of the resulting capthist object merely tallies the number of detections per animal per session and occasion. The fixes for one session are stored separately in an attribute that is a list of dataframes, one per animal. Use <code>telemetryxy(CHt)</code> to retrieve this list.</p>
+<p>The summary of a telemetry-only capthist is quirky:</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">CHt</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Object class       capthist 
+Detector type      telemetry (5) 
+Telemetry type     independent 
+
+Counts by occasion 
+                   1  2  3  4  5 Total
+n                 79 79 79 79 79   395
+u                 79  0  0  0  0    79
+f                  0  0  0  0 79    79
+M(t+1)            79 79 79 79 79    79
+losses             0  0  0  0  0     0
+detections        79 79 79 79 79   395
+detectors visited  0  0  0  0  0     0
+detectors used     0  0  0  0  0     0
+
+Empty histories :  79 
+79 telemetered animals, 0 detected
+5-5 locations per animal, mean =  5, sd = 0 
+
+Individual covariates
+       V6      
+ Min.   :1.00  
+ 1st Qu.:1.00  
+ Median :2.00  
+ Mean   :1.52  
+ 3rd Qu.:2.00  
+ Max.   :2.00  </code></pre>
+</div>
+</div>
+<p>Even though each fix is counted as a ‘detection’ in the body of the final capthist object, none of the telemetered animals is considered to have been ‘detected’ in a conventional SECR sense. The telemetry-only capthist object includes a trivial traps object with a single point. The telemetry type of the traps for a telemetry-only capthist defaults to ‘independent’.</p>
+</section></section><section id="composite" class="level2" data-number="G.3"><h2 data-number="G.3" class="anchored" data-anchor-id="composite">
+<span class="header-section-number">G.3</span> Combining telemetry and capture–recapture</h2>
+<p>For the purpose of density estimation and modelling, standalone telemetry data are added to an existing spatial capture–recapture (capthist) data object with the function <code>addTelemetry</code>. The relationship between the telemetry and capture–recapture samples is determined by the <code>type</code> argument (default ‘concurrent’). We first explain the possible telemetry types.</p>
+<section id="types-of-telemetry-data" class="level3" data-number="G.3.1"><h3 data-number="G.3.1" class="anchored" data-anchor-id="types-of-telemetry-data">
+<span class="header-section-number">G.3.1</span> Types of telemetry data</h3>
+<p><strong>secr</strong> distinguishes three types of telemetry data – independent, dependent and concurrent – that differ in how they relate to other SECR samples (capture–recapture data). Each type corresponds to a particular <a href="#telemetrylikelihood">probability model</a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-telemetryschematic" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-telemetryschematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="A07-telemetry_files/figure-html/fig-telemetryschematic-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="A07-telemetry_files/figure-html/fig-telemetryschematic-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-telemetryschematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;G.2: Schematic relationship of capture–recapture data to three types of telemetry data. Vertical overlap indicates individuals that appear in both datasets.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>Independent telemetry</li>
+</ol>
+<p>Independent telemetry data have no particular relationship to spatial capture–recapture data except that they may be modelled using a shared value of the spatial-scale parameter <span class="math inline">\sigma</span>, and possibly other spatial parameters. Telemetered animals do not have detection histories.</p>
+<ol start="2" type="1">
+<li>Dependent telemetry</li>
+</ol>
+<p>Dependent telemetry data relate to a sample of animals detected during the capture–recapture study: an animal must be caught in that study to become telemetered, and no animal is telemetered and not otherwise detected (i.e.&nbsp;no detection history is all-zero).</p>
+<ol start="3" type="1">
+<li>Concurrent telemetry</li>
+</ol>
+<p>Concurrent telemetry data are obtained for a sample of animals from the same regional population as the capture–recapture study. Telemetered animals appear stochastically in the capture–recapture sample with probability related to their location. Detection histories of some animals may be all-zero, and these are modelled. Whether the capture–recapture phase precedes or follows telemetry is not material.</p>
+</section><section id="what-exactly-does-addtelemetry-do" class="level3" data-number="G.3.2"><h3 data-number="G.3.2" class="anchored" data-anchor-id="what-exactly-does-addtelemetry-do">
+<span class="header-section-number">G.3.2</span> What exactly does <code>addTelemetry</code> do?</h3>
+<p>The <code>addTelemetry</code> function forms a composite capthist object. Its usage follows -</p>
+<pre><code>addTelemetry (detectionCH, telemetryCH, type = c("concurrent", "dependent", 
+    "independent"), collapsetelemetry = TRUE, verify = TRUE) </code></pre>
+<p>Capture–recapture data in the argument ‘detectionCH’ form the basis for <code>addTelemetry</code>. The base capthist is modified in these ways –</p>
+<ul>
+<li>For all telemetry types <code>addTelemetry</code> extends the capture–recapture ‘traps’ object by adding a single (notional) detector location (duplicating the first).</li>
+<li>By default, the ‘detector’ attribute is extended by a single sampling occasion with type ‘telemetry’; all telemetry data are associated with this occasion, regardless of how many occasions there were in the telemetry input. If <code>collapsetelemetry = FALSE</code> distinct telemetry occasions are retained.</li>
+<li>The ‘usage’ attribute is set to zero for the notional telemetry detector on capture occasions and for capture detectors on telemetry occasions. Other usage data from ‘detectionCH’ is retained.</li>
+<li>All-zero detection histories are generated for the ‘concurrent’ data type.<br>
+</li>
+<li>The coordinates of telemetry fixes are transferred from <code>telemetryCH</code> as the attribute ‘telemetryxy’ of the output.</li>
+<li>If the data are independent then the labels of telemetered animals are prefixed by ‘T’ to reduce the chance of identity conflicts with animals in ‘detectionCH’.</li>
+<li>By default, <code>addtelemetry</code> calls <code>verify.capthist</code> to check its output.</li>
+</ul></section><section id="composite-data-different-sessions" class="level3" data-number="G.3.3"><h3 data-number="G.3.3" class="anchored" data-anchor-id="composite-data-different-sessions">
+<span class="header-section-number">G.3.3</span> Composite data, different sessions</h3>
+<p>We use <code>addTelemetry</code> to combine telemetry data and capture–recapture data from the same session, or possibly for each of several sessions when the detectionCH and telemetryCH are parallel (equal-length) multi-session objects. It is also feasible to concatenate telemetry and capture–recapture data as separate sessions of a multi-session object with <code>MS.capthist</code>. The effect is similar to a single-session composite capthist with telemetrytype ‘independent’, because <strong>secr</strong> treats sessions as independent (i.e.&nbsp;individual histories do not span session boundaries). See the next section for an example.</p>
+</section></section><section id="model-fitting" class="level2" data-number="G.4"><h2 data-number="G.4" class="anchored" data-anchor-id="model-fitting">
+<span class="header-section-number">G.4</span> Model fitting</h2>
+<section id="standalone-telemetry-data-1" class="level3" data-number="G.4.1"><h3 data-number="G.4.1" class="anchored" data-anchor-id="standalone-telemetry-data-1">
+<span class="header-section-number">G.4.1</span> Standalone telemetry data</h3>
+<p>We can estimate <span class="math inline">\sigma</span> for a half-normal circular home-range model directly:</p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">RPSV</span> <span class="op">(</span><span class="va">CHt</span>, CC <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 24.868</code></pre>
+</div>
+</div>
+<p>Note the CC argument (named for <span class="citation" data-cites="cc58">Calhoun &amp; Casby (<a href="A99-references.html#ref-cc58" role="doc-biblioref">1958</a>)</span>) that is required to scale the result correctly.</p>
+<p>More laboriously:</p>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit0</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">CHt</span>, buffer <span class="op">=</span> <span class="fl">300</span>, detectfn <span class="op">=</span> <span class="st">'HHN'</span>, </span>
+<span>                 trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      link estimate SE.estimate    lcl    ucl
+sigma  log   24.867     0.69957 23.533 26.277</code></pre>
+</div>
+</div>
+<p>The detection function (argument <code>detectfn</code>) must be either hazard half-normal (14, ‘HHN’) or hazard exponential (16, ‘HEX’)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The default detection function for a dataset with any telemetry component is ‘HHN’. For telemetry-only data the likelihood is conditional on the number of observations, so the argument <code>CL</code> is set internally to TRUE. A large <code>buffer</code> value here brings <span class="math inline">\hat \sigma</span> from <code>secr.fit</code> closer to <span class="math inline">\hat \sigma</span> from <code>RPSV</code>. See <a href="#habitatmask">below</a> for more on the <code>buffer</code> argument.</p>
+<p>See <a href="A04-polygondetectors.html#technotes">Technical notes</a> for potential numerical problems.</p>
+</section><section id="composite-telemetry-and-capturerecapture-data" class="level3" data-number="G.4.2"><h3 data-number="G.4.2" class="anchored" data-anchor-id="composite-telemetry-and-capturerecapture-data">
+<span class="header-section-number">G.4.2</span> Composite telemetry and capture–recapture data</h3>
+<p>Fitting a model to composite data should raise no further problems: <code>secr.fit</code> receives all the information it requires in the composite capthist input. The likelihood is a straightforward extension of the usual SECR likelihood, with some subtle differences in the case of dependent or concurrent telemetry (<a href="05-theory-special-topics.html" class="quarto-xref"><span>Chapter 5</span></a>, <a href="./05-theory-special-topics.html#telemetrylikelihood">Telemetry</a>).</p>
+<p>The use of detection functions expressed in terms of the hazard provides a more natural link between the model for the activity distribution and the model for detection probability. When a hazard function is used <code>secr.fit</code> automatically flips the default model for the first detection parameter from ‘g0 ~ 1’ to ‘lambda0 ~ 1’.</p>
+<p>Our introductory <a href="#sec-telemetryexample">example</a> fitted a model to single-session composite data. We can compare the results when the telemetry and trapping data are in separate sessions:</p>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msCH</span> <span class="op">&lt;-</span> <span class="fu">MS.capthist</span><span class="op">(</span><span class="va">trCH</span>, <span class="va">teCH</span><span class="op">)</span></span>
+<span><span class="va">fit.ms</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">msCH</span>, mask<span class="op">=</span><span class="va">mask</span>, detectfn <span class="op">=</span> <span class="st">'HHN'</span>, </span>
+<span>                   trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit.ms</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`session = trCH`
+        link estimate SE.estimate       lcl     ucl
+D        log  5.68802    1.251718  3.714104  8.7110
+lambda0  log  0.10628    0.021189  0.072182  0.1565
+sigma    log 23.63780    1.043956 21.678653 25.7740
+
+$`session = teCH`
+      link estimate SE.estimate    lcl    ucl
+sigma  log   23.638       1.044 21.679 25.774</code></pre>
+</div>
+</div>
+<p>Note: If the order of <code>teCH</code> and <code>trCH</code> had been reversed in <code>msCH</code> we would need to use details=list(autoini=2) to base parameter starting values on the trapping data, or provide start values manually.</p>
+</section><section id="habitatmask" class="level3" data-number="G.4.3"><h3 data-number="G.4.3" class="anchored" data-anchor-id="habitatmask">
+<span class="header-section-number">G.4.3</span> Habitat mask for telemetry data</h3>
+<p>The centres of both detected and telemetry-only animals are assumed to lie on the habitat mask. Ensure the mask is large enough to encompass telemetry-only animals. A conservative approach is to buffer around the individual telemetry centroids. Using <code>teCH</code> from before:</p>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">centroids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu">telemetryxy</span><span class="op">(</span><span class="va">teCH</span><span class="op">)</span>, </span>
+<span>    <span class="va">apply</span>, <span class="fl">2</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mask1</span> <span class="op">&lt;-</span> <span class="fu">make.mask</span><span class="op">(</span><span class="va">centroids</span>, buffer <span class="op">=</span> <span class="fl">100</span>, type <span class="op">=</span> <span class="st">'trapbuffer'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For composite telemetry and capture–recapture, buffering should include the detector sites:</p>
+<div class="cell">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tmpxy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">centroids</span>, <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">trCH</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="va">mask2</span> <span class="op">&lt;-</span> <span class="fu">make.mask</span><span class="op">(</span><span class="va">tmpxy</span>, buffer <span class="op">=</span> <span class="fl">100</span>, type <span class="op">=</span> <span class="st">'trapbuffer'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mask1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">teCH</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, title <span class="op">=</span> <span class="st">'Telemetry only'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mask2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">trCH</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">teCH</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, title <span class="op">=</span> <span class="st">'Telemetry and detector sites'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-maskplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-maskplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="A07-telemetry_files/figure-html/fig-maskplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="A07-telemetry_files/figure-html/fig-maskplot-1.png" class="img-fluid figure-img" width="576"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maskplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;G.3: Habitat masks prepared by buffering around telemetry sites (left) or both telemetry and detector sites (right).
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The mask generated automatically by <code>secr.fit</code> buffers around both detector sites and telemetry fixes, as shown here. The ‘buffer’ argument in <code>make.mask</code> can be problematic when used with a standalone telemetry traps object because the notional detector location is an arbitrary point - it is better to use the centroid coordinates as input.</p>
+</section></section><section id="simulation" class="level2" data-number="G.5"><h2 data-number="G.5" class="anchored" data-anchor-id="simulation">
+<span class="header-section-number">G.5</span> Simulation</h2>
+<p>Simulation of joint capture–recapture and telemetry data is a 2-step operation in <strong>secr</strong>, with the steps depending on the type of telemetry sampling. Here is an example of each type.</p>
+<p>We choose to fix the number of observations per animal at 25 using the <code>exactN</code> argument of <code>sim.capthist</code>. The same effect can be achieved by increasing the number of occasions to 25 and setting <code>exactN = 1</code>.</p>
+<section id="independent-telemetry" class="level3" data-number="G.5.1"><h3 data-number="G.5.1" class="anchored" data-anchor-id="independent-telemetry">
+<span class="header-section-number">G.5.1</span> Independent telemetry</h3>
+<p>For independent data there is no specified connection between the populations sampled, so we separately generate telemetry and capture–recapture datasets and stick them together.</p>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># detectors</span></span>
+<span><span class="va">te</span> <span class="op">&lt;-</span> <span class="fu">make.telemetry</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu">make.grid</span><span class="op">(</span>nx <span class="op">=</span> <span class="fl">8</span>, ny <span class="op">=</span> <span class="fl">8</span>, detector <span class="op">=</span> <span class="st">"proximity"</span><span class="op">)</span></span>
+<span><span class="va">pop1</span> <span class="op">&lt;-</span> <span class="fu">sim.popn</span><span class="op">(</span><span class="va">tr</span>, D <span class="op">=</span> <span class="fl">10</span>, buffer <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
+<span><span class="va">pop2</span> <span class="op">&lt;-</span> <span class="fu">sim.popn</span><span class="op">(</span>core <span class="op">=</span> <span class="va">tr</span>, buffer <span class="op">=</span> <span class="fl">200</span>, Nbuffer <span class="op">=</span> <span class="fl">20</span>, </span>
+<span>                 Ndist <span class="op">=</span> <span class="st">'fixed'</span><span class="op">)</span></span>
+<span><span class="va">trCH</span> <span class="op">&lt;-</span> <span class="fu">sim.capthist</span><span class="op">(</span><span class="va">tr</span>,  popn <span class="op">=</span> <span class="va">pop1</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>, </span>
+<span>    detectpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="fl">0.1</span>, sigma <span class="op">=</span> <span class="fl">25</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">teCH</span> <span class="op">&lt;-</span> <span class="fu">sim.capthist</span><span class="op">(</span><span class="va">te</span>,  popn <span class="op">=</span> <span class="va">pop2</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>, </span>
+<span>    detectpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>, noccasions <span class="op">=</span> <span class="fl">1</span>, exactN <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span>
+<span><span class="va">CHI</span> <span class="op">&lt;-</span> <span class="fu">addTelemetry</span><span class="op">(</span><span class="va">trCH</span>, <span class="va">teCH</span>, type <span class="op">=</span> <span class="st">'independent'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>No errors found :-)</code></pre>
+</div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">session</span><span class="op">(</span><span class="va">CHI</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">'Independent'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">CHI</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Object class       capthist 
+Detector type      proximity (5), telemetry 
+Telemetry type     independent 
+Detector number    64 
+Average spacing    20 m 
+x-range            0 140 m 
+y-range            0 140 m 
+
+Usage range by occasion
+    1 2 3 4 5 6
+min 0 0 0 0 0 0
+max 1 1 1 1 1 1
+
+Counts by occasion 
+                   1  2  3  4  5   6 Total
+n                 24 16 19 22 17  20   118
+u                 24  9  7  5  1  20    66
+f                 35 14 13  4  0   0    66
+M(t+1)            24 33 40 45 46  66    66
+losses             0  0  0  0  0   0     0
+detections        29 19 30 26 19 500   623
+detectors visited 23 16 23 23 18   0   103
+detectors used    64 64 64 64 64   0   320
+
+Empty histories :  20 
+20 telemetered animals, 0 detected
+25-25 locations per animal, mean =  25, sd = 0 
+
+Individual covariates
+ sex   
+ F:34  
+ M:32  </code></pre>
+</div>
+</div>
+</section><section id="dependent-telemetry" class="level3" data-number="G.5.2"><h3 data-number="G.5.2" class="anchored" data-anchor-id="dependent-telemetry">
+<span class="header-section-number">G.5.2</span> Dependent telemetry</h3>
+<p>For dependent data the telemetry sample is drawn from animals caught during the capture–recapture phase. This example uses the previously constructed ‘traps’ objects (<code>tr</code> and <code>te</code>). The original numbering of animals must be conserved (<code>renumber = FALSE</code>).</p>
+<div class="cell">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pop3</span> <span class="op">&lt;-</span> <span class="fu">sim.popn</span><span class="op">(</span><span class="va">tr</span>, D <span class="op">=</span> <span class="fl">10</span>, buffer <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
+<span><span class="va">trCH</span> <span class="op">&lt;-</span> <span class="fu">sim.capthist</span><span class="op">(</span><span class="va">tr</span>,  popn <span class="op">=</span> <span class="va">pop3</span>, detectfn <span class="op">=</span> <span class="st">"HHN"</span>, </span>
+<span>    detectpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="fl">0.1</span>, sigma <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>, renumber <span class="op">=</span> </span>
+<span>    <span class="cn">FALSE</span>, savepopn <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## select trapped animals from saved popn</span></span>
+<span><span class="va">pop3D</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">trCH</span>, <span class="st">'popn'</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">trCH</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## sample 12 detected animals for telemetry</span></span>
+<span><span class="va">pop3Dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">pop3D</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pop3D</span><span class="op">)</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span>  </span>
+<span><span class="co">## simulate telemetry</span></span>
+<span><span class="va">teCHD</span> <span class="op">&lt;-</span> <span class="fu">sim.capthist</span><span class="op">(</span><span class="va">te</span>, popn <span class="op">=</span> <span class="va">pop3Dt</span>, renumber <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    detectfn <span class="op">=</span> <span class="st">"HHN"</span>, detectpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>, </span>
+<span>    noccasions <span class="op">=</span> <span class="fl">1</span>, exactN <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span>
+<span><span class="va">CHD</span> <span class="op">&lt;-</span> <span class="fu">addTelemetry</span><span class="op">(</span><span class="va">trCH</span>, <span class="va">teCHD</span>, type <span class="op">=</span> <span class="st">'dependent'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>No errors found :-)</code></pre>
+</div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">session</span><span class="op">(</span><span class="va">CHD</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">'Dependent'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">CHD</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Object class       capthist 
+Detector type      proximity (5), telemetry 
+Telemetry type     dependent 
+Detector number    64 
+Average spacing    20 m 
+x-range            0 140 m 
+y-range            0 140 m 
+
+Usage range by occasion
+    1 2 3 4 5 6
+min 0 0 0 0 0 0
+max 1 1 1 1 1 1
+
+Counts by occasion 
+                   1  2  3  4  5   6 Total
+n                 20 22 22 10 26  12   112
+u                 20 12  8  1  4   0    45
+f                 12 14  9  5  5   0    45
+M(t+1)            20 32 40 41 45  45    45
+losses             0  0  0  0  0   0     0
+detections        33 31 29 11 36 300   440
+detectors visited 25 25 26 10 26   0   112
+detectors used    64 64 64 64 64   0   320
+12 telemetered animals, 12 detected
+25-25 locations per animal, mean =  25, sd = 0 
+
+Individual covariates
+ sex   
+ F:20  
+ M:25  </code></pre>
+</div>
+</div>
+</section><section id="concurrent-telemetry" class="level3" data-number="G.5.3"><h3 data-number="G.5.3" class="anchored" data-anchor-id="concurrent-telemetry">
+<span class="header-section-number">G.5.3</span> Concurrent telemetry</h3>
+<p>For concurrent telemetry a sample of animals is taken from the regional population without reference to whether or not each animal was detected in the capture–recapture phase. The original numbering of animals must be conserved (<code>renumber = FALSE</code>), as for dependent telemetry.</p>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">567</span><span class="op">)</span> </span>
+<span><span class="va">pop4</span> <span class="op">&lt;-</span> <span class="fu">sim.popn</span><span class="op">(</span><span class="va">tr</span>, D <span class="op">=</span> <span class="fl">10</span>, buffer <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
+<span><span class="co"># select 15 individuals at random from larger population</span></span>
+<span><span class="va">pop4C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">pop4</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pop4</span><span class="op">)</span>, <span class="fl">15</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># original animalID (renumber = FALSE) are needed for matching</span></span>
+<span><span class="va">trCH</span> <span class="op">&lt;-</span> <span class="fu">sim.capthist</span><span class="op">(</span><span class="va">tr</span>,  popn <span class="op">=</span> <span class="va">pop4</span>, renumber <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    detectfn <span class="op">=</span> <span class="st">"HHN"</span>, detectpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>lambda0 <span class="op">=</span> <span class="fl">0.1</span>, </span>
+<span>    sigma <span class="op">=</span> <span class="fl">25</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">teCHC</span> <span class="op">&lt;-</span> <span class="fu">sim.capthist</span><span class="op">(</span><span class="va">te</span>, popn <span class="op">=</span> <span class="va">pop4C</span>, renumber <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    detectfn <span class="op">=</span> <span class="st">"HHN"</span>, detectpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>, noccasions <span class="op">=</span></span>
+<span>    <span class="fl">1</span>, exactN <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span>
+<span><span class="va">CHC</span> <span class="op">&lt;-</span> <span class="fu">addTelemetry</span><span class="op">(</span><span class="va">trCH</span>, <span class="va">teCHC</span>, type <span class="op">=</span> <span class="st">'concurrent'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>No errors found :-)</code></pre>
+</div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">session</span><span class="op">(</span><span class="va">CHC</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">'Concurrent'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">CHC</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Object class       capthist 
+Detector type      proximity (5), telemetry 
+Telemetry type     concurrent 
+Detector number    64 
+Average spacing    20 m 
+x-range            0 140 m 
+y-range            0 140 m 
+
+Usage range by occasion
+    1 2 3 4 5 6
+min 0 0 0 0 0 0
+max 1 1 1 1 1 1
+
+Counts by occasion 
+                   1  2  3  4  5   6 Total
+n                 16 17 21 17 16  15   102
+u                 16 12  7  5  3  11    54
+f                 28 11  9  5  1   0    54
+M(t+1)            16 28 35 40 43  54    54
+losses             0  0  0  0  0   0     0
+detections        25 26 27 26 24 375   503
+detectors visited 23 20 22 22 19   0   106
+detectors used    64 64 64 64 64   0   320
+
+Empty histories :  11 
+15 telemetered animals, 4 detected
+25-25 locations per animal, mean =  25, sd = 0 
+
+Individual covariates
+ sex   
+ F:24  
+ M:30  </code></pre>
+</div>
+</div>
+</section><section id="plotting-to-compare-simulated-data" class="level3" data-number="G.5.4"><h3 data-number="G.5.4" class="anchored" data-anchor-id="plotting-to-compare-simulated-data">
+<span class="header-section-number">G.5.4</span> Plotting to compare simulated data</h3>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">2</span><span class="op">)</span>, xpd <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">CHI</span><span class="op">)</span>, border <span class="op">=</span> <span class="fl">200</span>, gridlines <span class="op">=</span> <span class="cn">FALSE</span>, bty <span class="op">=</span> <span class="st">'o'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">CHI</span>, type <span class="op">=</span> <span class="st">'telemetry'</span>, tracks <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">CHD</span><span class="op">)</span>, border <span class="op">=</span> <span class="fl">200</span>, gridlines <span class="op">=</span> <span class="cn">FALSE</span>, bty <span class="op">=</span> <span class="st">'o'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">CHD</span>, type <span class="op">=</span> <span class="st">'telemetry'</span>, tracks <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">CHC</span><span class="op">)</span>, border <span class="op">=</span> <span class="fl">200</span>, gridlines <span class="op">=</span> <span class="cn">FALSE</span>, bty <span class="op">=</span> <span class="st">'o'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">CHC</span>, type <span class="op">=</span> <span class="st">'telemetry'</span>, tracks <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-plotsim" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plotsim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="A07-telemetry_files/figure-html/fig-plotsim-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="A07-telemetry_files/figure-html/fig-plotsim-1.png" class="img-fluid figure-img" width="576"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotsim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;G.4: Simulated telemetry data in relation to a capture–recapture grid (red crosses). Independently telemetered individuals are not recognised if they are caught on the grid. Dependent telemetry is restricted to animals caught on the grid. Individuals telemetered concurrently may or may not be caught, but are recognised when they are.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section></section><section id="telemetrytechnotes" class="level2" data-number="G.6"><h2 data-number="G.6" class="anchored" data-anchor-id="telemetrytechnotes">
+<span class="header-section-number">G.6</span> Technical notes</h2>
+<section id="assumption-of-common-sigma" class="level3" data-number="G.6.1"><h3 data-number="G.6.1" class="anchored" data-anchor-id="assumption-of-common-sigma">
+<span class="header-section-number">G.6.1</span> Assumption of common <span class="math inline">\sigma</span>
+</h3>
+<p>Joint analysis of telemetry and capture–recapture data usually relies on the assumption that the same value of the parameter <span class="math inline">\sigma</span> applies in both sampling processes. This does not hold when</p>
+<ul>
+<li><p>telemetry fixes have large measurement error that inflates <span class="math inline">\sigma</span>, or</p></li>
+<li><p>the tendency of an animal to interact with a detector after encountering it varies systematically with distance from the home-range centre, or</p></li>
+<li><p>activity is not stationary and the telemetry and capture–recapture data relate to different time intervals.</p></li>
+</ul>
+<p>The assumption may be avoided altogether by modelling distinct values of <span class="math inline">\sigma</span> on trapping and telemetry occasions. This is readily achieved using the automatic predictor <code>tt</code> in the formula for sigma, as in <code>secr.fit(CH, detectfn = 'HHN', model = sigma~tt, ...)</code>. The model then has one level of sigma for non-telemetry occasions (tt = ‘nontelemetry’) and another for telemetry occasions (tt = ‘telemetry’). However, this sacrifices much of the benefit from a joint analysis when the telemetry data are dependent or concurrent, and all benefit for independent telemetry data.</p>
+</section><section id="numerical-problems" class="level3" data-number="G.6.2"><h3 data-number="G.6.2" class="anchored" data-anchor-id="numerical-problems">
+<span class="header-section-number">G.6.2</span> Numerical problems</h3>
+<p>Fitting joint telemetry and SECR models can be difficult - the usual computations in <strong>secr</strong> may fail to return a likelihood. The problem is often due to a near-zero value in a component of the telemetry likelihood. This occurs particularly in large datasets. The problem may be fixed by scaling the offending values by an arbitrary large number given in the details argument ‘telemetryscale’. The required magnitude for ‘telemetryscale’ may be found by experimentation (try 1e3, 1e6, 1e9, 1e12 etc.). This ad hoc solution must be applied consistently if models are to be compared by AIC.</p>
+<div class="cell">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">te</span> <span class="op">&lt;-</span> <span class="fu">make.telemetry</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">teCH2</span> <span class="op">&lt;-</span> <span class="fu">sim.capthist</span><span class="op">(</span><span class="va">te</span>, popn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>D <span class="op">=</span> <span class="fl">2</span>, buffer <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>, </span>
+<span>    detectfn <span class="op">=</span> <span class="st">"HHN"</span>, exactN <span class="op">=</span> <span class="fl">100</span>, detectpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>,</span>
+<span>    noccasions <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">mask</span> <span class="op">&lt;-</span> <span class="fu">make.mask</span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">teCH2</span><span class="op">)</span>, buffer <span class="op">=</span> <span class="fl">300</span>, type <span class="op">=</span> </span>
+<span>    <span class="st">'trapbuffer'</span><span class="op">)</span></span>
+<span><span class="co"># fails</span></span>
+<span><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">teCH2</span>, mask <span class="op">=</span> <span class="va">mask</span>, detectfn <span class="op">=</span> <span class="st">'HHN'</span>, CL <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    trace <span class="op">=</span> <span class="cn">FALSE</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>telemetryscale <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      link estimate SE.estimate lcl ucl
+sigma  log       NA          NA  NA  NA</code></pre>
+</div>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># succeeds</span></span>
+<span><span class="va">fit1000</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">teCH2</span>, mask <span class="op">=</span> <span class="va">mask</span>, detectfn <span class="op">=</span> <span class="st">'HHN'</span>, </span>
+<span>    CL <span class="op">=</span> <span class="cn">TRUE</span>, trace <span class="op">=</span> <span class="cn">FALSE</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>telemetryscale <span class="op">=</span> </span>
+<span>    <span class="fl">1e3</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit1000</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      link estimate SE.estimate    lcl    ucl
+sigma  log   25.044     0.20636 24.643 25.452</code></pre>
+</div>
+</div>
+<p>Numerical problems may also be caused by inappropriate starting values, poor model specification, or an unknown bug. It may help to use the longer-tailed detection function ‘HEX’ instead of ‘HHN’.</p>
+</section><section id="learned-response" class="level3" data-number="G.6.3"><h3 data-number="G.6.3" class="anchored" data-anchor-id="learned-response">
+<span class="header-section-number">G.6.3</span> Learned response</h3>
+<p>Learned responses (b, bk) are not expected in telemetry data. However, they may make sense for the ‘SECR’ occasions of a composite dataset (combined stationary detectors and telemetry). There is no way to avoid a global learned response (b) from propagating to the telemetry occasions (i.e.&nbsp;modelling different telemetry sigmas for animals detected or not detected in the pre-telemetry phase). A site-specific learned response, however, cannot propagate to the telemetry phase if there is a single telemetry ‘occasion’ because (i) no animal is detected at the notional telemetry detector in the pre-telemetry phase, and (ii) there is no opportunity for learning within the telemetry phase if all detections are on one occasion.</p>
+</section></section><section id="telemetrylimitations" class="level2" data-number="G.7"><h2 data-number="G.7" class="anchored" data-anchor-id="telemetrylimitations">
+<span class="header-section-number">G.7</span> Limitations</h2>
+<p>Some important functions of <strong>secr</strong> have yet to be updated to work with telemetry data. These are listed in <a href="#sec-telemetryappendix2" class="quarto-xref"><span>Section G.8</span></a>. Other limitations are described here.</p>
+<section id="incompatible-with-area-search" class="level3" data-number="G.7.1"><h3 data-number="G.7.1" class="anchored" data-anchor-id="incompatible-with-area-search">
+<span class="header-section-number">G.7.1</span> Incompatible with area search</h3>
+<p>Telemetry data may not be combined with area-search (polygon) data except as independent data in distinct sessions. This is because the polygon data types presently implemented in <strong>secr</strong> must be constant across a session.</p>
+<p>If the ‘independent data, distinct-session’ solution is inadequate you might try rasterizing the search area (function <code>discretize</code>).</p>
+</section><section id="incompatible-with-markresight" class="level3" data-number="G.7.2"><h3 data-number="G.7.2" class="anchored" data-anchor-id="incompatible-with-markresight">
+<span class="header-section-number">G.7.2</span> Incompatible with mark–resight</h3>
+<p>Telemetry data may not be combined with mark-resight except possibly in distinct sessions (this has not been tested).</p>
+</section><section id="incompatible-with-hybrid-heterogeneity-model" class="level3" data-number="G.7.3"><h3 data-number="G.7.3" class="anchored" data-anchor-id="incompatible-with-hybrid-heterogeneity-model">
+<span class="header-section-number">G.7.3</span> Incompatible with hybrid heterogeneity model</h3>
+<p>The <code>secr.fit</code> code for hybrid heterogeneity models (hcov) has yet to be updated.</p>
+</section><section id="non-euclidean-distance" class="level3" data-number="G.7.4"><h3 data-number="G.7.4" class="anchored" data-anchor-id="non-euclidean-distance">
+<span class="header-section-number">G.7.4</span> Non-Euclidean distance</h3>
+<p>Non-Euclidean distance methods cannot be used with telemetry data at present (a very large distance matrix would be required).</p>
+</section></section><section id="sec-telemetryappendix2" class="level2" data-number="G.8"><h2 data-number="G.8" class="anchored" data-anchor-id="sec-telemetryappendix2">
+<span class="header-section-number">G.8</span> Telemetry-related functions.</h2>
+<div id="tbl-telemetryfunctions" class="sm quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-telemetryfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;G.1: Functions specifically for telemetry data.
+</figcaption><div aria-describedby="tbl-telemetryfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-sm small table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 77%">
+</colgroup>
+<thead><tr class="header">
+<th>Function</th>
+<th>Purpose</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>addTelemetry</code></td>
+<td>combine capture-recapture and telemetry data in new capthist</td>
+</tr>
+<tr class="even">
+<td><code>make.telemetry</code></td>
+<td>build a traps object for standalone telemetry data</td>
+</tr>
+<tr class="odd">
+<td><code>read.telemetry</code></td>
+<td>input telemetry fixes from text file or dataframe</td>
+</tr>
+<tr class="even">
+<td><code>telemetered</code></td>
+<td>determine which animals in a capthist object have telemetry data</td>
+</tr>
+<tr class="odd">
+<td><code>telemetrytype</code></td>
+<td>extract or replace the ‘telemetrytype’ attribute of a traps object</td>
+</tr>
+<tr class="even">
+<td><code>telemetryxy</code></td>
+<td>extract or replace telemetry coordinates from capthist</td>
+</tr>
+<tr class="odd">
+<td><code>xy2CH</code></td>
+<td>make a standalone telemetry capthist from a composite capthist</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="tbl-telemetrygeneralfunctions" class="sm quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-telemetrygeneralfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;G.2: Telemetry-ready general functions. Functions marked with an asterisk (*) use the telemetry coordinates if the capthist is telemetry-only, otherwise the detection sites.
+</figcaption><div aria-describedby="tbl-telemetrygeneralfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-sm small table">
+<thead><tr class="header">
+<th>Function</th>
+<th>Purpose</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>derived</code></td>
+<td>Horvitz-Thompson-like density estimate</td>
+</tr>
+<tr class="even">
+<td><code>join</code></td>
+<td>combine sessions of multi-session capthist object</td>
+</tr>
+<tr class="odd">
+<td><code>make.capthist</code></td>
+<td>build capthist object</td>
+</tr>
+<tr class="even">
+<td><code>moves</code></td>
+<td>sequential movements*</td>
+</tr>
+<tr class="odd">
+<td><code>MS.capthist</code></td>
+<td>form multi-session capthist from separate sessions</td>
+</tr>
+<tr class="even">
+<td><code>plot.capthist</code></td>
+<td>plotting (type = ‘telemetry’)</td>
+</tr>
+<tr class="odd">
+<td><code>rbind.capthist</code></td>
+<td>concatenate rows of capthist</td>
+</tr>
+<tr class="even">
+<td>
+<code>RPSV</code>, <code>MMDM</code>, <code>ARL</code>, <code>dbar</code>
+</td>
+<td>indices of home-range size*</td>
+</tr>
+<tr class="odd">
+<td><code>secr.fit</code></td>
+<td>model fitting</td>
+</tr>
+<tr class="even">
+<td><code>sim.capthist</code></td>
+<td>generate capthist data</td>
+</tr>
+<tr class="odd">
+<td><code>subset.capthist</code></td>
+<td>select subset of animals, occasions or detectors</td>
+</tr>
+<tr class="even">
+<td><code>summary.capthist</code></td>
+<td>summary</td>
+</tr>
+<tr class="odd">
+<td><code>verify.capthist</code></td>
+<td>perform integrity checks</td>
+</tr>
+<tr class="even">
+<td><code>verify.traps</code></td>
+<td>perform integrity checks</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="tbl-telemetrynonfunctions" class="sm quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-telemetrynonfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;G.3: General functions not ready for telemetry.
+</figcaption><div aria-describedby="tbl-telemetrynonfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-sm small table">
+<thead><tr class="header">
+<th>Function</th>
+<th>Purpose</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>reduce.capthist</code></td>
+<td>change detector type or collapse occasions</td>
+</tr>
+<tr class="even">
+<td><code>sim.secr</code></td>
+<td>parametric bootstrap fitted model</td>
+</tr>
+<tr class="odd">
+<td><code>simulate</code></td>
+<td>simulate from fitted model</td>
+</tr>
+<tr class="even">
+<td><code>secr.test</code></td>
+<td>another parametric boostrap</td>
+</tr>
+<tr class="odd">
+<td><code>fxTotal</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>fxiContour</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;G.1: Simulated trapping and telemetry data. The 5-day trapping study (left) yielded 29 recaptures. Telemetry data were obtained on 10 occasions for each of 12 animals (right). Points for animals that were both trapped and telemetered are ringed in black. Colours distinguish individuals.</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;G.2: Schematic relationship of capture–recapture data to three types of telemetry data. Vertical overlap indicates individuals that appear in both datasets.</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;G.3: Habitat masks prepared by buffering around telemetry sites (left) or both telemetry and detector sites (right).</span>
+<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;G.4: Simulated telemetry data in relation to a capture–recapture grid (red crosses). Independently telemetered individuals are not recognised if they are caught on the grid. Dependent telemetry is restricted to animals caught on the grid. Individuals telemetered concurrently may or may not be caught, but are recognised when they are.</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-cc58" class="csl-entry" role="listitem">
+Calhoun, J. B., &amp; Casby, J. U. (1958). Calculation of home range and density of small mammals. <em>Public Health Monograph</em>, <em>55</em>.
+</div>
+<div id="ref-Chandler2021" class="csl-entry" role="listitem">
+Chandler, R. B., Crawford, D. A., Garrison, E. P., Miller, K. V., &amp; Cherry, M. J. (2021). Modeling abundance, distribution, movement and space use with camera and telemetry data. <em>Ecology</em>, <em>103</em>(10). <a href="https://doi.org/10.1002/ecy.3583">https://doi.org/10.1002/ecy.3583</a>
+</div>
+<div id="ref-Gopalaswamy2012" class="csl-entry" role="listitem">
+Gopalaswamy, A. M., Royle, J. A., Delampady, M., Nichols, J. D., Karanth, K. U., &amp; Macdonald, D. W. (2012). Density estimation in tiger populations: Combining information for strong inference. <em>Ecology</em>, <em>93</em>(7), 1741–1751. <a href="https://doi.org/10.1890/11-2110.1">https://doi.org/10.1890/11-2110.1</a>
+</div>
+<div id="ref-Kendeigh1944" class="csl-entry" role="listitem">
+Kendeigh, S. C. (1944). Measurement of bird populations. <em>Ecological Monographs</em>, <em>14</em>, 67–106. <a href="https://doi.org/10.2307/1961632">https://doi.org/10.2307/1961632</a>
+</div>
+<div id="ref-Linden2018" class="csl-entry" role="listitem">
+Linden, D. W., Sirén, A. P. K., &amp; Pekins, P. J. (2018). Integrating telemetry data into spatial capture–recapture modifies inferences on multi‐scale resource selection. <em>Ecosphere</em>, <em>9</em>(4). <a href="https://doi.org/10.1002/ecs2.2203">https://doi.org/10.1002/ecs2.2203</a>
+</div>
+<div id="ref-Margenau2022" class="csl-entry" role="listitem">
+Margenau, L. L. S., Cherry, M. J., Miller, K. V., Garrison, E. P., &amp; Chandler, R. B. (2022). Monitoring partially marked populations using camera and telemetry data. <em>Ecological Applications</em>, <em>32</em>(4). <a href="https://doi.org/10.1002/eap.2553">https://doi.org/10.1002/eap.2553</a>
+</div>
+<div id="ref-sgpsmspo13" class="csl-entry" role="listitem">
+Sollmann, R., Gardner, B., Parsons, A. W., Stocking, J. J., McClintock, B. T., Simons, T. R., Pollock, K. H., &amp; O’Connell, A. F. (2013). A spatial mark-resight model augmented with telemetry data. <em>Ecology</em>, <em>94</em>, 553–559.
+</div>
+<div id="ref-whc18" class="csl-entry" role="listitem">
+Whittington, J., Hebblewhite, M., &amp; Chandler, R. (2018). Generalized spatial mark-resight models with an application to grizzly bears. <em>Journal of Applied Ecology</em>, <em>55</em>, 157–168.
+</div>
+</div>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>This constraint arises from the need internally to normalise the probability density function for each telemetry fix. The normalising constant for these functions is <span class="math inline">1/(2\pi \sigma^2)</span>, whereas for most other possible values of <code>detectfn</code> it is hard to compute or the function does not correspond to a probability density.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+      <a href="./A06-noneuclidean.html" class="pagination-link" aria-label="Non-Euclidean distances">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Non-Euclidean distances</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./A08-parameterizations.html" class="pagination-link" aria-label="Parameterizations">
+        <span class="nav-page-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Parameterizations</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+</body></html>

@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Spatially Explicit Capture–Recapture - 8&nbsp; Study design</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./09-secr-package.html" rel="next">
+<link href="./07-validation.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-assumptions.html">Performance</a></li><li class="breadcrumb-item"><a href="./08-studydesign.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Study design</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Spatially Explicit Capture–Recapture</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/MurrayEfford/SECRbook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foreword</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Concepts and terminology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple example</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Likelihood-based SECR</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-theory-area-search.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Area search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-theory-special-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Special topics</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Performance</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Assumptions and robustness</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Empirical validation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-studydesign.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Study design</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Practice</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-secr-package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R package secr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-detection-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Detection model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-sex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sex differences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A01-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Troubleshooting <strong>secr</strong></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A02-speed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Faster is better</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A03-spatial-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Spatial data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A04-polygondetectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Area and transect search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A05-mark-resight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Mark-resight models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A06-noneuclidean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Non-Euclidean distances</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A07-telemetry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Telemetry</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A08-parameterizations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Parameterizations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A09-densityappendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Density revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A10-trend.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Trend revisited</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A11-expected-counts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">Expected counts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A12-datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A99-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+<li><a href="#studies-focussing-on-design" id="toc-studies-focussing-on-design" class="nav-link active" data-scroll-target="#studies-focussing-on-design"><span class="header-section-number">8.1</span> Studies focussing on design</a></li>
+  <li><a href="#sec-datarequirements" id="toc-sec-datarequirements" class="nav-link" data-scroll-target="#sec-datarequirements"><span class="header-section-number">8.2</span> Data requirements for SECR</a></li>
+  <li><a href="#precision-and-power" id="toc-precision-and-power" class="nav-link" data-scroll-target="#precision-and-power"><span class="header-section-number">8.3</span> Precision and power</a></li>
+  <li><a href="#sec-componentsofvariance" id="toc-sec-componentsofvariance" class="nav-link" data-scroll-target="#sec-componentsofvariance"><span class="header-section-number">8.4</span> Components of variance</a></li>
+  <li><a href="#pilot-parameter-values" id="toc-pilot-parameter-values" class="nav-link" data-scroll-target="#pilot-parameter-values"><span class="header-section-number">8.5</span> Pilot parameter values</a></li>
+  <li><a href="#sec-Enr" id="toc-sec-Enr" class="nav-link" data-scroll-target="#sec-Enr"><span class="header-section-number">8.6</span> Expected sample size</a></li>
+  <li><a href="#sec-arraysize" id="toc-sec-arraysize" class="nav-link" data-scroll-target="#sec-arraysize"><span class="header-section-number">8.7</span> Array size in relation to home range</a></li>
+  <li><a href="#the-n-r-tradeoff" id="toc-the-n-r-tradeoff" class="nav-link" data-scroll-target="#the-n-r-tradeoff"><span class="header-section-number">8.8</span> The <span class="math inline">n-r</span> tradeoff</a></li>
+  <li><a href="#sec-spacing" id="toc-sec-spacing" class="nav-link" data-scroll-target="#sec-spacing"><span class="header-section-number">8.9</span> Spacing and precision</a></li>
+  <li><a href="#sec-Amax" id="toc-sec-Amax" class="nav-link" data-scroll-target="#sec-Amax"><span class="header-section-number">8.10</span> Detectors required for uniform array</a></li>
+  <li><a href="#number-of-detectors-in-fixed-region" id="toc-number-of-detectors-in-fixed-region" class="nav-link" data-scroll-target="#number-of-detectors-in-fixed-region"><span class="header-section-number">8.11</span> Number of detectors in fixed region</a></li>
+  <li><a href="#clustered-designs" id="toc-clustered-designs" class="nav-link" data-scroll-target="#clustered-designs"><span class="header-section-number">8.12</span> Clustered designs</a></li>
+  <li><a href="#how-many-clusters" id="toc-how-many-clusters" class="nav-link" data-scroll-target="#how-many-clusters"><span class="header-section-number">8.13</span> How many clusters?</a></li>
+  <li><a href="#designing-for-spatial-variation-in-parameters" id="toc-designing-for-spatial-variation-in-parameters" class="nav-link" data-scroll-target="#designing-for-spatial-variation-in-parameters"><span class="header-section-number">8.14</span> Designing for spatial variation in parameters</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.15</span> Summary</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-assumptions.html">Performance</a></li><li class="breadcrumb-item"><a href="./08-studydesign.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Study design</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-studydesign" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Study design</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p></p>
+<p>Study design for SECR brings together many disparate considerations, some external to SECR itself (goals, cost, logistics). In this chapter we hope to build an understanding of the working properties of SECR and integrate the external considerations into a strategy for effective study design.</p>
+<p>The key variables are the choice of methods for detection and individual identification, the number and placement of detectors, and the duration of sampling. The available detection and identification methods vary from taxon to taxon, and we do not consider them in detail. Cost is an ever-present constraint on the remaining variables, but we leave it to the end.</p>
+<p>Tools for study design are provided in the R package <strong>secrdesign</strong> and its online interface <a href="https://www.stats.otago.ac.nz/secrdesignapp/">secrdesignapp</a>. Simulation of candidate designs is a central method, but for clarity we defer instruction on that until the next chapter.</p>
+<section id="studies-focussing-on-design" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="studies-focussing-on-design">
+<span class="header-section-number">8.1</span> Studies focussing on design</h2>
+<p></p>
+<p>General issues of study design for SECR were considered by <span class="citation" data-cites="Sollmann2012">Sollmann et al. (<a href="A99-references.html#ref-Sollmann2012" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="Tobler2013">Tobler &amp; Powell (<a href="A99-references.html#ref-Tobler2013" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="Sun2014">Sun et al. (<a href="A99-references.html#ref-Sun2014" role="doc-biblioref">2014</a>)</span>, <span class="citation" data-cites="c19">Clark (<a href="A99-references.html#ref-c19" role="doc-biblioref">2019</a>)</span>, and <span class="citation" data-cites="eb19">Efford &amp; Boulanger (<a href="A99-references.html#ref-eb19" role="doc-biblioref">2019</a>)</span>. Algorithmic optimisation of detector locations was described by <span class="citation" data-cites="drns21">Dupont et al. (<a href="A99-references.html#ref-drns21" role="doc-biblioref">2021</a>)</span> and <span class="citation" data-cites="dbss21">Durbach et al. (<a href="A99-references.html#ref-dbss21" role="doc-biblioref">2021</a>)</span>. Design issues appeared incidentally in <span class="citation" data-cites="ewcb05">Efford et al. (<a href="A99-references.html#ref-ewcb05" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="ef13">Efford &amp; Fewster (<a href="A99-references.html#ref-ef13" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="Noss2012">Noss et al. (<a href="A99-references.html#ref-Noss2012" role="doc-biblioref">2012</a>)</span>, and <span class="citation" data-cites="Palmero2023">Palmero et al. (<a href="A99-references.html#ref-Palmero2023" role="doc-biblioref">2023</a>)</span>, among other papers.</p>
+</section><section id="sec-datarequirements" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="sec-datarequirements">
+<span class="header-section-number">8.2</span> Data requirements for SECR</h2>
+<p></p>
+<p>We list here some minimum data requirements that might be labelled “assumptions” but are more fundamental. They should be addressed by appropriate study design.</p>
+<p><strong>Requirement 1. Sampling representative of the area of interest</strong></p>
+<p>This requirement is important and easy to overlook. The problem takes care of itself when detectors are placed evenly throughout the area of interest, exposing all individuals to a similar probability of detection. This is usually too costly when the area of interest is large. Sub-sampling is then called for, and we consider the options later.</p>
+<p><strong>Requirement 2. Many individuals detected more than once </strong></p>
+<p>This requirement is common to all capture–recapture methods. Estimation of detection parameters conditions on the first detection, and detections after the first are needed to estimate a non-zero detection rate. The question ‘How many is enough?’ is addressed later.</p>
+<p><strong>Requirement 3. Spread adequate to estimate spatial scale of detection</strong></p>
+<p>By ‘spread’ we mean the spatial extent of the <em>detections of an individual</em>. The spread of detections must be adequate in two respects:</p>
+<p>Requirement 3a. Some individuals are detected at more than one detector, and<br>
+Requirement 3b. Detections of an individual should be localised to part of the detector array.</p>
+<p>Adequate spread is achieved by matching the size and spacing of a detector array to the scale of movement, as shown schematically in <a href="#fig-goldilocks3" class="quarto-xref">Fig.&nbsp;<span>8.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-goldilocks3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-goldilocks3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-goldilocks3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="08-studydesign_files/figure-html/fig-goldilocks3-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-goldilocks3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: Three scenarios for array size in relation to home range size. For intuition we use a circle to indicate a hard-edged uniform home range. When the array is too small, recaptures are equally likely anywhere in the array. When the spacing is too large, recaptures must be at the same detector. In either case, the recaptures carry almost no information on the spatial scale of detection <span class="math inline">\sigma</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Some qualification is needed here. We require only that <em>some</em> individuals are detected at more than one detector, and that the detector array is large enough to differentiate points in the middle and edge of <em>some</em> home ranges. Failure to meet the ‘spread’ requirement may be addressed, at least in principle, by combining SECR and <a href="./A07-telemetry.html#sec-telemetry">telemetry</a>, but improved study design is a better solution.</p>
+<p>A poorly designed detector array may give data that cannot be analysed by SECR, or provide highly biased estimates of low precision. Such designs were described by <span class="citation" data-cites="eb19">Efford &amp; Boulanger (<a href="A99-references.html#ref-eb19" role="doc-biblioref">2019</a>)</span> as ‘pathological’. We seek a non-pathological and representative design that gives the most precise estimates possible for a given cost.</p>
+</section><section id="precision-and-power" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="precision-and-power">
+<span class="header-section-number">8.3</span> Precision and power</h2>
+<p></p>
+<p>Precise estimates have narrow confidence intervals and high power to detect change. Precision and bias jointly determine the accuracy of estimates, measured by the root-mean-square error (the difference between estimates and the true value). Bias is typically a minor component, and for now we assume it is negligible.</p>
+<p>Precision is conveniently measured by its inverse, the relative standard error (RSE) where <span class="math inline">\mathrm{RSE}(\hat \theta) = \widehat{\mathrm{SE}}(\hat \theta) / {\hat \theta}</span> for estimate <span class="math inline">\hat \theta</span> of parameter <span class="math inline">\theta</span>. In statistics, the standard error is the square root of the sampling variance, estimated for MLE as described in <a href="03-theory.html#sec-confidenceintervals" class="quarto-xref"><span>Section 3.6</span></a>. Wildlife papers often use ‘CV’ for the RSE of estimates, but this confuses relative standard error and relative standard deviation.</p>
+<p>The question ‘What precision do I need?’ requires clarity on the purpose of the study. If the purpose is to compare density estimates from different times or places then the power to detect change of a given magnitude is a direct function of the initial <span class="math inline">\mathrm{RSE}(\hat D)</span> (<a href="#fig-power" class="quarto-xref">Fig.&nbsp;<span>8.2</span></a>). Although RSE = 0.2 is often touted as adequate “for management purposes”, estimates with RSE = 0.2 have low (<span class="math inline">\le</span> 50%) power to detect a change in density of even <span class="math inline">\pm</span> 50% at the usual <span class="math inline">\alpha = 0.05</span>. If reliable estimates are vital for population management, as claimed routinely in methodological papers, then surely greater precision is required. RSE = 0.1 is a better general target.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-power" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-power-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="08-studydesign_files/figure-html/fig-power-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.2: Power of a 2-sided test (<span class="math inline">\alpha = 0.05</span>) to detect change in density between two surveys as a function of effect size ((<em>D<sub>2</sub></em>/<em>D<sub>1</sub></em> − 1) × 100 on the x-axis) for two levels of <span class="math inline">\mathrm{RSE}(\hat D)</span> in the initial survey. For initial RSE = 0.1, only changes greater than –36% and +44% are detected with power greater that 80% (dashed line). Reproduced from <span class="citation" data-cites="eb19">Efford &amp; Boulanger (<a href="A99-references.html#ref-eb19" role="doc-biblioref">2019</a>)</span> Fig. 1.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>We lack a clear guide to required RSE in other studies, for which the effect size may be ill-defined. We have observed fitted models with <span class="math inline">\mathrm{RSE}(\hat D) \gg 0.2</span> to behave erratically with respect to AIC model selection, presumably because of sampling variance in the AIC values themselves.</p>
+</section><section id="sec-componentsofvariance" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="sec-componentsofvariance">
+<span class="header-section-number">8.4</span> Components of variance</h2>
+<p>The variance of density estimated by the method of <a href="05-theory-special-topics.html#conditional">conditional likelihood</a> has two components…</p>
+</section><section id="pilot-parameter-values" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="pilot-parameter-values">
+<span class="header-section-number">8.5</span> Pilot parameter values</h2>
+<p></p>
+<p>To evaluate a potential study design we must know something about the target population. Here we describe the population and the behaviour of individuals by a simple SECR model and its parameters: uniform density <span class="math inline">D</span> and the parameters <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span> of a hazard half-normal <a href="10-detection-model.html#sec-detectfn">detection function</a>. Predictions regarding the suitability and performance of any design then depend on the values of <em>D</em>, <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span>. This seems like a catch-22 – impossible until we have estimates – but for design purposes we can call on approximate values from multiple sources</p>
+<ul>
+<li>published estimates from studies of similar species,</li>
+<li>a low-precision pilot study, or</li>
+<li>indirect inference.</li>
+</ul>
+<p>Reviews of SECR studies are a useful source of pilot estimates <span class="citation" data-cites="Palmero2023">(e.g., <a href="A99-references.html#ref-Palmero2023" role="doc-biblioref">Palmero et al., 2023</a>)</span>. The hardest parameter to pin down is <span class="math inline">\lambda_0</span>, as this is very study-specific. The good news is that it has only a secondary effect on the relative merits of different array designs.</p>
+<p>Indirect inference is a murky option, but better than nothing, and there are some constraints. The quantity <span class="math inline">k = \sigma \sqrt D</span> (loosely described by <span class="citation" data-cites="edjq16">Efford et al. (<a href="A99-references.html#ref-edjq16" role="doc-biblioref">2016</a>)</span> as an index of home range overlap) usually falls in the range 0.3–1.3 for solitary species (M. Efford unpubl.). <strong>secr</strong> expresses <span class="math inline">D</span> in animals / ha and <span class="math inline">\sigma</span> in metres, so a factor of 100 is needed, and <span class="math inline">\sigma = \frac{100}{\sqrt{2D}}</span> is a good start (<span class="math inline">k \approx 0.707</span>).</p>
+<p>The intercept and spatial scale parameters of the <em>hazard</em> detection functions (<span class="math inline">\lambda_0, \sigma</span>) may be substituted for design purposes by the parameters of the corresponding <em>probability</em> detection function (<span class="math inline">g_0, \sigma</span>)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-kplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/kplot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="figures/kplot.png" class="img-fluid figure-img" style="width:50.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.3: Relationship between density and the spatial scale parameter <span class="math inline">\sigma</span> for different values of the overlap index <span class="math inline">k</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>We can use the close analogy between the detection function and a home-range utilisation distribution to extract a pilot value of <span class="math inline">\sigma</span> from home range data. Most directly, a circular bivariate normal (BVN) model can be fitted to telemetry data; we then use the dispersion parameter directly as a pilot value of <span class="math inline">\sigma</span> for hazard half-normal detection. If the home range data have been summarised as the area <span class="math inline">a</span> within a notional 95% activity contour then the spatial scale parameter of the hazard half-normal is close to <span class="math inline">\sigma = \sqrt \frac{a}{6 \pi}</span> <span class="citation" data-cites="Jennrich1969">(<a href="A99-references.html#ref-Jennrich1969" role="doc-biblioref">Jennrich &amp; Turner, 1969</a> Eq. 13)</span><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<!-- #### lambda0 from n -->
+</section><section id="sec-Enr" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="sec-Enr">
+<span class="header-section-number">8.6</span> Expected sample size</h2>
+<p></p>
+<p>Given some pilot parameter values, we might proceed directly to simulating data from different designs and computing the resulting SECR estimates. This is effective, but slow. A useful preliminary step is to check the expected sample size of potential designs.</p>
+<p>The sample size for SECR is more than a single number. We suggest calculating the expected values of these count statistics:</p>
+<ul>
+<li>
+<em>n</em> &nbsp; the number of distinct individuals detected at least once,</li>
+<li>
+<em>r</em> &nbsp; the total number of re-detections (any detection after an individual is first detected), and</li>
+<li>
+<em>m</em> &nbsp; the total number of movements (re-detections at a detector different to the preceding one)<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</li>
+</ul>
+<p>The counts depend also on the detector configuration, the extent of habitat (buffer width), and the type of detector (trap, proximity detector etc.). Formulae are given <a href="https://www.otago.ac.nz/density/pdfs/secrdesign-Enrm.pdf">here</a>. Calculation is fast and the counts give insight on whether the data generated by a design are likely to be adequate. E(<em>r</em>) is a direct measure of Requirement 2 above. E(<em>m</em>) addresses Requirement 3a (‘Spacing too large’ in <a href="#fig-goldilocks3" class="quarto-xref">Fig.&nbsp;<span>8.1</span></a>).</p>
+<p><span class="citation" data-cites="eb19">Efford &amp; Boulanger (<a href="A99-references.html#ref-eb19" role="doc-biblioref">2019</a>)</span> found that E(<em>n</em>) and E(<em>r</em>) alone were often sufficient to predict the precision of SECR density estimates, and maximum precision was achieved when E(<em>n</em>) <span class="math inline">\approx</span> E(<em>r</em>).</p>
+</section><section id="sec-arraysize" class="level2" data-number="8.7"><h2 data-number="8.7" class="anchored" data-anchor-id="sec-arraysize">
+<span class="header-section-number">8.7</span> Array size in relation to home range</h2>
+<p></p>
+<p>We lack a count statistic matching the second part of Requirement 3 (‘Array too small’ in <a href="#fig-goldilocks3" class="quarto-xref">Fig.&nbsp;<span>8.1</span></a>). We therefore define an <em>ad hoc</em> measure of sampling scale that we call the ‘extent ratio’: this is the diameter of the array (the distance between the most extreme detectors) divided by the nominal diameter of a 95% home range. The 95% home-range radius is <span class="math inline">r_{0.95} \approx 2.45 \sigma</span> for a BVN utilisation distribution (from the previous formula).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ARRplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ARRplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/ARR.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="figures/ARR.png" class="img-fluid figure-img" style="width:80.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ARRplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.4: Effect of array size on relative bias (RB) and relative root-mean-square error (rRMSE) of density estimates. Simulations of a square array with size (diagonal length) divided by the diameter of a 95% BVN home range. Density was estimated either with the detection function used to generate the data (HHN) or a mis-specified detection function (HEX).
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Simulations described on <a href="https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/ARR/secr-simulations-ARR.html">GitHub</a> show that SECR performs poorly when the extent ratio is less than 1: the relative bias and root-mean-square error of <span class="math inline">\hat D</span> increase abruptly (<a href="#fig-ARRplot" class="quarto-xref">Fig.&nbsp;<span>8.4</span></a>). We earlier touted the robustness of <span class="math inline">\hat D</span> to misspecification of the <a href="10-detection-model.html#sec-detectfn">detection function</a>, but this desirable property evaporates when the array is small, as shown by estimates from a hazard exponential function applied to hazard half-normal data in <a href="#fig-ARRplot" class="quarto-xref">Fig.&nbsp;<span>8.4</span></a>.</p>
+<p><span class="citation" data-cites="e11">Efford (<a href="A99-references.html#ref-e11" role="doc-biblioref">2011</a>)</span> simulated area-search data for a range of area sizes. Plotting those results with the extent ratio as the x-axis shows a similar pattern to <a href="#fig-ARRplot" class="quarto-xref">Fig.&nbsp;<span>8.4</span></a> (see <a href="https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/ARR/secr-simulations-ARR.html">GitHub</a>).</p>
+<!-- Other sources -->
+<p>The extent ratio does not provide a precise criterion because it combines two somewhat arbitrary measures (area dimension, 95% home range diameter). What the simulations reveal about array size can be summed up in a simple rule: the grid or searched area should be at least the size of the home range, and larger arrays provide greater robustness and accuracy.</p>
+</section><section id="the-n-r-tradeoff" class="level2" data-number="8.8"><h2 data-number="8.8" class="anchored" data-anchor-id="the-n-r-tradeoff">
+<span class="header-section-number">8.8</span> The <span class="math inline">n-r</span> tradeoff</h2>
+<p></p>
+<p>The performance of the SECR density estimator depends on both the number of individuals <span class="math inline">n</span> and the number of re-detections <span class="math inline">r</span>. However, we cannot maximise their expected values simultaneously. E(<em>n</em>) is greatest when detectors are far apart and each detector samples a different set of individuals (AC). For binary proximity detectors E(<em>r</em>) is greatest when detectors are clumped together and declines monotonically with spacing; for multi-catch traps, E(<em>r</em>) increases and then declines (<a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-nrmplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nrmplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-nrmplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="08-studydesign_files/figure-html/fig-nrmplot-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nrmplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.5: Sample size as a function of detector spacing for two detector types. Square grid of 64 detectors operated for 10 occasions with <span class="math inline">D = 0.5\sigma^{-2}</span> and <span class="math inline">\lambda_0 = 0.1</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>To maximise the sample size we seek a satisfactory compromise, an intermediate spacing of detectors that yields both high E(<em>n</em>) and high E(<em>r</em>). There is so far no evidence for weighting one more than the other; later simulations suggest aiming for E(<em>n</em>) <span class="math inline">\approx</span> E(<em>r</em>), as indicated by the vertical lines in <a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>. The number of movement recaptures <span class="math inline">m</span> follows the pattern of total recaptures <span class="math inline">r</span> and need not be considered separately.</p>
+</section><section id="sec-spacing" class="level2" data-number="8.9"><h2 data-number="8.9" class="anchored" data-anchor-id="sec-spacing">
+<span class="header-section-number">8.9</span> Spacing and precision</h2>
+<p></p>
+<p>We expect precision to improve with sample size. From the last section we understand that sample size depends somewhat subtly on detector spacing: wider spacing increases <span class="math inline">n</span> because a larger area is sampled, but it ultimately reduces <span class="math inline">r</span>. We next use simulation to demonstrate the effect on the precision. We define precision as the relative standard error (RSE) of density estimates, <span class="math inline">\mathrm{RSE} (\hat D) = \widehat {\mathrm{SE}} (\hat D) / \hat D</span>. In the following examples we assume a Poisson distribution for <span class="math inline">n</span> rather than the binomial distribution that results when <span class="math inline">N(A)</span> is <a href="./03-theory.html#sec-fixedN">fixed</a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-spacingplot2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-spacingplot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-spacingplot2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="08-studydesign_files/figure-html/fig-spacingplot2-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spacingplot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.6: Relationship between precision and detector spacing for scenarios of differing grid size and detection rate <span class="math inline">\lambda_0</span> <span class="citation" data-cites="eb19">(5 sampling occasions, reproduced from Fig. 2, <a href="A99-references.html#ref-eb19" role="doc-biblioref">Efford &amp; Boulanger, 2019</a>)</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The simulations in <a href="#fig-spacingplot2" class="quarto-xref">Fig.&nbsp;<span>8.6</span></a> are representative: there is an optimal spacing (often around <span class="math inline">2\sigma</span> for a hazard half-normal detection function) and a broad range of spacings yielding similar precision. The optimum is close, but not identical, to the spacing that gives E(<em>n</em>) = E(<em>r</em>) in <a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>. The variability of the simulations increases away from the optimum spacing: if we are in the right ballpark then very few replicates are needed to capture it.</p>
+<p>Although <span class="math inline">2\sigma</span> is often mentioned as an optimum, the optimal spacing is smaller when sampling intensity is low. This happens when there are few sampling occasions or <span class="math inline">\lambda_0</span> is small, as illustrated in <a href="#fig-spacingplot2" class="quarto-xref">Fig.&nbsp;<span>8.6</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-spacingvocc" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-spacingvocc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-spacingvocc-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="08-studydesign_files/figure-html/fig-spacingvocc-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spacingvocc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.7: Effect of sampling intensity (number of occasions and <span class="math inline">\lambda_0</span>) on optimal detector spacing from simulations. Base scenario as in <a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The curves in <a href="#fig-spacingvocc" class="quarto-xref">Fig.&nbsp;<span>8.7</span></a> are given by <span class="math inline">R_{opt} = 2 \sqrt{\lambda_0 S}</span> where <span class="math inline">R_{opt}</span> is the optimal spacing in <span class="math inline">\sigma</span> units and <span class="math inline">S</span> is the number of occasions. The reason for this apparently tight relationship has yet to be determined, and it is unreliable for intensive sampling (large <span class="math inline">S\lambda_0</span>), as indicated by the simulations for <span class="math inline">\lambda_0 = 0.2</span> and <span class="math inline">S \ge 10</span>.</p>
+<!-- What if noccasions larger? lambda_0 * noccasions-->
+</section><section id="sec-Amax" class="level2" data-number="8.10"><h2 data-number="8.10" class="anchored" data-anchor-id="sec-Amax">
+<span class="header-section-number">8.10</span> Detectors required for uniform array</h2>
+<p>Increasing imprecision of <span class="math inline">\hat D</span> and failure of estimation in many cases (indicated by white crosses in <a href="#fig-spacingplot2" class="quarto-xref">Fig.&nbsp;<span>8.6</span></a>) place a limit on the size of region <span class="math inline">A</span> that can be sampled with a uniform grid of <span class="math inline">K</span> detectors. At the optimum spacing (i.e.&nbsp;about <span class="math inline">2\sigma\sqrt{\lambda_0 S}</span>) we require <span class="math inline">K &gt;  A / (4\sigma^2\lambda_0 S)</span>.</p>
+<p>A region of interest with area <span class="math inline">A \gg 4K\sigma^2 \lambda_0 S</span> cannot be covered adequately with a uniform grid of <span class="math inline">K</span> detectors. Thus with <span class="math inline">\lambda_0 = 0.1</span> and <span class="math inline">\sigma = 50 m</span>, sampling with 100 detectors for <span class="math inline">S = 5</span> occasions covers 50 ha at 71-m spacing<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Alternatively, with <span class="math inline">\lambda_0 = 0.1</span> and <span class="math inline">\sigma = 1000 m</span>, sampling with 100 detectors for <span class="math inline">S = 5</span> occasions covers 200 km<sup>2</sup>.</p>
+<p>The spacing may be stretched somewhat from the optimum if we are willing to accept suboptimal precision, but increasing spacing by more than 50% also runs the risk of bias (<a href="#fig-spacingplot2" class="quarto-xref">Fig.&nbsp;<span>8.6</span></a>).</p>
+<p>The ratio <span class="math inline">R_K = 4\sigma^2K/A</span> is a useful guide for planning, where <span class="math inline">K</span> is the number of detectors that can be deployed. <span class="math inline">R_K \ge 1.0</span> allows for a uniform grid, whereas for <span class="math inline">R_K \ll 1.0</span> there are too few detectors for an efficient uniform grid. Here we assume <span class="math inline">\sqrt{\lambda_0 S}\approx 1.0</span>.</p>
+<!-- Exercise: find out for yourself how n,r vary with number of occasions -->
+<!-- Contingent robustness: robust when the data are good -->
+<!-- Minimum data? What can I get away with? When should I not even try? -->
+<!-- ## Grid square -->
+</section><section id="number-of-detectors-in-fixed-region" class="level2" data-number="8.11"><h2 data-number="8.11" class="anchored" data-anchor-id="number-of-detectors-in-fixed-region">
+<span class="header-section-number">8.11</span> Number of detectors in fixed region</h2>
+<p>We have referred to <span class="math inline">2\sigma\sqrt{\lambda_0 S}</span> as an ‘optimum’ spacing for the scenario that the number of detectors is fixed. Increasing the number of detectors in an area of interest can be expected to increase sample sizes, particularly <span class="math inline">\mathrm E(r)</span>, and hence to improve on precision beyond the ‘optimum’. For a non-arbitrary area <span class="math inline">R_K &gt; 1.0</span> is entirely appropriate, and cost becomes the decider. The benefit from increasing the density of detectors may be small; for example, trebling the number of detectors in a 10-ha area from <span class="math inline">K_0 =  A / (4\sigma^2\lambda_0 S) = 62.5</span> resulted in only a 27% reduction in <span class="math inline">\mathrm{RSE}(\hat D)</span> for the base parameter values of <a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>.</p>
+</section><section id="clustered-designs" class="level2" data-number="8.12"><h2 data-number="8.12" class="anchored" data-anchor-id="clustered-designs">
+<span class="header-section-number">8.12</span> Clustered designs</h2>
+<p></p>
+<p>We have assumed a regular grid of detectors with constant spacing. Regular grids have an almost mystical status in small mammal trapping <span class="citation" data-cites="obwa78">(<a href="A99-references.html#ref-obwa78" role="doc-biblioref">Otis et al., 1978</a>)</span> that can be justified, for non-spatial capture–recapture, by the need to expose every individual to the same probability of capture. Laying traps in straight lines is also easier than navigating on foot to random points.</p>
+<p>SECR <a href="#why">removes</a> the strict requirement for equal exposure, and large-scale studies often use vehicular transport and navigation by GPS, removing the advantage of straight lines. We use the term ‘clustered design’ for any layout of detectors that departs from a simple grid. Clustering may be geometrical, as in a systematic layout of regular subgrids, or incidental, as when detectors are placed at a simple random sample of sites or according to some other non-geometrical rule such as <a href="#algopt">algorithmic optimisation</a>.</p>
+<section id="rationale" class="level3" data-number="8.12.1"><h3 data-number="8.12.1" class="anchored" data-anchor-id="rationale">
+<span class="header-section-number">8.12.1</span> Rationale</h3>
+<p>The primary use for a clustered design is to survey a large region of interest with a limited number of detectors, while ensuring some close spacings to allow recaptures (<em>r, m</em>). It is impossible to meet Requirement 3a in this scenario without clustering. The threshold of area for a region to be considered ‘large’ was addressed <a href="#Amax">above</a>.</p>
+<p>Local density almost certainly varies across any large region of interest. Clustering of detectors implies patchy sampling, with the risk that selective placement of detectors in either high- or low-density areas leads to biased estimates. Spatial variation in detection from excessive clustering also adds to the variance of estimates. The risks are minimised by selecting a widely distributed and spatially representative sample. This can be achieved with a randomly located systematic array of small subgrids <span class="citation" data-cites="c19">(e.g., <a href="A99-references.html#ref-c19" role="doc-biblioref">Clark, 2019</a>)</span>, and some other methods to be discussed.</p>
+<p>A secondary application of clustered designs is to encompass heterogeneous <span class="math inline">\sigma</span> (e.g., sex differences) by providing a range of spacings. <span class="citation" data-cites="drns21">Dupont et al. (<a href="A99-references.html#ref-drns21" role="doc-biblioref">2021</a>)</span> (p.8) supposed a general benefit of irregularity “to gain better resolution of movement distances for estimating <span class="math inline">\sigma</span>”, but this has yet to be demonstrated.</p>
+<p>Clustering of detectors can reduce the total distance that must be traveled to visit all detectors. If travel is a major cost then clustering may allow more detectors to be used. This applies regardless of the size of region. <!-- Kitikmeot example --></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Data from a large, clustered design may often be analysed in <strong>secr</strong> more quickly if the ‘capthist’ object is first collapsed with function <code>mash</code> into one using the geometry of a single cluster. The object retains a memory of the number of individuals from each original cluster in the attribute ‘n.mash’. Functions <code>derived</code>, <code>derivedMash</code> and the method <code>predict.secr</code> use ‘n.mash’ to adjust their output density, SE, and confidence limits.</p>
+</div>
+</div>
+</section><section id="systematic-clustered-designs" class="level3" data-number="8.12.2"><h3 data-number="8.12.2" class="anchored" data-anchor-id="systematic-clustered-designs">
+<span class="header-section-number">8.12.2</span> Systematic clustered designs</h3>
+<section id="sec-subgrids" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="sec-subgrids">Subgrids</h4>
+<p>Random systematic designs provide a representative sample with lower sampling variance than simple random samples (REFERENCE REQUIRED). Any systematic design should have a random origin. For SECR each point on the systematic grid is the location of a subgrid. Subgrids may be any shape. We focus on square and hollow grids (<a href="#fig-cluster3x3" class="quarto-xref">Fig.&nbsp;<span>8.8</span></a>), but circles, hexagons, and straight lines are also possible.</p>
+<p>If subgrids are far apart then few individuals will be caught on more than one subgrid, and they can be designed and analysed as independent units <span class="citation" data-cites="c19">(e.g., <a href="A99-references.html#ref-c19" role="doc-biblioref">Clark, 2019</a>)</span>. For design this means that the spacing of detectors on each subgrid should be optimised according to the considerations already raised in <a href="#sec-Enr" class="quarto-xref"><span>Section 8.6</span></a> to <a href="#sec-spacing" class="quarto-xref"><span>Section 8.9</span></a>. For analysis it means that a homogeneous density model may be fitted to aggregated (‘mashed’) data from <span class="math inline">j</span> subgrids as if they were collected from a single subgrid with the shared geometry and <span class="math inline">j</span> times the density.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cluster3x3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-cluster3x3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-cluster3x3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8"><img src="08-studydesign_files/figure-html/fig-cluster3x3-1.png" class="img-fluid figure-img" style="width:80.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cluster3x3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.8: Examples of systematic clustered layouts with (a) 98 detectors at 12-m spacing, and (b) 99 detectors at 10-m spacing, in a 10-ha region of interest (grey).
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Truncation of subgrids at the edge of the region of interest reduces the size and value of marginal clusters. Two other geometrical designs avoid this problem: a lacework design (available in <span class="citation" data-cites="R-secr">Efford (<a href="A99-references.html#ref-R-secr" role="doc-biblioref">2025</a>)</span>) and a spatial coverage design, following <span class="citation" data-cites="Walvoort2010">Walvoort et al. (<a href="A99-references.html#ref-Walvoort2010" role="doc-biblioref">2010</a>)</span>.</p>
+</section><section id="sec-lacework" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="sec-lacework">Lacework</h4>
+<p></p>
+<p>In a lacework design, detectors are placed along two sets of equally spaced lines that cross at right angles to form a lattice (<a href="#fig-lace" class="quarto-xref">Fig.&nbsp;<span>8.9</span></a>). By making the spacing of the lattice lines (lattice spacing <span class="math inline">a</span>) an integer multiple of the spacing of detectors along lines (detector spacing <span class="math inline">b</span>) we avoid odd spacing at the intersections. The expected number of points on a lacework design is given by E(<em>K</em>) = <em>A/a<sup>2</sup> (2a/b - 1)</em>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-lace" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-lace-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-lace-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" data-glightbox="description: .lightbox-desc-9"><img src="08-studydesign_files/figure-html/fig-lace-1.png" class="img-fluid figure-img" style="width:40.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lace-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.9: Lacework with 102 detectors at 17.4-m spacing in a 10-ha region of interest.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>As with any systematic layout, it is desirable to randomize the origin of the lacework. The orientation is arbitrary. Lacework designs have the advantage of requiring only two design variables (<span class="math inline">a,b</span>) when subgrid methods involve three (number or spacing of subgrids, plus spacing and extent of each subgrid).</p>
+</section><section id="sec-spcosa" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="sec-spcosa">Spatial coverage</h4>
+<p></p>
+<p>Spatial coverage may be achieved by first dividing the region of interest into equal-sized strata and then placing a subgrid in each stratum. A <em>k</em>-means algorithm is used to form the strata as compact clusters of pixels <span class="citation" data-cites="Walvoort2010">(<a href="A99-references.html#ref-Walvoort2010" role="doc-biblioref">Walvoort et al., 2010</a>)</span>. A detector cluster may be centred or placed at random within each stratum (<a href="#fig-cosa" class="quarto-xref">Fig.&nbsp;<span>8.10</span></a>). We include the spatial coverage approach here because it uses nested subgrids, although the result is not strictly systematic.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cosa" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-cosa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-cosa-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" data-glightbox="description: .lightbox-desc-10"><img src="08-studydesign_files/figure-html/fig-cosa-1.png" class="img-fluid figure-img" style="width:40.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cosa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.10: Spatial coverage design with 5 randomly oriented subgrids of 20 detectors centred in equal-area strata.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section></section><section id="non-systematic-designs" class="level3" data-number="8.12.3"><h3 data-number="8.12.3" class="anchored" data-anchor-id="non-systematic-designs">
+<span class="header-section-number">8.12.3</span> Non-systematic designs</h3>
+<p>Non-systematic designs arise from algorithms for the placement of detectors that do not impose a particular geometry. One candidate is a simple random sample of points in the region of interest (SRS). Various algorithms improve on SRS with respect to spatial balance and efficiency. We focus on the Generalized Random Tessellation Stratified algorithm implemented by <span class="citation" data-cites="Dumelle2023">Dumelle et al. (<a href="A99-references.html#ref-Dumelle2023" role="doc-biblioref">2023</a>)</span> in the R package <strong>spsurvey</strong>, but there are other options <span class="citation" data-cites="Robertson2018">(<a href="A99-references.html#ref-Robertson2018" role="doc-biblioref">Robertson et al., 2018</a>)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="08-studydesign_files/figure-html/srsgrts-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" data-glightbox="description: .lightbox-desc-11" title="Non-systematic clustered layouts (a) simple random sample, and (b) Generalized Random Tessellation Stratified sample, 100 detectors in a 10-ha region of interest (grey)."><img src="08-studydesign_files/figure-html/srsgrts-1.png" class="img-fluid figure-img" style="width:80.0%" alt="Non-systematic clustered layouts (a) simple random sample, and (b) Generalized Random Tessellation Stratified sample, 100 detectors in a 10-ha region of interest (grey)."></a></p>
+<figcaption>Non-systematic clustered layouts (a) simple random sample, and (b) Generalized Random Tessellation Stratified sample, 100 detectors in a 10-ha region of interest (grey).</figcaption></figure>
+</div>
+</div>
+</div>
+<section id="sec-algopt" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="sec-algopt">Algorithmic optimisation</h4>
+<p> </p>
+<p>Choosing a set of detector locations may be reduced to finding a subset of potential locations that maximises some criterion (benefit function). A genetic algorithm is a robust way to search the vast set of possible layouts. <span class="citation" data-cites="w15">Wolters (<a href="A99-references.html#ref-w15" role="doc-biblioref">2015</a>)</span> implemented a genetic algorithm in R that was subsequently applied to the optimisation of SECR designs by <span class="citation" data-cites="drns21">Dupont et al. (<a href="A99-references.html#ref-drns21" role="doc-biblioref">2021</a>)</span> and <span class="citation" data-cites="dbss21">Durbach et al. (<a href="A99-references.html#ref-dbss21" role="doc-biblioref">2021</a>)</span>. The set of potential locations may simply be a fine grid of points, excluding points that are deemed inaccessible or fall in non-habitat. Results depend on the choice of criterion: <span class="citation" data-cites="dbss21">Durbach et al. (<a href="A99-references.html#ref-dbss21" role="doc-biblioref">2021</a>)</span> used the minimum of E(<em>n</em>) and E(<em>r</em>), following the suggestion of <span class="citation" data-cites="eb19">Efford &amp; Boulanger (<a href="A99-references.html#ref-eb19" role="doc-biblioref">2019</a>)</span> that this often leads to near-maximal precision of <span class="math inline">\hat D</span>. Optimisation may take many iterations and results are not unique.</p>
+<p>A larger criticism is that the resulting layouts are not spatially representative. The example in <a href="#fig-algopt" class="quarto-xref">Fig.&nbsp;<span>8.11</span></a> shows 100 detectors placed “optimally” when <em>R<sub>K</sub></em> = 0.16. Detectors are clumped to maximise the precision criterion min(E(<em>n</em>), E(<em>r</em>)) without regard to spatial balance. We view this to be a major weakness and discourage general use of the method except for exploratory purposes.</p>
+<p>Algorithmic optimisation has revealed one point that makes intuitive sense and is otherwise hidden. AC near the edge tend to have access to fewer detectors than central AC, and increased density of detectors near the edge is beneficial for increasing <em>n</em>, but may reduce <em>r</em> <span class="citation" data-cites="drns21">(<a href="A99-references.html#ref-drns21" role="doc-biblioref">Dupont et al., 2021</a>)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-algopt" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-algopt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-algopt-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" data-glightbox="description: .lightbox-desc-12"><img src="08-studydesign_files/figure-html/fig-algopt-1.png" class="img-fluid figure-img" style="width:80.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-algopt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.11: Algorithmic optimisation of layout. (a) 2498 potential detector locations in a 100-ha (1-km<sup>2</sup>) region, and (b) Layout comprising a subset of 100 points that maximises min(E(<em>n</em>), E(<em>r</em>)) after 1000 iterations with the base parameters in <a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<!-- This is not necessarily beneficial: estimates from a regular array with near-optimal spacing (@fig-spacingvocc) are usually more precise (e.g., @drns21 Appendix S5). However, for a large region, algorithmic optimisation provides an automated, hands-off alternative to deliberate (geometrical) clustering of detectors (1).  -->
+</section></section><section id="comparison-of-clustered-layouts" class="level3" data-number="8.12.4"><h3 data-number="8.12.4" class="anchored" data-anchor-id="comparison-of-clustered-layouts">
+<span class="header-section-number">8.12.4</span> Comparison of clustered layouts</h3>
+<p>There is no general way to navigate the multiplicity of clustered designs. As an example, we compare the preceding clustered designs for a particular scenario: 100 binary proximity detectors in a 1-km<sup>2</sup> region of interest for a species with <span class="math inline">\sigma = 0.02</span> km (<em>R<sub>K</sub></em> = 0.16) keeping other parameters as in <a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-tourplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-tourplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-tourplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" data-glightbox="description: .lightbox-desc-13"><img src="08-studydesign_files/figure-html/fig-tourplot-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tourplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.12: Layouts with about 100 detectors in a region 1-km<sup>2</sup>. Colour codes the probability of detection for an individual centred in each pixel (dark green &lt;0.05, white &gt;0.95). Detectors are joined by a minimum-length route.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>As before, we expected precision to be driven by sample size, <span class="math inline">n</span> and <span class="math inline">r</span>, with E(<em>n</em>) maximised by scattering detectors widely. Differences among the designs with respect to the usual measures of performance (RB, RSE, rRMSE) were mostly minor (<a href="#tbl-designcomparison" class="quarto-xref">Table&nbsp;<span>8.1</span></a>). The exceptions were SRS (<span class="math inline">\mathrm{RB}(\hat D)</span> +4%) and GRTS (<span class="math inline">\mathrm{RB}(\hat D)</span> +5%); these designs detected many individuals, but generated few re-detections. The lacework design gave similar results to SRS in this instance, but results can be improved with closer spacing along fewer lines.</p>
+<p>The algorithmically optimised design was one of several with <span class="math inline">\mathrm{RSE}(\hat D) \approx 11\%</span>. Tight clustering of detectors resulted in the shortest travel distance of the designs considered. However, ‘GA optimised’ clearly lacked spatial balance and is therefore likely to provide biased estimates of average density if density varies systematically across the region.</p>
+<p>Costing is complex and study-specific. Travel is an important component (time or mileage) and so we computed the length of the shortest route that included all detectors. Other components are the cost of detectors and initial setup (both proportional to <em>K</em>), and laboratory processing of DNA samples (proportional to <em>n+r</em>. Optimal route length is an example of the ‘traveling salesman problem’ (TSP). Heuristic methods in R package <strong>TSP</strong> <span class="citation" data-cites="Hahsler2007">(<a href="A99-references.html#ref-Hahsler2007" role="doc-biblioref">Hahsler &amp; Hornik, 2007</a>)</span> do not produce a single minimum and perform poorly with regular grids. We therefore used the <a href="https://www.math.uwaterloo.ca/tsp/concorde/index.html">Concorde</a> software <a href="https://neos-server.org/neos/solvers/co:concorde/TSP.html">outside R</a> to obtain optimal routes.</p>
+<div id="tbl-designcomparison" class="sm quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-designcomparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.1: Performance of seven sampling designs (<em>K</em> <span class="math inline">\approx</span> 100 detectors) with respect to sample size (expected numbers of individuals E(<em>n</em>), re-detections E(<em>r</em>), and movements E(<em>m</em>)), relative bias RB, relative standard error RSE, root-mean-square error rRMSE, and route length <em>L</em>. RB, RSE and rRMSE are percentages based on 100 simulations for each design.
+</figcaption><div aria-describedby="tbl-designcomparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-sm small table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">Design</th>
+<th style="text-align: right;"><em>K</em></th>
+<th style="text-align: right;">E(<em>n</em>)</th>
+<th style="text-align: right;">E(<em>r</em>)</th>
+<th style="text-align: right;">E(<em>m</em>)</th>
+<th style="text-align: right;">RB</th>
+<th style="text-align: right;">RSE</th>
+<th style="text-align: right;">rRMSE</th>
+<th style="text-align: right;">
+<em>L</em> km</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">square subgrid</td>
+<td style="text-align: right;">98</td>
+<td style="text-align: right;">191</td>
+<td style="text-align: right;">101</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">10.6</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">6.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hollow subgrid</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">196</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">11.2</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: right;">5.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lacework</td>
+<td style="text-align: right;">103</td>
+<td style="text-align: right;">217</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">1.2</td>
+<td style="text-align: right;">11.7</td>
+<td style="text-align: right;">11.9</td>
+<td style="text-align: right;">5.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">spatial coverage</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">74</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">9.4</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">5.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SRS</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">215</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">14.2</td>
+<td style="text-align: right;">14.9</td>
+<td style="text-align: right;">7.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GRTS</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">239</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">2.2</td>
+<td style="text-align: right;">17.1</td>
+<td style="text-align: right;">23.3</td>
+<td style="text-align: right;">8.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GA optimised</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">153</td>
+<td style="text-align: right;">153</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">10.6</td>
+<td style="text-align: right;">10.3</td>
+<td style="text-align: right;">5.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section></section><section id="how-many-clusters" class="level2" data-number="8.13"><h2 data-number="8.13" class="anchored" data-anchor-id="how-many-clusters">
+<span class="header-section-number">8.13</span> How many clusters?</h2>
+<p>For the preceding comparison we fixed the number of detectors in advance. More realistically, we might set a target <span class="math inline">\mathrm{RSE}(\hat D)</span> and ask how many clusters (i.e.&nbsp;subgrids) are required. <span class="citation" data-cites="eb19">Efford &amp; Boulanger (<a href="A99-references.html#ref-eb19" role="doc-biblioref">2019</a>)</span> observed that if clusters are independent (widely spaced) then E(<em>n</em>) and E(<em>r</em>) both scale with the number of clusters <em>c</em>, and <span class="math inline">\mathrm{RSE}(\hat D)</span> scales with <span class="math inline">1/ \sqrt c</span>. Thus we can predict the precision for a single cluster and extrapolate to assemblages of clusters (<a href="#fig-clusternumber" class="quarto-xref">Fig.&nbsp;<span>8.13</span></a>). Having determined the required number of clusters we can decide on a systematic spacing or apply the <a href="#spcosa">spatial coverage</a> method.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-clusternumber" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-clusternumber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-clusternumber-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" data-glightbox="description: .lightbox-desc-14"><img src="08-studydesign_files/figure-html/fig-clusternumber-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clusternumber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.13: Overall <span class="math inline">\mathrm{RSE}(\hat D)</span> from cluster assemblages varying in size and single-cluster RSE.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="designing-for-spatial-variation-in-parameters" class="level2" data-number="8.14"><h2 data-number="8.14" class="anchored" data-anchor-id="designing-for-spatial-variation-in-parameters">
+<span class="header-section-number">8.14</span> Designing for spatial variation in parameters</h2>
+<p></p>
+<p>We have so far treated the parameters of the SECR model as constant across space. How should designs be modified to allow for spatial variation?</p>
+<p>We must first understand the interaction between spatial variation in density and sampling intensity. Variation in density alone is not a source of significant bias in SECR. However, when sampling is more intensive in areas of high density, or areas of low density, a model that assumes homogeneous density and sampling produces biased estimates.</p>
+<p>Some aspects of sampling intensity are under the control of the experimenter: these are the type, number and spacing of detectors, and the duration of sampling. We group these under the heading ‘sampling effort’. They will usually be known and included explicitly in the SECR model.</p>
+<p>Other variation in sampling intensity may be due to behavioural or habitat factors that drive spatial variation in detection parameters (e.g., <span class="math inline">\lambda_0, \sigma</span>) unknown to the experimenter.</p>
+<p>We illustrate six scenarios for the interaction between spatial variation in density and effort, and between density and detection in <a href="#fig-spatialeffort" class="quarto-xref">Fig.&nbsp;<span>8.14</span></a>. The estimate of overall density is unbiased when effort and detection are homogeneous (<a href="#fig-spatialeffort" class="quarto-xref">Fig.&nbsp;<span>8.14</span></a> a,d). Uncorrelated variation in effort does not bias <span class="math inline">\hat D</span> (<a href="#fig-spatialeffort" class="quarto-xref">Fig.&nbsp;<span>8.14</span></a> b). Selectively reducing effort in low-density areas (<a href="#fig-spatialeffort" class="quarto-xref">Fig.&nbsp;<span>8.14</span></a> c) causes significant bias, although this may be eliminated by including an area effect in the density model.</p>
+<p>Variation in detection parameters causes bias even when not correlated with density (<a href="#fig-spatialeffort" class="quarto-xref">Fig.&nbsp;<span>8.14</span></a> e). This is the effect of <a href="#homogeneityofdetectors">inhomogeneous detection</a> noted previously. The effect is large when density and detection are correlated (<a href="#fig-spatialeffort" class="quarto-xref">Fig.&nbsp;<span>8.14</span></a> f and <span class="citation" data-cites="McLellan2023">McLellan et al. (<a href="A99-references.html#ref-McLellan2023" role="doc-biblioref">2023</a>)</span>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-spatialeffort" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-spatialeffort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-spatialeffort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" data-glightbox="description: .lightbox-desc-15"><img src="08-studydesign_files/figure-html/fig-spatialeffort-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spatialeffort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.14: Effect of spatially varying effort (grid size 6 x 6 vs 8 x 8) and detection (<span class="math inline">\lambda_0</span> orange low vs red high) on estimate of overall density when density of AC (white dots) varies spatially between low (light green) and high (light blue). See <a href="https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/STR/secr-simulations-STR.html">GitHub</a> for simulation results.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Spatially representative sampling aims to avoid correlation between density and effort (<a href="#fig-spatialeffort" class="quarto-xref">Fig.&nbsp;<span>8.14</span></a> c). A strong spatial model for density overcomes the problem, but it cannot usually be guaranteed that suitable covariates will be found, and representative sampling insures against failure.</p>
+<section id="stratified-sampling" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="stratified-sampling">Stratified sampling</h3>
+<p></p>
+<p>Deliberate stratification of effort is a special case. Stratification is used in conventional sampling to increase the precision of estimates for a given effort <span class="citation" data-cites="c77 Thompson2012">(e.g., <a href="A99-references.html#ref-c77" role="doc-biblioref">Cochran, 1977</a>; <a href="A99-references.html#ref-Thompson2012" role="doc-biblioref">Thompson, 2012</a>)</span>. We note that in SECR only detected individuals and their re-detections contribute to the estimation of detection parameters and, in this respect, effort in low-density areas is mostly wasted. Greater precision may therefore be achieved in some studies by concentrating effort where high density is expected. This requires care. A stratified analysis combines stratum-specific density estimates as follows.</p>
+<p>Suppose a region of interest with area <span class="math inline">A</span> may be divided into <span class="math inline">H</span> subregions with area <span class="math inline">A_h</span> where <span class="math inline">A = \sum_h A_h</span>. Subregions have densities <span class="math inline">D_1, D_2, ..., D_H</span>. Independent SECR sampling followed by separate model fitting in each region provides estimates <span class="math inline">\hat D_1, \hat D_2, ..., \hat D_H</span>. The weight for each region is based on its area: <span class="math inline">W_h = A_h/A</span> and <span class="math inline">\sum_h W_h = 1</span>.</p>
+<p>Then an estimate of overall density is <span class="math inline">\hat D = \sum_h W_h \hat D_h</span> and an estimate of the sampling variance is <span class="math inline">\widehat {\mathrm{var}} (\hat D) = \sum_{h=1}^H W_h^2 \widehat {\mathrm{var}} (D_h)</span>.</p>
+<p>The benefits of stratification for SECR have yet to be fully analysed. They are likely to be greatest when strata of contrasting density are easily distinguished, and when uncertainty regarding detection parameters (and hence the effective sampling area) dominates over var(n) (cf <a href="#componentsofvariance">Components of variance</a>).</p>
+<p>We conducted a simulation experiment with two density strata (40% and 160% of the overall average) and a constant total effort allocated differentially (<a href="#fig-stratifiedeffort" class="quarto-xref">Fig.&nbsp;<span>8.15</span></a>). Details are on <a href="https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/STR/secr-simulations-STR.html">GitHub</a>. For this example precision was best when about 70% of detectors were placed in the high-density stratum, but the improvement over equal allocation was tiny (<span class="math inline">\Delta\mathrm{RSE} \approx 0.005</span>) for 10 occasions and small (<span class="math inline">\Delta\mathrm{RSE} \approx 0.013</span>) for 4 occasions. Effort may also be stratified by varying the number of sampling occasions.</p>
+<p>It may help to assume that detection parameters are uniform throughout (i.e.&nbsp;shared among strata); a formal test of detection homogeneity is likely have low power.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-stratifiedeffort" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-stratifiedeffort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-stratifiedeffort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" data-glightbox="description: .lightbox-desc-16"><img src="08-studydesign_files/figure-html/fig-stratifiedeffort-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stratifiedeffort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.15: Design for evaluation of stratified effort.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-stratifiedRSE" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-stratifiedRSE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08-studydesign_files/figure-html/fig-stratifiedRSE-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" data-glightbox="description: .lightbox-desc-17"><img src="08-studydesign_files/figure-html/fig-stratifiedRSE-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stratifiedRSE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.16: Precision of overall density estimated with stratified effort. Grey line indicates minimum RSE when 88 of 128 detectors were placed in the high-density stratum (4 occasions, 0.129; 10 occasions, 0.069).
+</figcaption></figure>
+</div>
+</div>
+</div>
+<section id="density-model-as-alternative-to-representative-sampling" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="density-model-as-alternative-to-representative-sampling">Density model as alternative to representative sampling</h4>
+<p>Our emphasis on representative sampling may seem over the top. SECR is model-based and variance estimates do not depend on the design. Sampling deliberately across environmental gradients may well provide the best information on particular covariate effects, and a fitted model with these covariates may be extrapolated across the region of interest to estimate average density. We advocate representative sampling because it protects against vulnerabilities of a purely model-based approach: the reliance on a particular model, the assumption that it applies in unsampled parts of the region, and the hazard from extrapolation to unobserved values of the covariate(s).</p>
+<p>However, modelling is our only tool for handling heterogeneous detection.</p>
+<!-- ## Other topics -->
+<!-- ### Site selection -->
+<!-- Constraints on detector location may require deviation from a regular grid. Exactly how constraints should be included is an open question.  @drns21 and @dbss21 simply removed infeasible sites from the set of candidate sites for algorithmic optimisation. -->
+<!-- Often in context of random-within-grid-square designs that are convenient for planning, maintaining consistent intensity across surveys (given equal duration) -->
+<!-- Guidance from @Palmero2023 camera trapping: Their workflow Fig. 4 does not mention representativeness. Advocate "...increasing detection probability by focussing camera deployments at highly used sites (Sollmann et al. 2012, Green et al. 2020, Harmsen et al. 2020)"
+@DespresEinspenner2017 also promote selective placement Acknowledge biology?-->
+</section></section></section><section id="summary" class="level2" data-number="8.15"><h2 data-number="8.15" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">8.15</span> Summary</h2>
+<p>The SECR method is very flexible, within limits. Our approach to study design for SECR is not prescriptive. Users should bear in mind these principles:</p>
+<ul>
+<li>sampling should be representative of the region of interest</li>
+<li>without large samples a study may lack the statistical power to answer real-world questions (this is not unique to SECR)</li>
+<li>two scales are important - the size of the region of interest and the scale of movement/detection</li>
+<li>robustness to model misspecification is greatest when the sampling scale is well-matched to the scale of detection</li>
+<li>precise estimation of density requires both many individuals (<em>n</em>) and many recaptures (<em>r</em>) and these aspects of sample size often entail a design tradeoff</li>
+<li>large areas may be sampled with clustered detectors in various configurations</li>
+<li>logistic feasibility and cost considerations may override power in deciding among designs</li>
+<li>spatially heterogeneous density is not problematic in itself, but becomes so when confounded with spatially heterogeneous detection</li>
+<li>stratified sampling (concentrating sampling effort where density is predicted to be greater) has the potential to increase precision, but in our exploratory simulation the gains were minimal.</li>
+</ul>
+<p>It should be stressed that our simulation results (e.g., <a href="#fig-ARRplot" class="quarto-xref">Fig.&nbsp;<span>8.4</span></a>, <a href="#fig-spacingplot2" class="quarto-xref">Fig.&nbsp;<span>8.6</span></a>, <a href="#fig-spacingvocc" class="quarto-xref">Fig.&nbsp;<span>8.7</span></a>, <a href="#fig-stratifiedRSE" class="quarto-xref">Fig.&nbsp;<span>8.16</span></a>, and <a href="#tbl-designcomparison" class="quarto-xref">Table&nbsp;<span>8.1</span></a>) relate to particular scenarios, and the conclusions we draw may be reversed in other scenarios.</p>
+<!-- Design flowchart? -->
+
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;8.1: Three scenarios for array size in relation to home range size. For intuition we use a circle to indicate a hard-edged uniform home range. When the array is too small, recaptures are equally likely anywhere in the array. When the spacing is too large, recaptures must be at the same detector. In either case, the recaptures carry almost no information on the spatial scale of detection <span class="math inline">\sigma</span>.</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;8.2: Power of a 2-sided test (<span class="math inline">\alpha = 0.05</span>) to detect change in density between two surveys as a function of effect size ((<em>D<sub>2</sub></em>/<em>D<sub>1</sub></em> − 1) × 100 on the x-axis) for two levels of <span class="math inline">\mathrm{RSE}(\hat D)</span> in the initial survey. For initial RSE = 0.1, only changes greater than –36% and +44% are detected with power greater that 80% (dashed line). Reproduced from <span class="citation" data-cites="eb19">Efford &amp; Boulanger (<a href="A99-references.html#ref-eb19" role="doc-biblioref">2019</a>)</span> Fig. 1.</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;8.3: Relationship between density and the spatial scale parameter <span class="math inline">\sigma</span> for different values of the overlap index <span class="math inline">k</span>.</span>
+<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;8.4: Effect of array size on relative bias (RB) and relative root-mean-square error (rRMSE) of density estimates. Simulations of a square array with size (diagonal length) divided by the diameter of a 95% BVN home range. Density was estimated either with the detection function used to generate the data (HHN) or a mis-specified detection function (HEX).</span>
+<span class="glightbox-desc lightbox-desc-5">Figure&nbsp;8.5: Sample size as a function of detector spacing for two detector types. Square grid of 64 detectors operated for 10 occasions with <span class="math inline">D = 0.5\sigma^{-2}</span> and <span class="math inline">\lambda_0 = 0.1</span>.</span>
+<span class="glightbox-desc lightbox-desc-6">Figure&nbsp;8.6: Relationship between precision and detector spacing for scenarios of differing grid size and detection rate <span class="math inline">\lambda_0</span> <span class="citation" data-cites="eb19">(5 sampling occasions, reproduced from Fig. 2, <a href="A99-references.html#ref-eb19" role="doc-biblioref">Efford &amp; Boulanger, 2019</a>)</span>.</span>
+<span class="glightbox-desc lightbox-desc-7">Figure&nbsp;8.7: Effect of sampling intensity (number of occasions and <span class="math inline">\lambda_0</span>) on optimal detector spacing from simulations. Base scenario as in <a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>.</span>
+<span class="glightbox-desc lightbox-desc-8">Figure&nbsp;8.8: Examples of systematic clustered layouts with (a) 98 detectors at 12-m spacing, and (b) 99 detectors at 10-m spacing, in a 10-ha region of interest (grey).</span>
+<span class="glightbox-desc lightbox-desc-9">Figure&nbsp;8.9: Lacework with 102 detectors at 17.4-m spacing in a 10-ha region of interest.</span>
+<span class="glightbox-desc lightbox-desc-10">Figure&nbsp;8.10: Spatial coverage design with 5 randomly oriented subgrids of 20 detectors centred in equal-area strata.</span>
+<span class="glightbox-desc lightbox-desc-11">Non-systematic clustered layouts (a) simple random sample, and (b) Generalized Random Tessellation Stratified sample, 100 detectors in a 10-ha region of interest (grey).</span>
+<span class="glightbox-desc lightbox-desc-12">Figure&nbsp;8.11: Algorithmic optimisation of layout. (a) 2498 potential detector locations in a 100-ha (1-km<sup>2</sup>) region, and (b) Layout comprising a subset of 100 points that maximises min(E(<em>n</em>), E(<em>r</em>)) after 1000 iterations with the base parameters in <a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>.</span>
+<span class="glightbox-desc lightbox-desc-13">Figure&nbsp;8.12: Layouts with about 100 detectors in a region 1-km<sup>2</sup>. Colour codes the probability of detection for an individual centred in each pixel (dark green &lt;0.05, white &gt;0.95). Detectors are joined by a minimum-length route.</span>
+<span class="glightbox-desc lightbox-desc-14">Figure&nbsp;8.13: Overall <span class="math inline">\mathrm{RSE}(\hat D)</span> from cluster assemblages varying in size and single-cluster RSE.</span>
+<span class="glightbox-desc lightbox-desc-15">Figure&nbsp;8.14: Effect of spatially varying effort (grid size 6 x 6 vs 8 x 8) and detection (<span class="math inline">\lambda_0</span> orange low vs red high) on estimate of overall density when density of AC (white dots) varies spatially between low (light green) and high (light blue). See <a href="https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/STR/secr-simulations-STR.html">GitHub</a> for simulation results.</span>
+<span class="glightbox-desc lightbox-desc-16">Figure&nbsp;8.15: Design for evaluation of stratified effort.</span>
+<span class="glightbox-desc lightbox-desc-17">Figure&nbsp;8.16: Precision of overall density estimated with stratified effort. Grey line indicates minimum RSE when 88 of 128 detectors were placed in the high-density stratum (4 occasions, 0.129; 10 occasions, 0.069).</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-c19" class="csl-entry" role="listitem">
+Clark, J. D. (2019). Comparing clustered sampling designs for spatially explicit estimation of population density. <em>Population Ecology</em>, <em>61</em>, 93–101.
+</div>
+<div id="ref-c77" class="csl-entry" role="listitem">
+Cochran, W. G. (1977). <em>Sampling techniques.</em> (3rd ed.). John Wiley; Sons.
+</div>
+<div id="ref-Dumelle2023" class="csl-entry" role="listitem">
+Dumelle, M., Kincaid, T., Olsen, A. R., &amp; Weber, M. (2023). Spsurvey: Spatial sampling design and analysis in r. <em>Journal of Statistical Software</em>, <em>105</em>. <a href="https://doi.org/10.18637/jss.v105.i03">https://doi.org/10.18637/jss.v105.i03</a>
+</div>
+<div id="ref-drns21" class="csl-entry" role="listitem">
+Dupont, G., Royle, J. A., Nawaz, M. A., &amp; Sutherland, C. (2021). Optimal sampling design for spatial capture-recapture. <em>Ecology</em>, <em>102</em>, e03262.
+</div>
+<div id="ref-dbss21" class="csl-entry" role="listitem">
+Durbach, I., Borchers, D., Sutherland, C., &amp; Sharma, K. (2021). Fast, flexible alternatives to regular grid designs for spatial capture-recapture. <em>Methods in Ecology and Evolution</em>, <em>12</em>(298-310), 2041–2210. <a href="https://doi.org/10.1111/X.13517">https://doi.org/10.1111/X.13517</a>
+</div>
+<div id="ref-e11" class="csl-entry" role="listitem">
+Efford, M. G. (2011). Estimation of population density by spatially explicit capture-recapture analysis of data from area searches. <em>Ecology</em>, <em>92</em>, 2202–2207.
+</div>
+<div id="ref-R-secr" class="csl-entry" role="listitem">
+Efford, M. G. (2025). <em><span class="nocase">secr: Spatially explicit capture-recapture models</span></em>. <a href="https://CRAN.R-project.org/package=secr">https://CRAN.R-project.org/package=secr</a>
+</div>
+<div id="ref-eb19" class="csl-entry" role="listitem">
+Efford, M. G., &amp; Boulanger, J. (2019). Fast evaluation of study designs for spatially explicit capture-recapture. <em>Methods in Ecology and Evolution</em>, <em>10</em>, 1529–1535. <a href="https://doi.org/10.1111/2041-210X.13239">https://doi.org/10.1111/2041-210X.13239</a>
+</div>
+<div id="ref-edjq16" class="csl-entry" role="listitem">
+Efford, M. G., Dawson, D. K., Jhala, Y. V., &amp; Qureshi, Q. (2016). Density-dependent home-range size revealed by spatially explicit capture-recapture. <em>Ecography</em>, <em>39</em>, 676–688.
+</div>
+<div id="ref-ef13" class="csl-entry" role="listitem">
+Efford, M. G., &amp; Fewster, R. M. (2013). Estimating population size by spatially explicit capture-recapture. <em>Oikos</em>, <em>122</em>, 918–928.
+</div>
+<div id="ref-ewcb05" class="csl-entry" role="listitem">
+Efford, M. G., Warburton, B., Coleman, M. C., &amp; Barker, R. J. (2005). A field test of two methods for density estimation. <em>Wildlife Society Bulletin</em>, <em>33</em>, 731–738.
+</div>
+<div id="ref-Hahsler2007" class="csl-entry" role="listitem">
+Hahsler, M., &amp; Hornik, K. (2007). TSP- infrastructure for the traveling salesperson problem. <em>Journal of Statistical Software</em>, <em>23</em>(2). <a href="https://doi.org/10.18637/jss.v023.i02">https://doi.org/10.18637/jss.v023.i02</a>
+</div>
+<div id="ref-Jennrich1969" class="csl-entry" role="listitem">
+Jennrich, R. I., &amp; Turner, F. B. (1969). Measurement of non-circular home range. <em>Journal of Theoretical Biology</em>, <em>22</em>, 227–237. <a href="https://doi.org/10.1016/0022-5193(69)90002-2">https://doi.org/10.1016/0022-5193(69)90002-2</a>
+</div>
+<div id="ref-Kendeigh1944" class="csl-entry" role="listitem">
+Kendeigh, S. C. (1944). Measurement of bird populations. <em>Ecological Monographs</em>, <em>14</em>, 67–106. <a href="https://doi.org/10.2307/1961632">https://doi.org/10.2307/1961632</a>
+</div>
+<div id="ref-McLellan2023" class="csl-entry" role="listitem">
+McLellan, B. A., Howe, E., Marrotte, R. R., &amp; Northrup, J. M. (2023). Accounting for heterogeneous density and detectability in spatially explicit capture–recapture studies of carnivores. <em>Ecosphere</em>, <em>14</em>(10). <a href="https://doi.org/10.1002/ecs2.4669">https://doi.org/10.1002/ecs2.4669</a>
+</div>
+<div id="ref-Noss2012" class="csl-entry" role="listitem">
+Noss, A. J., Gardner, B., Maffei, L., Cuéllar, E., Montaño, R., Romero‐Muñoz, A., Sollman, R., &amp; O’Connell, A. F. (2012). Comparison of density estimation methods for mammal populations with camera traps in the &lt;scp&gt;k&lt;/scp&gt;aa‐&lt;scp&gt;i&lt;/scp&gt;ya del &lt;scp&gt;g&lt;/scp&gt;ran &lt;scp&gt;c&lt;/scp&gt;haco landscape. <em>Animal Conservation</em>, <em>15</em>(5), 527–535. <a href="https://doi.org/10.1111/j.1469-1795.2012.00545.x">https://doi.org/10.1111/j.1469-1795.2012.00545.x</a>
+</div>
+<div id="ref-obwa78" class="csl-entry" role="listitem">
+Otis, D. L., Burnham, K. P., White, G. C., &amp; Anderson, D. R. (1978). Statistical inference from capture data on closed animal populations. <em>Wildlife Monographs</em>, <em>62</em>.
+</div>
+<div id="ref-Palmero2023" class="csl-entry" role="listitem">
+Palmero, S., Premier, J., Kramer‐Schadt, S., Monterroso, P., &amp; Heurich, M. (2023). Sampling variables and their thresholds for the precise estimation of wild felid population density with camera traps and spatial capture–recapture methods. <em>Mammal Review</em>, <em>53</em>(4), 223–237. <a href="https://doi.org/10.1111/mam.12320">https://doi.org/10.1111/mam.12320</a>
+</div>
+<div id="ref-Robertson2018" class="csl-entry" role="listitem">
+Robertson, B., McDonald, T., Price, C., &amp; Brown, J. (2018). Halton iterative partitioning: Spatially balanced sampling via partitioning. <em>Environmental and Ecological Statistics</em>, <em>25</em>(3), 305–323. <a href="https://doi.org/10.1007/s10651-018-0406-6">https://doi.org/10.1007/s10651-018-0406-6</a>
+</div>
+<div id="ref-Sollmann2012" class="csl-entry" role="listitem">
+Sollmann, R., Gardner, B., &amp; Belant, J. L. (2012). How does spatial study design influence density estimates from spatial capture-recapture models? <em>PLoS ONE</em>, <em>7</em>(4), e34575. <a href="https://doi.org/10.1371/journal.pone.0034575">https://doi.org/10.1371/journal.pone.0034575</a>
+</div>
+<div id="ref-Sun2014" class="csl-entry" role="listitem">
+Sun, C. C., Fuller, A. K., &amp; Royle, J. A. (2014). Trap configuration and spacing influences parameter estimates in spatial capture-recapture models. <em>PLoS ONE</em>, <em>9</em>(2), e88025. <a href="https://doi.org/10.1371/journal.pone.0088025">https://doi.org/10.1371/journal.pone.0088025</a>
+</div>
+<div id="ref-Thompson2012" class="csl-entry" role="listitem">
+Thompson, S. K. (2012). Sampling. In <em>Wiley Series in Probability and Statistics</em>. Wiley. <a href="https://doi.org/10.1002/9781118162934">https://doi.org/10.1002/9781118162934</a>
+</div>
+<div id="ref-Tobler2013" class="csl-entry" role="listitem">
+Tobler, M. W., &amp; Powell, G. V. N. (2013). Estimating jaguar densities with camera traps: Problems with current designs and recommendations for future studies. <em>Biological Conservation</em>, <em>159</em>, 109–118.
+</div>
+<div id="ref-Walvoort2010" class="csl-entry" role="listitem">
+Walvoort, D. J. J., Brus, D. J., &amp; Gruijter, J. J. de. (2010). An <span>R</span> package for spatial coverage sampling and random sampling from compact geographical strata by k-means. <em>Computers &amp; Geosciences</em>, <em>36</em>, 1261–1267. <a href="https://doi.org/10.1016/j.cageo.2010.04.005">https://doi.org/10.1016/j.cageo.2010.04.005</a>
+</div>
+<div id="ref-w15" class="csl-entry" role="listitem">
+Wolters, M. A. (2015). A genetic algorithm for selection of fixed-size subsets with application to design problems. <em>Journal of Statistical Software, Code Snippets</em>, <em>68</em>, 1–18. <a href="https://doi.org/10.18637/jss.v068.c01">https://doi.org/10.18637/jss.v068.c01</a>
+</div>
+</div>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>The internal function <code>dfcast</code> of <strong>secrdesign</strong> provides a more precise match e.g., <code>secrdesign:::dfcast(detectfn = 'HN', detectpar=list(g0 = 0.2, sigma = 25))</code><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>More generally, <span class="math inline">\sigma = \sqrt \frac{a}{\pi \log [(1-p)^{-2}]}</span> where <span class="math inline">p</span> is the probability contour e.g., <span class="math inline">p = 0.95</span>. <span class="citation" data-cites="Jennrich1969">(<a href="A99-references.html#ref-Jennrich1969" role="doc-biblioref">Jennrich &amp; Turner, 1969</a> Eq. 12)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The term ‘spatial recaptures’ has been used. These are a <em>sine qua non</em> of SECR, but their role in determining precision can be overstated. Spatial recaptures are a consequence of Requirements 2 and 3, not an independent effect. Furthermore, ‘spatial recaptures’ are ill-defined when detections are aggregated by time, as then we cannot distinguish the capture histories ABABA and AAABB at detectors A and B (both are 3A, 2B).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Calculations for binary proximity detectors and a hazard half-normal detection function.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+      <a href="./07-validation.html" class="pagination-link" aria-label="Empirical validation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Empirical validation</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./09-secr-package.html" class="pagination-link" aria-label="R package secr">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R package secr</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+</body></html>

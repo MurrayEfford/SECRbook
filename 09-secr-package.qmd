@@ -1,0 +1,254 @@
+# R package secr {#sec-secr}
+\index{R packages!secr}
+
+This chapter provides an overview of **secr** [@R-secr]. Following chapters expand on key topics. 
+
+To reproduce examples in the book you will need a recent version of **secr** (5.2.0 or later). Text in `this font` refers to R objects that are documented in online help for the **secr** package, or in base R. R code often generates warnings. Some warnings are merely reminders (e.g., that a default value is used for a key argument). For clarity, we do not display routine warnings for examples in the text.
+
+In the examples we often use the function [`list.secr.fit`] to fit several competing models while holding constant other arguments of `secr.fit`. The result is a single 'secrlist' that may be passed to `AIC`, `predict` etc. 
+
+## History
+
+**secr** supercedes the Windows program DENSITY, an earlier graphical interface to SECR methods  [@edr04; @e12]. The package was first released in March 2010 and continues to be developed. It implements almost all the methods described by @be08, @ebb09, @e11, @ef13, @ebm13 and @em14. External C++ code [@R-Rcpp] is used for computationally intensive operations. Multi-threading on multiple CPUs with RcppParallel [@R-RcppParallel] gives major speed gains. The package is available from [CRAN](https://CRAN.R-project.org/package=ipsecr); the development version is on [GitHub](https://github.com/MurrayEfford/secr).
+
+An interactive graphic user interface to many features of **secr** is provided by the Shiny app 'secrapp' available on [GitHub](https://github.com/MurrayEfford/secrapp) and, currently, on a server at the [University of Otago](https://www.stats.otago.ac.nz/secrapp/).
+
+## Object classes
+\index{R packages!secr}
+\index{Object classes}
+
+**secr** defines a set of R classes[^S3class] and methods for data from detector arrays and models fitted to those data. To perform an SECR analysis you construct each of these objects in turn. @fig-schematic indicates the relationships among the classes. 
+
+[^S3class]:Technically, these are S3 classes. A 'class' in R specifies a   particular type of data object and the functions (methods) by which it is manipulated (computed, printed, plotted etc). See the R documentation for further explanation.
+
+<br>
+  
+| Class   | Data                                        |
+|:---------|:---------------------------------------------|
+| `traps`  | locations of detectors; detector type ('proximity', 'multi', etc.) |
+| `capthist` | spatial detection histories, including a 'traps' object |
+| `mask`   | raster map of habitat near the detectors |
+| `secr`   | fitted SECR model|
+
+: Essential classes in **secr** {#tbl-essentialclasses .sm}
+  
+<br>  
+
+```{r}
+#| label: fig-schematic
+#| eval: true
+#| echo: false
+#| out-width: 80%
+#| fig-cap: |
+#|   Essentials of the secr package
+knitr::include_graphics('figures/schematic3.png')
+```
+
+- Each object class (shaded box) comes with methods to display and manipulate the data it contains (e.g. `print`, `summary`, `plot`, `rbind`, `subset`). 
+- The function `read.capthist` forms a 'capthist' object from input in two files, one the detector layout (saved as attribute 'traps') and the other the capture data. 
+- By default, a habitat mask is generated automatically by `secr.fit` using a specified buffer around the detectors (traps). The function `make.mask` gives greater control over this step.
+- Any of the objects input to `secr.fit` (traps, capthist, mask) may include a dataframe of covariates  saved as an attribute. Covariate names may be used in model formulae; the `covariates` method is used to extract or replace covariates. Use `addCovariates` for covariates from spatial data sources (e.g., shapefile or 'sf' object)
+- Fitted secr models may be manipulated with the methods shown on the right. 
+
+## Functions
+\index{R packages!secr!core functions}
+
+For details of how to use **secr** see the help pages and vignettes. 
+
+|  Function           | Purpose                                         |
+|:---------------|:-----------------------------------------------------|
+| [`addCovariates`]	  | add spatial covariates to traps or mask |
+| [`AIC`]*            | model selection, model weights |
+| [`covariates`]	     | extract or replace covariates of traps, capthist or mask |
+| [`derived`]*        | compute density from conditional likelihood models |
+| [`make.mask`]       | construct habitat mask (= mesh) |
+| [`plot`]*           | plot capthist, traps or mask |
+| [`predict`]*	       | compute 'real' parameters for arbitrary levels of predictor variables |
+| [`predictDsurface`] | evaluate density surface at each point of a mask |
+| [`read.capthist`]   | input captures and trap layout from Density format, one call |
+| [`region.N`]*       | compute expected and realised population size in specified region |
+| [`secr.fit`]        | maximum likelihood fit; result is a fitted 'secr' object | 
+| [`summary`]*        | summarise capthist, traps, mask, or fitted model |
+| [`traps`]           | extract or replace traps object in capthist |
+
+: Core functions of . S3 methods are marked with an asterisk {#tbl-corefunctions .sm}
+
+
+
+## Detector types
+\index{R packages!secr!detectors}
+
+Each 'traps' object has a detector type attribute that is a character value.
+
+| Name | Type | Description                               |
+|:------|:----------------|:---------------------------------|
+| "single" | single-catch trap | catch one animal at a time |
+| "multi" | multi-catch trap | may catch more than one animal at a time |
+| "proximity" | binary proximity | records presence at a point without restricting movement |
+| "count"^1^ | Poisson count proximity | [binomN = 0] allows >1 detection per animal per time |
+|       | Binomial count proximity | [binomN > 0] up to binomN detections per animal per time|
+
+:  Basic detector types in . See the appendices for [area-search](A04-polygondetectors.qmd) and [telemetry](A07-telemetry.qmd) types. {#tbl-basicdetectortypes .sm}
+
+1. The "count" detector type is generic for integer data; the actual type depends on the `secr.fit` argument 'binomN'.
+
+<!-- Acoustic 'signal strength' detectors produce a binary detection vector supplemented by measurements of signal strength, as from an array of microphones. -->
+
+There is limited support in  for the analysis of locational data from telemetry ('telemetry' detector type). Telemetry data are used to augment capture--recapture data (@sec-telemetry).
+
+## Input
+
+Data input is covered in the data input vignette [secr-datainput.pdf]. One option is to use text files in the formats used by DENSITY; these accommodate most types of data. Two files are required, one of detector (trap) locations and one of the detections (captures) themselves; the function `read.capthist` reads both files and constructs a capthist object. It is also possible to construct the capthist object in two stages, first making a traps object (with `read.traps`) and a captures dataframe, and then combining these with `make.capthist`. This more general route may be needed for unusual datasets.
+
+## Output
+
+Function `secr.fit` returns an object of class `secr`. This is an R list with many components. Assigning the output to a named object saves both the fit and the data for further manipulation. Typing the object name at the R prompt invokes `print.secr` which formats the key results. These include the dataframe of estimates from the `predict` method for `secr` objects. Functions are provided for further computations on `secr` objects (e.g., AIC model selection, model averaging, profile-likelihood confidence intervals, and likelihood-ratio tests). Several of these are listed in @tbl-corefunctions.
+
+\index{Units}
+
+One system of units is used throughout . Distances are in metres and areas are in hectares (ha). The unit of density for 2-dimensional habitat is animals per hectare. 1 ha = 10000 m^2^ = 0.01 km^2^. To convert density to animals per km^2^, multiply by 100. Density in linear habitats (see package [secrlinear](https://CRAN.R-project.org/package=secrlinear)) is expressed in animals per km.
+
+## Documentation
+\index{R packages!secr}
+
+The primary documentation for  is in the help pages that accompany the package. Help for a function is obtained in the usual way by typing a question mark at the R prompt, followed by the function name. Note the 'Index' link at the bottom of each help page -- you will probably need to scroll down to find it. The index may also be accessed with `help(package = secr)`.
+
+The consolidated help pages are in the [manual](https://CRAN.R-project.org/package=secr/secr.pdf). Searching this pdf is a powerful way to locate a function for a particular task. 
+
+Other documentation has traditionally been in the form of pdf vignettes built with **knitr** and available at https://otago.ac.nz/density/SECRinR. That content will be included progressively in this online book.
+
+The  [GitHub repository](https://github.com/MurrayEfford/secr) holds the development version, and bugs may be reported there by raising an Issue. New versions will be posted on [CRAN] and noted on https://www.otago.ac.nz/density/, but there may be a delay. For information on changes in each version, type at the R prompt:
+
+```{r} 
+#| eval: false
+news (package = "secr") 
+```
+
+Help may be sought in online forums such as [phidot] and [secrgroup]. 
+
+## Using `secr.fit` \index{secr.fit}
+
+We saw `secr.fit` in action in @sec-example. Here we expand on particular arguments.
+
+### `buffer` -- buffer width \index{secr.fit!buffer}
+
+Specifying the buffer width is an alternative to specifying a habitat mask. The choice of [buffer width](#sec-bufferwidth) is discussed at length in @sec-habitat.
+
+### `start` -- starting values \index{secr.fit!start}
+
+Numerical maximization of the likelihood requires a starting value for each 
+coefficient in the model. `secr.fit` relieves the user of this chore by applying 
+an algorithm that works in most cases. The core of the algorithm is exported in function `autoini`.
+
+1. Compute an approximate bivariate normal $\sigma$ from the 2-D dispersion of individual locations:
+$$
+\sigma = \sqrt{\frac {\sum\limits _{i=1}^{n} \sum\limits _{j=1}^{n_i} [
+	    (x_{i,j} - \overline x_i)^2 + (y_{i,j} - \overline y_i)^2]}
+	    {2\sum\limits _{i=1}^{n} (n_i-1)}},
+$$
+where $(x_{i,j}, y_{i,j})$ is the location of the $j$-th detection of individual $i$. This is implemented in the function `RPSV` with `CC = TRUE`. The value is approximate because it ignores that detections are constrained by the locations of the detectors.
+2. Find by numerical search the value of $g_0$ that with $\sigma$ predicts the observed mean number of captures per individual [@edb09, Appendix B].
+3. Compute the [effective sampling area](#esa) $a(g_0, \sigma)$.
+4. Compute $D = n/a(g_0, \sigma)$, where $n$ is the number of individuals detected.
+
+After transformation this provides intercepts on the link scale for the core parameters 
+$D, g_0$ and $\sigma$. For hazard models $\lambda_0$ is first set to $-\log(1 - g_0)$. 
+The starting values of further coefficients are set to zero on the link scale.
+
+Users may provide their own starting values. These may be a vector of coefficients on the link scale, a named list of values for 'real' parameters, or a previously fitted model that includes some or all of the required coefficients.
+
+### `model` -- detection and density sub-models \index{secr.fit!model}
+
+The core parameters are 'real' parameters in the terminology of MARK [@cw]. Three real parameters are commonly modelled in : 'D' (for density), and 'g0' and 'sigma' (for the detection function). Other 'real' parameters appear in particular contexts. 'z' is a shape parameter that is used only when the [detection function](#sec-detectfn) has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter 'lambda0' in place of 'g0'. A further 'real' parameter is the mixing proportion 'pmix', used in [finite mixture models](#finite-mixtures) and [hybrid mixture models](#hybrid-mixtures).
+
+By default, each 'real' parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the 'model' argument of `secr.fit`.  Here 'models' relates to variation in the parameters that may be explained by known factors and covariates. Models are defined symbolically in  using R formula notation. A separate linear predictor is used for each core parameter. The workings are explained in detail in @sec-detection and @sec-density. 
+
+### `CL` -- conditional vs full likelihood {#CL} \index{secr.fit!CL}
+
+'CL' switches between maximizing the likelihood conditional on $n$ (TRUE) or the full likelihood (FALSE). The conditional option is faster because it does not estimate absolute density. Uniform absolute density may be estimated from the conditional fit, or indeed any fit, with the `derived` method. For Poisson $n$ (the default), the estimate is identical within numerical error to that from the full likelihood. The alternative (binomial $n$) is obtained by setting the [details argument](#details) 'distribution = "binomial"'. Relative density (density modelled as a function of covariates, without an intercept) may be modelled with `CL = TRUE` in recent versions (see sections on the [theory](05-theory-special-topics.qmd#relativedensity1) and [implementation](12-density-model#relativedensity2) of relative density).
+
+### `method` -- maximization algorithm \index{secr.fit!method}
+
+Models are fitted in `secr.fit` by numerically maximizing the log-likelihood with functions from the **stats** package [@R-base]. The default method is 'Newton-Raphson' in the function `stats::nlm`. By default, all reported variances, covariances, standard errors and confidence limits are asymptotic and based on a numerical estimate of the information matrix, as described [here](03-theory.qmd#confidenceintervals). 
+
+The Newton-Raphson algorithm is fast, but it sometimes fails to compute the information matrix correctly, causing some standard errors to be set to NA; see the 'method' argument of `secr.fit` for alternatives. Use `confint.secr` for profile likelihood intervals and `sim.secr` for parametric bootstrap intervals (both are slow).
+
+Numerical maximization has some implications for the user. Computation may be slow, especially if there are many points in the mask, and estimates may be sensitive to the particular choice of mask (either explicitly in `make.mask` or implicitly via the 'buffer' argument).
+
+### `ncores` -- multi-threading \index{secr.fit!ncores}
+
+\index{Multi-threading}
+\index{R packages!RcppParallel}
+
+On processors with multiple cores it is possible to speed up computation by using cores in parallel. In  this happens automatically in `secr.fit` and a few other functions using the multi-threading paradigm of **RcppParallel** [@R-RcppParallel]. The number of threads may be set directly with the 'ncores' argument or with the separate function `setNumThreads`. Either way, the number of threads is stored in the environment variable RCPP_PARALLEL_NUM_THREADS.
+
+### `details` -- miscellaneous arguments \index{secr.fit!details}  {#details}
+
+Many minor or infrequently used arguments are grouped as 'details'. We mention only the most important ones here:
+
+* distribution
+* fastproximity
+* maxdistance
+* fixedbeta
+* LLonly
+
+See the `details` help page for a full list and description.
+
+#### Distribution of $n$  \index{secr.fit!distribution}
+\index{Population size $N(A)$!fixed}
+
+This details argument switches between two possibilities for the distribution of $n$: 'poisson' (the default) or 'binomial'. Binomial $n$ conditions on fixed $N(A)$ where $A$ is the area of the habitat mask. This corresponds to point process with a fixed number of activity centres inside an arbitrary boundary. Estimates of density conditional on $N(A)$ have lower variance, but this is usually an artifact of the conditioning.
+
+#### Fast proximity
+\index{secr.fit!fastproximity}
+
+Binary and count data collected over several occasions may be collapsed to a single occasion, given certain conditions. Collapsed data lead to the same estimates (e.g., @edb09) with a considerable saving in execution time. Data from binary proximity detectors are modelled as binomial with size equal to the number of occasions. The requirement is that no information is lost that is relevant to the model. This really depends on the model: collapsed data are inadequate for time-dependent models, including those with behavioural responses (@sec-detection).
+
+By default, data are automatically collapsed to speed up processing when the model allows. This is inconvenient if you wish to use AIC to compare a variety of models. The problem is solved by setting 'details = list(fastproximity = FALSE)' for all models. Fitting will be slower.
+
+#### Individual mask subset
+\index{secr.fit!maxdistance}
+
+Integration by default is performed by summing over all mask cells for each individual. Cells distant from the detection locations of an individual contribute almost nothing to the likelihood, so it is efficient to limit the summation to a certain radius of the centroid of detections. This is achieved by specifying the details argument 'maxdistance'. A radius similar to the [buffer width](#sec-bufferwidth) is appropriate. See @sec-masksubset for an example.
+
+#### Fixing coefficients \index{secr.fit!fixed}
+
+The 'fixed' argument of `secr.fit` has the effect of fixing one or more 'real' parameters.
+The 'details' component 'fixedbeta' provides control at a finer level: it may be used to fix certain coefficients while allowing others to vary. It is a vector of values, one for each coefficient *in the order they appear in the model*. Coefficients that are to be estimated (i.e. not fixed) are given the value NA. Check the order of coefficients by applying `coef` to a fitted model, or by starting to fit a model with `trace = TRUE`. 
+
+#### Single likelihood evaluation
+
+Setting LLonly = TRUE returns a single evaluation of the likelihood at the parameter values specified in `start`.
+
+[secr-overview.pdf]: https://www.otago.ac.nz/density/pdfs/secr-overview.pdf
+[secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
+[secr-sound.pdf]: https://www.otago.ac.nz/density/pdfs/secr-sound.pdf
+[secr-troubleshooting.pdf]: https://www.otago.ac.nz/density/pdfs/secr-troubleshooting.pdf
+
+[secrdesign-vignette.pdf]: https://www.otago.ac.nz/density/pdfs/secrdesign-vignette.pdf
+[secrlinear-vignette.pdf]: https://CRAN.R-project.org/package=secrlinear/vignettes/secrlinear-vignette.pdf
+[ipsecr-vignette.pdf]: https://CRAN.R-project.org/package=ipsecr/vignettes/ipsecr-vignette.pdf
+
+[secr-version4.pdf]: https://www.otago.ac.nz/density/pdfs/secr-version4.pdf
+
+[phidot]: http://www.phidot.org/forum/
+[secrgroup]: <https://groups.google.com/forum/#!forum/secrgroup>
+[CRAN]: https://cran.r-project.org/package=secr
+
+[`addCovariates`]: https://www.otago.ac.nz/density/html/addCovariates.html
+
+[`AIC`]: https://www.otago.ac.nz/density/html/AIC.secr.html
+[`covariates`]: https://www.otago.ac.nz/density/html/covariates.html
+[`derived`]: https://www.otago.ac.nz/density/html/derivedMS.html
+[`make.mask`]: https://www.otago.ac.nz/density/html/make.mask.html
+[`plot`]: https://www.otago.ac.nz/density/html/plot.secr.html
+[`read.capthist`]: https://www.otago.ac.nz/density/html/DENSITY.html
+[`predict`]: https://www.otago.ac.nz/density/html/predict.secr.html
+[`predictDsurface`]: https://www.otago.ac.nz/density/html/predictDsurface.html
+[`region.N`]: https://www.otago.ac.nz/density/html/region.N.html
+[`secr.fit`]: https://www.otago.ac.nz/density/html/secr.fit.html
+[`summary`]: https://www.otago.ac.nz/density/html/print.secr.html
+[`traps`]: https://www.otago.ac.nz/density/html/traps.html
+
+[`list.secr.fit`]: https://www.otago.ac.nz/density/html/list.secr.fit.html
+[here]: https://www.otago.ac.nz/density/html/details.html
