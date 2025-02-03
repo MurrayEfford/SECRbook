@@ -27,5 +27,3 @@ HTML and pdf versions of the book are licensed under the [Creative Commons Attri
 Murray Efford  
 February 2025
 
-Copyright © 2025 Murray Efford
-

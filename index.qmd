@@ -84,6 +84,7 @@ Thanks for data -
 -   Garth Mowat Selkirk grizzly bears @sec-noneuclidean
 -   Chris Sutherland non-euclidean simulation @sec-noneuclidean
     
+Copyright © 2025 Murray Efford
     
 ```{r}
 #| eval: true

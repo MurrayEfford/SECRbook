@@ -87,10 +87,6 @@ source('figures/power.R')
 
 We lack a clear guide to required RSE in other studies, for which the effect size may be ill-defined. We have observed fitted models with $\mathrm{RSE}(\hat D) \gg 0.2$ to behave erratically with respect to AIC model selection, presumably because of sampling variance in the AIC values themselves.
 
-## Components of variance {#sec-componentsofvariance}
-
-The variance of density estimated by the method of [conditional likelihood](#conditional) has two components...
-
 ## Pilot parameter values
 \index{Study design!pilot parameter values}
 
@@ -575,7 +571,7 @@ The weight for each region is based on its area: $W_h = A_h/A$ and $\sum_h W_h =
 
 Then an estimate of overall density is $\hat D = \sum_h W_h \hat D_h$ and an estimate of the sampling variance is $\widehat {\mathrm{var}} (\hat D) = \sum_{h=1}^H W_h^2 \widehat {\mathrm{var}} (D_h)$.
 
-The benefits of stratification for SECR have yet to be fully analysed. They are likely to be greatest when strata of contrasting density are easily distinguished, and when uncertainty regarding detection parameters (and hence the effective sampling area) dominates over var(n) (cf [Components of variance](#componentsofvariance)). 
+The benefits of stratification for SECR have yet to be fully analysed. They are likely to be greatest when strata of contrasting density are easily distinguished, and when uncertainty regarding detection parameters (and hence the effective sampling area) dominates $\mathrm{var}(n) = s^2$ in the combined [variance](05-theory-special-topics.qmd#conditional). 
 
 We conducted a simulation experiment with two density strata (40\% and 160\% of the overall average) and a constant total effort allocated differentially (@fig-stratifiedeffort). Details are on [GitHub](https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/STR/secr-simulations-STR.html). For this example precision was best when about 70\% of detectors were placed in the high-density stratum, but the improvement over equal allocation was tiny ($\Delta\mathrm{RSE} \approx 0.005$) for 10 occasions and small ($\Delta\mathrm{RSE} \approx 0.013$) for 4 occasions. Effort may also be stratified by varying the number of sampling occasions.
 
