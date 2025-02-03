@@ -1,7 +1,5 @@
 # Spatially explicit capture--recapture
 
-Copyright © 2025 Murray Efford
-
 Spatially explicit capture--recapture has opened new possibilities for analysing 
 data from wildlife surveys over the last 20 years. Theory and software have advanced 
 hand-in-hand with new field techniques. The expanding possibilities are a challenge 
@@ -28,3 +26,6 @@ HTML and pdf versions of the book are licensed under the [Creative Commons Attri
 
 Murray Efford  
 February 2025
+
+Copyright © 2025 Murray Efford
+
