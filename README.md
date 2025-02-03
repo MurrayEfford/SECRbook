@@ -14,8 +14,8 @@ on study design, a topic of great practical concern. The focus is on
 frequentist models for closed populations fitted in the R package 'secr', but 
 much of the material applies equally in a Bayesian context.
 
-This repository holds a first draft of the Quarto book. An HTML version of the 
-draft may be accessed at [SECRbook](https://murray.efford.github.io/SECRbook). 
+The repository contains a first draft of the Quarto book. A rendered HTML version 
+of the draft may be accessed at [SECRbook](https://murray.efford.github.io/SECRbook). 
 A citable pdf version will be placed on Zenodo after a period of review and revision.
 
 Feedback is warmly welcomed. This includes anything: typos, failure to cite 
@@ -24,7 +24,7 @@ points here as 'Issues' or contact me personally if it's more sensitive.
 
 [![](https://img.shields.io/badge/License-CC_BY--NC--ND_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
-This book is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+HTML and pdf versions of the book are licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
 Murray Efford  
 February 2025
