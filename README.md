@@ -15,7 +15,7 @@ frequentist models for closed populations fitted in the R package 'secr', but
 much of the material applies equally in a Bayesian context.
 
 The repository contains a first draft of the Quarto book. A rendered HTML version 
-of the draft may be accessed at [SECRbook](https://murray.efford.github.io/SECRbook). 
+of the draft may be accessed at [SECRbook](https://murrayefford.github.io/SECRbook). 
 A citable pdf version will be placed on Zenodo after a period of review and revision.
 
 Feedback is warmly welcomed. This includes anything: typos, failure to cite 
