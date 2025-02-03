@@ -1,4 +1,6 @@
-# A guide to spatially explicit capture-recapture
+# Spatially explicit capture--recapture
+
+Copyright © 2025 Murray Efford
 
 Spatially explicit capture--recapture has opened new possibilities for analysing 
 data from wildlife surveys over the last 20 years. Theory and software have advanced 
@@ -19,6 +21,10 @@ A citable pdf version will be placed on Zenodo after a period of review and revi
 Feedback is warmly welcomed. This includes anything: typos, failure to cite 
 your work, conceptual errors, offers of additional content etc. You can raise 
 points here as 'Issues' or contact me personally if it's more sensitive.
+
+[![](https://img.shields.io/badge/License-CC_BY--NC--ND_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+This book is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
 Murray Efford  
 February 2025
