@@ -734,10 +734,10 @@ Particular detection parameters may be estimated poorly even when density estima
 
 |||||||||
 |--|--|--|--|--|--|--|--|--|
-| **Legend** Split colours indicate that the effect is generally weak or ignorable, but in some circumstances it is damaging if not modelled. |![.](figures/yob51.png) | ignorable | ![](figures/yob52.png) | minor | ![.](figures/yob53.png) | major |![.](figures/yob54.png) | severe |
+| **Legend** |![.](figures/yob51.png) | ignorable | ![](figures/yob52.png) | minor | ![.](figures/yob53.png) | major |![.](figures/yob54.png) | severe |
 
-: {.borderless tbl-colwidths="[40, 5,10,5,10,5,10,5,10]" .sm}
-
+: {.borderless tbl-colwidths="[20, 5,10,5,10,5,10,5,10]" .sm}  
+Split colours indicate that the effect is generally weak or ignorable, but in some circumstances it is damaging if not modelled.
 
 :::
 

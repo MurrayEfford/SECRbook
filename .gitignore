@@ -9,3 +9,4 @@ extra
 comments
 maybe junk
 *_cache
+^(?!docs).*_files
