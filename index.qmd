@@ -67,7 +67,8 @@ Other R packages for SECR may be found outside CRAN. A distinct maximum-likeliho
 
 Efford, M. G. (2025) Spatially explicit capture--recapture. A handbook of statistical methods. *Zenodo* https://doi.org/10.5281/zenodo.XXXX
 
-The book is available online at <https://murrayefford.github.io/SECRbook/>.
+The book is available online at <https://murrayefford.github.io/SECRbook/>.  
+The Quarto source files, including R code, are at <https://github.com/murrayefford/SECRbook>.
 
 ## Feedback
 
@@ -76,16 +77,19 @@ This is work in progress. If you find an error or would like to make a suggestio
 ## Acknowledgments {.unnumbered}
 
 Joanne Potts and Gurutzeta Guillera-Arroita gave helpful comments on early versions of some chapters. 
-Matt Schofield provided encouragement and assistance with some theoretical questions. 
+Matt Schofield provided encouragement, answered some theoretical questions, and reviewed several chapters. 
+Thanks to John Boulanger for his collaboration on study design and analysis over many projects.
 
 Thanks for data -
 
 -   Ken Burnham snowshoe hares @sec-example
--   Jared Laufenburg black bears @sec-habitat
+-   Jared Laufenburg et al. black bears @sec-habitat
 -   Kevin Young horned lizards @sec-areaandtransectsearches
 -   Garth Mowat Selkirk grizzly bears @sec-noneuclidean
 -   Chris Sutherland non-euclidean simulation @sec-noneuclidean
     
+See also the links in @sec-datasets.
+
 Copyright © 2025 Murray Efford
     
 ```{r}

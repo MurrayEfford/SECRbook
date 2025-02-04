@@ -34,11 +34,14 @@ book:
       affiliation: University of Otago, New Zealand
     
   date: today
-  license: "CC BY-NC-ND"
+  
+  license: "CC BY-NC-ND"  
   
   reader-mode: true
 
-  # cover-image: images/Nickinsnow2.png
+  # cover-image: images/Nickinsnow3.png
+
+  # favicon: images/Nickinsnow3.png
 
   chapters:
     - index.qmd
