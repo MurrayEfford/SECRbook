@@ -67,6 +67,8 @@ Other R packages for SECR may be found outside CRAN. A distinct maximum-likeliho
 
 Efford, M. G. (2025) Spatially explicit capture--recapture. A handbook of statistical methods. *Zenodo* https://doi.org/10.5281/zenodo.XXXX
 
+The book is available online at https://murrayefford.github.io/SECRbook/.
+
 ## Feedback
 
 This is work in progress. If you find an error or would like to make a suggestion, please raise an issue on [GitHub](https://github.com/MurrayEfford/SECRbook) or contact the author directly.  

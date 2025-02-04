@@ -163,7 +163,8 @@ The core parameters are 'real' parameters in the terminology of MARK [@cw]. Thre
 
 By default, each 'real' parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the 'model' argument of `secr.fit`.  Here 'models' relates to variation in the parameters that may be explained by known factors and covariates. Models are defined symbolically in  using R formula notation. A separate linear predictor is used for each core parameter. The workings are explained in detail in @sec-detection and @sec-density. 
 
-### `CL` -- conditional vs full likelihood {#CL} \index{secr.fit!CL}
+### `CL` -- conditional vs full likelihood {#CL}  
+\index{secr.fit!CL}
 
 'CL' switches between maximizing the likelihood conditional on $n$ (TRUE) or the full likelihood (FALSE). The conditional option is faster because it does not estimate absolute density. Uniform absolute density may be estimated from the conditional fit, or indeed any fit, with the `derived` method. For Poisson $n$ (the default), the estimate is identical within numerical error to that from the full likelihood. The alternative (binomial $n$) is obtained by setting the [details argument](#details) 'distribution = "binomial"'. Relative density (density modelled as a function of covariates, without an intercept) may be modelled with `CL = TRUE` in recent versions (see sections on the [theory](05-theory-special-topics.qmd#relativedensity1) and [implementation](12-density-model#relativedensity2) of relative density).
 
