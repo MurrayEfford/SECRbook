@@ -545,13 +545,13 @@ Warning
 $hybridxCL$`session = coulombe, h2 = f`
          link estimate SE.estimate     lcl     ucl
 lambda0   log  0.28819    0.041538 0.21758 0.38171
-sigma     log  2.17887    0.153222 1.89865 2.50043
+sigma     log  2.17887    0.153222 1.89866 2.50043
 pmix    logit  0.46619    0.043007 0.38363 0.55064
 
 $hybridxCL$`session = coulombe, h2 = m`
          link estimate SE.estimate     lcl     ucl
 lambda0   log  0.20098    0.036023 0.14183 0.28478
-sigma     log  2.05124    0.173554 1.73830 2.42051
+sigma     log  2.05123    0.173554 1.73830 2.42051
 pmix    logit  0.53381    0.043007 0.44936 0.61637
 
 
@@ -564,13 +564,13 @@ sigma    log  2.17887    0.153222 1.89866 2.50043
 $xCL$`session = coulombe, sex = m`
         link estimate SE.estimate     lcl     ucl
 lambda0  log  0.20098    0.036023 0.14183 0.28478
-sigma    log  2.05123    0.173554 1.73829 2.42051
+sigma    log  2.05123    0.173555 1.73829 2.42051
 
 
 $sessionxCL
 $sessionxCL$`session = f`
         link estimate SE.estimate     lcl     ucl
-lambda0  log  0.28819    0.041538 0.21758 0.38171
+lambda0  log  0.28818    0.041538 0.21758 0.38171
 sigma    log  2.17887    0.153223 1.89866 2.50044
 
 $sessionxCL$`session = m`
@@ -602,43 +602,43 @@ sigma    log  2.05123    0.173554 1.73829 2.42050</code></pre>
 <pre><code>$hybridx
 $hybridx$`session = coulombe, h2 = f`
          link   estimate SE.estimate        lcl        ucl
-D         log 1296.94068  112.480090 1094.55100 1536.75355
+D         log 1296.94081  112.480096 1094.55112 1536.75368
 lambda0   log    0.28819    0.041538    0.21758    0.38171
-sigma     log    2.17887    0.153220    1.89866    2.50043
-pmix    logit    0.46619    0.043007    0.38363    0.55064
+sigma     log    2.17887    0.153221    1.89866    2.50043
+pmix    logit    0.46619    0.043008    0.38363    0.55064
 
 $hybridx$`session = coulombe, h2 = m`
          link   estimate SE.estimate        lcl        ucl
-D         log 1296.94068  112.480090 1094.55100 1536.75355
+D         log 1296.94081  112.480096 1094.55112 1536.75368
 lambda0   log    0.20098    0.036023    0.14183    0.28478
 sigma     log    2.05123    0.173553    1.73830    2.42051
-pmix    logit    0.53381    0.043007    0.44936    0.61637
+pmix    logit    0.53381    0.043008    0.44936    0.61637
 
 
 $sessionx
 $sessionx$`session = f`
         link  estimate SE.estimate       lcl       ucl
-D        log 604.61343   72.458287 478.44416 764.05448
+D        log 604.61389   72.458365 478.44449 764.05511
 lambda0  log   0.28819    0.041538   0.21758   0.38171
-sigma    log   2.17887    0.153221   1.89867   2.50044
+sigma    log   2.17887    0.153221   1.89866   2.50043
 
 $sessionx$`session = m`
         link  estimate SE.estimate       lcl       ucl
-D        log 692.32811   86.800625 542.01141 884.33233
+D        log 692.32722   86.800581 542.01062 884.33136
 lambda0  log   0.20098    0.036023   0.14184   0.28478
-sigma    log   2.05122    0.173551   1.73829   2.42049
+sigma    log   2.05123    0.173551   1.73830   2.42050
 
 
 $groupx
 $groupx$`session = coulombe, g = f`
         link  estimate SE.estimate       lcl       ucl
-D        log 604.61549   72.458481 478.44587 764.05695
+D        log 604.61767   72.458613 478.44780 764.05939
 lambda0  log   0.28819    0.041538   0.21758   0.38171
-sigma    log   2.17887    0.153220   1.89866   2.50043
+sigma    log   2.17886    0.153220   1.89866   2.50042
 
 $groupx$`session = coulombe, g = m`
         link  estimate SE.estimate       lcl       ucl
-D        log 692.32604   86.800453 542.00965 884.32989
+D        log 692.32687   86.800590 542.01026 884.33104
 lambda0  log   0.20098    0.036023   0.14183   0.28478
 sigma    log   2.05123    0.173552   1.73830   2.42050</code></pre>
 </div>
@@ -650,14 +650,14 @@ sigma    log   2.05123    0.173552   1.73830   2.42050</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code> hybridxCL.elapsed        xCL.elapsed sessionxCL.elapsed 
-              6.78               3.67              20.42 </code></pre>
+              6.75               3.63              20.06 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Timing, full likelihood</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code> hybridx.elapsed sessionx.elapsed   groupx.elapsed 
-           10.08            43.17             9.14 </code></pre>
+            9.87            41.67             8.25 </code></pre>
 </div>
 </div>
 </section><section id="decisionchart" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="decisionchart">
@@ -1179,7 +1179,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

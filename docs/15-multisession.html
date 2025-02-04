@@ -608,7 +608,7 @@ Table&nbsp;15.1: Manipulation of multi-session capthist objects (CH).
 </details><div class="cell-output-display">
 <div id="fig-plotmasks" class="quarto-figure quarto-figure-center quarto-float anchored" width="864">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plotmasks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="15-multisession_files/figure-html/fig-plotmasks-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="15-multisession_files/figure-html/fig-plotmasks-1.png" id="fig-plotmasks" class="img-fluid figure-img" width="864"></a>
+<a href="15-multisession_files/figure-html/fig-plotmasks-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="15-multisession_files/figure-html/fig-plotmasks-1.png" id="fig-plotmasks" class="img-fluid figure-img" width="864"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-plotmasks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;15.1
@@ -699,33 +699,33 @@ sigma      4.364111 0.081149  4.20506  4.523159</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`2005`
        link  estimate SE.estimate       lcl        ucl
-D       log  0.846488   0.3055462  0.426315   1.680778
-g0    logit  0.023247   0.0082002  0.011591   0.046079
-sigma   log 88.124234  19.4762592 57.439470 135.201119
+D       log  0.846486   0.3055459  0.426314   1.680775
+g0    logit  0.023247   0.0082003  0.011591   0.046079
+sigma   log 88.124272  19.4763111 57.439442 135.201304
 
 $`2006`
        link  estimate SE.estimate       lcl       ucl
-D       log  1.026930   0.2936743  0.592772  1.779073
+D       log  1.026929   0.2936739  0.592771  1.779071
 g0    logit  0.030126   0.0092789  0.016396  0.054715
-sigma   log 73.020555  11.7120657 53.429793 99.794538
+sigma   log 73.020558  11.7120690 53.429791 99.794550
 
 $`2007`
        link  estimate SE.estimate       lcl        ucl
-D       log  1.078169   0.2879554  0.644546   1.803515
+D       log  1.078170   0.2879557  0.644547   1.803516
 g0    logit  0.034768   0.0093266  0.020465   0.058471
-sigma   log 76.079429  11.5022388 56.663430 102.148415
+sigma   log 76.079465  11.5022465 56.663453 102.148470
 
 $`2008`
        link  estimate SE.estimate      lcl       ucl
 D       log  1.468097    0.488689  0.77772  2.771317
 g0    logit  0.028298    0.011253  0.01289  0.060988
-sigma   log 52.223526   10.478467 35.38002 77.085788
+sigma   log 52.223541   10.478492 35.38000 77.085872
 
 $`2009`
        link  estimate SE.estimate       lcl        ucl
-D       log  0.531269   0.2009518  0.259448   1.087875
+D       log  0.531269   0.2009517  0.259448   1.087875
 g0    logit  0.024442   0.0088054  0.012003   0.049129
-sigma   log 98.909090  22.8569631 63.253466 154.663592</code></pre>
+sigma   log 98.909138  22.8570027 63.253461 154.663750</code></pre>
 </div>
 </div>
 <p>The first line (<code>lapply</code>) creates a list of ‘secr’ objects. The <code>predict</code> method works once we set the class attribute to ‘secrlist’ (or you could <code>lapply(fits, predict)</code>).</p>
@@ -750,7 +750,7 @@ fits2   15 -925.89 1881.8</code></pre>
 </div>
 </div>
 <p>AICc is not a simple sum of session-specific AICc and should be calculated manually (hint: use <code>sapply(ovenCH, nrow)</code> for session-specific sample sizes).</p>
-<p>The unified model fit and separate model fits with <code>lapply</code> give essentially the same answers, and the latter approach is faster by a factor of 108.</p>
+<p>The unified model fit and separate model fits with <code>lapply</code> give essentially the same answers, and the latter approach is faster by a factor of 134.</p>
 <p>Using <code>lapply</code> does not work if some arguments of <code>secr.fit</code> other than ‘capthist’ themselves differ among sessions (as when ‘mask’ is a list of session-specific masks). Then we can use either a ‘for’ loop or the slightly more demanding function <code>mapply</code>, with the same gain in speed.</p>
 <div class="cell">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># one mask per session</span></span>
@@ -1206,7 +1206,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -590,9 +590,9 @@ Figure&nbsp;F.1: (a) Central Selkirk grizzly bear hair snag locations, (b) Mask 
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        link estimate SE.estimate       lcl      ucl
-D        log 14.68433   1.0914748 12.696149 16.98385
+D        log 14.68433   1.0914749 12.696150 16.98385
 lambda0  log  0.10852   0.0096263  0.091235  0.12908
-noneuc   log 25.92426   1.3019335 23.495538 28.60404</code></pre>
+noneuc   log 25.92426   1.3019339 23.495538 28.60404</code></pre>
 </div>
 </div>
 <p>We can take the values of noneuc directly from the mask covariates because we know xy2 and mask are the same points. We may sometimes want to use fn1 in context where this does not hold, e.g., when simulating data.</p>
@@ -613,9 +613,9 @@ noneuc   log 25.92426   1.3019335 23.495538 28.60404</code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit1a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        link estimate SE.estimate       lcl      ucl
-D        log 14.46195   1.0296895 12.580500 16.62477
+D        log 14.46194   1.0296891 12.580493 16.62476
 lambda0  log  0.10758   0.0095253  0.090471  0.12792
-noneuc   log 26.12540   1.4198783 23.487423 29.05965</code></pre>
+noneuc   log 26.12539   1.4198769 23.487423 29.05964</code></pre>
 </div>
 </div>
 <p>We can verify the use of ‘noneuc’ in fn1 by using it to re-fit the null model:</p>
@@ -628,16 +628,16 @@ noneuc   log 26.12540   1.4198783 23.487423 29.05965</code></pre>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        link estimate SE.estimate       lcl      ucl
-D        log 14.38019   1.0030934 12.544716 16.48422
-lambda0  log  0.10148   0.0089476  0.085403  0.12058
-sigma    log 27.37646   0.9729686 25.534942 29.35079</code></pre>
+D        log 14.38020   1.0030935 12.544728 16.48423
+lambda0  log  0.10148   0.0089476  0.085402  0.12058
+sigma    log 27.37653   0.9729740 25.535004 29.35087</code></pre>
 </div>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit0a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        link estimate SE.estimate       lcl      ucl
-D        log 14.38018   1.0030931 12.544711 16.48421
+D        log 14.38019   1.0030937 12.544720 16.48422
 lambda0  log  0.10148   0.0089477  0.085403  0.12058
-noneuc   log 27.37643   0.9729667 25.534918 29.35076</code></pre>
+noneuc   log 27.37645   0.9729683 25.534936 29.35078</code></pre>
 </div>
 </div>
 <p>Here, fitting noneuc as a constant while holding sigma fixed is exactly the same as fitting sigma alone.</p>
@@ -663,9 +663,9 @@ noneuc   log 27.37643   0.9729667 25.534918 29.35076</code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        link estimate SE.estimate       lcl      ucl
-D        log 14.54656   1.0580301 12.616263 16.77220
+D        log 14.54654   1.0580294 12.616245 16.77218
 lambda0  log  0.10781   0.0095493  0.090662  0.12821
-noneuc   log 26.02329   1.3510112 23.507230 28.80866</code></pre>
+noneuc   log 26.02329   1.3510114 23.507232 28.80866</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -710,9 +710,9 @@ Tip
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        link estimate SE.estimate       lcl     ucl
-D        log  14.4063   1.0499860 12.490990 16.6154
-lambda0  log   0.1076   0.0095041  0.090528  0.1279
-noneuc   log  26.4338   1.3644003 23.892085 29.2460</code></pre>
+D        log  14.4063   1.0500177 12.490935 16.6154
+lambda0  log   0.1076   0.0095041  0.090529  0.1279
+noneuc   log  26.4338   1.3645616 23.891813 29.2463</code></pre>
 </div>
 </div>
 <p>The <strong>gdistance</strong> function <code>costDistance</code> uses a TransitionLayer object that essentially describes the connections between cells in a RasterLayer. In <code>transition</code> adjacent cells are assigned a positive value for ‘conductance’ and all other cells a zero value. Adjacency is defined by the directions argument as 4 (rook’s case), 8 (queen’s case), 16 (knight and one-cell queen moves) and possibly other values (see ?adjacent in <strong>gdistance</strong>). Values &lt; 16 can considerably distort distances even if conductance is homogeneous. <code>geoCorrection</code> is needed to allow for the greater separation (<span class="math inline">\times \sqrt 2</span>) of cell centres measured along diagonals.</p>
@@ -749,9 +749,9 @@ noneuc   log  26.4338   1.3644003 23.892085 29.2460</code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        link  estimate SE.estimate       lcl       ucl
-D        log  15.45490   1.6387345 12.562113  19.01384
+D        log  15.45490   1.6387186 12.562138  19.01380
 lambda0  log   0.10669   0.0094078  0.089788   0.12678
-noneuc   log 103.22820   5.0334015 93.824978 113.57383</code></pre>
+noneuc   log 103.22821   5.0334083 93.824969 113.57385</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -764,9 +764,9 @@ noneuc   log 103.22820   5.0334015 93.824978 113.57383</code></pre>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit4a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        link  estimate SE.estimate       lcl       ucl
-D        log  15.76416   1.7687705 12.660853  19.62813
-lambda0  log   0.10681   0.0094167  0.089887   0.12691
-noneuc   log 103.08280   5.0095543 93.722618 113.37778</code></pre>
+D        log  15.76414   1.7672732 12.663161  19.62448
+lambda0  log   0.10681   0.0094166  0.089887   0.12691
+noneuc   log 103.08276   5.0090010 93.723571 113.37656</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -802,15 +802,15 @@ Figure&nbsp;F.2: Surface 4a.
 <div class="cell-output cell-output-stdout">
 <pre><code>$`forest = beech`
         link estimate SE.estimate      lcl      ucl
-D        log  9.42515   2.6531517  5.48568 16.19368
+D        log  9.42514   2.6531406  5.48569 16.19364
 lambda0  log  0.10111   0.0089337  0.08506  0.12019
-noneuc   log 29.55767   3.4060650 23.59965 37.01985
+noneuc   log 29.55771   3.4060705 23.59969 37.01991
 
 $`forest = nonbeech`
         link estimate SE.estimate      lcl      ucl
-D        log 15.67450   1.2679363 13.37984 18.36270
+D        log 15.67451   1.2679355 13.37985 18.36271
 lambda0  log  0.10111   0.0089337  0.08506  0.12019
-noneuc   log 27.23478   1.0319183 25.28620 29.33351</code></pre>
+noneuc   log 27.23476   1.0319163 25.28619 29.33349</code></pre>
 </div>
 </div>
 <p>Note that we have re-used the userdist function fn2, and allowed both density and noneuc (sigma) to vary by forest type. Strictly, we should have identified “forest” as a required covariate in the (re)definition of fn2, but this is obviously not critical.</p>
@@ -849,7 +849,7 @@ fit5           D~forest lambda0~1 noneuc~forest    5 3118.4 20.280 0.0000</code>
 secr.fit(capthist = captdata, model = noneuc ~ 1, start = list(noneuc = 25), 
     fixed = list(sigma = 1), details = list(userdist = fn2), 
     trace = FALSE)
-secr 5.2.1, 16:30:28 03 Feb 2025
+secr 5.2.1, 18:45:35 04 Feb 2025
 
 Detector type      single 
 Detector number    100 
@@ -880,13 +880,13 @@ noneuc  3.37983 0.044415  3.2928  3.46688
 
 Variance-covariance matrix of beta parameters 
                  D          g0      noneuc
-D       0.01383322  0.00015579 -0.00099075
-g0      0.00015579  0.01856107 -0.00334338
+D       0.01383322  0.00015578 -0.00099075
+g0      0.00015578  0.01856108 -0.00334338
 noneuc -0.00099075 -0.00334338  0.00197273
 
 Fitted (real) parameters evaluated at base levels of covariates 
         link estimate SE.estimate      lcl      ucl
-D        log  5.47980    0.646741  4.35162  6.90047
+D        log  5.47980    0.646740  4.35162  6.90047
 g0     logit  0.27319    0.027051  0.22348  0.32927
 noneuc   log 29.36583    1.304938 26.91757 32.03677</code></pre>
 </div>
@@ -1541,7 +1541,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","loop":false,"selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

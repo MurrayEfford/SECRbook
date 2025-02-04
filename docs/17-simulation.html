@@ -516,10 +516,10 @@ window.Quarto = {
 <span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ch</span>, buffer <span class="op">=</span> <span class="fl">100</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       link estimate SE.estimate     lcl      ucl
-D       log 13.05859     2.37265  9.1726 18.59085
-g0    logit  0.17975     0.02644  0.1336  0.23748
-sigma   log 23.27774     1.89206 19.8549 27.29066</code></pre>
+<pre><code>       link estimate SE.estimate      lcl      ucl
+D       log 18.53043      2.7611 13.85955 24.77548
+g0    logit  0.22101      0.0235  0.17838  0.27046
+sigma   log 20.11668      1.0532 18.15608 22.28900</code></pre>
 </div>
 </div>
 <p>This is rather laborious and it’s easy to slip up. We next outline the <strong>secr</strong> functions <code>sim.popn</code> and <code>sim.capthist</code> that conveniently wrap Steps 1 &amp; 2, respectively, along with many extensions.</p>
@@ -569,19 +569,19 @@ y-range            0 100 m
 
 Counts by occasion 
                    1  2  3  4  5 Total
-n                  4 10  5  8  7    34
-u                  4  7  2  4  2    19
-f                  9  7  1  2  0    19
-M(t+1)             4 11 13 17 19    19
+n                 10  7  9  5  7    38
+u                 10  7  0  0  1    18
+f                  5  8  3  2  0    18
+M(t+1)            10 17 17 17 18    18
 losses             0  0  0  0  0     0
-detections         4 10  5  8  7    34
-detectors visited  4 10  5  7  7    33
+detections        10  7  9  5  7    38
+detectors visited 10  7  7  5  6    35
 detectors used    36 36 36 36 36   180
 
 Individual covariates
- sex   
- F: 8  
- M:11  </code></pre>
+ sex  
+ F:9  
+ M:9  </code></pre>
 </div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ch</span>, tracks <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1255,7 +1255,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

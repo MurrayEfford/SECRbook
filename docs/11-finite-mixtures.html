@@ -507,28 +507,28 @@ Interpreting latent classes
 <span>                   detectfn <span class="op">=</span> <span class="st">'HEX'</span>, buffer <span class="op">=</span> <span class="fl">250</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit.h2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>               beta  SE.beta      lcl      ucl
-D            0.4244 0.133371  0.16300  0.68581
-lambda0     -1.7604 0.191686 -2.13612 -1.38473
-lambda0.h22  2.0999 0.912160  0.31214  3.88774
-sigma        3.6616 0.083454  3.49801  3.82515
-pmix.h22    -3.6168 0.964984 -5.50814 -1.72547</code></pre>
+<pre><code>                beta  SE.beta      lcl      ucl
+D            0.42441 0.133371  0.16300  0.68581
+lambda0     -1.76042 0.191686 -2.13612 -1.38473
+lambda0.h22  2.09992 0.912129  0.31218  3.88766
+sigma        3.66158 0.083454  3.49801  3.82515
+pmix.h22    -3.61679 0.964987 -5.50813 -1.72545</code></pre>
 </div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit.h2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`session = wickershamunburne, h2 = 1`
          link estimate SE.estimate      lcl      ucl
-D         log  1.52868    0.204791  1.17704  1.98537
+D         log  1.52868    0.204792  1.17704  1.98538
 lambda0   log  0.17197    0.033270  0.11811  0.25039
-sigma     log 38.92276    3.253910 33.04971 45.83946
+sigma     log 38.92275    3.253911 33.04970 45.83945
 pmix    logit  0.97383    0.024589  0.84883  0.99596
 
 $`session = wickershamunburne, h2 = 2`
          link  estimate SE.estimate        lcl      ucl
-D         log  1.528678    0.204791  1.1770381  1.98537
-lambda0   log  1.404273    1.694509  0.2190658  9.00179
-sigma     log 38.922756    3.253910 33.0497136 45.83946
-pmix    logit  0.026165    0.024589  0.0040373  0.15117</code></pre>
+D         log  1.528682    0.204792  1.1770412  1.98538
+lambda0   log  1.404237    1.694383  0.2190731  9.00102
+sigma     log 38.922747    3.253911 33.0497027 45.83945
+pmix    logit  0.026166    0.024589  0.0040373  0.15117</code></pre>
 </div>
 </div>
 <p><code>secr.fit</code> has expanded the model to include an extra ‘real’ parameter ‘pmix’, for the proportions in the respective latent classes. You could specify this yourself as part of the ‘model’ argument, but <code>secr.fit</code> knows to add it. The link function for ‘pmix’ defaults to ‘mlogit’ (after the mlogit link in MARK), and any attempt to change the link is ignored.</p>
@@ -631,7 +631,7 @@ start2    0.078       0.087 0.008 0.473</code></pre>
 </details><div class="cell-output-display">
 <div id="fig-pmixprofile" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pmixprofile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-finite-mixtures_files/figure-html/fig-pmixprofile-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="11-finite-mixtures_files/figure-html/fig-pmixprofile-1.png" class="img-fluid figure-img" width="480"></a>
+<a href="11-finite-mixtures_files/figure-html/fig-pmixprofile-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="11-finite-mixtures_files/figure-html/fig-pmixprofile-1.png" class="img-fluid figure-img" width="480"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pmixprofile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.1: Profile log-likelihood for mixing proportion between 0.01 and 0.99 in a 2-class finite mixture model for ovenbird data from 2005
@@ -659,16 +659,16 @@ Figure&nbsp;11.1: Profile log-likelihood for mixing proportion between 0.01 and 
 <div class="cell-output cell-output-stdout">
 <pre><code>$`session = coulombe, h2 = f`
          link   estimate SE.estimate        lcl        ucl
-D         log 1310.94357  113.457115 1106.75928 1552.79749
+D         log 1310.94383  113.457122 1106.75953 1552.79776
 lambda0   log    0.28640    0.041401    0.21605    0.37965
 sigma     log    2.17857    0.153649    1.89763    2.50109
 pmix    logit    0.46346    0.043121    0.38077    0.54822
 
 $`session = coulombe, h2 = m`
          link   estimate SE.estimate        lcl        ucl
-D         log 1310.94357  113.457115 1106.75928 1552.79749
+D         log 1310.94383  113.457122 1106.75953 1552.79776
 lambda0   log    0.19836    0.035648    0.13986    0.28133
-sigma     log    2.04753    0.173459    1.73479    2.41664
+sigma     log    2.04753    0.173458    1.73479    2.41663
 pmix    logit    0.53654    0.043121    0.45178    0.61923</code></pre>
 </div>
 </div>
@@ -1123,7 +1123,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

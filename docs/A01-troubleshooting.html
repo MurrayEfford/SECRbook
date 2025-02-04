@@ -512,24 +512,24 @@ Tip
 Preparing detection design matrices 
 Preparing density design matrix 
 Finding initial parameter values... 
-Initial values  D = 252.30166, g0 = 0.12724, sigma = 2.87777 
+Initial values  D = 282.348, g0 = 0.12788, sigma = 2.87777 
 Maximizing likelihood... 
 Eval     Loglik        D       g0    sigma 
-   1         NA   5.5306  -1.9256   0.6931 
-   2         NA   5.5306  -1.9256   0.6931 
-   3         NA   5.5306  -1.9256   0.6931 
-   4         NA   5.5306  -1.9256   0.6931 
-   5         NA   5.5306  -1.9256   0.6931 
-   6         NA   5.5312  -1.9256   0.6931 
-   7         NA   5.5306  -1.9255   0.6931 
-   8         NA   5.5306  -1.9256   0.6932 
-   9         NA   5.5317  -1.9256   0.6931 
-  10         NA   5.5312  -1.9255   0.6931 
-  11         NA   5.5312  -1.9256   0.6932 
-  12         NA   5.5306  -1.9254   0.6931 
-  13         NA   5.5306  -1.9255   0.6932 
-  14         NA   5.5306  -1.9256   0.6933 
-Completed in 4.11 seconds at 15:57:52 03 Feb 2025 </code></pre>
+   1         NA   5.6431  -1.9198   0.6931 
+   2         NA   5.6431  -1.9198   0.6931 
+   3         NA   5.6431  -1.9198   0.6931 
+   4         NA   5.6431  -1.9198   0.6931 
+   5         NA   5.6431  -1.9198   0.6931 
+   6         NA   5.6437  -1.9198   0.6931 
+   7         NA   5.6431  -1.9197   0.6931 
+   8         NA   5.6431  -1.9198   0.6932 
+   9         NA   5.6443  -1.9198   0.6931 
+  10         NA   5.6437  -1.9197   0.6931 
+  11         NA   5.6437  -1.9198   0.6932 
+  12         NA   5.6431  -1.9196   0.6931 
+  13         NA   5.6431  -1.9197   0.6932 
+  14         NA   5.6431  -1.9198   0.6933 
+Completed in 4.19 seconds at 18:17:36 04 Feb 2025 </code></pre>
 </div>
 </div>
 <p>Unsurprisingly, the problem can be addressed by manually providing a better starting value for sigma:</p>
@@ -546,65 +546,67 @@ Completed in 4.11 seconds at 15:57:52 03 Feb 2025 </code></pre>
 <span class="header-section-number">A.3</span> Variance calculation failed</h2>
 <p></p>
 <p>If warnings had not been suppressed in the preceding example we would have seen</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in secr.fit(infraCH, buffer = 25, details = list(autoini = 2), trace =
+FALSE): at least one variance calculation failed</code></pre>
+</div>
+</div>
 <p></p>
 <p>Examination of the output would reveal missing values for SE, lcl and ucl in both the coefficients and predicted values for g0.</p>
 <p>Failure to compute the variance can be a sign that the model is inherently non-identifiable or that the particular dataset is inadequate <span class="citation" data-cites="gvccm04">(e.g., <a href="A99-references.html#ref-gvccm04" role="doc-biblioref">Gimenez et al., 2004</a>)</span>. However, here it is due to a weakness in the default algorithm. Call <code>secr.fit</code> with <code>method = "none"</code> to recompute the variance-covariance matrix using a more sophisticated approach:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit2r</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">infraCH</span>, buffer <span class="op">=</span> <span class="fl">25</span>, start <span class="op">=</span> <span class="va">fit2</span>, method <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit2r</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">infraCH</span>, buffer <span class="op">=</span> <span class="fl">25</span>, start <span class="op">=</span> <span class="va">fit2</span>, method <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Checking data 
 Preparing detection design matrices 
 Preparing density design matrix 
 Computing Hessian with fdHess in nlme 
-   1  -2260.348   5.5126  -2.2350   1.4915 
-   2  -2260.355   5.5181  -2.2350   1.4915 
-   3  -2260.348   5.5126  -2.2327   1.4915 
-   4  -2260.350   5.5126  -2.2350   1.4930 
-   5  -2260.354   5.5071  -2.2350   1.4915 
-   6  -2260.349   5.5126  -2.2372   1.4915 
-   7  -2260.350   5.5126  -2.2350   1.4900 
-   8  -2260.358   5.5181  -2.2327   1.4915 
-   9  -2260.361   5.5181  -2.2350   1.4930 
-  10  -2260.352   5.5126  -2.2327   1.4930 
-  11  -2260.348   5.5126  -2.2350   1.4915 
-Completed in 2.91 seconds at 15:59:05 03 Feb 2025 </code></pre>
+   1  -2260.348   5.5124  -2.2366   1.4921 
+   2  -2260.355   5.5179  -2.2366   1.4921 
+   3  -2260.348   5.5124  -2.2344   1.4921 
+   4  -2260.351   5.5124  -2.2366   1.4936 
+   5  -2260.355   5.5069  -2.2366   1.4921 
+   6  -2260.350   5.5124  -2.2388   1.4921 
+   7  -2260.350   5.5124  -2.2366   1.4906 
+   8  -2260.357   5.5179  -2.2344   1.4921 
+   9  -2260.361   5.5179  -2.2366   1.4936 
+  10  -2260.353   5.5124  -2.2344   1.4936 
+  11  -2260.348   5.5124  -2.2366   1.4921 
+Completed in 3.19 seconds at 18:19:07 04 Feb 2025 </code></pre>
 </div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit2r</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit2r</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`session = 6`
        link   estimate SE.estimate        lcl       ucl
-D       log 247.797153  13.9455469 221.937246 276.67023
-g0    logit   0.096655   0.0082246   0.081692   0.11402
-sigma   log   4.443630   0.1581157   4.144379   4.76449
+D       log 247.736992  13.9705898 221.833584 276.66513
+g0    logit   0.096511   0.0083617   0.081319   0.11419
+sigma   log   4.446466   0.1603473   4.143136   4.77200
 
 $`session = 7`
        link   estimate SE.estimate        lcl       ucl
-D       log 247.797153  13.9455469 221.937246 276.67023
-g0    logit   0.096655   0.0082246   0.081692   0.11402
-sigma   log   4.443630   0.1581157   4.144379   4.76449</code></pre>
+D       log 247.736992  13.9705898 221.833584 276.66513
+g0    logit   0.096511   0.0083617   0.081319   0.11419
+sigma   log   4.446466   0.1603473   4.143136   4.77200</code></pre>
 </div>
 </div>
 <p>The trapping sessions were only 4 weeks apart in spring 1995. We can further investigate session differences by fitting a session-specific model. The fastest way to fit fully session-specific models is to fit each session separately; <code>lapply</code> here applies <code>secr.fit</code> separately to each component of <code>infraCH</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fits3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">infraCH</span>, <span class="va">secr.fit</span>, buffer <span class="op">=</span> <span class="fl">25</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in FUN(X[[i]], ...): possible maximization error: nlm returned code 3. See
-?nlm</code></pre>
-</div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">fits3</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"secrlist"</span>  <span class="co"># ensure secr will recognise the fitted models</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fits3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">infraCH</span>, <span class="va">secr.fit</span>, buffer <span class="op">=</span> <span class="fl">25</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">fits3</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"secrlist"</span>  <span class="co"># ensure secr will recognise the fitted models</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fits3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`6`
-       link  estimate SE.estimate       lcl       ucl
-D       log 255.75820   28.405949 205.86378 317.74535
-g0    logit   0.17127    0.029979   0.12019   0.23818
-sigma   log   2.51904    0.181375   2.18789   2.90030
+       link  estimate SE.estimate      lcl       ucl
+D       log 255.75743   28.377392 205.9077 317.67570
+g0    logit   0.17127    0.029904   0.1203   0.23799
+sigma   log   2.51903    0.181296   2.1880   2.90012
 
 $`7`
        link   estimate SE.estimate        lcl       ucl
-D       log 278.041949   18.891630 243.411900 317.59879
-g0    logit   0.098912    0.011735   0.078174   0.12441
-sigma   log   4.951658    0.226216   4.527765   5.41524</code></pre>
+D       log 278.011710   18.823824 243.497884 317.41759
+g0    logit   0.098947    0.011107   0.079208   0.12295
+sigma   log   4.951468    0.218378   4.541623   5.39830</code></pre>
 </div>
 </div>
 <p>Notice that there is no issue with starting values when the sessions are treated separately. The skinks appeared to enlarge their home ranges as the weather warmed; they may also have become more active overall<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. It is plausible that density did not change: the estimate increased slightly, but there is substantial overlap of confidence intervals.</p>
@@ -615,13 +617,13 @@ sigma   log   4.951658    0.226216   4.527765   5.41524</code></pre>
 <li>change to the more robust Nelder-Mead maximization algorithm</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">secr.fit</span><span class="op">(</span><span class="va">CH</span>, method <span class="op">=</span> <span class="st">"Nelder-Mead"</span>, <span class="va">...</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">secr.fit</span><span class="op">(</span><span class="va">CH</span>, method <span class="op">=</span> <span class="st">"Nelder-Mead"</span>, <span class="va">...</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>vary the scaling of each parameter in <code>nlm</code> by passing the <code>typsize</code> (typical size) argument. The default is <code>typsize = rep(1, np)</code>. Suppose your model has four coefficients and it is the second one that appears to be behaving wildly:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">secr.fit</span><span class="op">(</span><span class="va">CH</span>, typsize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">secr.fit</span><span class="op">(</span><span class="va">CH</span>, typsize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In these examples <code>CH</code> is your capthist object and <code>...</code> indicates other arguments of <code>secr.fit</code>.</p>
 </section><section id="possible-maximization-error-nlm-code-3" class="level2" data-number="A.5"><h2 data-number="A.5" class="anchored" data-anchor-id="possible-maximization-error-nlm-code-3">
@@ -630,21 +632,21 @@ sigma   log   4.951658    0.226216   4.527765   5.41524</code></pre>
 <p>The default algorithm for numerical maximization of the likelihood is <code>nlm</code> in the base R <strong>stats</strong> package. That uses a Newton-Raphson algorithm and numerical derivatives. It was chosen because it is significantly faster than the alternatives. However, it sometimes returns estimates with the ambiguous result code 3, which means that the optimization process terminated because “[the] last global step failed to locate a point lower than estimate. Either estimate is an approximate local minimum of the function or steptol is too small.”</p>
 <p>Here is an example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit3</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">infraCH</span>, buffer <span class="op">=</span> <span class="fl">25</span>, model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">g0</span><span class="op">~</span><span class="va">session</span>, </span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit3</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">infraCH</span>, buffer <span class="op">=</span> <span class="fl">25</span>, model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">g0</span><span class="op">~</span><span class="va">session</span>, </span>
 <span>    <span class="va">sigma</span><span class="op">~</span><span class="va">session</span><span class="op">)</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>autoini <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p></p>
 <p>The results seem usually to be reliable even when this warning is given. If you are nervous, you can try a different algorithm in <code>secr.fit</code> – “Nelder-Mead” is recommended. We can derive starting values from the earlier fit:</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit3nm</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">infraCH</span>, buffer <span class="op">=</span> <span class="fl">25</span>, model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">g0</span><span class="op">~</span><span class="va">session</span>, </span>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit3nm</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">infraCH</span>, buffer <span class="op">=</span> <span class="fl">25</span>, model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">g0</span><span class="op">~</span><span class="va">session</span>, </span>
 <span>    <span class="va">sigma</span><span class="op">~</span><span class="va">session</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"Nelder-Mead"</span>, start <span class="op">=</span> <span class="va">fit3</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There is no warning. Comparing the density estimates we see a trivial difference in the SE and confidence limits and none at all in the estimates themselves:</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">collate</span><span class="op">(</span><span class="va">fit3</span>, <span class="va">fit3nm</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>,,,<span class="st">'D'</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">collate</span><span class="op">(</span><span class="va">fit3</span>, <span class="va">fit3nm</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>,,,<span class="st">'D'</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       estimate SE.estimate    lcl    ucl
-fit3     271.94      15.819 242.66 304.75
+fit3     271.94      15.863 242.58 304.85
 fit3nm   271.94      15.809 242.68 304.73</code></pre>
 </div>
 </div>
@@ -653,7 +655,7 @@ fit3nm   271.94      15.809 242.68 304.73</code></pre>
 <span class="header-section-number">A.6</span> Possible maximization error: nlm code 4</h2>
 <p></p>
 <p>The <code>nlm</code> Newton-Raphson algorithm may also finish with the result code 4, which means that the optimization process terminated when the maximum number of iterations was reached (“iteration limit exceeded”). The maximum is set by the argument <code>iterlim</code> which defaults to 100 (each ‘iteration’ uses several likelihood evaluations to numerically determine the gradient for the Newton-Raphson algorithm).</p>
-<p>The number of iterations can be checked retrospectively by examining the nlm output saved in the ‘fit’ component of the fitted model. Ordinarily nlm uses less than 50 iterations (for example <code>fit3$fit$iterations =</code> 36).</p>
+<p>The number of iterations can be checked retrospectively by examining the nlm output saved in the ‘fit’ component of the fitted model. Ordinarily nlm uses less than 50 iterations (for example <code>fit3$fit$iterations =</code> 26).</p>
 <p>A ‘brute force’ solution is to increase <code>iterlim</code> (<code>secr.fit()</code> passes <code>iterlim</code> directly to <code><a href="https://rdrr.io/r/stats/nlm.html">nlm()</a></code>) or to re-fit the model starting at the previous solution (<code>start = oldfit</code>). This is not guaranteed to work. Alternative algorithms such as <code>method = 'Nelder-Mead'</code> are worth trying, but they may struggle also.</p>
 <p>There does not appear to be a universal solution. Slow or poor fitting seems more common when there are many beta parameters, and when one or more parameters is very imprecise, at a boundary, or simply unidentifiable. It is suggested that you examine the coefficients of the provisional result with <code>coef(fit)</code> and seek to eliminate those that are not identifiable.</p>
 <p>Tricks include:</p>
@@ -666,34 +668,34 @@ fit3nm   271.94      15.809 242.68 304.73</code></pre>
 </ul>
 <p>The following code demonstrates fixing a beta parameter, although it is neither needed nor recommended in this case.</p>
 <div class="cell">
-<details class="code-fold"><summary>code to fix beta</summary><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># review the fitted values</span></span>
+<details class="code-fold"><summary>code to fix beta</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># review the fitted values</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>                   beta  SE.beta      lcl      ucl
-D               5.60559 0.058121  5.49168  5.71951
-g0             -1.62669 0.198295 -2.01534 -1.23804
-g0.session7    -0.57602 0.223911 -1.01487 -0.13716
-sigma           0.91969 0.071604  0.77935  1.06003
-sigma.session7  0.68227 0.083266  0.51908  0.84547</code></pre>
+D               5.60558 0.058282  5.49135  5.71981
+g0             -1.62710 0.197141 -2.01349 -1.24071
+g0.session7    -0.57521 0.225301 -1.01679 -0.13363
+sigma           0.91986 0.071333  0.78005  1.05967
+sigma.session7  0.68197 0.082388  0.52049  0.84345</code></pre>
 </div>
-<details class="code-fold"><summary>code to fix beta</summary><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># extract the coefficients</span></span>
+<details class="code-fold"><summary>code to fix beta</summary><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># extract the coefficients</span></span>
 <span><span class="va">betafix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit3</span><span class="op">)</span><span class="op">$</span><span class="va">beta</span></span>
 <span><span class="co"># set first 4 values to NA as we want to estimate these</span></span>
 <span><span class="va">betafix</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
 <span><span class="va">betafix</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code>[1]      NA      NA      NA      NA 0.68227</code></pre>
+<pre><code>[1]      NA      NA      NA      NA 0.68197</code></pre>
 </div>
-<details class="code-fold"><summary>code to fix beta</summary><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># refit, holding last coefficient constant</span></span>
+<details class="code-fold"><summary>code to fix beta</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># refit, holding last coefficient constant</span></span>
 <span><span class="va">fit3a</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">infraCH</span>, buffer <span class="op">=</span> <span class="fl">25</span>, model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">g0</span><span class="op">~</span><span class="va">session</span>, <span class="va">sigma</span><span class="op">~</span><span class="va">session</span><span class="op">)</span>,</span>
 <span>         details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>autoini <span class="op">=</span> <span class="fl">2</span>, fixedbeta <span class="op">=</span> <span class="va">betafix</span><span class="op">)</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit3a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code>                beta  SE.beta      lcl      ucl
-D            5.60562 0.058570  5.49082  5.72041
-g0          -1.62668 0.139698 -1.90048 -1.35288
-g0.session7 -0.57596 0.131658 -0.83401 -0.31792
-sigma        0.91966 0.035884  0.84933  0.98999</code></pre>
+<pre><code>                beta  SE.beta      lcl     ucl
+D            5.60565 0.058123  5.49173  5.7196
+g0          -1.62716 0.137059 -1.89579 -1.3585
+g0.session7 -0.57523 0.129459 -0.82897 -0.3215
+sigma        0.91984 0.034977  0.85129  0.9884</code></pre>
 </div>
 </div>
 <p>Note that the estimated coefficients (‘beta’) have not changed, but the estimated ‘SE.beta’ of each detection parameter has dropped - a result of our spurious claim to know the true value of ‘sigma.session7’.</p>

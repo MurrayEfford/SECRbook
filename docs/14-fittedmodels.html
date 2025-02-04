@@ -538,7 +538,7 @@ secrdemo.CL   29.366      1.3050 26.918 32.037</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>    estimate SE.estimate    lcl    ucl   n
 E.N    444.6      55.003 349.19 566.08 139
-R.N    444.6      50.801 360.11 561.36 139</code></pre>
+R.N    444.6      50.801 360.12 561.36 139</code></pre>
 </div>
 </div>
 <p>The two output rows relate to the ‘expected’ and ‘realised’ numbers of AC in the region. The distinction between expected (random) <span class="math inline">N</span> and realised (fixed) <span class="math inline">N</span> is explained by <span class="citation" data-cites="ef13">Efford &amp; Fewster (<a href="A99-references.html#ref-ef13" role="doc-biblioref">2013</a>)</span>. Typically the expected and realised <span class="math inline">N(A)</span> from <code>region.N</code> are the same or nearly so, but deviations occur when the density model is not uniform. The estimated sampling error is less for ‘realised’ <span class="math inline">N(A)</span> as part is fixed at the observed <span class="math inline">n</span>.</p>
@@ -556,7 +556,7 @@ R.N   2091.4      254.72 1652.5 2657.6 139</code></pre>
 <div class="cell-output-display">
 <div id="fig-blackbearplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-blackbearplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="14-fittedmodels_files/figure-html/fig-blackbearplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="14-fittedmodels_files/figure-html/fig-blackbearplot-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="14-fittedmodels_files/figure-html/fig-blackbearplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="14-fittedmodels_files/figure-html/fig-blackbearplot-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blackbearplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;14.1: Simulated AC of black bears in Great Smoky Mountains National Park, USA. The number of AC (2092) was predicted from a model fitted to hair snags (red crosses) in one sector of the park. The habitat mask used to fit the model is shaded.
@@ -1245,7 +1245,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

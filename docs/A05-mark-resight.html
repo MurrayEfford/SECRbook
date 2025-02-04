@@ -739,17 +739,17 @@ Figure&nbsp;E.1: Two ways to plot sightings of unmarked animals. Petals in the l
 <div class="cell-output cell-output-stdout">
 <pre><code>$`ts = M`
        link estimate SE.estimate      lcl      ucl
-D       log 25.87864    3.410205 20.01037 33.46784
-g0    logit  0.37635    0.053074  0.27923  0.48453
-sigma   log 25.30920    1.972902 21.72832 29.48023
+D       log 25.87863    3.410206 20.01037 33.46783
+g0    logit  0.37635    0.053074  0.27923  0.48454
+sigma   log 25.30921    1.972903 21.72832 29.48024
 pID   logit  0.67424    0.054842  0.55923  0.77150
 
 $`ts = S`
        link  estimate SE.estimate      lcl      ucl
-D       log 25.878640    3.410205 20.01037 33.46784
+D       log 25.878634    3.410206 20.01037 33.46783
 g0    logit  0.093003    0.012526  0.07119  0.12063
-sigma   log 25.309203    1.972902 21.72832 29.48023
-pID   logit  0.674240    0.054842  0.55923  0.77150</code></pre>
+sigma   log 25.309209    1.972903 21.72832 29.48024
+pID   logit  0.674239    0.054842  0.55923  0.77150</code></pre>
 </div>
 </div>
 <p>This example relies on the built-in <code>autoini</code> function to provide starting parameter values for the numerical maximization. However, the automatic values may not work with complex mark–resight models. It is not worth continuing if the first likelihood evaluation fails, as indicated by LogLik NaN when <code>trace = TRUE</code>. Then you should experiment with the <code>start</code> argument until you find values that work.</p>
@@ -772,17 +772,17 @@ pID   logit  0.674240    0.054842  0.55923  0.77150</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`ts = M`
        link estimate SE.estimate      lcl      ucl
-D       log 24.22610    3.394118 18.43350 31.83899
-g0    logit  0.44126    0.075437  0.30243  0.58992
-sigma   log 25.54141    2.033516 21.85658 29.84747
-pID   logit  0.66510    0.065138  0.52821  0.77890
+D       log 24.13195    3.392929 18.34423 31.74573
+g0    logit  0.44590    0.077217  0.30368  0.59755
+sigma   log 25.55800    2.037723 21.86596 29.87343
+pID   logit  0.66675    0.064273  0.53160  0.77910
 
 $`ts = S`
-       link  estimate SE.estimate       lcl     ucl
-D       log 24.226100    3.394118 18.433498 31.8390
-g0    logit  0.094613    0.013545  0.071195  0.1247
-sigma   log 25.541411    2.033516 21.856584 29.8475
-pID   logit  0.665100    0.065138  0.528206  0.7789</code></pre>
+       link  estimate SE.estimate       lcl      ucl
+D       log 24.131951    3.392929 18.344231 31.74573
+g0    logit  0.094439    0.013448  0.071174  0.12429
+sigma   log 25.557999    2.037723 21.865962 29.87343
+pID   logit  0.666747    0.064273  0.531598  0.77910</code></pre>
 </div>
 </div>
 <p>For this dataset the adjustment had a small effect on the confidence intervals (0% increase in interval length). The estimates of overdispersion are saved in the <code>details$chat</code> component of the fitted model, and we can see that they are close to 1.0. Note that the adjustment is strictly for overdispersion in the unmarked sightings, and the effect of that overdispersion is ‘diluted’ by other components of the likelihood.</p>
@@ -790,7 +790,7 @@ pID   logit  0.665100    0.065138  0.528206  0.7789</code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit1</span><span class="op">$</span><span class="va">details</span><span class="op">$</span><span class="va">chat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Tu     Tm 
-1.8948 1.7545 </code></pre>
+1.9651 1.6944 </code></pre>
 </div>
 </div>
 <p>A shortcut is to specify <code>method = "none"</code> at Step 3 to block re-maximization of the pseudolikelihood: then only the variance-covariance matrix, likelihood and related parameters will be re-computed. Pre-determined values of <span class="math inline">\hat c</span> may be provided as input in the <code>chat</code> component of <code>details</code>; if <code>nsim = 0</code> the input <code>chat</code> will be used without further simulation (example in <a href="#sec-appendix1">Step-by-step guide</a> Step 8).</p>
@@ -848,15 +848,15 @@ pID   logit  0.665100    0.065138  0.528206  0.7789</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`ts = M`
        link estimate SE.estimate       lcl      ucl
-D       log 18.18986     2.96614 13.241503 24.98742
-g0    logit  0.94457     0.15064  0.057144  0.99979
-sigma   log 26.89615     2.32803 22.706536 31.85880
+D       log  18.1896     2.96621 13.241198 24.98738
+g0    logit   0.9446     0.15068  0.056934  0.99979
+sigma   log  26.8962     2.32809 22.706517 31.85902
 
 $`ts = S`
        link  estimate SE.estimate       lcl       ucl
-D       log 18.189860   2.9661407 13.241503 24.987420
+D       log 18.189635   2.9662052 13.241198 24.987378
 g0    logit  0.063549   0.0088513  0.048255  0.083266
-sigma   log 26.896152   2.3280269 22.706536 31.858801</code></pre>
+sigma   log 26.896234   2.3280869 22.706517 31.859020</code></pre>
 </div>
 </div>
 <p>Confidence interval length has increased by -12% over the full estimates (we did throw out a lot of data), but we expect the result to be more robust.</p>
@@ -988,10 +988,10 @@ Total     0 32 32 45 39   148</code></pre>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       link estimate SE.estimate      lcl      ucl
-D       log  17.1728    2.639331 12.72862 23.16872
-g0    logit   0.2194    0.034172  0.15973  0.29357
-sigma   log  24.5080    1.810679 21.20829 28.32110
-pID   logit   0.2849    0.043914  0.20705  0.37805</code></pre>
+D       log 17.17114    2.637593 12.72948 23.16260
+g0    logit  0.22142    0.034569  0.16105  0.29643
+sigma   log 24.51217    1.811371 21.21125 28.32678
+pID   logit  0.28221    0.043641  0.20492  0.37489</code></pre>
 </div>
 </div>
 <ol start="8" type="1">
@@ -1007,25 +1007,25 @@ pID   logit   0.2849    0.043914  0.20705  0.37805</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`ts = M`
        link estimate SE.estimate      lcl      ucl
-D       log 22.20770    3.375049 16.51501 29.86266
-g0    logit  0.55529    0.123042  0.31984  0.76828
-sigma   log 25.90163    2.116249 22.07480 30.39187
-pID   logit  0.65184    0.083808  0.47585  0.79428
+D       log 22.18120    3.374696 16.49003 29.83654
+g0    logit  0.55702    0.123799  0.31989  0.77073
+sigma   log 25.90649    2.117242 22.07795 30.39894
+pID   logit  0.65075    0.084782  0.47283  0.79470
 
 $`ts = S`
        link  estimate SE.estimate       lcl      ucl
-D       log 22.207702    3.375049 16.515007 29.86266
-g0    logit  0.097516    0.015863  0.070541  0.13333
-sigma   log 25.901630    2.116249 22.074798 30.39187
-pID   logit  0.651840    0.083808  0.475854  0.79428</code></pre>
+D       log 22.181199    3.374696 16.490032 29.83654
+g0    logit  0.097687    0.016005  0.070498  0.13385
+sigma   log 25.906491    2.117242 22.077951 30.39894
+pID   logit  0.650752    0.084782  0.472827  0.79470</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit0</span>, <span class="va">fitts</span><span class="op">)</span><span class="op">[</span>,<span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">6</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                        model npar  logLik    AIC  dAIC AICwt
-fitts D~1 g0~ts sigma~1 pID~1    5 -521.13 1052.3  0.00     1
-fit0   D~1 g0~1 sigma~1 pID~1    4 -552.02 1112.0 59.78     0</code></pre>
+<pre><code>                        model npar  logLik    AIC   dAIC AICwt
+fitts D~1 g0~ts sigma~1 pID~1    5 -520.35 1050.7  0.000     1
+fit0   D~1 g0~1 sigma~1 pID~1    4 -551.03 1110.1 59.344     0</code></pre>
 </div>
 </div>
 <p>Better model fit was achieved by estimating different detection rates on marking and sighting occasions, and the estimates from the null model should be discarded. We now reveal that the data were simulated with D = 30 animals/ha, g0(marking) = 0.3, g0(sighting) = 0.1, sigma = 25 m and pID = 0.7: confidence intervals for the estimates from model ‘fitts’ comfortably cover these values.</p>
@@ -1692,7 +1692,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"closeEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -975,9 +975,9 @@ max 1 1 1 1 1</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       link estimate SE.estimate      lcl      ucl
-D       log  5.47347    0.645991  4.34659  6.89249
+D       log  5.47346    0.645991  4.34659  6.89249
 g0    logit  0.27473    0.027164  0.22479  0.33102
-sigma   log 29.39668    1.308421 26.94206 32.07494</code></pre>
+sigma   log 29.39668    1.308422 26.94206 32.07494</code></pre>
 </div>
 </div>
 <p>The result in this case is only subtly different from the model with uniform usage (compare <code>predict(secrdemo.0)</code>). Setting <code>biasLimit = NA</code> avoids a warning message from <code>secr.fit</code> regarding <code>bias.D</code>: this function is usually run by <code>secr.fit</code> after any model fit using the ‘buffer’ argument, but it does not handle varying effort.</p>
@@ -1068,9 +1068,9 @@ tfactor=3,tnumeric=3 0.21001 0.10112 0.27772  0.27324</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>         estimate SE.estimate    lcl    ucl
 null       4.9709     0.84830 3.5663 6.9287
-usage      4.9755     0.84881 3.5699 6.9344
+usage      4.9755     0.84881 3.5700 6.9344
 tfactor    4.9703     0.84811 3.5660 6.9277
-tnumeric   4.9699     0.84805 3.5656 6.9271</code></pre>
+tnumeric   4.9698     0.84805 3.5656 6.9271</code></pre>
 </div>
 </div>
 <p>The density estimates themselves are almost entirely unaffected by the choice of model for g0. This is not unusual <span class="citation" data-cites="Sollmann2024">(<a href="A99-references.html#ref-Sollmann2024" role="doc-biblioref">Sollmann, 2024</a>)</span>. Nevertheless, the example shows how ‘usage’ allows unbalanced data to be analysed with a minimum of fuss.</p>
@@ -1581,7 +1581,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

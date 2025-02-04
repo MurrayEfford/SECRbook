@@ -477,10 +477,10 @@ window.Quarto = {
 <span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           beta  SE.beta      lcl       ucl
-D.D1   0.032026 0.191325 -0.34296  0.407015
+D.D1   0.032027 0.191324 -0.34296  0.407016
 D.D2  -0.063858 0.070151 -0.20135  0.073636
-g0    -3.561920 0.150654 -3.85720 -3.266644
-sigma  4.363968 0.081052  4.20511  4.522828</code></pre>
+g0    -3.561920 0.150653 -3.85719 -3.266645
+sigma  4.363968 0.081052  4.20511  4.522827</code></pre>
 </div>
 </div>
 <p>Density-relevant beta parameters have names starting with ‘D.’<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The first is the log initial density; others relate to the <span class="math inline">\lambda</span> parameters.</p>
@@ -508,7 +508,7 @@ lambda4  0.93814    0.065893 0.81762 1.0764</code></pre>
 <pre><code>        estimate SE.estimate     lcl    ucl
 D1       0.90132    0.212018 0.57192 1.4204
 lambda1  1.14737    0.221235 0.78899 1.6685
-lambda2  0.99977    0.092474 0.83432 1.1980
+lambda2  0.99977    0.092474 0.83433 1.1980
 lambda3  0.87115    0.085988 0.71826 1.0566
 lambda4  0.75908    0.153416 0.51283 1.1236</code></pre>
 </div>
@@ -516,25 +516,21 @@ lambda4  0.75908    0.153416 0.51283 1.1236</code></pre>
 <p>Session-specific <span class="math inline">\lambda</span> (lower-case ‘session’) provide a direct comparison with the original analysis:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="va">fit3</span>  <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovenCH</span>, model <span class="op">=</span> <span class="va">D</span><span class="op">~</span><span class="va">session</span>, mask <span class="op">=</span> <span class="va">msk</span>, </span>
-<span>     trace <span class="op">=</span> <span class="cn">FALSE</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Dlambda <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in secr.fit(ovenCH, model = D ~ session, mask = msk, trace = FALSE, : at
-least one variance calculation failed</code></pre>
-</div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="fu">predictDlambda</span> <span class="op">(</span><span class="va">fit3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>     trace <span class="op">=</span> <span class="cn">FALSE</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Dlambda <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span> <span class="fu">predictDlambda</span> <span class="op">(</span><span class="va">fit3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        estimate SE.estimate     lcl    ucl
-D1       0.92027     0.22763 0.57081 1.4837
-lambda1  1.04687     0.33132 0.57135 1.9181
-lambda2  1.18184     0.34944 0.67009 2.0844
-lambda3  0.73080     0.22516 0.40502 1.3186
-lambda4  0.84205     0.29286 0.43422 1.6329</code></pre>
+D1       0.92027     0.22763 0.57080 1.4837
+lambda1  1.04689     0.33132 0.57137 1.9182
+lambda2  1.18182     0.34965 0.66986 2.0851
+lambda3  0.73077     0.22567 0.40447 1.3203
+lambda4  0.84210     0.29413 0.43308 1.6374</code></pre>
 </div>
 </div>
 <p>The ovenbird population appeared to increase in density for two years and then decline for two years, but the effects are far from significant.</p>
 <p>Model selection procedures apply as usual:</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit1</span>, <span class="va">fit2</span>, <span class="va">fit3</span><span class="op">)</span><span class="op">[</span>,<span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit1</span>, <span class="va">fit2</span>, <span class="va">fit3</span><span class="op">)</span><span class="op">[</span>,<span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                      model npar  logLik  dAIC  AICwt
 fit1       D~1 g0~1 sigma~1    4 -930.73 0.000 0.5692
@@ -544,7 +540,7 @@ fit3 D~session g0~1 sigma~1    8 -929.82 6.192 0.0257</code></pre>
 </div>
 <p>Session covariates are readily applied. The covariate for the second session predicts <span class="math inline">\lambda_1 = D_2/D_1</span>, for the third session predicts <span class="math inline">\lambda_2 = D_3/D_2</span>, etc. The covariate for the first session is discarded (remember <span class="math inline">D_1</span> is constant). This all may be confusing, but you can work it out, and it saves extra coding.</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>acov <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>  <span class="co"># fabricated covariate</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>acov <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>  <span class="co"># fabricated covariate</span></span>
 <span><span class="va">fit4</span>  <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovenCH</span>, model <span class="op">=</span> <span class="va">D</span><span class="op">~</span><span class="va">acov</span>, mask <span class="op">=</span> <span class="va">msk</span>, </span>
 <span>    trace <span class="op">=</span> <span class="cn">FALSE</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Dlambda <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, </span>
 <span>    sessioncov <span class="op">=</span> <span class="va">covs</span><span class="op">)</span></span>
@@ -562,7 +558,7 @@ lambda4   0.9501     0.21202 0.61677 1.4636</code></pre>
 <span class="header-section-number">J.3</span> Fixing coefficients</h2>
 <p>Another possibility is to fit the model with fixed trend (the second beta coefficient corresponds to lambda, before).</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="va">fit5</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovenCH</span>, model <span class="op">=</span> <span class="va">D</span><span class="op">~</span><span class="fl">1</span>, mask <span class="op">=</span> <span class="va">msk</span>, trace <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="va">fit5</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovenCH</span>, model <span class="op">=</span> <span class="va">D</span><span class="op">~</span><span class="fl">1</span>, mask <span class="op">=</span> <span class="va">msk</span>, trace <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>    details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Dlambda <span class="op">=</span> <span class="cn">TRUE</span>, fixedbeta <span class="op">=</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">0.9</span><span class="op">)</span>, <span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span> <span class="fu">predictDlambda</span><span class="op">(</span><span class="va">fit5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
