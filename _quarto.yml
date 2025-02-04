@@ -91,7 +91,7 @@ book:
   repo-url: https://github.com/MurrayEfford/SECRbook
 
 
-bibliography: [d:/jabref/SECR.bib]
+bibliography: [SECRbook.bib]
 # csl: journal-of-the-royal-statistical-society.csl
 csl: methods-in-ecology-and-evolution.csl
 
