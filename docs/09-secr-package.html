@@ -714,8 +714,9 @@ Table&nbsp;9.3: Basic detector types in . See the appendices for <a href="./A04-
 <span class="header-section-number">9.8.3</span> <code>model</code> – detection and density sub-models </h3>
 <p>The core parameters are ‘real’ parameters in the terminology of MARK <span class="citation" data-cites="cw">(<a href="A99-references.html#ref-cw" role="doc-biblioref">Cooch &amp; White, 2023</a>)</span>. Three real parameters are commonly modelled in : ‘D’ (for density), and ‘g0’ and ‘sigma’ (for the detection function). Other ‘real’ parameters appear in particular contexts. ‘z’ is a shape parameter that is used only when the <a href="10-detection-model.html#sec-detectfn">detection function</a> has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter ‘lambda0’ in place of ‘g0’. A further ‘real’ parameter is the mixing proportion ‘pmix’, used in <a href="05-theory-special-topics.html#finite-mixtures">finite mixture models</a> and <a href="05-theory-special-topics.html#hybrid-mixtures">hybrid mixture models</a>.</p>
 <p>By default, each ‘real’ parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the ‘model’ argument of <code>secr.fit</code>. Here ‘models’ relates to variation in the parameters that may be explained by known factors and covariates. Models are defined symbolically in using R formula notation. A separate linear predictor is used for each core parameter. The workings are explained in detail in <a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a> and <a href="12-density-model.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
-</section><section id="cl-conditional-vs-full-likelihood-cl" class="level3" data-number="9.8.4"><h3 data-number="9.8.4" class="anchored" data-anchor-id="cl-conditional-vs-full-likelihood-cl">
-<span class="header-section-number">9.8.4</span> <code>CL</code> – conditional vs full likelihood {#CL} </h3>
+</section><section id="CL" class="level3" data-number="9.8.4"><h3 data-number="9.8.4" class="anchored" data-anchor-id="CL">
+<span class="header-section-number">9.8.4</span> <code>CL</code> – conditional vs full likelihood</h3>
+<p></p>
 <p>‘CL’ switches between maximizing the likelihood conditional on <span class="math inline">n</span> (TRUE) or the full likelihood (FALSE). The conditional option is faster because it does not estimate absolute density. Uniform absolute density may be estimated from the conditional fit, or indeed any fit, with the <code>derived</code> method. For Poisson <span class="math inline">n</span> (the default), the estimate is identical within numerical error to that from the full likelihood. The alternative (binomial <span class="math inline">n</span>) is obtained by setting the <a href="#details">details argument</a> ‘distribution = “binomial”’. Relative density (density modelled as a function of covariates, without an intercept) may be modelled with <code>CL = TRUE</code> in recent versions (see sections on the <a href="./05-theory-special-topics.html#relativedensity1">theory</a> and <a href="12-density-model#relativedensity2">implementation</a> of relative density).</p>
 </section><section id="method-maximization-algorithm" class="level3" data-number="9.8.5"><h3 data-number="9.8.5" class="anchored" data-anchor-id="method-maximization-algorithm">
 <span class="header-section-number">9.8.5</span> <code>method</code> – maximization algorithm </h3>
@@ -1231,7 +1232,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -931,15 +931,15 @@ sigma  3.31767 0.03544</code></pre>
 <div class="cell">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/derivedDsurface.html">derivedDcoef</a></span><span class="op">(</span><span class="va">fitrd1</span><span class="op">)</span> <span class="co"># delta-method variance suppressed as unreliable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          beta SE.beta      lcl      ucl
-D      2.72539      NA       NA       NA
-D.x   -0.19872 0.11851 -0.43099  0.03356
-D.y    0.30999 0.13469  0.04600  0.57397
-D.x2  -0.22472 0.13345 -0.48627  0.03683
-D.y2  -0.09673 0.12818 -0.34797  0.15450
-D.xy   0.29672 0.13208  0.03785  0.55560
-g0    -2.22032 0.09422 -2.40499 -2.03565
-sigma  3.31767 0.03544  3.24822  3.38713</code></pre>
+<pre><code>            beta   SE.beta        lcl        ucl
+D      2.7253873        NA         NA         NA
+D.x   -0.1987154 0.1185097 -0.4309902  0.0335594
+D.y    0.3099852 0.1346874  0.0460028  0.5739676
+D.x2  -0.2247182 0.1334476 -0.4862707  0.0368344
+D.y2  -0.0967315 0.1281837 -0.3479669  0.1545040
+D.xy   0.2967233 0.1320828  0.0378457  0.5556009
+g0    -2.2203190 0.0942199 -2.4049867 -2.0356514
+sigma  3.3176746 0.0354360  3.2482214  3.3871278</code></pre>
 </div>
 </div>
 <p>To plot the full density surface it is first necessary to infer the missing intercept. This is done automatically by the function <code>derivedDsurface</code>:</p>
@@ -1430,7 +1430,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
