@@ -24,7 +24,7 @@ Simulation has many uses in SECR; we focus particularly on
 * assessing candidate study designs (@sec-studydesign), and
 * assessing goodness of fit (@sec-fittedmodels).
 
-The first two of these are not related to the analysis of a dataset and the required 'de novo' simulations follow essentially the same steps in **secr**, as detailed below. The third entails simulation from a particular model fitted to data, as considered [earlier](14-fittedmodels.qmd#sec-modelfit). Other uses of simulation are more niche -- parameter estimation [@Efford2023], testing software implementations, and the computation of parametric bootstrap confidence intervals.
+The first two of these are not related to the analysis of a dataset and the required 'de novo' simulations follow essentially the same steps in **secr**, as detailed below. The third entails simulation from a particular model fitted to data, as considered [earlier](13-fittedmodels.qmd#sec-modelfit). Other uses of simulation are more niche -- parameter estimation [@Efford2023], testing software implementations, and the computation of parametric bootstrap confidence intervals.
 
 This chapter aims to demystify simulation and make it available to a wider range of SECR users. We start by breaking a simulation down into the component steps, showing how each of these may be performed in **secr**. Later we introduce the package **secrdesign** that manages these steps for greater efficiency.
 

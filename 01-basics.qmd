@@ -282,7 +282,7 @@ probability model, all of them computer-intensive. We focus on numerical
 maximization of the log likelihood (@be08 and @sec-theory). The
 likelihood integrates over the unknown locations of the animals'
 activity centres. This is achieved in practice by summing over cells in
-a discretized map of the [habitat](13-habitat.qmd).
+a discretized map of the [habitat](12-habitat.qmd).
 
 In outline, a function to compute the log likelihood from a vector of
 beta parameters is passed, along with the data, to an optimization

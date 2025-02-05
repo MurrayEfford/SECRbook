@@ -2,7 +2,7 @@
 
 The utility of SECR is enhanced by several extensions to the basic theory in the preceding chapters.
 
-The most important of these are the linear submodels for [detection](10-detection-model.qmd#linear-submodels) and [density](12-density-model.qmd#sec-density) that we describe in their respective chapters. Others we list here.
+The most important of these are the linear submodels for [detection](10-detection-model.qmd#linear-submodels) and [density](11-density-model.qmd#sec-density) that we describe in their respective chapters. Others we list here.
 
 ## Multi-session likelihood
 \index{Likelihood!multi-session}
@@ -64,7 +64,7 @@ The variance from @eq-varHT is on the natural scale, and the Wald confidence int
 
 Conditioning on $n$ *without* requiring uniform density as in the previous section leads to another result that is useful. We can estimate relative density, the distribution of AC in relation to habitat covariates, rather than absolute density. Conditioning allows individual covariates of detection $\mathbf z_i$ as before, and fitting is faster than for absolute density [@Efford2025]. 
 
-We define relative density by $D^\prime(\mathbf x | \phi^-) \equiv k^{-1} D(\mathbf x | \phi)$ where $\phi^-$ is a reduced vector of coefficients for the density submodel discussed [later](12-density-model.qmd#sec-density) and $k$ is a constant of proportionality. Then we can discard the first factor in @eq-L and maximize a likelihood based on the second factor alone
+We define relative density by $D^\prime(\mathbf x | \phi^-) \equiv k^{-1} D(\mathbf x | \phi)$ where $\phi^-$ is a reduced vector of coefficients for the density submodel discussed [later](11-density-model.qmd#sec-density) and $k$ is a constant of proportionality. Then we can discard the first factor in @eq-L and maximize a likelihood based on the second factor alone
 $$
 L_r(\phi^-, \theta | \Omega, n) \propto  \prod_{i=1}^n \frac{\int \mathrm{Pr}(\omega_i | \theta, \mathbf x) \, D^\prime(\mathbf x | \phi^-) \, p_\cdot(\mathbf x | \theta, \mathbf z_i) \; d\mathbf x}{\int  D^\prime(\mathbf x | \phi^-) \, p_\cdot(\mathbf x | \theta, \mathbf z_i) \; d\mathbf x}.
 $$ {#eq-rd}
@@ -206,7 +206,7 @@ f(\mathbf x | \omega_i; \hat \phi, \hat \theta) = \frac{ \mathrm{Pr} (\omega_i |
 $$ {#eq-fxi}
 This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See `fxi` and related functions in **secr**. For known $\theta$ and known $\phi$ (unless $D(\mathbf x; \phi)$ uniform) the modal location of the AC for animal $i$ may be estimated by maximizing $\mathrm{Pr} (\omega_i | \mathbf x; \theta)D(\mathbf x; \phi)$ with respect to $\mathbf x$. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.
 
-A later [section](12-density-model.qmd#not-a-density-surface) discusses the use and interpretation of $f(\mathbf x | \omega_i; \hat \phi, \hat \theta)$ (see also @Durbach2024).
+A later [section](11-density-model.qmd#not-a-density-surface) discusses the use and interpretation of $f(\mathbf x | \omega_i; \hat \phi, \hat \theta)$ (see also @Durbach2024).
 
 <!-- ## Telemetry {#telemetrylikelihood} -->
 

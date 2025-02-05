@@ -229,7 +229,7 @@ The `mash` function (see [Mashing](#mash)) may be used to reduce the number of d
 ## Covariate factor levels differ between sessions
 \index{Troubleshooting!Covariate factor levels}
 
-This is fairly explicit; `secr.fit` will stop if you include in a model any covariate whose factor levels vary among sessions, and `verify` will warn if it finds any covariate like this. This commonly occurs in multi-session datasets with 'sex' as an individual covariate when only males or only females are detected in one session. Use the function [`shareFactorLevels`](15-multisession.qmd#sharefactorlevels) to force covariates to use the same superset of levels in all sessions.
+This is fairly explicit; `secr.fit` will stop if you include in a model any covariate whose factor levels vary among sessions, and `verify` will warn if it finds any covariate like this. This commonly occurs in multi-session datasets with 'sex' as an individual covariate when only males or only females are detected in one session. Use the function [`shareFactorLevels`](14-multisession.qmd#sharefactorlevels) to force covariates to use the same superset of levels in all sessions.
 
 ## Estimates from finite mixture models appear unstable
 
