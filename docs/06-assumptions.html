@@ -272,32 +272,32 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-finite-mixtures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  <a href="./11-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-density-model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  <a href="./12-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-habitat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  <a href="./13-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-fittedmodels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  <a href="./14-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-multisession.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  <a href="./15-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -453,7 +453,7 @@ window.Quarto = {
 <li>The probability of detection is constant across individuals, detectors and times, conditional on the AC.</li>
 <li>Detections of different individuals are independent, as are sequential detections of a single individual.</li>
 </ol>
-<p>Restrictive assumptions often may be relaxed under specific extensions to the SECR model, including the various ‘submodels’ of <a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a>. We omit one further assumption: that the probability of detection declines to zero for AC at the edge of the habitat mask unless it is naturally bounded. This is addressed in the analysis by correct choice of <a href="./10-detection-model.html#sec-detectfn">detection function</a> and buffer or mask (<a href="13-habitat.html" class="quarto-xref"><span>Chapter 13</span></a>).</p>
+<p>Restrictive assumptions often may be relaxed under specific extensions to the SECR model, including the various ‘submodels’ of <a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a>. We omit one further assumption: that the probability of detection declines to zero for AC at the edge of the habitat mask unless it is naturally bounded. This is addressed in the analysis by correct choice of <a href="./10-detection-model.html#sec-detectfn">detection function</a> and buffer or mask (<a href="12-habitat.html" class="quarto-xref"><span>Chapter 12</span></a>).</p>
 <section id="sec-robustness" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="sec-robustness">
 <span class="header-section-number">6.1</span> Robustness</h2>
 <p></p>
@@ -1525,7 +1525,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -272,32 +272,32 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-finite-mixtures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  <a href="./11-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-density-model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  <a href="./12-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-habitat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  <a href="./13-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-fittedmodels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  <a href="./14-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-multisession.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  <a href="./15-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -561,7 +561,7 @@ Table&nbsp;1.1: Examples of SECR sampling devices
 <div class="cell-output-display">
 <div id="fig-example" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/example.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="figures/example.png" class="img-fluid figure-img" style="width:70.0%"></a>
+<a href="figures/example.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="figures/example.png" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.1: Distance-dependent detection of uniformly distributed activity centres (open circles; filled if captured)
@@ -576,7 +576,7 @@ Figure&nbsp;1.1: Distance-dependent detection of uniformly distributed activity 
 <div class="cell-output-display">
 <div id="fig-detectionfunctions" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-detectionfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="img-fluid figure-img" style="width:75.0%"></a>
+<a href="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="img-fluid figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-detectionfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.2: Some detection functions
@@ -633,13 +633,13 @@ Table&nbsp;1.2: Link functions
 </section><section id="estimation" class="level3" data-number="1.6.4"><h3 data-number="1.6.4" class="anchored" data-anchor-id="estimation">
 <span class="header-section-number">1.6.4</span> Estimation</h3>
 <p></p>
-<p>There are several ways to estimate the parameters of the SECR probability model, all of them computer-intensive. We focus on numerical maximization of the log likelihood (<span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="A99-references.html#ref-be08" role="doc-biblioref">2008</a>)</span> and <a href="03-theory.html" class="quarto-xref"><span>Chapter 3</span></a>). The likelihood integrates over the unknown locations of the animals’ activity centres. This is achieved in practice by summing over cells in a discretized map of the <a href="./13-habitat.html">habitat</a>.</p>
+<p>There are several ways to estimate the parameters of the SECR probability model, all of them computer-intensive. We focus on numerical maximization of the log likelihood (<span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="A99-references.html#ref-be08" role="doc-biblioref">2008</a>)</span> and <a href="03-theory.html" class="quarto-xref"><span>Chapter 3</span></a>). The likelihood integrates over the unknown locations of the animals’ activity centres. This is achieved in practice by summing over cells in a discretized map of the <a href="./12-habitat.html">habitat</a>.</p>
 <p>In outline, a function to compute the log likelihood from a vector of beta parameters is passed, along with the data, to an optimization function. Optimization is iterative. For illustration, <a href="#fig-MLE" class="quarto-xref">Fig.&nbsp;<span>1.3</span></a> shows the sequence of likelihood evaluations with two maximization algorithms when the parameter vector consists of only the intercept and spatial scale of detection. Optimization returns the maximized log likelihood, a vector of parameter values at the maximum, and the Hessian matrix from which the variance-covariance matrix of the estimates may be obtained.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-MLE" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-MLE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01-basics_files/figure-html/fig-MLE-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="01-basics_files/figure-html/fig-MLE-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="01-basics_files/figure-html/fig-MLE-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="01-basics_files/figure-html/fig-MLE-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MLE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.3: Numerical maximization of conditional likelihood by two methods; triangle – initial values; filled circle – estimates. Both converge on the same estimates (dashed lines). Newton-Raphson is the default method in secr.
@@ -1137,7 +1137,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

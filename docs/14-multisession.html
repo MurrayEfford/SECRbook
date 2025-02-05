@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.553">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Spatially Explicit Capture–Recapture - 15&nbsp; Multiple sessions</title>
+<title>Spatially Explicit Capture–Recapture - 14&nbsp; Multiple sessions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,8 +80,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./16-sex.html" rel="next">
-<link href="./14-fittedmodels.html" rel="prev">
+<link href="./15-finite-mixtures.html" rel="next">
+<link href="./13-fittedmodels.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -128,7 +128,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-secr-package.html">Practice</a></li><li class="breadcrumb-item"><a href="./15-multisession.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-secr-package.html">Practice</a></li><li class="breadcrumb-item"><a href="./14-multisession.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -267,32 +267,32 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-finite-mixtures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  <a href="./11-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-density-model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  <a href="./12-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-habitat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  <a href="./13-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-fittedmodels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  <a href="./14-multisession.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-multisession.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  <a href="./15-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -406,18 +406,18 @@ div.csl-indent {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-<li><a href="#input" id="toc-input" class="nav-link active" data-scroll-target="#input"><span class="header-section-number">15.1</span> Input</a></li>
-  <li><a href="#manipulation" id="toc-manipulation" class="nav-link" data-scroll-target="#manipulation"><span class="header-section-number">15.2</span> Manipulation</a></li>
-  <li><a href="#fitting" id="toc-fitting" class="nav-link" data-scroll-target="#fitting"><span class="header-section-number">15.3</span> Fitting</a></li>
-  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation"><span class="header-section-number">15.4</span> Simulation</a></li>
-  <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems"><span class="header-section-number">15.5</span> Problems</a></li>
-  <li><a href="#fasterfitting" id="toc-fasterfitting" class="nav-link" data-scroll-target="#fasterfitting"><span class="header-section-number">15.6</span> Speed</a></li>
-  <li><a href="#caveats" id="toc-caveats" class="nav-link" data-scroll-target="#caveats"><span class="header-section-number">15.7</span> Caveats</a></li>
+<li><a href="#input" id="toc-input" class="nav-link active" data-scroll-target="#input"><span class="header-section-number">14.1</span> Input</a></li>
+  <li><a href="#manipulation" id="toc-manipulation" class="nav-link" data-scroll-target="#manipulation"><span class="header-section-number">14.2</span> Manipulation</a></li>
+  <li><a href="#fitting" id="toc-fitting" class="nav-link" data-scroll-target="#fitting"><span class="header-section-number">14.3</span> Fitting</a></li>
+  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation"><span class="header-section-number">14.4</span> Simulation</a></li>
+  <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems"><span class="header-section-number">14.5</span> Problems</a></li>
+  <li><a href="#fasterfitting" id="toc-fasterfitting" class="nav-link" data-scroll-target="#fasterfitting"><span class="header-section-number">14.6</span> Speed</a></li>
+  <li><a href="#caveats" id="toc-caveats" class="nav-link" data-scroll-target="#caveats"><span class="header-section-number">14.7</span> Caveats</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-secr-package.html">Practice</a></li><li class="breadcrumb-item"><a href="./15-multisession.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-multisession" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></h1>
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-secr-package.html">Practice</a></li><li class="breadcrumb-item"><a href="./14-multisession.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-multisession" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></h1>
 </div>
 
 
@@ -434,11 +434,11 @@ div.csl-indent {
 </header><p>A ‘session’ in <strong>secr</strong> is a block of sampling that may be treated as independent from all other sessions. For example, sessions may correspond to trapping grids that are far enough apart that they sample non-overlapping sets of animals. Multi-session data and models combine data from several sessions. Sometimes this is merely a convenience, but it also enables the fitting of models with parameter values that apply across sessions – data are then effectively pooled with respect to those parameters.</p>
 <p>Multi-session data are referred to as ‘stacked’ data in other contexts <span class="citation" data-cites="Kery2020">(<a href="A99-references.html#ref-Kery2020" role="doc-biblioref">Kéry &amp; Royle, 2020, pp. 67, 76</a>)</span>.</p>
 <p>Dealing with multiple sessions adds another layer of complexity, and raises some entirely new issues. This chapter tries for a coherent view of multi-session analyses, covering material that is otherwise scattered.</p>
-<section id="input" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="input">
-<span class="header-section-number">15.1</span> Input</h2>
+<section id="input" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="input">
+<span class="header-section-number">14.1</span> Input</h2>
 <p>A multi-session capthist object is essentially an R list of single-session capthist objects. We assume the functions <code>read.capthist</code> or <code>make.capthist</code> will be used for data input (simulated data are considered separately later on).</p>
-<section id="detections" class="level3" data-number="15.1.1"><h3 data-number="15.1.1" class="anchored" data-anchor-id="detections">
-<span class="header-section-number">15.1.1</span> Detections</h3>
+<section id="detections" class="level3" data-number="14.1.1"><h3 data-number="14.1.1" class="anchored" data-anchor-id="detections">
+<span class="header-section-number">14.1.1</span> Detections</h3>
 <p>Entering session-specific detections is simple because all detection data are placed in one file or dataframe. Each session uses a character-valued code (the session identifier) in the first column. For demonstration let’s assume you have a file ‘msCHcapt.txt’ with data for 3 sessions, each sampled on 4 occasions.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -483,8 +483,8 @@ Detectors  64 64 64</code></pre>
 </div>
 </div>
 <p>Sessions are ordered in <code>msCH</code> according to their identifiers (‘1’ before ‘2’, ‘Albert’ before ‘Beatrice’ etc.). The order becomes important for matching with session-specific trap layouts and masks, as we see later. The vector of session names (identifiers) may be retrieved with <code>session(msCH)</code> or <code>names(msCH)</code>.</p>
-</section><section id="empty-sessions" class="level3" data-number="15.1.2"><h3 data-number="15.1.2" class="anchored" data-anchor-id="empty-sessions">
-<span class="header-section-number">15.1.2</span> Empty sessions</h3>
+</section><section id="empty-sessions" class="level3" data-number="14.1.2"><h3 data-number="14.1.2" class="anchored" data-anchor-id="empty-sessions">
+<span class="header-section-number">14.1.2</span> Empty sessions</h3>
 <p>It is possible for there to be no detections in some sessions (but not all!). To create a session with no detections, include a dummy row with the value of the noncapt argument as the animal identifier; the default noncapt value is ‘NONE’. The dummy row should have occasion number equal to the number of occasions and some nonsense value (e.g.&nbsp;0) in each of the other fields (trapID etc.).</p>
 <p>Including individual covariates as additional columns seems to cause trouble in the present version of <strong>secr</strong> if some sessions are empty, and should be avoided. We drop them from the example file ‘msCHcapt2.txt’:</p>
 <div class="cell">
@@ -522,19 +522,19 @@ Detectors  64 64 64 64</code></pre>
 </div>
 <p>Empty sessions trigger an error in <code>verify.capthist</code>; to fit a model suppress verification (e.g., <code>secr.fit(msCH2, verify = FALSE)</code>).</p>
 <p>If the first session is empty then either direct the <code>autoini</code> option to a later session with e.g., <code>details = list(autoini = 2)</code> or provide initial values manually in the <code>start</code> argument.</p>
-</section><section id="detector-layouts" class="level3" data-number="15.1.3"><h3 data-number="15.1.3" class="anchored" data-anchor-id="detector-layouts">
-<span class="header-section-number">15.1.3</span> Detector layouts</h3>
+</section><section id="detector-layouts" class="level3" data-number="14.1.3"><h3 data-number="14.1.3" class="anchored" data-anchor-id="detector-layouts">
+<span class="header-section-number">14.1.3</span> Detector layouts</h3>
 <p>All sessions may share the same detector layout. Then the ‘trapfile’ argument of <code>read.capthist</code> is a single name, as in the example above. The trap layout is repeated as an attribute of each component (single-session) capthist.</p>
 <p>Alternatively, each session may have its own detector layout. Unlike the detection data, each session-specific layout is specified in a separate input file or traps object. For <code>read.capthist</code> the ‘trapfile’ argument is then a vector of file names, one for each session. For <code>make.capthist</code>, the ‘traps’ argument may be a list of traps objects, one per session. The first trap layout is used for the first session, the second for the second session, etc.</p>
-</section></section><section id="manipulation" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="manipulation">
-<span class="header-section-number">15.2</span> Manipulation</h2>
+</section></section><section id="manipulation" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="manipulation">
+<span class="header-section-number">14.2</span> Manipulation</h2>
 <p>The standard extraction and manipulation functions of <strong>secr</strong> (<code>summary</code>, <code>verify</code>, <code>covariates</code>, <code>subset</code>, <code>reduce</code> etc.) mostly allow for multi-session input, applying the manipulation to each component session in turn. The function <code>ms</code> returns TRUE if its argument is a multi-session object and FALSE otherwise.</p>
 <p>Plotting a multi-session capthist object (e.g., <code>plot(msCH)</code>) will create one new plot for each session unless you specify <code>add = TRUE</code>.</p>
 <p>Methods that extract attributes from multi-session capthist object will generally return a list in which each component is the result from one session. Thus for the ovenbird mistnetting data <code>traps(ovenCH)</code> extracts a list of 5 traps objects, one for each annual session 2005–2009.</p>
 <p>The <code>subset</code> method for capthist objects has a ‘sessions’ argument for selecting particular session(s) of a multi-session object.</p>
 <div id="tbl-multisession" class="sm quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-multisession-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;15.1: Manipulation of multi-session capthist objects (CH).
+Table&nbsp;14.1: Manipulation of multi-session capthist objects (CH).
 </figcaption><div aria-describedby="tbl-multisession-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-sm small table">
 <colgroup>
@@ -580,11 +580,11 @@ Table&nbsp;15.1: Manipulation of multi-session capthist objects (CH).
 </figure>
 </div>
 <p>The <code>split</code> method for capthist objects (<code>?split.capthist</code>) may be used to break a single-session capthist object into a multi-session object, segregating detections by some attribute of the individuals, or by occasion or detector groupings. Also, from <strong>secr</strong> 5.0.1, the <code>split</code> method may be used to group sessions in a multi-session capthist.</p>
-</section><section id="fitting" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="fitting">
-<span class="header-section-number">15.3</span> Fitting</h2>
+</section><section id="fitting" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="fitting">
+<span class="header-section-number">14.3</span> Fitting</h2>
 <p>Given multi-session capthist input, <code>secr.fit</code> automatically fits a multi-session model by maximizing the product of session-specific likelihoods <span class="citation" data-cites="ebb09">(<a href="A99-references.html#ref-ebb09" role="doc-biblioref">Efford et al., 2009</a>)</span>. For fitting a model separately to each session see the later section on <a href="#fasterfitting">Faster fitting…</a>.</p>
-<section id="habitat-masks" class="level3" data-number="15.3.1"><h3 data-number="15.3.1" class="anchored" data-anchor-id="habitat-masks">
-<span class="header-section-number">15.3.1</span> Habitat masks</h3>
+<section id="habitat-masks" class="level3" data-number="14.3.1"><h3 data-number="14.3.1" class="anchored" data-anchor-id="habitat-masks">
+<span class="header-section-number">14.3.1</span> Habitat masks</h3>
 <p>The default mechanism for constructing a habitat mask in <code>secr.fit</code> is to buffer around the trap layout. This extends to multi-session data; buffering is applied to each trap layout in turn.</p>
 <p>Override the default buffering mechanism by specifying the ‘mask’ argument of <code>secr.fit</code>. This is necessary if you want to –</p>
 <ol type="1">
@@ -608,26 +608,26 @@ Table&nbsp;15.1: Manipulation of multi-session capthist objects (CH).
 </details><div class="cell-output-display">
 <div id="fig-plotmasks" class="quarto-figure quarto-figure-center quarto-float anchored" width="864">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plotmasks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="15-multisession_files/figure-html/fig-plotmasks-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="15-multisession_files/figure-html/fig-plotmasks-1.png" id="fig-plotmasks" class="img-fluid figure-img" width="864"></a>
+<a href="14-multisession_files/figure-html/fig-plotmasks-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="14-multisession_files/figure-html/fig-plotmasks-1.png" id="fig-plotmasks" class="img-fluid figure-img" width="864"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-plotmasks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15.1
+Figure&nbsp;14.1
 </figcaption></figure>
 </div>
 </div>
 </div>
-</section><section id="session-models" class="level3" data-number="15.3.2"><h3 data-number="15.3.2" class="anchored" data-anchor-id="session-models">
-<span class="header-section-number">15.3.2</span> Session models</h3>
+</section><section id="session-models" class="level3" data-number="14.3.2"><h3 data-number="14.3.2" class="anchored" data-anchor-id="session-models">
+<span class="header-section-number">14.3.2</span> Session models</h3>
 <p>The default in <code>secr.fit</code> is to treat all parameters as constant across sessions. For detection functions parameterized in terms of cumulative hazard (e.g., ‘HHN’ or ‘HEX’) this is equivalent to <code>model = list(D ~ 1, lambda0 ~ 1, sigma ~ 1)</code>. Two automatic predictors are provided specifically for multi-session models: ‘session’ and ‘Session’.</p>
-<section id="session-stratified-estimates" class="level4" data-number="15.3.2.1"><h4 data-number="15.3.2.1" class="anchored" data-anchor-id="session-stratified-estimates">
-<span class="header-section-number">15.3.2.1</span> Session-stratified estimates</h4>
+<section id="session-stratified-estimates" class="level4" data-number="14.3.2.1"><h4 data-number="14.3.2.1" class="anchored" data-anchor-id="session-stratified-estimates">
+<span class="header-section-number">14.3.2.1</span> Session-stratified estimates</h4>
 <p>A model with lowercase ‘session’ fits a distinct value of the parameter (D, g0, lambda0, sigma) for each level of <code>factor(session(msCH))</code>.</p>
-</section><section id="session-covariates" class="level4" data-number="15.3.2.2"><h4 data-number="15.3.2.2" class="anchored" data-anchor-id="session-covariates">
-<span class="header-section-number">15.3.2.2</span> Session covariates</h4>
+</section><section id="session-covariates" class="level4" data-number="14.3.2.2"><h4 data-number="14.3.2.2" class="anchored" data-anchor-id="session-covariates">
+<span class="header-section-number">14.3.2.2</span> Session covariates</h4>
 <p>Other variation among sessions may be modelled with session-specific covariates. These are provided to <code>secr.fit</code> on-the-fly in the argument ‘sessioncov’ (they cannot be embedded in the capthist object like detector or individual covariates). The value for ‘sessioncov’ should be a dataframe with one row per session. Each column is a potential predictor in a model formula; other columns are ignored.</p>
 <p>Session covariates are extremely flexible. The linear trend of the ‘Session’ predictor may be emulated by defining a covariate <code>sessnum = 0:(R-1)</code> where <code>R</code> is the number of sessions. Sessions of different types may be distinguished by a factor-valued covariate. Supposing for the ovenbird dataset we wished to distinguish years 2005 and 2006 from 2007, 2008 and 2009, we could use <code>earlylate = factor(c('early','early','late','late','late'))</code>. Quantitative habitat attributes might also be coded as session covariates.</p>
-</section><section id="simpletrend" class="level4" data-number="15.3.2.3"><h4 data-number="15.3.2.3" class="anchored" data-anchor-id="simpletrend">
-<span class="header-section-number">15.3.2.3</span> Trend across sessions</h4>
+</section><section id="simpletrend" class="level4" data-number="14.3.2.3"><h4 data-number="14.3.2.3" class="anchored" data-anchor-id="simpletrend">
+<span class="header-section-number">14.3.2.3</span> Trend across sessions</h4>
 <p> </p>
 <p><strong>secr</strong> is primarily for estimating closed population density (density at one point in time), but multi-session data may also be modelled to describe population trend over time. A trend model for density may be interesting if the sessions fall in some natural sequence, such as a series of annual samples (as in the ovenbird dataset ovenCH). A model with initial uppercase ‘Session’ fits a <em>trend</em> across sessions using the session number as the predictor. The fitted trend is linear on the link scale; using the default link function for density (‘log’) this corresponds to exponential growth or decline if samples are equally spaced in time.</p>
 <p>The pre-fitted model <code>ovenbird.model.D</code> provides an example. The coefficient ‘D.Session’ is the rate of change in log(D):</p>
@@ -658,38 +658,38 @@ sigma      4.364111 0.081149  4.20506  4.523159</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A more sophisticated version is provided in <a href="A10-trend.html" class="quarto-xref"><span>Appendix J</span></a>.</p>
-</section></section></section><section id="simulation" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="simulation">
-<span class="header-section-number">15.4</span> Simulation</h2>
+</section></section></section><section id="simulation" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="simulation">
+<span class="header-section-number">14.4</span> Simulation</h2>
 <p>Back at the start of this document we used <code>sim.capthist</code> to generate <code>msCH</code>, a simple multi-session capthist. Here we look at various extensions. Generating SECR data is a 2-stage process. The first stage simulates the locations of animals to create an object of class ‘popn’; the second stage generates samples from that population according to a particular sampling regime (detector array, number of occasions etc.).</p>
-<section id="simulating-multi-session-populations" class="level3" data-number="15.4.1"><h3 data-number="15.4.1" class="anchored" data-anchor-id="simulating-multi-session-populations">
-<span class="header-section-number">15.4.1</span> Simulating multi-session populations</h3>
+<section id="simulating-multi-session-populations" class="level3" data-number="14.4.1"><h3 data-number="14.4.1" class="anchored" data-anchor-id="simulating-multi-session-populations">
+<span class="header-section-number">14.4.1</span> Simulating multi-session populations</h3>
 <p>By default <code>sim.capthist</code> uses <code>sim.popn</code> to generate a new population independently for each session. Centres are placed within a rectangular region obtained by buffering around a ‘core’ (the traps object passed to <code>sim.capthist</code>).</p>
 <p>The session-specific populations may also be prepared in advance as a list of ‘popn’ objects (use nsessions &gt; 1 in <code>sim.popn</code>). This allows greater control. In particular, the population density may be varied among sessions by making argument D a vector of session-specific densities. Other arguments of <code>sim.popn</code> do not yet accept multi-session input – it might be useful for ‘core’ to accept a list of traps objects (or a list of mask objects if model2D = “IHP”).</p>
 <p>We can also put aside the basic assumption of independence among sessions and simulate a single population open to births, deaths and movement between sessions. This does not correspond to any model that can be fitted in <code>secr</code>, but it allows the effects of non-independence to be examined. See <code>?turnover</code> for further explanation.</p>
-</section><section id="multi-session-sampling" class="level3" data-number="15.4.2"><h3 data-number="15.4.2" class="anchored" data-anchor-id="multi-session-sampling">
-<span class="header-section-number">15.4.2</span> Multi-session sampling</h3>
+</section><section id="multi-session-sampling" class="level3" data-number="14.4.2"><h3 data-number="14.4.2" class="anchored" data-anchor-id="multi-session-sampling">
+<span class="header-section-number">14.4.2</span> Multi-session sampling</h3>
 <p>A multi-session population prepared in advance is passed as the popn argument of <code>sim.capthist</code>, replacing the usual list (D, buffer etc.).</p>
 <p>The argument ‘traps’ may be a list of length equal to nsessions. Each component potentially differs not just in detector locations, but also with respect to detector type (‘detector’) and resighting regime (‘markocc’). The argument ‘noccasions’ may also be a vector with a different number of occasions in each session.</p>
-</section></section><section id="problems" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="problems">
-<span class="header-section-number">15.5</span> Problems</h2>
+</section></section><section id="problems" class="level2" data-number="14.5"><h2 data-number="14.5" class="anchored" data-anchor-id="problems">
+<span class="header-section-number">14.5</span> Problems</h2>
 <p>There are problems specific to multi-session data.</p>
-<section id="failure-of-autoini" class="level3" data-number="15.5.1"><h3 data-number="15.5.1" class="anchored" data-anchor-id="failure-of-autoini">
-<span class="header-section-number">15.5.1</span> Failure of autoini</h3>
+<section id="failure-of-autoini" class="level3" data-number="14.5.1"><h3 data-number="14.5.1" class="anchored" data-anchor-id="failure-of-autoini">
+<span class="header-section-number">14.5.1</span> Failure of autoini</h3>
 <p>Numerical maximization of the likelihood requires a starting set of parameter values. This is either computed internally with the function <code>autoini</code> or provided by the user. Given multi-session data, the default procedure is for <code>secr.fit</code> to apply <code>autoini</code> to the first session only. If the data for that session are inadequate or result in parameter estimates that are extreme with respect to the remaining sessions then model fitting may abort. One solution is to provide start values manually, but that can be laborious. A quick fix is often to switch the session used to compute starting values by changing the details option ‘autoini’. For example</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit0</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">ovenCH</span>, mask <span class="op">=</span> <span class="va">msk</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>autoini <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A further option is to combine the session data into a single-session capthist object with <code>details = list(autoini = "all")</code>; the combined capthist is used only by <code>autoini</code>.</p>
-</section><section id="sharefactorlevels" class="level3" data-number="15.5.2"><h3 data-number="15.5.2" class="anchored" data-anchor-id="sharefactorlevels">
-<span class="header-section-number">15.5.2</span> Covariates with incompatible factor levels</h3>
+</section><section id="sharefactorlevels" class="level3" data-number="14.5.2"><h3 data-number="14.5.2" class="anchored" data-anchor-id="sharefactorlevels">
+<span class="header-section-number">14.5.2</span> Covariates with incompatible factor levels</h3>
 <p>Individual or detector covariates used in a multi-session model obviously must appear in each of the component sessions. It is less obvious, and sometimes annoying, that a factor (categorical) covariate should have exactly the same levels in the same order in each component session. The <code>verify</code> methods for capthist objects checks that this is in fact the case (remember that <code>verify</code> is called by <code>secr.fit</code> unless you suppress it).</p>
 <p>A common example might be an individual covariate ‘sex’ with the levels “f” and “m”. If by chance only males are detected in one of the sessions, and as a result the factor has a single level “m” in that session, then <code>verify</code> will give a warning.</p>
 <p>The solution is to force all sessions to use the same factor levels. The function <code>shareFactorLevels</code> is provided for this purpose. For example</p>
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msCH</span> <span class="op">&lt;-</span> <span class="fu">shareFactorLevels</span><span class="op">(</span><span class="va">msCH</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="fasterfitting" class="level2" data-number="15.6"><h2 data-number="15.6" class="anchored" data-anchor-id="fasterfitting">
-<span class="header-section-number">15.6</span> Speed</h2>
+</section></section><section id="fasterfitting" class="level2" data-number="14.6"><h2 data-number="14.6" class="anchored" data-anchor-id="fasterfitting">
+<span class="header-section-number">14.6</span> Speed</h2>
 <p>Fitting a multi-session model with each parameter stratified by session is unnecessarily slow. In this case no data are pooled across sessions and it is better to fit each session separately. If your data are already in a multi-session capthist object then the speedy solution is</p>
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msk</span> <span class="op">&lt;-</span> <span class="fu">make.mask</span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">ovenCH</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>, buffer <span class="op">=</span> <span class="fl">300</span>, nx <span class="op">=</span> <span class="fl">25</span>, type <span class="op">=</span> <span class="st">'trapbuffer'</span><span class="op">)</span></span>
@@ -699,33 +699,33 @@ sigma      4.364111 0.081149  4.20506  4.523159</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`2005`
        link  estimate SE.estimate       lcl        ucl
-D       log  0.846486   0.3055459  0.426314   1.680775
-g0    logit  0.023247   0.0082003  0.011591   0.046079
-sigma   log 88.124272  19.4763111 57.439442 135.201304
+D       log  0.846489   0.3055467  0.426316   1.680780
+g0    logit  0.023247   0.0082002  0.011591   0.046079
+sigma   log 88.124224  19.4762683 57.439449 135.201136
 
 $`2006`
        link  estimate SE.estimate       lcl       ucl
-D       log  1.026929   0.2936739  0.592771  1.779071
+D       log  1.026929   0.2936740  0.592771  1.779071
 g0    logit  0.030126   0.0092789  0.016396  0.054715
-sigma   log 73.020558  11.7120690 53.429791 99.794550
+sigma   log 73.020556  11.7120666 53.429792 99.794541
 
 $`2007`
        link  estimate SE.estimate       lcl        ucl
-D       log  1.078170   0.2879557  0.644547   1.803516
+D       log  1.078170   0.2879556  0.644547   1.803516
 g0    logit  0.034768   0.0093266  0.020465   0.058471
-sigma   log 76.079465  11.5022465 56.663453 102.148470
+sigma   log 76.079441  11.5022360 56.663445 102.148419
 
 $`2008`
        link  estimate SE.estimate      lcl       ucl
-D       log  1.468097    0.488689  0.77772  2.771317
+D       log  1.468095    0.488689  0.77772  2.771315
 g0    logit  0.028298    0.011253  0.01289  0.060988
-sigma   log 52.223541   10.478492 35.38000 77.085872
+sigma   log 52.223609   10.478510 35.38004 77.085985
 
 $`2009`
        link  estimate SE.estimate       lcl        ucl
-D       log  0.531269   0.2009517  0.259448   1.087875
+D       log  0.531270   0.2009519  0.259448   1.087876
 g0    logit  0.024442   0.0088054  0.012003   0.049129
-sigma   log 98.909138  22.8570027 63.253461 154.663750</code></pre>
+sigma   log 98.909058  22.8569244 63.253482 154.663449</code></pre>
 </div>
 </div>
 <p>The first line (<code>lapply</code>) creates a list of ‘secr’ objects. The <code>predict</code> method works once we set the class attribute to ‘secrlist’ (or you could <code>lapply(fits, predict)</code>).</p>
@@ -750,7 +750,7 @@ fits2   15 -925.89 1881.8</code></pre>
 </div>
 </div>
 <p>AICc is not a simple sum of session-specific AICc and should be calculated manually (hint: use <code>sapply(ovenCH, nrow)</code> for session-specific sample sizes).</p>
-<p>The unified model fit and separate model fits with <code>lapply</code> give essentially the same answers, and the latter approach is faster by a factor of 134.</p>
+<p>The unified model fit and separate model fits with <code>lapply</code> give essentially the same answers, and the latter approach is faster by a factor of 157.</p>
 <p>Using <code>lapply</code> does not work if some arguments of <code>secr.fit</code> other than ‘capthist’ themselves differ among sessions (as when ‘mask’ is a list of session-specific masks). Then we can use either a ‘for’ loop or the slightly more demanding function <code>mapply</code>, with the same gain in speed.</p>
 <div class="cell">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># one mask per session</span></span>
@@ -759,18 +759,18 @@ fits2   15 -925.89 1881.8</code></pre>
 <span><span class="va">fits3</span> <span class="op">&lt;-</span> <span class="fu">list.secr.fit</span><span class="op">(</span><span class="va">ovenCH</span>, mask <span class="op">=</span> <span class="va">masks</span>, constant <span class="op">=</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="caveats" class="level2" data-number="15.7"><h2 data-number="15.7" class="anchored" data-anchor-id="caveats">
-<span class="header-section-number">15.7</span> Caveats</h2>
-<section id="independence-is-a-strong-assumption" class="level3" data-number="15.7.1"><h3 data-number="15.7.1" class="anchored" data-anchor-id="independence-is-a-strong-assumption">
-<span class="header-section-number">15.7.1</span> Independence is a strong assumption</h3>
+</section><section id="caveats" class="level2" data-number="14.7"><h2 data-number="14.7" class="anchored" data-anchor-id="caveats">
+<span class="header-section-number">14.7</span> Caveats</h2>
+<section id="independence-is-a-strong-assumption" class="level3" data-number="14.7.1"><h3 data-number="14.7.1" class="anchored" data-anchor-id="independence-is-a-strong-assumption">
+<span class="header-section-number">14.7.1</span> Independence is a strong assumption</h3>
 <p>If sessions are not truly independent then expect confidence intervals to be too short. This is especially likely when a trend model is fitted to temporal samples with incomplete population turnover between sessions. The product likelihood assumes a new realisation of the underlying population process for each session. If in actuality much of the sampled population remains the same (the same individuals in the same home ranges) then the precision of the trend coefficient will be overstated. Either an open population model is needed (e.g., <a href="https://CRAN.R-project.org/package=openCR">openCR</a> <span class="citation" data-cites="es20">(<a href="A99-references.html#ref-es20" role="doc-biblioref">Efford &amp; Schofield, 2020</a>)</span>) or extra work will be needed to obtain credible confidence limits for the trend (probably some form of bootstrapping).</p>
-</section><section id="parameters-are-assumed-constant-by-default" class="level3" data-number="15.7.2"><h3 data-number="15.7.2" class="anchored" data-anchor-id="parameters-are-assumed-constant-by-default">
-<span class="header-section-number">15.7.2</span> Parameters are assumed constant by default</h3>
+</section><section id="parameters-are-assumed-constant-by-default" class="level3" data-number="14.7.2"><h3 data-number="14.7.2" class="anchored" data-anchor-id="parameters-are-assumed-constant-by-default">
+<span class="header-section-number">14.7.2</span> Parameters are assumed constant by default</h3>
 <p>Output from <code>predict.secr</code> for a multi-session model is automatically stratified by session even when the model does not include ‘session’, ‘Session’ or any session covariate as a predictor (the output simply repeats the constant estimates for each session).</p>
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;15.1: </span>
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;14.1: </span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-ebb09" class="csl-entry" role="listitem">
@@ -1195,18 +1195,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
-      <a href="./14-fittedmodels.html" class="pagination-link" aria-label="Working with fitted models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span>
+      <a href="./13-fittedmodels.html" class="pagination-link" aria-label="Working with fitted models">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./16-sex.html" class="pagination-link" aria-label="Sex differences">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sex differences</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./15-finite-mixtures.html" class="pagination-link" aria-label="Individual heterogeneity">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"descPosition":"bottom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -306,32 +306,32 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-finite-mixtures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  <a href="./11-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-density-model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  <a href="./12-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-habitat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  <a href="./13-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-fittedmodels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  <a href="./14-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-multisession.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  <a href="./15-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -694,7 +694,7 @@ Table&nbsp;9.3: Basic detector types in . See the appendices for <a href="./A04-
 <p>We saw <code>secr.fit</code> in action in <a href="02-example.html" class="quarto-xref"><span>Chapter 2</span></a>. Here we expand on particular arguments.</p>
 <section id="buffer-buffer-width" class="level3" data-number="9.8.1"><h3 data-number="9.8.1" class="anchored" data-anchor-id="buffer-buffer-width">
 <span class="header-section-number">9.8.1</span> <code>buffer</code> – buffer width </h3>
-<p>Specifying the buffer width is an alternative to specifying a habitat mask. The choice of <a href="13-habitat.html#sec-bufferwidth">buffer width</a> is discussed at length in <a href="13-habitat.html" class="quarto-xref"><span>Chapter 13</span></a>.</p>
+<p>Specifying the buffer width is an alternative to specifying a habitat mask. The choice of <a href="12-habitat.html#sec-bufferwidth">buffer width</a> is discussed at length in <a href="12-habitat.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
 </section><section id="start-starting-values" class="level3" data-number="9.8.2"><h3 data-number="9.8.2" class="anchored" data-anchor-id="start-starting-values">
 <span class="header-section-number">9.8.2</span> <code>start</code> – starting values </h3>
 <p>Numerical maximization of the likelihood requires a starting value for each coefficient in the model. <code>secr.fit</code> relieves the user of this chore by applying an algorithm that works in most cases. The core of the algorithm is exported in function <code>autoini</code>.</p>
@@ -713,11 +713,11 @@ Table&nbsp;9.3: Basic detector types in . See the appendices for <a href="./A04-
 </section><section id="model-detection-and-density-sub-models" class="level3" data-number="9.8.3"><h3 data-number="9.8.3" class="anchored" data-anchor-id="model-detection-and-density-sub-models">
 <span class="header-section-number">9.8.3</span> <code>model</code> – detection and density sub-models </h3>
 <p>The core parameters are ‘real’ parameters in the terminology of MARK <span class="citation" data-cites="cw">(<a href="A99-references.html#ref-cw" role="doc-biblioref">Cooch &amp; White, 2023</a>)</span>. Three real parameters are commonly modelled in : ‘D’ (for density), and ‘g0’ and ‘sigma’ (for the detection function). Other ‘real’ parameters appear in particular contexts. ‘z’ is a shape parameter that is used only when the <a href="10-detection-model.html#sec-detectfn">detection function</a> has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter ‘lambda0’ in place of ‘g0’. A further ‘real’ parameter is the mixing proportion ‘pmix’, used in <a href="05-theory-special-topics.html#finite-mixtures">finite mixture models</a> and <a href="05-theory-special-topics.html#hybrid-mixtures">hybrid mixture models</a>.</p>
-<p>By default, each ‘real’ parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the ‘model’ argument of <code>secr.fit</code>. Here ‘models’ relates to variation in the parameters that may be explained by known factors and covariates. Models are defined symbolically in using R formula notation. A separate linear predictor is used for each core parameter. The workings are explained in detail in <a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a> and <a href="12-density-model.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
+<p>By default, each ‘real’ parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the ‘model’ argument of <code>secr.fit</code>. Here ‘models’ relates to variation in the parameters that may be explained by known factors and covariates. Models are defined symbolically in using R formula notation. A separate linear predictor is used for each core parameter. The workings are explained in detail in <a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a> and <a href="11-density-model.html" class="quarto-xref"><span>Chapter 11</span></a>.</p>
 </section><section id="CL" class="level3" data-number="9.8.4"><h3 data-number="9.8.4" class="anchored" data-anchor-id="CL">
 <span class="header-section-number">9.8.4</span> <code>CL</code> – conditional vs full likelihood</h3>
 <p></p>
-<p>‘CL’ switches between maximizing the likelihood conditional on <span class="math inline">n</span> (TRUE) or the full likelihood (FALSE). The conditional option is faster because it does not estimate absolute density. Uniform absolute density may be estimated from the conditional fit, or indeed any fit, with the <code>derived</code> method. For Poisson <span class="math inline">n</span> (the default), the estimate is identical within numerical error to that from the full likelihood. The alternative (binomial <span class="math inline">n</span>) is obtained by setting the <a href="#details">details argument</a> ‘distribution = “binomial”’. Relative density (density modelled as a function of covariates, without an intercept) may be modelled with <code>CL = TRUE</code> in recent versions (see sections on the <a href="./05-theory-special-topics.html#relativedensity1">theory</a> and <a href="12-density-model#relativedensity2">implementation</a> of relative density).</p>
+<p>‘CL’ switches between maximizing the likelihood conditional on <span class="math inline">n</span> (TRUE) or the full likelihood (FALSE). The conditional option is faster because it does not estimate absolute density. Uniform absolute density may be estimated from the conditional fit, or indeed any fit, with the <code>derived</code> method. For Poisson <span class="math inline">n</span> (the default), the estimate is identical within numerical error to that from the full likelihood. The alternative (binomial <span class="math inline">n</span>) is obtained by setting the <a href="#details">details argument</a> ‘distribution = “binomial”’. Relative density (density modelled as a function of covariates, without an intercept) may be modelled with <code>CL = TRUE</code> in recent versions (see sections on the <a href="./05-theory-special-topics.html#relativedensity1">theory</a> and <a href="11-density-model#relativedensity2">implementation</a> of relative density).</p>
 </section><section id="method-maximization-algorithm" class="level3" data-number="9.8.5"><h3 data-number="9.8.5" class="anchored" data-anchor-id="method-maximization-algorithm">
 <span class="header-section-number">9.8.5</span> <code>method</code> – maximization algorithm </h3>
 <p>Models are fitted in <code>secr.fit</code> by numerically maximizing the log-likelihood with functions from the <strong>stats</strong> package <span class="citation" data-cites="R-base">(<a href="A99-references.html#ref-R-base" role="doc-biblioref">R Core Team, 2024</a>)</span>. The default method is ‘Newton-Raphson’ in the function <code><a href="https://rdrr.io/r/stats/nlm.html">stats::nlm</a></code>. By default, all reported variances, covariances, standard errors and confidence limits are asymptotic and based on a numerical estimate of the information matrix, as described <a href="./03-theory.html#confidenceintervals">here</a>.</p>
@@ -750,7 +750,7 @@ Table&nbsp;9.3: Basic detector types in . See the appendices for <a href="./A04-
 </section><section id="individual-mask-subset" class="level4" data-number="9.8.7.3"><h4 data-number="9.8.7.3" class="anchored" data-anchor-id="individual-mask-subset">
 <span class="header-section-number">9.8.7.3</span> Individual mask subset</h4>
 <p></p>
-<p>Integration by default is performed by summing over all mask cells for each individual. Cells distant from the detection locations of an individual contribute almost nothing to the likelihood, so it is efficient to limit the summation to a certain radius of the centroid of detections. This is achieved by specifying the details argument ‘maxdistance’. A radius similar to the <a href="13-habitat.html#sec-bufferwidth">buffer width</a> is appropriate. See <a href="A02-speed.html#sec-masksubset" class="quarto-xref"><span>Section B.8</span></a> for an example.</p>
+<p>Integration by default is performed by summing over all mask cells for each individual. Cells distant from the detection locations of an individual contribute almost nothing to the likelihood, so it is efficient to limit the summation to a certain radius of the centroid of detections. This is achieved by specifying the details argument ‘maxdistance’. A radius similar to the <a href="12-habitat.html#sec-bufferwidth">buffer width</a> is appropriate. See <a href="A02-speed.html#sec-masksubset" class="quarto-xref"><span>Section B.8</span></a> for an example.</p>
 </section><section id="fixing-coefficients" class="level4" data-number="9.8.7.4"><h4 data-number="9.8.7.4" class="anchored" data-anchor-id="fixing-coefficients">
 <span class="header-section-number">9.8.7.4</span> Fixing coefficients </h4>
 <p>The ‘fixed’ argument of <code>secr.fit</code> has the effect of fixing one or more ‘real’ parameters. The ‘details’ component ‘fixedbeta’ provides control at a finer level: it may be used to fix certain coefficients while allowing others to vary. It is a vector of values, one for each coefficient <em>in the order they appear in the model</em>. Coefficients that are to be estimated (i.e.&nbsp;not fixed) are given the value NA. Check the order of coefficients by applying <code>coef</code> to a fitted model, or by starting to fit a model with <code>trace = TRUE</code>.</p>
@@ -1232,7 +1232,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

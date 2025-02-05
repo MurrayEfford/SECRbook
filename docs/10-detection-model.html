@@ -80,7 +80,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./11-finite-mixtures.html" rel="next">
+<link href="./11-density-model.html" rel="next">
 <link href="./09-secr-package.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -306,32 +306,32 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-finite-mixtures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  <a href="./11-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-density-model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  <a href="./12-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-habitat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  <a href="./13-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-fittedmodels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  <a href="./14-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-multisession.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  <a href="./15-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -473,7 +473,7 @@ window.Quarto = {
 <li>parameters may depend on other known variables, and</li>
 <li>parameters may be modelled as random effects to represent variation of unknown origin.</li>
 </ul>
-<p>We consider the shape of detection functions in the next section. Modelling parameters as a function of other variables is addressed in the following section on <a href="#linear-submodels">linear submodels</a>. Random effects in <strong>secr</strong> are limited to finite mixture models that we cover in the chapter on <a href="11-finite-mixtures.html">individual heterogeneity</a>.</p>
+<p>We consider the shape of detection functions in the next section. Modelling parameters as a function of other variables is addressed in the following section on <a href="#linear-submodels">linear submodels</a>. Random effects in <strong>secr</strong> are limited to finite mixture models that we cover in the chapter on <a href="15-finite-mixtures.html">individual heterogeneity</a>.</p>
 <section id="sec-detectfn" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="sec-detectfn">
 <span class="header-section-number">10.1</span> Distance-detection functions</h2>
 <p></p>
@@ -648,7 +648,7 @@ Figure&nbsp;10.3: HVP function fitted to snowshoe hare data with <span class="ma
 <p>How can different functions produce nearly the same estimates? Remember that <a href="./05-theory-special-topics.html#esa"><span class="math inline">\hat D = n/a(\hat \theta)</span></a>, and <span class="math inline">n</span> is the same for all models. Constant <span class="math inline">\hat D</span> therefore implies constant effective sampling area <span class="math inline">a(\hat \theta)</span>. In other words, variation in <span class="math inline">\hat \lambda_0</span> and <span class="math inline">\hat \sigma</span> ‘washes out’ when they are combined in <span class="math inline">a(\hat \theta)</span>. Under the four models <span class="math inline">a(\hat \theta)</span> is estimated as 46.4, 48.4, 45.9 and 46.7 ha.</p>
 </section><section id="detection-parameters-are-nuisance-parameters-mostly" class="level3" data-number="10.1.2"><h3 data-number="10.1.2" class="anchored" data-anchor-id="detection-parameters-are-nuisance-parameters-mostly">
 <span class="header-section-number">10.1.2</span> Detection parameters are nuisance parameters (mostly)</h3>
-<p>The detection model and its parameters (<span class="math inline">g_0</span>, <span class="math inline">\lambda_0</span>, <span class="math inline">\sigma</span> etc.) provide the link between our observations and the state of the animal population represented by the parameter <span class="math inline">D</span> (density, distribution in space, trend etc.). Submodels for <span class="math inline">D</span> are considered in <a href="12-density-model.html" class="quarto-xref"><span>Chapter 12</span></a>. But what interpretation should we attach to the detection parameters themselves?</p>
+<p>The detection model and its parameters (<span class="math inline">g_0</span>, <span class="math inline">\lambda_0</span>, <span class="math inline">\sigma</span> etc.) provide the link between our observations and the state of the animal population represented by the parameter <span class="math inline">D</span> (density, distribution in space, trend etc.). Submodels for <span class="math inline">D</span> are considered in <a href="11-density-model.html" class="quarto-xref"><span>Chapter 11</span></a>. But what interpretation should we attach to the detection parameters themselves?</p>
 <p>The intercept <span class="math inline">g_0</span> is in a sense the probability of that an animal will be detected at the centre of its home range. The spatial scale of detection <span class="math inline">\sigma</span> relates to the size of the home range. These attributed meanings can aid intuitive understanding. However, we advise against a literal reading. The estimates have meaning only for a specified detection function and cannot meaningfully be compared across functions. Observe the</p>
 <p>The halfnormal function is closest to a standard reference, but estimates of halfnormal <span class="math inline">\sigma</span> are sensitive to infrequent large movements. Care is also needed because some early writers omitted the factor 2 from the denominator, increasing estimates of <span class="math inline">\sigma</span> by <span class="math inline">\sqrt 2</span><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
 <p>Continuing the snowshoe hare example: the estimates of <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span> from HVP are surprisingly uncertain when considered on their own, yet the HVP estimate of density has about the same precision as other detection functions (<a href="#fig-choicedfparmplot" class="quarto-xref">Fig.&nbsp;<span>10.2</span></a>). How can this be? There is strong covariation in the sampling distributions of the two parameters that we plot using <code>ellipse.secr</code> in <a href="#fig-ellipseHVP" class="quarto-xref">Fig.&nbsp;<span>10.4</span></a>.</p>
@@ -669,7 +669,7 @@ Figure&nbsp;10.4: Confidence ellipse for HVP detection parameters plotted on the
 <p>The idea of a distance-detection function originated in distance sampling <span class="citation" data-cites="bablbt01">(<a href="A99-references.html#ref-bablbt01" role="doc-biblioref">Buckland et al., 2001</a>)</span> and <span class="citation" data-cites="Borchers2015">Borchers et al. (<a href="A99-references.html#ref-Borchers2015" role="doc-biblioref">2015</a>)</span> provided a unified framework for spatially explicit capture–recapture and distance sampling. Nevertheless, the role of the detection function differs substantially.</p>
 <p>In distance sampling, shape matters a lot. In particular, the estimate of density depends on the slope of the detection function near the origin, given the assumption that all animals at the origin are detected <span class="citation" data-cites="Buckland2015">(e.g., <a href="A99-references.html#ref-Buckland2015" role="doc-biblioref">Buckland et al., 2015</a>)</span>.</p>
 <p>In SECR, no special significance is attached to the intercept or the shape of the function. The detection function serves as a spatial filter for a modelled 2-dimensional point pattern of activity centres; the filter must ‘explain’ the frequency of recaptures and their spatial spread. These are the components of the effective sampling area.</p>
-<p>The hazard-rate function HR is recommended for distance sampling because it has a distinct ‘shoulder’ near zero distance, and distance sampling is not concerned with the tail (distant observations are often censored). SECR relies on the tail flattening to zero within the region of integration (<a href="13-habitat.html">habitat mask</a>). Otherwise, the population at risk of detection is determined by the choice of mask, which is usually arbitrary and <em>ad hoc</em>. The hazard-rate function has an extremely long tail (it is not convergent), so there is always a risk of mask-dependence. As an aside - in the snowshoe hare example with detection function HHR we suppressed the warning “predicted relative bias exceeds 0.01 with buffer = 250” that is due to truncation of the long tail.</p>
+<p>The hazard-rate function HR is recommended for distance sampling because it has a distinct ‘shoulder’ near zero distance, and distance sampling is not concerned with the tail (distant observations are often censored). SECR relies on the tail flattening to zero within the region of integration (<a href="12-habitat.html">habitat mask</a>). Otherwise, the population at risk of detection is determined by the choice of mask, which is usually arbitrary and <em>ad hoc</em>. The hazard-rate function has an extremely long tail (it is not convergent), so there is always a risk of mask-dependence. As an aside - in the snowshoe hare example with detection function HHR we suppressed the warning “predicted relative bias exceeds 0.01 with buffer = 250” that is due to truncation of the long tail.</p>
 </section><section id="whybother1" class="level3" data-number="10.1.4"><h3 data-number="10.1.4" class="anchored" data-anchor-id="whybother1">
 <span class="header-section-number">10.1.4</span> Why bother?</h3>
 <p>Given the preceding comments you may wonder why we bother with different detection functions at all. In part this is historical: it was not obvious in the beginning that density estimates were so robust. Sometimes it’s just nice to have the flexibility to match the model to animal behaviour. Functions with longer tails (e.g., HEX) accommodate occasional extreme movements that can prevent a short-tailed function (HHN) from fitting at all.</p>
@@ -1575,13 +1575,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./11-finite-mixtures.html" class="pagination-link" aria-label="Individual heterogeneity">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./11-density-model.html" class="pagination-link" aria-label="Density model">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Density model</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"descPosition":"bottom","openEffect":"zoom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

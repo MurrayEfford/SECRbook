@@ -306,32 +306,32 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-finite-mixtures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  <a href="./11-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-density-model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  <a href="./12-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-habitat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  <a href="./13-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-fittedmodels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  <a href="./14-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-multisession.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  <a href="./15-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -478,7 +478,7 @@ window.Quarto = {
 <p>There is nothing virtuous about waiting days for a model to fit if there is a faster alternative. Here are some things you can do.</p>
 <section id="masktuning" class="level2" data-number="B.1"><h2 data-number="B.1" class="anchored" data-anchor-id="masktuning">
 <span class="header-section-number">B.1</span> Mask tuning</h2>
-<p>Consider carefully the necessary extent of your habitat mask and the acceptable cell size (<a href="13-habitat.html" class="quarto-xref"><span>Chapter 13</span></a> has detailed advice). If your detectors are clustered then your mask may have gaps between the clusters (use type = ‘trapbuffer’ in <code>make.mask</code>). Masks with more than 2000 points are generally excessive (and the default is about 4000!).</p>
+<p>Consider carefully the necessary extent of your habitat mask and the acceptable cell size (<a href="12-habitat.html" class="quarto-xref"><span>Chapter 12</span></a> has detailed advice). If your detectors are clustered then your mask may have gaps between the clusters (use type = ‘trapbuffer’ in <code>make.mask</code>). Masks with more than 2000 points are generally excessive (and the default is about 4000!).</p>
 </section><section id="conditional-likelihood" class="level2" data-number="B.2"><h2 data-number="B.2" class="anchored" data-anchor-id="conditional-likelihood">
 <span class="header-section-number">B.2</span> Conditional likelihood</h2>
 <p>The default in <code>secr.fit</code> is to maximize the full likelihood (i.e., to jointly fit both the state process and the observation process). If you do not need to model spatial, temporal or group-specific variation in density (the sole real parameter of the state model) then you can save time by first fitting only the observation process. This is achieved by maximizing only the likelihood conditional on <span class="math inline">n</span>, the number of detected individuals <span class="citation" data-cites="be08">(<a href="A99-references.html#ref-be08" role="doc-biblioref">Borchers &amp; Efford, 2008</a>)</span>. Conditional likelihood maximization is selected in <code>secr.fit</code> by setting <code>CL = TRUE</code>.</p>
@@ -544,7 +544,7 @@ D      1.466     0.19051 1.1376 1.8892 0.12127 0.046715 0.12995</code></pre>
 <p>See <a href="https://www.otago.ac.nz/density/html/Parallel.html">?Parallel</a> for more.</p>
 </section><section id="reducing-complexity-session--or-group-specific-models" class="level2" data-number="B.5"><h2 data-number="B.5" class="anchored" data-anchor-id="reducing-complexity-session--or-group-specific-models">
 <span class="header-section-number">B.5</span> Reducing complexity (session- or group-specific models)</h2>
-<p>Simultaneous estimation of many parameters can be painfully slow, but it can be completely avoided. If your model is fully session- or group-specific then it is much faster to analyse each group separately. For sessions this is can be done simply with <code>lapply</code> <a href="A01-troubleshooting.html#variancefailed">above</a> and in <a href="15-multisession.html" class="quarto-xref"><span>Chapter 15</span></a>. For groups you may need to construct new capthist objects using <code>subset</code> to extract groups corresponding to the levels of one or more individual covariates.</p>
+<p>Simultaneous estimation of many parameters can be painfully slow, but it can be completely avoided. If your model is fully session- or group-specific then it is much faster to analyse each group separately. For sessions this is can be done simply with <code>lapply</code> <a href="A01-troubleshooting.html#variancefailed">above</a> and in <a href="14-multisession.html" class="quarto-xref"><span>Chapter 14</span></a>. For groups you may need to construct new capthist objects using <code>subset</code> to extract groups corresponding to the levels of one or more individual covariates.</p>
 </section><section id="reducing-number-of-levels-of-detection-covariates" class="level2" data-number="B.6"><h2 data-number="B.6" class="anchored" data-anchor-id="reducing-number-of-levels-of-detection-covariates">
 <span class="header-section-number">B.6</span> Reducing number of levels of detection covariates</h2>
 <p><code>secr.fit</code> pre-computes a lookup table of values for detection parameters. The size of the table increases with the number of unique levels of any covariates. A continuous individual or detector covariate can have many similar levels. Binning covariate values can give a large saving in memory and time (see <a href="https://www.otago.ac.nz/density/html/binCovariate.html">?binCovariate</a>).</p>
@@ -605,7 +605,7 @@ Compare timing
 </details><div class="cell-output-display">
 <div id="fig-maxdistance" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-maxdistance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="A02-speed_files/figure-html/fig-maxdistance-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="A02-speed_files/figure-html/fig-maxdistance-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="A02-speed_files/figure-html/fig-maxdistance-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="A02-speed_files/figure-html/fig-maxdistance-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maxdistance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;B.1: Sample of individual blackbear masks (red) with detection sites overplotted in blue.

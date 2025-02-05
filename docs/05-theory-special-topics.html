@@ -287,32 +287,32 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-finite-mixtures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  <a href="./11-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-density-model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  <a href="./12-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-habitat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  <a href="./13-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-fittedmodels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  <a href="./14-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-multisession.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  <a href="./15-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -465,7 +465,7 @@ window.Quarto = {
 
 
 <p>The utility of SECR is enhanced by several extensions to the basic theory in the preceding chapters.</p>
-<p>The most important of these are the linear submodels for <a href="./10-detection-model.html#linear-submodels">detection</a> and <a href="./12-density-model.html#sec-density">density</a> that we describe in their respective chapters. Others we list here.</p>
+<p>The most important of these are the linear submodels for <a href="./10-detection-model.html#linear-submodels">detection</a> and <a href="./11-density-model.html#sec-density">density</a> that we describe in their respective chapters. Others we list here.</p>
 <section id="multi-session-likelihood" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="multi-session-likelihood"><span class="header-section-number">5.1</span> Multi-session likelihood</h2>
 <p></p>
@@ -507,7 +507,7 @@ L_n (\theta| \Omega) \propto \prod_{i=1}^n \frac{\int_{R^2} \mathrm{Pr}(\omega_i
 <h2 data-number="5.5" class="anchored" data-anchor-id="relativedensity1"><span class="header-section-number">5.5</span> Relative density</h2>
 <p></p>
 <p>Conditioning on <span class="math inline">n</span> <em>without</em> requiring uniform density as in the previous section leads to another result that is useful. We can estimate relative density, the distribution of AC in relation to habitat covariates, rather than absolute density. Conditioning allows individual covariates of detection <span class="math inline">\mathbf z_i</span> as before, and fitting is faster than for absolute density <span class="citation" data-cites="Efford2025">(<a href="A99-references.html#ref-Efford2025" role="doc-biblioref">Efford, 2025</a>)</span>.</p>
-<p>We define relative density by <span class="math inline">D^\prime(\mathbf x | \phi^-) \equiv k^{-1} D(\mathbf x | \phi)</span> where <span class="math inline">\phi^-</span> is a reduced vector of coefficients for the density submodel discussed <a href="./12-density-model.html#sec-density">later</a> and <span class="math inline">k</span> is a constant of proportionality. Then we can discard the first factor in <a href="03-theory.html#eq-L" class="quarto-xref">Eq.&nbsp;<span>3.1</span></a> and maximize a likelihood based on the second factor alone <span id="eq-rd"><span class="math display">
+<p>We define relative density by <span class="math inline">D^\prime(\mathbf x | \phi^-) \equiv k^{-1} D(\mathbf x | \phi)</span> where <span class="math inline">\phi^-</span> is a reduced vector of coefficients for the density submodel discussed <a href="./11-density-model.html#sec-density">later</a> and <span class="math inline">k</span> is a constant of proportionality. Then we can discard the first factor in <a href="03-theory.html#eq-L" class="quarto-xref">Eq.&nbsp;<span>3.1</span></a> and maximize a likelihood based on the second factor alone <span id="eq-rd"><span class="math display">
 L_r(\phi^-, \theta | \Omega, n) \propto  \prod_{i=1}^n \frac{\int \mathrm{Pr}(\omega_i | \theta, \mathbf x) \, D^\prime(\mathbf x | \phi^-) \, p_\cdot(\mathbf x | \theta, \mathbf z_i) \; d\mathbf x}{\int  D^\prime(\mathbf x | \phi^-) \, p_\cdot(\mathbf x | \theta, \mathbf z_i) \; d\mathbf x}.
 \tag{5.3}</span></span> For a log link the new parameter vector <span class="math inline">\phi^-</span> corresponds to the original <span class="math inline">\phi</span> with one coefficient, the intercept, fixed at zero. For an identity link the intercept is fixed at 1 and other coefficients are scaled. A derived estimate of the constant of proportionality is <span class="math display">
 \hat k = \sum_{i=1}^n 1 / \int D^\prime(\mathbf x|\hat \phi^-) p_\cdot(\mathbf x| \hat \theta, \mathbf z_i)\, d \mathbf x.
@@ -521,7 +521,7 @@ L_r(\phi^-, \theta | \Omega, n) \propto  \prod_{i=1}^n \frac{\int \mathrm{Pr}(\o
 <p></p>
 <p>In some scenarios, the <em>only</em> individuals at risk of detection are those that were marked in an earlier phase of the study. This is the case for the automated detection of animals with implanted acoustic telemetry tags or passive integrated transponders (PIT) <span class="citation" data-cites="Whoriskey2019">(e.g., <a href="A99-references.html#ref-Whoriskey2019" role="doc-biblioref">Whoriskey et al., 2019</a>)</span>. The data resemble mark–resight data (<a href="A05-mark-resight.html" class="quarto-xref"><span>Appendix E</span></a>) except that they do not include counts of unmarked animals. Estimates of <span class="math inline">\phi^-</span> using <a href="#eq-rd" class="quarto-xref">Eq.&nbsp;<span>5.3</span></a> then describe only the distribution of the individuals marked previously. Even if we can assume that AC are stationary between the two phases, <span class="math inline">\phi^-</span> is biased as a model for population distribution as it incorporates the spatial selectivity of marking.</p>
 <p>Lack of information on the marking phase also afflicts mark-resight analyses <span class="citation" data-cites="eh18">(e.g., <a href="A99-references.html#ref-eh18" role="doc-biblioref">Efford &amp; Hunter, 2018</a>)</span>. The possible ‘solutions’ are all ad hoc. We can assume that the probability of becoming marked was independent of location, or we can scale <span class="math inline">p_\cdot(\mathbf x; \phi^-)</span> by an externally computed variable <span class="math inline">q(\mathbf x)</span> that is proportional to the spatial probability of marking. Essentially, <span class="math inline">q(\mathbf x)</span> is an offset in the model for relative density.</p>
-<p>An example is shown <a href="12-density-model.html#relativedensity2">later</a>. A model with flat (constant) probability of prior marking is inevitably a poor fit because in reality tagged individuals are concentrated near the detectors.</p>
+<p>An example is shown <a href="11-density-model.html#relativedensity2">later</a>. A model with flat (constant) probability of prior marking is inevitably a poor fit because in reality tagged individuals are concentrated near the detectors.</p>
 </section>
 <section id="population-size-n" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="population-size-n"><span class="header-section-number">5.7</span> Population size <span class="math inline">N</span></h2>
@@ -669,7 +669,7 @@ Table&nbsp;5.1: Parameterizations implementing three covariation models. The thi
 f(\mathbf x | \omega_i; \hat \phi, \hat \theta) = \frac{ \mathrm{Pr} (\omega_i | \mathbf x; \hat \theta) D(\mathbf x ; \hat \phi)}
 {\int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \hat \theta) D(\mathbf x ; \hat \phi) \, d \mathbf x}.
 \tag{5.6}</span></span> This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See <code>fxi</code> and related functions in <strong>secr</strong>. For known <span class="math inline">\theta</span> and known <span class="math inline">\phi</span> (unless <span class="math inline">D(\mathbf x; \phi)</span> uniform) the modal location of the AC for animal <span class="math inline">i</span> may be estimated by maximizing <span class="math inline">\mathrm{Pr} (\omega_i | \mathbf x; \theta)D(\mathbf x; \phi)</span> with respect to <span class="math inline">\mathbf x</span>. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.</p>
-<p>A later <a href="./12-density-model.html#not-a-density-surface">section</a> discusses the use and interpretation of <span class="math inline">f(\mathbf x | \omega_i; \hat \phi, \hat \theta)</span> (see also <span class="citation" data-cites="Durbach2024">Durbach et al. (<a href="A99-references.html#ref-Durbach2024" role="doc-biblioref">2024</a>)</span>).</p>
+<p>A later <a href="./11-density-model.html#not-a-density-surface">section</a> discusses the use and interpretation of <span class="math inline">f(\mathbf x | \omega_i; \hat \phi, \hat \theta)</span> (see also <span class="citation" data-cites="Durbach2024">Durbach et al. (<a href="A99-references.html#ref-Durbach2024" role="doc-biblioref">2024</a>)</span>).</p>
 <!-- ## Telemetry {#telemetrylikelihood} -->
 <!-- [to be added] -->
 

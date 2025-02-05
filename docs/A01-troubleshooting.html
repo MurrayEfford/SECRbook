@@ -303,32 +303,32 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-finite-mixtures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  <a href="./11-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-density-model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  <a href="./12-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-habitat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  <a href="./13-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-fittedmodels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  <a href="./14-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-multisession.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  <a href="./15-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -470,7 +470,7 @@ window.Quarto = {
 
 
 </header><p></p>
-<p>What could possibly go wrong when fitting spatially explicit capture–recapture models? Quite a lot. This appendix assembles a list of known difficulties with <strong>secr</strong> 5.2, with examples, and suggests some solutions. Potential problems with density surface models were also discussed in <a href="12-density-model.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
+<p>What could possibly go wrong when fitting spatially explicit capture–recapture models? Quite a lot. This appendix assembles a list of known difficulties with <strong>secr</strong> 5.2, with examples, and suggests some solutions. Potential problems with density surface models were also discussed in <a href="11-density-model.html" class="quarto-xref"><span>Chapter 11</span></a>.</p>
 <section id="bias-limit-exceeded" class="level2" data-number="A.1"><h2 data-number="A.1" class="anchored" data-anchor-id="bias-limit-exceeded">
 <span class="header-section-number">A.1</span> Bias limit exceeded</h2>
 <p> </p>
@@ -484,7 +484,7 @@ window.Quarto = {
 <pre><code>Warning: predicted relative bias exceeds 0.01 with buffer = 100</code></pre>
 </div>
 </div>
-<p>The second warning message is clearly a consequence of the first: relying on the 100-m default buffer for an animal as mobile as the snowshoe hare is likely to cause problems. See the advice on choosing the buffer width in <a href="13-habitat.html" class="quarto-xref"><span>Chapter 13</span></a>.</p>
+<p>The second warning message is clearly a consequence of the first: relying on the 100-m default buffer for an animal as mobile as the snowshoe hare is likely to cause problems. See the advice on choosing the buffer width in <a href="12-habitat.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
 <p>Density is overestimated when the buffer width for a detector array in continuous habitat is too small to encompass the centres of all animals potentially detected. A check for this ‘mask truncation bias’ is performed routinely by <code>secr.fit</code> after fitting a model that uses on the ‘buffer’ argument. It may be avoided by setting <code>biasLimit = NA</code> or providing a pre-computed habitat mask in the ‘mask’ argument.</p>
 </section><section id="initial-log-likelihood-na" class="level2" data-number="A.2"><h2 data-number="A.2" class="anchored" data-anchor-id="initial-log-likelihood-na">
 <span class="header-section-number">A.2</span> Initial log likelihood NA</h2>
@@ -719,10 +719,10 @@ sigma        0.91984 0.034977  0.85129  0.9884</code></pre>
 </section><section id="covariate-factor-levels-differ-between-sessions" class="level2" data-number="A.8"><h2 data-number="A.8" class="anchored" data-anchor-id="covariate-factor-levels-differ-between-sessions">
 <span class="header-section-number">A.8</span> Covariate factor levels differ between sessions</h2>
 <p></p>
-<p>This is fairly explicit; <code>secr.fit</code> will stop if you include in a model any covariate whose factor levels vary among sessions, and <code>verify</code> will warn if it finds any covariate like this. This commonly occurs in multi-session datasets with ‘sex’ as an individual covariate when only males or only females are detected in one session. Use the function <a href="./15-multisession.html#sharefactorlevels"><code>shareFactorLevels</code></a> to force covariates to use the same superset of levels in all sessions.</p>
+<p>This is fairly explicit; <code>secr.fit</code> will stop if you include in a model any covariate whose factor levels vary among sessions, and <code>verify</code> will warn if it finds any covariate like this. This commonly occurs in multi-session datasets with ‘sex’ as an individual covariate when only males or only females are detected in one session. Use the function <a href="./14-multisession.html#sharefactorlevels"><code>shareFactorLevels</code></a> to force covariates to use the same superset of levels in all sessions.</p>
 </section><section id="estimates-from-finite-mixture-models-appear-unstable" class="level2" data-number="A.9"><h2 data-number="A.9" class="anchored" data-anchor-id="estimates-from-finite-mixture-models-appear-unstable">
 <span class="header-section-number">A.9</span> Estimates from finite mixture models appear unstable</h2>
-<p>These models have known problems due to multimodality of the likelihood (<a href="11-finite-mixtures.html" class="quarto-xref"><span>Chapter 11</span></a>).</p>
+<p>These models have known problems due to multimodality of the likelihood (<a href="15-finite-mixtures.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.553">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Spatially Explicit Capture–Recapture - 11&nbsp; Individual heterogeneity</title>
+<title>Spatially Explicit Capture–Recapture - 15&nbsp; Individual heterogeneity</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,8 +80,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./12-density-model.html" rel="next">
-<link href="./10-detection-model.html" rel="prev">
+<link href="./16-sex.html" rel="next">
+<link href="./14-multisession.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -167,7 +167,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-secr-package.html">Practice</a></li><li class="breadcrumb-item"><a href="./11-finite-mixtures.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-secr-package.html">Practice</a></li><li class="breadcrumb-item"><a href="./15-finite-mixtures.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -306,32 +306,32 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-finite-mixtures.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  <a href="./11-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-density-model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  <a href="./12-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-habitat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  <a href="./13-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-fittedmodels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  <a href="./14-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-multisession.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  <a href="./15-finite-mixtures.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -445,14 +445,14 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-<li><a href="#finite-mixture-models-in-secr" id="toc-finite-mixture-models-in-secr" class="nav-link active" data-scroll-target="#finite-mixture-models-in-secr"><span class="header-section-number">11.1</span> Finite mixture models in <strong>secr</strong></a></li>
-  <li><a href="#mitigation" id="toc-mitigation" class="nav-link" data-scroll-target="#mitigation"><span class="header-section-number">11.2</span> Mitigating factors</a></li>
-  <li><a href="#hybrid-hcov-model" id="toc-hybrid-hcov-model" class="nav-link" data-scroll-target="#hybrid-hcov-model"><span class="header-section-number">11.3</span> Hybrid ‘hcov’ model</a></li>
+<li><a href="#finite-mixture-models-in-secr" id="toc-finite-mixture-models-in-secr" class="nav-link active" data-scroll-target="#finite-mixture-models-in-secr"><span class="header-section-number">15.1</span> Finite mixture models in <strong>secr</strong></a></li>
+  <li><a href="#mitigation" id="toc-mitigation" class="nav-link" data-scroll-target="#mitigation"><span class="header-section-number">15.2</span> Mitigating factors</a></li>
+  <li><a href="#hybrid-hcov-model" id="toc-hybrid-hcov-model" class="nav-link" data-scroll-target="#hybrid-hcov-model"><span class="header-section-number">15.3</span> Hybrid ‘hcov’ model</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-secr-package.html">Practice</a></li><li class="breadcrumb-item"><a href="./11-finite-mixtures.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-individual-heterogeneity" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></h1>
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-secr-package.html">Practice</a></li><li class="breadcrumb-item"><a href="./15-finite-mixtures.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-individual-heterogeneity" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></h1>
 </div>
 
 
@@ -496,8 +496,8 @@ Interpreting latent classes
 <!-- the weight(s) (mixing proportion(s)) are parameters to be estimated. -->
 <p>Mixture models are prone to fitting problems caused by multimodality of the likelihood. Some comments are offered below, but a fuller investigation is needed.</p>
 <p>In a finite mixture model no individual is known with certainty to belong to a particular class, although membership probability may be assigned retrospectively from the fitted model. A hybrid model may incorporate the known class membership of some or all individuals, as we described in <a href="05-theory-special-topics.html" class="quarto-xref"><span>Chapter 5</span></a>.</p>
-<section id="finite-mixture-models-in-secr" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="finite-mixture-models-in-secr">
-<span class="header-section-number">11.1</span> Finite mixture models in <strong>secr</strong>
+<section id="finite-mixture-models-in-secr" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="finite-mixture-models-in-secr">
+<span class="header-section-number">15.1</span> Finite mixture models in <strong>secr</strong>
 </h2>
 <p></p>
 <p><strong>secr</strong> allows 2- or 3-class finite mixture models for any ‘real’ detection parameter (e.g., g0, lambda0 or sigma of a halfnormal detection function). Consider a simple example in which we specify a 2-class mixture by adding the predictor ‘h2’ to the model formula:</p>
@@ -507,28 +507,28 @@ Interpreting latent classes
 <span>                   detectfn <span class="op">=</span> <span class="st">'HEX'</span>, buffer <span class="op">=</span> <span class="fl">250</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit.h2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                beta  SE.beta      lcl      ucl
-D            0.42441 0.133371  0.16300  0.68581
-lambda0     -1.76042 0.191686 -2.13612 -1.38473
-lambda0.h22  2.09992 0.912129  0.31218  3.88766
-sigma        3.66158 0.083454  3.49801  3.82515
-pmix.h22    -3.61679 0.964987 -5.50813 -1.72545</code></pre>
+<pre><code>               beta  SE.beta      lcl      ucl
+D            0.4244 0.133371  0.16300  0.68581
+lambda0     -1.7604 0.191686 -2.13612 -1.38473
+lambda0.h22  2.0999 0.912163  0.31214  3.88775
+sigma        3.6616 0.083454  3.49801  3.82515
+pmix.h22    -3.6168 0.964998 -5.50817 -1.72544</code></pre>
 </div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit.h2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`session = wickershamunburne, h2 = 1`
          link estimate SE.estimate      lcl      ucl
-D         log  1.52868    0.204792  1.17704  1.98538
+D         log  1.52868    0.204791  1.17704  1.98537
 lambda0   log  0.17197    0.033270  0.11811  0.25039
-sigma     log 38.92275    3.253911 33.04970 45.83945
+sigma     log 38.92276    3.253913 33.04971 45.83946
 pmix    logit  0.97383    0.024589  0.84883  0.99596
 
 $`session = wickershamunburne, h2 = 2`
          link  estimate SE.estimate        lcl      ucl
-D         log  1.528682    0.204792  1.1770412  1.98538
-lambda0   log  1.404237    1.694383  0.2190731  9.00102
-sigma     log 38.922747    3.253911 33.0497027 45.83945
-pmix    logit  0.026166    0.024589  0.0040373  0.15117</code></pre>
+D         log  1.528678    0.204791  1.1770380  1.98537
+lambda0   log  1.404276    1.694523  0.2190645  9.00187
+sigma     log 38.922756    3.253913 33.0497090 45.83946
+pmix    logit  0.026165    0.024589  0.0040372  0.15117</code></pre>
 </div>
 </div>
 <p><code>secr.fit</code> has expanded the model to include an extra ‘real’ parameter ‘pmix’, for the proportions in the respective latent classes. You could specify this yourself as part of the ‘model’ argument, but <code>secr.fit</code> knows to add it. The link function for ‘pmix’ defaults to ‘mlogit’ (after the mlogit link in MARK), and any attempt to change the link is ignored.</p>
@@ -579,12 +579,12 @@ h2.lambda0.sigma   1285.3      121.70 1068.0 1546.8</code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">model.h2xbh2s</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">morning</span>, model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">lambda0</span><span class="op">~</span><span class="va">h2</span><span class="op">*</span><span class="va">bk</span>, </span>
 <span>    <span class="va">sigma</span><span class="op">~</span><span class="va">h2</span><span class="op">)</span>, buffer <span class="op">=</span> <span class="fl">25</span>, detectfn <span class="op">=</span> <span class="st">'HEX'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="number-of-classes" class="level3" data-number="11.1.1"><h3 data-number="11.1.1" class="anchored" data-anchor-id="number-of-classes">
-<span class="header-section-number">11.1.1</span> Number of classes</h3>
+<section id="number-of-classes" class="level3" data-number="15.1.1"><h3 data-number="15.1.1" class="anchored" data-anchor-id="number-of-classes">
+<span class="header-section-number">15.1.1</span> Number of classes</h3>
 <p>The theory of finite mixture models in capture–recapture <span class="citation" data-cites="p2000">(<a href="A99-references.html#ref-p2000" role="doc-biblioref">Pledger, 2000</a>)</span> allows an indefinite number of classes – 2, 3 or perhaps more. Programmatically, the extension to more classes is obvious (e.g., h3 for a 3-class mixture). The appropriate number of latent classes may be determined by comparing AIC for the fitted models.</p>
 <p>Looking on the bright side, it is unlikely that you will ever have enough data to support more than 2 classes. For the data in the example above, the 2-class and 3-class models have identical log likelihood to 4 decimal places, while the latter requires 2 extra parameters to be estimated (this is to be expected as the data were simulated from a null model with no heterogeneity).</p>
-</section><section id="label-switching" class="level3" data-number="11.1.2"><h3 data-number="11.1.2" class="anchored" data-anchor-id="label-switching">
-<span class="header-section-number">11.1.2</span> Label switching</h3>
+</section><section id="label-switching" class="level3" data-number="15.1.2"><h3 data-number="15.1.2" class="anchored" data-anchor-id="label-switching">
+<span class="header-section-number">15.1.2</span> Label switching</h3>
 <p>It is a quirk of mixture models that the labeling of the latent classes is arbitrary: the first class in one fit may become the second class in another. This is the phenomenon of ‘label switching’ <span class="citation" data-cites="Stephens2000">(<a href="A99-references.html#ref-Stephens2000" role="doc-biblioref">Stephens, 2000</a>)</span>.</p>
 <p>For example, in the house mouse model ‘h2.lambda0’ the first class is initially dominant, but we can switch that by choosing different starting values for the maximization:</p>
 <div class="cell">
@@ -607,8 +607,8 @@ start2    0.078       0.087 0.008 0.473</code></pre>
 </div>
 </div>
 <p>Class-specific estimates of the detection parameter (here lambda0) are reversed, but estimates of other parameters are unaffected.</p>
-</section><section id="multimodality" class="level3" data-number="11.1.3"><h3 data-number="11.1.3" class="anchored" data-anchor-id="multimodality">
-<span class="header-section-number">11.1.3</span> Multimodality</h3>
+</section><section id="multimodality" class="level3" data-number="15.1.3"><h3 data-number="15.1.3" class="anchored" data-anchor-id="multimodality">
+<span class="header-section-number">15.1.3</span> Multimodality</h3>
 <p></p>
 <p>The likelihood of a finite mixture model may have multiple modes <span class="citation" data-cites="Brooks1997 p2000">(<a href="A99-references.html#ref-Brooks1997" role="doc-biblioref">Brooks et al., 1997</a>; <a href="A99-references.html#ref-p2000" role="doc-biblioref">Pledger, 2000</a>)</span>. The risk is ever-present that the numerical maximization algorithm will get stuck on a local peak, and in this case the estimates are simply wrong<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Slight differences in starting values or numerical method may result in wildly different answers.</p>
 <p>The problem has not been explored fully for SECR models, and care is needed. <span class="citation" data-cites="p2000">Pledger (<a href="A99-references.html#ref-p2000" role="doc-biblioref">2000</a>)</span> recommended fitting a model with more classes as a check in the non-spatial case, but this is not proven to work with SECR models. It is desirable to try different starting values. This can be done simply using another model fit. For example:</p>
@@ -631,10 +631,10 @@ start2    0.078       0.087 0.008 0.473</code></pre>
 </details><div class="cell-output-display">
 <div id="fig-pmixprofile" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pmixprofile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-finite-mixtures_files/figure-html/fig-pmixprofile-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="11-finite-mixtures_files/figure-html/fig-pmixprofile-1.png" class="img-fluid figure-img" width="480"></a>
+<a href="15-finite-mixtures_files/figure-html/fig-pmixprofile-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="15-finite-mixtures_files/figure-html/fig-pmixprofile-1.png" class="img-fluid figure-img" width="480"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pmixprofile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.1: Profile log-likelihood for mixing proportion between 0.01 and 0.99 in a 2-class finite mixture model for ovenbird data from 2005
+Figure&nbsp;15.1: Profile log-likelihood for mixing proportion between 0.01 and 0.99 in a 2-class finite mixture model for ovenbird data from 2005
 </figcaption></figure>
 </div>
 </div>
@@ -642,13 +642,13 @@ Figure&nbsp;11.1: Profile log-likelihood for mixing proportion between 0.01 and 
 <p></p>
 <p>Multimodality is likely to show up as multiple rounded peaks in the profile likelihood. Label switching may cause some ghost reflections about pmix = 0.5 that can be ignored. If multimodality is found one should accept only estimates for which the maximized likelihood matches that from the highest peak. In the ovenbird example, the maximized log likelihood of the fitted h2 model was -163.8 and the estimated mixing proportion was 0.51, so the correct maximum was found.</p>
 <p>Maximization algorithms (argument ‘method’ of <code>secr.fit</code>) differ in their tendency to settle on local maxima; ‘Nelder-Mead’ is probably better than the default ‘Newton-Raphson’. Simulated annealing is sometimes advocated, but it is slow and has not been tried with SECR models.</p>
-</section></section><section id="mitigation" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="mitigation">
-<span class="header-section-number">11.2</span> Mitigating factors</h2>
+</section></section><section id="mitigation" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="mitigation">
+<span class="header-section-number">15.2</span> Mitigating factors</h2>
 <p>Heterogeneity may be demonstrably present yet have little effect on density estimates. Bias in density is a non-linear function of the coefficient of variation of <span class="math inline">a_i(\theta)</span>. For CV <span class="math inline">&lt;20\%</span> the bias is likely to be negligible <span class="citation" data-cites="em14">(<a href="A99-references.html#ref-em14" role="doc-biblioref">Efford &amp; Mowat, 2014</a>)</span>.</p>
 <p>Individual variation in <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span> may be inversely correlated and therefore compensatory, reducing bias in <span class="math inline">\hat D</span> <span class="citation" data-cites="em14">(<a href="A99-references.html#ref-em14" role="doc-biblioref">Efford &amp; Mowat, 2014</a>)</span>. Bias is a function of heterogeneity in the <a href="05-theory-special-topics.html#esa">effective sampling area</a> <span class="math inline">a(\theta)</span> which may vary less than each of the components <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span>.</p>
 <p>It can be illuminating to <a href="05-theory-special-topics.html#parameterizations">re-parameterize</a> the detection model.</p>
-</section><section id="hybrid-hcov-model" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="hybrid-hcov-model">
-<span class="header-section-number">11.3</span> Hybrid ‘hcov’ model</h2>
+</section><section id="hybrid-hcov-model" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="hybrid-hcov-model">
+<span class="header-section-number">15.3</span> Hybrid ‘hcov’ model</h2>
 <p></p>
 <p>The hybrid mixture model accepts a 2-level categorical (factor) individual covariate for class membership that may be missing (NA) for any fraction of animals. The name of the covariate to use is specified as argument ‘hcov’ in <code>secr.fit</code>. If the covariate is missing for all individuals then a full 2-class finite mixture model will be fitted (i.e.&nbsp;mixture as a random effect). Otherwise, the random effect applies only to the animals of unknown class; others are modelled with detection parameter values appropriate to their known class. If class is known for all individuals the model is equivalent to a covariate (CL = TRUE) or grouped (CL = FALSE) model. When many or all animals are of known class the mixing parameter may be treated as an estimate of population proportions (probability a randomly selected individual belongs to class <span class="math inline">u</span>). This is obviously useful for estimating sex ratio free of detection bias. See the hcov help page (?hcov) for implementation details, and <a href="05-theory-special-topics.html#hybrid-mixtures">here</a> for the theory. </p>
 <p>The house mouse dataset includes an individual covariate ‘sex’ with 81 females, 78 males and one unknown.</p>
@@ -659,23 +659,23 @@ Figure&nbsp;11.1: Profile log-likelihood for mixing proportion between 0.01 and 
 <div class="cell-output cell-output-stdout">
 <pre><code>$`session = coulombe, h2 = f`
          link   estimate SE.estimate        lcl        ucl
-D         log 1310.94383  113.457122 1106.75953 1552.79776
+D         log 1310.94427  113.457150 1106.75992 1552.79826
 lambda0   log    0.28640    0.041401    0.21605    0.37965
-sigma     log    2.17857    0.153649    1.89763    2.50109
+sigma     log    2.17857    0.153650    1.89763    2.50109
 pmix    logit    0.46346    0.043121    0.38077    0.54822
 
 $`session = coulombe, h2 = m`
          link   estimate SE.estimate        lcl        ucl
-D         log 1310.94383  113.457122 1106.75953 1552.79776
+D         log 1310.94427  113.457150 1106.75992 1552.79826
 lambda0   log    0.19836    0.035648    0.13986    0.28133
-sigma     log    2.04753    0.173458    1.73479    2.41663
+sigma     log    2.04752    0.173458    1.73479    2.41663
 pmix    logit    0.53654    0.043121    0.45178    0.61923</code></pre>
 </div>
 </div>
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;11.1: Profile log-likelihood for mixing proportion between 0.01 and 0.99 in a 2-class finite mixture model for ovenbird data from 2005</span>
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;15.1: Profile log-likelihood for mixing proportion between 0.01 and 0.99 in a 2-class finite mixture model for ovenbird data from 2005</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-Brooks1997" class="csl-entry" role="listitem">
@@ -1112,18 +1112,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
-      <a href="./10-detection-model.html" class="pagination-link" aria-label="Detection model">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Detection model</span></span>
+      <a href="./14-multisession.html" class="pagination-link" aria-label="Multiple sessions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./12-density-model.html" class="pagination-link" aria-label="Density model">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./16-sex.html" class="pagination-link" aria-label="Sex differences">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sex differences</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","loop":false,"closeEffect":"zoom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

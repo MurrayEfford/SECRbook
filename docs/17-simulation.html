@@ -306,32 +306,32 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-finite-mixtures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
+  <a href="./11-density-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-density-model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Density model</span></span></a>
+  <a href="./12-habitat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-habitat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Habitat mask</span></span></a>
+  <a href="./13-fittedmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-fittedmodels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with fitted models</span></span></a>
+  <a href="./14-multisession.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-multisession.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple sessions</span></span></a>
+  <a href="./15-finite-mixtures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Individual heterogeneity</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -470,9 +470,9 @@ window.Quarto = {
 <ul>
 <li>determining properties of estimators under breaches of assumptions (<a href="06-assumptions.html" class="quarto-xref"><span>Chapter 6</span></a>),</li>
 <li>assessing candidate study designs (<a href="08-studydesign.html" class="quarto-xref"><span>Chapter 8</span></a>), and</li>
-<li>assessing goodness of fit (<a href="14-fittedmodels.html" class="quarto-xref"><span>Chapter 14</span></a>).</li>
+<li>assessing goodness of fit (<a href="13-fittedmodels.html" class="quarto-xref"><span>Chapter 13</span></a>).</li>
 </ul>
-<p>The first two of these are not related to the analysis of a dataset and the required ‘de novo’ simulations follow essentially the same steps in <strong>secr</strong>, as detailed below. The third entails simulation from a particular model fitted to data, as considered <a href="./14-fittedmodels.html#sec-modelfit">earlier</a>. Other uses of simulation are more niche – parameter estimation <span class="citation" data-cites="Efford2023">(<a href="A99-references.html#ref-Efford2023" role="doc-biblioref">Efford, 2023</a>)</span>, testing software implementations, and the computation of parametric bootstrap confidence intervals.</p>
+<p>The first two of these are not related to the analysis of a dataset and the required ‘de novo’ simulations follow essentially the same steps in <strong>secr</strong>, as detailed below. The third entails simulation from a particular model fitted to data, as considered <a href="./13-fittedmodels.html#sec-modelfit">earlier</a>. Other uses of simulation are more niche – parameter estimation <span class="citation" data-cites="Efford2023">(<a href="A99-references.html#ref-Efford2023" role="doc-biblioref">Efford, 2023</a>)</span>, testing software implementations, and the computation of parametric bootstrap confidence intervals.</p>
 <p>This chapter aims to demystify simulation and make it available to a wider range of SECR users. We start by breaking a simulation down into the component steps, showing how each of these may be performed in <strong>secr</strong>. Later we introduce the package <strong>secrdesign</strong> that manages these steps for greater efficiency.</p>
 <section id="simulation-step-by-step" class="level2" data-number="17.1"><h2 data-number="17.1" class="anchored" data-anchor-id="simulation-step-by-step">
 <span class="header-section-number">17.1</span> Simulation step by step</h2>
@@ -539,7 +539,7 @@ sigma   log 20.11668      1.0532 18.15608 22.28900</code></pre>
 <div class="cell-output-display">
 <div id="fig-simpopn" class="quarto-figure quarto-figure-center quarto-float anchored" width="70%">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-simpopn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="17-simulation_files/figure-html/fig-simpopn-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="17-simulation_files/figure-html/fig-simpopn-1.png" id="fig-simpopn" class="img-fluid figure-img" style="width:70.0%"></a>
+<a href="17-simulation_files/figure-html/fig-simpopn-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="17-simulation_files/figure-html/fig-simpopn-1.png" id="fig-simpopn" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-simpopn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17.1
@@ -595,7 +595,7 @@ span 100</code></pre>
 <div class="cell-output-display">
 <div id="fig-simcapthist" class="quarto-figure quarto-figure-center quarto-float anchored" width="70%">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-simcapthist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="17-simulation_files/figure-html/fig-simcapthist-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="17-simulation_files/figure-html/fig-simcapthist-1.png" id="fig-simcapthist" class="img-fluid figure-img" style="width:70.0%"></a>
+<a href="17-simulation_files/figure-html/fig-simcapthist-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="17-simulation_files/figure-html/fig-simcapthist-1.png" id="fig-simcapthist" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-simcapthist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17.2
@@ -757,7 +757,7 @@ Table&nbsp;17.1: Distribution of activity centres in <code>sim.popn</code> contr
 <div class="cell-output-display">
 <div id="fig-model2D" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-model2D-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="17-simulation_files/figure-html/fig-model2D-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="17-simulation_files/figure-html/fig-model2D-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="17-simulation_files/figure-html/fig-model2D-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="17-simulation_files/figure-html/fig-model2D-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-model2D-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17.3: Examples of AC distributions simulated with <code>sim.popn</code>. Yellow dots indicate location of cluster ‘parents’, some of which lie outside the frame.
@@ -1255,7 +1255,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
