@@ -27,7 +27,7 @@ book:
     | DRAFT only
     |  
     |   
-    | ![](images/Nickinsnow2.png){width=60%}"
+    | ![](images/Nickinsnow2.png){width=60%}
     
   author: 
     - name: Murray Efford
@@ -67,11 +67,11 @@ book:
       chapters:
       - 09-secr-package.qmd
       - 10-detection-model.qmd
-      - 11-finite-mixtures.qmd
-      - 12-density-model.qmd
-      - 13-habitat.qmd
-      - 14-fittedmodels.qmd
-      - 15-multisession.qmd
+      - 11-density-model.qmd
+      - 12-habitat.qmd
+      - 13-fittedmodels.qmd
+      - 14-multisession.qmd
+      - 15-finite-mixtures.qmd
       - 16-sex.qmd
       - 17-simulation.qmd
     
