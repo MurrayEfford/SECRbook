@@ -214,7 +214,7 @@ The SECR model of @be08 treats activity centres as distributed independently acc
 
 \index{Assumptions!circular home range}
 
-Concerns were expressed by @Ivan2013 about the effect of non-circularity of home ranges. Simulations by @Efford2019 generally defused those concerns, with an important caveat: estimates of the spatial scale of detection $\sigma$ and density are unreliable when elongated home ranges are sampled with a linear array of detectors. Simulations of randomly oriented elliptical ranges with an aspect ratio of 3:1 resulted in bias on the order of +13\% for a linear array [@Efford2019: Fig. 2]. Bias is extreme [often >50\%, @Efford2019: Table 1] when home ranges are both elongated and have a common alignment to the array (@fig-alignment c). Modelling the anisotropy can be beneficial when the alignment is predictable from the landscape [@Murphy2016; @Efford2019] and the array is not exactly linear, but the method is not universally applicable.
+Concerns were expressed by @Ivan2013 about the effect of non-circularity of home ranges. Simulations by @Efford2019 generally defused those concerns, with an important caveat: estimates of the spatial scale of detection $\sigma$ and density are unreliable when elongated home ranges are sampled with a linear array of detectors. Simulations of randomly oriented elliptical ranges with an aspect ratio of 3:1 resulted in bias on the order of +13\% for a linear array [@Efford2019: Fig. 2]. Bias is extreme [often >50\%, @Efford2019: Table 1] when home ranges are both elongated and have a common alignment to the array (@fig-alignment c). Modelling the anisotropy can be beneficial when the alignment is predictable from the landscape [@Murphy2016; @Efford2019; @Murphy2025] and the array is not exactly linear, but the method is not universally applicable.
 
 ```{r}
 #| label: fig-alignment
@@ -672,14 +672,14 @@ Particular detection parameters may be estimated poorly even when density estima
 | Breach of assumption | | Effect | Mitigating models |
 |:-----------------------|:-|:-----------------|:--------------------|
 1. Closure |||
-&nbsp;&nbsp;&nbsp;[1a. Births and deaths](#sec-popnclosed)     |![*](figures/yob52.png)| RB($\hat D$) proportional turnover| Open population |
-&nbsp;&nbsp;&nbsp;[1b. Dispersal](#sec-popnclosed)             |![.](figures/yob51.png)| | Open population |
+&nbsp;&nbsp;&nbsp;[1a. Births and deaths](#sec-popnclosed)     |![*](figures/yob52.png)| RB($\hat D$) proportional turnover| open population |
+&nbsp;&nbsp;&nbsp;[1b. Dispersal](#sec-popnclosed)             |![.](figures/yob51.png)| | open population |
 2. Identification |||
-&nbsp;&nbsp;&nbsp;[2a. Inadequate marks](#sec-shadow)          |![**](figures/yob54.png)| | @Augustine2020 |
+&nbsp;&nbsp;&nbsp;[2a. Inadequate marks](#sec-shadow)          |![**](figures/yob54.png)| -ve RB($\hat D$) when high probability of identity| @Augustine2020 |
 &nbsp;&nbsp;&nbsp;[2b. Marks corrupted](#sec-ghost)            |![*](figures/yob52.png)|  | |
 3. Home range HR |||
 &nbsp;&nbsp;&nbsp;[3a. AC not independent](#sec-ACindependent) |![.](figures/yob51.png)||
-&nbsp;&nbsp;&nbsp;[3b. HR non-circular](#sec-hrcircular)       |![*](figures/yob5s14.png)| severe RB($\hat D$) when HR align with detectors|
+&nbsp;&nbsp;&nbsp;[3b. HR non-circular](#sec-hrcircular)       |![*](figures/yob5s14.png)| severe RB($\hat D$) when HR align with detectors| anisotropic model |
 &nbsp;&nbsp;&nbsp;[3c. Location autocorrelated](#sec-independentwithinhr)      |![.](figures/yob51.png)||
 &nbsp;&nbsp;&nbsp;[3d. HR non-stationary](#sec-hrstationary)   |![.](figures/yob51.png)|||
 4. Constant parameters |||
@@ -688,7 +688,7 @@ Particular detection parameters may be estimated poorly even when density estima
 &nbsp;&nbsp;&nbsp;[4c. Individual heterogeneity](#sec-individualheterogeneity) |![*](figures/yob52.png)| RB($\hat D$) nonlinear on CV(a) | covariate, finite mixture | 
 &nbsp;&nbsp;&nbsp;[4d. Detector heterogeneity](#sec-homogeneityofdetectors)    |![*](figures/yob5s13.png)| | covariate, GRF |
 5. Independence |||
-&nbsp;&nbsp;&nbsp;[5a. Individuals interact](#sec-independentindividuals)      |![*](figures/yob51.png)| | **ipsecr** |
+&nbsp;&nbsp;&nbsp;[5a. Individuals interact](#sec-independentindividuals)      |![*](figures/yob51.png)| | @Efford2023 |
 &nbsp;&nbsp;&nbsp;[5b. Serial dependence](#sec-serialindependence)             |![.](figures/yob51.png) | ||
 
 : Robustness of SECR models to breaches of assumptions. {#tbl-robustness tbl-colwidths="[30,5,42,23]" .sm}
@@ -716,7 +716,7 @@ Particular detection parameters may be estimated poorly even when density estima
 |||||
 3. Home range HR |||
 &nbsp;&nbsp;&nbsp;[3a. AC not independent](#sec-ACindependent) |![.](figures/yob51.png)||
-&nbsp;&nbsp;&nbsp;[3b. HR non-circular](#sec-hrcircular)       |![*](figures/yob5s14.png)| severe RB($\hat D$) when HR align with detectors|
+&nbsp;&nbsp;&nbsp;[3b. HR non-circular](#sec-hrcircular)       |![*](figures/yob5s14.png)| severe RB($\hat D$) when HR align with detectors| @Murphy2025 |
 &nbsp;&nbsp;&nbsp;[3c. Location autocorrelated](#sec-independentwithinhr)      |![.](figures/yob51.png)||
 &nbsp;&nbsp;&nbsp;[3d. HR non-stationary](#sec-hrstationary)   |![.](figures/yob51.png)|||
 |||||
