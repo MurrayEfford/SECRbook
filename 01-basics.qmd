@@ -52,7 +52,7 @@ Surveying these species requires indirect methods, often using passive
 devices such as traps or cameras that accumulate records over time.
 Passive devices encounter animals as they move around. The scale of that 
 movement is unknown, which creates uncertainty regarding the population that is
-sampled. Furthermore,the number of observed individuals increases indefinitely 
+sampled. Furthermore, the number of observed individuals increases indefinitely 
 as more and more peripheral individuals are encountered.
 
 SECR cuts through this problem by modelling the spatial scale of detection
@@ -78,11 +78,11 @@ $\phi$ is a single value.
 ::: {.callout-note}
 ## Activity centre vs home range centre
 'Activity centre' is often used in preference to 'home
-range centre' because it appears more neutral: 'home range' implies
-a particular pattern of behaviour and spatial familiarity. In
-reality, SECR assumes the very pattern of behaviour (persistent
-use) that distinguishes a home range, so it is safe to use the terms
-interchangeably in this context.
+range centre' because it appears more neutral. 'Home range' implies
+a particular pattern of behaviour: spatial familiarity and repeated use in 
+contrast to nomadism. However, SECR assumes the very pattern of behaviour (persistent
+use) that distinguishes a home range, and it is safe to use 'activity centre' 
+and 'home range centre' interchangeably in this context.
 :::
 
 ## Detectors
@@ -99,7 +99,10 @@ unique natural marks (e.g., pelage patterns) or their DNA can be
 sampled. Devices that record detections passively are "proximity
 detectors". Proximity detectors may be split according to the
 distribution of the number of detections per animal per occasion
-(binary, Poisson, or binomial), with binary being the most common.
+(binary, Poisson, or binomial), with binary being the most common[^footnote1].
+
+[^footnote1]: In the **secr** software, type 'proximity' refers specifically to 
+binary proximity detectors.
 
 Animals without natural marks must be marked individually on their first
 detection. This implies capture and handling. Only devices that hold an
@@ -143,11 +146,11 @@ alone is sufficient to obtain an estimate of density [@edb09].
 
 It is not necessary for all detectors to be used on all occasions.
 Incomplete usage [and other variation in effort per occasion -- @ebm13]
-may be recorded for each detector as an attribute of 'traps' objects.
+may be recorded for each detector and allowed for in the analysis.
 
-Data collected across multiple sessions potentially include losses of
-some individuals and gains of others. An open population model is the
-natural way to go, e.g., @es20. However, the complexity of
+Data collected across multiple sessions potentially include the loss of
+some individuals and recruitment of others. An open population model is the
+natural way to go [e.g., @es20]. However, the complexity of
 open-population models can be avoided if sessions are treated as
 independent in a 'multi-session' closed population analysis.
 
@@ -157,12 +160,11 @@ independent in a 'multi-session' closed population analysis.
 3-dimensional rectangular array with dimensions corresponding to known
 animals, sampling occasions, and detectors. Data in each cell of the
 array are usually binary (0/1) but may be integer counts \> 1 (e.g., if
-binary data have been collapsed by occasion). In **secr**, an R Object of
+binary data have been collapsed by occasion). In **secr**, an R object of
 class 'capthist' holds data in this form, along with the coordinates of
 the detectors in its 'traps' attribute. The user constructs a capthist
 object from text or spreadsheet input using data entry functions
-described
-[here](https://cran.r-project.org/web/packages/secr/vignettes/secr-datainput.pdf).
+described in @sec-secr.
 
 ## Model fitting
 

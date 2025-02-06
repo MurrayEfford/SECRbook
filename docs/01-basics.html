@@ -458,7 +458,7 @@ S. Charles Kendeigh (1944)</p>
 </div>
 </div>
 <p>Only a brave ecologist would make this claim today. Measuring animal populations is now justified in more practical terms - the urgent need for evidence to track biodiversity decline or to manage endangered or pest species or those we wish to harvest sustainably. But we rather like Kendeigh’s formulation, to which could be added the lure of the statistical challenges. This book has no more to say about the diverse reasons for measuring populations: we will focus instead on a particular toolkit.</p>
-<p>Populations of some animal species can be censused by direct observation, but many species are elusive or cryptic. Surveying these species requires indirect methods, often using passive devices such as traps or cameras that accumulate records over time. Passive devices encounter animals as they move around. The scale of that movement is unknown, which creates uncertainty regarding the population that is sampled. Furthermore,the number of observed individuals increases indefinitely as more and more peripheral individuals are encountered.</p>
+<p>Populations of some animal species can be censused by direct observation, but many species are elusive or cryptic. Surveying these species requires indirect methods, often using passive devices such as traps or cameras that accumulate records over time. Passive devices encounter animals as they move around. The scale of that movement is unknown, which creates uncertainty regarding the population that is sampled. Furthermore, the number of observed individuals increases indefinitely as more and more peripheral individuals are encountered.</p>
 <p>SECR cuts through this problem by modelling the spatial scale of detection to obtain an unbiased estimate of the stationary density of individuals.</p>
 </section><section id="spatial-population" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="spatial-population">
 <span class="header-section-number">1.2</span> Spatial population</h2>
@@ -474,13 +474,13 @@ Activity centre vs home range centre
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>‘Activity centre’ is often used in preference to ‘home range centre’ because it appears more neutral: ‘home range’ implies a particular pattern of behaviour and spatial familiarity. In reality, SECR assumes the very pattern of behaviour (persistent use) that distinguishes a home range, so it is safe to use the terms interchangeably in this context.</p>
+<p>‘Activity centre’ is often used in preference to ‘home range centre’ because it appears more neutral. ‘Home range’ implies a particular pattern of behaviour: spatial familiarity and repeated use in contrast to nomadism. However, SECR assumes the very pattern of behaviour (persistent use) that distinguishes a home range, and it is safe to use ‘activity centre’ and ‘home range centre’ interchangeably in this context.</p>
 </div>
 </div>
 </section><section id="detectors" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="detectors">
 <span class="header-section-number">1.3</span> Detectors</h2>
 <p> SECR uses sampling devices placed at known locations. We need to recognise individuals whenever they are detected. The accumulated detections of each known individual are its ‘detection history’. Device types differ according to how they affect animal behaviour and the data they collect; each type corresponds to a probability model, as covered later.</p>
-<p>Detection may be entirely passive and non-invasive if individuals carry unique natural marks (e.g., pelage patterns) or their DNA can be sampled. Devices that record detections passively are “proximity detectors”. Proximity detectors may be split according to the distribution of the number of detections per animal per occasion (binary, Poisson, or binomial), with binary being the most common.</p>
+<p>Detection may be entirely passive and non-invasive if individuals carry unique natural marks (e.g., pelage patterns) or their DNA can be sampled. Devices that record detections passively are “proximity detectors”. Proximity detectors may be split according to the distribution of the number of detections per animal per occasion (binary, Poisson, or binomial), with binary being the most common<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>Animals without natural marks must be marked individually on their first detection. This implies capture and handling. Only devices that hold an animal until it is released can truly be called ‘traps’. The probability model for trapping must allow for exclusivity: an animal can be found at only one trap on any occasion, and some traps (‘single-catch’ traps) also exclude other individuals after the first. </p>
 <p>Confusingly, <strong>secr</strong> uses ‘traps’ as a generic name for R objects holding detector coordinates and other information. This software-specific jargon should be avoided in publications.</p>
 <div id="tbl-deviceexamples" class="sm quarto-float anchored">
@@ -546,11 +546,11 @@ Table&nbsp;1.1: Examples of SECR sampling devices
 <p>For most vertebrates we expect population turnover (births, deaths, AC movement) on a time scale of months or years. Population change is often negligible over shorter spans (days or weeks, depending on the species). Sampling over shorter spans can therefore treat the size and composition of a population as fixed: it is said to be ‘closed’. This greatly simplifies analysis. We assume closure except when considering <a href="#popnclosed">breaches of assumptions</a>. </p>
 <p>A ‘session’ in <strong>secr</strong> parlance is a set of samples from a closed population on one or more ‘occasions’ (possibly consecutive days).</p>
 <p>For trap-type detectors there must be multiple occasions within a session to obtain recaptures. For proximity-type detectors the role of ‘occasions’ is more subtle, and data may usually be collapsed to animal- and detector-specific counts. The spatial pattern of binary detections alone is sufficient to obtain an estimate of density <span class="citation" data-cites="edb09">(<a href="A99-references.html#ref-edb09" role="doc-biblioref">Efford et al., 2009</a>)</span>.</p>
-<p>It is not necessary for all detectors to be used on all occasions. Incomplete usage <span class="citation" data-cites="ebm13">(and other variation in effort per occasion – <a href="A99-references.html#ref-ebm13" role="doc-biblioref">Efford et al., 2013</a>)</span> may be recorded for each detector as an attribute of ‘traps’ objects.</p>
-<p>Data collected across multiple sessions potentially include losses of some individuals and gains of others. An open population model is the natural way to go, e.g., <span class="citation" data-cites="es20">Efford &amp; Schofield (<a href="A99-references.html#ref-es20" role="doc-biblioref">2020</a>)</span>. However, the complexity of open-population models can be avoided if sessions are treated as independent in a ‘multi-session’ closed population analysis.</p>
+<p>It is not necessary for all detectors to be used on all occasions. Incomplete usage <span class="citation" data-cites="ebm13">(and other variation in effort per occasion – <a href="A99-references.html#ref-ebm13" role="doc-biblioref">Efford et al., 2013</a>)</span> may be recorded for each detector and allowed for in the analysis.</p>
+<p>Data collected across multiple sessions potentially include the loss of some individuals and recruitment of others. An open population model is the natural way to go <span class="citation" data-cites="es20">(e.g., <a href="A99-references.html#ref-es20" role="doc-biblioref">Efford &amp; Schofield, 2020</a>)</span>. However, the complexity of open-population models can be avoided if sessions are treated as independent in a ‘multi-session’ closed population analysis.</p>
 </section><section id="data-structure" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="data-structure">
 <span class="header-section-number">1.5</span> Data structure</h2>
-<p> Data for a single SECR session comprise a 3-dimensional rectangular array with dimensions corresponding to known animals, sampling occasions, and detectors. Data in each cell of the array are usually binary (0/1) but may be integer counts &gt; 1 (e.g., if binary data have been collapsed by occasion). In <strong>secr</strong>, an R Object of class ‘capthist’ holds data in this form, along with the coordinates of the detectors in its ‘traps’ attribute. The user constructs a capthist object from text or spreadsheet input using data entry functions described <a href="https://cran.r-project.org/web/packages/secr/vignettes/secr-datainput.pdf">here</a>.</p>
+<p> Data for a single SECR session comprise a 3-dimensional rectangular array with dimensions corresponding to known animals, sampling occasions, and detectors. Data in each cell of the array are usually binary (0/1) but may be integer counts &gt; 1 (e.g., if binary data have been collapsed by occasion). In <strong>secr</strong>, an R object of class ‘capthist’ holds data in this form, along with the coordinates of the detectors in its ‘traps’ attribute. The user constructs a capthist object from text or spreadsheet input using data entry functions described in <a href="09-secr-package.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
 </section><section id="model-fitting" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="model-fitting">
 <span class="header-section-number">1.6</span> Model fitting</h2>
 <p>A SECR model combines a model for the point process (the state model) and a model for distance-dependent detection (the observation model). Unbiased estimates of population density (and other parameters) are obtained by jointly fitting the state and observation models.</p>
@@ -571,7 +571,7 @@ Figure&nbsp;1.1: Distance-dependent detection of uniformly distributed activity 
 </div>
 <p></p>
 <p>The true locations of animals are not known, and therefore the distance-dependent probabilities cannot be calculated directly. The model is fitted by marginalising (integrating over) animal locations.</p>
-<p>Distance-dependent detection is represented by a ‘detection function’ with intercept, scale, and possibly shape, determined by parameters to be estimated<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Distance-dependent detection is represented by a ‘detection function’ with intercept, scale, and possibly shape, determined by parameters to be estimated<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-detectionfunctions" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -716,7 +716,8 @@ Royle, J. A., &amp; Young, K. V. (2008). A hierarchical model for spatial captur
 </div>
 </section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>All detection functions have intercept (<span class="math inline">g_0</span>, <span class="math inline">\lambda_0</span>) and scale (<span class="math inline">\sigma</span>) parameters; some such as the hazard rate function have a further parameter that controls some aspect of shape.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>In the <strong>secr</strong> software, type ‘proximity’ refers specifically to binary proximity detectors.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>All detection functions have intercept (<span class="math inline">g_0</span>, <span class="math inline">\lambda_0</span>) and scale (<span class="math inline">\sigma</span>) parameters; some such as the hazard rate function have a further parameter that controls some aspect of shape.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1137,7 +1138,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -75,7 +75,7 @@ options(digits = 6, width = 85)
 displayLines("hareCH6trap.txt", 6, "...")
 ```
 
-We load **secr** and read the data files to construct a capthist object. The detectors are single-catch traps (maximum of one capture per animal per occasion and one capture per trap per occasion). \index{Traps!single-catch}
+After opening R, we load **secr** and read the data files to construct a capthist object. The detectors are single-catch traps (maximum of one capture per animal per occasion and one capture per trap per occasion). \index{Traps!single-catch}
 
 ```{r}
 #| label: setwd
@@ -143,7 +143,7 @@ par(mar = c(3.2,4,2,1), mgp = c(2.1,0.6,0))  # reduce margins
 hist(m, breaks = seq(0,500,61), xlab = "Movement  m", main = "")
 ```
 
-About 30% of trap-revealed movements were of $>$ 100 m (@fig-moves; try also `plot(ecdf(m))`), so we can be sure that peripheral hares stood a good chance of being trapped even if their home ranges were centred well outside the area plotted in @fig-cap.
+About 30% of trap-revealed movements were of $>100$ m (@fig-moves; try also `plot(ecdf(m))`), so we can be sure that peripheral hares stood a good chance of being trapped even if their home ranges were centred well outside the area plotted in @fig-cap.
 
 ## Fit a simple model  \index{secr.fit}
 
@@ -197,7 +197,7 @@ plot(fit, limits = TRUE)
 
 ## Revisiting buffer width
 
-Choosing a buffer width is a common stumbling block. We used `buffer = 250` without any explanation. Here it is. As far as we know, the snowshoe hare traps were surrounded by suitable habitat. We limit our attention to the area immediately around the traps by specifying a habitat buffer. The `buffer` argument is a short-cut for defining the potential habitat (area of integration); the alternative is to provide a habitat mask in the `mask` argument. Buffers and habitat masks are covered at length in #sec-habitat.
+Choosing a buffer width is a common stumbling block. We used `buffer = 250` without any explanation. Here it is. As far as we know, the snowshoe hare traps were surrounded by suitable habitat. We limit our attention to the area immediately around the traps by specifying a habitat buffer. The `buffer` argument is a short-cut for defining the potential habitat (area of integration); the alternative is to provide a habitat mask in the `mask` argument of `secr.fit`. Buffers and habitat masks are covered at length in @sec-habitat.
 
 Buffer width is not critical as long as it is wide enough that animals at the edge have effectively zero chance of appearing in our sample, so that increasing the buffer has negligible effect on estimates. For half-normal detection (the default) a buffer of $4\sigma$ is usually enough[^footnote3f]. We check the present model with the function `esaPlot`. The estimated density[^footnote3g] has easily reached a plateau at the chosen buffer width (dashed red line):
 

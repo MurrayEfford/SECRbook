@@ -109,7 +109,7 @@ The prediction variance of $\hat N(B)$ follows from Poisson assumptions regardin
 ## Finite mixture models {#finite-mixtures}
 \index{Likelihood!finite mixture}
 
-Finite mixture models for individual heterogeneity of capture probability were formalised for non-spatial capture--recapture by @p2000 and remain widely used (e.g., @cw). These are essentially random-effect models in which the distribution of capture probability comprises two or more latent classes, each with a capture probability and probability of membership.
+Finite mixture models for individual heterogeneity of capture probability were formalised for non-spatial capture--recapture by @p2000 and remain widely used [e.g., @cw]. These are essentially random-effect models in which the distribution of capture probability comprises two or more latent classes, each with a capture probability and probability of membership.
 
 @be08[p. 381] gave the likelihood for a Poisson SECR model with $U$ latent classes in proportions $\psi$ = ($\psi_1$, ..., $\psi_U$). In all examples we have tried $U$ is 2 or 3. For each class $u$ there is an associated vector of detection parameters $\theta_u$ (collectively $\theta$). Omitting the constant multinomial term,
 $$
@@ -206,7 +206,7 @@ f(\mathbf x | \omega_i; \hat \phi, \hat \theta) = \frac{ \mathrm{Pr} (\omega_i |
 $$ {#eq-fxi}
 This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See `fxi` and related functions in **secr**. For known $\theta$ and known $\phi$ (unless $D(\mathbf x; \phi)$ uniform) the modal location of the AC for animal $i$ may be estimated by maximizing $\mathrm{Pr} (\omega_i | \mathbf x; \theta)D(\mathbf x; \phi)$ with respect to $\mathbf x$. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.
 
-A later [section](11-density-model.qmd#not-a-density-surface) discusses the use and interpretation of $f(\mathbf x | \omega_i; \hat \phi, \hat \theta)$ (see also @Durbach2024).
+A later [section](11-density-model.qmd#not-a-density-surface) discusses the use and interpretation of $f(\mathbf x | \omega_i; \hat \phi, \hat \theta)$ [see also @Durbach2024].
 
 <!-- ## Telemetry {#telemetrylikelihood} -->
 

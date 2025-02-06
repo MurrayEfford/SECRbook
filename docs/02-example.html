@@ -534,7 +534,7 @@ Tip
 ... </code></pre>
 </div>
 </div>
-<p>We load <strong>secr</strong> and read the data files to construct a capthist object. The detectors are single-catch traps (maximum of one capture per animal per occasion and one capture per trap per occasion). </p>
+<p>After opening R, we load <strong>secr</strong> and read the data files to construct a capthist object. The detectors are single-catch traps (maximum of one capture per animal per occasion and one capture per trap per occasion). </p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.otago.ac.nz/density/">secr</a></span><span class="op">)</span></span>
 <span><span class="va">hareCH6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/DENSITY.html">read.capthist</a></span><span class="op">(</span><span class="st">"hareCH6capt.txt"</span>, <span class="st">"hareCH6trap.txt"</span>, detector <span class="op">=</span> <span class="st">"single"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -600,7 +600,7 @@ Figure&nbsp;2.2: Trap-revealed movements of snowshoe hares
 </div>
 </div>
 </div>
-<p>About 30% of trap-revealed movements were of <span class="math inline">&gt;</span> 100 m (<a href="#fig-moves" class="quarto-xref">Fig.&nbsp;<span>2.2</span></a>; try also <code>plot(ecdf(m))</code>), so we can be sure that peripheral hares stood a good chance of being trapped even if their home ranges were centred well outside the area plotted in <a href="#fig-cap" class="quarto-xref">Fig.&nbsp;<span>2.1</span></a>.</p>
+<p>About 30% of trap-revealed movements were of <span class="math inline">&gt;100</span> m (<a href="#fig-moves" class="quarto-xref">Fig.&nbsp;<span>2.2</span></a>; try also <code>plot(ecdf(m))</code>), so we can be sure that peripheral hares stood a good chance of being trapped even if their home ranges were centred well outside the area plotted in <a href="#fig-cap" class="quarto-xref">Fig.&nbsp;<span>2.1</span></a>.</p>
 </section><section id="fit-a-simple-model" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="fit-a-simple-model">
 <span class="header-section-number">2.3</span> Fit a simple model </h2>
 <p>Next we fit the simplest possible SECR model with function <code>secr.fit</code>. The <code>buffer</code> argument determines the habitat extent - we take a stab at this and check it later. Setting <code>trace = FALSE</code> suppresses printing of intermediate likelihood evaluations; it doesn’t hurt to leave it out. We save the fitted model with the name ‘fit’. Fitting is much faster if we use parallel processing in multiple threads - the number will depend on your machine, but <code>ncores = 7</code> is OK in Windows with a quad-core processor.</p>
@@ -689,7 +689,7 @@ Figure&nbsp;2.3: Fitted halfnormal detection function, with 95% confidence limit
 </div>
 </section><section id="revisiting-buffer-width" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="revisiting-buffer-width">
 <span class="header-section-number">2.5</span> Revisiting buffer width</h2>
-<p>Choosing a buffer width is a common stumbling block. We used <code>buffer = 250</code> without any explanation. Here it is. As far as we know, the snowshoe hare traps were surrounded by suitable habitat. We limit our attention to the area immediately around the traps by specifying a habitat buffer. The <code>buffer</code> argument is a short-cut for defining the potential habitat (area of integration); the alternative is to provide a habitat mask in the <code>mask</code> argument. Buffers and habitat masks are covered at length in #sec-habitat.</p>
+<p>Choosing a buffer width is a common stumbling block. We used <code>buffer = 250</code> without any explanation. Here it is. As far as we know, the snowshoe hare traps were surrounded by suitable habitat. We limit our attention to the area immediately around the traps by specifying a habitat buffer. The <code>buffer</code> argument is a short-cut for defining the potential habitat (area of integration); the alternative is to provide a habitat mask in the <code>mask</code> argument of <code>secr.fit</code>. Buffers and habitat masks are covered at length in <a href="12-habitat.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
 <p>Buffer width is not critical as long as it is wide enough that animals at the edge have effectively zero chance of appearing in our sample, so that increasing the buffer has negligible effect on estimates. For half-normal detection (the default) a buffer of <span class="math inline">4\sigma</span> is usually enough<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. We check the present model with the function <code>esaPlot</code>. The estimated density<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> has easily reached a plateau at the chosen buffer width (dashed red line):</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>  <span class="co"># adjust white margins</span></span>
@@ -1212,7 +1212,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -149,9 +149,9 @@ models.
 \index{Traps!single-catch}
 
 The SECR data $\omega_i$ for each detected individual comprise a matrix
-with dimensions $S$ (occasions) and $K$ (detectors). Each element may be
+with dimensions $S$ (occasions) and $K$ (detectors). The matrix entries $\omega_{isk}$ may be
 binary (0/1) or integer (0, 1, 2, ...). Various probability models exist
-for the entries $\omega_{isk}$. The appropriate probability model
+for $\omega_{isk}$. The appropriate probability model
 follows in most cases directly from the type of detector device; we
 therefore classify probability models according to device type.
 @tbl-detectortypes matches this classification to that of @rcsg14. This
@@ -250,9 +250,9 @@ Hazard is the natural scale for the Poisson parameter.
 
 \index{Detectors!Binomial proximity}
 
-Binomial counts arise when there is a finite number of opportunities for
-detection within each occasion that we denote $B_s$. This commonly
-happens when binary proximity data are collapsed to a single occasion:
+Binomial counts arise when there is a known, finite number of opportunities for
+detection within each occasion that we denote $B_s$. This is the result when 
+binary proximity data over many occasions are collapsed to a single occasion:
 the initial number of occasions is known ($B_s = S$) and places an upper
 limit on the count. Collapsing is often efficient. It precludes
 modelling parameter variation or learned responses across occasions.
@@ -281,7 +281,7 @@ $h_{sk}$.
 \index{Detectors!single-catch trap}
 \index{Traps!single-catch}
 
-A single-catch trap can only catch one animal at a time. This entails
+A single-catch trap can catch only one animal at a time. This entails
 competition both among traps for animals and among animals for traps. No
 simple likelihood is available. Simulation-based methods [@e04;
 @Efford2023] must be used for unbiased estimation of $\theta$ and trend
