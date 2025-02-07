@@ -8,15 +8,21 @@ The three chapters in this part address questions we group under the heading of 
 
 \index{Assumptions}
 
-The SECR probability models of @sec-theory that underlie the methods in this book incorporate certain assumptions. The validity and reliability of the methods therefore depends to an extent on how well the field data meet the assumptions. We list these before assessing their impact in practice - the topic of [robustness](#robustness). 
+The SECR probability models of @sec-theory that underlie the methods in this book incorporate certain assumptions. The validity and reliability of the methods therefore depend to an extent on how well the field data meet the assumptions. We list these before assessing their impact in practice - the topic of [robustness](#robustness). 
 
-1. The population is closed (no animals die, emigrate or recruit during sampling)
-2. Individuals are identified without error
-3. The probability of detecting an animal at a particular detector declines radially from a fixed point, its activity centre AC 
-4. The probability of detection is constant across individuals, detectors and times, conditional on the AC. 
-5. Detections of different individuals are independent, as are sequential detections of a single individual.
+| | |
+|:-------------|:---------------------------------------------------------------|
+| Assumption 1. | The population is closed (no animals die, emigrate or recruit during sampling).  |
+| Assumption 2. | Individuals are identified without error.  |
+| Assumption 3. | The probability of detecting an animal at a particular detector declines radially from a fixed point, its activity centre (AC). |
+| Assumption 4. | The probability of detection is constant across individuals, detectors and times, conditional on the AC. |
+| Assumption 5. | Detections of different individuals are independent, as are sequential detections of a single individual. |
 
-Restrictive assumptions often may be relaxed under specific extensions to the SECR model, including the various 'submodels' of @sec-detection. We omit one further assumption: that the probability of detection declines to zero for AC at the edge of the habitat mask unless it is naturally bounded. This is addressed in the analysis by correct choice of [detection function](10-detection-model.qmd#sec-detectfn) and buffer or mask (@sec-habitat).
+:  {tbl-colwidths="[17,83]"}
+
+We omit one further assumption: that the probability of detection declines to zero for AC at the edge of the habitat mask unless it is naturally bounded. This is addressed in the analysis by correct choice of [detection function](10-detection-model.qmd#sec-detectfn) and buffer or mask (@sec-habitat).
+
+Restrictive assumptions often may be relaxed under specific extensions to the SECR model, including the various 'submodels' of @sec-detection. 
 
 ## Robustness {#sec-robustness}
 
@@ -50,7 +56,7 @@ Our simulations use a base scenario of sampling with a square grid of 64 binary 
 ## Assumption 1: Population closed  {#sec-popnclosed .unnumbered}
 \index{Assumptions!population closure}
 
-Births, deaths and dispersal result in population turnover. Over an extended period of turnover, more animals may be observed than were present at any instant, and density estimates will be biased upwards. Studies using automatic cameras often accumulate data slowly over many days, and study duration has triggered much angst e.g., @Harihar2017. How much does a little turnover matter? Conversely, How long can the sampling period be? Results for non-spatial models [@Kendall1999] cannot be transferred. We distinguish turnover due to movement of AC from *in situ* births and deaths, and consider it separately under [Assumption 3d](#hrstationary).
+Births, deaths and dispersal result in population turnover. Over an extended period of turnover, more animals may be observed than were present at any instant, and density estimates will be biased upwards. Studies using automatic cameras often accumulate data slowly over many days, and study duration has triggered much angst [e.g., @Harihar2017]. How much does a little turnover matter? Conversely, How long can the sampling period be? Results for non-spatial models [@Kendall1999] cannot be transferred. We distinguish turnover due to movement of AC from *in situ* births and deaths, and consider it separately under [Assumption 3d](#hrstationary).
 
 @Dupont2019 investigated the effect of increasing study duration on the precision and bias of population size estimates. Their results are complicated by an artifact that caused their Bayesian estimator to be positively biased for short durations [@Dupont2019, p. 669].
 
@@ -105,11 +111,9 @@ This overlaps with Assumption 3 and is covered [later](#hrstationary).
 
 We can generally assume accurate identification on recapture of animals trapped and marked by conventional methods such as numbered leg bands or ear tags. However, identification may be unreliable with modern methods for passive sampling using natural marks (DNA from hair or faecal samples, and images from motion-sensitive cameras). This is a major limitation.
 
-In genetic sampling there are two possible reasons for mis-identification: there may be too little variation at the chosen
-<!-- microsatellite or SNP  -->
-loci to distinguish all individuals in the sampled population, and genotyping is subject to error. @Mills2000, @Lukacs2005, @Waits2005, and @Lampa2013 reviewed the early literature, and citations of those reviews are a good entry point to the voluminous recent literature. @Sethi2014 provide technical advice. @Augustine2020 provide a useful summary and a model framework that encompasses the various errors. @Kodi2024 is a recent SECR study.
+In genetic sampling there are two possible reasons for mis-identification: (i) there is too little variation at the chosen loci to distinguish all individuals in the sampled population, and (ii) genotyping is subject to error. @Mills2000, @Lukacs2005, @Waits2005, and @Lampa2013 reviewed the early literature, and citations of those reviews are a good entry point to the voluminous recent literature. @Sethi2014 provide technical advice. @Augustine2020 provide a useful summary and a model framework that encompasses the various errors. @Kodi2024 is a recent SECR study.
 
-Natural marks such as coat patterns are prone to identification problems that parallel those from genotyping: individuals may not be distinguishable, leading to shadow effects, or some may be mis-recorded, leading to spurious ghost individuals. The robustness of estimates will depend on the likely magnitude of each effect. We address the bias for varying frequencies of shadow and ghost effects below, with particular reference to genotyping. 
+Natural marks such as coat patterns are prone to identification problems that parallel those from genotyping: individuals may not be distinguishable or some may be mis-recorded, leading to spurious 'ghost' individuals. The robustness of estimates will depend on the likely magnitude of each effect. We address the bias for varying frequencies of each effect below, with particular reference to genotyping. 
 
 A single camera may photograph only the left or right flank of a passing animal. Owing to the asymmetry of patterns, identity cannot be inferred conclusively from a single photograph. This identification problem can be addressed in the field by using paired cameras, so that both flanks are recorded [@Karanth1998]. There may still be a minority of single-sided photographs, and probabilistic models have been suggested to incorporate these [@Augustine2018].
 
@@ -208,7 +212,7 @@ The spatial component of spatially explicit capture--recapture rests on quite sp
 
 \index{Assumptions!AC independent}
 
-The SECR model of @be08 treats activity centres as distributed independently according to an inhomogeneous Poisson point process. This allows local density to vary according to habitat or other persistent effects. It does not allow for the spacing behaviour of the animals themselves, which can lead either to contagion or repulsion of AC. Several authors have ventured into this area [@Russell2012; @Reich2014; @LopezBao2018; @Bischof2020; @McLaughlin2020; @Efford2024]. The general conclusion is that point estimates of density from SECR are robust to clustering of AC due to social behaviour, but the implied overdispersion leads to confidence limits that are too narrow. Non-independence of detection is a distinct issue ([Assumption 4](#independentindividuals)).
+The SECR model of @be08 treats activity centres as distributed independently according to an inhomogeneous Poisson point process. This allows local density to vary according to habitat or other persistent effects. It does not allow for the spacing behaviour of the animals themselves, which can lead to either contagion or repulsion of AC. Several authors have ventured into this area [@Russell2012; @Reich2014; @LopezBao2018; @Bischof2020; @McLaughlin2020; @Efford2024]. The general conclusion is that point estimates of density from SECR are robust to clustering of AC due to social behaviour, but the implied overdispersion leads to confidence limits that are too narrow. Non-independence of detection is a distinct issue ([Assumption 4](#independentindividuals)).
 
 ### Assumption 3b: Home ranges circular {#sec-hrcircular .unnumbered}
 
@@ -234,13 +238,13 @@ knitr::include_graphics("figures/alignment.png")
 
 \index{Assumptions!uncorrelated locations}
 
-It is entirely likely that animals use their home ranges in a nested fashion (i.e., activity during any sub-interval localised in part of the range) or that some AC move during sampling. This may be viewed as a subset of Assumption 6 because if AC are not fixed during sampling then successive locations of an individual will be autocorrelated.
+It is entirely likely that animals use their home ranges in a nested fashion (i.e., activity during any sub-interval localised in part of the range) or that some AC move during sampling. This may be viewed as a subset of Assumption 5 because if AC are not fixed during sampling then successive locations of an individual will be autocorrelated.
 
 @Royle2015 modelled movement patterns they called "transience" (a Gaussian random walk) and "dispersal" (discrete shift of AC). They concluded
 
 > ... while estimators of density are extremely robust, even to pathological levels of movement (e.g., complete transience), the estimator of the spatial scale parameter of the encounter probability model is confounded with the dispersal/transience scale parameter. 
 
-We extend their simulations by considering a model in which the overall home range is stationary but locations within the home range are autocorrelated. The bivariate Ornstein-Uhlenbeck (OU) distribution is a convenient model with these properties [@Dunn1977; @Johnson2008; @Hooten2017]. The home range as a whole is bivariate normal; we simulate the uncorrelated, circular case with equal variance on both axes. R code and details of the simulations are provided [elsewhere].
+We extend their simulations by considering a model in which the overall home range is stationary but locations within the home range are autocorrelated. The bivariate Ornstein-Uhlenbeck (OU) distribution is a convenient model with these properties [@Dunn1977; @Johnson2008; @Hooten2017]. The home range as a whole is bivariate normal; we simulate the uncorrelated, circular case with equal variance on both axes. R code and details of the simulations are provided [on GitHub](https://github.com/MurrayEfford/secr-simulations).
 
 @fig-demoOU1 illustrates OU movement tracks for individuals with increasing autocorrelation parameter $\tau$. Detection is assumed here to happen when an individual is within some small threshold distance $\epsilon$ of a detector at the end of a time step. Other detection models are possible.
 
@@ -359,7 +363,7 @@ legend(1.2, -0.39, legend=c('D','sigma'), pch=c(21,21), pt.bg= c(yob5[3],'white'
 
 \index{Assumptions!AC stationary}
 
-Robustness of SECR to movement of home ranges (dispersal) was demonstrated by @Royle2015. [@Harihar2017] expressed a further concern that movement over a long sampling duration would breach Assumption 1 (closure). 
+Robustness of SECR to movement of home ranges (dispersal) was demonstrated by @Royle2015. @Harihar2017 expressed a further concern that movement over a long sampling duration would breach Assumption 1 (closure). 
 
 We simulated detections over 100 'days' during which each AC underwent a random walk governed by a Gaussian kernel with scale $\sigma_m$. Details are given [elsewhere].
 
@@ -409,7 +413,7 @@ Detection parameters may also be considered a function of AC location, but for (
 
 ### 4a. Temporal variation {#sec-temporalvariation .unnumbered}
 
-@Sollmann2024 reached the conclusion from simulations that temporal variation in the baseline detection probability $g_0$ may safely be ignored when fitting SECR models. Comparison of null and temporal models seldom results in different estimates of density. 
+@Sollmann2024 reached the conclusion from simulations that temporal variation in the baseline detection probability $g_0$ may safely be ignored when fitting SECR models. Density estimates from null and temporal models are usually the same or nearly so. 
 
 Further [simulations] confirm the lack of bias in $\hat D$, but show that temporal variation in $\sigma$ causes significant bias in estimates of both $\lambda_0$ and $\sigma$ under the null model (@fig-Mtfigure).
 
@@ -502,6 +506,10 @@ addRB(x, estD[6:10,], type='o', pch=21, bg = yob5[3])
 legend(1.33, -0.3, legend = leg, pch = c(21,21,24), pt.bg = c(yob5[3],'white','white'), cex = 0.9, pt.cex=c(1.1,1.1,1))
 mtext(side=3, line=0.5, 'Trap-specific behavioural response (bk)', cex = 0.9)
 ```
+
+::: {.callout-note}
+Animals may encounter a detector without being detected. For example, a camera flash may be triggered when an animal is out of frame, or a trap door may fall without a clean capture. If such events cause avoidance then the behavioural response leaves no trace in the histories of detected animals and cannot be fully modelled. We would nevertheless expect some evidence for the aversive effect within detected histories. 
+:::
 
 ### 4c. Individual heterogeneity {#sec-individualheterogeneity .unnumbered}
 
@@ -691,13 +699,13 @@ Particular detection parameters may be estimated poorly even when density estima
 &nbsp;&nbsp;&nbsp;[5a. Individuals interact](#sec-independentindividuals)      |![*](figures/yob51.png)| | @Efford2023 |
 &nbsp;&nbsp;&nbsp;[5b. Serial dependence](#sec-serialindependence)             |![.](figures/yob51.png) | ||
 
-: Robustness of SECR models to breaches of assumptions. {#tbl-robustness tbl-colwidths="[30,5,42,23]" .sm}
+: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled. {#tbl-robustness tbl-colwidths="[30,5,42,23]" .sm}
 
 |||||||||
 |--|--|--|--|--|--|--|--|--|
-| **Legend** Split colours indicate that the effect is generally weak or ignorable, but in some circumstances it is damaging if not modelled. |![.](figures/yob51.png) | ignorable | ![](figures/yob52.png) | minor | ![.](figures/yob53.png) | major |![.](figures/yob54.png) | severe |
+| **Legend** |![.](figures/yob51.png) | ignorable | ![](figures/yob52.png) | minor | ![.](figures/yob53.png) | major |![.](figures/yob54.png) | severe |
 
-: {.borderless tbl-colwidths="[40, 5,10,5,10,5,10,5,10]" .sm}
+: {.borderless tbl-colwidths="[10, 5,10, 5,10, 5,10, 5,10]" .sm}
 
 :::
 
@@ -707,16 +715,16 @@ Particular detection parameters may be estimated poorly even when density estima
 | Breach of assumption | | Effect | Mitigating models |
 |:-----------------------|:-|:-----------------|:--------------------|
 1. Closure |||
-&nbsp;&nbsp;&nbsp;[1a. Births and deaths](#sec-popnclosed)     |![*](figures/yob52.png)| RB($\hat D$) proportional turnover| Open population |
-&nbsp;&nbsp;&nbsp;[1b. Dispersal](#sec-popnclosed)             |![.](figures/yob51.png)| | Open population |
+&nbsp;&nbsp;&nbsp;[1a. Births and deaths](#sec-popnclosed)     |![*](figures/yob52.png)| RB($\hat D$) proportional turnover| open population |
+&nbsp;&nbsp;&nbsp;[1b. Dispersal](#sec-popnclosed)             |![.](figures/yob51.png)| | open population |
 |||||
 2. Identification |||
-&nbsp;&nbsp;&nbsp;[2a. Inadequate marks](#sec-shadow)          |![**](figures/yob54.png)| | @Augustine2020 |
+&nbsp;&nbsp;&nbsp;[2a. Inadequate marks](#sec-shadow)          |![**](figures/yob54.png)| -ve RB($\hat D$) when high probability of identity | @Augustine2020 |
 &nbsp;&nbsp;&nbsp;[2b. Marks corrupted](#sec-ghost)            |![*](figures/yob52.png)|  | |
 |||||
 3. Home range HR |||
 &nbsp;&nbsp;&nbsp;[3a. AC not independent](#sec-ACindependent) |![.](figures/yob51.png)||
-&nbsp;&nbsp;&nbsp;[3b. HR non-circular](#sec-hrcircular)       |![*](figures/yob5s14.png)| severe RB($\hat D$) when HR align with detectors| @Murphy2025 |
+&nbsp;&nbsp;&nbsp;[3b. HR non-circular](#sec-hrcircular)       |![*](figures/yob5s14.png)| severe RB($\hat D$) when HR align with detectors| anisotropic model |
 &nbsp;&nbsp;&nbsp;[3c. Location autocorrelated](#sec-independentwithinhr)      |![.](figures/yob51.png)||
 &nbsp;&nbsp;&nbsp;[3d. HR non-stationary](#sec-hrstationary)   |![.](figures/yob51.png)|||
 |||||
@@ -727,20 +735,18 @@ Particular detection parameters may be estimated poorly even when density estima
 &nbsp;&nbsp;&nbsp;[4d. Detector heterogeneity](#sec-homogeneityofdetectors)    |![*](figures/yob5s13.png)| | covariate, GRF |
 |||||
 5. Independence ||
-&nbsp;&nbsp;&nbsp;[5a. Individuals interact](#sec-independentindividuals)      |![*](figures/yob51.png)| | **ipsecr** |
+&nbsp;&nbsp;&nbsp;[5a. Individuals interact](#sec-independentindividuals)      |![*](figures/yob51.png)| | @Efford2023 |
 &nbsp;&nbsp;&nbsp;[5b. Serial dependence](#sec-serialindependence)             |![.](figures/yob51.png) | ||
 
-: Robustness of SECR models to breaches of assumptions. {#tbl-robustness tbl-colwidths="[35,5,37,23]" .sm}
+: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled. {#tbl-robustness tbl-colwidths="[35,5,37,23]" .sm}
 
 |||||||||
 |--|--|--|--|--|--|--|--|--|
 | **Legend** |![.](figures/yob51.png) | ignorable | ![](figures/yob52.png) | minor | ![.](figures/yob53.png) | major |![.](figures/yob54.png) | severe |
 
-: {.borderless tbl-colwidths="[20, 5,10,5,10,5,10,5,10]" .sm}  
-Split colours indicate that the effect is generally weak or ignorable, but in some circumstances it is damaging if not modelled.
+: {.borderless tbl-colwidths="[20, 5,15, 5,15, 5,15, 5,15]" .sm}  
 
 :::
-
 
 <!-- ## Multiple observation processes -->
 

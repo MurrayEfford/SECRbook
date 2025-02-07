@@ -445,15 +445,37 @@ window.Quarto = {
 </li>
 </ul>
 <p></p>
-<p>The SECR probability models of <a href="03-theory.html" class="quarto-xref"><span>Chapter 3</span></a> that underlie the methods in this book incorporate certain assumptions. The validity and reliability of the methods therefore depends to an extent on how well the field data meet the assumptions. We list these before assessing their impact in practice - the topic of <a href="#robustness">robustness</a>.</p>
-<ol type="1">
-<li>The population is closed (no animals die, emigrate or recruit during sampling)</li>
-<li>Individuals are identified without error</li>
-<li>The probability of detecting an animal at a particular detector declines radially from a fixed point, its activity centre AC</li>
-<li>The probability of detection is constant across individuals, detectors and times, conditional on the AC.</li>
-<li>Detections of different individuals are independent, as are sequential detections of a single individual.</li>
-</ol>
-<p>Restrictive assumptions often may be relaxed under specific extensions to the SECR model, including the various ‘submodels’ of <a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a>. We omit one further assumption: that the probability of detection declines to zero for AC at the edge of the habitat mask unless it is naturally bounded. This is addressed in the analysis by correct choice of <a href="./10-detection-model.html#sec-detectfn">detection function</a> and buffer or mask (<a href="12-habitat.html" class="quarto-xref"><span>Chapter 12</span></a>).</p>
+<p>The SECR probability models of <a href="03-theory.html" class="quarto-xref"><span>Chapter 3</span></a> that underlie the methods in this book incorporate certain assumptions. The validity and reliability of the methods therefore depend to an extent on how well the field data meet the assumptions. We list these before assessing their impact in practice - the topic of <a href="#robustness">robustness</a>.</p>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 83%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Assumption 1.</td>
+<td style="text-align: left;">The population is closed (no animals die, emigrate or recruit during sampling).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Assumption 2.</td>
+<td style="text-align: left;">Individuals are identified without error.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Assumption 3.</td>
+<td style="text-align: left;">The probability of detecting an animal at a particular detector declines radially from a fixed point, its activity centre (AC).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Assumption 4.</td>
+<td style="text-align: left;">The probability of detection is constant across individuals, detectors and times, conditional on the AC.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Assumption 5.</td>
+<td style="text-align: left;">Detections of different individuals are independent, as are sequential detections of a single individual.</td>
+</tr>
+</tbody>
+</table>
+<p>We omit one further assumption: that the probability of detection declines to zero for AC at the edge of the habitat mask unless it is naturally bounded. This is addressed in the analysis by correct choice of <a href="./10-detection-model.html#sec-detectfn">detection function</a> and buffer or mask (<a href="12-habitat.html" class="quarto-xref"><span>Chapter 12</span></a>).</p>
+<p>Restrictive assumptions often may be relaxed under specific extensions to the SECR model, including the various ‘submodels’ of <a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a>.</p>
 <section id="sec-robustness" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="sec-robustness">
 <span class="header-section-number">6.1</span> Robustness</h2>
 <p></p>
@@ -471,7 +493,7 @@ window.Quarto = {
 <p>Our simulations use a base scenario of sampling with a square grid of 64 binary proximity detectors operated for 10 occasions; detector spacing is <span class="math inline">2\sigma</span> for a hazard half-normal detection function with <span class="math inline">\lambda_0 = 0.1</span>. A population with density <span class="math inline">0.5\sigma^{-2}</span> is distributed uniformly at random in a region extending <span class="math inline">4\sigma</span> beyond the detectors. We report relative bias of density estimates and detection parameters under a null model – one with uniform density and no additional effects on detection – except where stated. The range |RB| &lt; 10% is shaded on the graphs, and bars indicate 95% confidence limits, although these are often obscured by the plotted points. Off-scale values are flagged with an asterisk (*).</p>
 </section><section id="sec-popnclosed" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="sec-popnclosed">Assumption 1: Population closed</h2>
 <p></p>
-<p>Births, deaths and dispersal result in population turnover. Over an extended period of turnover, more animals may be observed than were present at any instant, and density estimates will be biased upwards. Studies using automatic cameras often accumulate data slowly over many days, and study duration has triggered much angst e.g., <span class="citation" data-cites="Harihar2017">Harihar et al. (<a href="A99-references.html#ref-Harihar2017" role="doc-biblioref">2017</a>)</span>. How much does a little turnover matter? Conversely, How long can the sampling period be? Results for non-spatial models <span class="citation" data-cites="Kendall1999">(<a href="A99-references.html#ref-Kendall1999" role="doc-biblioref">Kendall, 1999</a>)</span> cannot be transferred. We distinguish turnover due to movement of AC from <em>in situ</em> births and deaths, and consider it separately under <a href="#hrstationary">Assumption 3d</a>.</p>
+<p>Births, deaths and dispersal result in population turnover. Over an extended period of turnover, more animals may be observed than were present at any instant, and density estimates will be biased upwards. Studies using automatic cameras often accumulate data slowly over many days, and study duration has triggered much angst <span class="citation" data-cites="Harihar2017">(e.g., <a href="A99-references.html#ref-Harihar2017" role="doc-biblioref">Harihar et al., 2017</a>)</span>. How much does a little turnover matter? Conversely, How long can the sampling period be? Results for non-spatial models <span class="citation" data-cites="Kendall1999">(<a href="A99-references.html#ref-Kendall1999" role="doc-biblioref">Kendall, 1999</a>)</span> cannot be transferred. We distinguish turnover due to movement of AC from <em>in situ</em> births and deaths, and consider it separately under <a href="#hrstationary">Assumption 3d</a>.</p>
 <p><span class="citation" data-cites="Dupont2019">Dupont et al. (<a href="A99-references.html#ref-Dupont2019" role="doc-biblioref">2019</a>)</span> investigated the effect of increasing study duration on the precision and bias of population size estimates. Their results are complicated by an artifact that caused their Bayesian estimator to be positively biased for short durations <span class="citation" data-cites="Dupont2019">(<a href="A99-references.html#ref-Dupont2019" role="doc-biblioref">Dupont et al., 2019, p. 669</a>)</span>.</p>
 <!-- Terrible! Unclear net population change during sampling. Use initial population as reference for RB. -->
 <p>Additional simulations are shown in <a href="#fig-CLOfigure" class="quarto-xref">Fig.&nbsp;<span>6.1</span></a>. Turnover in a constant population resulted in positive bias equal to about 70% of the mortality over the duration of the sampling. Thus 50% annual mortality (~16% over 3 months) resulted in about +11% relative bias in a 3-month study, and coverage of nominal 95% confidence intervals dropped to about 82%. The new results are broadly consistent with those from the more complex scenarios of <span class="citation" data-cites="Dupont2019">Dupont et al. (<a href="A99-references.html#ref-Dupont2019" role="doc-biblioref">2019</a>)</span> for ‘slow’ and ‘intermediate’ life histories.</p>
@@ -492,8 +514,8 @@ Figure&nbsp;6.1: Simulated effect of study duration on relative bias of density 
 </section></section><section id="sec-noIDerror" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="sec-noIDerror">Assumption 2: Identification without error</h2>
 <p></p>
 <p>We can generally assume accurate identification on recapture of animals trapped and marked by conventional methods such as numbered leg bands or ear tags. However, identification may be unreliable with modern methods for passive sampling using natural marks (DNA from hair or faecal samples, and images from motion-sensitive cameras). This is a major limitation.</p>
-<p>In genetic sampling there are two possible reasons for mis-identification: there may be too little variation at the chosen <!-- microsatellite or SNP  --> loci to distinguish all individuals in the sampled population, and genotyping is subject to error. <span class="citation" data-cites="Mills2000">Mills et al. (<a href="A99-references.html#ref-Mills2000" role="doc-biblioref">2000</a>)</span>, <span class="citation" data-cites="Lukacs2005">Lukacs &amp; Burnham (<a href="A99-references.html#ref-Lukacs2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="Waits2005">Waits &amp; Paetkau (<a href="A99-references.html#ref-Waits2005" role="doc-biblioref">2005</a>)</span>, and <span class="citation" data-cites="Lampa2013">Lampa et al. (<a href="A99-references.html#ref-Lampa2013" role="doc-biblioref">2013</a>)</span> reviewed the early literature, and citations of those reviews are a good entry point to the voluminous recent literature. <span class="citation" data-cites="Sethi2014">Sethi et al. (<a href="A99-references.html#ref-Sethi2014" role="doc-biblioref">2014</a>)</span> provide technical advice. <span class="citation" data-cites="Augustine2020">Augustine et al. (<a href="A99-references.html#ref-Augustine2020" role="doc-biblioref">2020</a>)</span> provide a useful summary and a model framework that encompasses the various errors. <span class="citation" data-cites="Kodi2024">Kodi et al. (<a href="A99-references.html#ref-Kodi2024" role="doc-biblioref">2024</a>)</span> is a recent SECR study.</p>
-<p>Natural marks such as coat patterns are prone to identification problems that parallel those from genotyping: individuals may not be distinguishable, leading to shadow effects, or some may be mis-recorded, leading to spurious ghost individuals. The robustness of estimates will depend on the likely magnitude of each effect. We address the bias for varying frequencies of shadow and ghost effects below, with particular reference to genotyping.</p>
+<p>In genetic sampling there are two possible reasons for mis-identification: (i) there is too little variation at the chosen loci to distinguish all individuals in the sampled population, and (ii) genotyping is subject to error. <span class="citation" data-cites="Mills2000">Mills et al. (<a href="A99-references.html#ref-Mills2000" role="doc-biblioref">2000</a>)</span>, <span class="citation" data-cites="Lukacs2005">Lukacs &amp; Burnham (<a href="A99-references.html#ref-Lukacs2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="Waits2005">Waits &amp; Paetkau (<a href="A99-references.html#ref-Waits2005" role="doc-biblioref">2005</a>)</span>, and <span class="citation" data-cites="Lampa2013">Lampa et al. (<a href="A99-references.html#ref-Lampa2013" role="doc-biblioref">2013</a>)</span> reviewed the early literature, and citations of those reviews are a good entry point to the voluminous recent literature. <span class="citation" data-cites="Sethi2014">Sethi et al. (<a href="A99-references.html#ref-Sethi2014" role="doc-biblioref">2014</a>)</span> provide technical advice. <span class="citation" data-cites="Augustine2020">Augustine et al. (<a href="A99-references.html#ref-Augustine2020" role="doc-biblioref">2020</a>)</span> provide a useful summary and a model framework that encompasses the various errors. <span class="citation" data-cites="Kodi2024">Kodi et al. (<a href="A99-references.html#ref-Kodi2024" role="doc-biblioref">2024</a>)</span> is a recent SECR study.</p>
+<p>Natural marks such as coat patterns are prone to identification problems that parallel those from genotyping: individuals may not be distinguishable or some may be mis-recorded, leading to spurious ‘ghost’ individuals. The robustness of estimates will depend on the likely magnitude of each effect. We address the bias for varying frequencies of each effect below, with particular reference to genotyping.</p>
 <p>A single camera may photograph only the left or right flank of a passing animal. Owing to the asymmetry of patterns, identity cannot be inferred conclusively from a single photograph. This identification problem can be addressed in the field by using paired cameras, so that both flanks are recorded <span class="citation" data-cites="Karanth1998">(<a href="A99-references.html#ref-Karanth1998" role="doc-biblioref">Karanth &amp; Nichols, 1998</a>)</span>. There may still be a minority of single-sided photographs, and probabilistic models have been suggested to incorporate these <span class="citation" data-cites="Augustine2018">(<a href="A99-references.html#ref-Augustine2018" role="doc-biblioref">Augustine et al., 2018</a>)</span>.</p>
 <section id="sec-shadow" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-shadow">Assumption 2a. Natural marks sufficiently diverse</h3>
 <p>The ability to distinguish individuals is measured by the probability of identity (PI). This is the probability that two individuals drawn at random from the population will appear the same, i.e.&nbsp;have the same genotype at the loci examined. Identity of genotypes was considered by <span class="citation" data-cites="Mills2000">Mills et al. (<a href="A99-references.html#ref-Mills2000" role="doc-biblioref">2000</a>)</span> to cause a “shadow effect”, as the existence of some individuals is concealed. The problem for SECR is even greater than in non-spatial capture–recapture. A group of two or more indistinguishable individuals becomes a ‘super individual’ whose detections spread over a larger area than each occupies individually.</p>
@@ -562,7 +584,7 @@ Figure&nbsp;6.5: Relative bias of parameter estimates from null model when genot
 <p>The spatial component of spatially explicit capture–recapture rests on quite specific spatial models for the population (a 2-D distribution of activity centres AC) and for detection (a declining function of distance from the AC). These follow from a biological model in which detection hazard is proportional to each animal’s utilisation distribution i.e., its home range conceived as a stationary 2-dimensional probability density function <span class="citation" data-cites="Winkle1975">(<a href="A99-references.html#ref-Winkle1975" role="doc-biblioref">van Winkle, 1975</a>)</span>.</p>
 <section id="sec-ACindependent" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-ACindependent">Assumption 3a: AC locations independent</h3>
 <p></p>
-<p>The SECR model of <span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="A99-references.html#ref-be08" role="doc-biblioref">2008</a>)</span> treats activity centres as distributed independently according to an inhomogeneous Poisson point process. This allows local density to vary according to habitat or other persistent effects. It does not allow for the spacing behaviour of the animals themselves, which can lead either to contagion or repulsion of AC. Several authors have ventured into this area <span class="citation" data-cites="Russell2012 Reich2014 LopezBao2018 Bischof2020 McLaughlin2020 Efford2024">(<a href="A99-references.html#ref-Bischof2020" role="doc-biblioref">Bischof et al., 2020</a>; <a href="A99-references.html#ref-Efford2024" role="doc-biblioref">Efford &amp; Fletcher, 2024</a>; <a href="A99-references.html#ref-LopezBao2018" role="doc-biblioref">López-Bao et al., 2018</a>; <a href="A99-references.html#ref-McLaughlin2020" role="doc-biblioref">McLaughlin &amp; Bar, 2020</a>; <a href="A99-references.html#ref-Reich2014" role="doc-biblioref">Reich &amp; Gardner, 2014</a>; <a href="A99-references.html#ref-Russell2012" role="doc-biblioref">Russell et al., 2012</a>)</span>. The general conclusion is that point estimates of density from SECR are robust to clustering of AC due to social behaviour, but the implied overdispersion leads to confidence limits that are too narrow. Non-independence of detection is a distinct issue (<a href="#independentindividuals">Assumption 4</a>).</p>
+<p>The SECR model of <span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="A99-references.html#ref-be08" role="doc-biblioref">2008</a>)</span> treats activity centres as distributed independently according to an inhomogeneous Poisson point process. This allows local density to vary according to habitat or other persistent effects. It does not allow for the spacing behaviour of the animals themselves, which can lead to either contagion or repulsion of AC. Several authors have ventured into this area <span class="citation" data-cites="Russell2012 Reich2014 LopezBao2018 Bischof2020 McLaughlin2020 Efford2024">(<a href="A99-references.html#ref-Bischof2020" role="doc-biblioref">Bischof et al., 2020</a>; <a href="A99-references.html#ref-Efford2024" role="doc-biblioref">Efford &amp; Fletcher, 2024</a>; <a href="A99-references.html#ref-LopezBao2018" role="doc-biblioref">López-Bao et al., 2018</a>; <a href="A99-references.html#ref-McLaughlin2020" role="doc-biblioref">McLaughlin &amp; Bar, 2020</a>; <a href="A99-references.html#ref-Reich2014" role="doc-biblioref">Reich &amp; Gardner, 2014</a>; <a href="A99-references.html#ref-Russell2012" role="doc-biblioref">Russell et al., 2012</a>)</span>. The general conclusion is that point estimates of density from SECR are robust to clustering of AC due to social behaviour, but the implied overdispersion leads to confidence limits that are too narrow. Non-independence of detection is a distinct issue (<a href="#independentindividuals">Assumption 4</a>).</p>
 </section><section id="sec-hrcircular" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-hrcircular">Assumption 3b: Home ranges circular</h3>
 <p></p>
 <p>Concerns were expressed by <span class="citation" data-cites="Ivan2013">Ivan et al. (<a href="A99-references.html#ref-Ivan2013" role="doc-biblioref">2013</a>)</span> about the effect of non-circularity of home ranges. Simulations by <span class="citation" data-cites="Efford2019">Efford (<a href="A99-references.html#ref-Efford2019" role="doc-biblioref">2019</a>)</span> generally defused those concerns, with an important caveat: estimates of the spatial scale of detection <span class="math inline">\sigma</span> and density are unreliable when elongated home ranges are sampled with a linear array of detectors. Simulations of randomly oriented elliptical ranges with an aspect ratio of 3:1 resulted in bias on the order of +13% for a linear array <span class="citation" data-cites="Efford2019">(<a href="A99-references.html#ref-Efford2019" role="doc-biblioref">Efford, 2019</a>: Fig. 2)</span>. Bias is extreme <span class="citation" data-cites="Efford2019">(often &gt;50%, <a href="A99-references.html#ref-Efford2019" role="doc-biblioref">Efford, 2019</a>: Table 1)</span> when home ranges are both elongated and have a common alignment to the array (<a href="#fig-alignment" class="quarto-xref">Fig.&nbsp;<span>6.6</span></a> c). Modelling the anisotropy can be beneficial when the alignment is predictable from the landscape <span class="citation" data-cites="Murphy2016 Efford2019 Murphy2025">(<a href="A99-references.html#ref-Efford2019" role="doc-biblioref">Efford, 2019</a>; <a href="A99-references.html#ref-Murphy2016" role="doc-biblioref">Murphy et al., 2016</a>; <a href="A99-references.html#ref-Murphy2025" role="doc-biblioref">Murphy &amp; Luja, 2025</a>)</span> and the array is not exactly linear, but the method is not universally applicable.</p>
@@ -580,12 +602,12 @@ Figure&nbsp;6.6: SECR models typically assume that home ranges are circular (a).
 </div>
 </section><section id="sec-independentwithinhr" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-independentwithinhr">Assumption 3c: Locations independent within home range</h3>
 <p></p>
-<p>It is entirely likely that animals use their home ranges in a nested fashion (i.e., activity during any sub-interval localised in part of the range) or that some AC move during sampling. This may be viewed as a subset of Assumption 6 because if AC are not fixed during sampling then successive locations of an individual will be autocorrelated.</p>
+<p>It is entirely likely that animals use their home ranges in a nested fashion (i.e., activity during any sub-interval localised in part of the range) or that some AC move during sampling. This may be viewed as a subset of Assumption 5 because if AC are not fixed during sampling then successive locations of an individual will be autocorrelated.</p>
 <p><span class="citation" data-cites="Royle2015">Royle et al. (<a href="A99-references.html#ref-Royle2015" role="doc-biblioref">2015</a>)</span> modelled movement patterns they called “transience” (a Gaussian random walk) and “dispersal” (discrete shift of AC). They concluded</p>
 <blockquote class="blockquote">
 <p>… while estimators of density are extremely robust, even to pathological levels of movement (e.g., complete transience), the estimator of the spatial scale parameter of the encounter probability model is confounded with the dispersal/transience scale parameter.</p>
 </blockquote>
-<p>We extend their simulations by considering a model in which the overall home range is stationary but locations within the home range are autocorrelated. The bivariate Ornstein-Uhlenbeck (OU) distribution is a convenient model with these properties <span class="citation" data-cites="Dunn1977 Johnson2008 Hooten2017">(<a href="A99-references.html#ref-Dunn1977" role="doc-biblioref">Dunn &amp; Gipson, 1977</a>; <a href="A99-references.html#ref-Hooten2017" role="doc-biblioref">Hooten et al., 2017</a>; <a href="A99-references.html#ref-Johnson2008" role="doc-biblioref">D. S. Johnson et al., 2008</a>)</span>. The home range as a whole is bivariate normal; we simulate the uncorrelated, circular case with equal variance on both axes. R code and details of the simulations are provided [elsewhere].</p>
+<p>We extend their simulations by considering a model in which the overall home range is stationary but locations within the home range are autocorrelated. The bivariate Ornstein-Uhlenbeck (OU) distribution is a convenient model with these properties <span class="citation" data-cites="Dunn1977 Johnson2008 Hooten2017">(<a href="A99-references.html#ref-Dunn1977" role="doc-biblioref">Dunn &amp; Gipson, 1977</a>; <a href="A99-references.html#ref-Hooten2017" role="doc-biblioref">Hooten et al., 2017</a>; <a href="A99-references.html#ref-Johnson2008" role="doc-biblioref">D. S. Johnson et al., 2008</a>)</span>. The home range as a whole is bivariate normal; we simulate the uncorrelated, circular case with equal variance on both axes. R code and details of the simulations are provided <a href="https://github.com/MurrayEfford/secr-simulations">on GitHub</a>.</p>
 <p><a href="#fig-demoOU1" class="quarto-xref">Fig.&nbsp;<span>6.7</span></a> illustrates OU movement tracks for individuals with increasing autocorrelation parameter <span class="math inline">\tau</span>. Detection is assumed here to happen when an individual is within some small threshold distance <span class="math inline">\epsilon</span> of a detector at the end of a time step. Other detection models are possible.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -619,7 +641,7 @@ Figure&nbsp;6.8: Relative bias RB of null-model density estimates of density <sp
 <p><a href="#fig-OUfigure" class="quarto-xref">Fig.&nbsp;<span>6.8</span></a> confirms the robustness of SECR null-model density estimates to serial correlation of location over a broad range of values (<span class="math inline">0 \le \tau \le 50</span>). Bias is apparent in estimates of the global <span class="math inline">\sigma</span>, as expected from the reduced extent of movements in a given time frame. Note here that autocorrelation induces negative bias in <span class="math inline">\hat \sigma</span>. There is no direct analogue of <span class="math inline">\lambda_0</span> in the OU generating model, so we cannot determine the bias in <span class="math inline">\hat \lambda_0</span>.</p>
 </section><section id="sec-hrstationary" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-hrstationary">Assumption 3d. Home ranges stationary</h3>
 <p></p>
-<p>Robustness of SECR to movement of home ranges (dispersal) was demonstrated by <span class="citation" data-cites="Royle2015">Royle et al. (<a href="A99-references.html#ref-Royle2015" role="doc-biblioref">2015</a>)</span>. <span class="citation" data-cites="Harihar2017">(<a href="A99-references.html#ref-Harihar2017" role="doc-biblioref">Harihar et al., 2017</a>)</span> expressed a further concern that movement over a long sampling duration would breach Assumption 1 (closure).</p>
+<p>Robustness of SECR to movement of home ranges (dispersal) was demonstrated by <span class="citation" data-cites="Royle2015">Royle et al. (<a href="A99-references.html#ref-Royle2015" role="doc-biblioref">2015</a>)</span>. <span class="citation" data-cites="Harihar2017">Harihar et al. (<a href="A99-references.html#ref-Harihar2017" role="doc-biblioref">2017</a>)</span> expressed a further concern that movement over a long sampling duration would breach Assumption 1 (closure).</p>
 <p>We simulated detections over 100 ‘days’ during which each AC underwent a random walk governed by a Gaussian kernel with scale <span class="math inline">\sigma_m</span>. Details are given [elsewhere].</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -639,7 +661,7 @@ Figure&nbsp;6.9: Relative bias of density estimates from studies with varying be
 <p>For SECR we have at least two parameters that control detection (<span class="math inline">g_0</span> or <span class="math inline">\lambda_0</span>, and <span class="math inline">\sigma</span>).</p>
 <p>Detection parameters may also be considered a function of AC location, but for (relative) simplicity we stick to t, b, h, and d.</p>
 <section id="sec-temporalvariation" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-temporalvariation">4a. Temporal variation</h3>
-<p><span class="citation" data-cites="Sollmann2024">Sollmann (<a href="A99-references.html#ref-Sollmann2024" role="doc-biblioref">2024</a>)</span> reached the conclusion from simulations that temporal variation in the baseline detection probability <span class="math inline">g_0</span> may safely be ignored when fitting SECR models. Comparison of null and temporal models seldom results in different estimates of density.</p>
+<p><span class="citation" data-cites="Sollmann2024">Sollmann (<a href="A99-references.html#ref-Sollmann2024" role="doc-biblioref">2024</a>)</span> reached the conclusion from simulations that temporal variation in the baseline detection probability <span class="math inline">g_0</span> may safely be ignored when fitting SECR models. Density estimates from null and temporal models are usually the same or nearly so.</p>
 <p>Further <a href="https://github.com/MurrayEfford/secr-simulations">simulations</a> confirm the lack of bias in <span class="math inline">\hat D</span>, but show that temporal variation in <span class="math inline">\sigma</span> causes significant bias in estimates of both <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span> under the null model (<a href="#fig-Mtfigure" class="quarto-xref">Fig.&nbsp;<span>6.10</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -668,6 +690,19 @@ Figure&nbsp;6.10: Relative bias of parameter estimates from null model given tem
 Figure&nbsp;6.11: Relative bias of parameter estimates from null model given behavioural variation in lambda0. Relative bias of density was off-scale (+1.41) for recapture factor 0.25 with a general behavioural response.
 </figcaption></figure>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Animals may encounter a detector without being detected. For example, a camera flash may be triggered when an animal is out of frame, or a trap door may fall without a clean capture. If such events cause avoidance then the behavioural response leaves no trace in the histories of detected animals and cannot be fully modelled. We would nevertheless expect some evidence for the aversive effect within detected histories.</p>
 </div>
 </div>
 </section><section id="sec-individualheterogeneity" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="sec-individualheterogeneity">4c. Individual heterogeneity</h3>
@@ -765,7 +800,7 @@ Figure&nbsp;6.14: Relative bias of parameter estimates from null model when <spa
 <p>Particular detection parameters may be estimated poorly even when density estimates are robust. A common example arises when a multi-catch model is used for single-catch data: the estimated intercept of the detection function is strongly biased while density estimates are generally unbiased.</p>
 <div id="tbl-robustness" class="sm quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-robustness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.
+Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.
 </figcaption><div aria-describedby="tbl-robustness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-sm small table">
 <colgroup>
@@ -916,7 +951,7 @@ Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.
 </div>
 <table class="table-borderless table-sm small table">
 <colgroup>
-<col style="width: 40%">
+<col style="width: 10%">
 <col style="width: 5%">
 <col style="width: 10%">
 <col style="width: 5%">
@@ -927,8 +962,7 @@ Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.
 <col style="width: 10%">
 </colgroup>
 <tbody><tr class="odd">
-<td>
-<strong>Legend</strong> Split colours indicate that the effect is generally weak or ignorable, but in some circumstances it is damaging if not modelled.</td>
+<td><strong>Legend</strong></td>
 <td><img src="figures/yob51.png" class="img-fluid" alt="."></td>
 <td>ignorable</td>
 <td><img src="figures/yob52.png" class="img-fluid"></td>
@@ -956,20 +990,20 @@ Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.
 <span class="glightbox-desc lightbox-desc-12">Figure&nbsp;6.12: Relative bias of parameter estimates from null model given individual variation in <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma^2</span>.</span>
 <span class="glightbox-desc lightbox-desc-13">Figure&nbsp;6.13: Variation in detector efficiency induces individual heterogeneity in overall detection probability <span class="math inline">p_\cdot(\vec x)</span>. AC 1–3 have similar exposure to detectors but experience respectively high, low and medium detection probability because of the neighbourhoods in which they are located.</span>
 <span class="glightbox-desc lightbox-desc-14">Figure&nbsp;6.14: Relative bias of parameter estimates from null model when <span class="math inline">\lambda_0</span> varies among detectors according to (a) unnormalised model of <span class="citation" data-cites="Royle2013">Royle et al. (<a href="A99-references.html#ref-Royle2013" role="doc-biblioref">2013</a>)</span>, and (b) normalised model of <span class="citation" data-cites="e14">Efford (<a href="A99-references.html#ref-e14" role="doc-biblioref">2014</a>)</span>. The magnitude of variation depends on the coefficient <span class="math inline">\alpha_2</span> (<a href="#eq-dethet" class="quarto-xref">Eq.&nbsp;<span>6.1</span></a>).</span>
-<span class="glightbox-desc lightbox-desc-15">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
-<span class="glightbox-desc lightbox-desc-16">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
-<span class="glightbox-desc lightbox-desc-17">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
-<span class="glightbox-desc lightbox-desc-18">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
-<span class="glightbox-desc lightbox-desc-19">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
-<span class="glightbox-desc lightbox-desc-20">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
-<span class="glightbox-desc lightbox-desc-21">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
-<span class="glightbox-desc lightbox-desc-22">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
-<span class="glightbox-desc lightbox-desc-23">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
-<span class="glightbox-desc lightbox-desc-24">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
-<span class="glightbox-desc lightbox-desc-25">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
-<span class="glightbox-desc lightbox-desc-26">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
-<span class="glightbox-desc lightbox-desc-27">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
-<span class="glightbox-desc lightbox-desc-28">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions.</span>
+<span class="glightbox-desc lightbox-desc-15">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
+<span class="glightbox-desc lightbox-desc-16">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
+<span class="glightbox-desc lightbox-desc-17">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
+<span class="glightbox-desc lightbox-desc-18">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
+<span class="glightbox-desc lightbox-desc-19">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
+<span class="glightbox-desc lightbox-desc-20">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
+<span class="glightbox-desc lightbox-desc-21">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
+<span class="glightbox-desc lightbox-desc-22">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
+<span class="glightbox-desc lightbox-desc-23">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
+<span class="glightbox-desc lightbox-desc-24">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
+<span class="glightbox-desc lightbox-desc-25">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
+<span class="glightbox-desc lightbox-desc-26">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
+<span class="glightbox-desc lightbox-desc-27">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
+<span class="glightbox-desc lightbox-desc-28">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-Augustine2018" class="csl-entry" role="listitem">
@@ -1528,7 +1562,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"selector":".lightbox","openEffect":"zoom","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
