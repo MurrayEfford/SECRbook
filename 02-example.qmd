@@ -1,17 +1,7 @@
 # Simple example {#sec-example}
 \index{Snowshoe hare example}
 
-In this chapter we use the R package **secr** to fit an SECR model to the Alaskan snowshoe hare data of Burnham and Cushwa [@obwa78][^footnote3a].
-
-[^footnote3a]: This is a shortened version of the tutorial in [secr-tutorial.pdf].
-
-```{r}
-#| eval: false
-#| echo: false
-#| out-width: 40%
-#| fig-show: hold
-knitr::include_graphics(c('figures/snowshoehare.png','figures/otisetal.png'))
-```
+In this chapter we use the R package **secr** to fit an SECR model to the Alaskan snowshoe hare data of Burnham and Cushwa [@obwa78].
 
 ::: {layout-ncol=2}
 ![](figures/snowshoehare.png)
@@ -90,14 +80,6 @@ on.exit(setwd(opar))
 #| message: true
 library(secr)
 hareCH6 <- read.capthist("hareCH6capt.txt", "hareCH6trap.txt", detector = "single")
-```
-
-```{r}
-#| label: cleanup
-#| echo: false
-#| eval: false
-#| results: hide
-file.remove(fnames)
 ```
 
 The capthist object `hareCH6` now contains almost all the information needed to fit a model. 
