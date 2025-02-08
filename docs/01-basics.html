@@ -630,7 +630,7 @@ Table&nbsp;1.2: Link functions
 </div>
 <p>Working on a link scale is especially useful when the parameter is itself a function of covariates. For example, <span class="math inline">\log (D) = \beta_0 + \beta_1 c \;</span> for a log-linear function of a spatially varying covariate <span class="math inline">c</span>. The coefficients <span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span> are estimated in place of <span class="math inline">D</span> per se.</p>
 <p>We sometimes follow MARK <span class="citation" data-cites="cw">(e.g., <a href="A99-references.html#ref-cw" role="doc-biblioref">Cooch &amp; White, 2023</a>)</span> and use ‘beta parameters’ for coefficients on the link scale and ‘real parameters’ for the core parameters (<span class="math inline">D, g_0, \lambda_0, \sigma</span>) on the natural scale.</p>
-</section><section id="estimation" class="level3" data-number="1.6.4"><h3 data-number="1.6.4" class="anchored" data-anchor-id="estimation">
+</section><section id="sec-estimation" class="level3" data-number="1.6.4"><h3 data-number="1.6.4" class="anchored" data-anchor-id="sec-estimation">
 <span class="header-section-number">1.6.4</span> Estimation</h3>
 <p></p>
 <p>There are several ways to estimate the parameters of the SECR probability model, all of them computer-intensive. We focus on numerical maximization of the log likelihood (<span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="A99-references.html#ref-be08" role="doc-biblioref">2008</a>)</span> and <a href="03-theory.html" class="quarto-xref"><span>Chapter 3</span></a>). The likelihood integrates over the unknown locations of the animals’ activity centres. This is achieved in practice by summing over cells in a discretized map of the <a href="./12-habitat.html">habitat</a>.</p>
@@ -1138,7 +1138,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","loop":false,"selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

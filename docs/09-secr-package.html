@@ -451,8 +451,8 @@ window.Quarto = {
   <li><a href="#detector-types" id="toc-detector-types" class="nav-link" data-scroll-target="#detector-types"><span class="header-section-number">9.4</span> Detector types</a></li>
   <li><a href="#input" id="toc-input" class="nav-link" data-scroll-target="#input"><span class="header-section-number">9.5</span> Input</a></li>
   <li><a href="#output" id="toc-output" class="nav-link" data-scroll-target="#output"><span class="header-section-number">9.6</span> Output</a></li>
-  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"><span class="header-section-number">9.7</span> Documentation</a></li>
-  <li><a href="#using-secr.fit" id="toc-using-secr.fit" class="nav-link" data-scroll-target="#using-secr.fit"><span class="header-section-number">9.8</span> Using <code>secr.fit</code> </a></li>
+  <li><a href="#documentation-and-support" id="toc-documentation-and-support" class="nav-link" data-scroll-target="#documentation-and-support"><span class="header-section-number">9.7</span> Documentation and support</a></li>
+  <li><a href="#using-secr.fit" id="toc-using-secr.fit" class="nav-link" data-scroll-target="#using-secr.fit"><span class="header-section-number">9.8</span> Using <code>secr.fit</code></a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -472,18 +472,30 @@ window.Quarto = {
 
 
 </header><p></p>
-<p>This chapter provides an overview of <strong>secr</strong> <span class="citation" data-cites="R-secr">(<a href="A99-references.html#ref-R-secr" role="doc-biblioref">Efford, 2025</a>)</span>. Following chapters expand on key topics.</p>
+<p>This chapter provides an overview of <strong>secr</strong> <span class="citation" data-cites="R-secr">(<a href="A99-references.html#ref-R-secr" role="doc-biblioref">Efford, 2025a</a>)</span>. Following chapters expand on key topics.</p>
 <p>To reproduce examples in the book you will need a recent version of <strong>secr</strong> (5.2.0 or later). Text in <code>this font</code> refers to R objects that are documented in online help for the <strong>secr</strong> package, or in base R. R code often generates warnings. Some warnings are merely reminders (e.g., that a default value is used for a key argument). For clarity, we do not display routine warnings for examples in the text.</p>
 <p>In the examples we often use the function <a href="https://www.otago.ac.nz/density/html/list.secr.fit.html"><code>list.secr.fit</code></a> to fit several competing models while holding constant other arguments of <code>secr.fit</code>. The result is a single ‘secrlist’ that may be passed to <code>AIC</code>, <code>predict</code> etc.</p>
 <section id="history" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="history">
 <span class="header-section-number">9.1</span> History</h2>
-<p><strong>secr</strong> supercedes the Windows program DENSITY, an earlier graphical interface to SECR methods <span class="citation" data-cites="edr04 e12">(<a href="A99-references.html#ref-edr04" role="doc-biblioref">Efford et al., 2004</a>; <a href="A99-references.html#ref-e12" role="doc-biblioref">Efford, 2012</a>)</span>. The package was first released in March 2010 and continues to be developed. It implements almost all the methods described by <span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="A99-references.html#ref-be08" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="ebb09">Efford, Borchers, et al. (<a href="A99-references.html#ref-ebb09" role="doc-biblioref">2009</a>)</span>, <span class="citation" data-cites="e11">Efford (<a href="A99-references.html#ref-e11" role="doc-biblioref">2011</a>)</span>, <span class="citation" data-cites="ef13">Efford &amp; Fewster (<a href="A99-references.html#ref-ef13" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="ebm13">Efford et al. (<a href="A99-references.html#ref-ebm13" role="doc-biblioref">2013</a>)</span> and <span class="citation" data-cites="em14">Efford &amp; Mowat (<a href="A99-references.html#ref-em14" role="doc-biblioref">2014</a>)</span>. External C++ code <span class="citation" data-cites="R-Rcpp">(<a href="A99-references.html#ref-R-Rcpp" role="doc-biblioref">Eddelbuettel et al., 2023</a>)</span> is used for computationally intensive operations. Multi-threading on multiple CPUs with RcppParallel <span class="citation" data-cites="R-RcppParallel">(<a href="A99-references.html#ref-R-RcppParallel" role="doc-biblioref">Allaire et al., 2023</a>)</span> gives major speed gains. The package is available from <a href="https://CRAN.R-project.org/package=ipsecr">CRAN</a>; the development version is on <a href="https://github.com/MurrayEfford/secr">GitHub</a>.</p>
+<p><strong>secr</strong> supercedes the Windows program DENSITY, an earlier graphical interface to SECR methods <span class="citation" data-cites="edr04 e12">(<a href="A99-references.html#ref-edr04" role="doc-biblioref">Efford et al., 2004</a>; <a href="A99-references.html#ref-e12" role="doc-biblioref">Efford, 2012</a>)</span>. The package was first released in March 2010 and continues to be developed. It implements almost all the methods described by <span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="A99-references.html#ref-be08" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="ebb09">Efford, Borchers, et al. (<a href="A99-references.html#ref-ebb09" role="doc-biblioref">2009</a>)</span>, <span class="citation" data-cites="e11">Efford (<a href="A99-references.html#ref-e11" role="doc-biblioref">2011</a>)</span>, <span class="citation" data-cites="ef13">Efford &amp; Fewster (<a href="A99-references.html#ref-ef13" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="ebm13">Efford et al. (<a href="A99-references.html#ref-ebm13" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="em14">Efford &amp; Mowat (<a href="A99-references.html#ref-em14" role="doc-biblioref">2014</a>)</span>, <span class="citation" data-cites="edjq16">Efford et al. (<a href="A99-references.html#ref-edjq16" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="eh18">Efford &amp; Hunter (<a href="A99-references.html#ref-eh18" role="doc-biblioref">2018</a>)</span> and <span class="citation" data-cites="Efford2025">Efford (<a href="A99-references.html#ref-Efford2025" role="doc-biblioref">2025b</a>)</span>. External C++ code <span class="citation" data-cites="R-Rcpp">(<a href="A99-references.html#ref-R-Rcpp" role="doc-biblioref">Eddelbuettel et al., 2023</a>)</span> is used for computationally intensive operations. Multi-threading on multiple CPUs with RcppParallel <span class="citation" data-cites="R-RcppParallel">(<a href="A99-references.html#ref-R-RcppParallel" role="doc-biblioref">Allaire et al., 2023</a>)</span> gives major speed gains. The package is available from <a href="https://CRAN.R-project.org/package=ipsecr">CRAN</a>; the development version is on <a href="https://github.com/MurrayEfford/secr">GitHub</a>.</p>
 <p>An interactive graphic user interface to many features of <strong>secr</strong> is provided by the Shiny app ‘secrapp’ available on <a href="https://github.com/MurrayEfford/secrapp">GitHub</a> and, currently, on a server at the <a href="https://www.stats.otago.ac.nz/secrapp/">University of Otago</a>.</p>
 </section><section id="object-classes" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="object-classes">
 <span class="header-section-number">9.2</span> Object classes</h2>
 <p> </p>
-<p><strong>secr</strong> defines a set of R classes<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and methods for data from detector arrays and models fitted to those data. To perform an SECR analysis you construct each of these objects in turn. <a href="#fig-schematic" class="quarto-xref">Fig.&nbsp;<span>9.1</span></a> indicates the relationships among the classes.</p>
-<p><br></p>
+<p>R operates on <em>objects</em> each of which has a <em>class</em>. <strong>secr</strong> defines a set of R classes and methods for spatial capture–recapture data and models fitted to those data. To perform an SECR analysis you construct each of these objects in turn. <a href="#fig-schematic" class="quarto-xref">Fig.&nbsp;<span>9.1</span></a> indicates the relationships among the classes.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Classes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A ‘class’ in R specifies a particular type of data object and the functions (methods) by which it is manipulated (computed, printed, plotted etc). Technically, <strong>secr</strong> uses old-fashioned ‘S3’ classes. See the R documentation <code><a href="https://rdrr.io/r/base/class.html">?class</a></code> for further explanation.</p>
+</div>
+</div>
 <div id="tbl-essentialclasses" class="sm quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-essentialclasses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;9.1: Essential classes in <strong>secr</strong>
@@ -527,7 +539,7 @@ Table&nbsp;9.1: Essential classes in <strong>secr</strong>
 <a href="figures/schematic3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="figures/schematic3.png" class="img-fluid figure-img" style="width:80.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.1: Essentials of the secr package
+Figure&nbsp;9.1: Workflow in <strong>secr</strong>
 </figcaption></figure>
 </div>
 </div>
@@ -535,16 +547,16 @@ Figure&nbsp;9.1: Essentials of the secr package
 <ul>
 <li>Each object class (shaded box) comes with methods to display and manipulate the data it contains (e.g.&nbsp;<code>print</code>, <code>summary</code>, <code>plot</code>, <code>rbind</code>, <code>subset</code>).</li>
 <li>The function <code>read.capthist</code> forms a ‘capthist’ object from input in two files, one the detector layout (saved as attribute ‘traps’) and the other the capture data.</li>
-<li>By default, a habitat mask is generated automatically by <code>secr.fit</code> using a specified buffer around the detectors (traps). The function <code>make.mask</code> gives greater control over this step.</li>
-<li>Any of the objects input to <code>secr.fit</code> (traps, capthist, mask) may include a dataframe of covariates saved as an attribute. Covariate names may be used in model formulae; the <code>covariates</code> method is used to extract or replace covariates. Use <code>addCovariates</code> for covariates from spatial data sources (e.g., shapefile or ‘sf’ object)</li>
+<li>By default, a habitat mask is generated automatically by <code>secr.fit</code> using a specified buffer around the detectors (traps) (dashed arrow). The function <code>make.mask</code> gives greater control over this step.</li>
+<li>Any of the objects input to <code>secr.fit</code> (traps, capthist, mask) may include a dataframe of covariates saved as an attribute. Covariate names may be used in model formulae; the <code>covariates</code> method is used to extract or replace covariates. Use <code>addCovariates</code> for trap or mask covariates from spatial data sources (e.g., shapefile or ‘sf’ object)</li>
 <li>Fitted secr models may be manipulated with the methods shown on the right.</li>
 </ul></section><section id="functions" class="level2" data-number="9.3"><h2 data-number="9.3" class="anchored" data-anchor-id="functions">
 <span class="header-section-number">9.3</span> Functions</h2>
 <p></p>
-<p>For details of how to use <strong>secr</strong> see the help pages and vignettes.</p>
+<p>For details of how to use each <strong>secr</strong> function see the help pages and vignettes.</p>
 <div id="tbl-corefunctions" class="sm quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corefunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;9.2: Core functions of . S3 methods are marked with an asterisk
+Table&nbsp;9.2: Core functions of secr. S3 methods are marked with an asterisk
 </figcaption><div aria-describedby="tbl-corefunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-sm small table">
 <thead><tr class="header">
@@ -621,7 +633,7 @@ Table&nbsp;9.2: Core functions of . S3 methods are marked with an asterisk
 <p>Each ‘traps’ object has a detector type attribute that is a character value.</p>
 <div id="tbl-basicdetectortypes" class="sm quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-basicdetectortypes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;9.3: Basic detector types in . See the appendices for <a href="./A04-polygondetectors.html">area-search</a> and <a href="./A07-telemetry.html">telemetry</a> types.
+Table&nbsp;9.3: Basic detector types in secr. See the appendices for <a href="./A04-polygondetectors.html">area-search</a> and <a href="./A07-telemetry.html">telemetry</a> types.
 </figcaption><div aria-describedby="tbl-basicdetectortypes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-sm small table">
 <colgroup>
@@ -669,35 +681,39 @@ Table&nbsp;9.3: Basic detector types in . See the appendices for <a href="./A04-
 <ol type="1">
 <li>The “count” detector type is generic for integer data; the actual type depends on the <code>secr.fit</code> argument ‘binomN’.</li>
 </ol>
-<!-- Acoustic 'signal strength' detectors produce a binary detection vector supplemented by measurements of signal strength, as from an array of microphones. --><p>There is limited support in for the analysis of locational data from telemetry (‘telemetry’ detector type). Telemetry data are used to augment capture–recapture data (<a href="A07-telemetry.html" class="quarto-xref"><span>Appendix G</span></a>).</p>
+<!-- Acoustic 'signal strength' detectors produce a binary detection vector supplemented by measurements of signal strength, as from an array of microphones. --><p>There is limited support in <strong>secr</strong> for the analysis of locational data from telemetry (‘telemetry’ detector type). Telemetry data are used to augment capture–recapture data (<a href="A07-telemetry.html" class="quarto-xref"><span>Appendix G</span></a>).</p>
 </section><section id="input" class="level2" data-number="9.5"><h2 data-number="9.5" class="anchored" data-anchor-id="input">
 <span class="header-section-number">9.5</span> Input</h2>
-<p>Data input is covered in the data input vignette <a href="https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf">secr-datainput.pdf</a>. One option is to use text files in the formats used by DENSITY; these accommodate most types of data. Two files are required, one of detector (trap) locations and one of the detections (captures) themselves; the function <code>read.capthist</code> reads both files and constructs a capthist object. It is also possible to construct the capthist object in two stages, first making a traps object (with <code>read.traps</code>) and a captures dataframe, and then combining these with <code>make.capthist</code>. This more general route may be needed for unusual datasets.</p>
+<p>Data input is covered in the data input vignette <a href="https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf">secr-datainput.pdf</a>. One option is to use text files in the formats used by DENSITY; these accommodate most types of data. Two files are required, one of detector (trap) coordinates and one of the detections (captures) themselves; the function <code>read.capthist</code> reads both files and constructs a capthist object. It is also possible to construct the capthist object in two stages, first making a traps object (with <code>read.traps</code>) and a captures dataframe, and then combining these with <code>make.capthist</code>. This more general route may be needed for unusual datasets.</p>
 </section><section id="output" class="level2" data-number="9.6"><h2 data-number="9.6" class="anchored" data-anchor-id="output">
 <span class="header-section-number">9.6</span> Output</h2>
-<p>Function <code>secr.fit</code> returns an object of class <code>secr</code>. This is an R list with many components. Assigning the output to a named object saves both the fit and the data for further manipulation. Typing the object name at the R prompt invokes <code>print.secr</code> which formats the key results. These include the dataframe of estimates from the <code>predict</code> method for <code>secr</code> objects. Functions are provided for further computations on <code>secr</code> objects (e.g., AIC model selection, model averaging, profile-likelihood confidence intervals, and likelihood-ratio tests). Several of these are listed in <a href="#tbl-corefunctions" class="quarto-xref">Table&nbsp;<span>9.2</span></a>.</p>
+<p>Function <code>secr.fit</code> returns an object of class <code>secr</code>. This is an R list with many components. Assigning the output to a named object saves both the fit and the data for further manipulation. Typing the object name at the R prompt invokes <code>print.secr</code> which formats the key results. These include the dataframe of estimates from the <code>predict</code> method for <code>secr</code> objects. Functions are provided for further computations on <code>secr</code> objects (e.g., AIC model selection, model averaging, profile-likelihood confidence intervals, and likelihood-ratio tests). Several of these were listed in <a href="#tbl-corefunctions" class="quarto-xref">Table&nbsp;<span>9.2</span></a>.</p>
 <p></p>
 <p>One system of units is used throughout . Distances are in metres and areas are in hectares (ha). The unit of density for 2-dimensional habitat is animals per hectare. 1 ha = 10000 m<sup>2</sup> = 0.01 km<sup>2</sup>. To convert density to animals per km<sup>2</sup>, multiply by 100. Density in linear habitats (see package <a href="https://CRAN.R-project.org/package=secrlinear">secrlinear</a>) is expressed in animals per km.</p>
-</section><section id="documentation" class="level2" data-number="9.7"><h2 data-number="9.7" class="anchored" data-anchor-id="documentation">
-<span class="header-section-number">9.7</span> Documentation</h2>
+</section><section id="documentation-and-support" class="level2" data-number="9.7"><h2 data-number="9.7" class="anchored" data-anchor-id="documentation-and-support">
+<span class="header-section-number">9.7</span> Documentation and support</h2>
 <p></p>
-<p>The primary documentation for is in the help pages that accompany the package. Help for a function is obtained in the usual way by typing a question mark at the R prompt, followed by the function name. Note the ‘Index’ link at the bottom of each help page – you will probably need to scroll down to find it. The index may also be accessed with <code><a href="https://rdrr.io/pkg/secr/man">help(package = secr)</a></code>.</p>
+<p>The primary documentation for <strong>secr</strong> is in the help pages that accompany the package. Help for a function is obtained in the usual way by typing a question mark at the R prompt, followed by the function name. Note the ‘Index’ link at the bottom of each help page – you will probably need to scroll down to find it. The index may also be accessed with <code><a href="https://rdrr.io/pkg/secr/man">help(package = secr)</a></code>. Static and potentially outdated versions of the help pages are available <a href="https://www.otago.ac.nz/density/html/">here</a>.</p>
 <p>The consolidated help pages are in the <a href="https://CRAN.R-project.org/package=secr/secr.pdf">manual</a>. Searching this pdf is a powerful way to locate a function for a particular task.</p>
-<p>Other documentation has traditionally been in the form of pdf vignettes built with <strong>knitr</strong> and available at https://otago.ac.nz/density/SECRinR. That content will be included progressively in this online book.</p>
+<p>Other documentation has traditionally been in the form of pdf vignettes built with <strong>knitr</strong> and available at https://otago.ac.nz/density/SECRinR. That content has been included in this book.</p>
 <p>The <a href="https://github.com/MurrayEfford/secr">GitHub repository</a> holds the development version, and bugs may be reported there by raising an Issue. New versions will be posted on <a href="https://cran.r-project.org/package=secr">CRAN</a> and noted on https://www.otago.ac.nz/density/, but there may be a delay. For information on changes in each version, type at the R prompt:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/news.html">news</a></span> <span class="op">(</span>package <span class="op">=</span> <span class="st">"secr"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Help may be sought in online forums such as <a href="http://www.phidot.org/forum/">phidot</a> and <a href="https://groups.google.com/forum/#!forum/secrgroup">secrgroup</a>.</p>
 </section><section id="using-secr.fit" class="level2" data-number="9.8"><h2 data-number="9.8" class="anchored" data-anchor-id="using-secr.fit">
-<span class="header-section-number">9.8</span> Using <code>secr.fit</code> </h2>
+<span class="header-section-number">9.8</span> Using <code>secr.fit</code>
+</h2>
+<p></p>
 <p>We saw <code>secr.fit</code> in action in <a href="02-example.html" class="quarto-xref"><span>Chapter 2</span></a>. Here we expand on particular arguments.</p>
 <section id="buffer-buffer-width" class="level3" data-number="9.8.1"><h3 data-number="9.8.1" class="anchored" data-anchor-id="buffer-buffer-width">
-<span class="header-section-number">9.8.1</span> <code>buffer</code> – buffer width </h3>
+<span class="header-section-number">9.8.1</span> <code>buffer</code> – buffer width</h3>
+<p></p>
 <p>Specifying the buffer width is an alternative to specifying a habitat mask. The choice of <a href="12-habitat.html#sec-bufferwidth">buffer width</a> is discussed at length in <a href="12-habitat.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
 </section><section id="start-starting-values" class="level3" data-number="9.8.2"><h3 data-number="9.8.2" class="anchored" data-anchor-id="start-starting-values">
-<span class="header-section-number">9.8.2</span> <code>start</code> – starting values </h3>
-<p>Numerical maximization of the likelihood requires a starting value for each coefficient in the model. <code>secr.fit</code> relieves the user of this chore by applying an algorithm that works in most cases. The core of the algorithm is exported in function <code>autoini</code>.</p>
+<span class="header-section-number">9.8.2</span> <code>start</code> – starting values</h3>
+<p></p>
+<p><a href="./01-basics.html#sec-estimation">Numerical maximization</a> of the likelihood requires a starting value for each coefficient in the model. <code>secr.fit</code> relieves the user of this chore by applying an algorithm that works in most cases. The core of the algorithm is exported in function <code>autoini</code>.</p>
 <ol type="1">
 <li>Compute an approximate bivariate normal <span class="math inline">\sigma</span> from the 2-D dispersion of individual locations: <span class="math display">
 \sigma = \sqrt{\frac {\sum\limits _{i=1}^{n} \sum\limits _{j=1}^{n_i} [
@@ -711,24 +727,27 @@ Table&nbsp;9.3: Basic detector types in . See the appendices for <a href="./A04-
 <p>After transformation this provides intercepts on the link scale for the core parameters <span class="math inline">D, g_0</span> and <span class="math inline">\sigma</span>. For hazard models <span class="math inline">\lambda_0</span> is first set to <span class="math inline">-\log(1 - g_0)</span>. The starting values of further coefficients are set to zero on the link scale.</p>
 <p>Users may provide their own starting values. These may be a vector of coefficients on the link scale, a named list of values for ‘real’ parameters, or a previously fitted model that includes some or all of the required coefficients.</p>
 </section><section id="model-detection-and-density-sub-models" class="level3" data-number="9.8.3"><h3 data-number="9.8.3" class="anchored" data-anchor-id="model-detection-and-density-sub-models">
-<span class="header-section-number">9.8.3</span> <code>model</code> – detection and density sub-models </h3>
-<p>The core parameters are ‘real’ parameters in the terminology of MARK <span class="citation" data-cites="cw">(<a href="A99-references.html#ref-cw" role="doc-biblioref">Cooch &amp; White, 2023</a>)</span>. Three real parameters are commonly modelled in : ‘D’ (for density), and ‘g0’ and ‘sigma’ (for the detection function). Other ‘real’ parameters appear in particular contexts. ‘z’ is a shape parameter that is used only when the <a href="10-detection-model.html#sec-detectfn">detection function</a> has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter ‘lambda0’ in place of ‘g0’. A further ‘real’ parameter is the mixing proportion ‘pmix’, used in <a href="05-theory-special-topics.html#finite-mixtures">finite mixture models</a> and <a href="05-theory-special-topics.html#hybrid-mixtures">hybrid mixture models</a>.</p>
-<p>By default, each ‘real’ parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the ‘model’ argument of <code>secr.fit</code>. Here ‘models’ relates to variation in the parameters that may be explained by known factors and covariates. Models are defined symbolically in using R formula notation. A separate linear predictor is used for each core parameter. The workings are explained in detail in <a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a> and <a href="11-density-model.html" class="quarto-xref"><span>Chapter 11</span></a>.</p>
+<span class="header-section-number">9.8.3</span> <code>model</code> – detection and density sub-models</h3>
+<p></p>
+<p>The core parameters are ‘real’ parameters in the terminology of MARK <span class="citation" data-cites="cw">(<a href="A99-references.html#ref-cw" role="doc-biblioref">Cooch &amp; White, 2023</a>)</span>. Three real parameters are commonly modelled in <strong>secr</strong>: ‘D’ (for density), and ‘g0’ and ‘sigma’ (for the detection function). Other ‘real’ parameters appear in particular contexts. ‘z’ is a shape parameter that is used only when the <a href="10-detection-model.html#sec-detectfn">detection function</a> has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter ‘lambda0’ in place of ‘g0’. A further ‘real’ parameter is the mixing proportion ‘pmix’, used in <a href="05-theory-special-topics.html#finite-mixtures">finite mixture models</a> and <a href="05-theory-special-topics.html#hybrid-mixtures">hybrid mixture models</a>.</p>
+<p>By default, each ‘real’ parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the ‘model’ argument of <code>secr.fit</code>. Here ‘models’ relates to variation in the parameters that may be explained by known factors and covariates. Models are defined symbolically using a subset of the R formula notation. A separate linear predictor is used for each core parameter. The workings are explained in detail in <a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a> and <a href="11-density-model.html" class="quarto-xref"><span>Chapter 11</span></a>.</p>
 </section><section id="CL" class="level3" data-number="9.8.4"><h3 data-number="9.8.4" class="anchored" data-anchor-id="CL">
 <span class="header-section-number">9.8.4</span> <code>CL</code> – conditional vs full likelihood</h3>
 <p></p>
 <p>‘CL’ switches between maximizing the likelihood conditional on <span class="math inline">n</span> (TRUE) or the full likelihood (FALSE). The conditional option is faster because it does not estimate absolute density. Uniform absolute density may be estimated from the conditional fit, or indeed any fit, with the <code>derived</code> method. For Poisson <span class="math inline">n</span> (the default), the estimate is identical within numerical error to that from the full likelihood. The alternative (binomial <span class="math inline">n</span>) is obtained by setting the <a href="#details">details argument</a> ‘distribution = “binomial”’. Relative density (density modelled as a function of covariates, without an intercept) may be modelled with <code>CL = TRUE</code> in recent versions (see sections on the <a href="./05-theory-special-topics.html#relativedensity1">theory</a> and <a href="11-density-model#relativedensity2">implementation</a> of relative density).</p>
 </section><section id="method-maximization-algorithm" class="level3" data-number="9.8.5"><h3 data-number="9.8.5" class="anchored" data-anchor-id="method-maximization-algorithm">
-<span class="header-section-number">9.8.5</span> <code>method</code> – maximization algorithm </h3>
+<span class="header-section-number">9.8.5</span> <code>method</code> – maximization algorithm</h3>
+<p></p>
 <p>Models are fitted in <code>secr.fit</code> by numerically maximizing the log-likelihood with functions from the <strong>stats</strong> package <span class="citation" data-cites="R-base">(<a href="A99-references.html#ref-R-base" role="doc-biblioref">R Core Team, 2024</a>)</span>. The default method is ‘Newton-Raphson’ in the function <code><a href="https://rdrr.io/r/stats/nlm.html">stats::nlm</a></code>. By default, all reported variances, covariances, standard errors and confidence limits are asymptotic and based on a numerical estimate of the information matrix, as described <a href="./03-theory.html#confidenceintervals">here</a>.</p>
 <p>The Newton-Raphson algorithm is fast, but it sometimes fails to compute the information matrix correctly, causing some standard errors to be set to NA; see the ‘method’ argument of <code>secr.fit</code> for alternatives. Use <code>confint.secr</code> for profile likelihood intervals and <code>sim.secr</code> for parametric bootstrap intervals (both are slow).</p>
 <p>Numerical maximization has some implications for the user. Computation may be slow, especially if there are many points in the mask, and estimates may be sensitive to the particular choice of mask (either explicitly in <code>make.mask</code> or implicitly via the ‘buffer’ argument).</p>
 </section><section id="ncores-multi-threading" class="level3" data-number="9.8.6"><h3 data-number="9.8.6" class="anchored" data-anchor-id="ncores-multi-threading">
-<span class="header-section-number">9.8.6</span> <code>ncores</code> – multi-threading </h3>
+<span class="header-section-number">9.8.6</span> <code>ncores</code> – multi-threading</h3>
 <p> </p>
 <p>On processors with multiple cores it is possible to speed up computation by using cores in parallel. In this happens automatically in <code>secr.fit</code> and a few other functions using the multi-threading paradigm of <strong>RcppParallel</strong> <span class="citation" data-cites="R-RcppParallel">(<a href="A99-references.html#ref-R-RcppParallel" role="doc-biblioref">Allaire et al., 2023</a>)</span>. The number of threads may be set directly with the ‘ncores’ argument or with the separate function <code>setNumThreads</code>. Either way, the number of threads is stored in the environment variable RCPP_PARALLEL_NUM_THREADS.</p>
 </section><section id="details" class="level3" data-number="9.8.7"><h3 data-number="9.8.7" class="anchored" data-anchor-id="details">
-<span class="header-section-number">9.8.7</span> <code>details</code> – miscellaneous arguments </h3>
+<span class="header-section-number">9.8.7</span> <code>details</code> – miscellaneous arguments</h3>
+<p></p>
 <p>Many minor or infrequently used arguments are grouped as ‘details’. We mention only the most important ones here:</p>
 <ul>
 <li>distribution</li>
@@ -737,22 +756,24 @@ Table&nbsp;9.3: Basic detector types in . See the appendices for <a href="./A04-
 <li>fixedbeta</li>
 <li>LLonly</li>
 </ul>
-<p>See the <code>details</code> help page for a full list and description.</p>
+<p>See the <code>details</code> <a href="https://www.otago.ac.nz/density/html/details.html">help page</a> for a full list and description.</p>
 <section id="distribution-of-n" class="level4" data-number="9.8.7.1"><h4 data-number="9.8.7.1" class="anchored" data-anchor-id="distribution-of-n">
-<span class="header-section-number">9.8.7.1</span> Distribution of <span class="math inline">n</span> </h4>
-<p></p>
-<p>This details argument switches between two possibilities for the distribution of <span class="math inline">n</span>: ‘poisson’ (the default) or ‘binomial’. Binomial <span class="math inline">n</span> conditions on fixed <span class="math inline">N(A)</span> where <span class="math inline">A</span> is the area of the habitat mask. This corresponds to point process with a fixed number of activity centres inside an arbitrary boundary. Estimates of density conditional on <span class="math inline">N(A)</span> have lower variance, but this is usually an artifact of the conditioning.</p>
+<span class="header-section-number">9.8.7.1</span> Distribution of <span class="math inline">n</span>
+</h4>
+<p> </p>
+<p>This details argument switches between two possibilities for the distribution of <span class="math inline">n</span>: ‘poisson’ (the default) or ‘binomial’. Binomial <span class="math inline">n</span> conditions on fixed <span class="math inline">N(A)</span> where <span class="math inline">A</span> is the area of the habitat mask. This corresponds to point process with a fixed number of activity centres inside an arbitrary boundary. Estimates of density conditional on <span class="math inline">N(A)</span> have lower variance, but this is usually an artifact of the conditioning and therefore misleading.</p>
 </section><section id="fast-proximity" class="level4" data-number="9.8.7.2"><h4 data-number="9.8.7.2" class="anchored" data-anchor-id="fast-proximity">
 <span class="header-section-number">9.8.7.2</span> Fast proximity</h4>
 <p></p>
-<p>Binary and count data collected over several occasions may be collapsed to a single occasion, given certain conditions. Collapsed data lead to the same estimates (e.g., <span class="citation" data-cites="edb09">Efford, Dawson, et al. (<a href="A99-references.html#ref-edb09" role="doc-biblioref">2009</a>)</span>) with a considerable saving in execution time. Data from binary proximity detectors are modelled as binomial with size equal to the number of occasions. The requirement is that no information is lost that is relevant to the model. This really depends on the model: collapsed data are inadequate for time-dependent models, including those with behavioural responses (<a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a>).</p>
+<p>Binary and count data collected over several occasions may be collapsed to a single occasion, under certain conditions. Collapsed data lead to the same estimates <span class="citation" data-cites="edb09">(e.g., <a href="A99-references.html#ref-edb09" role="doc-biblioref">Efford, Dawson, et al., 2009</a>)</span> with a considerable saving in execution time. Data from binary proximity detectors are modelled as binomial with size equal to the number of occasions. The requirement is that no information is lost that is relevant to the model. This really depends on the model: collapsed data are inadequate for time-dependent models, including those with behavioural responses (<a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a>).</p>
 <p>By default, data are automatically collapsed to speed up processing when the model allows. This is inconvenient if you wish to use AIC to compare a variety of models. The problem is solved by setting ‘details = list(fastproximity = FALSE)’ for all models. Fitting will be slower.</p>
 </section><section id="individual-mask-subset" class="level4" data-number="9.8.7.3"><h4 data-number="9.8.7.3" class="anchored" data-anchor-id="individual-mask-subset">
 <span class="header-section-number">9.8.7.3</span> Individual mask subset</h4>
 <p></p>
 <p>Integration by default is performed by summing over all mask cells for each individual. Cells distant from the detection locations of an individual contribute almost nothing to the likelihood, so it is efficient to limit the summation to a certain radius of the centroid of detections. This is achieved by specifying the details argument ‘maxdistance’. A radius similar to the <a href="12-habitat.html#sec-bufferwidth">buffer width</a> is appropriate. See <a href="A02-speed.html#sec-masksubset" class="quarto-xref"><span>Section B.8</span></a> for an example.</p>
 </section><section id="fixing-coefficients" class="level4" data-number="9.8.7.4"><h4 data-number="9.8.7.4" class="anchored" data-anchor-id="fixing-coefficients">
-<span class="header-section-number">9.8.7.4</span> Fixing coefficients </h4>
+<span class="header-section-number">9.8.7.4</span> Fixing coefficients</h4>
+<p></p>
 <p>The ‘fixed’ argument of <code>secr.fit</code> has the effect of fixing one or more ‘real’ parameters. The ‘details’ component ‘fixedbeta’ provides control at a finer level: it may be used to fix certain coefficients while allowing others to vary. It is a vector of values, one for each coefficient <em>in the order they appear in the model</em>. Coefficients that are to be estimated (i.e.&nbsp;not fixed) are given the value NA. Check the order of coefficients by applying <code>coef</code> to a fitted model, or by starting to fit a model with <code>trace = TRUE</code>.</p>
 </section><section id="single-likelihood-evaluation" class="level4" data-number="9.8.7.5"><h4 data-number="9.8.7.5" class="anchored" data-anchor-id="single-likelihood-evaluation">
 <span class="header-section-number">9.8.7.5</span> Single likelihood evaluation</h4>
@@ -760,7 +781,7 @@ Table&nbsp;9.3: Basic detector types in . See the appendices for <a href="./A04-
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;9.1: Essentials of the secr package</span>
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;9.1: Workflow in <strong>secr</strong></span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-R-RcppParallel" class="csl-entry" role="listitem">
@@ -782,7 +803,10 @@ Efford, M. G. (2011). Estimation of population density by spatially explicit cap
 Efford, M. G. (2012). <em>DENSITY 5.0: Software for spatially explicit capture-recapture</em>. Department of Mathematics; Statistics, University of Otago. <a href="https://www.otago.ac.nz/density">https://www.otago.ac.nz/density</a>
 </div>
 <div id="ref-R-secr" class="csl-entry" role="listitem">
-Efford, M. G. (2025). <em><span class="nocase">secr: Spatially explicit capture-recapture models</span></em>. <a href="https://CRAN.R-project.org/package=secr">https://CRAN.R-project.org/package=secr</a>
+Efford, M. G. (2025a). <em><span class="nocase">secr: Spatially explicit capture-recapture models</span></em>. <a href="https://CRAN.R-project.org/package=secr">https://CRAN.R-project.org/package=secr</a>
+</div>
+<div id="ref-Efford2025" class="csl-entry" role="listitem">
+Efford, M. G. (2025b). Spatially explicit capture–recapture models for relative density. <em>BioRxiv</em>. <a href="https://doi.org/10.1101/2025.01.22.634401">https://doi.org/10.1101/2025.01.22.634401</a>
 </div>
 <div id="ref-ebb09" class="csl-entry" role="listitem">
 Efford, M. G., Borchers, D. L., &amp; Byrom, A. E. (2009). Density estimation by spatially explicit capture-recapture: Likelihood-based methods. In D. L. Thomson, E. G. Cooch, &amp; M. J. Conroy (Eds.), <em>Modeling demographic processes in marked populations</em> (pp. 255–269). Springer.
@@ -793,11 +817,17 @@ Efford, M. G., Borchers, D. L., &amp; Mowat, G. (2013). Varying effort in captur
 <div id="ref-edb09" class="csl-entry" role="listitem">
 Efford, M. G., Dawson, D. K., &amp; Borchers, D. L. (2009). Population density estimated from locations of individuals on a passive detector array. <em>Ecology</em>, <em>90</em>, 2676–2682.
 </div>
+<div id="ref-edjq16" class="csl-entry" role="listitem">
+Efford, M. G., Dawson, D. K., Jhala, Y. V., &amp; Qureshi, Q. (2016). Density-dependent home-range size revealed by spatially explicit capture-recapture. <em>Ecography</em>, <em>39</em>, 676–688.
+</div>
 <div id="ref-edr04" class="csl-entry" role="listitem">
 Efford, M. G., Dawson, D. K., &amp; Robbins, C. S. (2004). DENSITY: Software for analysing capture-recapture data from passive detector arrays. <em>Animal Biodiversity and Conservation</em>, <em>27</em>, 217–228.
 </div>
 <div id="ref-ef13" class="csl-entry" role="listitem">
 Efford, M. G., &amp; Fewster, R. M. (2013). Estimating population size by spatially explicit capture-recapture. <em>Oikos</em>, <em>122</em>, 918–928.
+</div>
+<div id="ref-eh18" class="csl-entry" role="listitem">
+Efford, M. G., &amp; Hunter, C. M. (2018). Spatial capture-mark-resight estimation of animal population density. <em>Biometrics</em>, <em>74</em>, 411–420. <a href="https://doi.org/10.1111/biom.12766">https://doi.org/10.1111/biom.12766</a>
 </div>
 <div id="ref-em14" class="csl-entry" role="listitem">
 Efford, M. G., &amp; Mowat, G. (2014). Compensatory heterogeneity in spatially explicit capture-recapture data. <em>Ecology</em>, <em>95</em>, 1341–1348.
@@ -809,10 +839,7 @@ Kendeigh, S. C. (1944). Measurement of bird populations. <em>Ecological Monograp
 R Core Team. (2024). <em>R: A language and environment for statistical computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
 </div>
 </div>
-</section></section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
-<ol>
-<li id="fn1"><p>Technically, these are S3 classes. A ‘class’ in R specifies a particular type of data object and the functions (methods) by which it is manipulated (computed, printed, plotted etc). See the R documentation for further explanation.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1232,7 +1259,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

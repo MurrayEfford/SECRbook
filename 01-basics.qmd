@@ -275,7 +275,7 @@ We sometimes follow MARK [e.g., @cw] and use 'beta parameters' for
 coefficients on the link scale and 'real parameters' for the core
 parameters ($D, g_0, \lambda_0, \sigma$) on the natural scale.
 
-### Estimation
+### Estimation {#sec-estimation}
 
 \index{Likelihood!maximization}
 
