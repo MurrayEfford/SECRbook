@@ -143,7 +143,7 @@ Specifying the buffer width is an alternative to specifying a habitat mask. The 
 
 [Numerical maximization](01-basics.qmd#sec-estimation) of the likelihood requires a starting value for each 
 coefficient in the model. `secr.fit` relieves the user of this chore by applying 
-an algorithm that works in most cases. The core of the algorithm is exported in function `autoini`.
+an algorithm that works in most cases. The core of the algorithm is exported in function [`autoini`].
 
 1. Compute an approximate bivariate normal $\sigma$ from the 2-D dispersion of individual locations:
 $$
@@ -151,7 +151,7 @@ $$
 	    (x_{i,j} - \overline x_i)^2 + (y_{i,j} - \overline y_i)^2]}
 	    {2\sum\limits _{i=1}^{n} (n_i-1)}},
 $$
-where $(x_{i,j}, y_{i,j})$ is the location of the $j$-th detection of individual $i$. This is implemented in the function `RPSV` with `CC = TRUE`. The value is approximate because it ignores that detections are constrained by the locations of the detectors.
+where $(x_{i,j}, y_{i,j})$ is the location of the $j$-th detection of individual $i$. This is implemented in the function [`RPSV`] with `CC = TRUE`. The value is approximate because it ignores that detections are constrained by the locations of the detectors.
 2. Find by numerical search the value of $g_0$ that with $\sigma$ predicts the observed mean number of captures per individual [@edb09, Appendix B].
 3. Compute the [effective sampling area](#esa) $a(g_0, \sigma)$.
 4. Compute $D = n/a(g_0, \sigma)$, where $n$ is the number of individuals detected.
@@ -249,8 +249,10 @@ Setting LLonly = TRUE returns a single evaluation of the likelihood at the param
 [`addCovariates`]: https://www.otago.ac.nz/density/html/addCovariates.html
 
 [`AIC`]: https://www.otago.ac.nz/density/html/AIC.secr.html
+[`autoini`]: https://www.otago.ac.nz/density/html/autoini.html
 [`covariates`]: https://www.otago.ac.nz/density/html/covariates.html
 [`derived`]: https://www.otago.ac.nz/density/html/derivedMS.html
+[`RPSV`]: https://www.otago.ac.nz/density/html/homerange.html
 [`make.mask`]: https://www.otago.ac.nz/density/html/make.mask.html
 [`plot`]: https://www.otago.ac.nz/density/html/plot.secr.html
 [`read.capthist`]: https://www.otago.ac.nz/density/html/DENSITY.html
