@@ -2,7 +2,7 @@ library(secrdesign)
 
 grid1 <- make.grid(5,5, spacing = 10)
 
-par(mfrow=c(1,3), mar=c(1,1,3,1), xpd = T, cex = 1.1)
+par(mfrow=c(1,3), mar=c(1,1,3,1), oma=c(0,0,0,6), xpd = T, cex = 1.1)
 
 for (i in 1:3) {
     sp <- c(4,10,18)[i]

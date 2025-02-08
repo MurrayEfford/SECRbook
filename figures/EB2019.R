@@ -59,7 +59,7 @@ plotrse2(simlist$g1010, Enrmlist$g1010, add = TRUE, label = '10 x 10', col = 'pu
 
 plot(0, 0, type='n', xlim = c(0,4), ylim=c(0,50), las = 1,
      xlab = expression(paste('Detector spacing (', sigma, ' units)')),
-     ylab = expression(paste('RSE(', hat(italic(D)),')  %')),
+     ylab = expression(paste('RSE ', hat(italic(D)),' %')),
      axes = FALSE)
 axis(1, at = 0:4)
 axis(2)

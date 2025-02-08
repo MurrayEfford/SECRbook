@@ -95,7 +95,7 @@ Population size is the number of individual AC in a particular region; we denote
 
 $D$ and $N(A)$ are interchangeable for specified $A$. In most applications of SECR there is no naturally defined region $A$, and therefore $\hat N(A)$ depends on the arbitrary choice of $A$. This weakness is not shared by $\hat D$.
 
-::: {.callout-note collapse=true}
+::: {.callout-note collapse=false}
 ## Abundance
 Population size is sometimes termed 'abundance'. We avoid this usage because 'abundance' has also been used as an umbrella term for density and population size, and its overtones are vague and biblical rather than scientific.
 :::

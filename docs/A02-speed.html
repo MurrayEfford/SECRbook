@@ -509,6 +509,7 @@ D      1.466     0.19051 1.1376 1.8892 0.12127 0.046715 0.12995</code></pre>
 </section><section id="mash" class="level2" data-number="B.3"><h2 data-number="B.3" class="anchored" data-anchor-id="mash">
 <span class="header-section-number">B.3</span> Mashing</h2>
 <p>Mashing is a very effective way of speeding up estimation when the design uses many replicate clusters of detectors, each with the same geometry, and clusters are far enough apart that animals are not detected on more than one. The approach for <span class="math inline">M</span> clusters is to overlay all data as if from a single cluster; the estimated density will be <span class="math inline">M</span> times the per-cluster estimate, and SE etc. will be inflated by the same factor. This relies on individuals being detected independently of each other, which is a standard assumption in any case. The present implementation assumes density is uniform.</p>
+<p>The capthist object is first collapsed with function <code>mash</code> into one using the geometry of a single cluster. The object retains a memory of the number of individuals from each original cluster in the attribute ‘n.mash’. Functions <code>derived</code>, <code>derivedMash</code> and the method <code>predict.secr</code> use ‘n.mash’ to adjust their output density, SE, and confidence limits.</p>
 <p>We describe in general terms an actual example in which 18 separated clusters of 12 traps were operated on 6 occasions. Each cluster had the same geometry (two parallel rows of traps separated by 200 m along and between rows). Trap numbering was consistently up one row and down the other. The capthist object CH included detections of 150 animals in the 216 traps. To mash these data we first assign attributes for the cluster number (clusterID) and the sequence number of each trap within its cluster (clustertrap). The function <code>mash</code> then collapses the data as if all detections were made on one cluster. A mask based on this single notional cluster has many fewer points than a mask with the same spacing spanning all clusters.</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">clustertrap</span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">CH</span><span class="op">)</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>,<span class="fl">18</span><span class="op">)</span></span>
@@ -1085,7 +1086,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
