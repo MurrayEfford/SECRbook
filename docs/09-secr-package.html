@@ -713,13 +713,13 @@ Table&nbsp;9.3: Basic detector types in secr. See the appendices for <a href="./
 </section><section id="start-starting-values" class="level3" data-number="9.8.2"><h3 data-number="9.8.2" class="anchored" data-anchor-id="start-starting-values">
 <span class="header-section-number">9.8.2</span> <code>start</code> – starting values</h3>
 <p></p>
-<p><a href="./01-basics.html#sec-estimation">Numerical maximization</a> of the likelihood requires a starting value for each coefficient in the model. <code>secr.fit</code> relieves the user of this chore by applying an algorithm that works in most cases. The core of the algorithm is exported in function <code>autoini</code>.</p>
+<p><a href="./01-basics.html#sec-estimation">Numerical maximization</a> of the likelihood requires a starting value for each coefficient in the model. <code>secr.fit</code> relieves the user of this chore by applying an algorithm that works in most cases. The core of the algorithm is exported in function <a href="https://www.otago.ac.nz/density/html/autoini.html"><code>autoini</code></a>.</p>
 <ol type="1">
 <li>Compute an approximate bivariate normal <span class="math inline">\sigma</span> from the 2-D dispersion of individual locations: <span class="math display">
 \sigma = \sqrt{\frac {\sum\limits _{i=1}^{n} \sum\limits _{j=1}^{n_i} [
      (x_{i,j} - \overline x_i)^2 + (y_{i,j} - \overline y_i)^2]}
      {2\sum\limits _{i=1}^{n} (n_i-1)}},
-</span> where <span class="math inline">(x_{i,j}, y_{i,j})</span> is the location of the <span class="math inline">j</span>-th detection of individual <span class="math inline">i</span>. This is implemented in the function <code>RPSV</code> with <code>CC = TRUE</code>. The value is approximate because it ignores that detections are constrained by the locations of the detectors.</li>
+</span> where <span class="math inline">(x_{i,j}, y_{i,j})</span> is the location of the <span class="math inline">j</span>-th detection of individual <span class="math inline">i</span>. This is implemented in the function <a href="https://www.otago.ac.nz/density/html/homerange.html"><code>RPSV</code></a> with <code>CC = TRUE</code>. The value is approximate because it ignores that detections are constrained by the locations of the detectors.</li>
 <li>Find by numerical search the value of <span class="math inline">g_0</span> that with <span class="math inline">\sigma</span> predicts the observed mean number of captures per individual <span class="citation" data-cites="edb09">(<a href="A99-references.html#ref-edb09" role="doc-biblioref">Efford, Dawson, et al., 2009</a>, Appendix B)</span>.</li>
 <li>Compute the <a href="05-theory-special-topics.html#esa">effective sampling area</a> <span class="math inline">a(g_0, \sigma)</span>.</li>
 <li>Compute <span class="math inline">D = n/a(g_0, \sigma)</span>, where <span class="math inline">n</span> is the number of individuals detected.</li>
@@ -1259,7 +1259,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -48,11 +48,9 @@ The merits of focussing on the hazard[^cumulative] are a little arcane. We list 
 2. For some detector types (e.g., Poisson counts) the data are integers, for which $\lambda(d)$ has a direct interpretation as the expected count. However, $\lambda(d)$ can always be derived from $g(d)$ ($\lambda(d) = -\log[1 - g(d)]$).
 3. Intuitively, there is a close proportionality between $\lambda(d)$ and the height of an individual's utilization pdf.
 
-The 'hazard variable power' function[^whynoVP] is a 3-parameter function modelled on that of @Ergon2013. The third parameter allows for smooth variation of shape, including both HHN ($z = 2$) and HEX ($z = 1$) as special cases.
+The 'hazard variable power' function is a 3-parameter function modelled on that of @Ergon2013. The third parameter allows for smooth variation of shape, including both HHN ($z = 2$) and HEX ($z = 1$) as special cases.
 
 [^cumulative]: Technically this is the cumulative hazard rather than the instantaneous hazard, but we get tired of using the full term.
-
-<!-- [^whynoVP]: The lack in **secr** of a probability function with variable power $g(d) = g_0 \exp \{ -(^d/_\sigma)^{z} \}$ is an historical accident (the obvious integer codes had been allocated, and attention had shifted to hazard functions, hence HVP). Maybe there will be a function VP in future. -->
 
 ::: {.callout-tip}
 Using the 'complementary log-log' link function cloglog for a hazard detection function such as $\lambda(d) = \lambda_0 \exp[-d^2/(2\sigma^2)]$ is equivalent to modelling $\lambda$ with a log link, as $p = 1 - \exp(-\lambda)$ and $\lambda = -\log(1-p)$. For a halfnormal function, the quantity $y$ on the cloglog scale is then a linear function of $\exp(-d^2)$ with intercept $\alpha_0 = \log(\lambda_0)$ and slope $\alpha_1 = -1/(2\sigma^2)$ [e.g., @Royle2013].
@@ -60,7 +58,7 @@ Using the 'complementary log-log' link function cloglog for a hazard detection f
 
 ### Choice of detection function not critical
 
-The variety of detection functions is daunting. You could try them all and select the "best" by AIC, but we do not recommend this. Fortunately, the choice of function is not critical. We illustrate this with the [snowshoe hare dataset](#sec-example) and `list.secr.fit`[^list.secr.fit]. Warnings due to the use of a multi-catch likelihood for single-catch traps are suppressed both here and in other examples. 
+The variety of detection functions is daunting. You could try them all and select the "best" by AIC, but we do not recommend this. Fortunately, the choice of function is not critical. We illustrate this with the [snowshoe hare dataset](#sec-example) and use [`list.secr.fit`](https://www.otago.ac.nz/density/html/list.secr.fit.html)) to fit a series of models. Warnings due to the use of a multi-catch likelihood for single-catch traps are suppressed both here and in other examples. 
 
 ```{r}
 #| label: setupdf
@@ -80,8 +78,6 @@ df <- c('HHN','HHR','HEX','HVP')
 fits <- list.secr.fit(detectfn = df, constant = list(capthist = hareCH6, 
               buffer = 250, trace = FALSE), names = df)
 ```
-
-[^list.secr.fit]: The function `list.secr.fit` applies `secr.fit` with multiple settings, in this case different detection functions, and returns an 'secrlist', a list of fitted models. `list.secr.fit` was introduced in **secr** 4.6.6 to replace `par.secr.fit`.
 
 ```{r}
 #| label: fig-choicedfplot
@@ -298,7 +294,7 @@ Time-varying detector covariates are a special case considered below. {#tbl-cova
     
 <!-- [Hybrid mixture models](#hybrid-mixtures) allow some or all individuals to be assigned permanently to a group (mixture class), while other individuals (ideally a minority) may be of unknown class. -->
 
-A continuous covariate that takes many unique values poses problems for the implementation in **secr**. A multiplicity of values inflates the size of internal lookup tables, both slowing down each likelihood evaluation and potentially exceeding the available memory[^CKM]. A binned covariate should do the job equally well, while saving time and space (see function `binCovariate` **secr** $\ge$ 4.6.5).
+A continuous covariate that takes many unique values poses problems for the implementation in **secr**. A multiplicity of values inflates the size of internal lookup tables, both slowing down each likelihood evaluation and potentially exceeding the available memory[^CKM]. A binned covariate should do the job equally well, while saving time and space (see function [`binCovariate`](https://www.otago.ac.nz/density/html/binCovariate.html)).
 
 [^CKM]: In the C++ code, two real-valued 3-dimensional arrays are populated with pre-computed values of $p_{sk}(\mathbf x)$ (gk) and $h_{sk}(\mathbf x)$ (hk). The dimensions are the number of unique parameter combinations $C$, the number of detectors $K$ and the number of mask points $M$. The memory requirement for these arrays alone is $2.8.C.K.M$ bytes, which for 200 detectors, 10000 mask points, and 100 parameter levels is `r 2 * 8 * 100 * 200 * 10000 /1e9` Gb. This is on top of the two parameter index arrays requiring $2 . 4 . R. n. S. K. U$ bytes for $R$ sessions and $U$ mixture classes (e.g. 10 sessions, 200 animals, 6 occasions, 200 detectors and 2 mixture classes,  `r 2 * 4 * 10 * 200 * 6 * 200 * 2 /1e9` Gb), and a number of smaller objects.
 
@@ -319,7 +315,7 @@ Regression splines are a very flexible way to represent non-linear responses in 
 
 Smooth terms may be used in **secr** model formulae for both density and detection parameters. The covariate is merely wrapped in a call to the smoother function `s()`. Smoothness is controlled by the argument 'k'.
 
-For a concrete example, consider a population sampled monthly for a year (i.e., 12 ‘sessions’). If home range size varies seasonally then the parameter sigma may vary in a more-or-less sinusoidal fashion. A linear trend is obviously inadequate, and a quadratic is not much better. However, a sine curve is hard to fit (we would need to estimate its phase, amplitude, mean and spatial scale) and assumes the increase and decrease phases are equally steep. An extreme solution is to treat month as a factor and estimate a separate parameter for each level (month). A smooth (semi-parametric) curve may capture the main features of seasonal variation with fewer parameters.
+For a concrete example, consider a population sampled monthly for a year (i.e. 12 ‘sessions’). If home range size varies seasonally then the parameter sigma may vary in a more-or-less sinusoidal fashion. A linear trend is obviously inadequate, and a quadratic is not much better. However, a sine curve is hard to fit (we would need to estimate its phase, amplitude, mean and spatial scale) and assumes the increase and decrease phases are equally steep. An extreme solution is to treat month as a factor and estimate a separate parameter for each level (month). A smooth (semi-parametric) curve may capture the main features of seasonal variation with fewer parameters.
 
 There are some drawbacks to using smooth terms. The resulting fitted objects are large, on account of the need to store setup information from **mgcv**. The implementation may change in later versions of  **mgcv** and **secr**, and smooth models fitted now will not necessarily be compatible with later versions. Setting the intercept of a smooth to zero is not a canned option in **mgcv**, and is not offered in **secr**. It may be achieved by placing a knot at zero and hacking the matrix of basis functions to drop the corresponding column, plus some more jiggling.
 
@@ -477,6 +473,6 @@ The density estimates themselves are almost entirely unaffected by the choice of
 1. Adjustment for varying effort will be more critical in analyses where (i) the variation is confounded with temporal (between-session) or spatial variation in density, and (ii) it is important to estimate the temporal or spatial pattern. For example, if detector usage was consistently high in one part of a landscape, while true density was constant, failure to allow for varying usage might produce a spurious density pattern.
 2. The units of usage determine the units of $g_0$ or $\lambda_0$ in the fitted model. This must be considered when choosing starting values for likelihood maximization. Ordinarily one relies on `secr.fit` to determine starting values automatically (via `autoini`), and a simple linear adjustment for usage, averaged across non-zero detectors and occasions, is applied to the value of g0 from `autoini`.
 3. When occasions are collapsed or detectors are lumped with the `reduce` method for capthist objects, usage is summed for each aggregated unit.
-4. The function `usagePlot` displays a bubble plot of spatially varying detector usage on one occasion. The arguments 'markused' and 'markvarying' of `plot.traps` may also be useful.
+4. The function [`usagePlot`](https://www.otago.ac.nz/density/html/usagePlot.html) displays a bubble plot of spatially varying detector usage on one occasion. The arguments 'markused' and 'markvarying' of `plot.traps` may also be useful.
 5. Absolute duration does not always equate with effort. Animal activity may be concentrated in part of the day, or older DNA samples from hair snares may fail to amplify [@ebm13].
-6. Binary or count data from searches of polygons or transects [@e11] do not raise any new issues for including effort, at least when effort is homogeneous across each polygon or transect. Effects of varying polygon or transect size are automatically accommodated in the models of @sec-areasearches. Models for varying effort within polygons or transects have not been needed for problems encountered to date. Such variation might in any case be accommodated by splitting the searched areas or transects into smaller units that were more nearly homogeneous (see the `snip` function for splitting transects).
+6. Binary or count data from searches of polygons or transects [@e11] do not raise any new issues for including effort, at least when effort is homogeneous across each polygon or transect. Effects of varying polygon or transect size are automatically accommodated in the models of @sec-areasearches. Models for varying effort within polygons or transects have not been needed for problems encountered to date. Such variation might in any case be accommodated by splitting the searched areas or transects into smaller units that were more nearly homogeneous (see the [`snip`](https://www.otago.ac.nz/density/html/snip.html) function for splitting transects).
