@@ -450,7 +450,7 @@ window.Quarto = {
   <li><a href="#possible-maximization-error-nlm-code-4" id="toc-possible-maximization-error-nlm-code-4" class="nav-link" data-scroll-target="#possible-maximization-error-nlm-code-4"><span class="header-section-number">A.6</span> Possible maximization error: nlm code 4</a></li>
   <li><a href="#secr.fit-requests-more-memory-than-is-available" id="toc-secr.fit-requests-more-memory-than-is-available" class="nav-link" data-scroll-target="#secr.fit-requests-more-memory-than-is-available"><span class="header-section-number">A.7</span> <code>secr.fit</code> requests more memory than is available</a></li>
   <li><a href="#covariate-factor-levels-differ-between-sessions" id="toc-covariate-factor-levels-differ-between-sessions" class="nav-link" data-scroll-target="#covariate-factor-levels-differ-between-sessions"><span class="header-section-number">A.8</span> Covariate factor levels differ between sessions</a></li>
-  <li><a href="#estimates-from-finite-mixture-models-appear-unstable" id="toc-estimates-from-finite-mixture-models-appear-unstable" class="nav-link" data-scroll-target="#estimates-from-finite-mixture-models-appear-unstable"><span class="header-section-number">A.9</span> Estimates from finite mixture models appear unstable</a></li>
+  <li><a href="#estimates-depend-on-starting-values" id="toc-estimates-depend-on-starting-values" class="nav-link" data-scroll-target="#estimates-depend-on-starting-values"><span class="header-section-number">A.9</span> Estimates depend on starting values</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -470,7 +470,7 @@ window.Quarto = {
 
 
 </header><p></p>
-<p>What could possibly go wrong when fitting spatially explicit capture–recapture models? Quite a lot. This appendix assembles a list of known difficulties with <strong>secr</strong> 5.2, with examples, and suggests some solutions. Potential problems with density surface models were also discussed in <a href="11-density-model.html" class="quarto-xref"><span>Chapter 11</span></a>.</p>
+<p>What could possibly go wrong when fitting spatially explicit capture–recapture models? Quite a lot. This appendix assembles a list of known difficulties with <strong>secr</strong> 5.2, with examples, and suggests some solutions. The scaling of covariates and coordinates was discussed earlier in relation to <a href="./11-density-model.html#sec-density">density surface models</a>.</p>
 <section id="bias-limit-exceeded" class="level2" data-number="A.1"><h2 data-number="A.1" class="anchored" data-anchor-id="bias-limit-exceeded">
 <span class="header-section-number">A.1</span> Bias limit exceeded</h2>
 <p> </p>
@@ -720,9 +720,11 @@ sigma        0.91984 0.034977  0.85129  0.9884</code></pre>
 <span class="header-section-number">A.8</span> Covariate factor levels differ between sessions</h2>
 <p></p>
 <p>This is fairly explicit; <code>secr.fit</code> will stop if you include in a model any covariate whose factor levels vary among sessions, and <code>verify</code> will warn if it finds any covariate like this. This commonly occurs in multi-session datasets with ‘sex’ as an individual covariate when only males or only females are detected in one session. Use the function <a href="./14-multisession.html#sharefactorlevels"><code>shareFactorLevels</code></a> to force covariates to use the same superset of levels in all sessions.</p>
-</section><section id="estimates-from-finite-mixture-models-appear-unstable" class="level2" data-number="A.9"><h2 data-number="A.9" class="anchored" data-anchor-id="estimates-from-finite-mixture-models-appear-unstable">
-<span class="header-section-number">A.9</span> Estimates from finite mixture models appear unstable</h2>
-<p>These models have known problems due to multimodality of the likelihood (<a href="15-finite-mixtures.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
+</section><section id="estimates-depend-on-starting-values" class="level2" data-number="A.9"><h2 data-number="A.9" class="anchored" data-anchor-id="estimates-depend-on-starting-values">
+<span class="header-section-number">A.9</span> Estimates depend on starting values</h2>
+<p>Instability of the estimates can result when the likelihood surface has a local maximum. Numerical maximisation may then fail to find the true maximum from a given starting point. Nelder-Mead is more robust than other methods.</p>
+<p>Finite mixture models have known problems due to multimodality of the likelihood, as discussed separately (<a href="15-finite-mixtures.html" class="quarto-xref"><span>Chapter 15</span></a>). Similar problems have been found in some acoustic models.</p>
+<p>It is suspected that extreme (over-coarse) discretisation of the habitat mask sometimes results in instability due to local maxima, but this has not been proven.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">

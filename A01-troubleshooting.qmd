@@ -1,7 +1,7 @@
 # Troubleshooting **secr** {#sec-troubleshooting}
 \index{Troubleshooting}
 
-What could possibly go wrong when fitting spatially explicit capture--recapture models? Quite a lot. This appendix assembles a list of known difficulties with **secr** 5.2, with examples, and suggests some solutions. Potential problems with density surface models were also discussed in @sec-density.
+What could possibly go wrong when fitting spatially explicit capture--recapture models? Quite a lot. This appendix assembles a list of known difficulties with **secr** 5.2, with examples, and suggests some solutions. The scaling of covariates and coordinates was discussed earlier in relation to [density surface models](11-density-model.qmd#sec-density). 
 
 ## Bias limit exceeded
 \index{Troubleshooting!buffer bias}
@@ -231,6 +231,10 @@ The `mash` function (see [Mashing](#mash)) may be used to reduce the number of d
 
 This is fairly explicit; `secr.fit` will stop if you include in a model any covariate whose factor levels vary among sessions, and `verify` will warn if it finds any covariate like this. This commonly occurs in multi-session datasets with 'sex' as an individual covariate when only males or only females are detected in one session. Use the function [`shareFactorLevels`](14-multisession.qmd#sharefactorlevels) to force covariates to use the same superset of levels in all sessions.
 
-## Estimates from finite mixture models appear unstable
+## Estimates depend on starting values
 
-These models have known problems due to multimodality of the likelihood (@sec-individual-heterogeneity).
+Instability of the estimates can result when the likelihood surface has a local maximum. Numerical maximisation may then fail to find the true maximum from a given starting point. Nelder-Mead is more robust than other methods.
+
+Finite mixture models have known problems due to multimodality of the likelihood, as discussed separately (@sec-individual-heterogeneity). Similar problems have been found in some acoustic models.
+
+It is suspected that extreme (over-coarse) discretisation of the habitat mask sometimes results in instability due to local maxima, but this has not been proven.

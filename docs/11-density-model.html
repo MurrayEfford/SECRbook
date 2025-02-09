@@ -449,10 +449,9 @@ window.Quarto = {
   <li><a href="#brushtail-possum-example" id="toc-brushtail-possum-example" class="nav-link" data-scroll-target="#brushtail-possum-example"><span class="header-section-number">11.2</span> Brushtail possum example</a></li>
   <li><a href="#using-the-model-argument-in-secr.fit" id="toc-using-the-model-argument-in-secr.fit" class="nav-link" data-scroll-target="#using-the-model-argument-in-secr.fit"><span class="header-section-number">11.3</span> Using the ‘model’ argument in secr.fit</a></li>
   <li><a href="#prediction-and-plotting" id="toc-prediction-and-plotting" class="nav-link" data-scroll-target="#prediction-and-plotting"><span class="header-section-number">11.4</span> Prediction and plotting</a></li>
-  <li><a href="#scaling" id="toc-scaling" class="nav-link" data-scroll-target="#scaling"><span class="header-section-number">11.5</span> Scaling</a></li>
-  <li><a href="#potential-problems" id="toc-potential-problems" class="nav-link" data-scroll-target="#potential-problems"><span class="header-section-number">11.6</span> Potential problems</a></li>
-  <li><a href="#not-a-density-surface" id="toc-not-a-density-surface" class="nav-link" data-scroll-target="#not-a-density-surface"><span class="header-section-number">11.7</span> This is not a density surface</a></li>
-  <li><a href="#relativedensity2" id="toc-relativedensity2" class="nav-link" data-scroll-target="#relativedensity2"><span class="header-section-number">11.8</span> Relative density</a></li>
+  <li><a href="#sec-scaling" id="toc-sec-scaling" class="nav-link" data-scroll-target="#sec-scaling"><span class="header-section-number">11.5</span> Scaling</a></li>
+  <li><a href="#not-a-density-surface" id="toc-not-a-density-surface" class="nav-link" data-scroll-target="#not-a-density-surface"><span class="header-section-number">11.6</span> This is not a density surface</a></li>
+  <li><a href="#relativedensity2" id="toc-relativedensity2" class="nav-link" data-scroll-target="#relativedensity2"><span class="header-section-number">11.7</span> Relative density</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -478,7 +477,7 @@ window.Quarto = {
 D(\mathbf x; \phi) = f^{-1}[\phi_0 + \sum_{v=1}^V c_v(\mathbf x) \, \phi_v],
 \end{equation}</span> where <span class="math inline">c_v(\mathbf x)</span> is the value of the <span class="math inline">v</span>-th covariate at point <span class="math inline">\mathbf x</span>, <span class="math inline">\phi_0</span> is the intercept, <span class="math inline">\phi_v</span> is the coefficient for the <span class="math inline">v</span>-th covariate, and <span class="math inline">f^{-1}</span> is the inverse of the link function. Commonly we model the logarithm of density and <span class="math inline">f^{-1}</span> is the exponential function.</p>
 <p>Although <span class="math inline">D(\mathbf x;\phi)</span> is often a smooth function, in <strong>secr</strong> we evaluate it only at the fixed points of the habitat mask (<a href="12-habitat.html" class="quarto-xref"><span>Chapter 12</span></a>). A mask defines the region of habitat relevant to a particular study: in the simplest case it is a buffered zone inclusive of the detector locations. More complex masks may exclude interior areas of non-habitat or have an irregular outline.</p>
-<p>A density model <span class="math inline">D(\mathbf x;\phi)</span> is specified in the ‘model’ argument of <code>secr.fit</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Spatial covariates, if any, are needed for each mask point; they are stored in the ‘covariates’ attribute of the mask. Results from fitting the model (including the estimated coefficients <span class="math inline">\phi</span>) are saved in an object of class ‘secr’. To visualise a fitted density model we first evaluate it at each point on a mask with the function <code>predictDsurface</code> to create an object of class ‘Dsurface’. A Dsurface is a mask with added density data, and plotting a Dsurface is like plotting a mask covariate.</p>
+<p>A density model <span class="math inline">D(\mathbf x;\phi)</span> is specified in the ‘model’ argument of <code>secr.fit</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Spatial covariates, if any, are needed for each mask point; they are stored in the ‘covariates’ attribute of the mask. Results from fitting the model (including the estimated coefficients <span class="math inline">\phi</span>) are saved in an object of class ‘secr’. To visualise a fitted density model we first evaluate it at each point on a mask with the function <code>predictDsurface</code>. This creates an object of class ‘Dsurface’. A Dsurface is a mask with added density data, and plotting a Dsurface is like plotting a mask covariate.</p>
 <p><br></p>
 <div id="tbl-Dexamples" class="sm quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-Dexamples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -528,7 +527,7 @@ Table&nbsp;11.1: Some examples of models for density in <code>secr.fit</code>.
 <span><span class="va">leftbank</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">datadir</span>,<span class="st">"/leftbank.txt"</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">21</span><span class="op">:</span><span class="fl">195</span>,<span class="op">]</span>  </span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">6</span>, width <span class="op">=</span> <span class="fl">95</span><span class="op">)</span>       </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>OVforest is now a simple features (sf) object defined in package <strong>sf</strong>. We build a habitat mask object, selecting the first two polygons in OVforest and discarding the third that lies across the river. The attribute table of the shapefile (and hence OVforest) includes a categorical variable ‘forest’ that is either ‘beech’ (<em>Nothofagus</em> spp.) or ‘nonbeech’ (mixed podocarp-hardwood); `addCovariates’ attaches these data to each cell in the mask.</p>
+<p>OVforest is now a simple features (sf) object defined in package <strong>sf</strong>. We build a habitat mask object, selecting the first two polygons in OVforest and discarding the third that lies across the river. The attribute table of the shapefile (and hence OVforest) includes a categorical variable ‘forest’ that is either ‘beech’ (<em>Nothofagus</em> spp.) or ‘nonbeech’ (mixed podocarp-hardwood); <code>addCovariates</code> attaches these data to each cell in the mask.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ovtrap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/traps.html">traps</a></span><span class="op">(</span><span class="va">OVpossumCH</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">ovmask</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/make.mask.html">make.mask</a></span><span class="op">(</span><span class="va">ovtrap</span>, buffer <span class="op">=</span> <span class="fl">120</span>, type <span class="op">=</span> <span class="st">"trapbuffer"</span>,</span>
@@ -537,7 +536,7 @@ Table&nbsp;11.1: Some examples of models for density in <code>secr.fit</code>.
 </div>
 <p>Plotting is easy:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">6</span>,<span class="fl">2</span>,<span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
+<details class="code-fold"><summary>code to plot possum mask</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">6</span>,<span class="fl">2</span>,<span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">forestcol</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">2</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ovmask</span>, cov<span class="op">=</span><span class="st">"forest"</span>, dots <span class="op">=</span> <span class="cn">FALSE</span>, col <span class="op">=</span> <span class="va">forestcol</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ovtrap</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -546,10 +545,10 @@ Table&nbsp;11.1: Some examples of models for density in <code>secr.fit</code>.
 <span>    divs <span class="op">=</span> <span class="fl">2</span>, below <span class="op">=</span> <span class="st">"metres"</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0"</span>,<span class="st">"100"</span>,<span class="st">"200"</span><span class="op">)</span>, </span>
 <span>    ticks <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/north.html">north</a></span><span class="op">(</span>xy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2674670</span>, <span class="fl">5982830</span><span class="op">)</span>, d <span class="op">=</span> <span class="fl">40</span>, label <span class="op">=</span> <span class="st">"N"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <div id="fig-ovmaskplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ovmaskplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-ovmaskplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="11-density-model_files/figure-html/fig-ovmaskplot-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
+<a href="11-density-model_files/figure-html/fig-ovmaskplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="11-density-model_files/figure-html/fig-ovmaskplot-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ovmaskplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.1: Orongorongo Valley possum study area
@@ -592,7 +591,7 @@ null       3 -1555.75 2.860 0.1060</code></pre>
 <div class="cell-output-display">
 <div id="fig-OVsurface" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-OVsurface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-OVsurface-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="11-density-model_files/figure-html/fig-OVsurface-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
+<a href="11-density-model_files/figure-html/fig-OVsurface-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="11-density-model_files/figure-html/fig-OVsurface-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OVsurface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.2: Quadratic possum density surface
@@ -615,9 +614,8 @@ Figure&nbsp;11.2: Quadratic possum density surface
 </section><section id="built-in-variables" class="level3" data-number="11.3.2"><h3 data-number="11.3.2" class="anchored" data-anchor-id="built-in-variables">
 <span class="header-section-number">11.3.2</span> Built-in variables</h3>
 <p></p>
-<p><code>secr.fit</code> automatically recognises the spatial variables x, y, x2, y2 and xy if they appear in the formula for D. These refer to the x-coordinate, y-coordinate, x-coordinate<sup>2</sup> etc. for each mask point, and will be constructed automatically as needed.</p>
+<p><code>secr.fit</code> automatically recognises the spatial variables x, y, x2, y2 and xy if they appear in the formula for D. These refer to the x-coordinate, y-coordinate, x-coordinate<sup>2</sup> etc. for each mask point, and will be constructed automatically as needed. The built-in spatial variables offer limited model possibilities (<a href="#tbl-builtin" class="quarto-xref">Table&nbsp;<span>11.2</span></a>).</p>
 <p>The formula for D may also include the non-spatial variables g (group), session (categorical), and Session (continuous), defined as for modelling g0 and sigma in <a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a>.</p>
-<p>The built-in variables offer limited model possibilities:</p>
 <div id="tbl-builtin" class="sm quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-builtin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;11.2: Examples of density models using built-in variables.
@@ -714,7 +712,7 @@ Table&nbsp;11.2: Examples of density models using built-in variables.
 <div class="cell-output-display">
 <div id="fig-dtrplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-dtrplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-dtrplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="11-density-model_files/figure-html/fig-dtrplot-1.png" class="img-fluid figure-img" style="width:80.0%"></a>
+<a href="11-density-model_files/figure-html/fig-dtrplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="11-density-model_files/figure-html/fig-dtrplot-1.png" class="img-fluid figure-img" style="width:80.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dtrplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.3: Orongorongo Valley possum study: distance to river
@@ -775,7 +773,7 @@ null       3 -1555.75 3.488 0.0466</code></pre>
 <div class="cell-output-display">
 <div id="fig-OVdtr" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-OVdtr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-OVdtr-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="11-density-model_files/figure-html/fig-OVdtr-1.png" class="img-fluid figure-img" style="width:75.0%"></a>
+<a href="11-density-model_files/figure-html/fig-OVdtr-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="11-density-model_files/figure-html/fig-OVdtr-1.png" class="img-fluid figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OVdtr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.4: Possum density vs distance to river: regression spline <em>k</em> = 3
@@ -805,7 +803,7 @@ Figure&nbsp;11.4: Possum density vs distance to river: regression spline <em>k</
 </details><div class="cell-output-display">
 <div id="fig-CIplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CIplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-CIplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="11-density-model_files/figure-html/fig-CIplot-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
+<a href="11-density-model_files/figure-html/fig-CIplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="11-density-model_files/figure-html/fig-CIplot-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CIplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.5: Confidence surfaces
@@ -827,22 +825,16 @@ strip.legend(c(2674460, 5982886), legend = seq(0,22,2), col = terrain.colors(11)
 <p>The plot method for a Dsurface object has arguments <code>(x, covariate = "D", group = NULL, plottype = "shaded", scale = 1, ...)</code>. <code>covariate</code> may either be a prefix (one of “D”, “SE”, “lcl”, “ucl”) or any full covariate name. ‘plottype’ may be one of “shaded”, “dots”, “persp”, or “contour”. A coloured legend is displayed centre-right (see ?plot.mask and ?strip.legend for options).</p>
 <p>For details on how to specify colours, levels etc. read the help pages for <code>plot.mask</code>, <code>contour</code> and <code>persp</code> (these functions may be controlled by extra arguments to <code>plot.Dsurface</code>, using the ‘dots’ convention).</p>
 <p>A plot may be enhanced by the addition of contours. This is a challenge, because the <code>contour</code> function in R requires a rectangular matrix of values, and our mask is not rectangular. We could make it so with the <strong>secr</strong> function <code>rectangularMask</code>, which makes a rectangular Dsurface with missing (NA) values of density at all the external points. <code>plot.Dsurface</code> recognises an irregular mask and attempts to fix this with an internal call to <code>rectangularMask</code>.</p>
-</section><section id="scaling" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="scaling">
+</section><section id="sec-scaling" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="sec-scaling">
 <span class="header-section-number">11.5</span> Scaling</h2>
+<p></p>
 <p>So far we have ignored the scaling of covariates, including geographic coordinates.</p>
 <p><code>secr.fit</code> scales the x- and y-coordinates of mask points to mean = 0, SD = 1 before using the coordinates in a model. Remember this when you come to use the coefficients of a density model. Functions such as <code>predictDsurface</code> take care of scaling automatically. <code>predict.secr</code> uses the scaled values (‘newdata’ x = 0, y = 0), which provides the predicted density at the mask centroid. The mean and SD used in scaling are those saved as the `meanSD’ attribute of a mask (dataframe with columns ‘x’ and ‘y’ and rows ‘mean’ and ‘SD’).</p>
 <p>Scaling of covariates other than x and y is up to the user. It is not usually needed.</p>
 <p>The numerical algorithms for maximizing the likelihood work best when the absolute expected values are roughly similar for all parameters on their respective ‘link’ scales (i.e.&nbsp;all beta parameters) rather than varying by orders of magnitude. The default link function for D and sigma (log) places the values of these parameters on a scale that is not wildly different to the variation in g0 or lambda0, so this is seldom an issue. In extreme cases you may want to make allowance by setting the <code>typsize</code> argument of <code>nlm</code> or the <code>parscale</code> control argument of <code>optim</code> (via the … argument of <code>secr.fit</code>).</p>
 <p>Scaling is not performed routinely by <code>secr.fit</code> for distance calculations. Sometimes, large numeric values in coordinates can cause loss of precision in distance calculations (there are a lot of them at each likelihood evaluation). The problem is serious in datasets that combine large coordinates with small detector spacing, such as the Lake Station <code>skink</code> dataset. Set <code>details = list(centred = TRUE)</code> to force scaling; this may become the default setting in a future version of <strong>secr</strong>.</p>
-</section><section id="potential-problems" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="potential-problems">
-<span class="header-section-number">11.6</span> Potential problems</h2>
-<p></p>
-<p>Modelling density surfaces can be tricky. Recognise when model fitting has failed. If there is no asymptotic variance-covariance matrix, the estimates cannot be trusted. Some forensic work may be needed. If in doubt, try repeating the fit, perhaps starting from the previously fitted values (you can use <code>secr.fit(..., start = last.model)</code> where <code>last.model</code> is a previously fitted secr object) or from new arbitrary values. Problems may result when the discretization is too coarse, so try with smaller mask cells.</p>
-<p>You can try another optimization method; <code>method = "Nelder-Mead"</code> is generally more robust than the default gradient-based method. Any method may fail to find the true maximum from a given starting point. We have no experience with simulated annealing (‘SANN’ in <code>optim</code>); it is reputedly effective, but slow. In the <code>optim</code> help it is stated ominously that “the ‘SANN’ method depends critically on the settings of the control parameters. It is not a general-purpose method”.</p>
-<p>Avoid using ‘[’ to extract subsets from mask, capthist and other <strong>secr</strong> objects. Use the provided <code>subset</code> methods. It is generally safe to use ‘[[’ to extract one session from a multi-session object, as in our possum example, but this is not guaranteed. With care, it is also possible to replace selected elements in situ, but note that any change in coordinates will require the attribute ‘meanSD’ to be recalculated (see <code><a href="https://rdrr.io/pkg/secr/man/utility.html">?getMeanSD</a></code>).</p>
-<p>Do you really want to model density on the log scale? If not, change the link.</p>
-</section><section id="not-a-density-surface" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="not-a-density-surface">
-<span class="header-section-number">11.7</span> This is not a density surface</h2>
+</section><section id="not-a-density-surface" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="not-a-density-surface">
+<span class="header-section-number">11.6</span> This is not a density surface</h2>
 <p></p>
 <p>The surfaces we have fitted involve inhomogeneous Poisson models for the distribution of animal home range centres. The models have parameters that determine the relationship of expected density to location or to habitat covariates.</p>
 <p>Another type of plot is sometimes presented and described as a ‘density surface’ – the summed posterior distribution of estimated range centres from a Bayesian fit of a homogeneous Poisson model. A directly analogous plot may be obtained from the <strong>secr</strong> function <code>fxTotal</code> (see also <span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="A99-references.html#ref-be08" role="doc-biblioref">2008</a>)</span> Section 4.3). The contours associated with the home range centre of each detected individual essentially represent 2-D confidence intervals for its home range centre, given the fitted observation model. Summing these gives a summed probability density surface for the centres of the observed individuals (‘D.fx’), and to this we can add an equivalent scaled probability density surface for the individuals that escaped detection (‘D.nc’). Both components are reported by <code>fx.total</code>, along with their sum (‘D.sum’) which we plot here for the flat possum model:</p>
@@ -857,7 +849,7 @@ strip.legend(c(2674460, 5982886), legend = seq(0,22,2), col = terrain.colors(11)
 <div class="cell-output-display">
 <div id="fig-OVfxsurfaceplt" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-OVfxsurfaceplt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-OVfxsurfaceplt-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="11-density-model_files/figure-html/fig-OVfxsurfaceplt-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
+<a href="11-density-model_files/figure-html/fig-OVfxsurfaceplt-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="11-density-model_files/figure-html/fig-OVfxsurfaceplt-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OVfxsurfaceplt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.6: Total fx surface
@@ -868,7 +860,7 @@ Figure&nbsp;11.6: Total fx surface
 <p>The plot concerns only one realisation from the underlying Poisson model. It visually invites us to interpret patterns in that realisation that we have not modelled. There are serious problems with the interpretation of such plots as ‘density surfaces’:</p>
 <ul>
 <li><p>attention is focussed on the individuals that were detected; others that were present but not detected are represented by a smoothly varying base level that dominates in the outer region of the plot (contrast this figure with the previous quadratic and DTR3 models).</p></li>
-<li><p>the surface depends on sampling intensity, and as more data are added it will change shape systematically. Ultimately, the surface near the centre of a detector array becomes a set of spikes on a barren plain</p></li>
+<li><p>the surface depends on sampling intensity, and as more data are added it will change shape systematically. Ultimately, the surface near the centre of a detector array becomes a set of emergent peaks rising from an underwater plain of zero density, below the plateau of average density outside the array.</p></li>
 <li><p>the ‘summed confidence interval’ plot is easily confused with the 2-D surface obtained by summing utilisation distributions across animals</p></li>
 <li><p>confidence intervals are not available for the height of the probability density surface.</p></li>
 </ul>
@@ -884,7 +876,7 @@ Figure&nbsp;11.6: Total fx surface
 <div class="cell-output-display">
 <div id="fig-fxsurfaceWplt" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-fxsurfaceWplt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-fxsurfaceWplt-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="11-density-model_files/figure-html/fig-fxsurfaceWplt-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
+<a href="11-density-model_files/figure-html/fig-fxsurfaceWplt-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="11-density-model_files/figure-html/fig-fxsurfaceWplt-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fxsurfaceWplt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.7: Waitarere possum fx surface
@@ -893,8 +885,8 @@ Figure&nbsp;11.7: Waitarere possum fx surface
 </div>
 </div>
 <p>See <span class="citation" data-cites="Durbach2024">Durbach et al. (<a href="A99-references.html#ref-Durbach2024" role="doc-biblioref">2024</a>)</span> for further critique.</p>
-</section><section id="relativedensity2" class="level2" data-number="11.8"><h2 data-number="11.8" class="anchored" data-anchor-id="relativedensity2">
-<span class="header-section-number">11.8</span> Relative density</h2>
+</section><section id="relativedensity2" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="relativedensity2">
+<span class="header-section-number">11.7</span> Relative density</h2>
 <p></p>
 <p>Theory for relative density models was given <a href="./03-theory.html#relativedensity1">earlier</a> (see also [Efford2025]). A spatial model for relative density is fitted in <strong>secr</strong> by setting <code>CL = TRUE</code> and providing a model for D in the call to <code>secr.fit</code> (<strong>secr</strong> <span class="math inline">\ge</span> 5.2.0). For example</p>
 <div class="cell">
@@ -954,7 +946,7 @@ sigma  3.3176747 0.0354359  3.2482216  3.3871277</code></pre>
 <div class="cell-output-display">
 <div id="fig-relativeD" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-relativeD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-relativeD-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8"><img src="11-density-model_files/figure-html/fig-relativeD-1.png" class="img-fluid figure-img" width="576"></a>
+<a href="11-density-model_files/figure-html/fig-relativeD-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-8" data-gallery="quarto-lightbox-gallery-8"><img src="11-density-model_files/figure-html/fig-relativeD-1.png" class="img-fluid figure-img" width="576"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-relativeD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.8: Possum density derived from quadratic relative density surface. Contour lines are from the previous full fit.
@@ -1430,7 +1422,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

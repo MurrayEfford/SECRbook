@@ -550,7 +550,21 @@ Figure&nbsp;9.1: Workflow in <strong>secr</strong>
 <li>By default, a habitat mask is generated automatically by <code>secr.fit</code> using a specified buffer around the detectors (traps) (dashed arrow). The function <code>make.mask</code> gives greater control over this step.</li>
 <li>Any of the objects input to <code>secr.fit</code> (traps, capthist, mask) may include a dataframe of covariates saved as an attribute. Covariate names may be used in model formulae; the <code>covariates</code> method is used to extract or replace covariates. Use <code>addCovariates</code> for trap or mask covariates from spatial data sources (e.g., shapefile or ‘sf’ object)</li>
 <li>Fitted secr models may be manipulated with the methods shown on the right.</li>
-</ul></section><section id="functions" class="level2" data-number="9.3"><h2 data-number="9.3" class="anchored" data-anchor-id="functions">
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Subsets
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Avoid using ‘[’ to extract subsets from mask, capthist and other <strong>secr</strong> objects. Use the provided <code>subset</code> methods. It is generally safe to use ‘[[’ to extract one session from a multi-session capthist object.</p>
+</div>
+</div>
+</section><section id="functions" class="level2" data-number="9.3"><h2 data-number="9.3" class="anchored" data-anchor-id="functions">
 <span class="header-section-number">9.3</span> Functions</h2>
 <p></p>
 <p>For details of how to use each <strong>secr</strong> function see the help pages and vignettes.</p>
@@ -1259,7 +1273,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

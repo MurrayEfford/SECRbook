@@ -15,7 +15,7 @@ where $c_v(\mathbf x)$ is the value of the $v$-th covariate at point $\mathbf x$
 Although $D(\mathbf x;\phi)$ is often a smooth function, in **secr** we evaluate it only at the fixed points of the habitat mask (@sec-habitat). A mask defines the region of habitat relevant to a particular study: in the simplest case it is a buffered zone inclusive of the detector locations. More complex masks may exclude interior areas of non-habitat or have an irregular outline.
 
 A density model $D(\mathbf x;\phi)$ is specified in the 'model' argument of `secr.fit`[^footnote6a]. Spatial covariates, if any, are needed for each mask point; they are stored in the 'covariates' attribute of the mask. Results from fitting the model (including the estimated coefficients $\phi$) are saved in an object of class 'secr'. To visualise a fitted
-density model we first evaluate it at each point on a mask with the function `predictDsurface` to create an object of class 'Dsurface'. A Dsurface is a mask with added density data, and plotting a Dsurface is like plotting a mask covariate.
+density model we first evaluate it at each point on a mask with the function `predictDsurface`. This creates an object of class 'Dsurface'. A Dsurface is a mask with added density data, and plotting a Dsurface is like plotting a mask covariate.
 
 <br>
 
@@ -55,7 +55,7 @@ leftbank <- read.table(paste0(datadir,"/leftbank.txt"))[21:195,]
 options(digits = 6, width = 95)       
 ```
 
-OVforest is now a simple features (sf) object defined in package **sf**. We build a habitat mask object, selecting the first two polygons in OVforest and discarding the third that lies across the river. The attribute table of the shapefile (and hence OVforest) includes a categorical variable 'forest' that is either 'beech' (*Nothofagus* spp.) or 'nonbeech' (mixed podocarp-hardwood); `addCovariates' attaches these data to each cell in the mask.
+OVforest is now a simple features (sf) object defined in package **sf**. We build a habitat mask object, selecting the first two polygons in OVforest and discarding the third that lies across the river. The attribute table of the shapefile (and hence OVforest) includes a categorical variable 'forest' that is either 'beech' (*Nothofagus* spp.) or 'nonbeech' (mixed podocarp-hardwood); `addCovariates` attaches these data to each cell in the mask.
 ```{r}
 #| label: ovmask
 #| cache: true
@@ -69,6 +69,8 @@ ovmask <- addCovariates(ovmask, OVforest[1:2,])
 Plotting is easy:
 ```{r}
 #| label: fig-ovmaskplot
+#| code-fold: true
+#| code-summary: code to plot possum mask
 #| eval: true
 #| message: false
 #| fig-width: 6
@@ -154,11 +156,9 @@ You may wonder why `secr.fit` is ambivalent regarding the link function: link fu
 
 \index{Habitat mask!covariates}
 
-`secr.fit` automatically recognises the spatial variables x, y, x2, y2 and xy if they appear in the formula for D. These refer to the x-coordinate, y-coordinate, x-coordinate^2^ etc. for each mask point, and will be constructed automatically as needed.
+`secr.fit` automatically recognises the spatial variables x, y, x2, y2 and xy if they appear in the formula for D. These refer to the x-coordinate, y-coordinate, x-coordinate^2^ etc. for each mask point, and will be constructed automatically as needed. The built-in spatial variables offer limited model possibilities (@tbl-builtin).
 
 The formula for D may also include the non-spatial variables g (group), session (categorical), and Session (continuous), defined as for modelling g0 and sigma in @sec-detection.
-
-The built-in variables offer limited model possibilities:
 
 | Formula | Interpretation |
 | ------- | -------------- |
@@ -382,7 +382,8 @@ For details on how to specify colours, levels etc. read the help pages for `plot
 
 A plot may be enhanced by the addition of contours. This is a challenge, because the `contour` function in R requires a rectangular matrix of values, and our mask is not rectangular. We could make it so with the **secr** function `rectangularMask`, which makes a rectangular Dsurface with missing (NA) values of density at all the external points. `plot.Dsurface` recognises an irregular mask and attempts to fix this with an internal call to `rectangularMask`.
 
-## Scaling
+## Scaling {#sec-scaling}
+\index {Scaling}
 
 So far we have ignored the scaling of covariates, including geographic coordinates. 
 
@@ -393,17 +394,6 @@ Scaling of covariates other than x and y is up to the user. It is not usually ne
 The numerical algorithms for maximizing the likelihood work best when the absolute expected values are roughly similar for all parameters on their respective 'link' scales (i.e. all beta parameters) rather than varying by orders of magnitude. The default link function for D and sigma (log) places the values of these parameters on a scale that is not wildly different to the variation in g0 or lambda0, so this is seldom an issue. In extreme cases you may want to make allowance by setting the `typsize` argument of `nlm` or the `parscale` control argument of `optim` (via the ... argument of `secr.fit`).
 
 Scaling is not performed routinely by `secr.fit` for distance calculations. Sometimes, large numeric values in coordinates can cause loss of precision in distance calculations (there are a lot of them at each likelihood evaluation). The problem is serious in datasets that combine large coordinates with small detector spacing, such as the Lake Station `skink` dataset. Set `details = list(centred = TRUE)` to force scaling; this may become the default setting in a future version of **secr**.
-
-## Potential problems
-\index{Density surface!troubleshooting}
-
-Modelling density surfaces can be tricky.  Recognise when model fitting has failed. If there is no asymptotic variance-covariance matrix, the estimates cannot be trusted. Some forensic work may be needed. If in doubt, try repeating the fit, perhaps starting from the previously fitted values (you can use `secr.fit(..., start = last.model)` where `last.model` is a previously fitted secr object) or from new arbitrary values. Problems may result when the discretization is too coarse, so try with smaller mask cells.
-
-You can try another optimization method; `method = "Nelder-Mead"` is generally more robust than the default gradient-based method. Any method may fail to find the true maximum from a given starting point. We have no experience with simulated annealing ('SANN' in `optim`); it is reputedly effective, but slow. In the `optim` help it is stated ominously that "the 'SANN' method depends critically on the settings of the control parameters. It is not a general-purpose method".
-
-Avoid using '[' to extract subsets from mask, capthist and other **secr** objects. Use the provided `subset` methods. It is generally safe to use '[[' to extract one session from a multi-session object, as in our possum example, but this is not guaranteed. With care, it is also possible to replace selected elements in situ, but note that any change in coordinates will require the attribute 'meanSD' to be recalculated (see `?getMeanSD`).
-
-Do you really want to model density on the log scale? If not, change the link.
 
 ## This is not a density surface {#not-a-density-surface}
 \index{Density surface!not a}
@@ -438,7 +428,7 @@ The plot concerns only one realisation from the underlying Poisson model. It vis
 
  - attention is focussed on the individuals that were detected; others that were present but not detected are represented by a smoothly varying base level that dominates in the outer region of the plot (contrast this figure with the previous quadratic and DTR3 models).
  
- - the surface depends on sampling intensity, and as more data are added it will change shape systematically. Ultimately, the surface near the centre of a detector array becomes a set of spikes on a barren plain
+ - the surface depends on sampling intensity, and as more data are added it will change shape systematically. Ultimately, the surface near the centre of a detector array becomes a set of emergent peaks rising from an underwater plain of zero density, below the plateau of average density outside the array.
  
  - the 'summed confidence interval' plot is easily confused with the 2-D surface obtained by summing utilisation distributions across animals
  

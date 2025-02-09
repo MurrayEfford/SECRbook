@@ -52,6 +52,11 @@ knitr::include_graphics('figures/schematic3.png')
 - Any of the objects input to `secr.fit` (traps, capthist, mask) may include a dataframe of covariates  saved as an attribute. Covariate names may be used in model formulae; the `covariates` method is used to extract or replace covariates. Use `addCovariates` for trap or mask covariates from spatial data sources (e.g., shapefile or 'sf' object)
 - Fitted secr models may be manipulated with the methods shown on the right. 
 
+::: {.callout-note}
+## Subsets
+Avoid using '[' to extract subsets from mask, capthist and other **secr** objects. Use the provided `subset` methods. It is generally safe to use '[[' to extract one session from a multi-session capthist object. 
+:::
+
 ## Functions
 \index{R packages!secr!core functions}
 
