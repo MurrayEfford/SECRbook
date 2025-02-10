@@ -187,4 +187,4 @@ terra::plot(r)
 
 ### Distances computed in large studies
 
-Distances on the curved surface of the earth are not well represented by Euclidean distances when the study area is very large, as happens with large carnivores such as grizzly bears and wolverines.  This has led some authors to use more rigorous distance algorithms (reference?). This is not possible in **secr** because there is no record of the projected coordinate reference system used for the detectors and habitat mask.
+Distances on the curved surface of the earth are not well represented by straight-line Euclidean distances when the study area is very large, as happens with large carnivores such as grizzly bears and wolverines.  That has led some authors to use more rigorous (great-circle) distances. This is not possible in **secr** because there is no record of the projected coordinate reference system used for the detectors and habitat mask.
