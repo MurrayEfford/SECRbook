@@ -3,7 +3,7 @@
 
 Spatially explicit capture--recapture models allow for population density to vary over space [@be08]. Density is the intensity of a spatial Poisson process for activity centres. Models for density may include spatial covariates (e.g., vegetation type, elevation) and spatial trend. 
 
-In @sec-detection we introduced [linear submodels](10-detection-model.qmd#linear-submodels) for detection parameters. Here we consider SECR models in which the population density at any point, considered on the link scale, is also a linear function of $V$  covariates[^densitydesignmatrix]. For density this means 
+In @sec-detection we introduced [linear sub-models](10-detection-model.qmd#linear-submodels) for detection parameters. Here we consider SECR models in which the population density at any point, considered on the link scale, is also a linear function of $V$  covariates[^densitydesignmatrix]. For density this means 
 
 \begin{equation}
 D(\mathbf x; \phi) = f^{-1}[\phi_0 + \sum_{v=1}^V c_v(\mathbf x) \, \phi_v],
@@ -46,7 +46,6 @@ First we import data for the habitat mask from a polygon shapefile included with
 #| eval: true
 #| warning: false
 #| message: false
-library(secr, quietly = TRUE)
 datadir <- system.file("extdata", package = "secr")
 OVforest <- sf::st_read (paste0(datadir, "/OVforest.shp"), 
     quiet = TRUE)
@@ -73,9 +72,9 @@ Plotting is easy:
 #| code-summary: code to plot possum mask
 #| eval: true
 #| message: false
-#| fig-width: 6
+#| fig-width: 8
 #| fig-height: 5
-#| out-width: 95%
+#| out-width: 90%
 #| fig-cap: Orongorongo Valley possum study area
 par(mar = c(1,6,2,8))
 forestcol <- terrain.colors(6)[c(4,2)]
@@ -88,20 +87,17 @@ terra::sbar(d = 200, xy = c(2674670, 5982930), type = 'line',
 terra::north(xy = c(2674670, 5982830), d = 40, label = "N")
 ```
 
-We fit some simple models to data from February 1996 (session 49). Some warnings 
+We next fit some simple models to data from February 1996 (session 49). Some warnings 
 are suppressed for clarity.
 ```{r}
 #| label: OVfits1
 #| cache: true
 #| warning: false
 #| strip-white: true
-args <- list(capthist = OVpossumCH[[1]], mask = ovmask, trace = 
-    FALSE)
-models <- list(D ~ 1, D ~ x + y, D ~ x + y + x2 + y2 + xy, 
-    D ~ forest)
+args <- list(capthist = OVpossumCH[['49']], mask = ovmask, trace = FALSE)
+models <- list(D ~ 1, D ~ x + y, D ~ x + y + x2 + y2 + xy, D ~ forest)
 names <- c('null','Dxy','Dxy2', 'Dforest')
-fits <- list.secr.fit(model = models, constant = args, 
-    names = names)
+fits <- list.secr.fit(model = models, constant = args, names = names)
 ```
 ```{r}
 #| label: OVAIC
@@ -116,11 +112,11 @@ To visualise the entire surface we compute predicted density at each mask point.
 ```{r}
 #| label: fig-OVsurface
 #| eval: true
-#| fig-width: 6
+#| fig-width: 8
 #| fig-height: 5
-#| out-width: 95%
+#| out-width: 90%
 #| fig-cap: Quadratic possum density surface
-par(mar = c(1,6,1,8))
+par(mar = c(1,6,2,8))
 surfaceDxy2 <- predictDsurface(fits$Dxy2)
 plot(surfaceDxy2, plottype = "shaded", poly = FALSE, breaks = 
       seq(0,22,2), title = "Density / ha", text.cex = 1)
@@ -133,13 +129,11 @@ lines(leftbank)
 
 Following sections expand on the options for specifying and displaying density models.
 
-## Using the 'model' argument in secr.fit
+## Using the 'model' argument
 
-The model argument of `secr.fit` is a list of formulae, one for each 'real' parameter[^footnote6b] in both the state model (usually just D for density) and the observation model (typically g0 or lambda0, and sigma). A model formula defines variation in each parameter as a function of covariates (including geographic coordinates and their polynomial terms) that is linear on the 'link' scale, as in a generalized linear model.
+A model formula defines variation in each parameter as a function of covariates (including geographic coordinates and their polynomial terms) that is linear on the 'link' scale, as in a generalized linear model.
 
-[^footnote6b]: Null formulae such as `D ~ 1` may be omitted, and if a single formula is used, it may be presented on its own rather than in list() form.
-  
-The options differ between the state and observation models. D may vary with respect to group, session or point in space; g0, lambda0, and sigma may vary by group, session, occasion or latent class (finite mixture), but not with respect to continuous space. This was a choice made in the software design, aiming to tame the complexity that would result if g0 and sigma were allowed to vary continuously in space.
+The options differ between the state and observation models. D may vary with respect to group, session or point in space
 
 The predictors 'group' and 'session' behave for D as they do for other real parameters. They determine variation in the expected density for each group or session that is (by default) uniform across space, leading to a homogeneous Poisson model and a flat surface. No further explanation is therefore needed.
 
@@ -250,11 +244,11 @@ covariates(ovmask)[,"DTR"] <- distancetotrap(ovmask, leftbank)
 ```{r}
 #| label: fig-dtrplot
 #| eval: true
-#| fig-width: 6
+#| fig-width: 8
 #| fig-height: 5
-#| out-width: 80%
+#| out-width: 90%
 #| fig-cap: 'Orongorongo Valley possum study: distance to river'
-par(mar = c(1,6,1,8))
+par(mar = c(1,6,2,8))
 plot(ovmask, covariate = "DTR", breaks = seq(0,500,50), 
      title = "Distance to river m", dots = FALSE, inset= 0.07)
 ```
@@ -364,6 +358,59 @@ Multiple predictors may be included in one 's' smooth term, implying interaction
 
 For more on the use of regression splines see the documentation for **mgcv**, the **secr** help page `?smooths', @w06, and @bk14.
 
+### Scale of effect
+\index{Density surface!scale of effect}
+
+Modelling density as a function of covariate(s) at a point (the centroid of a mask cell) lacks biological realism. Individuals exploit resources across their home range, and density may be affected by regional dynamics over a much wider area [e.g., @Jackson2014]. 
+
+The scale at which environmental predictors influence density is usually unknown, and almost certainly does not correspond to either a point or the arbitrary size of a mask cell. Some progress has been made in estimating the scale from data [e.g. @Chandler2016], but methods have not yet been integrated into SECR.
+
+The best we can do at present is to construct spatial layers in GIS software that represent various levels of smoothing or spatial aggregation, corresponding to different scales of effect. Each layer may then be imported as a mask covariate that is evaluated at the cell centroids to represent the surrounding area. 
+
+This example uses the `focal` function in the **terra** package [@R-terra] to compute both the proportion of forest cells in a square window and a Gaussian-smoothed proportion.
+
+```{r, warning = FALSE}
+#| label: fig-focalplot
+#| code-fold: true
+#| code-summary: code for smoothed covariates
+#| echo: true
+#| eval: true
+#| fig-width: 7
+#| fig-height: 3.5
+#| out-width: 95%
+#| fig-cap: |
+#|   Smoothed forest covariate (proportion 'beech': 0\% dark green, 100\% white). (a) square window (5 $\times$ 5 cells), (b) Gaussian smooth ($\sigma = 50$ m). 
+
+# binary SpatRaster 0 = nonbeech, 1 = beech
+covariates(ovmask)$forest_num <- ifelse (covariates(ovmask)$forest=='beech', 1,0)
+tmp <- terra::rast(ovmask, covariate='forest_num')
+
+# square smoothing window: 5 cells
+tmpw5 <- terra::focal(tmp, w = 5, "mean", na.policy = "omit", na.rm= TRUE)
+names(tmpw5) <- 'w5'
+
+# Gaussian window, sigma 50 m
+# window radius is 3 sigma
+g50 <- terra::focalMat(tmp, d = 50, type = "Gauss")
+tmpg50 <- terra::focal(tmp, w = g50, "sum", na.policy = "omit", na.rm= TRUE)
+names(tmpg50) <- 'g50'
+
+# add to mask
+ovmask <- addCovariates(ovmask, tmpw5)
+ovmask <- addCovariates(ovmask, tmpg50)
+
+# plot
+par(mar = c(1,1,1,1), mfrow = c(1,2), xpd = FALSE)
+
+plot(ovmask, cov = 'w5', dots = FALSE, legend = FALSE)
+plot(ovtrap, add = TRUE)
+text (2674600, 5982892, 'a.', cex = 1.2)
+
+plot(ovmask, cov = 'g50', dots = FALSE, legend = FALSE)
+plot(ovtrap, add = TRUE)
+text (2674600, 5982892, 'b.', cex = 1.2)
+```
+
 ## Prediction and plotting
 \index{Density surface!prediction}
 \index{Density surface!plotting}
@@ -413,12 +460,12 @@ fxsurface <- fxTotal(fits$null)
 #| echo: true
 #| eval: true
 #| cache: true
-#| fig-width: 6
+#| fig-width: 8
 #| fig-height: 5
-#| out-width: 95%
+#| out-width: 90%
 #| fig-cap: |
 #|   Total fx surface
-par(mar = c(1,6,1,8))
+par(mar = c(1,6,2,8))
 plot(fxsurface, covariate = "D.sum", breaks = seq(0,30,2), 
      poly = FALSE)
 plot(ovtrap, add = TRUE)
@@ -447,7 +494,7 @@ fxsurfaceW <- fxTotal(possum.model.0)
 #| eval: true
 #| fig-width: 6
 #| fig-height: 5
-#| out-width: 95%
+#| out-width: 90%
 #| fig-cap: |
 #|   Waitarere possum fx surface
 par(mar = c(1,5,1,8))
@@ -490,11 +537,12 @@ To plot the full density surface it is first necessary to infer the missing inte
 #| label: fig-relativeD
 #| cache: true
 #| warning: false
-#| fig-width: 6
+#| fig-width: 8
 #| fig-height: 5
+#| out-width: 90%
 #| fig-cap: |
 #|   Possum density derived from quadratic relative density surface. Contour lines are from the previous full fit.
-par(mar = c(1,6,1,8))
+par(mar = c(1,6,2,8))
 derivedD <- derivedDsurface(fitrd1)
 plot(derivedD, plottype = "shaded", poly = FALSE, breaks = 
       seq(0,22,2), title = "Density / ha", text.cex = 1)
