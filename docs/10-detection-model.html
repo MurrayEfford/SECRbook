@@ -647,7 +647,7 @@ Figure&nbsp;10.3: HVP function fitted to snowshoe hare data with <span class="ma
 <p>How can different functions produce nearly the same estimates? Remember that <a href="./05-theory-special-topics.html#esa"><span class="math inline">\hat D = n/a(\hat \theta)</span></a>, and <span class="math inline">n</span> is the same for all models. Constant <span class="math inline">\hat D</span> therefore implies constant effective sampling area <span class="math inline">a(\hat \theta)</span>. In other words, variation in <span class="math inline">\hat \lambda_0</span> and <span class="math inline">\hat \sigma</span> ‘washes out’ when they are combined in <span class="math inline">a(\hat \theta)</span>. Under the four models <span class="math inline">a(\hat \theta)</span> is estimated as 46.4, 48.4, 45.9 and 46.7 ha.</p>
 </section><section id="detection-parameters-are-nuisance-parameters-mostly" class="level3" data-number="10.1.2"><h3 data-number="10.1.2" class="anchored" data-anchor-id="detection-parameters-are-nuisance-parameters-mostly">
 <span class="header-section-number">10.1.2</span> Detection parameters are nuisance parameters (mostly)</h3>
-<p>The detection model and its parameters (<span class="math inline">g_0</span>, <span class="math inline">\lambda_0</span>, <span class="math inline">\sigma</span> etc.) provide the link between our observations and the state of the animal population represented by the parameter <span class="math inline">D</span> (density, distribution in space, trend etc.). Submodels for <span class="math inline">D</span> are considered in <a href="11-density-model.html" class="quarto-xref"><span>Chapter 11</span></a>. But what interpretation should we attach to the detection parameters themselves?</p>
+<p>The detection model and its parameters (<span class="math inline">g_0</span>, <span class="math inline">\lambda_0</span>, <span class="math inline">\sigma</span> etc.) provide the link between our observations and the state of the animal population represented by the parameter <span class="math inline">D</span> (density, distribution in space, trend etc.). Sub-models for <span class="math inline">D</span> are considered in <a href="11-density-model.html" class="quarto-xref"><span>Chapter 11</span></a>. But what interpretation should we attach to the detection parameters themselves?</p>
 <p>The intercept <span class="math inline">g_0</span> is in a sense the probability of that an animal will be detected at the centre of its home range. The spatial scale of detection <span class="math inline">\sigma</span> relates to the size of the home range. These attributed meanings can aid intuitive understanding. However, we advise against a literal reading. The estimates have meaning only for a specified detection function and cannot meaningfully be compared across functions. Observe the</p>
 <p>The halfnormal function is closest to a standard reference, but estimates of halfnormal <span class="math inline">\sigma</span> are sensitive to infrequent large movements. Care is also needed because some early writers omitted the factor 2 from the denominator, increasing estimates of <span class="math inline">\sigma</span> by <span class="math inline">\sqrt 2</span><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 <p>Continuing the snowshoe hare example: the estimates of <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span> from HVP are surprisingly uncertain when considered on their own, yet the HVP estimate of density has about the same precision as other detection functions (<a href="#fig-choicedfparmplot" class="quarto-xref">Fig.&nbsp;<span>10.2</span></a>). How can this be? There is strong covariation in the sampling distributions of the two parameters that we plot using <code>ellipse.secr</code> in <a href="#fig-ellipseHVP" class="quarto-xref">Fig.&nbsp;<span>10.4</span></a>.</p>
@@ -681,7 +681,7 @@ Figure&nbsp;10.4: Confidence ellipse for HVP detection parameters plotted on the
 \mathbf y = \mathbf X \pmb {\beta},
 \tag{10.1}</span></span></p>
 <p>where <span class="math inline">\mathbf X</span> is the design matrix, <!-- rather than \pmb from amsmath, can use \boldsymbol for HTML, \symbf for pdf --> <span class="math inline">\pmb{\beta}</span> is a vector of coefficients, and <span class="math inline">\mathbf y</span> is the resulting vector of values on the link scale, one for each row of <span class="math inline">\mathbf X</span>. The first column of the design matrix is a column of 1’s for the intercept <span class="math inline">\beta_0</span>. Factor (categorical) predictors will usually be represented by several columns of indicator values (0’s and 1’s coding factor levels). See <span class="citation" data-cites="cw">Cooch &amp; White (<a href="A99-references.html#ref-cw" role="doc-biblioref">2023</a>)</span> Chapter 6 for an accessible introduction to linear models and design matrices.</p>
-<p>In <strong>secr</strong> each detection parameter (<span class="math inline">g_0, \lambda_0, \sigma, z</span>) is controlled by a linear submodel on its link scale, i.e.&nbsp;each has its own design matrix. <em>Rows</em> of the design matrix correspond to combinations of session, individual, occasion, and detector, omitting any of these four that is constant (perhaps because there is only one level). Finite-mixture models add further rows to the design matrix that we leave aside for now. <em>Columns</em> after the first are either (i) indicators to represent effects that can be constructed automatically (<a href="#tbl-predictors" class="quarto-xref">Table&nbsp;<span>10.3</span></a>), or (ii) user-supplied covariates associated with sessions, individuals, occasions or detectors.</p>
+<p>In <strong>secr</strong> each detection parameter (<span class="math inline">g_0, \lambda_0, \sigma, z</span>) is controlled by a linear sub-model on its link scale, i.e.&nbsp;each has its own design matrix. <em>Rows</em> of the design matrix correspond to combinations of session, individual, occasion, and detector, omitting any of these four that is constant (perhaps because there is only one level). Finite-mixture models add further rows to the design matrix that we leave aside for now. <em>Columns</em> after the first are either (i) indicators to represent effects that can be constructed automatically (<a href="#tbl-predictors" class="quarto-xref">Table&nbsp;<span>10.3</span></a>), or (ii) user-supplied covariates associated with sessions, individuals, occasions or detectors.</p>
 <div id="tbl-predictors" class="sm quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-predictors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;10.3: Automatically generated predictor variables for detection models
@@ -766,18 +766,17 @@ Table&nbsp;10.3: Automatically generated predictor variables for detection model
 </figure>
 </div>
 <p>Each design matrix is constructed automatically when <code>secr.fit</code> is called, using the data and a model formula. Computation of the linear predictor (<a href="#eq-linearmodel" class="quarto-xref">Eq.&nbsp;<span>10.1</span></a>) and back-transformation to the real scale are also automatic: the user need never see the design matrix.</p>
-<p>The hard-wired structure of the design matrices precludes some possible submodels: there is no direct way to model <em>spatial</em> variation in a detection parameter. However, spatial effects may be modelled using detector covariates, i.e.&nbsp;as a function of detector location rather than AC location, and a further workaround for parameter <span class="math inline">\sigma</span> is shown in <a href="A06-noneuclidean.html" class="quarto-xref"><span>Appendix F</span></a>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Spatially varying detection
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Linear submodels for parameters are considered by <span class="citation" data-cites="cw">Cooch &amp; White (<a href="A99-references.html#ref-cw" role="doc-biblioref">2023</a>)</span> as a <em>constraint</em> on a more general model. Their default is for each parameter to be fully-time-specific e.g., a Cormack-Jolly-Seber open population survival model would fit a unique detection probability <span class="math inline">p</span> and survival rate <span class="math inline">\phi</span> at each time. Our default is for each parameter to be constant (i.e.&nbsp;maximally constrained), and for linear submodels to introduce variation.</p>
+<p>The hard-wired structure of the design matrices precludes some possible sub-models: there is no direct way to model <em>spatial</em> variation in a detection parameter. This was a choice made in the design of the software. It aimed to tame the complexity and resource demands that would result if lambda0, g0 and sigma were allowed to vary continuously in space. However, spatial effects may be modelled efficiently using detector-level covariates, i.e.&nbsp;as a function of detector location rather than AC location, and a further workaround for parameter <span class="math inline">\sigma</span> is shown in <a href="A06-noneuclidean.html" class="quarto-xref"><span>Appendix F</span></a>.</p>
 </div>
 </div>
 <p>The formula may be constant (<span class="math inline">\sim</span> 1, the default) or some combination of terms in standard R formula notation (see <code><a href="https://rdrr.io/r/stats/formula.html">?formula</a></code>). For example, g0 <span class="math inline">\sim</span> b + T specifies a model with a learned response and a linear time trend in g0; the effects are additive on the link scale. <a href="#tbl-examples" class="quarto-xref">Table&nbsp;<span>10.4</span></a> has some examples.</p>
@@ -830,6 +829,19 @@ Table&nbsp;10.4: Some examples of the ‘model’ argument in <code>secr.fit</co
 </div>
 <!-- Behavioural responses 'b', 'B', 'bk', and 'Bk' refer to individuals whereas 'k' and 'K' refer only to sites.  -->
 <p>The common question of how to model sex differences can be answered in several ways. we devote <a href="16-sex.html" class="quarto-xref"><span>Chapter 16</span></a> to the possibilities (groups, individual covariate, hybrid mixtures etc.).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Linear sub-models for parameters are considered by <span class="citation" data-cites="cw">Cooch &amp; White (<a href="A99-references.html#ref-cw" role="doc-biblioref">2023</a>)</span> as a <em>constraint</em> on a more general model. Their default is for each parameter to be fully-time-specific e.g., a Cormack-Jolly-Seber open population survival model would fit a unique detection probability <span class="math inline">p</span> and survival rate <span class="math inline">\phi</span> at each time. Our default is for each parameter to be constant (i.e.&nbsp;maximally constrained), and for linear sub-models to introduce variation.</p>
+</div>
+</div>
 <section id="covariates" class="level3" data-number="10.2.1"><h3 data-number="10.2.1" class="anchored" data-anchor-id="covariates">
 <span class="header-section-number">10.2.1</span> Covariates</h3>
 <p></p>
@@ -1579,7 +1591,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

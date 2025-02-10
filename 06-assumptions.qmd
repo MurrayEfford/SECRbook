@@ -22,7 +22,7 @@ The SECR probability models of @sec-theory that underlie the methods in this boo
 
 We omit one further assumption: that the probability of detection declines to zero for AC at the edge of the habitat mask unless it is naturally bounded. This is addressed in the analysis by correct choice of [detection function](10-detection-model.qmd#sec-detectfn) and buffer or mask (@sec-habitat).
 
-Restrictive assumptions often may be relaxed under specific extensions to the SECR model, including the various 'submodels' of @sec-detection. 
+Restrictive assumptions often may be relaxed under specific extensions to the SECR model, including the various 'sub-models' of @sec-detection. 
 
 ## Robustness {#sec-robustness}
 

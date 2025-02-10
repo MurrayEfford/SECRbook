@@ -1,6 +1,6 @@
 # Working with fitted models {#sec-fittedmodels}
 
-This chapter covers issues that arise regardless of the particular model to be fitted. 
+This chapter covers a miscellany of issues that arise regardless of the particular model to be fitted. 
 
 ## Bundling fitted models
 
@@ -22,6 +22,8 @@ missing or implausible (near zero or very large). The maximization function `nlm
 may return the arcane 'code 3', or there may be message that a variance calculation failed. 
 
 These conditions must be taken seriously, but they are not always fatal to the analysis. See @sec-troubleshooting for diagnosis and possible solutions.
+
+If all variances (SE) are missing or extreme then the fit has indeed failed.
 
 ## Prediction
 
@@ -119,7 +121,7 @@ terra::sbar(20000, xy = c(295000, 3925000), type = 'bar', labels = c(0,100,200),
 ```
 
 :::{.callout=warning}
-Estimates of realised population size (but not expected population size) are meaningless if the new region does not cover all $n$ detected animals.
+Estimates of realised population size (but not expected population size) are misleading if the new region does not cover all $n$ detected animals.
 :::
 
 ## Model selection

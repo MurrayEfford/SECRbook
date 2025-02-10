@@ -470,7 +470,7 @@ window.Quarto = {
   
 
 
-</header><p>This chapter covers issues that arise regardless of the particular model to be fitted.</p>
+</header><p>This chapter covers a miscellany of issues that arise regardless of the particular model to be fitted.</p>
 <section id="bundling-fitted-models" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="bundling-fitted-models">
 <span class="header-section-number">13.1</span> Bundling fitted models</h2>
 <p>You may have fitted one model or several. A convenient way to handle several models is to bundle them together as an object of class ‘secrlist’:</p>
@@ -482,6 +482,7 @@ window.Quarto = {
 <span class="header-section-number">13.2</span> Recognizing failure-to-fit</h2>
 <p>Sometimes a model may appear to have fitted, but on inspection some values are missing or implausible (near zero or very large). The maximization function <code>nlm</code> may return the arcane ‘code 3’, or there may be message that a variance calculation failed.</p>
 <p>These conditions must be taken seriously, but they are not always fatal to the analysis. See <a href="A01-troubleshooting.html" class="quarto-xref"><span>Appendix A</span></a> for diagnosis and possible solutions.</p>
+<p>If all variances (SE) are missing or extreme then the fit has indeed failed.</p>
 </section><section id="prediction" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="prediction">
 <span class="header-section-number">13.3</span> Prediction</h2>
 <p>A fitted model (‘secr’ object) contains estimates of the coefficients of the model. Use the <code>coef</code> method for secr objects to display the coefficients (e.g., <code>coef(secrdemo.0)</code>). We note</p>
@@ -1245,7 +1246,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","loop":false,"closeEffect":"zoom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

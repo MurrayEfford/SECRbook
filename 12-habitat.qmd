@@ -101,7 +101,7 @@ plot(hollowmask, dots = FALSE, mesh = "grey", col = "white")
 plot(hollowgrid, detpar = list(pch = 16, cex = 1), add = TRUE)
 ```
 
-We chose a coarser grid (spacing 15 metres) relative to the trap spacing. This, combined with the hole in the centre, results in a mask with many fewer rows (`r nrow(hollowmask)` rows compared to `r nrow(fit$mask)`). Setting the type to "trapbuffer" trims a few grid cells from the corners,
+We chose a coarser grid (spacing 15 metres) relative to the trap spacing. This, combined with the hole in the centre, results in a mask with many fewer rows (`r nrow(hollowmask)` rows compared to `r nrow(fit$mask)`). Setting the type to "trapbuffer" trims grid cells from the corners and the centre.
 
 If we collected data `hollowCH` with the hollow grid we could fit a SECR model using `hollowmask`. For illustration we simulate some data using default settings in `sim.capthist` (5 occasions, D = 5/ha, g0 = 0.2, sigma = 25 m).
 ```{r}
@@ -124,7 +124,7 @@ cat("Number of rows in hollow mask =", nrow(fit2$mask), "\n")
 
 The general answer is 'Wide enough that any bias in estimated densities is negligible'. Excessive truncation of the mask results in positive bias that depends on the sampling regime (detector layout and sampling duration) and the detection function, particularly its spatial scale and shape. 
 
-The penalty for using an over-wide buffer is that fitting will be slower for a given mask spacing. It is usually smart to accept this penalty rather than search for the narrowest acceptable buffer. We therefore avoid detailed investigation of mask truncation bias[^bias].
+The penalty for using an over-wide buffer is that fitting will be slower for a given mask spacing. *It is usually smart to accept this penalty rather than search for the narrowest acceptable buffer.*
 
 Two factors are critical when selecting a buffer width --
 
@@ -150,7 +150,7 @@ Heavy-tailed detection functions such as the hazard-rate (HR, HHR) can be proble
 
 ### Hands-free buffer selection: `suggest.buffer`
 
-The `suggest.buffer` function is an alternative to the $4\sigma_{HN}$ rule of thumb for data from point detectors (not polygon or transect detectors). It has the advantage of allowing for the geometry of the detector array (specifically, the length of edge) and the duration of sampling. The algorithm is obscure and undocumented (this is only a suggestion!); it uses an approximation to the bias computed by function `bias.D`. The first argument of `suggest.buffer` may be a capthist object or a fitted model. With a capthist object as input:
+The `suggest.buffer` function is an alternative to the $4\sigma_{HN}$ rule of thumb for data from point detectors (not polygon or transect detectors). It has the advantage of allowing for the geometry of the detector array (specifically, the length of edge) and the duration of sampling. The algorithm is obscure and undocumented (this is only a suggestion!) and uses an approximation to the bias, computed by function `bias.D`. The first argument of `suggest.buffer` may be a capthist object or a fitted model. With a capthist object as input:
 ```{r}
 #| label: suggestbuffer
 suggest.buffer(captdata, detectfn = 'HN', RBtarget = 0.001)
@@ -208,8 +208,8 @@ which is coincidental, but encouraging!
 
 If you intend to use a non-Euclidean distance metric then it makes sense to use this also when defining the mask, specifically to drop mask points that are distant from any detector according to the metric. See @sec-noneuclidean for an example. Modelling with non-Euclidean distances also requires the user to provide `secr.fit` with a matrix of user-computed distances between detectors and mask points.
 
-## Grid cell size and the effects of discretization {#maskspacing}
-
+## Grid cell size {#maskspacing}
+\index{Habitat mask!spacing}
 \index{Habitat mask!discretization}
 
 Using a set of discrete locations (mask points) to represent the locations of animals is numerically convenient, and by making grid cells small enough we can certainly eliminate any effect of discretization. However, reducing cell size increases the number of cells and slows down model fitting. Trials with varying cell size (mask spacing) provide reassurance that discretization has not distorted the analysis. 
@@ -262,7 +262,7 @@ For completeness, we revisit the question of buffer width using the `esaPlot` fu
 knitr::include_graphics('figures/maskesa.png')
 ```
 
-## Excluding areas of non-habitat
+## Excluding non-habitat
 
 \index{Habitat mask!excluding non-habitat}
 
@@ -320,10 +320,9 @@ By default, data for the 'poly' argument are retained as an attribute of the mas
 
 \index{Habitat mask!covariates}
 
-Masks may have a 'covariates' attribute that is a dataframe just like the 'covariates' attributes of traps and capthist objects. The data frame has one row for each row (point) on the mask, and one column for each covariate. Covariates may be categorical (factor-valued) or continuous[^footnote7a]. Mask covariates are used for modelling [density surfaces] (D), not for modelling detection parameters (g0, lambda0, sigma)[^footnote7b]. The dataframe may include unused covariates.
+Masks may have a 'covariates' attribute that is a dataframe just like the 'covariates' attributes of traps and capthist objects. The data frame has one row for each row (point) on the mask, and one column for each covariate. The dataframe may include unused columns. Mask covariates are used for modelling [density surfaces] (D), not for modelling detection parameters (g0, lambda0, sigma). 
 
-[^footnote7a]:Character-valued covariates will be coerced to factors in `secr.fit`.
-[^footnote7b]:As an aside - covariates used in detection models should have a small number of discrete values, even when they represent a continuous quantity, because covariates with many values slow down computation and demand extra memory. There is no such constraint with mask covariates.
+Covariates may be categorical (factor-valued) or continuous. Character-valued covariates will be coerced to factors. Covariates in detection models ideally take a small number of discrete values, but there is no such constraint on mask covariates, which may be continuous. 
 
 ### Adding covariates
 
@@ -352,6 +351,8 @@ Values are extracted for the point in the data source corresponding to the centr
 * a traps object with covariates
 
 One or more input columns may be selected by name. The argument 'strict' generates a warning if points lie outside a mask used as a spatial data source. @sec-spatialdata has more about spatial data in **secr**.
+
+See @sec-density for further applications, including smooths to represent the [scale of effect](11-density-model.qmd#scaleofeffect).
 
 ### Repairing missing values
 
@@ -506,9 +507,11 @@ Function `randomHabitat` generates somewhat realistic maps of habitat that may b
 
 ### Mask vs raster
 
-Mask objects have a lot in common with objects of the RasterLayer S4 class defined in the package **raster** [@R-raster]. However, they are much simpler: no projection is specified and grid cells must be square.
+Mask objects have a lot in common with objects of the RasterLayer S4 class defined in the package **raster** [@R-raster] and the SpatRaster class defined in the package **terra** [@R-terra]. However, they are much simpler: no projection is specified and grid cells must be square.
 
 A mask object may be exported as a RasterLayer using the `raster` method defined in **secr** for mask objects. This allows you to nominate a covariate to provide values for the RasterLayer, and to specify a projection.
+
+A mask object may also be exported as a SpatRaster using the `rast` method defined in **secr** for mask objects. See [here](11-density-model.qmd#scaleofeffect) for an example in which **terra** functions are used to smooth a mask covariate before returning it to the mask.
 
 ::: {.callout-warning}
 

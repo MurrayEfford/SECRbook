@@ -66,11 +66,11 @@ For details of how to use each **secr** function see the help pages and vignette
 |:---------------|:-----------------------------------------------------|
 | [`addCovariates`]	  | add spatial covariates to traps or mask |
 | [`AIC`]*            | model selection, model weights |
-| [`covariates`]	     | extract or replace covariates of traps, capthist or mask |
+| [`covariates`]	  | extract or replace covariates of traps, capthist or mask |
 | [`derived`]*        | compute density from conditional likelihood models |
 | [`make.mask`]       | construct habitat mask (= mesh) |
 | [`plot`]*           | plot capthist, traps or mask |
-| [`predict`]*	       | compute 'real' parameters for arbitrary levels of predictor variables |
+| [`predict`]*	      | compute 'real' parameters for arbitrary levels of predictor variables |
 | [`predictDsurface`] | evaluate density surface at each point of a mask |
 | [`read.capthist`]   | input captures and trap layout from Density format, one call |
 | [`region.N`]*       | compute expected and realised population size in specified region |
@@ -172,7 +172,11 @@ Users may provide their own starting values. These may be a vector of coefficien
 
 The core parameters are 'real' parameters in the terminology of MARK [@cw]. Three real parameters are commonly modelled in **secr**: 'D' (for density), and 'g0' and 'sigma' (for the detection function). Other 'real' parameters appear in particular contexts. 'z' is a shape parameter that is used only when the [detection function](#sec-detectfn) has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter 'lambda0' in place of 'g0'. A further 'real' parameter is the mixing proportion 'pmix', used in [finite mixture models](#finite-mixtures) and [hybrid mixture models](#hybrid-mixtures).
 
-By default, each 'real' parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the 'model' argument of `secr.fit`.  Here 'models' relates to variation in the parameters that may be explained by known factors and covariates. Models are defined symbolically using a subset of the R formula notation. A separate linear predictor is used for each core parameter. The workings are explained in detail in @sec-detection and @sec-density. 
+By default, each 'real' parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the 'model' argument of `secr.fit`.  Here  'model' refers to variation in a parameter that may be explained by known factors and covariates, perhaps better designated a 'sub-model' of the overarching [SECR model](@sec-theory).
+
+Sub-models are defined symbolically using a subset of the R formula notation. A separate linear predictor is used for each core parameter. The model argument of `secr.fit` is a list of formulae, one for each 'real' parameter. Null formulae such as `D ~ 1` may be omitted, and a single non-null formula may be presented on its own rather than in list() form.
+
+Sub-models are constructed differently for detection and density parameters as explained in @sec-detection and @sec-density. 
 
 ### `CL` -- conditional vs full likelihood {#CL}  
 \index{secr.fit!CL}

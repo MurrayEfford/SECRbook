@@ -358,7 +358,7 @@ Multiple predictors may be included in one 's' smooth term, implying interaction
 
 For more on the use of regression splines see the documentation for **mgcv**, the **secr** help page `?smooths', @w06, and @bk14.
 
-### Scale of effect
+### Scale of effect {#scaleofeffect}
 \index{Density surface!scale of effect}
 
 Modelling density as a function of covariate(s) at a point (the centroid of a mask cell) lacks biological realism. Individuals exploit resources across their home range, and density may be affected by regional dynamics over a much wider area [e.g., @Jackson2014]. 
@@ -382,17 +382,17 @@ This example uses the `focal` function in the **terra** package [@R-terra] to co
 #|   Smoothed forest covariate (proportion 'beech': 0\% dark green, 100\% white). (a) square window (5 $\times$ 5 cells), (b) Gaussian smooth ($\sigma = 50$ m). 
 
 # binary SpatRaster 0 = nonbeech, 1 = beech
-covariates(ovmask)$forest_num <- ifelse (covariates(ovmask)$forest=='beech', 1,0)
-tmp <- terra::rast(ovmask, covariate='forest_num')
+covariates(ovmask)$forest_num <- ifelse (covariates(ovmask)$forest == 'beech', 1,0)
+tmp <- terra::rast(ovmask, covariate = 'forest_num')
 
 # square smoothing window: 5 cells
-tmpw5 <- terra::focal(tmp, w = 5, "mean", na.policy = "omit", na.rm= TRUE)
+tmpw5 <- terra::focal(tmp, w = 5, "mean", na.policy = "omit", na.rm = TRUE)
 names(tmpw5) <- 'w5'
 
 # Gaussian window, sigma 50 m
 # window radius is 3 sigma
 g50 <- terra::focalMat(tmp, d = 50, type = "Gauss")
-tmpg50 <- terra::focal(tmp, w = g50, "sum", na.policy = "omit", na.rm= TRUE)
+tmpg50 <- terra::focal(tmp, w = g50, "sum", na.policy = "omit", na.rm = TRUE)
 names(tmpg50) <- 'g50'
 
 # add to mask

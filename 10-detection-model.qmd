@@ -173,7 +173,7 @@ How can different functions produce nearly the same estimates? Remember that [$\
 
 ### Detection parameters are nuisance parameters (mostly)
 
-The detection model and its parameters ($g_0$, $\lambda_0$, $\sigma$ etc.) provide the link between our observations and the state of the animal population represented by the parameter $D$ (density, distribution in space, trend etc.). Submodels for $D$ are considered in @sec-density. But what interpretation should we attach to the detection parameters themselves? 
+The detection model and its parameters ($g_0$, $\lambda_0$, $\sigma$ etc.) provide the link between our observations and the state of the animal population represented by the parameter $D$ (density, distribution in space, trend etc.). Sub-models for $D$ are considered in @sec-density. But what interpretation should we attach to the detection parameters themselves? 
 
 The intercept $g_0$ is in a sense the probability of that an animal will be detected at the centre of its home range. The spatial scale of detection $\sigma$ relates to the size of the home range. These attributed meanings can aid intuitive understanding. However, we advise against a literal reading. The estimates have meaning only for a specified detection function and cannot meaningfully be compared across functions. Observe the 
 
@@ -213,7 +213,7 @@ Given the preceding comments you may wonder why we bother with different detecti
 Also, it is desirable to account for any significant lack of fit due to the detection function before modelling effects that may have a more critical effect on density estimates, such as individual heterogeneity and learned responses.
 
 ## Detection submodels {#linear-submodels}
-\index{Detection model!submodels}
+\index{Detection model!sub-models}
 
 Until now we have assumed that there is a single beta parameter for each real parameter. A much richer set of models is obtained by treating each real parameter as a function of covariates. For convenience, the function is linear on the appropriate [link](01-basics.qmd#sec-link) scale. The single 'beta' coefficient is then replaced by two or more coefficients (e.g., intercept $\beta_0$ and slope $\beta_1$ of the linear relationship $y = \beta_0 + \beta_1x_1$ where $y$ is a parameter on the link scale and $x_1$ is a covariate). Suppose, for example, that $y$ depends on sampling occasion $s$ then $y(s) = \beta_0 + \beta_1x_1(s)$ and the corresponding real parameter is $y(s)$ back transformed from the link scale.
 
@@ -226,7 +226,7 @@ where $\mathbf X$ is the design matrix,
 <!-- rather than \pmb from amsmath, can use \boldsymbol for HTML, \symbf for pdf -->
 $\pmb{\beta}$ is a vector of coefficients, and $\mathbf y$ is the resulting vector of values on the link scale, one for each row of $\mathbf X$. The first column of the design matrix is a column of 1's for the intercept $\beta_0$. Factor (categorical) predictors will usually be represented by several columns of indicator values (0's and 1's coding factor levels). See @cw Chapter 6 for an accessible introduction to linear models and design matrices. 
 
-In **secr** each detection parameter ($g_0, \lambda_0, \sigma, z$) is controlled by a linear submodel on its link scale, i.e. each has its own design matrix. *Rows* of the design matrix correspond to combinations of session, individual, occasion, and detector, omitting any of these four that is constant (perhaps because there is only one level). Finite-mixture models add further rows to the design matrix that we leave aside for now. *Columns* after the first are either (i) indicators to represent effects that can be constructed automatically (@tbl-predictors), or (ii) user-supplied covariates associated with sessions, individuals, occasions or detectors. 
+In **secr** each detection parameter ($g_0, \lambda_0, \sigma, z$) is controlled by a linear sub-model on its link scale, i.e. each has its own design matrix. *Rows* of the design matrix correspond to combinations of session, individual, occasion, and detector, omitting any of these four that is constant (perhaps because there is only one level). Finite-mixture models add further rows to the design matrix that we leave aside for now. *Columns* after the first are either (i) indicators to represent effects that can be constructed automatically (@tbl-predictors), or (ii) user-supplied covariates associated with sessions, individuals, occasions or detectors. 
 
 | Variable | Description   | Notes                                        |
 |:--------|:---------------|:----------------------------------------------|
@@ -248,10 +248,9 @@ In **secr** each detection parameter ($g_0, \lambda_0, \sigma, z$) is controlled
 
 Each design matrix is constructed automatically when `secr.fit` is called, using the data and a model formula. Computation of the linear predictor (@eq-linearmodel) and back-transformation to the real scale are also automatic: the user need never see the design matrix.
 
-The hard-wired structure of the design matrices precludes some possible submodels: there is no direct way to model *spatial* variation in a detection parameter. However, spatial effects may be modelled using detector covariates, i.e. as a function of detector location rather than AC location, and a further workaround for parameter $\sigma$ is shown in @sec-noneuclidean.
-
 ::: {.callout-note}
-Linear submodels for parameters are considered by @cw as a *constraint* on a more general model. Their default is for each parameter to be fully-time-specific e.g., a Cormack-Jolly-Seber open population survival model would fit a unique detection probability $p$ and survival rate $\phi$ at each time. Our default is for each parameter to be constant (i.e. maximally constrained), and for linear submodels to introduce variation.
+## Spatially varying detection
+The hard-wired structure of the design matrices precludes some possible sub-models: there is no direct way to model *spatial* variation in a detection parameter. This was a choice made in the design of the software. It aimed to tame the complexity and resource demands that would result if lambda0, g0 and sigma were allowed to vary continuously in space. However, spatial effects may be modelled efficiently using detector-level covariates, i.e. as a function of detector location rather than AC location, and a further workaround for parameter $\sigma$ is shown in @sec-noneuclidean.
 :::
 
 The formula may be constant ($\sim$ 1, the default) or some combination of terms in standard R
@@ -274,6 +273,11 @@ g0; the effects are additive on the link scale. @tbl-examples has some examples.
 <!-- Behavioural responses 'b', 'B', 'bk', and 'Bk' refer to individuals whereas 'k' and 'K' refer only to sites.  -->
 
 The common question of how to model sex differences can be answered in several ways. we devote @sec-sex to the possibilities (groups, individual covariate, hybrid mixtures etc.).
+
+
+::: {.callout-note}
+Linear sub-models for parameters are considered by @cw as a *constraint* on a more general model. Their default is for each parameter to be fully-time-specific e.g., a Cormack-Jolly-Seber open population survival model would fit a unique detection probability $p$ and survival rate $\phi$ at each time. Our default is for each parameter to be constant (i.e. maximally constrained), and for linear sub-models to introduce variation.
+:::
 
 ### Covariates
 \index{Detection model!covariates}
