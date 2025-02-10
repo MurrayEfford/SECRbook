@@ -470,7 +470,7 @@ window.Quarto = {
 <p>In addition to the variation that can be attributed to covariates (e.g., sex) or specific effects (occasion, learned responses etc.) there may be variation in detection parameters among individuals that is unrelated to known predictors. This goes by the name ‘individual heterogeneity’. Unmodelled individual heterogeneity can be a major source of bias in non-spatial capture–recapture estimates of population size <span class="citation" data-cites="obwa78">(<a href="A99-references.html#ref-obwa78" role="doc-biblioref">Otis et al., 1978</a>)</span>.</p>
 <p>It has long been recognised that SECR removes one major source of individual heterogeneity by modelling differential access to detectors. However, each detection parameter (<span class="math inline">g_0, \lambda_0, \sigma</span>) is potentially heterogeneous and a source of bias in SECR estimates of density, as we saw in <a href="06-assumptions.html" class="quarto-xref"><span>Chapter 6</span></a>.</p>
 <p>Individual heterogeneity may be addressed by treating the parameter as a random effect. This entails integrating the likelihood over the hypothesized distribution of the parameter. Results are unavoidably dependent on the choice of distribution. The distribution may be continuous or discrete. Finite mixture models with a small number of latent classes (2 or 3) are a form of random effect that is particularly easy to implement <span class="citation" data-cites="p2000">(<a href="A99-references.html#ref-p2000" role="doc-biblioref">Pledger, 2000</a>)</span>.</p>
-<p>Continuous random effects are usually assumed to follow a normal distribution. There are numerical methods for efficient integration of normal random effects, but these have not been implemented in <strong>secr</strong>. Despite its attractive smoothness, a normal distribution lacks some of the statistical flexibility of finite mixtures. For example, the normal distribution has fixed skewness, whereas a 2-class finite mixture allows varying skewness. The <a href="05-theory-special-topics.html#finite-mixtures">likelihood</a> for finite mixtures is described separately.</p>
+<p>Continuous random effects are usually assumed to follow a normal distribution on the link scale. There are numerical methods for efficient integration of normal random effects, but these have not been implemented in <strong>secr</strong>. Despite its attractive smoothness, a normal distribution lacks some of the statistical flexibility of finite mixtures. For example, the normal distribution has fixed skewness, whereas a 2-class finite mixture allows varying skewness. The <a href="05-theory-special-topics.html#finite-mixtures">likelihood</a> for finite mixtures is described separately.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -484,16 +484,6 @@ Interpreting latent classes
 <p>It’s worth mentioning a perennial issue of interpretation: Do the latent classes in a finite mixture model have biological reality? The answer is ‘Probably not’ (although the hybrid model blurs this issue). Fitting a finite mixture model does not require or imply that there is a matching structure in the population (discrete types of animal). A mixture model is merely a convenient way to capture heterogeneity.</p>
 </div>
 </div>
-<!-- Variation in detection probability among individuals ('individual -->
-<!-- heterogeneity') is a persistent problem in capture--recapture studies. -->
-<!-- Ideally, such variation is modelled by grouping individuals into -->
-<!-- homogeneous classes (males and females) or including continuous -->
-<!-- predictors such as body weight. Finite mixture models are an option -->
-<!-- when unmodelled heterogeneity remains (Pledger 2000; Borchers and -->
-<!-- Efford 2008). The population is assumed to comprise 2 or more latent -->
-<!-- classes differing in detection parameters, with an unknown proportion -->
-<!-- in each class. The likelihood uses a weighted sum over the classes, where  -->
-<!-- the weight(s) (mixing proportion(s)) are parameters to be estimated. -->
 <p>Mixture models are prone to fitting problems caused by multimodality of the likelihood. Some comments are offered below, but a fuller investigation is needed.</p>
 <p>In a finite mixture model no individual is known with certainty to belong to a particular class, although membership probability may be assigned retrospectively from the fitted model. A hybrid model may incorporate the known class membership of some or all individuals, as we described in <a href="05-theory-special-topics.html" class="quarto-xref"><span>Chapter 5</span></a>.</p>
 <section id="finite-mixture-models-in-secr" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="finite-mixture-models-in-secr">
@@ -503,16 +493,16 @@ Interpreting latent classes
 <p><strong>secr</strong> allows 2- or 3-class finite mixture models for any ‘real’ detection parameter (e.g., g0, lambda0 or sigma of a halfnormal detection function). Consider a simple example in which we specify a 2-class mixture by adding the predictor ‘h2’ to the model formula:</p>
 <p>Continuing with the snowshoe hares:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit.h2</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">hareCH6</span>, model <span class="op">=</span> <span class="va">lambda0</span><span class="op">~</span><span class="va">h2</span>,</span>
-<span>                   detectfn <span class="op">=</span> <span class="st">'HEX'</span>, buffer <span class="op">=</span> <span class="fl">250</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit.h2</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">hareCH6</span>, model <span class="op">=</span> <span class="va">lambda0</span><span class="op">~</span><span class="va">h2</span>, detectfn <span class="op">=</span> <span class="st">'HEX'</span>, </span>
+<span>                   buffer <span class="op">=</span> <span class="fl">250</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit.h2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               beta  SE.beta      lcl      ucl
 D            0.4244 0.133371  0.16300  0.68581
 lambda0     -1.7604 0.191686 -2.13612 -1.38473
-lambda0.h22  2.0999 0.912163  0.31214  3.88775
+lambda0.h22  2.1000 0.912171  0.31213  3.88778
 sigma        3.6616 0.083454  3.49801  3.82515
-pmix.h22    -3.6168 0.964998 -5.50817 -1.72544</code></pre>
+pmix.h22    -3.6168 0.964990 -5.50815 -1.72546</code></pre>
 </div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit.h2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -520,14 +510,14 @@ pmix.h22    -3.6168 0.964998 -5.50817 -1.72544</code></pre>
          link estimate SE.estimate      lcl      ucl
 D         log  1.52868    0.204791  1.17704  1.98537
 lambda0   log  0.17197    0.033270  0.11811  0.25039
-sigma     log 38.92276    3.253913 33.04971 45.83946
+sigma     log 38.92275    3.253912 33.04971 45.83946
 pmix    logit  0.97383    0.024589  0.84883  0.99596
 
 $`session = wickershamunburne, h2 = 2`
          link  estimate SE.estimate        lcl      ucl
-D         log  1.528678    0.204791  1.1770380  1.98537
-lambda0   log  1.404276    1.694523  0.2190645  9.00187
-sigma     log 38.922756    3.253913 33.0497090 45.83946
+D         log  1.528679    0.204791  1.1770389  1.98537
+lambda0   log  1.404286    1.694556  0.2190630  9.00207
+sigma     log 38.922752    3.253912 33.0497065 45.83946
 pmix    logit  0.026165    0.024589  0.0040372  0.15117</code></pre>
 </div>
 </div>
@@ -549,10 +539,8 @@ Warning
 <p>We now shift to a more interesting example based on the Coulombe’s house mouse <em>Mus musculus</em> dataset <span class="citation" data-cites="obwa78">(<a href="A99-references.html#ref-obwa78" role="doc-biblioref">Otis et al., 1978</a>)</span>. </p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">morning</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">housemouse</span>, occ <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">lambda0</span><span class="op">~</span><span class="fl">1</span>, <span class="va">lambda0</span><span class="op">~</span><span class="va">h2</span>, <span class="va">sigma</span><span class="op">~</span><span class="va">h2</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">lambda0</span><span class="op">~</span><span class="va">h2</span>,</span>
-<span>    <span class="va">sigma</span><span class="op">~</span><span class="va">h2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>capthist <span class="op">=</span> <span class="va">morning</span>, buffer <span class="op">=</span> <span class="fl">25</span>, detectfn <span class="op">=</span> <span class="st">'HEX'</span>, </span>
-<span>    trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">lambda0</span><span class="op">~</span><span class="fl">1</span>, <span class="va">lambda0</span><span class="op">~</span><span class="va">h2</span>, <span class="va">sigma</span><span class="op">~</span><span class="va">h2</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">lambda0</span><span class="op">~</span><span class="va">h2</span>, <span class="va">sigma</span><span class="op">~</span><span class="va">h2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>capthist <span class="op">=</span> <span class="va">morning</span>, buffer <span class="op">=</span> <span class="fl">25</span>, detectfn <span class="op">=</span> <span class="st">'HEX'</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">fits</span> <span class="op">&lt;-</span> <span class="fu">list.secr.fit</span><span class="op">(</span>model <span class="op">=</span> <span class="va">models</span>, constant <span class="op">=</span> <span class="va">args</span>, names <span class="op">=</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'null'</span>, <span class="st">'h2.lambda0'</span>, <span class="st">'h2.sigma'</span>, <span class="st">'h2.lambda0.sigma'</span><span class="op">)</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -576,8 +564,8 @@ h2.lambda0.sigma   1285.3      121.70 1068.0 1546.8</code></pre>
 </div>
 <p>Although the best mixture model fits substantially better than the null model (<span class="math inline">\Delta</span>AIC = 33.3), there is only a 2.6% difference in <span class="math inline">\hat D</span>. More complex models are allowed. For example, one might, somewhat outlandishly, fit a learned response to capture that differs between two latent classes, while also allowing sigma to differ between classes:</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">model.h2xbh2s</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">morning</span>, model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">lambda0</span><span class="op">~</span><span class="va">h2</span><span class="op">*</span><span class="va">bk</span>, </span>
-<span>    <span class="va">sigma</span><span class="op">~</span><span class="va">h2</span><span class="op">)</span>, buffer <span class="op">=</span> <span class="fl">25</span>, detectfn <span class="op">=</span> <span class="st">'HEX'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">model.h2xbh2s</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">morning</span>, model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">lambda0</span><span class="op">~</span><span class="va">h2</span><span class="op">*</span><span class="va">bk</span>, <span class="va">sigma</span><span class="op">~</span><span class="va">h2</span><span class="op">)</span>, </span>
+<span>                          buffer <span class="op">=</span> <span class="fl">25</span>, detectfn <span class="op">=</span> <span class="st">'HEX'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="number-of-classes" class="level3" data-number="15.1.1"><h3 data-number="15.1.1" class="anchored" data-anchor-id="number-of-classes">
 <span class="header-section-number">15.1.1</span> Number of classes</h3>
@@ -610,7 +598,7 @@ start2    0.078       0.087 0.008 0.473</code></pre>
 </section><section id="multimodality" class="level3" data-number="15.1.3"><h3 data-number="15.1.3" class="anchored" data-anchor-id="multimodality">
 <span class="header-section-number">15.1.3</span> Multimodality</h3>
 <p></p>
-<p>The likelihood of a finite mixture model may have multiple modes <span class="citation" data-cites="Brooks1997 p2000">(<a href="A99-references.html#ref-Brooks1997" role="doc-biblioref">Brooks et al., 1997</a>; <a href="A99-references.html#ref-p2000" role="doc-biblioref">Pledger, 2000</a>)</span>. The risk is ever-present that the numerical maximization algorithm will get stuck on a local peak, and in this case the estimates are simply wrong<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Slight differences in starting values or numerical method may result in wildly different answers.</p>
+<p>The likelihood of a finite mixture model may have multiple modes <span class="citation" data-cites="Brooks1997 p2000">(<a href="A99-references.html#ref-Brooks1997" role="doc-biblioref">Brooks et al., 1997</a>; <a href="A99-references.html#ref-p2000" role="doc-biblioref">Pledger, 2000</a>)</span>. The risk is ever-present that the numerical maximization algorithm will get stuck on a local peak, and in this case the estimates are simply wrong. Slight differences in starting values or numerical method may result in wildly different answers.</p>
 <p>The problem has not been explored fully for SECR models, and care is needed. <span class="citation" data-cites="p2000">Pledger (<a href="A99-references.html#ref-p2000" role="doc-biblioref">2000</a>)</span> recommended fitting a model with more classes as a check in the non-spatial case, but this is not proven to work with SECR models. It is desirable to try different starting values. This can be done simply using another model fit. For example:</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit.h2.2</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">hareCH6</span>, model <span class="op">=</span> <span class="va">lambda0</span><span class="op">~</span><span class="va">h2</span>, buffer <span class="op">=</span> <span class="fl">250</span>, </span>
@@ -681,9 +669,6 @@ pmix    logit    0.53654    0.043121    0.45178    0.61923</code></pre>
 <div id="ref-Brooks1997" class="csl-entry" role="listitem">
 Brooks, S. P., Morgan, B. J. T., Ridout, M. S., &amp; Pack, S. E. (1997). Finite mixture models for proportions. <em>Biometrics</em>, <em>53</em>(3), 1097. <a href="https://doi.org/10.2307/2533567">https://doi.org/10.2307/2533567</a>
 </div>
-<div id="ref-de09" class="csl-entry" role="listitem">
-Dawson, D. K., &amp; Efford, M. G. (2009). Bird population density estimated from acoustic signals. <em>Journal of Applied Ecology</em>, <em>46</em>, 1201–1209.
-</div>
 <div id="ref-em14" class="csl-entry" role="listitem">
 Efford, M. G., &amp; Mowat, G. (2014). Compensatory heterogeneity in spatially explicit capture-recapture data. <em>Ecology</em>, <em>95</em>, 1341–1348.
 </div>
@@ -700,10 +685,7 @@ Pledger, S. (2000). Unified maximum likelihood estimates for closed capture-reca
 Stephens, M. (2000). Dealing with label switching in mixture models. <em>Journal of the Royal Statistical Society Series B</em>, <em>62</em>, 795–809.
 </div>
 </div>
-</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
-<ol>
-<li id="fn1"><p>See <span class="citation" data-cites="de09">Dawson &amp; Efford (<a href="A99-references.html#ref-de09" role="doc-biblioref">2009</a>)</span> and the vignette <a href="https://www.otago.ac.nz/density/pdfs/secr-sound.pdf">secr-sound.pdf</a> for another example of a multimodal likelihood in SECR.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1123,7 +1105,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

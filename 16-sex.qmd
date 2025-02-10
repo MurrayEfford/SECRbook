@@ -17,11 +17,11 @@ We list the possible models in order of usefulness (your mileage may vary; see a
 
 ### Hybrid mixtures
 
-This method accommodates occasional missing values and estimates the sex ratio as a parameter (pmix). The method works for both conditional and full likelihood. If estimated (`CL = FALSE`) density $D$ is common to the two classes.
+This method accommodates occasional missing values and estimates the sex ratio as a parameter (pmix). The method works for both conditional and full likelihood. If estimated (`CL = FALSE`) the absolute density $D$ includes both classes. The sex ratio is estimated as a parameter (pmix).
 
 ### Individual covariate
 
-Including an individual covariate in the model directly requires the model to be fitted by maximizing the conditional likelihood (`CL = TRUE`). Spatial variation in density cannot be modelled. Include a categorical (factor) covariate in model formulae (e.g., g0 $\sim$ sex). 
+Including sex as an individual covariate in the model requires the model to be fitted by maximizing the conditional likelihood (`CL = TRUE`). Include a categorical (factor) covariate in model formulae (e.g., g0 $\sim$ sex). 
 
 ::: {.callout-tip}
 Derived densities are computed from a CL model with function `derived`. To get sex-specific densities specify `groups = "sex"` in `derived`.
@@ -37,11 +37,11 @@ Parameters not explicitly modelled as session-specific are assumed to be shared.
 
 ### Groups
 
-[Groups](#groups) were described earlier. Use full likelihood (`CL = FALSE`), define `groups = "sex"` or similar, and include a group term 'g' in relevant formulae (e.g., g0 $\sim$ g). 'CL' and 'groups' are arguments of `secr.fit`. The preceding warning applies also to groups.
+[Groups](05-theory-special-topics.qmd#groups) were described earlier. Use full likelihood (`CL = FALSE`), define `groups = "sex"` or similar, and include a group term 'g' in relevant formulae (e.g., g0 $\sim$ g). 'CL' and 'groups' are arguments of `secr.fit`. The preceding Warning applies also to groups.
 
 ## Demonstration {#demonstration}
 
-We re-analyse the morning house mouse data already analysed in @sec-individual-heterogeneity. \index{House mouse} For all methods except 'hybrid mixtures we have to discard one individual of unknown sex (hence capthist marked with 'x'). Close inspection of the results shows that the methods are equivalent.
+We re-analyse the morning house mouse data already analysed in @sec-individual-heterogeneity. \index{House mouse} For all methods except the hybrid mixture we have to discard one individual of unknown sex (hence capthist marked with 'x'). Close inspection of the results shows that the methods are equivalent.
 
 ```{r}
 #| label: sexdata
@@ -85,9 +85,10 @@ hybridx  <- secr.fit(morningx, model = list(lambda0~h2, sigma~h2),
 sessionx <- secr.fit(morningxs, model = list(D ~ session, 
               lambda0~session, sigma~session), CL = FALSE, buffer = 25,
               detectfn = 'HEX', trace = FALSE)
+# suppress bias check that gives ignorable error in secr 5.2
 groupx   <- secr.fit(morningx, model = list(D ~ g, lambda0~g, sigma~g), 
               groups = 'sex', CL = FALSE, buffer = 25, detectfn = 'HEX', 
-              trace = FALSE)
+              biasLimit = NA, trace = FALSE)
 ```
 
 ```{r}

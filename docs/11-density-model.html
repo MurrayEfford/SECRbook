@@ -816,7 +816,7 @@ strip.legend(c(2674460, 5982886), legend = seq(0,22,2), col = terrain.colors(11)
 <span class="header-section-number">11.3.7</span> Scale of effect</h3>
 <p></p>
 <p>Modelling density as a function of covariate(s) at a point (the centroid of a mask cell) lacks biological realism. Individuals exploit resources across their home range, and density may be affected by regional dynamics over a much wider area <span class="citation" data-cites="Jackson2014">(e.g., <a href="A99-references.html#ref-Jackson2014" role="doc-biblioref">Jackson &amp; Fahrig, 2014</a>)</span>.</p>
-<p>The scale at which environmental predictors influence density is usually unknown, and almost certainly does not correspond to either a point or the arbitrary size of a mask cell. Some progress has been made in estimating the scale from data <span class="citation" data-cites="Chandler2016">(e.g. <a href="A99-references.html#ref-Chandler2016" role="doc-biblioref">Chandler &amp; Hepinstall-Cymerman, 2016</a>)</span>, but methods have not yet been integrated into SECR.</p>
+<p>The scale at which environmental predictors influence density is usually unknown, and almost certainly does not correspond to either a point or the arbitrary size of a mask cell. Some progress has been made in estimating the scale from data <span class="citation" data-cites="Chandler2016">(e.g., <a href="A99-references.html#ref-Chandler2016" role="doc-biblioref">Chandler &amp; Hepinstall-Cymerman, 2016</a>)</span>, but methods have not yet been integrated into SECR.</p>
 <p>The best we can do at present is to construct spatial layers in GIS software that represent various levels of smoothing or spatial aggregation, corresponding to different scales of effect. Each layer may then be imported as a mask covariate that is evaluated at the cell centroids to represent the surrounding area.</p>
 <p>This example uses the <code>focal</code> function in the <strong>terra</strong> package <span class="citation" data-cites="R-terra">(<a href="A99-references.html#ref-R-terra" role="doc-biblioref">Hijmans, 2023</a>)</span> to compute both the proportion of forest cells in a square window and a Gaussian-smoothed proportion.</p>
 <div class="cell">
@@ -1474,7 +1474,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false});
+<script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

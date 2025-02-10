@@ -39,15 +39,19 @@ The essential steps for each replicate of a *de novo* SECR simulation are
 It is simple enough to perform steps 1 \& 2 directly in R without the use of **secr** functions. We give an example before describing functions that cover many variations with less code.
 
 ```{r}
-#| label: manual
+#| label: manual1
 #| cache: true
 # Step 1. Generate population
 D     <- 20                               # AC per hectare
 EN    <- D * 9                            # expected number in 9 ha
 N     <- rpois(1, EN)                     # realised number of AC
 popxy <- matrix(runif(2*N)*300, ncol = 2) # points in 300-m square
+```
 
-# Step 2. Sample from population with central 6 x 6 detector array
+```{r}
+#| label: manual2
+#| cache: true
+# Step 2a. Sample from population with central 6 x 6 detector array
 detxy <- expand.grid(x = seq(100,200,20), y = seq(100,200,20))
 K     <- nrow(detxy)                      # number of detectors
 S     <- 5                                # number of occasions
@@ -58,12 +62,8 @@ p     <- g0 * exp(-d^2/2/sigma^2)         # probability detected
 detected <- as.numeric(runif(N*K*S) < rep(p,S))
 ch    <- array(detected, dim = c(N,K,S), dimnames = list(1:N, 1:K, 1:S))
 ch    <- ch[apply(ch,1,sum)>0,,]          # reject null histories
-```
 
-For analysis in **secr** the simulated detection data should be recast as a 'capthist' object with the detector array as an attribute:
-```{r}
-#| label: manual2
-#| cache: true
+# Step 2b. Cast simulated data as an secr 'capthist' object
 class(detxy)    <- c('traps', 'data.frame')
 detector(detxy) <- 'proximity'
 ch              <- aperm(ch, c(1,3,2))   # permute dim to N, S, K
@@ -119,7 +119,7 @@ ch <- sim.capthist(traps = tr, popn = pop, detectpar = list(
     g0 = 0.1, sigma = 20), noccasions = 5, renumber = FALSE)
 summary(ch)
 par(mar = c(1,1,1,1))
-plot(ch, tracks = TRUE)
+plot(ch, tracks = TRUE, rad = 3)
 plot(pop, add = TRUE)
 captured <- subset(pop, rownames(pop) %in% rownames(ch))
 plot(captured, pch = 16, add = TRUE)
@@ -188,7 +188,7 @@ This small demonstration repeats the simulation in the preceding code. 'xsigma' 
 library(secrdesign, quietly = TRUE)
 ```
 
-```{r}
+```{r, warning = FALSE}
 #| label: demo secrdesign
 #| cache: true
 #| results: hold
@@ -221,7 +221,7 @@ We next consider three types of point process that may be used to simulate inhom
 
 #### Inhomogeneous Poisson Process
 
-An inhomogeneous Poisson process (IHPP) is specified by setting 'model2D = "IHP"'. The argument 'core' should be a [habitat mask](#Habitat). Cell-specific density (expected number of individuals per hectare) may be given either in a covariate of the mask (named in argument 'D') or as a vector of values in argument 'D'. The covariate option allows you to simulate from a previously fitted Dsurface (output from `predictDsurface`). Special cases of IHPP are provided in the 'hills' and 'coastal' options for 'model2D'.
+An inhomogeneous Poisson process (IHPP) is specified by setting 'model2D = "IHP"'. The argument 'core' should be a [habitat mask](12-habitat.qmd#sec-habitat). Cell-specific density (expected number of individuals per hectare) may be given either in a covariate of the mask (named in argument 'D') or as a vector of values in argument 'D'. The covariate option allows you to simulate from a previously fitted Dsurface (output from `predictDsurface`). Special cases of IHPP are provided in the 'hills' and 'coastal' options for 'model2D'.
 
 #### Cox Processes {#LGCP}
 
