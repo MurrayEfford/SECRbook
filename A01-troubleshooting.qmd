@@ -108,13 +108,11 @@ predict(fits3)
 
 Notice that there is no issue with starting values when the sessions are treated separately. The skinks appeared to enlarge their home ranges as the weather warmed; they may also have become more active overall[^footnote3]. It is plausible that density did not change: the estimate increased slightly, but there is substantial overlap of confidence intervals. 
 
-[^footnote3]: Home-range area increased about 4-fold; g0 showed some compensatory decrease, but compensation was incomplete, implying increased total activity (treating $g_0$ as an estimate of $\lambda_0$; see Efford and Mowat 2014).
+[^footnote3]: Home-range area increased about 4-fold; g0 showed some compensatory decrease, but compensation was incomplete, implying increased total activity (treating $g_0$ as an approximation to  $\lambda_0$; see Efford and Mowat 2014).
 
 ## Log likelihood becomes NA or improbably large after a few evaluations
 
-The default maximization method (Newton-Raphson in function `nlm`) takes a large step away from the initial values at evaluation `np + 3` where `np` is the number of estimated coefficients. This often results in a very negative or NA log likelihood, from which the algorithm quickly returns to a reasonable part of the parameter space. However, for some problems it does not return and estimation fails[^footnote2]. Two solutions are suggested:
-
-[^footnote2]: You may also get weird messages about infinite densities; these messages are due to be removed in the next release.
+The default maximization method (Newton-Raphson in function `nlm`) takes a large step away from the initial values at evaluation `np + 3` where `np` is the number of estimated coefficients. This often results in a very negative or NA log likelihood, from which the algorithm quickly returns to a reasonable part of the parameter space. However, for some problems it does not return and estimation fails, possibly with a weird message about infinite density. Two solutions are suggested:
 
 * change to the more robust Nelder-Mead maximization algorithm 
 ```{r}
@@ -212,7 +210,7 @@ There is no direct mechanism for holding the beta parameters for different level
 In **secr** 5.2 the memory required by the external C code is at least
 $32 \times C \times M \times K$ bytes, where $C$ is the number of distinct sets of values for the detection parameters (across all individuals, occasions, detectors and finite mixture classes), $M$ is the number of points in the habitat mask and $K$ is the number of detectors. Each distinct set of values appears as a row in a lookup table[^footnote5] whose columns correspond to real parameters; a separate parameter index array (PIA) has entries that point to rows in the lookup table. Four arrays with dimension $C \times M \times K$ are pre-filled with, for example, the double-precision (8-byte) probability an animal in mask cell $m$ is caught in detector $k$ under parameter values $c$. 
 
-[^footnote5]: If you are really keen you can see this table by running `secr.fit` with `details = list(debug = 3)` and typing `Xrealparval` at the browser prompt (type Q to exit).
+[^footnote5]: You can see this table by running `secr.fit` with `details = list(debug = 3)` and typing `Xrealparval` at the browser prompt (type Q to exit).
 
 The number of distinct parameter sets $C$ can become large when any real parameter (g0, lambda0, sigma) is modelled as a function of continuous covariates, because  each unit (individual, detector, occasion) potentially has a unique level of the parameter. A rough calculation may be made of the maximum size of $C$ for a given amount of available RAM. Given say 6GB of available RAM, $K = 200$ traps, and $M = 4000$ mask cells, $C$ should be substantially less than 6e9 / 200 / 4000 / 32 $\approx$ `r round(6e9 / 200 / 4000 / 32)`. Allowance must be made for other memory allocations; this is simply the largest.
 

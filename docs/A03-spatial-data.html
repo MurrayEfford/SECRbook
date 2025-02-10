@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.553">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Spatially Explicit Capture–Recapture - Appendix C — Spatial data</title>
+<title>The SECR book - Appendix C — Spatial data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -178,7 +178,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Spatially Explicit Capture–Recapture</a> 
+      <a href="./">The SECR book</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/MurrayEfford/SECRbook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -486,7 +486,7 @@ window.Quarto = {
 <p>To use spatial data or functions from external sources in <strong>secr</strong> it helps to know a little about the expanding spatial ecosystem in R.</p>
 <section id="r-packages-for-spatial-data" class="level3" data-number="C.1.1"><h3 data-number="C.1.1" class="anchored" data-anchor-id="r-packages-for-spatial-data">
 <span class="header-section-number">C.1.1</span> R packages for spatial data</h3>
-<p>Several widely used packages define classes and methods for spatial data (‘Used by’ in the following table is the number of CRAN packages from <code><a href="https://rdrr.io/pkg/crandep/man/get_dep.html">crandep::get_dep</a></code> on 2024-02-24).</p>
+<p>Several widely used packages define classes and methods for spatial data (‘Used by’ in the following table is the number of CRAN packages from <code><a href="https://rdrr.io/pkg/crandep/man/get_dep.html">crandep::get_dep</a></code> on 2025-02-10).</p>
 <table class="table">
 <colgroup>
 <col style="width: 11%">
@@ -509,7 +509,7 @@ window.Quarto = {
 <td><strong>sp</strong></td>
 <td>vector</td>
 <td>2005–</td>
-<td>456</td>
+<td>465</td>
 <td><span class="citation" data-cites="R-sp">Pebesma &amp; Bivand (<a href="A99-references.html#ref-R-sp" role="doc-biblioref">2005</a>)</span></td>
 <td>SpatialPolygons, SpatialPolygonsDataFrame, SpatialGridDataFrame, SpatialLinesDataFrame</td>
 </tr>
@@ -517,7 +517,7 @@ window.Quarto = {
 <td><strong>raster</strong></td>
 <td>raster</td>
 <td>2010–</td>
-<td>345</td>
+<td>339</td>
 <td><span class="citation" data-cites="R-raster">Hijmans (<a href="A99-references.html#ref-R-raster" role="doc-biblioref">2023a</a>)</span></td>
 <td>RasterLayer</td>
 </tr>
@@ -525,7 +525,7 @@ window.Quarto = {
 <td><strong>sf</strong></td>
 <td>vector</td>
 <td>2016–</td>
-<td>788</td>
+<td>936</td>
 <td><span class="citation" data-cites="R-sf">Pebesma (<a href="A99-references.html#ref-R-sf" role="doc-biblioref">2018</a>)</span></td>
 <td>sfg, sfc, sf</td>
 </tr>
@@ -533,7 +533,7 @@ window.Quarto = {
 <td><strong>stars</strong></td>
 <td>both</td>
 <td>2018–</td>
-<td>63</td>
+<td>79</td>
 <td><span class="citation" data-cites="R-stars">Edzer &amp; Bivand (<a href="A99-references.html#ref-R-stars" role="doc-biblioref">2023</a>)</span></td>
 <td>stars</td>
 </tr>
@@ -541,24 +541,24 @@ window.Quarto = {
 <td><strong>terra</strong></td>
 <td>both</td>
 <td>2020–</td>
-<td>322</td>
+<td>398</td>
 <td><span class="citation" data-cites="R-terra">Hijmans (<a href="A99-references.html#ref-R-terra" role="doc-biblioref">2023b</a>)</span></td>
 <td>SpatVector, SpatRaster</td>
 </tr>
 </tbody>
 </table>
 <p>The reader should already understand the distinction between vector and raster spatial data. There are many resources for learning about spatial analysis in R that may be found by web search on, for example ‘R spatial data’. The introduction by <a href="https://cengel.github.io/R-spatial/">Claudia Engel</a> covers both <strong>sp</strong> and <strong>sf</strong>.</p>
-<p>The capability of <strong>sp</strong> is being replaced by <a href="https://r-spatial.github.io/sf/articles/"><strong>sf</strong></a> and <strong>raster</strong> is being replaced by <a href="https://rspatial.org/terra/pkg/1-introduction.html"><strong>terra</strong></a>. The more recent packages tend to be faster. <strong>sf</strong> implements the ‘simple features’ standard.</p>
+<p>The capability of <strong>sp</strong> is being replaced by <a href="https://r-spatial.github.io/sf/articles/">sf</a> and <strong>raster</strong> is being replaced by <a href="https://rspatial.org">terra</a>. The more recent packages tend to be faster. <strong>sf</strong> implements the ‘simple features’ standard.</p>
 </section><section id="geographic-vs-projected-coordinates" class="level3" data-number="C.1.2"><h3 data-number="C.1.2" class="anchored" data-anchor-id="geographic-vs-projected-coordinates">
 <span class="header-section-number">C.1.2</span> Geographic vs projected coordinates</h3>
-<p>QGIS has an excellent <a href="https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/coordinate_reference_systems.html">introduction</a> to coordinate reference systems (CRS) for GIS. Coordinate reference systems may be specified in many ways; the most simple is the 4- or 5-digit EPSG code (search for EPSG on the web).</p>
+<p>QGIS has an excellent <a href="https://docs.qgis.org/3.34/en/docs/gentle_gis_introduction/coordinate_reference_systems.html">introduction</a> to coordinate reference systems (CRS) for GIS. Coordinate reference systems may be specified in many ways; the most simple is the 4- or 5-digit EPSG code (search for EPSG on the web).</p>
 <p>Geographic coordinates (EPSG 4326, ignoring some details) specify a location on the earth’s surface by its latitude and longitude. This is the standard in Google Earth and Geographic Positioning Systems (GPS).</p>
 </section></section><section id="spatial-data-in-secr" class="level2" data-number="C.2"><h2 data-number="C.2" class="anchored" data-anchor-id="spatial-data-in-secr">
 <span class="header-section-number">C.2</span> Spatial data in <strong>secr</strong>
 </h2>
 <section id="sec-inputspatialdata" class="level3" data-number="C.2.1"><h3 data-number="C.2.1" class="anchored" data-anchor-id="sec-inputspatialdata">
 <span class="header-section-number">C.2.1</span> Input of detector locations</h3>
-<p><strong>secr</strong> uses relative Cartesian coordinates. Detector coordinates from GPS should therefore be projected from geographic coordinates before input to <strong>secr</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Most of the R spatial packages include projection functions. Here is a simple example using <code>st_transform</code> from the <strong>sf</strong> package:</p>
+<p><strong>secr</strong> uses relative Cartesian coordinates. Detector coordinates from GPS should therefore be projected from geographic coordinates before input to <strong>secr</strong>. Most of the R spatial packages include projection functions. Here is a simple example using <code>st_transform</code> from the <strong>sf</strong> package:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -895,10 +895,7 @@ Pebesma, E. J., &amp; Bivand, R. (2005). Classes and methods for spatial data in
 van Etten, J. (2023). <em>Gdistance: Distances and routes on geographical grids</em>. <a href="https://CRAN.R-project.org/package=gdistance">https://CRAN.R-project.org/package=gdistance</a>
 </div>
 </div>
-</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
-<ol>
-<li id="fn1"><p>This does not apply if you are using an artificial coordinates (e.g., from <code>make.grid</code>()) rather than importing actual locations.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1318,7 +1315,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

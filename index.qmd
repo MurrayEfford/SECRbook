@@ -51,7 +51,7 @@ Add-on packages extend the capability of **secr**:
 
 \index{R packages!secrdesign}
 
--   [secrdesign](https://CRAN.R-project.org/package=secrdesign) enables the assessment of alternative study designs by Monte Carlo simulation; scenarios may differ in detector (trap) layout, sampling intensity, and other characteristics ([secrdesign-vignette.pdf](https://www.otago.ac.nz/density/pdfs/secrdesign-vignette.pdf%5D)).
+-   [secrdesign](https://CRAN.R-project.org/package=secrdesign) enables the assessment of alternative study designs by Monte Carlo simulation; scenarios may differ in detector (trap) layout, sampling intensity, and other characteristics ([secrdesign-vignette.pdf](https://www.otago.ac.nz/density/pdfs/secrdesign-vignette.pdf)).
 
 \index{R packages!openCR}
 

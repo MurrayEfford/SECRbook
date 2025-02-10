@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.553">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Spatially Explicit Capture–Recapture - 9&nbsp; R package secr</title>
+<title>The SECR book - 9&nbsp; R package secr</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -178,7 +178,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Spatially Explicit Capture–Recapture</a> 
+      <a href="./">The SECR book</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/MurrayEfford/SECRbook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -744,7 +744,7 @@ Table&nbsp;9.3: Basic detector types in secr. See the appendices for <a href="./
 <span class="header-section-number">9.8.3</span> <code>model</code> – detection and density sub-models</h3>
 <p></p>
 <p>The core parameters are ‘real’ parameters in the terminology of MARK <span class="citation" data-cites="cw">(<a href="A99-references.html#ref-cw" role="doc-biblioref">Cooch &amp; White, 2023</a>)</span>. Three real parameters are commonly modelled in <strong>secr</strong>: ‘D’ (for density), and ‘g0’ and ‘sigma’ (for the detection function). Other ‘real’ parameters appear in particular contexts. ‘z’ is a shape parameter that is used only when the <a href="10-detection-model.html#sec-detectfn">detection function</a> has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter ‘lambda0’ in place of ‘g0’. A further ‘real’ parameter is the mixing proportion ‘pmix’, used in <a href="05-theory-special-topics.html#finite-mixtures">finite mixture models</a> and <a href="05-theory-special-topics.html#hybrid-mixtures">hybrid mixture models</a>.</p>
-<p>By default, each ‘real’ parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the ‘model’ argument of <code>secr.fit</code>. Here ‘model’ refers to variation in a parameter that may be explained by known factors and covariates, perhaps better designated a ‘sub-model’ of the overarching <a href="@sec-theory">SECR model</a>.</p>
+<p>By default, each ‘real’ parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the ‘model’ argument of <code>secr.fit</code>. Here ‘model’ refers to variation in a parameter that may be explained by known factors and covariates, perhaps better designated a ‘sub-model’ of the overarching <a href="03-theory.html">SECR model</a>.</p>
 <p>Sub-models are defined symbolically using a subset of the R formula notation. A separate linear predictor is used for each core parameter. The model argument of <code>secr.fit</code> is a list of formulae, one for each ‘real’ parameter. Null formulae such as <code>D ~ 1</code> may be omitted, and a single non-null formula may be presented on its own rather than in list() form.</p>
 <p>Sub-models are constructed differently for detection and density parameters as explained in <a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a> and <a href="11-density-model.html" class="quarto-xref"><span>Chapter 11</span></a>.</p>
 </section><section id="CL" class="level3" data-number="9.8.4"><h3 data-number="9.8.4" class="anchored" data-anchor-id="CL">
@@ -1275,7 +1275,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

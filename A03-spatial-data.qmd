@@ -25,15 +25,15 @@ To use spatial data or functions from external sources in **secr** it helps to k
 
 ### R packages for spatial data
 
-Several widely used packages define classes and methods for spatial data ('Used by' in the following table is the number of CRAN packages from `crandep::get_dep` on 2024-02-24).
+Several widely used packages define classes and methods for spatial data ('Used by' in the following table is the number of CRAN packages from `crandep::get_dep` on 2025-02-10).
 
 | Package | Scope | Year | Used by | Citation | Relevant S4 classes |
 |-------|-----|-----|------|-------------------|---------------------|
-|**sp**    | vector | 2005--  | 456 | @R-sp| SpatialPolygons, SpatialPolygonsDataFrame, SpatialGridDataFrame, SpatialLinesDataFrame |
-|**raster**| raster | 2010--  | 345 | @R-raster | RasterLayer |
-|**sf**    | vector | 2016--  | 788 | @R-sf | sfg, sfc, sf |
-|**stars** | both   | 2018--  | 63  | @R-stars |  stars | 
-|**terra** | both   | 2020--  | 322  | @R-terra | SpatVector, SpatRaster |
+|**sp**    | vector | 2005--  | 465 | @R-sp| SpatialPolygons, SpatialPolygonsDataFrame, SpatialGridDataFrame, SpatialLinesDataFrame |
+|**raster**| raster | 2010--  | 339 | @R-raster | RasterLayer |
+|**sf**    | vector | 2016--  | 936 | @R-sf | sfg, sfc, sf |
+|**stars** | both   | 2018--  | 79  | @R-stars |  stars | 
+|**terra** | both   | 2020--  | 398  | @R-terra | SpatVector, SpatRaster |
 
 ```{r}
 #| label: uses
@@ -49,11 +49,11 @@ sapply(c("sp","raster","sf","stars","terra"), ndep)
 
 The reader should already understand the distinction between vector and raster spatial data. There are many resources for learning about spatial analysis in R that may be found by web search on, for example 'R spatial data'. The introduction by [Claudia Engel](https://cengel.github.io/R-spatial/) covers both **sp** and **sf**.
 
-The capability of **sp** is being replaced by [**sf**](https://r-spatial.github.io/sf/articles/) and **raster** is being replaced by [**terra**](https://rspatial.org/terra/pkg/1-introduction.html). The more recent packages tend to be faster. **sf** implements the 'simple features' standard.
+The capability of **sp** is being replaced by [sf](https://r-spatial.github.io/sf/articles/) and **raster** is being replaced by [terra](https://rspatial.org). The more recent packages tend to be faster. **sf** implements the 'simple features' standard.
 
 ### Geographic vs projected coordinates
 
-QGIS has an excellent [introduction](https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/coordinate_reference_systems.html) to coordinate reference systems (CRS) for GIS. Coordinate reference systems may be specified in many ways; the most simple is the 4- or 5-digit EPSG code (search for EPSG on the web).
+QGIS has an excellent [introduction](https://docs.qgis.org/3.34/en/docs/gentle_gis_introduction/coordinate_reference_systems.html) to coordinate reference systems (CRS) for GIS. Coordinate reference systems may be specified in many ways; the most simple is the 4- or 5-digit EPSG code (search for EPSG on the web).
 
 Geographic coordinates (EPSG 4326, ignoring some details) specify a location on the earth's surface by its latitude and longitude. This is the standard in Google Earth and Geographic Positioning Systems (GPS).
 
@@ -61,9 +61,7 @@ Geographic coordinates (EPSG 4326, ignoring some details) specify a location on 
 
 ### Input of detector locations {#sec-inputspatialdata}
 
-**secr** uses relative Cartesian coordinates. Detector coordinates from GPS should therefore be projected from geographic coordinates before input to **secr**[^artificial]. Most of the R spatial packages include projection functions. Here is a simple example using `st_transform` from the **sf** package:
-
-[^artificial]: This does not apply if you are using an artificial coordinates (e.g., from `make.grid`()) rather than importing actual locations.
+**secr** uses relative Cartesian coordinates. Detector coordinates from GPS should therefore be projected from geographic coordinates before input to **secr**. Most of the R spatial packages include projection functions. Here is a simple example using `st_transform` from the **sf** package:
 
 ```{r}
 #| label: geographi

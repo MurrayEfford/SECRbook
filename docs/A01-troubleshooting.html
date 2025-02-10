@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.553">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Spatially Explicit Capture–Recapture - Appendix A — Troubleshooting secr</title>
+<title>The SECR book - Appendix A — Troubleshooting secr</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -175,7 +175,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Spatially Explicit Capture–Recapture</a> 
+      <a href="./">The SECR book</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/MurrayEfford/SECRbook" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -612,7 +612,7 @@ sigma   log   4.951468    0.218378   4.541623   5.39830</code></pre>
 <p>Notice that there is no issue with starting values when the sessions are treated separately. The skinks appeared to enlarge their home ranges as the weather warmed; they may also have become more active overall<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. It is plausible that density did not change: the estimate increased slightly, but there is substantial overlap of confidence intervals.</p>
 </section><section id="log-likelihood-becomes-na-or-improbably-large-after-a-few-evaluations" class="level2" data-number="A.4"><h2 data-number="A.4" class="anchored" data-anchor-id="log-likelihood-becomes-na-or-improbably-large-after-a-few-evaluations">
 <span class="header-section-number">A.4</span> Log likelihood becomes NA or improbably large after a few evaluations</h2>
-<p>The default maximization method (Newton-Raphson in function <code>nlm</code>) takes a large step away from the initial values at evaluation <code>np + 3</code> where <code>np</code> is the number of estimated coefficients. This often results in a very negative or NA log likelihood, from which the algorithm quickly returns to a reasonable part of the parameter space. However, for some problems it does not return and estimation fails<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Two solutions are suggested:</p>
+<p>The default maximization method (Newton-Raphson in function <code>nlm</code>) takes a large step away from the initial values at evaluation <code>np + 3</code> where <code>np</code> is the number of estimated coefficients. This often results in a very negative or NA log likelihood, from which the algorithm quickly returns to a reasonable part of the parameter space. However, for some problems it does not return and estimation fails, possibly with a weird message about infinite density. Two solutions are suggested:</p>
 <ul>
 <li>change to the more robust Nelder-Mead maximization algorithm</li>
 </ul>
@@ -703,7 +703,7 @@ sigma        0.91984 0.034977  0.85129  0.9884</code></pre>
 </section><section id="secr.fit-requests-more-memory-than-is-available" class="level2" data-number="A.7"><h2 data-number="A.7" class="anchored" data-anchor-id="secr.fit-requests-more-memory-than-is-available">
 <span class="header-section-number">A.7</span> <code>secr.fit</code> requests more memory than is available</h2>
 <p></p>
-<p>In <strong>secr</strong> 5.2 the memory required by the external C code is at least <span class="math inline">32 \times C \times M \times K</span> bytes, where <span class="math inline">C</span> is the number of distinct sets of values for the detection parameters (across all individuals, occasions, detectors and finite mixture classes), <span class="math inline">M</span> is the number of points in the habitat mask and <span class="math inline">K</span> is the number of detectors. Each distinct set of values appears as a row in a lookup table<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> whose columns correspond to real parameters; a separate parameter index array (PIA) has entries that point to rows in the lookup table. Four arrays with dimension <span class="math inline">C \times M \times K</span> are pre-filled with, for example, the double-precision (8-byte) probability an animal in mask cell <span class="math inline">m</span> is caught in detector <span class="math inline">k</span> under parameter values <span class="math inline">c</span>.</p>
+<p>In <strong>secr</strong> 5.2 the memory required by the external C code is at least <span class="math inline">32 \times C \times M \times K</span> bytes, where <span class="math inline">C</span> is the number of distinct sets of values for the detection parameters (across all individuals, occasions, detectors and finite mixture classes), <span class="math inline">M</span> is the number of points in the habitat mask and <span class="math inline">K</span> is the number of detectors. Each distinct set of values appears as a row in a lookup table<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> whose columns correspond to real parameters; a separate parameter index array (PIA) has entries that point to rows in the lookup table. Four arrays with dimension <span class="math inline">C \times M \times K</span> are pre-filled with, for example, the double-precision (8-byte) probability an animal in mask cell <span class="math inline">m</span> is caught in detector <span class="math inline">k</span> under parameter values <span class="math inline">c</span>.</p>
 <p>The number of distinct parameter sets <span class="math inline">C</span> can become large when any real parameter (g0, lambda0, sigma) is modelled as a function of continuous covariates, because each unit (individual, detector, occasion) potentially has a unique level of the parameter. A rough calculation may be made of the maximum size of <span class="math inline">C</span> for a given amount of available RAM. Given say 6GB of available RAM, <span class="math inline">K = 200</span> traps, and <span class="math inline">M = 4000</span> mask cells, <span class="math inline">C</span> should be substantially less than 6e9 / 200 / 4000 / 32 <span class="math inline">\approx</span> 234. Allowance must be made for other memory allocations; this is simply the largest.</p>
 <p>There is a different lookup table for each session; the limiting <span class="math inline">C</span> is for the most complex session. The memory constraint concerns detection parameters only.</p>
 <p>Most analyses can be configured to bring the memory request down to a reasonable number.</p>
@@ -740,9 +740,8 @@ Kendeigh, S. C. (1944). Measurement of bird populations. <em>Ecological Monograp
 </div>
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>Home-range area increased about 4-fold; g0 showed some compensatory decrease, but compensation was incomplete, implying increased total activity (treating <span class="math inline">g_0</span> as an estimate of <span class="math inline">\lambda_0</span>; see Efford and Mowat 2014).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>You may also get weird messages about infinite densities; these messages are due to be removed in the next release.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>If you are really keen you can see this table by running <code>secr.fit</code> with <code>details = list(debug = 3)</code> and typing <code>Xrealparval</code> at the browser prompt (type Q to exit).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Home-range area increased about 4-fold; g0 showed some compensatory decrease, but compensation was incomplete, implying increased total activity (treating <span class="math inline">g_0</span> as an approximation to <span class="math inline">\lambda_0</span>; see Efford and Mowat 2014).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>You can see this table by running <code>secr.fit</code> with <code>details = list(debug = 3)</code> and typing <code>Xrealparval</code> at the browser prompt (type Q to exit).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
