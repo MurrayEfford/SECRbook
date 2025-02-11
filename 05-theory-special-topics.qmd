@@ -2,19 +2,19 @@
 
 The utility of SECR is enhanced by several extensions to the basic theory in the preceding chapters.
 
-The most important of these are the linear sub-models for [detection](10-detection-model.qmd#linear-submodels) and [density](11-density-model.qmd#sec-density) that we describe in their respective chapters. Others we list here.
+The most important of these are the linear sub-models for [detection](10-detection-model.qmd#sec-linear-submodels) and [density](11-density-model.qmd#sec-density) that we describe in their respective chapters. Others we list here.
 
 ## Multi-session likelihood
 \index{Likelihood!multi-session}
 
-The data may comprise multiple independent datasets to be analysed together. We call these 'sessions', following the terminology of **secr**. They may be synchronous spatial samples from non-overlapping populations or samples of the same population widely separated in time. If there are $J$ such datasets we can denote them $\Omega_j, j = 1,...,J$. The likelihood to be maximized is then $\prod_j L(\phi, \theta | \Omega_j)$. While the parameter vector $(\phi, \theta)$ is common to all sessions, the mechanism of [linear submodels](10-detection-model.qmd#linear-submodels) allows 'real' parameter values to be specific to a session, common to multiple sessions, or modelled as a function of session-level covariates. 
+The data may comprise multiple independent datasets to be analysed together. We call these 'sessions', following the terminology of **secr**. They may be synchronous spatial samples from non-overlapping populations or samples of the same population widely separated in time. If there are $J$ such datasets we can denote them $\Omega_j, j = 1,...,J$. The likelihood to be maximized is then $\prod_j L(\phi, \theta | \Omega_j)$. While the parameter vector $(\phi, \theta)$ is common to all sessions, the mechanism of [linear submodels](10-detection-model.qmd#sec-linear-submodels) allows 'real' parameter values to be specific to a session, common to multiple sessions, or modelled as a function of session-level covariates. 
 
 Failure of the independence assumption in a multi-session analysis results in underestimation of the sampling variance.
 
 ## Groups {#sec-groups}
 \index{Groups}
 
-Users of MARK [@cw] will be familiar with the stratification of a population into 'groups', each with potentially different values for parameters such as survival probability. Grouping requires that each animal is assigned to a group on first detection, and that the assignment is permanent. Then density and any detection parameter may be modelled as a function of the grouping factor. Group models are available in **secr** only when maximizing the full likelihood. When maximizing the [conditional likelihood](05-theory-special-topics#sec-conditional#sec-conditional) the model may specify an individual factor covariate directly, with the same effect as grouping. 
+Users of MARK [@cw] will be familiar with the stratification of a population into 'groups', each with potentially different values for parameters such as survival probability. Grouping requires that each animal is assigned to a group on first detection, and that the assignment is permanent. Then density and any detection parameter may be modelled as a function of the grouping factor. Group models are available in **secr** only when maximizing the full likelihood. When maximizing the [conditional likelihood](05-theory-special-topics#sec-conditional) the model may specify an individual factor covariate directly, with the same effect as grouping. 
 
 The multinomial coefficient in **secr** is stratified by group.
 
@@ -64,7 +64,7 @@ The variance from @eq-varHT is on the natural scale, and the Wald confidence int
 
 Conditioning on $n$ *without* requiring uniform density as in the previous section leads to another result that is useful. We can estimate relative density, the distribution of AC in relation to habitat covariates, rather than absolute density. Conditioning allows individual covariates of detection $\mathbf z_i$ as before, and fitting is faster than for absolute density [@Efford2025]. 
 
-We define relative density by $D^\prime(\mathbf x | \phi^-) \equiv k^{-1} D(\mathbf x | \phi)$ where $\phi^-$ is a reduced vector of coefficients for the density sub-model discussed [later](11-density-model.qmd#sec-density) and $k$ is a constant of proportionality. Then we can discard the first factor in @eq-L and maximize a likelihood based on the second factor alone
+We define relative density by $D^\prime(\mathbf x | \phi^-) \equiv k^{-1} D(\mathbf x | \phi)$ where $\phi^-$ is a reduced vector of coefficients for the density sub-model and $k$ is a constant of proportionality. Then we can discard the first factor in @eq-L and maximize a likelihood based on the second factor alone
 $$
 L_r(\phi^-, \theta | \Omega, n) \propto  \prod_{i=1}^n \frac{\int \mathrm{Pr}(\omega_i | \theta, \mathbf x) \, D^\prime(\mathbf x | \phi^-) \, p_\cdot(\mathbf x | \theta, \mathbf z_i) \; d\mathbf x}{\int  D^\prime(\mathbf x | \phi^-) \, p_\cdot(\mathbf x | \theta, \mathbf z_i) \; d\mathbf x}.
 $$ {#eq-rd}
