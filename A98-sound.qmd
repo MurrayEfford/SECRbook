@@ -94,7 +94,7 @@ habitat mask and starting values. We use a 200-m buffer rather than the
 default (100 m) to ensure that sounds at the edge of the mask are
 very unlikely to be detected (given what we eventually learn about
 attenuation). We use 'trace = FALSE' to suppress output of the log
-likelihood during numerical maximisation. Fitting is straightforward:
+likelihood during numerical maximization. Fitting is straightforward:
 ```{r}
 #| label: ostart
 omask <- make.mask(traps(signalCH), buffer = 200)
