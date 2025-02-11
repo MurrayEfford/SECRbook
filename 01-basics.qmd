@@ -86,8 +86,9 @@ and 'home range centre' interchangeably in this context.
 :::
 
 ## Detectors
+\index{Detectors} 
 
-\index{Detectors} SECR uses sampling devices placed at known locations.
+SECR uses sampling devices ('detectors') placed at known locations.
 We need to recognise individuals whenever they are detected. The
 accumulated detections of each known individual are its 'detection
 history'. Device types differ according to how they affect animal
@@ -106,12 +107,12 @@ binary proximity detectors.
 
 Animals without natural marks must be marked individually on their first
 detection. This implies capture and handling. Only devices that hold an
-animal until it is released can truly be called 'traps'. The probability
+animal until it is released can truly be called 'traps'.[^footnote2] The probability
 model for trapping must allow for exclusivity: an animal can be found at
 only one trap on any occasion, and some traps ('single-catch' traps)
 also exclude other individuals after the first. \index{Traps!single-catch}
 
-Confusingly, **secr** uses 'traps' as a generic name for R objects holding
+[^footnote2]: Confusingly, **secr** uses 'traps' as a generic name for R objects holding
 detector coordinates and other information. This software-specific
 jargon should be avoided in publications.
 
@@ -135,11 +136,8 @@ of a population as fixed: it is said to be 'closed'. This greatly
 simplifies analysis. We assume closure except when considering [breaches
 of assumptions](#popnclosed). \index{Population closure}
 
-A 'session' in **secr** parlance is a set of samples from a closed
-population on one or more 'occasions' (possibly consecutive days).
-
 For trap-type detectors there must be multiple occasions within a
-session to obtain recaptures. For proximity-type detectors the role of
+sampling session to obtain recaptures. For proximity-type detectors the role of
 'occasions' is more subtle, and data may usually be collapsed to animal-
 and detector-specific counts. The spatial pattern of binary detections
 alone is sufficient to obtain an estimate of density [@edb09].
