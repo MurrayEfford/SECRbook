@@ -436,7 +436,7 @@ window.Quarto = {
   
 
 
-</header><p>This chapter briefly introduces the concepts and terminology of SECR. The following chapter gives a <a href="#02-example.qmd">simple example</a>. Technical details are provided in the <a href="#03-theory.qmd">Theory</a> chapters.</p>
+</header><p>This chapter briefly introduces the concepts and terminology of SECR. The following chapter gives a <a href="./02-example.html">simple example</a>. Technical details are provided in the <a href="./03-theory.html">Theory</a> chapters.</p>
 <p><br></p>
 <section id="motivation" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="motivation">
 <span class="header-section-number">1.1</span> Motivation</h2>
@@ -544,7 +544,7 @@ Table&nbsp;1.1: Examples of SECR sampling devices
 </div>
 </section><section id="sampling-across-time" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="sampling-across-time">
 <span class="header-section-number">1.4</span> Sampling across time</h2>
-<p>For most vertebrates we expect population turnover (births, deaths, AC movement) on a time scale of months or years. Population change is often negligible over shorter spans (days or weeks, depending on the species). Sampling over shorter spans can therefore treat the size and composition of a population as fixed: it is said to be ‘closed’. This greatly simplifies analysis. We assume closure except when considering <a href="#popnclosed">breaches of assumptions</a>. </p>
+<p>For most vertebrates we expect population turnover (births, deaths, AC movement) on a time scale of months or years. Population change is often negligible over shorter spans (days or weeks, depending on the species). Sampling over shorter spans can therefore treat the size and composition of a population as fixed: it is said to be ‘closed’. This greatly simplifies analysis. We assume closure except when considering <a href="./06-assumptions.html#sec-popnclosed">breaches of assumptions</a>. </p>
 <p>For trap-type detectors there must be multiple occasions within a sampling session to obtain recaptures. For proximity-type detectors the role of ‘occasions’ is more subtle, and data may usually be collapsed to animal- and detector-specific counts. The spatial pattern of binary detections alone is sufficient to obtain an estimate of density <span class="citation" data-cites="edb09">(<a href="A99-references.html#ref-edb09" role="doc-biblioref">Efford et al., 2009</a>)</span>.</p>
 <p>It is not necessary for all detectors to be used on all occasions. Incomplete usage <span class="citation" data-cites="ebm13">(and other variation in effort per occasion – <a href="A99-references.html#ref-ebm13" role="doc-biblioref">Efford et al., 2013</a>)</span> may be recorded for each detector and allowed for in the analysis.</p>
 <p>Data collected across multiple sessions potentially include the loss of some individuals and recruitment of others. An open population model is the natural way to go <span class="citation" data-cites="es20">(e.g., <a href="A99-references.html#ref-es20" role="doc-biblioref">Efford &amp; Schofield, 2020</a>)</span>. However, the complexity of open-population models can be avoided if sessions are treated as independent in a ‘multi-session’ closed population analysis.</p>
@@ -561,7 +561,7 @@ Table&nbsp;1.1: Examples of SECR sampling devices
 <div class="cell-output-display">
 <div id="fig-example" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/example.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="figures/example.png" class="img-fluid figure-img" style="width:70.0%"></a>
+<a href="figures/example.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="figures/example.png" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.1: Distance-dependent detection of uniformly distributed activity centres (open circles; filled if captured)
@@ -576,7 +576,7 @@ Figure&nbsp;1.1: Distance-dependent detection of uniformly distributed activity 
 <div class="cell-output-display">
 <div id="fig-detectionfunctions" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-detectionfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="img-fluid figure-img" style="width:75.0%"></a>
+<a href="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="img-fluid figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-detectionfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.2: Some detection functions
@@ -591,7 +591,8 @@ Figure&nbsp;1.2: Some detection functions
 <p>The habitat map is called a ‘habitat mask’ in <strong>secr</strong> and a ‘state space’ in the various Bayesian implementations. It is commonly formed by adding a constant-width buffer around the detectors. For computational convenience the map is discretized as many small pixels. Spatial covariates (vegetation type, elevation, etc.) may be attached to each pixel for use in density models. The choice of buffer width and pixel size are considered later.</p>
 </section><section id="sec-link" class="level3" data-number="1.6.3"><h3 data-number="1.6.3" class="anchored" data-anchor-id="sec-link">
 <span class="header-section-number">1.6.3</span> Link functions</h3>
-<p> A simple SECR model has three parameters: density <span class="math inline">D</span>, and the intercept <span class="math inline">g_0</span> and spatial scale <span class="math inline">\sigma</span> of the detection function. Valid values of each parameter are restricted to part of the number line (positive values for <span class="math inline">D</span> and <span class="math inline">\sigma</span>, values between zero and one for <span class="math inline">g_0</span>). A straightforward way to constrain estimates to valid values is to conduct maximization of the likelihood on a transformed (‘link’) scale: at each evaluation the parameter value is back transformed to the natural scale. The link function for all commonly used parameters defaults to ‘log’ (for positive values) except for g0 which defaults to ‘logit’ (for values between zero and one).</p>
+<p> </p>
+<p>A simple SECR model has three parameters: density <span class="math inline">D</span>, and the intercept <span class="math inline">g_0</span> and spatial scale <span class="math inline">\sigma</span> of the detection function. Valid values of each parameter are restricted to part of the number line (positive values for <span class="math inline">D</span> and <span class="math inline">\sigma</span>, values between zero and one for <span class="math inline">g_0</span>). A straightforward way to constrain estimates to valid values is to conduct maximization of the likelihood on a transformed (‘link’) scale: at each evaluation the parameter value is back transformed to the natural scale. The link function for all commonly used parameters defaults to ‘log’ (for positive values) except for g0 which defaults to ‘logit’ (for values between zero and one).</p>
 <div id="tbl-links" class="sm quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-links-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1.2: Link functions
@@ -639,7 +640,7 @@ Table&nbsp;1.2: Link functions
 <div class="cell-output-display">
 <div id="fig-MLE" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-MLE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01-basics_files/figure-html/fig-MLE-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="01-basics_files/figure-html/fig-MLE-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="01-basics_files/figure-html/fig-MLE-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="01-basics_files/figure-html/fig-MLE-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MLE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.3: Numerical maximization of conditional likelihood by two methods; triangle – initial values; filled circle – estimates. Both converge on the same estimates (dashed lines). Newton-Raphson is the default method in secr.
@@ -1139,7 +1140,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

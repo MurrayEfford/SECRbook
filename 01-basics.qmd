@@ -7,8 +7,8 @@ editor:
 # Concepts and terminology {#sec-basics}
 
 This chapter briefly introduces the concepts and terminology of SECR.
-The following chapter gives a [simple example](#02-example.qmd).
-Technical details are provided in the [Theory](#03-theory.qmd) chapters.
+The following chapter gives a [simple example](02-example.qmd).
+Technical details are provided in the [Theory](03-theory.qmd) chapters.
 
 <br>    
 
@@ -134,7 +134,7 @@ negligible over shorter spans (days or weeks, depending on the species).
 Sampling over shorter spans can therefore treat the size and composition
 of a population as fixed: it is said to be 'closed'. This greatly
 simplifies analysis. We assume closure except when considering [breaches
-of assumptions](#popnclosed). \index{Population closure}
+of assumptions](06-assumptions.qmd#sec-popnclosed). \index{Population closure}
 
 For trap-type detectors there must be multiple occasions within a
 sampling session to obtain recaptures. For proximity-type detectors the role of
@@ -242,8 +242,11 @@ size are considered later.
 
 ### Link functions {#sec-link}
 
-\index{Link function} \index{Link function!detection}
-\index{Link function!density} A simple SECR model has three parameters:
+\index{Link function} 
+\index{Link function!detection}
+\index{Link function!density} 
+
+A simple SECR model has three parameters:
 density $D$, and the intercept $g_0$ and spatial scale $\sigma$ of the
 detection function. Valid values of each parameter are restricted to
 part of the number line (positive values for $D$ and $\sigma$, values

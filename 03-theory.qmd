@@ -156,7 +156,7 @@ follows in most cases directly from the type of detector device; we
 therefore classify probability models according to device type.
 @tbl-detectortypes matches this classification to that of @rcsg14. This
 section covers passive detection at a point; [area
-searches](#areasearches) are considered later.
+searches](04-theory-area-search.qmd) are considered later.
 
 | Detector type                | Royle et al.      | Data                                               |
 |:---------------------|:-----------------|:--------------------------------|
