@@ -1,9 +1,3 @@
----
-editor: 
-  markdown: 
-    wrap: 72
----
-
 # Parameterizations {#sec-parameterizations}
 
 \index{Parameterization}
@@ -47,7 +41,7 @@ straightforward. A simple alternative is to substitute
 $a_0 = 2 \pi \lambda_0 \sigma^2$; @em14 called $a_0$ the
 'single-detector sampling area'. If the sampling regime is constant,
 holding $a_0$ constant is almost equivalent to holding $a$ constant (but
-see [Limitations](#paramlimitations)). @fig-paramfig1 illustrates the
+see [Limitations](#sec-paramlimitations)). @fig-paramfig1 illustrates the
 relationship for 3 levels of $a_0$.
 
 [^16-parameterizations-1]: The cumulative hazard $\lambda(d)$ and
@@ -323,7 +317,7 @@ lines(D,  k / sqrt(D))
 points(Dest, sigest, pch = 16)
 ```
 
-## Limitations {#paramlimitations}
+## Limitations {#sec-paramlimitations}
 
 Using $a_0$ as a surrogate for $a$ is unreliable if the distribution or
 intensity of sampling varies. This is because $a_0$ depends only on the

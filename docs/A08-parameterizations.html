@@ -449,7 +449,7 @@ window.Quarto = {
 <li><a href="#theory" id="toc-theory" class="nav-link active" data-scroll-target="#theory"><span class="header-section-number">H.1</span> Theory</a></li>
   <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">H.2</span> Implementation</a></li>
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">H.3</span> Example</a></li>
-  <li><a href="#paramlimitations" id="toc-paramlimitations" class="nav-link" data-scroll-target="#paramlimitations"><span class="header-section-number">H.4</span> Limitations</a></li>
+  <li><a href="#sec-paramlimitations" id="toc-sec-paramlimitations" class="nav-link" data-scroll-target="#sec-paramlimitations"><span class="header-section-number">H.4</span> Limitations</a></li>
   <li><a href="#sec-othernotes" id="toc-sec-othernotes" class="nav-link" data-scroll-target="#sec-othernotes"><span class="header-section-number">H.5</span> Other notes</a></li>
   <li><a href="#abundance" id="toc-abundance" class="nav-link" data-scroll-target="#abundance"><span class="header-section-number">H.6</span> Abundance</a></li>
   </ul></nav>
@@ -479,12 +479,12 @@ window.Quarto = {
 <span class="header-section-number">H.1.1</span> <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span>
 </h3>
 <p></p>
-<p>One published example concerns compensatory heterogeneity of detection parameters (Efford and Mowat 2014). Combinations of <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span> yield the same effective sampling area <span class="math inline">a</span> when the cumulative hazard of detection (<span class="math inline">\lambda(d)</span>)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is a linear function of home-range utilisation. Variation in home-range size then has no effect on estimates of density. It would be useful to allow <span class="math inline">\sigma</span> to vary while holding <span class="math inline">a</span> constant, but this has some fishhooks because computation of <span class="math inline">\lambda_0</span> from <span class="math inline">a</span> and <span class="math inline">\sigma</span> is not straightforward. A simple alternative is to substitute <span class="math inline">a_0 = 2 \pi \lambda_0 \sigma^2</span>; <span class="citation" data-cites="em14">Efford &amp; Mowat (<a href="A99-references.html#ref-em14" role="doc-biblioref">2014</a>)</span> called <span class="math inline">a_0</span> the ‘single-detector sampling area’. If the sampling regime is constant, holding <span class="math inline">a_0</span> constant is almost equivalent to holding <span class="math inline">a</span> constant (but see <a href="#paramlimitations">Limitations</a>). <a href="#fig-paramfig1" class="quarto-xref">Fig.&nbsp;<span>H.1</span></a> illustrates the relationship for 3 levels of <span class="math inline">a_0</span>.</p>
+<p>One published example concerns compensatory heterogeneity of detection parameters (Efford and Mowat 2014). Combinations of <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span> yield the same effective sampling area <span class="math inline">a</span> when the cumulative hazard of detection (<span class="math inline">\lambda(d)</span>)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is a linear function of home-range utilisation. Variation in home-range size then has no effect on estimates of density. It would be useful to allow <span class="math inline">\sigma</span> to vary while holding <span class="math inline">a</span> constant, but this has some fishhooks because computation of <span class="math inline">\lambda_0</span> from <span class="math inline">a</span> and <span class="math inline">\sigma</span> is not straightforward. A simple alternative is to substitute <span class="math inline">a_0 = 2 \pi \lambda_0 \sigma^2</span>; <span class="citation" data-cites="em14">Efford &amp; Mowat (<a href="A99-references.html#ref-em14" role="doc-biblioref">2014</a>)</span> called <span class="math inline">a_0</span> the ‘single-detector sampling area’. If the sampling regime is constant, holding <span class="math inline">a_0</span> constant is almost equivalent to holding <span class="math inline">a</span> constant (but see <a href="#sec-paramlimitations">Limitations</a>). <a href="#fig-paramfig1" class="quarto-xref">Fig.&nbsp;<span>H.1</span></a> illustrates the relationship for 3 levels of <span class="math inline">a_0</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-paramfig1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-paramfig1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="A08-parameterizations_files/figure-html/fig-paramfig1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="A08-parameterizations_files/figure-html/fig-paramfig1-1.png" class="img-fluid figure-img" width="432"></a>
+<a href="A08-parameterizations_files/figure-html/fig-paramfig1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="A08-parameterizations_files/figure-html/fig-paramfig1-1.png" class="img-fluid figure-img" width="432"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-paramfig1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;H.1: Structural relationship between parameters <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span> expressed by holding <span class="math inline">a_0</span> constant in <span class="math inline">\lambda_0 = a_0 / (2 \pi \sigma^2)</span>.
@@ -502,7 +502,7 @@ Figure&nbsp;H.1: Structural relationship between parameters <span class="math in
 <div class="cell-output-display">
 <div id="fig-paramfig2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-paramfig2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="A08-parameterizations_files/figure-html/fig-paramfig2-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="A08-parameterizations_files/figure-html/fig-paramfig2-1.png" class="img-fluid figure-img" width="432"></a>
+<a href="A08-parameterizations_files/figure-html/fig-paramfig2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="A08-parameterizations_files/figure-html/fig-paramfig2-1.png" class="img-fluid figure-img" width="432"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-paramfig2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;H.2: Structural relationship between parameters <span class="math inline">D</span> and <span class="math inline">\sigma</span> expressed by holding <span class="math inline">k</span> constant in <span class="math inline">\sigma = 100 k / \sqrt D</span>. The factor of 100 adjusts for the inconsistent default units of <span class="math inline">\sigma</span> and <span class="math inline">D</span> in <strong>secr</strong> (metres and hectares).
@@ -627,7 +627,7 @@ Table&nbsp;H.1: Parameterization codes.
 <div class="cell-output-display">
 <div id="fig-paramfig3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-paramfig3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="A08-parameterizations_files/figure-html/fig-paramfig3-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="A08-parameterizations_files/figure-html/fig-paramfig3-1.png" class="img-fluid figure-img" width="432"></a>
+<a href="A08-parameterizations_files/figure-html/fig-paramfig3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="A08-parameterizations_files/figure-html/fig-paramfig3-1.png" class="img-fluid figure-img" width="432"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-paramfig3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;H.3: Fitted structural relationship between parameters <span class="math inline">D</span> and <span class="math inline">\sigma</span> (curve; <span class="math inline">\hat k =</span> <code>r round(predict(oven0509bs)[[1]]['sigmak','estimate']/100,3)</code>) and separate annual estimates (ovenbirds mistnetted on Patuxent Research Refuge 2005–2009).
@@ -635,7 +635,7 @@ Figure&nbsp;H.3: Fitted structural relationship between parameters <span class="
 </div>
 </div>
 </div>
-</section><section id="paramlimitations" class="level2" data-number="H.4"><h2 data-number="H.4" class="anchored" data-anchor-id="paramlimitations">
+</section><section id="sec-paramlimitations" class="level2" data-number="H.4"><h2 data-number="H.4" class="anchored" data-anchor-id="sec-paramlimitations">
 <span class="header-section-number">H.4</span> Limitations</h2>
 <p>Using <span class="math inline">a_0</span> as a surrogate for <span class="math inline">a</span> is unreliable if the distribution or intensity of sampling varies. This is because <span class="math inline">a_0</span> depends only on the parameter values, whereas <span class="math inline">a</span> depends also on the detector layout and duration of sampling. For example, if a different size of trapping grid is used in each session, <span class="math inline">a</span> will vary even if the detection parameters, and hence <span class="math inline">a_0</span>, stay the same. This is also true (<span class="math inline">a</span> varies, <span class="math inline">a_0</span> constant) if the same trapping grid is operated for differing number of occasions in each session. It is <span class="math inline">a</span> that really matters, and constant <span class="math inline">a_0</span> is not a sensible null model in these scenarios.</p>
 <p>parameterizations (4) and (5) make sense only if density D is in the model; an attempt to use these when maximizing only the conditional likelihood (<code>CL = TRUE</code>) will cause an error.</p>
@@ -1141,7 +1141,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

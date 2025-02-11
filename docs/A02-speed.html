@@ -446,15 +446,15 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-<li><a href="#masktuning" id="toc-masktuning" class="nav-link active" data-scroll-target="#masktuning"><span class="header-section-number">B.1</span> Mask tuning</a></li>
+<li><a href="#sec-masktuning" id="toc-sec-masktuning" class="nav-link active" data-scroll-target="#sec-masktuning"><span class="header-section-number">B.1</span> Mask tuning</a></li>
   <li><a href="#conditional-likelihood" id="toc-conditional-likelihood" class="nav-link" data-scroll-target="#conditional-likelihood"><span class="header-section-number">B.2</span> Conditional likelihood</a></li>
-  <li><a href="#mash" id="toc-mash" class="nav-link" data-scroll-target="#mash"><span class="header-section-number">B.3</span> Mashing</a></li>
+  <li><a href="#sec-mash" id="toc-sec-mash" class="nav-link" data-scroll-target="#sec-mash"><span class="header-section-number">B.3</span> Mashing</a></li>
   <li><a href="#parallel-fitting" id="toc-parallel-fitting" class="nav-link" data-scroll-target="#parallel-fitting"><span class="header-section-number">B.4</span> Parallel fitting</a></li>
   <li><a href="#reducing-complexity-session--or-group-specific-models" id="toc-reducing-complexity-session--or-group-specific-models" class="nav-link" data-scroll-target="#reducing-complexity-session--or-group-specific-models"><span class="header-section-number">B.5</span> Reducing complexity (session- or group-specific models)</a></li>
   <li><a href="#reducing-number-of-levels-of-detection-covariates" id="toc-reducing-number-of-levels-of-detection-covariates" class="nav-link" data-scroll-target="#reducing-number-of-levels-of-detection-covariates"><span class="header-section-number">B.6</span> Reducing number of levels of detection covariates</a></li>
-  <li><a href="#collapsing-occasions" id="toc-collapsing-occasions" class="nav-link" data-scroll-target="#collapsing-occasions"><span class="header-section-number">B.7</span> Collapsing occasions</a></li>
+  <li><a href="#sec-collapseoccasions" id="toc-sec-collapseoccasions" class="nav-link" data-scroll-target="#sec-collapseoccasions"><span class="header-section-number">B.7</span> Collapsing occasions</a></li>
   <li><a href="#sec-masksubset" id="toc-sec-masksubset" class="nav-link" data-scroll-target="#sec-masksubset"><span class="header-section-number">B.8</span> Individual mask subsets</a></li>
-  <li><a href="#collapsedetectors" id="toc-collapsedetectors" class="nav-link" data-scroll-target="#collapsedetectors"><span class="header-section-number">B.9</span> Collapsing detectors</a></li>
+  <li><a href="#sec-collapsedetectors" id="toc-sec-collapsedetectors" class="nav-link" data-scroll-target="#sec-collapsedetectors"><span class="header-section-number">B.9</span> Collapsing detectors</a></li>
   <li><a href="#multi-detector-type-instead-of-proximity" id="toc-multi-detector-type-instead-of-proximity" class="nav-link" data-scroll-target="#multi-detector-type-instead-of-proximity"><span class="header-section-number">B.10</span> “multi” detector type instead of “proximity”</a></li>
   <li><a href="#some-models-are-just-slower-than-others" id="toc-some-models-are-just-slower-than-others" class="nav-link" data-scroll-target="#some-models-are-just-slower-than-others"><span class="header-section-number">B.11</span> Some models are just slower than others</a></li>
   </ul></nav>
@@ -477,7 +477,7 @@ window.Quarto = {
 
 </header><p></p>
 <p>There is nothing virtuous about waiting days for a model to fit if there is a faster alternative. Here are some things you can do.</p>
-<section id="masktuning" class="level2" data-number="B.1"><h2 data-number="B.1" class="anchored" data-anchor-id="masktuning">
+<section id="sec-masktuning" class="level2" data-number="B.1"><h2 data-number="B.1" class="anchored" data-anchor-id="sec-masktuning">
 <span class="header-section-number">B.1</span> Mask tuning</h2>
 <p>Consider carefully the necessary extent of your habitat mask and the acceptable cell size (<a href="12-habitat.html" class="quarto-xref"><span>Chapter 12</span></a> has detailed advice). If your detectors are clustered then your mask may have gaps between the clusters (use type = ‘trapbuffer’ in <code>make.mask</code>). Masks with more than 2000 points are generally excessive (and the default is about 4000!).</p>
 </section><section id="conditional-likelihood" class="level2" data-number="B.2"><h2 data-number="B.2" class="anchored" data-anchor-id="conditional-likelihood">
@@ -507,7 +507,7 @@ D      1.466     0.19051 1.1376 1.8892 0.12127 0.046715 0.12995</code></pre>
 </div>
 </div>
 <p>Estimated density is exactly the same, to 6 significant figures (1.46599). This is expected when <span class="math inline">n</span> is Poisson; slight differences arise when <span class="math inline">n</span> is binomial (because the number of animals <span class="math inline">N</span> in the masked area is considered fixed rather than random). The estimated variance differs slightly - that from <code>derived</code> follows an unpublished and slightly <em>ad hoc</em> procedure <span class="citation" data-cites="be07">(<a href="A99-references.html#ref-be07" role="doc-biblioref">Borchers &amp; Efford, 2007</a>)</span>.</p>
-</section><section id="mash" class="level2" data-number="B.3"><h2 data-number="B.3" class="anchored" data-anchor-id="mash">
+</section><section id="sec-mash" class="level2" data-number="B.3"><h2 data-number="B.3" class="anchored" data-anchor-id="sec-mash">
 <span class="header-section-number">B.3</span> Mashing</h2>
 <p>Mashing is a very effective way of speeding up estimation when the design uses many replicate clusters of detectors, each with the same geometry, and clusters are far enough apart that animals are not detected on more than one. The approach for <span class="math inline">M</span> clusters is to overlay all data as if from a single cluster; the estimated density will be <span class="math inline">M</span> times the per-cluster estimate, and SE etc. will be inflated by the same factor. This relies on individuals being detected independently of each other, which is a standard assumption in any case. The present implementation assumes density is uniform.</p>
 <p>The capthist object is first collapsed with function <code>mash</code> into one using the geometry of a single cluster. The object retains a memory of the number of individuals from each original cluster in the attribute ‘n.mash’. Functions <code>derived</code>, <code>derivedMash</code> and the method <code>predict.secr</code> use ‘n.mash’ to adjust their output density, SE, and confidence limits.</p>
@@ -546,11 +546,11 @@ D      1.466     0.19051 1.1376 1.8892 0.12127 0.046715 0.12995</code></pre>
 <p>See <a href="https://www.otago.ac.nz/density/html/Parallel.html">?Parallel</a> for more.</p>
 </section><section id="reducing-complexity-session--or-group-specific-models" class="level2" data-number="B.5"><h2 data-number="B.5" class="anchored" data-anchor-id="reducing-complexity-session--or-group-specific-models">
 <span class="header-section-number">B.5</span> Reducing complexity (session- or group-specific models)</h2>
-<p>Simultaneous estimation of many parameters can be painfully slow, but it can be completely avoided. If your model is fully session- or group-specific then it is much faster to analyse each group separately. For sessions this is can be done simply with <code>lapply</code> <a href="A01-troubleshooting.html#variancefailed">above</a> and in <a href="14-multisession.html" class="quarto-xref"><span>Chapter 14</span></a>. For groups you may need to construct new capthist objects using <code>subset</code> to extract groups corresponding to the levels of one or more individual covariates.</p>
+<p>Simultaneous estimation of many parameters can be painfully slow, but it can be completely avoided. If your model is fully session- or group-specific then it is much faster to analyse each group separately. For sessions this is can be done simply with <code>lapply</code> <a href="A01-troubleshooting.html#sec-variancefailed">above</a> and in <a href="14-multisession.html" class="quarto-xref"><span>Chapter 14</span></a>. For groups you may need to construct new capthist objects using <code>subset</code> to extract groups corresponding to the levels of one or more individual covariates.</p>
 </section><section id="reducing-number-of-levels-of-detection-covariates" class="level2" data-number="B.6"><h2 data-number="B.6" class="anchored" data-anchor-id="reducing-number-of-levels-of-detection-covariates">
 <span class="header-section-number">B.6</span> Reducing number of levels of detection covariates</h2>
 <p><code>secr.fit</code> pre-computes a lookup table of values for detection parameters. The size of the table increases with the number of unique levels of any covariates. A continuous individual or detector covariate can have many similar levels. Binning covariate values can give a large saving in memory and time (see <a href="https://www.otago.ac.nz/density/html/binCovariate.html">?binCovariate</a>).</p>
-</section><section id="collapsing-occasions" class="level2" data-number="B.7"><h2 data-number="B.7" class="anchored" data-anchor-id="collapsing-occasions">
+</section><section id="sec-collapseoccasions" class="level2" data-number="B.7"><h2 data-number="B.7" class="anchored" data-anchor-id="sec-collapseoccasions">
 <span class="header-section-number">B.7</span> Collapsing occasions</h2>
 <p>If there is no temporal aspect to the model you want to fit (such as a behavioural response) and detectors are independent (not true for traps i.e.&nbsp;“multi”) then it is attractive to collapse all sampling occasions. This happens automatically by default for ‘proximity’ and ‘count’ detectors (details argument ‘fastproximity = TRUE’). For example, with the Tennessee black bear data we get:</p>
 <div class="cell">
@@ -607,7 +607,7 @@ Compare timing
 </details><div class="cell-output-display">
 <div id="fig-maxdistance" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-maxdistance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="A02-speed_files/figure-html/fig-maxdistance-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="A02-speed_files/figure-html/fig-maxdistance-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="A02-speed_files/figure-html/fig-maxdistance-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="A02-speed_files/figure-html/fig-maxdistance-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maxdistance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;B.1: Sample of individual blackbear masks (red) with detection sites overplotted in blue.
@@ -639,7 +639,7 @@ Compare timing
                    4.00                    1.33 </code></pre>
 </div>
 </div>
-</section><section id="collapsedetectors" class="level2" data-number="B.9"><h2 data-number="B.9" class="anchored" data-anchor-id="collapsedetectors">
+</section><section id="sec-collapsedetectors" class="level2" data-number="B.9"><h2 data-number="B.9" class="anchored" data-anchor-id="sec-collapsedetectors">
 <span class="header-section-number">B.9</span> Collapsing detectors</h2>
 <p>The benefit from collapsing occasions has a spatial analogue: if there are many detectors and they are closely spaced relative to animal movements <span class="math inline">\sigma</span> then nearby detectors may be aggregated into new notional detectors located at the centroid. The reduce.traps method has an argument ‘span’ explained as follows in the help –</p>
 <blockquote class="blockquote">
@@ -1087,7 +1087,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

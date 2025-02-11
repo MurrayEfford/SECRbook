@@ -52,7 +52,7 @@ source("figures/sevilleta.R")
 
 ## Chimpanzees in Ivory Coast {#sec-chimpanzees}
 
-@DespresEinspenner2017 applied SECR to automatic camera records of chimpanzees *Pan troglodytes* in a single group territory. Group size (27 excluding unweaned young) was known from intensive observations. The authors reported a good match between the estimated and known populations. However, $\sigma$ could not be estimated because individuals moved throughout the territory and cameras were not placed outside it (see also [Study design](#arraysize)). This required them to treat the extent of the population as known (confined within the independently determined territory boundary). The resulting analysis is in essence non-spatial, and does not validate SECR.
+@DespresEinspenner2017 applied SECR to automatic camera records of chimpanzees *Pan troglodytes* in a single group territory. Group size (27 excluding unweaned young) was known from intensive observations. The authors reported a good match between the estimated and known populations. However, $\sigma$ could not be estimated because individuals moved throughout the territory and cameras were not placed outside it (see also [Study design](08-studydesign.qmd#sec-arraysize)). This required them to treat the extent of the population as known (confined within the independently determined territory boundary). The resulting analysis is in essence non-spatial, and does not validate SECR.
 
 ## Red-backed salamanders in Massachusetts {#sec-salamanders}
 

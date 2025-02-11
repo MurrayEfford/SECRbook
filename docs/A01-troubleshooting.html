@@ -445,7 +445,7 @@ window.Quarto = {
   <ul class="collapse">
 <li><a href="#bias-limit-exceeded" id="toc-bias-limit-exceeded" class="nav-link active" data-scroll-target="#bias-limit-exceeded"><span class="header-section-number">A.1</span> Bias limit exceeded</a></li>
   <li><a href="#initial-log-likelihood-na" id="toc-initial-log-likelihood-na" class="nav-link" data-scroll-target="#initial-log-likelihood-na"><span class="header-section-number">A.2</span> Initial log likelihood NA</a></li>
-  <li><a href="#variancefailed" id="toc-variancefailed" class="nav-link" data-scroll-target="#variancefailed"><span class="header-section-number">A.3</span> Variance calculation failed</a></li>
+  <li><a href="#sec-variancefailed" id="toc-sec-variancefailed" class="nav-link" data-scroll-target="#sec-variancefailed"><span class="header-section-number">A.3</span> Variance calculation failed</a></li>
   <li><a href="#log-likelihood-becomes-na-or-improbably-large-after-a-few-evaluations" id="toc-log-likelihood-becomes-na-or-improbably-large-after-a-few-evaluations" class="nav-link" data-scroll-target="#log-likelihood-becomes-na-or-improbably-large-after-a-few-evaluations"><span class="header-section-number">A.4</span> Log likelihood becomes NA or improbably large after a few evaluations</a></li>
   <li><a href="#possible-maximization-error-nlm-code-3" id="toc-possible-maximization-error-nlm-code-3" class="nav-link" data-scroll-target="#possible-maximization-error-nlm-code-3"><span class="header-section-number">A.5</span> Possible maximization error: nlm code 3</a></li>
   <li><a href="#possible-maximization-error-nlm-code-4" id="toc-possible-maximization-error-nlm-code-4" class="nav-link" data-scroll-target="#possible-maximization-error-nlm-code-4"><span class="header-section-number">A.6</span> Possible maximization error: nlm code 4</a></li>
@@ -543,7 +543,7 @@ Completed in 4.19 seconds at 18:17:36 04 Feb 2025 </code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">infraCH</span>, buffer <span class="op">=</span> <span class="fl">25</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>autoini <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
 <span>                 trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="variancefailed" class="level2" data-number="A.3"><h2 data-number="A.3" class="anchored" data-anchor-id="variancefailed">
+</section><section id="sec-variancefailed" class="level2" data-number="A.3"><h2 data-number="A.3" class="anchored" data-anchor-id="sec-variancefailed">
 <span class="header-section-number">A.3</span> Variance calculation failed</h2>
 <p></p>
 <p>If warnings had not been suppressed in the preceding example we would have seen</p>
@@ -714,9 +714,9 @@ sigma        0.91984 0.034977  0.85129  0.9884</code></pre>
 <li>
 <span class="math inline">M</span> can be reduced by building a habitat mask with an appropriate spacing (see [secr-habitatmasks.pdf]).</li>
 <li>
-<span class="math inline">K</span> might seem to be fixed by the design, but in extreme cases it may be appropriate to combine data from adjacent detectors (see <a href="A02-speed.html#collapsedetectors">Collapsing detectors</a>).</li>
+<span class="math inline">K</span> might seem to be fixed by the design, but in extreme cases it may be appropriate to combine data from adjacent detectors (see <a href="./A02-speed.html#sec-collapsedetectors">Collapsing detectors</a>).</li>
 </ol>
-<p>The <code>mash</code> function (see <a href="A02-speed.html#mash">Mashing</a>) may be used to reduce the number of detectors when the design uses many identical and independent clusters. Otherwise, apply your ingenuity to simplify your model, e.g., by casting ‘groups’ as ‘sessions’. Memory is less often an issue on 64-bit systems (see also <code><a href="https://rdrr.io/r/base/Memory-limits.html">?"Memory-limits"</a></code>).</p>
+<p>The <code>mash</code> function (see <a href="./A02-speed.html#sec-mash">Mashing</a>) may be used to reduce the number of detectors when the design uses many identical and independent clusters. Otherwise, apply your ingenuity to simplify your model, e.g., by casting ‘groups’ as ‘sessions’. Memory is less often an issue on 64-bit systems (see also <code><a href="https://rdrr.io/r/base/Memory-limits.html">?"Memory-limits"</a></code>).</p>
 </section><section id="covariate-factor-levels-differ-between-sessions" class="level2" data-number="A.8"><h2 data-number="A.8" class="anchored" data-anchor-id="covariate-factor-levels-differ-between-sessions">
 <span class="header-section-number">A.8</span> Covariate factor levels differ between sessions</h2>
 <p></p>

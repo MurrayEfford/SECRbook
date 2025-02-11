@@ -89,7 +89,7 @@ We lack a clear guide to required RSE in other studies, for which the effect siz
 ## Pilot parameter values
 \index{Study design!pilot parameter values}
 
-To evaluate a potential study design we must know something about the target population. Here we describe the population and the behaviour of individuals by a simple SECR model and its parameters: uniform density $D$ and the parameters $\lambda_0$ and $\sigma$ of a hazard half-normal [detection function](#sec-detectfn). Predictions regarding the suitability and performance of any design then depend on the values of *D*, $\lambda_0$ and $\sigma$. This seems like a catch-22 -- impossible until we have estimates -- but for design purposes we can call on approximate values from multiple sources
+To evaluate a potential study design we must know something about the target population. Here we describe the population and the behaviour of individuals by a simple SECR model and its parameters: uniform density $D$ and the parameters $\lambda_0$ and $\sigma$ of a hazard half-normal [detection function](10-detection-model.qmd#sec-detectfn). Predictions regarding the suitability and performance of any design then depend on the values of *D*, $\lambda_0$ and $\sigma$. This seems like a catch-22 -- impossible until we have estimates -- but for design purposes we can call on approximate values from multiple sources
 
 * published estimates from studies of similar species,
 * a low-precision pilot study, or
@@ -159,7 +159,7 @@ We lack a count statistic matching the second part of Requirement 3 ('Array too 
 knitr::include_graphics('figures/ARR.png')
 ```
 
-Simulations described on [GitHub](https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/ARR/secr-simulations-ARR.html) show that SECR performs poorly when the extent ratio is less than 1: the relative bias and root-mean-square error of $\hat D$ increase abruptly (@fig-ARRplot). We earlier touted the robustness of $\hat D$ to misspecification of the [detection function](#sec-detectfn), but this desirable property evaporates when the array is small, as shown by estimates from a hazard exponential function applied to hazard half-normal data in @fig-ARRplot. 
+Simulations described on [GitHub](https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/ARR/secr-simulations-ARR.html) show that SECR performs poorly when the extent ratio is less than 1: the relative bias and root-mean-square error of $\hat D$ increase abruptly (@fig-ARRplot). We earlier touted the robustness of $\hat D$ to misspecification of the [detection function](10-detection-model.qmd#sec-detectfn), but this desirable property evaporates when the array is small, as shown by estimates from a hazard exponential function applied to hazard half-normal data in @fig-ARRplot. 
 
 @e11 simulated area-search data for a range of area sizes. Plotting those results with the extent ratio as the x-axis shows a similar pattern to @fig-ARRplot (see [GitHub](https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/ARR/secr-simulations-ARR.html)).
 
@@ -486,7 +486,7 @@ Costing is complex and study-specific. Travel is an important component (time or
 
 ## How many clusters?
 
-For the preceding comparison we fixed the number of detectors in advance. More realistically, we might set a target $\mathrm{RSE}(\hat D)$ and ask how many clusters (i.e. subgrids) are required. @eb19 observed that if  clusters are independent (widely spaced) then E(*n*) and E(*r*) both scale with the number of clusters *c*, and $\mathrm{RSE}(\hat D)$ scales with $1/ \sqrt c$. Thus we can predict the precision for a single cluster and extrapolate to assemblages of clusters (@fig-clusternumber). Having determined the required number of clusters we can decide on a systematic spacing or apply the [spatial coverage](#spcosa) method.
+For the preceding comparison we fixed the number of detectors in advance. More realistically, we might set a target $\mathrm{RSE}(\hat D)$ and ask how many clusters (i.e. subgrids) are required. @eb19 observed that if  clusters are independent (widely spaced) then E(*n*) and E(*r*) both scale with the number of clusters *c*, and $\mathrm{RSE}(\hat D)$ scales with $1/ \sqrt c$. Thus we can predict the precision for a single cluster and extrapolate to assemblages of clusters (@fig-clusternumber). Having determined the required number of clusters we can decide on a systematic spacing or apply the [spatial coverage](#sec-spcosa) method.
 
 ```{r}
 #| label: fig-clusternumber
@@ -518,7 +518,7 @@ Other variation in sampling intensity may be due to behavioural or habitat facto
 
 We illustrate six scenarios for the interaction between spatial variation in density and effort, and between density and detection in @fig-spatialeffort. The estimate of overall density is unbiased when effort and detection are homogeneous (@fig-spatialeffort a,d). Uncorrelated variation in effort does not bias $\hat D$ (@fig-spatialeffort b). Selectively reducing effort in low-density areas (@fig-spatialeffort c) causes significant bias, although this may be eliminated by including an area effect in the density model. 
 
-Variation in detection parameters causes bias even when not correlated with density (@fig-spatialeffort e). This is the effect of [inhomogeneous detection](#homogeneityofdetectors) noted previously. The effect is large when density and detection are correlated (@fig-spatialeffort f and @McLellan2023).
+Variation in detection parameters causes bias even when not correlated with density (@fig-spatialeffort e). This is the effect of [inhomogeneous detection](06-assumptions.qmd#sec-homogeneityofdetectors) noted previously. The effect is large when density and detection are correlated (@fig-spatialeffort f and @McLellan2023).
 
 ```{r}
 #| label: fig-spatialeffort

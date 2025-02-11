@@ -185,7 +185,7 @@ Buffer width is not critical as long as it is wide enough that animals at the ed
 
 [^footnote3f]: This is not just the tail probability of a normal deviate; think about how the probability of an individual being detected at least once changes with (i) the duration of sampling (ii) the density of detector array.
 
-[^footnote3g]: These are Horvitz-Thompson-like estimates of density obtained by dividing the observed number of individuals $n$ by [effective sampling areas](05-theory-special-topics.qmd#esa) (Borchers and Efford 2008) computed as the cumulative sum over mask cells ordered by distance from the traps. The algorithm treats the detection parameters as known and fixed.
+[^footnote3g]: These are Horvitz-Thompson-like estimates of density obtained by dividing the observed number of individuals $n$ by [effective sampling areas](05-theory-special-topics.qmd#sec-esa) (Borchers and Efford 2008) computed as the cumulative sum over mask cells ordered by distance from the traps. The algorithm treats the detection parameters as known and fixed.
 
 ```{r}
 #| label: fig-esaplot

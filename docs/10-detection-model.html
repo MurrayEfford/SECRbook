@@ -447,7 +447,7 @@ window.Quarto = {
    
   <ul class="collapse">
 <li><a href="#sec-detectfn" id="toc-sec-detectfn" class="nav-link active" data-scroll-target="#sec-detectfn"><span class="header-section-number">10.1</span> Distance-detection functions</a></li>
-  <li><a href="#linear-submodels" id="toc-linear-submodels" class="nav-link" data-scroll-target="#linear-submodels"><span class="header-section-number">10.2</span> Detection submodels</a></li>
+  <li><a href="#sec-linear-submodels" id="toc-sec-linear-submodels" class="nav-link" data-scroll-target="#sec-linear-submodels"><span class="header-section-number">10.2</span> Detection submodels</a></li>
   <li><a href="#varying-effort" id="toc-varying-effort" class="nav-link" data-scroll-target="#varying-effort"><span class="header-section-number">10.3</span> Varying effort</a></li>
   </ul></nav>
     </div>
@@ -474,7 +474,7 @@ window.Quarto = {
 <li>parameters may depend on other known variables, and</li>
 <li>parameters may be modelled as random effects to represent variation of unknown origin.</li>
 </ul>
-<p>We consider the shape of detection functions in the next section. Modelling parameters as a function of other variables is addressed in the following section on <a href="#linear-submodels">linear submodels</a>. Random effects in <strong>secr</strong> are limited to finite mixture models that we cover in the chapter on <a href="15-finite-mixtures.html">individual heterogeneity</a>.</p>
+<p>We consider the shape of detection functions in the next section. Modelling parameters as a function of other variables is addressed in the following section on <a href="#sec-linear-submodels">linear submodels</a>. Random effects in <strong>secr</strong> are limited to finite mixture models that we cover in the chapter on <a href="15-finite-mixtures.html">individual heterogeneity</a>.</p>
 <section id="sec-detectfn" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="sec-detectfn">
 <span class="header-section-number">10.1</span> Distance-detection functions</h2>
 <p></p>
@@ -572,7 +572,7 @@ Table&nbsp;10.2: Hazard detection functions.
 </div>
 <p>The merits of focussing on the hazard<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> are a little arcane. We list them here:</p>
 <ol type="1">
-<li>Quantities on the hazard scale are additive and more tractable for some purposes (e.g.&nbsp;adjusting for effort, computing <a href="#Expected">expected counts</a>).</li>
+<li>Quantities on the hazard scale are additive and more tractable for some purposes (e.g.&nbsp;adjusting for effort, computing <a href="./A11-expected-counts.html#sec-expected">expected counts</a>).</li>
 <li>For some detector types (e.g., Poisson counts) the data are integers, for which <span class="math inline">\lambda(d)</span> has a direct interpretation as the expected count. However, <span class="math inline">\lambda(d)</span> can always be derived from <span class="math inline">g(d)</span> (<span class="math inline">\lambda(d) = -\log[1 - g(d)]</span>).</li>
 <li>Intuitively, there is a close proportionality between <span class="math inline">\lambda(d)</span> and the height of an individual’s utilization pdf.</li>
 </ol>
@@ -592,7 +592,7 @@ Tip
 </div>
 <section id="choice-of-detection-function-not-critical" class="level3" data-number="10.1.1"><h3 data-number="10.1.1" class="anchored" data-anchor-id="choice-of-detection-function-not-critical">
 <span class="header-section-number">10.1.1</span> Choice of detection function not critical</h3>
-<p>The variety of detection functions is daunting. You could try them all and select the “best” by AIC, but we do not recommend this. Fortunately, the choice of function is not critical. We illustrate this with the <a href="02-example.html">snowshoe hare dataset</a> and use <a href="https://www.otago.ac.nz/density/html/list.secr.fit.html"><code>list.secr.fit</code></a>) to fit a series of models. Warnings due to the use of a multi-catch likelihood for single-catch traps are suppressed both here and in other examples.</p>
+<p>The variety of detection functions is daunting. You could try them all and select the “best” by AIC, but we do not recommend this. Fortunately, the choice of function is not critical. We illustrate this with the snowshoe hare dataset of <a href="02-example.html" class="quarto-xref"><span>Chapter 2</span></a>. The function <a href="https://www.otago.ac.nz/density/html/list.secr.fit.html"><code>list.secr.fit</code></a>) is used to fit a series of models. Warnings due to the use of a multi-catch likelihood for single-catch traps are suppressed both here and in other examples.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'HHN'</span>,<span class="st">'HHR'</span>,<span class="st">'HEX'</span>,<span class="st">'HVP'</span><span class="op">)</span></span>
 <span><span class="va">fits</span> <span class="op">&lt;-</span> <span class="fu">list.secr.fit</span><span class="op">(</span>detectfn <span class="op">=</span> <span class="va">df</span>, constant <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>capthist <span class="op">=</span> <span class="va">hareCH6</span>, </span>
@@ -602,7 +602,7 @@ Tip
 <div class="cell-output-display">
 <div id="fig-choicedfplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-choicedfplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="10-detection-model_files/figure-html/fig-choicedfplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="10-detection-model_files/figure-html/fig-choicedfplot-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+<a href="10-detection-model_files/figure-html/fig-choicedfplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="10-detection-model_files/figure-html/fig-choicedfplot-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-choicedfplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.1: Four detection functions fitted to snowshoe hare data.
@@ -623,7 +623,7 @@ Figure&nbsp;10.1: Four detection functions fitted to snowshoe hare data.
 <div class="cell-output-display">
 <div id="fig-choicedfparmplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-choicedfparmplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="10-detection-model_files/figure-html/fig-choicedfparmplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="10-detection-model_files/figure-html/fig-choicedfparmplot-1.png" class="img-fluid figure-img" width="720"></a>
+<a href="10-detection-model_files/figure-html/fig-choicedfparmplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="10-detection-model_files/figure-html/fig-choicedfparmplot-1.png" class="img-fluid figure-img" width="720"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-choicedfparmplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.2: Parameter estimates from four detection functions (95% CI).
@@ -637,7 +637,7 @@ Figure&nbsp;10.2: Parameter estimates from four detection functions (95% CI).
 <div class="cell-output-display">
 <div id="fig-HVPvaryzplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-HVPvaryzplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="10-detection-model_files/figure-html/fig-HVPvaryzplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="10-detection-model_files/figure-html/fig-HVPvaryzplot-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+<a href="10-detection-model_files/figure-html/fig-HVPvaryzplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="10-detection-model_files/figure-html/fig-HVPvaryzplot-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-HVPvaryzplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.3: HVP function fitted to snowshoe hare data with <span class="math inline">z</span> parameter fixed at four different values.
@@ -656,7 +656,7 @@ Figure&nbsp;10.3: HVP function fitted to snowshoe hare data with <span class="ma
 <div class="cell-output-display">
 <div id="fig-ellipseHVP" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ellipseHVP-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="10-detection-model_files/figure-html/fig-ellipseHVP-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="10-detection-model_files/figure-html/fig-ellipseHVP-1.png" class="img-fluid figure-img" width="576"></a>
+<a href="10-detection-model_files/figure-html/fig-ellipseHVP-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="10-detection-model_files/figure-html/fig-ellipseHVP-1.png" class="img-fluid figure-img" width="576"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ellipseHVP-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.4: Confidence ellipse for HVP detection parameters plotted on the link scale and back-transformed to natural scale. ‘+’ indicates MLE.
@@ -669,12 +669,12 @@ Figure&nbsp;10.4: Confidence ellipse for HVP detection parameters plotted on the
 <p>The idea of a distance-detection function originated in distance sampling <span class="citation" data-cites="bablbt01">(<a href="A99-references.html#ref-bablbt01" role="doc-biblioref">Buckland et al., 2001</a>)</span> and <span class="citation" data-cites="Borchers2015">Borchers et al. (<a href="A99-references.html#ref-Borchers2015" role="doc-biblioref">2015</a>)</span> provided a unified framework for spatially explicit capture–recapture and distance sampling. Nevertheless, the role of the detection function differs substantially.</p>
 <p>In distance sampling, shape matters a lot. In particular, the estimate of density depends on the slope of the detection function near the origin, given the assumption that all animals at the origin are detected <span class="citation" data-cites="Buckland2015">(e.g., <a href="A99-references.html#ref-Buckland2015" role="doc-biblioref">Buckland et al., 2015</a>)</span>.</p>
 <p>In SECR, no special significance is attached to the intercept or the shape of the function. The detection function serves as a spatial filter for a modelled 2-dimensional point pattern of activity centres; the filter must ‘explain’ the frequency of recaptures and their spatial spread. These are the components of the effective sampling area.</p>
-<p>The hazard-rate function HR is recommended for distance sampling because it has a distinct ‘shoulder’ near zero distance, and distance sampling is not concerned with the tail (distant observations are often censored). SECR relies on the tail flattening to zero within the region of integration (<a href="12-habitat.html">habitat mask</a>). Otherwise, the population at risk of detection is determined by the choice of mask, which is usually arbitrary and <em>ad hoc</em>. The hazard-rate function has an extremely long tail (it is not convergent), so there is always a risk of mask-dependence. As an aside - in the snowshoe hare example with detection function HHR we suppressed the warning “predicted relative bias exceeds 0.01 with buffer = 250” that is due to truncation of the long tail.</p>
-</section><section id="whybother1" class="level3" data-number="10.1.4"><h3 data-number="10.1.4" class="anchored" data-anchor-id="whybother1">
+<p>The hazard-rate function HR is recommended for distance sampling because it has a distinct ‘shoulder’ near zero distance, and distance sampling is not concerned with the tail (distant observations are often censored). SECR relies on the tail flattening to zero within the region of integration (<a href="./12-habitat.html#sec-habitat">habitat mask</a>). Otherwise, the population at risk of detection is determined by the choice of mask, which is usually arbitrary and <em>ad hoc</em>. The hazard-rate function has an extremely long tail (it is not convergent), so there is always a risk of mask-dependence. As an aside - in the snowshoe hare example with detection function HHR we suppressed the warning “predicted relative bias exceeds 0.01 with buffer = 250” that is due to truncation of the long tail.</p>
+</section><section id="sec-whybother1" class="level3" data-number="10.1.4"><h3 data-number="10.1.4" class="anchored" data-anchor-id="sec-whybother1">
 <span class="header-section-number">10.1.4</span> Why bother?</h3>
 <p>Given the preceding comments you may wonder why we bother with different detection functions at all. In part this is historical: it was not obvious in the beginning that density estimates were so robust. Sometimes it’s just nice to have the flexibility to match the model to animal behaviour. Functions with longer tails (e.g., HEX) accommodate occasional extreme movements that can prevent a short-tailed function (HHN) from fitting at all.</p>
 <p>Also, it is desirable to account for any significant lack of fit due to the detection function before modelling effects that may have a more critical effect on density estimates, such as individual heterogeneity and learned responses.</p>
-</section></section><section id="linear-submodels" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="linear-submodels">
+</section></section><section id="sec-linear-submodels" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="sec-linear-submodels">
 <span class="header-section-number">10.2</span> Detection submodels</h2>
 <p></p>
 <p>Until now we have assumed that there is a single beta parameter for each real parameter. A much richer set of models is obtained by treating each real parameter as a function of covariates. For convenience, the function is linear on the appropriate <a href="./01-basics.html#sec-link">link</a> scale. The single ‘beta’ coefficient is then replaced by two or more coefficients (e.g., intercept <span class="math inline">\beta_0</span> and slope <span class="math inline">\beta_1</span> of the linear relationship <span class="math inline">y = \beta_0 + \beta_1x_1</span> where <span class="math inline">y</span> is a parameter on the link scale and <span class="math inline">x_1</span> is a covariate). Suppose, for example, that <span class="math inline">y</span> depends on sampling occasion <span class="math inline">s</span> then <span class="math inline">y(s) = \beta_0 + \beta_1x_1(s)</span> and the corresponding real parameter is <span class="math inline">y(s)</span> back transformed from the link scale.</p>
@@ -698,7 +698,7 @@ Table&nbsp;10.3: Automatically generated predictor variables for detection model
 <td style="text-align: left;">g</td>
 <td style="text-align: left;">group</td>
 <td style="text-align: left;">
-<a href="05-theory-special-topics.html#groups">groups</a> are defined by the individual covariate(s) named in the ‘groups’ argument</td>
+<a href="./05-theory-special-topics.html#sec-groups">groups</a> are defined by the individual covariate(s) named in the ‘groups’ argument</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">t</td>
@@ -754,7 +754,7 @@ Table&nbsp;10.3: Automatically generated predictor variables for detection model
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">2-class mixture</td>
 <td style="text-align: left;">
-<a href="05-theory-special-topics.html#finite-mixtures">finite mixture model</a> with 2 latent classes</td>
+<a href="./05-theory-special-topics.html#sec-finite-mixtures">finite mixture model</a> with 2 latent classes</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">ts</td>
@@ -882,7 +882,7 @@ Table&nbsp;10.5: Types of user-provided covariate for parameters of detection mo
 </div>
 </figure>
 </div>
-<!-- [Hybrid mixture models](#hybrid-mixtures) allow some or all individuals to be assigned permanently to a group (mixture class), while other individuals (ideally a minority) may be of unknown class. -->
+<!-- [Hybrid mixture models](05-theory-special-topics.qmd#sec-hybrid-mixtures) allow some or all individuals to be assigned permanently to a group (mixture class), while other individuals (ideally a minority) may be of unknown class. -->
 <p>A continuous covariate that takes many unique values poses problems for the implementation in <strong>secr</strong>. A multiplicity of values inflates the size of internal lookup tables, both slowing down each likelihood evaluation and potentially exceeding the available memory<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. A binned covariate should do the job equally well, while saving time and space (see function <a href="https://www.otago.ac.nz/density/html/binCovariate.html"><code>binCovariate</code></a>).</p>
 </section><section id="time-varying-trap-covariates" class="level3" data-number="10.2.2"><h3 data-number="10.2.2" class="anchored" data-anchor-id="time-varying-trap-covariates">
 <span class="header-section-number">10.2.2</span> Time-varying trap covariates</h3>
@@ -899,8 +899,8 @@ Regression splines are a very flexible way to represent non-linear responses in 
 <p>There are some drawbacks to using smooth terms. The resulting fitted objects are large, on account of the need to store setup information from <strong>mgcv</strong>. The implementation may change in later versions of <strong>mgcv</strong> and <strong>secr</strong>, and smooth models fitted now will not necessarily be compatible with later versions. Setting the intercept of a smooth to zero is not a canned option in <strong>mgcv</strong>, and is not offered in <strong>secr</strong>. It may be achieved by placing a knot at zero and hacking the matrix of basis functions to drop the corresponding column, plus some more jiggling.</p>
 </section><section id="whybother2" class="level3" data-number="10.2.4"><h3 data-number="10.2.4" class="anchored" data-anchor-id="whybother2">
 <span class="header-section-number">10.2.4</span> Why bother?</h3>
-<p>Detailed modelling of detection parameters may be a waste of energy for the same reasons that the <a href="#whybother1">choice of detection function</a> itself has limited interest. See, for example, the simulation results of <span class="citation" data-cites="Sollmann2024">Sollmann (<a href="A99-references.html#ref-Sollmann2024" role="doc-biblioref">2024</a>)</span> on occasion-specific models (<span class="math inline">\sim</span> t). However, behavioural responses and individual heterogeneity can have a major effect on density estimates, and these deserve attention.</p>
-<section id="behaviouralresponse" class="level4" data-number="10.2.4.1"><h4 data-number="10.2.4.1" class="anchored" data-anchor-id="behaviouralresponse">
+<p>Detailed modelling of detection parameters may be a waste of energy for the same reasons that the <a href="#sec-whybother1">choice of detection function</a> itself has limited interest. See, for example, the simulation results of <span class="citation" data-cites="Sollmann2024">Sollmann (<a href="A99-references.html#ref-Sollmann2024" role="doc-biblioref">2024</a>)</span> on occasion-specific models (<span class="math inline">\sim</span> t). However, behavioural responses and individual heterogeneity can have a major effect on density estimates, and these deserve attention.</p>
+<section id="sec-behaviouralresponse" class="level4" data-number="10.2.4.1"><h4 data-number="10.2.4.1" class="anchored" data-anchor-id="sec-behaviouralresponse">
 <span class="header-section-number">10.2.4.1</span> Behavioural responses</h4>
 <p></p>
 <p>An individual behavioral response is a change in the probability or hazard of detection on the occasions that follow a detection. Trapping of small mammals provides evidence of species that routinely become trap happy (presumably because they enjoy the bait) or trap shy (presumably because the experience of capture and handling is unpleasant). Positive or negative responses are modelled as a step change in a detection parameter, usually the intercept of the detection function (<span class="math inline">g_0</span>, <span class="math inline">\lambda_0</span>).</p>
@@ -1592,7 +1592,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

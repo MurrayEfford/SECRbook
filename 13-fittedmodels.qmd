@@ -30,7 +30,7 @@ If all variances (SE) are missing or extreme then the fit has indeed failed.
 A fitted model ('secr' object) contains estimates of the coefficients of the model. Use the `coef` method for secr objects to display the coefficients (e.g., `coef(secrdemo.0)`). We note
 
 * the coefficients (aka 'beta parameters') are on the link scale, and at the very least must be back-transformed to the natural scale, and
-* a real parameter for which there is a [linear sub-model](#linear-submodels) is not unique: it takes a value that depends on covariates and other predictors.
+* a real parameter for which there is a [linear sub-model](10-detection-model.qmd#sec-linear-submodels) is not unique: it takes a value that depends on covariates and other predictors.
 
 These complexities are handled by the `predict` method for secr objects, as for other fitted models in R (e.g., `lm`). The desired levels of covariates and other predictors appear as columns of the 'newdata' dataframe. `predict` is called automatically when you print an 'secr' object by typing its name at the R prompt.
 
@@ -214,7 +214,7 @@ received little attention and its limits are unknown.
 ## Assessing model fit {#sec-modelfit}      
 \index{Goodness of fit}
 
-Rigor would seem to require that a model used for inference has been shown to fit the data. This premise has many fishhooks. Tests of 'goodness-of-fit' for SECR have uniformly low power. Assumptions are inevitably breached to some degree, and we rely in practice on soft criteria (experience, judgement and the property of [robustness](#sec-assumptions)).
+Rigor would seem to require that a model used for inference has been shown to fit the data. This premise has many fishhooks. Tests of absolute 'goodness-of-fit' for SECR have uniformly low power. Assumptions are inevitably breached to some degree, and we rely in practice on soft criteria (experience, judgement and the property of robustness) as covered in @sec-assumptions, and the relative fit of plausible models (indicated by AIC or similar criteria).
 
 Nevertheless, tests of goodness-of-fit are potentially informative regarding ways a model might be improved. Early maximum likelihood and Bayesian approaches to SECR spawned different approaches to goodness-of-fit testing - the parametric bootstrap and Bayesian p-values. We present these in an updated context as this is an area of active research. Each test is introduced, along with a recent approach that attempts to bridge the divide by emulating Bayesian p-values for models fitted by maximum likelihood. 
 

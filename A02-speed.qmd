@@ -3,7 +3,7 @@
 
 There is nothing virtuous about waiting days for a model to fit if there is a faster alternative. Here are some things you can do.
 
-## Mask tuning {#masktuning}
+## Mask tuning {#sec-masktuning}
 
 Consider carefully the necessary extent of your habitat mask and the acceptable cell size (@sec-habitat has detailed advice). If your detectors are clustered then your mask may have gaps between the clusters (use type = 'trapbuffer' in `make.mask`). Masks with more than 2000 points are generally excessive (and the default is about 4000!).
 
@@ -44,7 +44,7 @@ derived(fitCL)   # CL = TRUE
 
 Estimated density is exactly the same, to 6 significant figures (`r round(predict(fit)['D','estimate'],5)`). This is expected when $n$ is Poisson; slight differences arise when $n$ is binomial (because the number of animals $N$ in the masked area is considered fixed rather than random). The estimated variance differs slightly - that from `derived` follows an unpublished and slightly *ad hoc* procedure [@be07].
 
-## Mashing  {#mash}
+## Mashing  {#sec-mash}
 
 Mashing is a very effective way of speeding up estimation when the design uses many replicate clusters of detectors, each with the same geometry, and clusters are far enough apart that animals are not detected on more than one. The approach for $M$ clusters is to overlay all data as if from a single cluster; the estimated density will be $M$ times the per-cluster estimate, and SE etc. will be inflated by the same factor. This relies on individuals being detected independently of each other, which is a standard assumption in any case. The present implementation assumes density is  uniform.
 
@@ -90,13 +90,13 @@ See [?Parallel](https://www.otago.ac.nz/density/html/Parallel.html) for more.
 
 ## Reducing complexity (session- or group-specific models)
 
-Simultaneous estimation of many parameters can be painfully slow, but it can be completely avoided. If your model is fully session- or group-specific then it is much faster to analyse each group separately. For sessions this is can be done simply with `lapply` [above](#variancefailed) and in @sec-multisession. For groups you may need to construct new capthist objects using `subset` to extract groups corresponding to the levels of one or more individual covariates.
+Simultaneous estimation of many parameters can be painfully slow, but it can be completely avoided. If your model is fully session- or group-specific then it is much faster to analyse each group separately. For sessions this is can be done simply with `lapply` [above](#sec-variancefailed) and in @sec-multisession. For groups you may need to construct new capthist objects using `subset` to extract groups corresponding to the levels of one or more individual covariates.
     
 ## Reducing number of levels of detection covariates
 
 `secr.fit` pre-computes a lookup table of values for detection parameters. The size of the table increases with the number of unique levels of any covariates. A continuous individual or detector covariate can have many similar levels. Binning covariate values can give a large saving in memory and time (see [?binCovariate](https://www.otago.ac.nz/density/html/binCovariate.html)).
 
-## Collapsing occasions
+## Collapsing occasions {#sec-collapseoccasions}
     
 If there is no temporal aspect to the model you want to fit (such as a behavioural response) and detectors are independent (not true for traps i.e. "multi") then it is attractive to collapse all sampling occasions. This happens automatically by default for 'proximity' and 'count' detectors (details argument 'fastproximity = TRUE'). For example, with the Tennessee black bear data we get:
 ```{r}
@@ -183,7 +183,7 @@ cat ("\nCompare timing\n")
 sapply(fits, '[[', 'proctime')
 ```
 
-## Collapsing detectors  {#collapsedetectors}
+## Collapsing detectors  {#sec-collapsedetectors}
     
 The benefit from collapsing occasions has a spatial analogue: if there are many detectors and they are closely spaced relative to animal movements $\sigma$ then nearby detectors may be aggregated into new notional detectors located at the centroid. The reduce.traps method has an argument 'span' explained as follows in the help --
         

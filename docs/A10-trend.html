@@ -446,7 +446,7 @@ window.Quarto = {
 <li><a href="#dlambda-parameterization" id="toc-dlambda-parameterization" class="nav-link active" data-scroll-target="#dlambda-parameterization"><span class="header-section-number">J.1</span> ‘Dlambda’ parameterization</a></li>
   <li><a href="#covariate-and-other-trend-models" id="toc-covariate-and-other-trend-models" class="nav-link" data-scroll-target="#covariate-and-other-trend-models"><span class="header-section-number">J.2</span> Covariate and other trend models</a></li>
   <li><a href="#fixing-coefficients" id="toc-fixing-coefficients" class="nav-link" data-scroll-target="#fixing-coefficients"><span class="header-section-number">J.3</span> Fixing coefficients</a></li>
-  <li><a href="#Review" id="toc-Review" class="nav-link" data-scroll-target="#Review"><span class="header-section-number">J.4</span> Technical notes and tips</a></li>
+  <li><a href="#sec-trendreview" id="toc-sec-trendreview" class="nav-link" data-scroll-target="#sec-trendreview"><span class="header-section-number">J.4</span> Technical notes and tips</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -469,7 +469,7 @@ window.Quarto = {
 <section id="dlambda-parameterization" class="level2" data-number="J.1"><h2 data-number="J.1" class="anchored" data-anchor-id="dlambda-parameterization">
 <span class="header-section-number">J.1</span> ‘Dlambda’ parameterization</h2>
 <p> </p>
-<p>We parameterize the density model in terms of the initial density <span class="math inline">D_1</span> and the finite rates of increase <span class="math inline">\lambda_t</span> for the remaining sessions (<span class="math inline">\lambda_1</span> refers to the density increase between Session 1 and Session 2, etc.). Reparameterization of the density model is achieved internally in <code>secr.fit</code> by manipulating the density design matrix to provide a new array of mask-cell- and session-specific densities at each evaluation of the full likelihood. This happens when the details argument ‘Dlambda’ is set to TRUE. The density model (D~) and the fitted coefficients take on a new meaning determined by the internal function <code>Dfn2</code>. More explanation is given <a href="#Review">later</a>.</p>
+<p>We parameterize the density model in terms of the initial density <span class="math inline">D_1</span> and the finite rates of increase <span class="math inline">\lambda_t</span> for the remaining sessions (<span class="math inline">\lambda_1</span> refers to the density increase between Session 1 and Session 2, etc.). Reparameterization of the density model is achieved internally in <code>secr.fit</code> by manipulating the density design matrix to provide a new array of mask-cell- and session-specific densities at each evaluation of the full likelihood. This happens when the details argument ‘Dlambda’ is set to TRUE. The density model (D~) and the fitted coefficients take on a new meaning determined by the internal function <code>Dfn2</code>. More explanation is given <a href="#sec-trendreview">later</a>.</p>
 <p>Now, fitting the ovenbird model with D~1 results in two density parameters (density in session 1, constant finite rate of increase across remaining sessions):</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="va">msk</span> <span class="op">&lt;-</span> <span class="fu">make.mask</span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">ovenCH</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>, buffer <span class="op">=</span> <span class="fl">300</span>, nx <span class="op">=</span> <span class="fl">32</span><span class="op">)</span></span>
@@ -574,7 +574,7 @@ lambda4   0.9000     0.00000 0.90000 0.9000</code></pre>
 </div>
 <p><!-- For comparison, this can be achieved more conventionally by fixing the  --> <!-- beta coefficient in a model with log-linear trend over sessions (D~Session): --></p>
 <p><!--```{r fixedbeta2, cache = TRUE} --> <!-- fit6 <- secr.fit(ovenCH, model = D~Session, mask = msk, trace = FALSE, --> <!--     details = list(Dlambda = FALSE, fixedbeta = c(NA, log(0.9), NA, NA))) --> <!-- t(sapply(predict(fit6), '[', 'D', )) --> <!--``` --></p>
-</section><section id="Review" class="level2" data-number="J.4"><h2 data-number="J.4" class="anchored" data-anchor-id="Review">
+</section><section id="sec-trendreview" class="level2" data-number="J.4"><h2 data-number="J.4" class="anchored" data-anchor-id="sec-trendreview">
 <span class="header-section-number">J.4</span> Technical notes and tips</h2>
 <p><code>Dfn2</code> performs some tricky manipulations. You can see the code by typing <code>secr:::Dfn2</code>. A column is pre-pended to the density design matrix specifically to model the initial density; this takes the value one in Session 1 and is otherwise zero. Other columns in the design matrix are set to zero for the first session. Session-specific density on the link (log) scale is computed as the cumulative sum across sessions of the initial log density and the modelled log-lambda values.</p>
 <p>Note –</p>

@@ -7,18 +7,18 @@ The most important of these are the linear sub-models for [detection](10-detecti
 ## Multi-session likelihood
 \index{Likelihood!multi-session}
 
-The data may comprise multiple independent datasets to be analysed together. We call these 'sessions', following the terminology of **secr**. They may be synchronous spatial samples from non-overlapping populations or samples of the same population widely separated in time. If there are $J$ such datasets we can denote them $\Omega_j, j = 1,...,J$. The likelihood to be maximized is then $\prod_j L(\phi, \theta | \Omega_j)$. While the parameter vector $(\phi, \theta)$ is common to all sessions, the mechanism of [linear submodels](#linear-submodels) allows 'real' parameter values to be specific to a session, common to multiple sessions, or modelled as a function of session-level covariates. 
+The data may comprise multiple independent datasets to be analysed together. We call these 'sessions', following the terminology of **secr**. They may be synchronous spatial samples from non-overlapping populations or samples of the same population widely separated in time. If there are $J$ such datasets we can denote them $\Omega_j, j = 1,...,J$. The likelihood to be maximized is then $\prod_j L(\phi, \theta | \Omega_j)$. While the parameter vector $(\phi, \theta)$ is common to all sessions, the mechanism of [linear submodels](10-detection-model.qmd#linear-submodels) allows 'real' parameter values to be specific to a session, common to multiple sessions, or modelled as a function of session-level covariates. 
 
 Failure of the independence assumption in a multi-session analysis results in underestimation of the sampling variance.
 
-## Groups {#groups}
+## Groups {#sec-groups}
 \index{Groups}
 
-Users of MARK [@cw] will be familiar with the stratification of a population into 'groups', each with potentially different values for parameters such as survival probability. Grouping requires that each animal is assigned to a group on first detection, and that the assignment is permanent. Then density and any detection parameter may be modelled as a function of the grouping factor. Group models are available in **secr** only when maximizing the full likelihood. When maximizing the [conditional likelihood](#conditional) the model may specify an individual factor covariate directly, with the same effect as grouping. 
+Users of MARK [@cw] will be familiar with the stratification of a population into 'groups', each with potentially different values for parameters such as survival probability. Grouping requires that each animal is assigned to a group on first detection, and that the assignment is permanent. Then density and any detection parameter may be modelled as a function of the grouping factor. Group models are available in **secr** only when maximizing the full likelihood. When maximizing the [conditional likelihood](05-theory-special-topics#sec-conditional#sec-conditional) the model may specify an individual factor covariate directly, with the same effect as grouping. 
 
 The multinomial coefficient in **secr** is stratified by group.
 
-## Effective sampling area {#esa}
+## Effective sampling area {#sec-esa}
 \index{Effective sampling area}
 
 The effective sampling area is defined [@be08] as 
@@ -31,11 +31,11 @@ This is a scalar *effective* area for which $\hat D = n / a(\hat \theta)$ is an 
 
 @grw09 and @rnug09 defined an 'effective trapping area' or 'effective sample area' $A_e$ somewhat differently, omitting the intercept of the detection function. To our knowledge their definition has not found further use. A version closer to ours appears in @rcsg14[Section 5.12].
 
-@em14 defined a 'single-detector sampling area' $a_0(\theta) = 2\pi \lambda_0 \sigma^2$ that is equal to @eq-esa for an isolated detector with [detection functions](#sec-detectfn) HHN or HEX. For $K$ isolated detectors $a(\theta) = Ka_0(\theta)$, but overlap of the 'catchment areas' of adjacent detectors leads to $a(\theta) < Ka_0(\theta)$. 
+@em14 defined a 'single-detector sampling area' $a_0(\theta) = 2\pi \lambda_0 \sigma^2$ that is equal to @eq-esa for an isolated detector with [detection functions](10-detection-model.qmd#sec-detectfn) HHN or HEX. For $K$ isolated detectors $a(\theta) = Ka_0(\theta)$, but overlap of the 'catchment areas' of adjacent detectors leads to $a(\theta) < Ka_0(\theta)$. 
 
 <!-- CHECK Royal and Dorazio 2008 effective sampling area cited as excellent  'approaches for estimating effective sample area...' by Hooten et al. 2024 p4. -->
 
-## Conditional estimation {#conditional}
+## Conditional estimation {#sec-conditional}
 \index{Conditional estimation}
 
 The detection parameters ($\theta$) may be estimated by maximizing the likelihood conditional on $n$ (@eq-CL). When density is constant this reduces to  
@@ -86,7 +86,7 @@ In some scenarios, the *only* individuals at risk of detection are those that we
 
 Lack of information on the marking phase also afflicts mark-resight analyses [e.g., @eh18]. The possible 'solutions' are all ad hoc. We can assume that the probability of becoming marked was independent of location, or we can scale $p_\cdot(\mathbf x; \phi^-)$ by an externally computed variable $q(\mathbf x)$ that is proportional to the spatial probability of marking. Essentially, $q(\mathbf x)$ is an offset in the model for relative density.
 
-An example is shown [later](#relativedensity2). A model with flat (constant) probability of prior marking is inevitably a poor fit because in reality tagged individuals are concentrated near the detectors.
+An example is shown [later](11-density-model.qmd#sec-relativedensity2). A model with flat (constant) probability of prior marking is inevitably a poor fit because in reality tagged individuals are concentrated near the detectors.
 
 ## Population size $N$
 \index{Population size $N(A)$!estimation}
@@ -106,7 +106,7 @@ $$
 $$
 The prediction variance of $\hat N(B)$ follows from Poisson assumptions regarding $D(\mathbf x)$ [@ef13].
 
-## Finite mixture models {#finite-mixtures}
+## Finite mixture models {#sec-finite-mixtures}
 \index{Likelihood!finite mixture}
 
 Finite mixture models for individual heterogeneity of capture probability were formalised for non-spatial capture--recapture by @p2000 and remain widely used [e.g., @cw]. These are essentially random-effect models in which the distribution of capture probability comprises two or more latent classes, each with a capture probability and probability of membership.
@@ -129,7 +129,7 @@ $$ {#eq-lambdau}
  
  <!-- A two-class finite mixture for a parameter $\theta$ is represented by three further parameters: the values $\theta_1$ and $\theta_2$ for the two classes and  $\pi_1$ for the probability of membership in class 1 ($\pi_2 = 1-\pi_1$ for the alternate class). The mean is $\bar \theta = \sum_i \pi_i \theta_i$. The CV is $\mathrm{CV}(\theta) = \sqrt{\sum_i \pi_i (\theta_i - \bar \theta)^2} / \bar \theta$. -->
   
-## Hybrid finite mixture models {#hybrid-mixtures}
+## Hybrid finite mixture models {#sec-hybrid-mixtures}
 \index{Likelihood!hybrid mixture}
   
 We can modify the finite mixture likelihood for data in which the class membership of some or all individuals is known. Indicate the class membership of the $i$-th individual by a variable $u_i$ that may take values 0, 1, ..., $U$, where $u_i = 0$ indicates an individual of unknown class, and the class frequencies are $n_0$, $n_1$, ..., $n_U$ (not to be confused with $n_1$,...,$n_C$ in @eq-CL). We assume here that detection histories are sorted by class membership, starting with the unknowns.
@@ -208,6 +208,6 @@ This is equivalent to the posterior distribution of each latent AC in Bayesian a
 
 A later [section](11-density-model.qmd#not-a-density-surface) discusses the use and interpretation of $f(\mathbf x | \omega_i; \hat \phi, \hat \theta)$ [see also @Durbach2024].
 
-<!-- ## Telemetry {#telemetrylikelihood} -->
+<!-- ## Telemetry {#sec-telemetrylikelihood} -->
 
 <!-- [to be added] -->

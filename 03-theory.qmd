@@ -69,7 +69,7 @@ $$ {#eq-L}
 When density is constant across space, $\phi$ drops out of
 the rightmost term, which then relates to the detection (observation)
 model alone, and maximization of this component gives unbiased estimates
-of $\theta$ (see [Conditional likelihood](#conditional)).
+of $\theta$ (see [Conditional likelihood](05-theory-special-topics#sec-conditional)).
 
 ### Number of individuals {#Pr-n}
 

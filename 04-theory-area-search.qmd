@@ -7,7 +7,7 @@ Before launching into some rather heavy theory, we note that this can all be avo
 ## Detector types for area search 
 \index{Detectors!area search}
 
-Area-search analogues exist for each of the [point detector types](#pointdetectors). 
+Area-search analogues exist for each of the [point detector types](03-theory.qmd#pointdetectors). 
  
  * The 'Poisson-count polygon' type is suited to individually identifiable cues (e.g., faeces sampled for DNA). 
  * 'Exclusive polygons' are an analogue of multi-catch traps - they provide at most one detection of an individual per occasion, most likely as a result of a direct search for the animal itself. The horned lizard dataset of @ry08 is a good example \index{Horned lizard}. 

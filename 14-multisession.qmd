@@ -113,7 +113,7 @@ The `split` method for capthist objects (`?split.capthist`) may be used to break
 
 ## Fitting
 
-Given multi-session capthist input, `secr.fit` automatically fits a multi-session model by maximizing the product of session-specific likelihoods [@ebb09]. For fitting a model separately to each session see the later section on [Faster fitting...](#fasterfitting).
+Given multi-session capthist input, `secr.fit` automatically fits a multi-session model by maximizing the product of session-specific likelihoods [@ebb09]. For fitting a model separately to each session see the later section on [Faster fitting...](#sec-fasterfitting).
 
 ### Habitat masks
 
@@ -240,7 +240,7 @@ The solution is to force all sessions to use the same factor levels. The functio
 msCH <- shareFactorLevels(msCH)
 ```
 
-## Speed  {#fasterfitting}
+## Speed  {#sec-fasterfitting}
 
 Fitting a multi-session model with each parameter stratified by session is unnecessarily slow. In this case no data are pooled across sessions and it is better to fit each session separately. If your data are already in a multi-session capthist object then the speedy solution is
 

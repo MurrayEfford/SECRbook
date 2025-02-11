@@ -82,7 +82,7 @@ predict(fit)
 
 This is rather laborious and it's easy to slip up. We next outline the **secr** functions `sim.popn` and `sim.capthist` that conveniently wrap Steps 1 & 2, respectively, along with many extensions. 
 
-A further level of wrapping is provided by package [**secrdesign**](#secrdesign) that manages simulation scenarios, their replicated execution (Steps 1--3), and the summarisation of results.
+A further level of wrapping is provided by package [**secrdesign**](#sec-secrdesign) that manages simulation scenarios, their replicated execution (Steps 1--3), and the summarisation of results.
 
 ### Simulating AC distributions with `sim.popn`
 \index{Simulation!population}
@@ -104,7 +104,7 @@ The default 2-D distribution is random uniform - a Poisson distribution, as show
 
 For `Ndist = "poisson"` the choice of buffer is not critical so long as it is large enough to include all potentially detected AC. Simulated populations with excessively large *N~A~* take longer to sample (the next step - generating a capthist object), but the ultimate capthist is no larger and model fitting takes the same time.
 
-Inhomogeneous alternatives to a uniform random distribution may be specified using the arguments 'model2D' and 'details'. We elaborate on these [later](#inhomogeneous).
+Inhomogeneous alternatives to a uniform random distribution may be specified using the arguments 'model2D' and 'details'. We elaborate on these [later](#sec-inhomogeneous).
 
 ### Simulating detection with `sim.capthist`
 
@@ -166,7 +166,7 @@ cat ("rRMSE ", sqrt(mean((Dhat-trueD)^2)) / mean(Dhat), '\n')
 <!--     renumber = TRUE, seed = NULL, etc.) -->
 <!-- ``` -->
 
-## Simulation in **secrdesign** {#secrdesign}
+## Simulation in **secrdesign** {#sec-secrdesign}
 \index{Simulation!model fitting}
 \index{R packages!secrdesign}
 
@@ -213,7 +213,7 @@ Simulation quite often results in data that are too sparse for analysis, and oth
 
 ## Advanced simulations
 
-### Inhomogeneous populations {#inhomogeneous}
+### Inhomogeneous populations {#sec-inhomogeneous}
 
 Variations on a uniform distribution of AC are selected with the `sim.popn` argument 'model2D'. This may be done directly, as when we first introduced `sim.popn`, or indirectly via the 'pop.args' argument of `run.scenarios`. While almost any process may be used to generate data, only the parameters of an inhomogeneous Poisson process may be estimated by fitting models in **secr**. Alternative methods are available for some other generating models [e.g., @Stevenson2021; @Dey2023].
 
@@ -223,7 +223,7 @@ We next consider three types of point process that may be used to simulate inhom
 
 An inhomogeneous Poisson process (IHPP) is specified by setting 'model2D = "IHP"'. The argument 'core' should be a [habitat mask](12-habitat.qmd#sec-habitat). Cell-specific density (expected number of individuals per hectare) may be given either in a covariate of the mask (named in argument 'D') or as a vector of values in argument 'D'. The covariate option allows you to simulate from a previously fitted Dsurface (output from `predictDsurface`). Special cases of IHPP are provided in the 'hills' and 'coastal' options for 'model2D'.
 
-#### Cox Processes {#LGCP}
+#### Cox Processes {#sec-LGCP}
 
 In a Cox process the expected density surface of the IHPP varies randomly between realisations (i.e. replicates). For example, **secr** has the function `randomDensity` that may be used in `sim.popn` to generate a new binary density mosaic at each call (see Examples on its help page).
 
@@ -235,7 +235,7 @@ A flexible model for continuous variation in density is the log-Gaussian Cox Pro
 <!-- (iii) spatial correlation function -->
 <!-- (problem that lack intuitive interpretation; R package **RandomFields** not on CRAN; idiosyncratic variations) -->
 
-#### Cluster Processes
+#### Cluster Processes {#sec-cluster}
 
 The points in a 2-D cluster process are no longer independent, as in an IHPP. Each belongs to a cluster. For the Thomas process that has been applied in SECR [e.g., ebb09] there is a Poisson distribution of 'parents' and a bivariate-normal scatter of offspring points about each parent. Both the number of parents and the number of offspring per parent are Poisson variables, and hence some clusters may be empty. Thomas processes belong to the broader class of Neyman-Scott cluster processes. **secr** implements an interface to the function `rThomas` from **spatstat** [@Baddeley2015] ('model2D = "rThomas"').
 
@@ -279,7 +279,7 @@ The first question is whether to focus on the location of the detector or the lo
 
 `sim.capthist` allows values of g0 and lambda0 to be detector-specific. Values are provided as an occasion x detector matrix. 
 
-The authors cited at the start of this section were mainly concerned with [detector-centric] spatially auto-correlated random effects ('SARE', following @Dey2023). Random variation among detectors may be modelled on the link scale by a Gaussian random field. Simulation is simpler than the [LGCP](#LGCP) for AC because values are required only at the *K* detectors. Deviates are obtained from a random *K*-dimensional multivariate normal distribution with distance-dependent covariance matrix [e.g., @Moqanaki2021]. Simulation in **secr** uses custom functions, for which there are several examples on [GitHub](https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/SARE/secr-simulations-SARE.html) with comments on parameterisation.
+The authors cited at the start of this section were mainly concerned with [detector-centric] spatially auto-correlated random effects ('SARE', following @Dey2023). Random variation among detectors may be modelled on the link scale by a Gaussian random field. Simulation is simpler than the [LGCP](#sec-LGCP) for AC because values are required only at the *K* detectors. Deviates are obtained from a random *K*-dimensional multivariate normal distribution with distance-dependent covariance matrix [e.g., @Moqanaki2021]. Simulation in **secr** uses custom functions, for which there are several examples on [GitHub](https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/SARE/secr-simulations-SARE.html) with comments on parameterisation.
 
 A purely detector-centric approach does not allow for a model in which the activity of an individual at one point in its home range depends on resource availability both there and at other points. Normalisation of activity must then account for resource distribution in continuous space [see @e14 and the preceding GitHub site]. @Moqanaki2021 transformed to uniform (-1.96, 1.96)  
 

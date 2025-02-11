@@ -66,7 +66,7 @@ fit2 <- secr.fit(infraCH, buffer = 25, details = list(autoini = 2),
                  trace = FALSE)
 ```
 
-## Variance calculation failed {#variancefailed}
+## Variance calculation failed {#sec-variancefailed}
 \index{Troubleshooting!variance failed}
 
 If warnings had not been suppressed in the preceding example we would have seen
@@ -220,9 +220,9 @@ Most analyses can be configured to bring the memory request down to a reasonable
 
 1. $C$ may be reduced by replacing each continuous covariate with one using a small number of discrete levels (e.g. the mid-points of weight classes). For example, `weightclass <- 10 * trunc(weight/10) + 5` for midpoints of 10-g classes.
 2. $M$ can be reduced by building a habitat mask with an appropriate spacing (see [secr-habitatmasks.pdf]).
-3. $K$ might seem to be fixed by the design, but in extreme cases it may be appropriate to combine data from adjacent detectors (see [Collapsing detectors](#collapsedetectors)). 
+3. $K$ might seem to be fixed by the design, but in extreme cases it may be appropriate to combine data from adjacent detectors (see [Collapsing detectors](A02-speed.qmd#sec-collapsedetectors)). 
 
-The `mash` function (see [Mashing](#mash)) may be used to reduce the number of detectors when the design uses many identical and independent clusters. Otherwise, apply your ingenuity to simplify your model, e.g., by casting ‘groups’ as ‘sessions’. Memory is less often an issue on 64-bit systems (see also `?"Memory-limits"`).
+The `mash` function (see [Mashing](A02-speed.qmd#sec-mash)) may be used to reduce the number of detectors when the design uses many identical and independent clusters. Otherwise, apply your ingenuity to simplify your model, e.g., by casting ‘groups’ as ‘sessions’. Memory is less often an issue on 64-bit systems (see also `?"Memory-limits"`).
 
 ## Covariate factor levels differ between sessions
 \index{Troubleshooting!Covariate factor levels}

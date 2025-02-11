@@ -16,7 +16,7 @@ Next we refine this intuitive explanation for each of the dominant methods for f
 
 The likelihood developed for SECR by @be08 allows for the unknown centres by numerically integrating them out of the likelihood (crudely, by summing over all possible locations of detected animals, weighting each by a detection probability). Although the integration might, in principle, have infinite spatial bounds, it is practical to restrict attention to a smaller region, the 'area of integration'. As long as the probability weights get close to zero before we reach the boundary, we don't need to worry too much about the size of the region.
 
-In **secr** the habitat mask equates to the area of integration: the likelihood is evaluated by summing values across a fine mesh of points. This is the primary function of the habitat mask; we consider other functions [later](#maskwhatfor).
+In **secr** the habitat mask equates to the area of integration: the likelihood is evaluated by summing values across a fine mesh of points. This is the primary function of the habitat mask; we consider other functions [later](#sec-maskwhatfor).
 
 ### MCMC and the Bayesian 'state space'
 
@@ -26,7 +26,7 @@ MCMC methods for spatial capture--recapture developed by Royle and coworkers [@r
 
 \index{Habitat mask!uses}
 
-## What is a mask for? {#maskwhatfor}
+## What is a mask for? {#sec-maskwhatfor}
 
 Masks serve multiple purposes in addition to the basic one we have just introduced. We distinguish five functions of a habitat mask and there may be more:
 
@@ -155,9 +155,9 @@ The `suggest.buffer` function is an alternative to the $4\sigma_{HN}$ rule of th
 #| label: suggestbuffer
 suggest.buffer(captdata, detectfn = 'HN', RBtarget = 0.001)
 ```
-When the input is only a capthist object, the suggested buffer width relies on an estimate of $\sigma_{HN}$ that is itself biased  (RPSV(captdata, CC=TRUE)). We see [later](#suggest) how the suggested changes given an unbiased estimate of $\sigma_{HN}$. Actual bias due to mask truncation will also exceed the target (RB = 0.1%) because of the limitations of the *ad hoc* algorithm, so that is not to be taken too literally. 
+When the input is only a capthist object, the suggested buffer width relies on an estimate of $\sigma_{HN}$ that is itself biased  (RPSV(captdata, CC=TRUE)). We see [later](#sec-suggest) how the suggested changes given an unbiased estimate of $\sigma_{HN}$. Actual bias due to mask truncation will also exceed the target (RB = 0.1%) because of the limitations of the *ad hoc* algorithm, so that is not to be taken too literally. 
 
-### Retrospective buffer checks {#suggest}
+### Retrospective buffer checks {#sec-suggest}
 
 Once a model has been fitted with a particular buffer width or mask, the estimated detection parameters may be used to check whether the buffer width is likely to have resulted in mask truncation bias. We highlight two of these:
 
@@ -170,7 +170,7 @@ The check is performed by a cunning custom algorithm in function `bias.D`. This 
 \index{Bias check!`esaPlot`}
 
 2. `esaPlot` provides a quick visualisation of the change in estimated density as buffer width changes. It is a handy 
-check on any fitted model, and may also be used with pilot parameter values. The name of the function derives from its reliance on calculation of the [effective sampling area](#esa) (esa or $a(\hat \theta)$).
+check on any fitted model, and may also be used with pilot parameter values. The name of the function derives from its reliance on calculation of the [effective sampling area](05-theory-special-topics.qmd#sec-esa) (esa or $a(\hat \theta)$).
 
 ```{r}
 #| label: habitatfit3
@@ -208,7 +208,7 @@ which is coincidental, but encouraging!
 
 If you intend to use a non-Euclidean distance metric then it makes sense to use this also when defining the mask, specifically to drop mask points that are distant from any detector according to the metric. See @sec-noneuclidean for an example. Modelling with non-Euclidean distances also requires the user to provide `secr.fit` with a matrix of user-computed distances between detectors and mask points.
 
-## Grid cell size {#maskspacing}
+## Grid cell size {#sec-maskspacing}
 \index{Habitat mask!spacing}
 \index{Habitat mask!discretization}
 
@@ -511,10 +511,10 @@ Mask objects have a lot in common with objects of the RasterLayer S4 class defin
 
 A mask object may be exported as a RasterLayer using the `raster` method defined in **secr** for mask objects. This allows you to nominate a covariate to provide values for the RasterLayer, and to specify a projection.
 
-A mask object may also be exported as a SpatRaster using the `rast` method defined in **secr** for mask objects. See [here](11-density-model.qmd#scaleofeffect) for an example in which **terra** functions are used to smooth a mask covariate before returning it to the mask.
+A mask object may also be exported as a SpatRaster using the `rast` method defined in **secr** for mask objects. See [here](11-density-model.qmd#sec-scaleofeffect) for an example in which **terra** functions are used to smooth a mask covariate before returning it to the mask.
 
 ::: {.callout-warning}
 
-Inappropriate mask spacing is a common source of problems. Model fitting can be painfully slow if the mask has too many cells. Choose the spacing (cell size) as described in [Grid cell size](#maskspacing). A single mask for widely scattered clusters of traps should drop cells from wide inter-cluster spaces  (set 'type = trapbuffer').
+Inappropriate mask spacing is a common source of problems. Model fitting can be painfully slow if the mask has too many cells. Choose the spacing (cell size) as described in [Grid cell size](#sec-maskspacing). A single mask for widely scattered clusters of traps should drop cells from wide inter-cluster spaces  (set 'type = trapbuffer').
 
 :::

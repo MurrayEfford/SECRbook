@@ -412,7 +412,7 @@ div.csl-indent {
   <li><a href="#fitting" id="toc-fitting" class="nav-link" data-scroll-target="#fitting"><span class="header-section-number">14.3</span> Fitting</a></li>
   <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation"><span class="header-section-number">14.4</span> Simulation</a></li>
   <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems"><span class="header-section-number">14.5</span> Problems</a></li>
-  <li><a href="#fasterfitting" id="toc-fasterfitting" class="nav-link" data-scroll-target="#fasterfitting"><span class="header-section-number">14.6</span> Speed</a></li>
+  <li><a href="#sec-fasterfitting" id="toc-sec-fasterfitting" class="nav-link" data-scroll-target="#sec-fasterfitting"><span class="header-section-number">14.6</span> Speed</a></li>
   <li><a href="#caveats" id="toc-caveats" class="nav-link" data-scroll-target="#caveats"><span class="header-section-number">14.7</span> Caveats</a></li>
   </ul></nav>
     </div>
@@ -583,7 +583,7 @@ Table&nbsp;14.1: Manipulation of multi-session capthist objects (CH).
 <p>The <code>split</code> method for capthist objects (<code>?split.capthist</code>) may be used to break a single-session capthist object into a multi-session object, segregating detections by some attribute of the individuals, or by occasion or detector groupings. Also, from <strong>secr</strong> 5.0.1, the <code>split</code> method may be used to group sessions in a multi-session capthist.</p>
 </section><section id="fitting" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="fitting">
 <span class="header-section-number">14.3</span> Fitting</h2>
-<p>Given multi-session capthist input, <code>secr.fit</code> automatically fits a multi-session model by maximizing the product of session-specific likelihoods <span class="citation" data-cites="ebb09">(<a href="A99-references.html#ref-ebb09" role="doc-biblioref">Efford et al., 2009</a>)</span>. For fitting a model separately to each session see the later section on <a href="#fasterfitting">Faster fitting…</a>.</p>
+<p>Given multi-session capthist input, <code>secr.fit</code> automatically fits a multi-session model by maximizing the product of session-specific likelihoods <span class="citation" data-cites="ebb09">(<a href="A99-references.html#ref-ebb09" role="doc-biblioref">Efford et al., 2009</a>)</span>. For fitting a model separately to each session see the later section on <a href="#sec-fasterfitting">Faster fitting…</a>.</p>
 <section id="habitat-masks" class="level3" data-number="14.3.1"><h3 data-number="14.3.1" class="anchored" data-anchor-id="habitat-masks">
 <span class="header-section-number">14.3.1</span> Habitat masks</h3>
 <p>The default mechanism for constructing a habitat mask in <code>secr.fit</code> is to buffer around the trap layout. This extends to multi-session data; buffering is applied to each trap layout in turn.</p>
@@ -609,7 +609,7 @@ Table&nbsp;14.1: Manipulation of multi-session capthist objects (CH).
 </details><div class="cell-output-display">
 <div id="fig-plotmasks" class="quarto-figure quarto-figure-center quarto-float anchored" width="864">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plotmasks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="14-multisession_files/figure-html/fig-plotmasks-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="14-multisession_files/figure-html/fig-plotmasks-1.png" id="fig-plotmasks" class="img-fluid figure-img" width="864"></a>
+<a href="14-multisession_files/figure-html/fig-plotmasks-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="14-multisession_files/figure-html/fig-plotmasks-1.png" id="fig-plotmasks" class="img-fluid figure-img" width="864"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-plotmasks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;14.1
@@ -689,7 +689,7 @@ sigma      4.364111 0.081149  4.20506  4.523159</code></pre>
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msCH</span> <span class="op">&lt;-</span> <span class="fu">shareFactorLevels</span><span class="op">(</span><span class="va">msCH</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="fasterfitting" class="level2" data-number="14.6"><h2 data-number="14.6" class="anchored" data-anchor-id="fasterfitting">
+</section></section><section id="sec-fasterfitting" class="level2" data-number="14.6"><h2 data-number="14.6" class="anchored" data-anchor-id="sec-fasterfitting">
 <span class="header-section-number">14.6</span> Speed</h2>
 <p>Fitting a multi-session model with each parameter stratified by session is unnecessarily slow. In this case no data are pooled across sessions and it is better to fit each session separately. If your data are already in a multi-session capthist object then the speedy solution is</p>
 <div class="cell">
@@ -1207,7 +1207,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

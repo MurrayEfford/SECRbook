@@ -489,7 +489,7 @@ window.Quarto = {
 <p>A fitted model (‘secr’ object) contains estimates of the coefficients of the model. Use the <code>coef</code> method for secr objects to display the coefficients (e.g., <code>coef(secrdemo.0)</code>). We note</p>
 <ul>
 <li>the coefficients (aka ‘beta parameters’) are on the link scale, and at the very least must be back-transformed to the natural scale, and</li>
-<li>a real parameter for which there is a <a href="10-detection-model.html#linear-submodels">linear sub-model</a> is not unique: it takes a value that depends on covariates and other predictors.</li>
+<li>a real parameter for which there is a <a href="./10-detection-model.html#sec-linear-submodels">linear sub-model</a> is not unique: it takes a value that depends on covariates and other predictors.</li>
 </ul>
 <p>These complexities are handled by the <code>predict</code> method for secr objects, as for other fitted models in R (e.g., <code>lm</code>). The desired levels of covariates and other predictors appear as columns of the ‘newdata’ dataframe. <code>predict</code> is called automatically when you print an ‘secr’ object by typing its name at the R prompt.</p>
 <p><code>predict</code> is commonly called with a fitted model as the only argument; then ‘newdata’ is constructed automatically by the function <code>makeNewData</code>. The default behaviour is disappointing if you really wanted estimates for each level of a predictor. This can be overcome, at the cost of more voluminous output, by setting <code>all.levels = TRUE</code>, or simply <code>all = TRUE</code>. For more customised output (e.g., for a particular value of a continuous predictor), construct your own ‘newdata’.</p>
@@ -558,7 +558,7 @@ R.N   2091.4      254.72 1652.5 2657.6 139</code></pre>
 <div class="cell-output-display">
 <div id="fig-blackbearplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-blackbearplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="13-fittedmodels_files/figure-html/fig-blackbearplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="13-fittedmodels_files/figure-html/fig-blackbearplot-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="13-fittedmodels_files/figure-html/fig-blackbearplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="13-fittedmodels_files/figure-html/fig-blackbearplot-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blackbearplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.1: Simulated AC of black bears in Great Smoky Mountains National Park, USA. The number of AC (2092) was predicted from a model fitted to hair snags (red crosses) in one sector of the park. The habitat mask used to fit the model is shaded.
@@ -629,7 +629,7 @@ X-square = 0.83, df = 1, p-value = 0.36</code></pre>
 </section></section><section id="sec-modelfit" class="level2" data-number="13.7"><h2 data-number="13.7" class="anchored" data-anchor-id="sec-modelfit">
 <span class="header-section-number">13.7</span> Assessing model fit</h2>
 <p></p>
-<p>Rigor would seem to require that a model used for inference has been shown to fit the data. This premise has many fishhooks. Tests of ‘goodness-of-fit’ for SECR have uniformly low power. Assumptions are inevitably breached to some degree, and we rely in practice on soft criteria (experience, judgement and the property of <a href="06-assumptions.html">robustness</a>).</p>
+<p>Rigor would seem to require that a model used for inference has been shown to fit the data. This premise has many fishhooks. Tests of absolute ‘goodness-of-fit’ for SECR have uniformly low power. Assumptions are inevitably breached to some degree, and we rely in practice on soft criteria (experience, judgement and the property of robustness) as covered in <a href="06-assumptions.html" class="quarto-xref"><span>Chapter 6</span></a>, and the relative fit of plausible models (indicated by AIC or similar criteria).</p>
 <p>Nevertheless, tests of goodness-of-fit are potentially informative regarding ways a model might be improved. Early maximum likelihood and Bayesian approaches to SECR spawned different approaches to goodness-of-fit testing - the parametric bootstrap and Bayesian p-values. We present these in an updated context as this is an area of active research. Each test is introduced, along with a recent approach that attempts to bridge the divide by emulating Bayesian p-values for models fitted by maximum likelihood.</p>
 <!-- We focus on the observation model, leaving comments on the spatial distribution of AC to the end.  -->
 <section id="parametric-bootstrap" class="level3" data-number="13.7.1"><h3 data-number="13.7.1" class="anchored" data-anchor-id="parametric-bootstrap">
@@ -1247,7 +1247,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

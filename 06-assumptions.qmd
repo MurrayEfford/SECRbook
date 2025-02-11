@@ -8,7 +8,7 @@ The three chapters in this part address questions we group under the heading of 
 
 \index{Assumptions}
 
-The SECR probability models of @sec-theory that underlie the methods in this book incorporate certain assumptions. The validity and reliability of the methods therefore depend to an extent on how well the field data meet the assumptions. We list these before assessing their impact in practice - the topic of [robustness](#robustness). 
+The SECR probability models of @sec-theory that underlie the methods in this book incorporate certain assumptions. The validity and reliability of the methods therefore depend to an extent on how well the field data meet the assumptions. We list these before assessing their impact in practice - the topic of [robustness](#sec-robustness). 
 
 | | |
 |:-------------|:---------------------------------------------------------------|
@@ -29,7 +29,7 @@ Restrictive assumptions often may be relaxed under specific extensions to the SE
 \index{Robustness}
 
 For assumptions that cannot be met by better design or customized modelling, we rely on the robustness of SECR estimators. A robust estimator gives estimates that are close to the truth even when assumptions have been breached. 
-<!-- We saw this with the choice of [detection function](#sec-detectfn) in @sec-detection @fig-choicedfparmplot.  -->
+<!-- We saw this with the choice of [detection function](10-detection-model.qmd#sec-detectfn) in @sec-detection @fig-choicedfparmplot.  -->
 We care most about estimates of population density, which may be robust even when estimates of other parameters are not. 
 
 Our main criterion will be the relative bias of an estimator, abbreviated RB and defined for an estimator $\hat \theta$ of any arbitrary parameter $\theta$ as 
@@ -56,7 +56,7 @@ Our simulations use a base scenario of sampling with a square grid of 64 binary 
 ## Assumption 1: Population closed  {#sec-popnclosed .unnumbered}
 \index{Assumptions!population closure}
 
-Births, deaths and dispersal result in population turnover. Over an extended period of turnover, more animals may be observed than were present at any instant, and density estimates will be biased upwards. Studies using automatic cameras often accumulate data slowly over many days, and study duration has triggered much angst [e.g., @Harihar2017]. How much does a little turnover matter? Conversely, How long can the sampling period be? Results for non-spatial models [@Kendall1999] cannot be transferred. We distinguish turnover due to movement of AC from *in situ* births and deaths, and consider it separately under [Assumption 3d](#hrstationary).
+Births, deaths and dispersal result in population turnover. Over an extended period of turnover, more animals may be observed than were present at any instant, and density estimates will be biased upwards. Studies using automatic cameras often accumulate data slowly over many days, and study duration has triggered much angst [e.g., @Harihar2017]. How much does a little turnover matter? Conversely, How long can the sampling period be? Results for non-spatial models [@Kendall1999] cannot be transferred. We distinguish turnover due to movement of AC from *in situ* births and deaths, and consider it separately under [Assumption 3d](#sec-hrstationary).
 
 @Dupont2019 investigated the effect of increasing study duration on the precision and bias of population size estimates. Their results are complicated by an artifact that caused their Bayesian estimator to be positively biased for short durations [@Dupont2019, p. 669].
 
@@ -103,7 +103,7 @@ text (200, 0.25, expression(paste(phi,~ '=' ~ 0.5)), cex = 1.1, xpd = TRUE)
 
 ### Assumption 1b: Population closed to immigration and emigration {#noemimm .unnumbered}
 
-This overlaps with Assumption 3 and is covered [later](#hrstationary).
+This overlaps with Assumption 3 and is covered [later](#sec-hrstationary).
 
 ## Assumption 2: Identification without error {#sec-noIDerror .unnumbered}
 
@@ -212,7 +212,7 @@ The spatial component of spatially explicit capture--recapture rests on quite sp
 
 \index{Assumptions!AC independent}
 
-The SECR model of @be08 treats activity centres as distributed independently according to an inhomogeneous Poisson point process. This allows local density to vary according to habitat or other persistent effects. It does not allow for the spacing behaviour of the animals themselves, which can lead to either contagion or repulsion of AC. Several authors have ventured into this area [@Russell2012; @Reich2014; @LopezBao2018; @Bischof2020; @McLaughlin2020; @Efford2024]. The general conclusion is that point estimates of density from SECR are robust to clustering of AC due to social behaviour, but the implied overdispersion leads to confidence limits that are too narrow. Non-independence of detection is a distinct issue ([Assumption 4](#independentindividuals)).
+The SECR model of @be08 treats activity centres as distributed independently according to an inhomogeneous Poisson point process. This allows local density to vary according to habitat or other persistent effects. It does not allow for the spacing behaviour of the animals themselves, which can lead to either contagion or repulsion of AC. Several authors have ventured into this area [@Russell2012; @Reich2014; @LopezBao2018; @Bischof2020; @McLaughlin2020; @Efford2024]. The general conclusion is that point estimates of density from SECR are robust to clustering of AC due to social behaviour, but the implied overdispersion leads to confidence limits that are too narrow. Non-independence of detection is a distinct issue ([Assumption 4](#sec-independentindividuals)).
 
 ### Assumption 3b: Home ranges circular {#sec-hrcircular .unnumbered}
 
@@ -459,13 +459,13 @@ legend(0.01, 0.39, legend = leg, pch=c(21,21,24), pt.bg = c(yob5[3],'white','whi
 
 ### 4b. Behavioural responses {#sec-behaviour .unnumbered}
 
-We introduced behavioural responses in @sec-detection. Behavioural responses may also be treated as a breach of the [assumption of serial independence](#serialindependence), but we keep them here for consistency with the non-spatial literature.
+We introduced behavioural responses in @sec-detection. Behavioural responses may also be treated as a breach of the [assumption of serial independence](#sec-serialindependence), but we keep them here for consistency with the non-spatial literature.
 
 The discovery of a detector and experience of capture may result in either a positive (trap-happy) or negative (trap-shy) change in detection probability. The response may persist for the duration of sampling or be transient (Markovian) and apply only at the next sampling occasion. In SECR there is the further complication that the response may be general, applying across all detectors, or localised to the initial detector.  
 
 Each of these responses is readily modelled if the sequence of detections is known. This is generally not the case with proximity detectors, for which an animal may visit multiple detectors on one sampling occasion. We therefore restrict consideration of learned responses to trapping data (single-catch and multi-catch traps). This is not a great loss, as proximity detectors are typically non-invasive and less likely than traps to affect behaviour.
 
-If a behavioural response is not modelled then it may cause a heavy bias in density estimates, positive for trap shyness and negative for trap happiness (@fig-Mbfigure). In [simulations] we describe the magnitude of the behavioural response by a 'recapture factor' by which the initial (naive) hazard is multiplied after first capture. We simulated recapture factors between 0.25 and 2.0, where 1.0 represents no behavioural response.  The bias is much reduced if the effect is detector-specific, but then $\hat \sigma$ is also biased. For the scenario used in these [simulations], the relative bias of density estimates fell between -10\% and +10\% for recapture factors between 0.5 and 2. In @sec-detection we estimated a much larger response by [deermice](#behaviouralresponse) (about 10-fold, but with poor precision), although there was only a small difference in estimated density between the null and bk models. Behavioural responses are potentially important for SECR and deserve closer investigation.
+If a behavioural response is not modelled then it may cause a heavy bias in density estimates, positive for trap shyness and negative for trap happiness (@fig-Mbfigure). In [simulations] we describe the magnitude of the behavioural response by a 'recapture factor' by which the initial (naive) hazard is multiplied after first capture. We simulated recapture factors between 0.25 and 2.0, where 1.0 represents no behavioural response.  The bias is much reduced if the effect is detector-specific, but then $\hat \sigma$ is also biased. For the scenario used in these [simulations], the relative bias of density estimates fell between -10\% and +10\% for recapture factors between 0.5 and 2. In @sec-detection we estimated a much larger response by [deermice](10-detection-model.qmd#sec-behaviouralresponse) (about 10-fold, but with poor precision), although there was only a small difference in estimated density between the null and bk models. Behavioural responses are potentially important for SECR and deserve closer investigation.
 
 ```{r }
 #| label: fig-Mbfigure
@@ -616,7 +616,7 @@ source('figures/dethet.R')
 
 Normalisation, as implied by third-order habitat selection, attenuates the effect on the bias of density estimates  (@fig-dethetfigure b). We note also that detector-level covariate effects measured at each detector are readily included in the model; estimates are then nearly unbiased [e.g., @e14].
 
-Large bias can arise when the sample is assumed to come from a detector array larger than that actually sampled  [@Moqanaki2021; @Dey2023]. This would seem to come under the heading [data requirements](#datarequirements) rather than model robustness.
+Large bias can arise when the sample is assumed to come from a detector array larger than that actually sampled  [@Moqanaki2021; @Dey2023]. This would seem to come under the heading 'Data requirements' ([Chapter @sec-datarequirements]) rather than model robustness.
 
 Further complexity is possible. @Stevenson2021 suggested modelling a latent Gaussian random field for each individual and showed how the parameters of the GRF could be estimated, assuming these to be shared across individuals. It is unclear how the latent GRF should be interpreted biologically. Activity is not normalised, so the combination of detection function and latent GRF does not describe a utilisation distribution.
 

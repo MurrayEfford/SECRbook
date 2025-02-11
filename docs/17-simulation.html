@@ -447,7 +447,7 @@ window.Quarto = {
    
   <ul class="collapse">
 <li><a href="#simulation-step-by-step" id="toc-simulation-step-by-step" class="nav-link active" data-scroll-target="#simulation-step-by-step"><span class="header-section-number">17.1</span> Simulation step by step</a></li>
-  <li><a href="#secrdesign" id="toc-secrdesign" class="nav-link" data-scroll-target="#secrdesign"><span class="header-section-number">17.2</span> Simulation in <strong>secrdesign</strong></a></li>
+  <li><a href="#sec-secrdesign" id="toc-sec-secrdesign" class="nav-link" data-scroll-target="#sec-secrdesign"><span class="header-section-number">17.2</span> Simulation in <strong>secrdesign</strong></a></li>
   <li><a href="#advanced-simulations" id="toc-advanced-simulations" class="nav-link" data-scroll-target="#advanced-simulations"><span class="header-section-number">17.3</span> Advanced simulations</a></li>
   </ul></nav>
     </div>
@@ -524,7 +524,7 @@ sigma   log 20.11668      1.0532 18.15608 22.28900</code></pre>
 </div>
 </div>
 <p>This is rather laborious and it’s easy to slip up. We next outline the <strong>secr</strong> functions <code>sim.popn</code> and <code>sim.capthist</code> that conveniently wrap Steps 1 &amp; 2, respectively, along with many extensions.</p>
-<p>A further level of wrapping is provided by package <a href="#secrdesign"><strong>secrdesign</strong></a> that manages simulation scenarios, their replicated execution (Steps 1–3), and the summarisation of results.</p>
+<p>A further level of wrapping is provided by package <a href="#sec-secrdesign"><strong>secrdesign</strong></a> that manages simulation scenarios, their replicated execution (Steps 1–3), and the summarisation of results.</p>
 <section id="simulating-ac-distributions-with-sim.popn" class="level3" data-number="17.1.1"><h3 data-number="17.1.1" class="anchored" data-anchor-id="simulating-ac-distributions-with-sim.popn">
 <span class="header-section-number">17.1.1</span> Simulating AC distributions with <code>sim.popn</code>
 </h3>
@@ -540,7 +540,7 @@ sigma   log 20.11668      1.0532 18.15608 22.28900</code></pre>
 <div class="cell-output-display">
 <div id="fig-simpopn" class="quarto-figure quarto-figure-center quarto-float anchored" width="70%">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-simpopn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="17-simulation_files/figure-html/fig-simpopn-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="17-simulation_files/figure-html/fig-simpopn-1.png" id="fig-simpopn" class="img-fluid figure-img" style="width:70.0%"></a>
+<a href="17-simulation_files/figure-html/fig-simpopn-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="17-simulation_files/figure-html/fig-simpopn-1.png" id="fig-simpopn" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-simpopn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17.1
@@ -550,7 +550,7 @@ Figure&nbsp;17.1
 </div>
 <p>The default 2-D distribution is random uniform - a Poisson distribution, as shown here. The expected number of activity centres E(<em>N<sub>A</sub></em>) is determined by the argument D, the density in AC per hectare. By default <em>N<sub>A</sub></em> is a Poisson random variable, but it may be fixed by setting <code>Ndist = "fixed"</code>. Published simulations often fix <em>N<sub>A</sub></em> for reasons of convenience such as avoiding realisations that may be hard to model or reducing the variance among replicates. Comparisons must therefore be made with care.</p>
 <p>For <code>Ndist = "poisson"</code> the choice of buffer is not critical so long as it is large enough to include all potentially detected AC. Simulated populations with excessively large <em>N<sub>A</sub></em> take longer to sample (the next step - generating a capthist object), but the ultimate capthist is no larger and model fitting takes the same time.</p>
-<p>Inhomogeneous alternatives to a uniform random distribution may be specified using the arguments ‘model2D’ and ‘details’. We elaborate on these <a href="#inhomogeneous">later</a>.</p>
+<p>Inhomogeneous alternatives to a uniform random distribution may be specified using the arguments ‘model2D’ and ‘details’. We elaborate on these <a href="#sec-inhomogeneous">later</a>.</p>
 </section><section id="simulating-detection-with-sim.capthist" class="level3" data-number="17.1.2"><h3 data-number="17.1.2" class="anchored" data-anchor-id="simulating-detection-with-sim.capthist">
 <span class="header-section-number">17.1.2</span> Simulating detection with <code>sim.capthist</code>
 </h3>
@@ -592,7 +592,7 @@ Individual covariates
 <div class="cell-output-display">
 <div id="fig-simcapthist" class="quarto-figure quarto-figure-center quarto-float anchored" width="70%">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-simcapthist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="17-simulation_files/figure-html/fig-simcapthist-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="17-simulation_files/figure-html/fig-simcapthist-1.png" id="fig-simcapthist" class="img-fluid figure-img" style="width:70.0%"></a>
+<a href="17-simulation_files/figure-html/fig-simcapthist-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="17-simulation_files/figure-html/fig-simcapthist-1.png" id="fig-simcapthist" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-simcapthist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17.2
@@ -639,7 +639,7 @@ rRMSE  0.14281 </code></pre>
 <!--     detectfn = 0, detectpar = list(), noccasions = 5, nsessions = 1,  -->
 <!--     renumber = TRUE, seed = NULL, etc.) -->
 <!-- ``` -->
-</section></section><section id="secrdesign" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="secrdesign">
+</section></section><section id="sec-secrdesign" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="sec-secrdesign">
 <span class="header-section-number">17.2</span> Simulation in <strong>secrdesign</strong>
 </h2>
 <p> </p>
@@ -674,14 +674,14 @@ rRMSE  0.14281 </code></pre>
 <p>Simulation quite often results in data that are too sparse for analysis, and other malfunctions are possible. As a user you should be on your guard for meaningless, extreme values in the estimates. The <code>validate</code> function provides a mechanism for filtering these out.</p>
 </section><section id="advanced-simulations" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="advanced-simulations">
 <span class="header-section-number">17.3</span> Advanced simulations</h2>
-<section id="inhomogeneous" class="level3" data-number="17.3.1"><h3 data-number="17.3.1" class="anchored" data-anchor-id="inhomogeneous">
+<section id="sec-inhomogeneous" class="level3" data-number="17.3.1"><h3 data-number="17.3.1" class="anchored" data-anchor-id="sec-inhomogeneous">
 <span class="header-section-number">17.3.1</span> Inhomogeneous populations</h3>
 <p>Variations on a uniform distribution of AC are selected with the <code>sim.popn</code> argument ‘model2D’. This may be done directly, as when we first introduced <code>sim.popn</code>, or indirectly via the ‘pop.args’ argument of <code>run.scenarios</code>. While almost any process may be used to generate data, only the parameters of an inhomogeneous Poisson process may be estimated by fitting models in <strong>secr</strong>. Alternative methods are available for some other generating models <span class="citation" data-cites="Stevenson2021 Dey2023">(<a href="A99-references.html#ref-Dey2023" role="doc-biblioref">Dey et al., 2023</a>; e.g., <a href="A99-references.html#ref-Stevenson2021" role="doc-biblioref">Stevenson et al., 2021</a>)</span>.</p>
 <p>We next consider three types of point process that may be used to simulate inhomogeneous distributions of activity centres in <code>sim.popn</code>.</p>
 <section id="inhomogeneous-poisson-process" class="level4" data-number="17.3.1.1"><h4 data-number="17.3.1.1" class="anchored" data-anchor-id="inhomogeneous-poisson-process">
 <span class="header-section-number">17.3.1.1</span> Inhomogeneous Poisson Process</h4>
 <p>An inhomogeneous Poisson process (IHPP) is specified by setting ‘model2D = “IHP”’. The argument ‘core’ should be a <a href="./12-habitat.html#sec-habitat">habitat mask</a>. Cell-specific density (expected number of individuals per hectare) may be given either in a covariate of the mask (named in argument ‘D’) or as a vector of values in argument ‘D’. The covariate option allows you to simulate from a previously fitted Dsurface (output from <code>predictDsurface</code>). Special cases of IHPP are provided in the ‘hills’ and ‘coastal’ options for ‘model2D’.</p>
-</section><section id="LGCP" class="level4" data-number="17.3.1.2"><h4 data-number="17.3.1.2" class="anchored" data-anchor-id="LGCP">
+</section><section id="sec-LGCP" class="level4" data-number="17.3.1.2"><h4 data-number="17.3.1.2" class="anchored" data-anchor-id="sec-LGCP">
 <span class="header-section-number">17.3.1.2</span> Cox Processes</h4>
 <p>In a Cox process the expected density surface of the IHPP varies randomly between realisations (i.e.&nbsp;replicates). For example, <strong>secr</strong> has the function <code>randomDensity</code> that may be used in <code>sim.popn</code> to generate a new binary density mosaic at each call (see Examples on its help page).</p>
 <p>A flexible model for continuous variation in density is the log-Gaussian Cox Process (LGCP) <span class="citation" data-cites="Johnson2010 drns21 Efford2024">(<a href="A99-references.html#ref-drns21" role="doc-biblioref">Dupont et al., 2021</a>; <a href="A99-references.html#ref-Efford2024" role="doc-biblioref">Efford &amp; Fletcher, 2024</a>; <a href="A99-references.html#ref-Johnson2010" role="doc-biblioref">Johnson et al., 2010</a>)</span>. The IHPP log-intensity surface of a LGCP is Gaussian (normally distributed) at each point, but adjacent points co-vary; autocorrelation declines with distance. The notation and parameterisation can be confusing. The term ‘Gaussian’ refers to the marginal intensity, not the autocorrelation function which is commonly exponential. The Gaussian variance is on the log scale, so even a variance as low as 1.0 indicates substantial heterogeneity. The exponential scale parameter naturally has the same units as the SECR detection function, although <span class="citation" data-cites="drns21">Dupont et al. (<a href="A99-references.html#ref-drns21" role="doc-biblioref">2021</a>)</span> rescaled it as 6% or 100% of the width of the study area. <strong>secr</strong> uses the function <code>rLGCP</code> from <strong>spatstat</strong> <span class="citation" data-cites="Baddeley2015">(<a href="A99-references.html#ref-Baddeley2015" role="doc-biblioref">Baddeley et al., 2015</a>)</span> which in turn depends on <strong>RandomFields</strong> <span class="citation" data-cites="Schlather2015">(<a href="A99-references.html#ref-Schlather2015" role="doc-biblioref">Schlather et al., 2015</a>)</span>.</p>
@@ -690,7 +690,7 @@ rRMSE  0.14281 </code></pre>
 <!-- (ii) marginal variance $\sigma_D^2$ -->
 <!-- (iii) spatial correlation function -->
 <!-- (problem that lack intuitive interpretation; R package **RandomFields** not on CRAN; idiosyncratic variations) -->
-</section><section id="cluster-processes" class="level4" data-number="17.3.1.3"><h4 data-number="17.3.1.3" class="anchored" data-anchor-id="cluster-processes">
+</section><section id="sec-cluster" class="level4" data-number="17.3.1.3"><h4 data-number="17.3.1.3" class="anchored" data-anchor-id="sec-cluster">
 <span class="header-section-number">17.3.1.3</span> Cluster Processes</h4>
 <p>The points in a 2-D cluster process are no longer independent, as in an IHPP. Each belongs to a cluster. For the Thomas process that has been applied in SECR [e.g., ebb09] there is a Poisson distribution of ‘parents’ and a bivariate-normal scatter of offspring points about each parent. Both the number of parents and the number of offspring per parent are Poisson variables, and hence some clusters may be empty. Thomas processes belong to the broader class of Neyman-Scott cluster processes. <strong>secr</strong> implements an interface to the function <code>rThomas</code> from <strong>spatstat</strong> <span class="citation" data-cites="Baddeley2015">(<a href="A99-references.html#ref-Baddeley2015" role="doc-biblioref">Baddeley et al., 2015</a>)</span> (‘model2D = “rThomas”’).</p>
 </section></section><section id="summary-of-inhomogeneous-options" class="level3" data-number="17.3.2"><h3 data-number="17.3.2" class="anchored" data-anchor-id="summary-of-inhomogeneous-options">
@@ -754,7 +754,7 @@ Table&nbsp;17.1: Distribution of activity centres in <code>sim.popn</code> contr
 <div class="cell-output-display">
 <div id="fig-model2D" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-model2D-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="17-simulation_files/figure-html/fig-model2D-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="17-simulation_files/figure-html/fig-model2D-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="17-simulation_files/figure-html/fig-model2D-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="17-simulation_files/figure-html/fig-model2D-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-model2D-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17.3: Examples of AC distributions simulated with <code>sim.popn</code>. Yellow dots indicate location of cluster ‘parents’, some of which lie outside the frame.
@@ -770,7 +770,7 @@ Figure&nbsp;17.3: Examples of AC distributions simulated with <code>sim.popn</co
 <p>Simulating spatial variation in detection parameters is a minefield: there are many subtly different approaches and <em>ad hoc</em> variations <span class="citation" data-cites="Royle2013 e14 Moqanaki2021 Dey2023 Stevenson2021 Hooten2024">(<a href="A99-references.html#ref-Dey2023" role="doc-biblioref">Dey et al., 2023</a>; <a href="A99-references.html#ref-e14" role="doc-biblioref">Efford, 2014</a>; <a href="A99-references.html#ref-Hooten2024" role="doc-biblioref">Hooten et al., 2024</a>; <a href="A99-references.html#ref-Moqanaki2021" role="doc-biblioref">Moqanaki et al., 2021</a>; <a href="A99-references.html#ref-Royle2013" role="doc-biblioref">Royle et al., 2013</a>; <a href="A99-references.html#ref-Stevenson2021" role="doc-biblioref">Stevenson et al., 2021</a>)</span>.</p>
 <p>The first question is whether to focus on the location of the detector or the location of the activity centres. We label these approaches ‘detector-centric’ and ‘AC-centric’. Focusing on detectors is simpler as they comprise a few discrete locations whereas AC are at unknown locations in continuous space.</p>
 <p><code>sim.capthist</code> allows values of g0 and lambda0 to be detector-specific. Values are provided as an occasion x detector matrix.</p>
-<p>The authors cited at the start of this section were mainly concerned with [detector-centric] spatially auto-correlated random effects (‘SARE’, following <span class="citation" data-cites="Dey2023">Dey et al. (<a href="A99-references.html#ref-Dey2023" role="doc-biblioref">2023</a>)</span>). Random variation among detectors may be modelled on the link scale by a Gaussian random field. Simulation is simpler than the <a href="#LGCP">LGCP</a> for AC because values are required only at the <em>K</em> detectors. Deviates are obtained from a random <em>K</em>-dimensional multivariate normal distribution with distance-dependent covariance matrix <span class="citation" data-cites="Moqanaki2021">(e.g., <a href="A99-references.html#ref-Moqanaki2021" role="doc-biblioref">Moqanaki et al., 2021</a>)</span>. Simulation in <strong>secr</strong> uses custom functions, for which there are several examples on <a href="https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/SARE/secr-simulations-SARE.html">GitHub</a> with comments on parameterisation.</p>
+<p>The authors cited at the start of this section were mainly concerned with [detector-centric] spatially auto-correlated random effects (‘SARE’, following <span class="citation" data-cites="Dey2023">Dey et al. (<a href="A99-references.html#ref-Dey2023" role="doc-biblioref">2023</a>)</span>). Random variation among detectors may be modelled on the link scale by a Gaussian random field. Simulation is simpler than the <a href="#sec-LGCP">LGCP</a> for AC because values are required only at the <em>K</em> detectors. Deviates are obtained from a random <em>K</em>-dimensional multivariate normal distribution with distance-dependent covariance matrix <span class="citation" data-cites="Moqanaki2021">(e.g., <a href="A99-references.html#ref-Moqanaki2021" role="doc-biblioref">Moqanaki et al., 2021</a>)</span>. Simulation in <strong>secr</strong> uses custom functions, for which there are several examples on <a href="https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/SARE/secr-simulations-SARE.html">GitHub</a> with comments on parameterisation.</p>
 <p>A purely detector-centric approach does not allow for a model in which the activity of an individual at one point in its home range depends on resource availability both there and at other points. Normalisation of activity must then account for resource distribution in continuous space <span class="citation" data-cites="e14">(see <a href="A99-references.html#ref-e14" role="doc-biblioref">Efford, 2014</a> and the preceding GitHub site)</span>. <span class="citation" data-cites="Moqanaki2021">Moqanaki et al. (<a href="A99-references.html#ref-Moqanaki2021" role="doc-biblioref">2021</a>)</span> transformed to uniform (-1.96, 1.96)</p>
 <p>There are more arcane options for simulating AC-centric variation in detection:</p>
 <ul>
@@ -1252,7 +1252,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

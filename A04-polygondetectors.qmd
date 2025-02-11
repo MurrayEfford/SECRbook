@@ -48,13 +48,13 @@ plot(hornedlizardCH, tracks = TRUE, varycol = FALSE, lab1cap =
 Input of data for polygon and transect detectors is described in [secr-datainput.pdf]. It is little different to input of other data for **secr**. The key function is `read.capthist`, which reads text files containing the polygon or transect coordinates[^poly3] and the capture records. Capture data should be in the 'XY' format of 
 Density (one row per record with fields in the order Session, AnimalID, Occasion, X, Y). Capture records are automatically associated with polygons on the basis of X and Y (coordinates outside any polygon give an error). Transect data are also entered as X and Y coordinates and automatically associated with transect lines.
 
-[^poly3]:For constraints on the shape of polygon detectors see [Polygon shape](#polygonshape)
+[^poly3]:For constraints on the shape of polygon detectors see [Polygon shape](#sec-polygonshape)
   
 ## Fitting
 
 The function `secr.fit` is used to fit polygon or transect models by maximum likelihood, exactly as for other detectors. Any model fitting requires a habitat mask -- a representation of the region around the detectors possibly occupied by the detected animals (aka the 'area of integration' or 'state space'). It's simplest to use a simple buffer around the detectors, specified via the 'buffer' argument of `secr.fit`[^poly4]. For the horned lizard dataset it is safe to use the default buffer width (100 m) and the default detection function (circular bivariate normal). We use `trace = FALSE` to suppress intermediate output that would be untidy here.
 
-[^poly4]: Alternatively, one can construct a mask with `make.mask` and provide that in the 'mask' argument of `secr.fit`. Note that `make.mask` defaults to `type = 'rectangular'`; see [Transect search](#transectsearch) for an example in which points are dropped if they are within the rectangle but far from detectors (the default in `secr.fit`)
+[^poly4]: Alternatively, one can construct a mask with `make.mask` and provide that in the 'mask' argument of `secr.fit`. Note that `make.mask` defaults to `type = 'rectangular'`; see [Transect search](#sec-transectsearch) for an example in which points are dropped if they are within the rectangle but far from detectors (the default in `secr.fit`)
 
 ```{r}
 #| label: FTHLfit
@@ -117,7 +117,7 @@ cuesim.fit <- secr.fit(polygonCH, buffer = 200, trace = FALSE)
 predict(cuesim.fit)
 ```
 
-## Discretizing polygon data {#discretize}
+## Discretizing polygon data {#sec-discretize}
 
 An alternative way to handle polygon capthist data is to convert it to a raster representation i.e. to replace each polygon with a set of point detectors, each located at the centre of a square pixel. Point detectors ('multi', 'proximity', 'count' etc.) tend to be more robust and models often fit faster. They also allow habitat attributes to be associated with detectors at the scale of a pixel rather than the whole polygon. The **secr** function `discretize` performs the necessary conversion in a single step. Selection of an appropriate pixel size (`spacing`) is up to the user. There is a tradeoff between faster execution (larger pixels are better) and controlling artefacts from the discretization, which can be checked by comparing estimates with different levels of `spacing`.
 
@@ -179,7 +179,7 @@ plot(transect, add = TRUE, detpar = list(lwd = 2))
 plot(transectCH, tracks = TRUE, add = TRUE, title = '')
 ```
 
-Model fitting uses `secr.fit` as before. We specify the distribution of the number of detections per individual per occasion as Poisson (binomN = 0), although this also happens to be the default. Setting method = 'Nelder-Mead' is slightly more likely to yield valid estimates of standard errors than using the default method (see [Technical notes](#technotes)).
+Model fitting uses `secr.fit` as before. We specify the distribution of the number of detections per individual per occasion as Poisson (binomN = 0), although this also happens to be the default. Setting method = 'Nelder-Mead' is slightly more likely to yield valid estimates of standard errors than using the default method (see [Technical notes](#sec-polygontechnotes)).
 
 ```{r}
 #| label: transectfit
@@ -189,7 +189,7 @@ Model fitting uses `secr.fit` as before. We specify the distribution of the numb
 transect.fit <- secr.fit(transectCH, mask = transectmask, 
     binomN = 0, method = 'Nelder-Mead', trace = FALSE)
 ```
-Occasional 'ier' error codes may be ignored (see [Technical notes](#technotes)). The estimates are close to the true values except for sigma, which may be positively biased.
+Occasional 'ier' error codes may be ignored (see [Technical notes](#sec-polygontechnotes)). The estimates are close to the true values except for sigma, which may be positively biased.
 
 ```{r}
 #| label: transectpredict
@@ -240,7 +240,7 @@ summary(transect12CH)
 plot(transect12CH)
 ```
 
-## More on polygons {#polygonshape}
+## More on polygons {#sec-polygonshape}
 
 The implementation in **secr** allows any number of disjunct polygons or non-intersecting transects.
 
@@ -284,7 +284,7 @@ Attributes such as covariates and usage must be rebuilt by hand.
 
 Another solution is to evaluate whether each point chosen dynamically by the integration code lies inside the polygon of interest. This is inevitably slower than the default algorithm that assumes all points between the lower and upper intersections lie within the polygon. Select the slower, more general option by setting `details = list(convexpolygon = FALSE)`.
 
-## Technical notes {#technotes}
+## Technical notes {#sec-polygontechnotes}
 
 Fitting models for polygon detectors with `secr.fit` requires the hazard function to be integrated in two-dimensions many
 times. In **secr** >= 4.4 this is done with repeated one-dimensional Gaussian quadrature using the C++ function 'integrate' in RcppNumerical [R-RcppNumerical].

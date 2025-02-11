@@ -8,7 +8,7 @@ Unlike some effects, the relevance of sex may be obvious from the beginning. You
 
 ## Models 
 
-We list the possible models in order of usefulness (your mileage may vary; see also the [decision chart](#decisionchart) below):
+We list the possible models in order of usefulness (your mileage may vary; see also the [decision chart](#sec-decisionchart) below):
 
 1. Hybrid mixture model
 2. Conditional likelihood with individual covariate
@@ -39,7 +39,7 @@ Parameters not explicitly modelled as session-specific are assumed to be shared.
 
 [Groups](05-theory-special-topics.qmd#groups) were described earlier. Use full likelihood (`CL = FALSE`), define `groups = "sex"` or similar, and include a group term 'g' in relevant formulae (e.g., g0 $\sim$ g). 'CL' and 'groups' are arguments of `secr.fit`. The preceding Warning applies also to groups.
 
-## Demonstration {#demonstration}
+## Demonstration {#sec-demonstration}
 
 We re-analyse the morning house mouse data already analysed in @sec-individual-heterogeneity. \index{House mouse} For all methods except the hybrid mixture we have to discard one individual of unknown sex (hence capthist marked with 'x'). Close inspection of the results shows that the methods are equivalent.
 
@@ -110,11 +110,11 @@ cat("Timing, full likelihood\n")
 sapply(fits, '[[', 'proctime')
 ```
 
-## Choosing a model {#decisionchart}
+## Choosing a model {#sec-decisionchart}
 
 ### Sex-specific detection
 
-We suggest the decision chart in @fig-chart. This omits 'session' approaches that we previously included for [comparison](#demonstration), because they are rather slow and clunky and group models are equivalent.
+We suggest the decision chart in @fig-chart. This omits 'session' approaches that we previously included for [comparison](#sec-demonstration), because they are rather slow and clunky and group models are equivalent.
 
 ```{r}
 #| label: makechart
@@ -189,6 +189,6 @@ We note
 * The implementation of groups is less comprehensive and may not be available for extensions in the Appendices.
 * Options should not be mixed for comparing model fit by AIC.
 
-Sex differences in home-range size (and hence $\sigma$) may be mitigated by compensatory variation in $g_0$ or $\lambda_0$ [@em14] (see also [Mitigating factors](#mitigation) in @sec-individual-heterogeneity).
+Sex differences in home-range size (and hence $\sigma$) may be mitigated by compensatory variation in $g_0$ or $\lambda_0$ [@em14] (see also [Mitigating factors](15-finite-mixtures.qmd#sec-mitigation) in @sec-individual-heterogeneity).
 
 <!-- cf Greg Distiller post -->

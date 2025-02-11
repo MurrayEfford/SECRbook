@@ -92,7 +92,7 @@ Here, telemetry data greatly improves the precision of the estimated scale of mo
 
 ## Standalone telemetry data 
 
-Telemetry data are stored in modified **secr** capthist objects. A capthist object may comprise telemetry fixes only ('standalone telemetry') or telemetry fixes in association with capture--recapture data (composite telemetry and capture--recapture). In this section I describe standalone telemetry data. A composite capthist is formed by combining a telemetry-only object and a standard capthist object with `addTelemetry`, as described in the [next section](#composite).
+Telemetry data are stored in modified **secr** capthist objects. A capthist object may comprise telemetry fixes only ('standalone telemetry') or telemetry fixes in association with capture--recapture data (composite telemetry and capture--recapture). In this section I describe standalone telemetry data. A composite capthist is formed by combining a telemetry-only object and a standard capthist object with `addTelemetry`, as described in the [next section](#sec-composite).
 
 ### The 'traps' object for telemetry data
 
@@ -160,13 +160,14 @@ summary(CHt)
 
 Even though each fix is counted as a 'detection' in the body of the final capthist object, none of the telemetered animals is considered to have been 'detected' in a conventional SECR sense. The telemetry-only capthist object includes a trivial traps object with a single point. The telemetry type of the traps for a telemetry-only capthist defaults to 'independent'.
 
-## Combining telemetry and capture--recapture {#composite}
+## Combining telemetry and capture--recapture {#sec-composite}
 
 For the purpose of density estimation and modelling, standalone telemetry data are added to an existing spatial capture--recapture (capthist) data object with the function `addTelemetry`. The relationship between the telemetry and capture--recapture samples is determined by the `type` argument (default 'concurrent'). We first explain the possible telemetry types.
 
 ### Types of telemetry data
 
-**secr** distinguishes three types of telemetry data -- independent, dependent and concurrent -- that differ in how they relate to other SECR samples (capture--recapture data). Each type corresponds to a particular [probability model](#telemetrylikelihood).
+**secr** distinguishes three types of telemetry data -- independent, dependent and concurrent -- that differ in how they relate to other SECR samples (capture--recapture data). Each type corresponds to a particular probability model.
+<!-- [probability model](05-theory-special-topics.qmd#sec-telemetrylikelihood). -->
 
 
 ```{r}
@@ -267,15 +268,16 @@ fit0 <- secr.fit(CHt, buffer = 300, detectfn = 'HHN',
 predict(fit0)
 ```
 
-The detection function (argument `detectfn`) must be either hazard half-normal (14, 'HHN') or hazard exponential (16, 'HEX')[^telemetry1]. The default detection function for a dataset with any telemetry component is 'HHN'. For telemetry-only data the likelihood is conditional on the number of observations, so the argument `CL` is set internally to TRUE. A large `buffer` value here brings $\hat \sigma$ from `secr.fit` closer to $\hat \sigma$ from `RPSV`. See [below](#habitatmask) for more on the `buffer` argument.
+The detection function (argument `detectfn`) must be either hazard half-normal (14, 'HHN') or hazard exponential (16, 'HEX')[^telemetry1]. The default detection function for a dataset with any telemetry component is 'HHN'. For telemetry-only data the likelihood is conditional on the number of observations, so the argument `CL` is set internally to TRUE. A large `buffer` value here brings $\hat \sigma$ from `secr.fit` closer to $\hat \sigma$ from `RPSV`. See [below](#sec-telemetryhabitatmask) for more on the `buffer` argument.
 
-See [Technical notes](#technotes) for potential numerical problems.
+See [Technical notes](#sec-telemetrytechnotes) for potential numerical problems.
 
 [^telemetry1]:This constraint arises from the need internally to normalise the probability density function for each telemetry fix. The normalising constant for these functions is $1/(2\pi \sigma^2)$, whereas for most other possible values of `detectfn` it is hard to compute or the function does not correspond to a probability density.
 
 ### Composite telemetry and capture--recapture data
 
-Fitting a model to composite data should raise no further problems: `secr.fit` receives all the information it requires in the composite capthist input. The likelihood is a straightforward extension of the usual SECR likelihood, with some subtle differences in the case of dependent or concurrent telemetry (@sec-specialtopics, [Telemetry](05-theory-special-topics.qmd#telemetrylikelihood)).
+Fitting a model to composite data should raise no further problems: `secr.fit` receives all the information it requires in the composite capthist input. The likelihood is a straightforward extension of the usual SECR likelihood, with some subtle differences in the case of dependent or concurrent telemetry.
+<!-- (@sec-specialtopics, [Telemetry](05-theory-special-topics.qmd#sec-telemetrylikelihood)). -->
 
 The use of detection functions expressed in terms of the hazard provides a more natural link between the model for the activity distribution and the model for detection probability.  When a hazard function is used `secr.fit` automatically flips the default model for the first detection parameter from 'g0 ~ 1' to 'lambda0 ~ 1'.
 
@@ -292,7 +294,7 @@ predict(fit.ms)
 
 Note: If the order of `teCH` and `trCH` had been reversed in `msCH` we would need to use details=list(autoini=2) to base parameter starting values on the trapping data, or provide start values manually.
 
-### Habitat mask for telemetry data {#habitatmask}
+### Habitat mask for telemetry data {#sec-telemetryhabitatmask}
 
 The centres of both detected and telemetry-only animals are assumed to lie on the habitat mask. Ensure the mask is large enough to encompass telemetry-only animals. A conservative approach is to buffer around the individual telemetry centroids. Using `teCH` from before:
 
@@ -423,7 +425,7 @@ plot(traps(CHC), border = 200, gridlines = FALSE, bty = 'o')
 plot(CHC, type = 'telemetry', tracks = TRUE, add = TRUE)
 ```
 
-## Technical notes {#telemetrytechnotes}
+## Technical notes {#sec-telemetrytechnotes}
 
 ### Assumption of common $\sigma$
 

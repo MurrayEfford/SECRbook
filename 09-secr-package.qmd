@@ -141,7 +141,7 @@ We saw `secr.fit` in action in @sec-example. Here we expand on particular argume
 ### `buffer` -- buffer width 
 \index{secr.fit!buffer}
 
-Specifying the buffer width is an alternative to specifying a habitat mask. The choice of [buffer width](#sec-bufferwidth) is discussed at length in @sec-habitat.
+Specifying the buffer width is an alternative to specifying a habitat mask. The choice of [buffer width](12-habitat.qmd#sec-bufferwidth) is discussed at length in @sec-habitat.
 
 ### `start` -- starting values 
 \index{secr.fit!start}
@@ -158,7 +158,7 @@ $$
 $$
 where $(x_{i,j}, y_{i,j})$ is the location of the $j$-th detection of individual $i$. This is implemented in the function [`RPSV`] with `CC = TRUE`. The value is approximate because it ignores that detections are constrained by the locations of the detectors.
 2. Find by numerical search the value of $g_0$ that with $\sigma$ predicts the observed mean number of captures per individual [@edb09, Appendix B].
-3. Compute the [effective sampling area](#esa) $a(g_0, \sigma)$.
+3. Compute the [effective sampling area](05-theory-special-topics.qmd#sec-esa) $a(g_0, \sigma)$.
 4. Compute $D = n/a(g_0, \sigma)$, where $n$ is the number of individuals detected.
 
 After transformation this provides intercepts on the link scale for the core parameters 
@@ -170,9 +170,9 @@ Users may provide their own starting values. These may be a vector of coefficien
 ### `model` -- detection and density sub-models 
 \index{secr.fit!model}
 
-The core parameters are 'real' parameters in the terminology of MARK [@cw]. Three real parameters are commonly modelled in **secr**: 'D' (for density), and 'g0' and 'sigma' (for the detection function). Other 'real' parameters appear in particular contexts. 'z' is a shape parameter that is used only when the [detection function](#sec-detectfn) has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter 'lambda0' in place of 'g0'. A further 'real' parameter is the mixing proportion 'pmix', used in [finite mixture models](#finite-mixtures) and [hybrid mixture models](#hybrid-mixtures).
+The core parameters are 'real' parameters in the terminology of MARK [@cw]. Three real parameters are commonly modelled in **secr**: 'D' (for density), and 'g0' and 'sigma' (for the detection function). Other 'real' parameters appear in particular contexts. 'z' is a shape parameter that is used only when the [detection function](10-detection-model.qmd#sec-detectfn) has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter 'lambda0' in place of 'g0'. A further 'real' parameter is the mixing proportion 'pmix', used in [finite mixture models](05-theory-special-topics#sec-finite-mixtures) and [hybrid mixture models](05-theory-special-topics#sec-hybrid-mixtures).
 
-By default, each 'real' parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the 'model' argument of `secr.fit`.  Here  'model' refers to variation in a parameter that may be explained by known factors and covariates, perhaps better designated a 'sub-model' of the overarching [SECR model](#sec-theory).
+By default, each 'real' parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the 'model' argument of `secr.fit`.  Here  'model' refers to variation in a parameter that may be explained by known factors and covariates, perhaps better designated a 'sub-model' of the overarching SECR model (@sec-theory).
 
 Sub-models are defined symbolically using a subset of the R formula notation. A separate linear predictor is used for each core parameter. The model argument of `secr.fit` is a list of formulae, one for each 'real' parameter. Null formulae such as `D ~ 1` may be omitted, and a single non-null formula may be presented on its own rather than in list() form.
 
@@ -181,7 +181,7 @@ Sub-models are constructed differently for detection and density parameters as e
 ### `CL` -- conditional vs full likelihood {#CL}  
 \index{secr.fit!CL}
 
-'CL' switches between maximizing the likelihood conditional on $n$ (TRUE) or the full likelihood (FALSE). The conditional option is faster because it does not estimate absolute density. Uniform absolute density may be estimated from the conditional fit, or indeed any fit, with the `derived` method. For Poisson $n$ (the default), the estimate is identical within numerical error to that from the full likelihood. The alternative (binomial $n$) is obtained by setting the [details argument](#details) 'distribution = "binomial"'. Relative density (density modelled as a function of covariates, without an intercept) may be modelled with `CL = TRUE` in recent versions (see sections on the [theory](05-theory-special-topics.qmd#relativedensity1) and [implementation](11-density-model#relativedensity2) of relative density).
+'CL' switches between maximizing the likelihood conditional on $n$ (TRUE) or the full likelihood (FALSE). The conditional option is faster because it does not estimate absolute density. Uniform absolute density may be estimated from the conditional fit, or indeed any fit, with the `derived` method. For Poisson $n$ (the default), the estimate is identical within numerical error to that from the full likelihood. The alternative (binomial $n$) is obtained by setting the [details argument](#sec-details) 'distribution = "binomial"'. Relative density (density modelled as a function of covariates, without an intercept) may be modelled with `CL = TRUE` in recent versions (see sections on the [theory](05-theory-special-topics.qmd#relativedensity1) and [implementation](11-density-model#relativedensity2) of relative density).
 
 ### `method` -- maximization algorithm 
 \index{secr.fit!method}
@@ -199,7 +199,7 @@ Numerical maximization has some implications for the user. Computation may be sl
 
 On processors with multiple cores it is possible to speed up computation by using cores in parallel. In  this happens automatically in `secr.fit` and a few other functions using the multi-threading paradigm of **RcppParallel** [@R-RcppParallel]. The number of threads may be set directly with the 'ncores' argument or with the separate function `setNumThreads`. Either way, the number of threads is stored in the environment variable RCPP_PARALLEL_NUM_THREADS.
 
-### `details` -- miscellaneous arguments  {#details}
+### `details` -- miscellaneous arguments  {#sec-details}
 \index{secr.fit!details} 
 
 Many minor or infrequently used arguments are grouped as 'details'. We mention only the most important ones here:
@@ -228,7 +228,7 @@ By default, data are automatically collapsed to speed up processing when the mod
 #### Individual mask subset
 \index{secr.fit!maxdistance}
 
-Integration by default is performed by summing over all mask cells for each individual. Cells distant from the detection locations of an individual contribute almost nothing to the likelihood, so it is efficient to limit the summation to a certain radius of the centroid of detections. This is achieved by specifying the details argument 'maxdistance'. A radius similar to the [buffer width](#sec-bufferwidth) is appropriate. See @sec-masksubset for an example.
+Integration by default is performed by summing over all mask cells for each individual. Cells distant from the detection locations of an individual contribute almost nothing to the likelihood, so it is efficient to limit the summation to a certain radius of the centroid of detections. This is achieved by specifying the details argument 'maxdistance'. A radius similar to the buffer width is appropriate. See @sec-masksubset for an example.
 
 #### Fixing coefficients 
 \index{secr.fit!fixed}

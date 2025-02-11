@@ -791,7 +791,7 @@ Otis, D. L., Burnham, K. P., White, G. C., &amp; Anderson, D. R. (1978). Statist
 <li id="fn1"><p>We can get from beta parameter estimates to real parameter estimates by applying the inverse of the link function e.g.&nbsp;<span class="math inline">\hat D = \exp(\hat \beta_D)</span>, and similarly for confidence limits; standard errors require a delta-method approximation (Lebreton et al.&nbsp;1992).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>One hectare (ha) is 10000 m<sup>2</sup> or 0.01 km<sup>2</sup>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>This is not just the tail probability of a normal deviate; think about how the probability of an individual being detected at least once changes with (i) the duration of sampling (ii) the density of detector array.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>These are Horvitz-Thompson-like estimates of density obtained by dividing the observed number of individuals <span class="math inline">n</span> by <a href="./05-theory-special-topics.html#esa">effective sampling areas</a> (Borchers and Efford 2008) computed as the cumulative sum over mask cells ordered by distance from the traps. The algorithm treats the detection parameters as known and fixed.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>These are Horvitz-Thompson-like estimates of density obtained by dividing the observed number of individuals <span class="math inline">n</span> by <a href="./05-theory-special-topics.html#sec-esa">effective sampling areas</a> (Borchers and Efford 2008) computed as the cumulative sum over mask cells ordered by distance from the traps. The algorithm treats the detection parameters as known and fixed.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1212,7 +1212,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

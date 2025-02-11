@@ -447,10 +447,10 @@ window.Quarto = {
    
   <ul class="collapse">
 <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background"><span class="header-section-number">12.1</span> Background</a></li>
-  <li><a href="#maskwhatfor" id="toc-maskwhatfor" class="nav-link" data-scroll-target="#maskwhatfor"><span class="header-section-number">12.2</span> What is a mask for?</a></li>
+  <li><a href="#sec-maskwhatfor" id="toc-sec-maskwhatfor" class="nav-link" data-scroll-target="#sec-maskwhatfor"><span class="header-section-number">12.2</span> What is a mask for?</a></li>
   <li><a href="#masks-in-secr" id="toc-masks-in-secr" class="nav-link" data-scroll-target="#masks-in-secr"><span class="header-section-number">12.3</span> Masks in <strong>secr</strong></a></li>
   <li><a href="#sec-bufferwidth" id="toc-sec-bufferwidth" class="nav-link" data-scroll-target="#sec-bufferwidth"><span class="header-section-number">12.4</span> How wide should the buffer be?</a></li>
-  <li><a href="#maskspacing" id="toc-maskspacing" class="nav-link" data-scroll-target="#maskspacing"><span class="header-section-number">12.5</span> Grid cell size</a></li>
+  <li><a href="#sec-maskspacing" id="toc-sec-maskspacing" class="nav-link" data-scroll-target="#sec-maskspacing"><span class="header-section-number">12.5</span> Grid cell size</a></li>
   <li><a href="#excluding-non-habitat" id="toc-excluding-non-habitat" class="nav-link" data-scroll-target="#excluding-non-habitat"><span class="header-section-number">12.6</span> Excluding non-habitat</a></li>
   <li><a href="#mask-covariates" id="toc-mask-covariates" class="nav-link" data-scroll-target="#mask-covariates"><span class="header-section-number">12.7</span> Mask covariates</a></li>
   <li><a href="#regional-population-size" id="toc-regional-population-size" class="nav-link" data-scroll-target="#regional-population-size"><span class="header-section-number">12.8</span> Regional population size</a></li>
@@ -484,13 +484,13 @@ window.Quarto = {
 <section id="maximum-likelihood-and-the-area-of-integration" class="level3" data-number="12.1.1"><h3 data-number="12.1.1" class="anchored" data-anchor-id="maximum-likelihood-and-the-area-of-integration">
 <span class="header-section-number">12.1.1</span> Maximum likelihood and the area of integration</h3>
 <p>The likelihood developed for SECR by <span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="A99-references.html#ref-be08" role="doc-biblioref">2008</a>)</span> allows for the unknown centres by numerically integrating them out of the likelihood (crudely, by summing over all possible locations of detected animals, weighting each by a detection probability). Although the integration might, in principle, have infinite spatial bounds, it is practical to restrict attention to a smaller region, the ‘area of integration’. As long as the probability weights get close to zero before we reach the boundary, we don’t need to worry too much about the size of the region.</p>
-<p>In <strong>secr</strong> the habitat mask equates to the area of integration: the likelihood is evaluated by summing values across a fine mesh of points. This is the primary function of the habitat mask; we consider other functions <a href="#maskwhatfor">later</a>.</p>
+<p>In <strong>secr</strong> the habitat mask equates to the area of integration: the likelihood is evaluated by summing values across a fine mesh of points. This is the primary function of the habitat mask; we consider other functions <a href="#sec-maskwhatfor">later</a>.</p>
 </section><section id="mcmc-and-the-bayesian-state-space" class="level3" data-number="12.1.2"><h3 data-number="12.1.2" class="anchored" data-anchor-id="mcmc-and-the-bayesian-state-space">
 <span class="header-section-number">12.1.2</span> MCMC and the Bayesian ‘state space’</h3>
 <p></p>
 <p>MCMC methods for spatial capture–recapture developed by Royle and coworkers <span class="citation" data-cites="rcsg14">(<a href="A99-references.html#ref-rcsg14" role="doc-biblioref">Royle et al., 2014</a>)</span> take a slightly different tack. The activity centres are treated as a large number of unobserved (latent) variables. The MCMC algorithm ‘samples’ from the posterior distribution of location for each animal, whether detected or not. The term ‘state space’ is used for the set of permitted locations; usually this is a continuous (not discretized) rectangular region.</p>
 <p></p>
-</section></section><section id="maskwhatfor" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="maskwhatfor">
+</section></section><section id="sec-maskwhatfor" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="sec-maskwhatfor">
 <span class="header-section-number">12.2</span> What is a mask for?</h2>
 <p>Masks serve multiple purposes in addition to the basic one we have just introduced. We distinguish five functions of a habitat mask and there may be more:</p>
 <ol type="1">
@@ -610,8 +610,8 @@ sigma   log  26.1801    3.241670 20.55772 33.34021</code></pre>
 <pre><code>[1] 105</code></pre>
 </div>
 </div>
-<p>When the input is only a capthist object, the suggested buffer width relies on an estimate of <span class="math inline">\sigma_{HN}</span> that is itself biased (RPSV(captdata, CC=TRUE)). We see <a href="#suggest">later</a> how the suggested changes given an unbiased estimate of <span class="math inline">\sigma_{HN}</span>. Actual bias due to mask truncation will also exceed the target (RB = 0.1%) because of the limitations of the <em>ad hoc</em> algorithm, so that is not to be taken too literally.</p>
-</section><section id="suggest" class="level3" data-number="12.4.4"><h3 data-number="12.4.4" class="anchored" data-anchor-id="suggest">
+<p>When the input is only a capthist object, the suggested buffer width relies on an estimate of <span class="math inline">\sigma_{HN}</span> that is itself biased (RPSV(captdata, CC=TRUE)). We see <a href="#sec-suggest">later</a> how the suggested changes given an unbiased estimate of <span class="math inline">\sigma_{HN}</span>. Actual bias due to mask truncation will also exceed the target (RB = 0.1%) because of the limitations of the <em>ad hoc</em> algorithm, so that is not to be taken too literally.</p>
+</section><section id="sec-suggest" class="level3" data-number="12.4.4"><h3 data-number="12.4.4" class="anchored" data-anchor-id="sec-suggest">
 <span class="header-section-number">12.4.4</span> Retrospective buffer checks</h3>
 <p>Once a model has been fitted with a particular buffer width or mask, the estimated detection parameters may be used to check whether the buffer width is likely to have resulted in mask truncation bias. We highlight two of these:</p>
 <p></p>
@@ -623,7 +623,7 @@ sigma   log  26.1801    3.241670 20.55772 33.34021</code></pre>
 <p></p>
 <ol start="2" type="1">
 <li>
-<code>esaPlot</code> provides a quick visualisation of the change in estimated density as buffer width changes. It is a handy check on any fitted model, and may also be used with pilot parameter values. The name of the function derives from its reliance on calculation of the <a href="05-theory-special-topics.html#esa">effective sampling area</a> (esa or <span class="math inline">a(\hat \theta)</span>).</li>
+<code>esaPlot</code> provides a quick visualisation of the change in estimated density as buffer width changes. It is a handy check on any fitted model, and may also be used with pilot parameter values. The name of the function derives from its reliance on calculation of the <a href="./05-theory-special-topics.html#sec-esa">effective sampling area</a> (esa or <span class="math inline">a(\hat \theta)</span>).</li>
 </ol>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/secr/man/secr.fit.html">secr.fit</a></span><span class="op">(</span><span class="va">captdata</span>, buffer <span class="op">=</span> <span class="fl">100</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -656,7 +656,7 @@ Figure&nbsp;12.3: Effect of varying buffer width on estimated density (y-axis). 
 </section><section id="buffer-using-non-euclidean-distances" class="level3" data-number="12.4.5"><h3 data-number="12.4.5" class="anchored" data-anchor-id="buffer-using-non-euclidean-distances">
 <span class="header-section-number">12.4.5</span> Buffer using non-euclidean distances</h3>
 <p>If you intend to use a non-Euclidean distance metric then it makes sense to use this also when defining the mask, specifically to drop mask points that are distant from any detector according to the metric. See <a href="A06-noneuclidean.html" class="quarto-xref"><span>Appendix F</span></a> for an example. Modelling with non-Euclidean distances also requires the user to provide <code>secr.fit</code> with a matrix of user-computed distances between detectors and mask points.</p>
-</section></section><section id="maskspacing" class="level2" data-number="12.5"><h2 data-number="12.5" class="anchored" data-anchor-id="maskspacing">
+</section></section><section id="sec-maskspacing" class="level2" data-number="12.5"><h2 data-number="12.5" class="anchored" data-anchor-id="sec-maskspacing">
 <span class="header-section-number">12.5</span> Grid cell size</h2>
 <p> </p>
 <p>Using a set of discrete locations (mask points) to represent the locations of animals is numerically convenient, and by making grid cells small enough we can certainly eliminate any effect of discretization. However, reducing cell size increases the number of cells and slows down model fitting. Trials with varying cell size (mask spacing) provide reassurance that discretization has not distorted the analysis.</p>
@@ -906,7 +906,7 @@ Figure&nbsp;12.10: Plot of a computed continuous covariate across a clipped mask
 <span class="header-section-number">12.10.7</span> Mask vs raster</h3>
 <p>Mask objects have a lot in common with objects of the RasterLayer S4 class defined in the package <strong>raster</strong> <span class="citation" data-cites="R-raster">(<a href="A99-references.html#ref-R-raster" role="doc-biblioref">Hijmans, 2023a</a>)</span> and the SpatRaster class defined in the package <strong>terra</strong> <span class="citation" data-cites="R-terra">(<a href="A99-references.html#ref-R-terra" role="doc-biblioref">Hijmans, 2023b</a>)</span>. However, they are much simpler: no projection is specified and grid cells must be square.</p>
 <p>A mask object may be exported as a RasterLayer using the <code>raster</code> method defined in <strong>secr</strong> for mask objects. This allows you to nominate a covariate to provide values for the RasterLayer, and to specify a projection.</p>
-<p>A mask object may also be exported as a SpatRaster using the <code>rast</code> method defined in <strong>secr</strong> for mask objects. See <a href="./11-density-model.html#scaleofeffect">here</a> for an example in which <strong>terra</strong> functions are used to smooth a mask covariate before returning it to the mask.</p>
+<p>A mask object may also be exported as a SpatRaster using the <code>rast</code> method defined in <strong>secr</strong> for mask objects. See <a href="./11-density-model.html#sec-scaleofeffect">here</a> for an example in which <strong>terra</strong> functions are used to smooth a mask covariate before returning it to the mask.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -917,7 +917,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Inappropriate mask spacing is a common source of problems. Model fitting can be painfully slow if the mask has too many cells. Choose the spacing (cell size) as described in <a href="#maskspacing">Grid cell size</a>. A single mask for widely scattered clusters of traps should drop cells from wide inter-cluster spaces (set ‘type = trapbuffer’).</p>
+<p>Inappropriate mask spacing is a common source of problems. Model fitting can be painfully slow if the mask has too many cells. Choose the spacing (cell size) as described in <a href="#sec-maskspacing">Grid cell size</a>. A single mask for widely scattered clusters of traps should drop cells from wide inter-cluster spaces (set ‘type = trapbuffer’).</p>
 </div>
 </div>
 
@@ -1389,7 +1389,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

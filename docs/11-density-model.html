@@ -452,7 +452,7 @@ window.Quarto = {
   <li><a href="#prediction-and-plotting" id="toc-prediction-and-plotting" class="nav-link" data-scroll-target="#prediction-and-plotting"><span class="header-section-number">11.4</span> Prediction and plotting</a></li>
   <li><a href="#sec-scaling" id="toc-sec-scaling" class="nav-link" data-scroll-target="#sec-scaling"><span class="header-section-number">11.5</span> Scaling</a></li>
   <li><a href="#not-a-density-surface" id="toc-not-a-density-surface" class="nav-link" data-scroll-target="#not-a-density-surface"><span class="header-section-number">11.6</span> This is not a density surface</a></li>
-  <li><a href="#relativedensity2" id="toc-relativedensity2" class="nav-link" data-scroll-target="#relativedensity2"><span class="header-section-number">11.7</span> Relative density</a></li>
+  <li><a href="#sec-relativedensity2" id="toc-sec-relativedensity2" class="nav-link" data-scroll-target="#sec-relativedensity2"><span class="header-section-number">11.7</span> Relative density</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -513,7 +513,7 @@ Table&nbsp;11.1: Some examples of models for density in <code>secr.fit</code>.
 </div>
 <section id="absolute-vs-relative-density" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="absolute-vs-relative-density">
 <span class="header-section-number">11.1</span> Absolute vs relative density</h2>
-<p>The conventional approach to density surfaces is to fit a model of absolute density by maximizing the ‘full’ likelihood. Until recently, maximizing the likelihood <a href="./05-theory-special-topics.html#conditional">conditional on <span class="math inline">n</span></a>, the number detected, was thought to work only when density was assumed to be uniform (homogeneous), placing it outside the scope of this chapter. However, recent extensions to <strong>secr</strong> allow models of <em>relative</em> density to be fitted by maximizing the conditional likelihood (<code>CL = TRUE</code> in <code>secr.fit</code>), and this has some advantages <span class="citation" data-cites="Efford2025">(<a href="A99-references.html#ref-Efford2025" role="doc-biblioref">Efford, 2025</a>)</span>. Relative density differs from absolute density by a constant factor. This chapter stresses modelling absolute density and keeps <a href="#relativedensity2">relative density</a> for a section at the end.</p>
+<p>The conventional approach to density surfaces is to fit a model of absolute density by maximizing the ‘full’ likelihood. Until recently, maximizing the likelihood <a href="./05-theory-special-topics.html#conditional">conditional on <span class="math inline">n</span></a>, the number detected, was thought to work only when density was assumed to be uniform (homogeneous), placing it outside the scope of this chapter. However, recent extensions to <strong>secr</strong> allow models of <em>relative</em> density to be fitted by maximizing the conditional likelihood (<code>CL = TRUE</code> in <code>secr.fit</code>), and this has some advantages <span class="citation" data-cites="Efford2025">(<a href="A99-references.html#ref-Efford2025" role="doc-biblioref">Efford, 2025</a>)</span>. Relative density differs from absolute density by a constant factor. This chapter stresses modelling absolute density and keeps <a href="#sec-relativedensity2">relative density</a> for a section at the end.</p>
 </section><section id="brushtail-possum-example" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="brushtail-possum-example">
 <span class="header-section-number">11.2</span> Brushtail possum example</h2>
 <p></p>
@@ -813,7 +813,7 @@ strip.legend(c(2674460, 5982886), legend = seq(0,22,2), col = terrain.colors(11)
 --->
 <p>Multiple predictors may be included in one ‘s’ smooth term, implying interaction. This assumes isotropy – equality of scales on the different predictors – which is appropriate for geographic coordinates such as x and y in this example. In other cases, predictors may be measured on different scales (e.g., structural complexity of vegetation and elevation) and isotropy cannot be assumed. In these cases a tensor-product smooth (<code>te</code>) is appropriate because it is scale-invariant. For <code>te</code>, ‘k’ represents the order of the smooth on each axis, and we must fix the number of knots with ‘fx = TRUE’ to override automatic selection.</p>
 <p>For more on the use of regression splines see the documentation for <strong>mgcv</strong>, the <strong>secr</strong> help page `?smooths’, <span class="citation" data-cites="w06">Wood (<a href="A99-references.html#ref-w06" role="doc-biblioref">2006</a>)</span>, and <span class="citation" data-cites="bk14">Borchers &amp; Kidney (<a href="A99-references.html#ref-bk14" role="doc-biblioref">2014</a>)</span>.</p>
-</section><section id="scaleofeffect" class="level3" data-number="11.3.7"><h3 data-number="11.3.7" class="anchored" data-anchor-id="scaleofeffect">
+</section><section id="sec-scaleofeffect" class="level3" data-number="11.3.7"><h3 data-number="11.3.7" class="anchored" data-anchor-id="sec-scaleofeffect">
 <span class="header-section-number">11.3.7</span> Scale of effect</h3>
 <p></p>
 <p>Modelling density as a function of covariate(s) at a point (the centroid of a mask cell) lacks biological realism. Individuals exploit resources across their home range, and density may be affected by regional dynamics over a much wider area <span class="citation" data-cites="Jackson2014">(e.g., <a href="A99-references.html#ref-Jackson2014" role="doc-biblioref">Jackson &amp; Fahrig, 2014</a>)</span>.</p>
@@ -929,7 +929,7 @@ Figure&nbsp;11.8: Waitarere possum fx surface
 </div>
 </div>
 <p>See <span class="citation" data-cites="Durbach2024">Durbach et al. (<a href="A99-references.html#ref-Durbach2024" role="doc-biblioref">2024</a>)</span> for further critique.</p>
-</section><section id="relativedensity2" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="relativedensity2">
+</section><section id="sec-relativedensity2" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="sec-relativedensity2">
 <span class="header-section-number">11.7</span> Relative density</h2>
 <p></p>
 <p>Theory for relative density models was given <a href="./03-theory.html#relativedensity1">earlier</a> (see also [Efford2025]). A spatial model for relative density is fitted in <strong>secr</strong> by setting <code>CL = TRUE</code> and providing a model for D in the call to <code>secr.fit</code> (<strong>secr</strong> <span class="math inline">\ge</span> 5.2.0). For example</p>
@@ -1475,7 +1475,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

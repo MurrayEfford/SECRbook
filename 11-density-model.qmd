@@ -29,7 +29,7 @@ density model we first evaluate it at each point on a mask with the function `pr
 
 ## Absolute vs relative density
 
-The conventional approach to density surfaces is to fit a model of absolute density by maximizing the 'full' likelihood. Until recently, maximizing the likelihood [conditional on $n$](05-theory-special-topics.qmd#conditional), the number detected, was thought to work only when density was assumed to be uniform (homogeneous), placing it outside the scope of this chapter. However, recent extensions to **secr** allow models of *relative* density to be fitted by maximizing the conditional likelihood (`CL = TRUE` in `secr.fit`), and this has some advantages [@Efford2025]. Relative density differs from absolute density by a constant factor. This chapter stresses modelling absolute density and keeps [relative density](#relativedensity2) for a section at the end.
+The conventional approach to density surfaces is to fit a model of absolute density by maximizing the 'full' likelihood. Until recently, maximizing the likelihood [conditional on $n$](05-theory-special-topics.qmd#conditional), the number detected, was thought to work only when density was assumed to be uniform (homogeneous), placing it outside the scope of this chapter. However, recent extensions to **secr** allow models of *relative* density to be fitted by maximizing the conditional likelihood (`CL = TRUE` in `secr.fit`), and this has some advantages [@Efford2025]. Relative density differs from absolute density by a constant factor. This chapter stresses modelling absolute density and keeps [relative density](#sec-relativedensity2) for a section at the end.
 
 [^footnote6a]: It may also be specified in a user-written function supplied to
 `secr.fit` (see @sec-densityappendix), but you are unlikely to need this.
@@ -358,7 +358,7 @@ Multiple predictors may be included in one 's' smooth term, implying interaction
 
 For more on the use of regression splines see the documentation for **mgcv**, the **secr** help page `?smooths', @w06, and @bk14.
 
-### Scale of effect {#scaleofeffect}
+### Scale of effect {#sec-scaleofeffect}
 \index{Density surface!scale of effect}
 
 Modelling density as a function of covariate(s) at a point (the centroid of a mask cell) lacks biological realism. Individuals exploit resources across their home range, and density may be affected by regional dynamics over a much wider area [e.g., @Jackson2014]. 
@@ -505,7 +505,7 @@ plot(traps(possumCH), add = TRUE)
 
 See @Durbach2024 for further critique.
 
-## Relative density {#relativedensity2}
+## Relative density {#sec-relativedensity2}
 \index{Density surface!relative}
 
 Theory for relative density models was given [earlier](03-theory.qmd#relativedensity1) (see also [Efford2025]). A spatial model for relative density is fitted in **secr** by setting `CL = TRUE` and providing a model for D in the call to `secr.fit` (**secr** $\ge$ 5.2.0). For example

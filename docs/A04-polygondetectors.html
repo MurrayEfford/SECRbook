@@ -451,10 +451,10 @@ window.Quarto = {
   <li><a href="#data-input" id="toc-data-input" class="nav-link" data-scroll-target="#data-input"><span class="header-section-number">D.3</span> Data input</a></li>
   <li><a href="#fitting" id="toc-fitting" class="nav-link" data-scroll-target="#fitting"><span class="header-section-number">D.4</span> Fitting</a></li>
   <li><a href="#cue-data" id="toc-cue-data" class="nav-link" data-scroll-target="#cue-data"><span class="header-section-number">D.5</span> Cue data</a></li>
-  <li><a href="#discretize" id="toc-discretize" class="nav-link" data-scroll-target="#discretize"><span class="header-section-number">D.6</span> Discretizing polygon data</a></li>
+  <li><a href="#sec-discretize" id="toc-sec-discretize" class="nav-link" data-scroll-target="#sec-discretize"><span class="header-section-number">D.6</span> Discretizing polygon data</a></li>
   <li><a href="#transectsearch" id="toc-transectsearch" class="nav-link" data-scroll-target="#transectsearch"><span class="header-section-number">D.7</span> Transect search</a></li>
-  <li><a href="#polygonshape" id="toc-polygonshape" class="nav-link" data-scroll-target="#polygonshape"><span class="header-section-number">D.8</span> More on polygons</a></li>
-  <li><a href="#technotes" id="toc-technotes" class="nav-link" data-scroll-target="#technotes"><span class="header-section-number">D.9</span> Technical notes</a></li>
+  <li><a href="#sec-polygonshape" id="toc-sec-polygonshape" class="nav-link" data-scroll-target="#sec-polygonshape"><span class="header-section-number">D.8</span> More on polygons</a></li>
+  <li><a href="#sec-polygontechnotes" id="toc-sec-polygontechnotes" class="nav-link" data-scroll-target="#sec-polygontechnotes"><span class="header-section-number">D.9</span> Technical notes</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -565,7 +565,7 @@ lambda0  log   4.3764     0.41885  3.62938  5.2771
 sigma    log  49.4464     2.43133 44.90613 54.4457</code></pre>
 </div>
 </div>
-</section><section id="discretize" class="level2" data-number="D.6"><h2 data-number="D.6" class="anchored" data-anchor-id="discretize">
+</section><section id="sec-discretize" class="level2" data-number="D.6"><h2 data-number="D.6" class="anchored" data-anchor-id="sec-discretize">
 <span class="header-section-number">D.6</span> Discretizing polygon data</h2>
 <p>An alternative way to handle polygon capthist data is to convert it to a raster representation i.e.&nbsp;to replace each polygon with a set of point detectors, each located at the centre of a square pixel. Point detectors (‘multi’, ‘proximity’, ‘count’ etc.) tend to be more robust and models often fit faster. They also allow habitat attributes to be associated with detectors at the scale of a pixel rather than the whole polygon. The <strong>secr</strong> function <code>discretize</code> performs the necessary conversion in a single step. Selection of an appropriate pixel size (<code>spacing</code>) is up to the user. There is a tradeoff between faster execution (larger pixels are better) and controlling artefacts from the discretization, which can be checked by comparing estimates with different levels of <code>spacing</code>.</p>
 <p>Taking our example from before,</p>
@@ -633,12 +633,12 @@ Figure&nbsp;D.2: Habitat mask (grey dots) and simulated transect data from five 
 </div>
 </div>
 </div>
-<p>Model fitting uses <code>secr.fit</code> as before. We specify the distribution of the number of detections per individual per occasion as Poisson (binomN = 0), although this also happens to be the default. Setting method = ‘Nelder-Mead’ is slightly more likely to yield valid estimates of standard errors than using the default method (see <a href="#technotes">Technical notes</a>).</p>
+<p>Model fitting uses <code>secr.fit</code> as before. We specify the distribution of the number of detections per individual per occasion as Poisson (binomN = 0), although this also happens to be the default. Setting method = ‘Nelder-Mead’ is slightly more likely to yield valid estimates of standard errors than using the default method (see <a href="#sec-polygontechnotes">Technical notes</a>).</p>
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">transect.fit</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span><span class="va">transectCH</span>, mask <span class="op">=</span> <span class="va">transectmask</span>, </span>
 <span>    binomN <span class="op">=</span> <span class="fl">0</span>, method <span class="op">=</span> <span class="st">'Nelder-Mead'</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Occasional ‘ier’ error codes may be ignored (see <a href="#technotes">Technical notes</a>). The estimates are close to the true values except for sigma, which may be positively biased.</p>
+<p>Occasional ‘ier’ error codes may be ignored (see <a href="#sec-polygontechnotes">Technical notes</a>). The estimates are close to the true values except for sigma, which may be positively biased.</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span> <span class="op">(</span><span class="va">transect.fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -665,7 +665,7 @@ lambda0  log  0.19312    0.018034  0.16089  0.23182
 sigma    log 53.67901    2.321128 49.31908 58.42436</code></pre>
 </div>
 </div>
-</section><section id="polygonshape" class="level2" data-number="D.8"><h2 data-number="D.8" class="anchored" data-anchor-id="polygonshape">
+</section><section id="sec-polygonshape" class="level2" data-number="D.8"><h2 data-number="D.8" class="anchored" data-anchor-id="sec-polygonshape">
 <span class="header-section-number">D.8</span> More on polygons</h2>
 <p>The implementation in <strong>secr</strong> allows any number of disjunct polygons or non-intersecting transects.</p>
 <p>Polygons may be irregularly shaped, but there are some limitations in the default implementation. Polygons may not be concave in an east-west direction, in the sense that there are more than two intersections with a vertical line. Sometimes east-west concavity may be fixed by rotating the polygon and its associated data points (see function <code>rotate</code>). Polygons should not contain holes, and the polygons used on any one occasion should not overlap.</p>
@@ -707,7 +707,7 @@ sigma    log 53.67901    2.321128 49.31908 58.42436</code></pre>
 <li>Pointwise testing</li>
 </ol>
 <p>Another solution is to evaluate whether each point chosen dynamically by the integration code lies inside the polygon of interest. This is inevitably slower than the default algorithm that assumes all points between the lower and upper intersections lie within the polygon. Select the slower, more general option by setting <code>details = list(convexpolygon = FALSE)</code>.</p>
-</section></section><section id="technotes" class="level2" data-number="D.9"><h2 data-number="D.9" class="anchored" data-anchor-id="technotes">
+</section></section><section id="sec-polygontechnotes" class="level2" data-number="D.9"><h2 data-number="D.9" class="anchored" data-anchor-id="sec-polygontechnotes">
 <span class="header-section-number">D.9</span> Technical notes</h2>
 <p>Fitting models for polygon detectors with <code>secr.fit</code> requires the hazard function to be integrated in two-dimensions many times. In <strong>secr</strong> &gt;= 4.4 this is done with repeated one-dimensional Gaussian quadrature using the C++ function ‘integrate’ in RcppNumerical [R-RcppNumerical].</p>
 <p>Polygon and transect SECR models seem to be prone to numerical problems in estimating the information matrix (negative Hessian), which flow on into poor variance estimates and missing values for the standard errors of ‘real’ parameters. At the time of writing these seem to be overcome by overriding the default maximization method (Newton-Raphson in ‘nlm’) and using, for example, “method = ‘BFGS’”. Another solution, perhaps more reliable, is to compute the information matrix independently by setting ‘details = list(hessian = ’fdhess’)’ in the call to <code>secr.fit</code>. Yet another approach is to apply <code>secr.fit</code> with “method = ‘none’” to a previously fitted model to compute the variances.</p>
@@ -759,8 +759,8 @@ Russell, R. E., Royle, J. A., Desimone, R., Schwartz, M. K., Edwards, V. L., Pil
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>The logic here is that hazards are additive whereas probabilities are not.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>For constraints on the shape of polygon detectors see <a href="#polygonshape">Polygon shape</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Alternatively, one can construct a mask with <code>make.mask</code> and provide that in the ‘mask’ argument of <code>secr.fit</code>. Note that <code>make.mask</code> defaults to <code>type = 'rectangular'</code>; see <a href="#transectsearch">Transect search</a> for an example in which points are dropped if they are within the rectangle but far from detectors (the default in <code>secr.fit</code>)<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>For constraints on the shape of polygon detectors see <a href="#sec-polygonshape">Polygon shape</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Alternatively, one can construct a mask with <code>make.mask</code> and provide that in the ‘mask’ argument of <code>secr.fit</code>. Note that <code>make.mask</code> defaults to <code>type = 'rectangular'</code>; see <a href="#sec-transectsearch">Transect search</a> for an example in which points are dropped if they are within the rectangle but far from detectors (the default in <code>secr.fit</code>)<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1181,7 +1181,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","loop":false,"closeEffect":"zoom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

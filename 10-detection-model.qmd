@@ -9,7 +9,7 @@ probability or hazard of detection,
 * parameters may depend on other known variables, and
 * parameters may be modelled as random effects to represent variation of unknown origin.
 
-We consider the shape of detection functions in the next section. Modelling parameters as a function of other variables is addressed in the following section on [linear submodels](#linear-submodels). Random effects in **secr** are limited to finite mixture models that we cover in the chapter on [individual heterogeneity](#sec-individual-heterogeneity).
+We consider the shape of detection functions in the next section. Modelling parameters as a function of other variables is addressed in the following section on [linear submodels](#sec-linear-submodels). Random effects in **secr** are limited to finite mixture models that we cover in the chapter on [individual heterogeneity](#sec-individual-heterogeneity).
 
 ## Distance-detection functions {#sec-detectfn}
 \index{Detection model!functions}
@@ -44,7 +44,7 @@ Several further options are provided by `secr.fit` (see `? detectfn`), but only 
 
 The merits of focussing on the hazard[^cumulative] are a little arcane. We list them here:
 
-1. Quantities on the hazard scale are additive and more tractable for some purposes (e.g. adjusting for effort, computing [expected counts](#Expected)).
+1. Quantities on the hazard scale are additive and more tractable for some purposes (e.g. adjusting for effort, computing [expected counts](A11-expected-counts.qmd#sec-expected)).
 2. For some detector types (e.g., Poisson counts) the data are integers, for which $\lambda(d)$ has a direct interpretation as the expected count. However, $\lambda(d)$ can always be derived from $g(d)$ ($\lambda(d) = -\log[1 - g(d)]$).
 3. Intuitively, there is a close proportionality between $\lambda(d)$ and the height of an individual's utilization pdf.
 
@@ -58,7 +58,7 @@ Using the 'complementary log-log' link function cloglog for a hazard detection f
 
 ### Choice of detection function not critical
 
-The variety of detection functions is daunting. You could try them all and select the "best" by AIC, but we do not recommend this. Fortunately, the choice of function is not critical. We illustrate this with the [snowshoe hare dataset](#sec-example) and use [`list.secr.fit`](https://www.otago.ac.nz/density/html/list.secr.fit.html)) to fit a series of models. Warnings due to the use of a multi-catch likelihood for single-catch traps are suppressed both here and in other examples. 
+The variety of detection functions is daunting. You could try them all and select the "best" by AIC, but we do not recommend this. Fortunately, the choice of function is not critical. We illustrate this with the snowshoe hare dataset of @sec-example. The function [`list.secr.fit`](https://www.otago.ac.nz/density/html/list.secr.fit.html)) is used to fit a series of models. Warnings due to the use of a multi-catch likelihood for single-catch traps are suppressed both here and in other examples. 
 
 ```{r}
 #| label: setupdf
@@ -204,15 +204,15 @@ In distance sampling, shape matters a lot. In particular, the estimate of densit
 
 In SECR, no special significance is attached to the intercept or the shape of the function. The detection function serves as a spatial filter for a modelled 2-dimensional point pattern of activity centres; the filter must 'explain' the frequency of recaptures and their spatial spread. These are the components of the effective sampling area.
 
-The hazard-rate function HR is recommended for distance sampling because it has a distinct 'shoulder' near zero distance, and distance sampling is not concerned with the tail (distant observations are often censored). SECR relies on the tail flattening to zero within the region of integration ([habitat mask](#sec-habitat)). Otherwise, the population at risk of detection is determined by the choice of mask, which is usually arbitrary and *ad hoc*. The hazard-rate function has an extremely long tail (it is not convergent), so there is always a risk of mask-dependence. As an aside - in the snowshoe hare example with detection function HHR we suppressed the warning "predicted relative bias exceeds 0.01 with buffer = 250" that is due to truncation of the long tail.
+The hazard-rate function HR is recommended for distance sampling because it has a distinct 'shoulder' near zero distance, and distance sampling is not concerned with the tail (distant observations are often censored). SECR relies on the tail flattening to zero within the region of integration ([habitat mask](12-habitat.qmd#sec-habitat)). Otherwise, the population at risk of detection is determined by the choice of mask, which is usually arbitrary and *ad hoc*. The hazard-rate function has an extremely long tail (it is not convergent), so there is always a risk of mask-dependence. As an aside - in the snowshoe hare example with detection function HHR we suppressed the warning "predicted relative bias exceeds 0.01 with buffer = 250" that is due to truncation of the long tail.
 
-### Why bother? {#whybother1}
+### Why bother? {#sec-whybother1}
 
 Given the preceding comments you may wonder why we bother with different detection functions at all. In part this is historical: it was not obvious in the beginning that density estimates were so robust. Sometimes it's just nice to have the flexibility to match the model to animal behaviour. Functions with longer tails (e.g., HEX) accommodate occasional extreme movements that can prevent a short-tailed function (HHN) from fitting at all.
 
 Also, it is desirable to account for any significant lack of fit due to the detection function before modelling effects that may have a more critical effect on density estimates, such as individual heterogeneity and learned responses.
 
-## Detection submodels {#linear-submodels}
+## Detection submodels {#sec-linear-submodels}
 \index{Detection model!sub-models}
 
 Until now we have assumed that there is a single beta parameter for each real parameter. A much richer set of models is obtained by treating each real parameter as a function of covariates. For convenience, the function is linear on the appropriate [link](01-basics.qmd#sec-link) scale. The single 'beta' coefficient is then replaced by two or more coefficients (e.g., intercept $\beta_0$ and slope $\beta_1$ of the linear relationship $y = \beta_0 + \beta_1x_1$ where $y$ is a parameter on the link scale and $x_1$ is a covariate). Suppose, for example, that $y$ depends on sampling occasion $s$ then $y(s) = \beta_0 + \beta_1x_1(s)$ and the corresponding real parameter is $y(s)$ back transformed from the link scale.
@@ -230,7 +230,7 @@ In **secr** each detection parameter ($g_0, \lambda_0, \sigma, z$) is controlled
 
 | Variable | Description   | Notes                                        |
 |:--------|:---------------|:----------------------------------------------|
-| g | group | [groups](#groups) are defined by the individual covariate(s) named in the 'groups' argument|
+| g | group | [groups](05-theory-special-topics.qmd#sec-groups) are defined by the individual covariate(s) named in the 'groups' argument|
 | t | time factor | one level for each occasion |
 | T | time trend  | linear trend over occasions on link scale |
 | b | learned response | step change after first detection |
@@ -241,7 +241,7 @@ In **secr** each detection parameter ($g_0, \lambda_0, \sigma, z$) is controlled
 | K | site transient response | site effectiveness depends on preceding occasion |
 | session | session factor | one level for each session |
 | Session | session trend | linear trend on link scale |
-| h2 | 2-class mixture | [finite mixture model](#finite-mixtures) with 2 latent classes |
+| h2 | 2-class mixture | [finite mixture model](05-theory-special-topics.qmd#sec-finite-mixtures) with 2 latent classes |
 | ts | marking vs sighting | two levels (marking and sighting occasions) |
 
 : Automatically generated predictor variables for detection models {#tbl-predictors .sm}
@@ -296,7 +296,7 @@ Any name in a formula that is not listed as a variable in @tbl-predictors is ass
 of columns in the respective dataframes may be used in model formulae. 
 Time-varying detector covariates are a special case considered below. {#tbl-covariates .sm} 
     
-<!-- [Hybrid mixture models](#hybrid-mixtures) allow some or all individuals to be assigned permanently to a group (mixture class), while other individuals (ideally a minority) may be of unknown class. -->
+<!-- [Hybrid mixture models](05-theory-special-topics.qmd#sec-hybrid-mixtures) allow some or all individuals to be assigned permanently to a group (mixture class), while other individuals (ideally a minority) may be of unknown class. -->
 
 A continuous covariate that takes many unique values poses problems for the implementation in **secr**. A multiplicity of values inflates the size of internal lookup tables, both slowing down each likelihood evaluation and potentially exceeding the available memory[^CKM]. A binned covariate should do the job equally well, while saving time and space (see function [`binCovariate`](https://www.otago.ac.nz/density/html/binCovariate.html)).
 
@@ -325,9 +325,9 @@ There are some drawbacks to using smooth terms. The resulting fitted objects are
 
 ### Why bother? {#whybother2}
 
-Detailed modelling of detection parameters may be a waste of energy for the same reasons that the [choice of detection function](#whybother1) itself has limited interest. See, for example, the simulation results of @Sollmann2024 on occasion-specific models ($\sim$ t). However, behavioural responses and individual heterogeneity can have a major effect on density estimates, and these deserve attention.
+Detailed modelling of detection parameters may be a waste of energy for the same reasons that the [choice of detection function](#sec-whybother1) itself has limited interest. See, for example, the simulation results of @Sollmann2024 on occasion-specific models ($\sim$ t). However, behavioural responses and individual heterogeneity can have a major effect on density estimates, and these deserve attention.
 
-#### Behavioural responses {#behaviouralresponse}
+#### Behavioural responses {#sec-behaviouralresponse}
 \index{Detection model! behavioural response}
 
 An individual behavioral response is a change in the probability or hazard of detection on the occasions that follow a detection. Trapping of small mammals provides evidence of species that routinely become trap happy (presumably because they enjoy the bait) or trap shy (presumably because the experience of capture and handling is unpleasant). Positive or negative responses are modelled as a step change in a detection parameter, usually the intercept of the detection function ($g_0$, $\lambda_0$).

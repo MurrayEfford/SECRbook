@@ -7,7 +7,7 @@ It has long been recognised that SECR removes one major source of individual het
 
 Individual heterogeneity may be addressed by treating the parameter as a random effect. This entails integrating the likelihood over the hypothesized distribution of the parameter. Results are unavoidably dependent on the choice of distribution. The distribution may be continuous or discrete. Finite mixture models with a small number of latent classes (2 or 3) are a form of random effect that is particularly easy to implement [@p2000]. 
 
-Continuous random effects are usually assumed to follow a normal distribution on the link scale. There are numerical methods for efficient integration of normal random effects, but these have not been implemented in **secr**. Despite its attractive smoothness, a normal distribution lacks some of the statistical flexibility of finite mixtures. For example, the normal distribution has fixed skewness, whereas a 2-class finite mixture allows varying skewness. The [likelihood](#finite-mixtures) for finite mixtures is described separately.
+Continuous random effects are usually assumed to follow a normal distribution on the link scale. There are numerical methods for efficient integration of normal random effects, but these have not been implemented in **secr**. Despite its attractive smoothness, a normal distribution lacks some of the statistical flexibility of finite mixtures. For example, the normal distribution has fixed skewness, whereas a 2-class finite mixture allows varying skewness. The [likelihood](05-theory-special-topics.qmd#finite-mixtures) for finite mixtures is described separately.
 
 ::: {.callout-note}
 ## Interpreting latent classes
@@ -162,14 +162,14 @@ Maximization algorithms (argument 'method' of `secr.fit`) differ in their tenden
 
 Heterogeneity may be demonstrably present yet have little effect on density estimates. Bias in density is a non-linear function of the coefficient of variation of $a_i(\theta)$. For CV $<20\%$ the bias is likely to be negligible [@em14].
 
-Individual variation in $\lambda_0$ and $\sigma$ may be inversely correlated and therefore compensatory, reducing bias in $\hat D$ [@em14]. Bias is a function of heterogeneity in the [effective sampling area](#esa) $a(\theta)$ which may vary less than each of the components $\lambda_0$ and $\sigma$.
+Individual variation in $\lambda_0$ and $\sigma$ may be inversely correlated and therefore compensatory, reducing bias in $\hat D$ [@em14]. Bias is a function of heterogeneity in the [effective sampling area](05-theory-special-topics.qmd#sec-esa) $a(\theta)$ which may vary less than each of the components $\lambda_0$ and $\sigma$.
 
-It can be illuminating to [re-parameterize](#parameterizations) the detection model. 
+It can be illuminating to [re-parameterize](A08-parameterizations.qmd#sec-parameterizations) the detection model. 
 
 ## Hybrid 'hcov' model
 \index{Mixture models!hybrid}
 
-The hybrid mixture model accepts a 2-level categorical (factor) individual covariate for class membership that may be missing (NA) for any fraction of animals. The name of the covariate to use is specified as argument 'hcov' in `secr.fit`. If the covariate is missing for all individuals then a full 2-class finite mixture model will be fitted (i.e. mixture as a random effect). Otherwise, the random effect applies only to the animals of unknown class; others are modelled with detection parameter values appropriate to their known class. If class is known for all individuals the model is equivalent to a covariate (CL = TRUE) or grouped (CL = FALSE) model. When many or all animals are of known class the mixing parameter may be treated as an estimate of population proportions (probability a randomly selected individual belongs to class $u$). This is obviously useful for estimating sex ratio free of detection bias. See the hcov help page (?hcov) for implementation details, and [here](#hybrid-mixtures) for the theory. \index{House mouse}
+The hybrid mixture model accepts a 2-level categorical (factor) individual covariate for class membership that may be missing (NA) for any fraction of animals. The name of the covariate to use is specified as argument 'hcov' in `secr.fit`. If the covariate is missing for all individuals then a full 2-class finite mixture model will be fitted (i.e. mixture as a random effect). Otherwise, the random effect applies only to the animals of unknown class; others are modelled with detection parameter values appropriate to their known class. If class is known for all individuals the model is equivalent to a covariate (CL = TRUE) or grouped (CL = FALSE) model. When many or all animals are of known class the mixing parameter may be treated as an estimate of population proportions (probability a randomly selected individual belongs to class $u$). This is obviously useful for estimating sex ratio free of detection bias. See the hcov help page (?hcov) for implementation details, and [here](05-theory-special-topics.qmd#sec-hybrid-mixtures) for the theory. \index{House mouse}
 
 The house mouse dataset includes an individual covariate 'sex' with 81 females, 78 males and one unknown. 
 ```{r}
