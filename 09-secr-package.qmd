@@ -9,7 +9,7 @@ In the examples we often use the function [`list.secr.fit`] to fit several compe
 
 ## History
 
-**secr** supercedes the Windows program DENSITY, an earlier graphical interface to SECR methods  [@edr04; @e12]. The package was first released in March 2010 and continues to be developed. It implements almost all the methods described by @be08, @ebb09, @e11, @ef13, @ebm13, @em14, @edjq16, @eh18 and @Efford2025. External C++ code [@R-Rcpp] is used for computationally intensive operations. Multi-threading on multiple CPUs with RcppParallel [@R-RcppParallel] gives major speed gains. The package is available from [CRAN](https://CRAN.R-project.org/package=ipsecr); the development version is on [GitHub](https://github.com/MurrayEfford/secr).
+**secr** supercedes the Windows program DENSITY, an earlier graphical interface to SECR methods  [@edr04; @e12]. The package was first released in March 2010 and continues to be developed. It implements almost all the methods described by @be08, @ebb09, @e11, @ef13, @ebm13, @em14, @edjq16, @eh18 and @Efford2025. External C++ code [@R-Rcpp] is used for computationally intensive operations. Multi-threading on multiple CPUs with RcppParallel [@R-RcppParallel] gives major speed gains. The package is available from [CRAN](https://CRAN.R-project.org/package=secr); the development version is on [GitHub](https://github.com/MurrayEfford/secr).
 
 An interactive graphic user interface to many features of **secr** is provided by the Shiny app 'secrapp' available on [GitHub](https://github.com/MurrayEfford/secrapp) and, currently, on a server at the [University of Otago](https://www.stats.otago.ac.nz/secrapp/).
 
