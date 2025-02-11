@@ -234,6 +234,3 @@ This is fairly explicit; `secr.fit` will stop if you include in a model any cova
 Instability of the estimates can result when the likelihood surface has a local maximum and is said to be 'multimodal'. Numerical maximisation may then fail to find the true maximum from a given starting point. Nelder-Mead is more robust than other methods.
 
 Finite mixture models have known problems due to multimodality of the likelihood, as discussed separately (@sec-individual-heterogeneity). See @de09 and the vignette [secr-sound.pdf](https://www.otago.ac.nz/density/pdfs/secr-sound.pdf) for another example of a multimodal likelihood in SECR.
-
-It is suspected that extreme (over-coarse) discretisation of the habitat mask sometimes results in instability due to local maxima, but this has not been proven.
-
