@@ -48,6 +48,7 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./02-example.html" rel="next">
 <link href="./index.html" rel="prev">
+<link href="./images/density6.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -479,10 +480,10 @@ Activity centre vs home range centre
 </div>
 </section><section id="detectors" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="detectors">
 <span class="header-section-number">1.3</span> Detectors</h2>
-<p> SECR uses sampling devices placed at known locations. We need to recognise individuals whenever they are detected. The accumulated detections of each known individual are its ‘detection history’. Device types differ according to how they affect animal behaviour and the data they collect; each type corresponds to a probability model, as covered later.</p>
+<p></p>
+<p>SECR uses sampling devices (‘detectors’) placed at known locations. We need to recognise individuals whenever they are detected. The accumulated detections of each known individual are its ‘detection history’. Device types differ according to how they affect animal behaviour and the data they collect; each type corresponds to a probability model, as covered later.</p>
 <p>Detection may be entirely passive and non-invasive if individuals carry unique natural marks (e.g., pelage patterns) or their DNA can be sampled. Devices that record detections passively are “proximity detectors”. Proximity detectors may be split according to the distribution of the number of detections per animal per occasion (binary, Poisson, or binomial), with binary being the most common<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
-<p>Animals without natural marks must be marked individually on their first detection. This implies capture and handling. Only devices that hold an animal until it is released can truly be called ‘traps’. The probability model for trapping must allow for exclusivity: an animal can be found at only one trap on any occasion, and some traps (‘single-catch’ traps) also exclude other individuals after the first. </p>
-<p>Confusingly, <strong>secr</strong> uses ‘traps’ as a generic name for R objects holding detector coordinates and other information. This software-specific jargon should be avoided in publications.</p>
+<p>Animals without natural marks must be marked individually on their first detection. This implies capture and handling. Only devices that hold an animal until it is released can truly be called ‘traps’.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The probability model for trapping must allow for exclusivity: an animal can be found at only one trap on any occasion, and some traps (‘single-catch’ traps) also exclude other individuals after the first. </p>
 <div id="tbl-deviceexamples" class="sm quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-deviceexamples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1.1: Examples of SECR sampling devices
@@ -544,8 +545,7 @@ Table&nbsp;1.1: Examples of SECR sampling devices
 </section><section id="sampling-across-time" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="sampling-across-time">
 <span class="header-section-number">1.4</span> Sampling across time</h2>
 <p>For most vertebrates we expect population turnover (births, deaths, AC movement) on a time scale of months or years. Population change is often negligible over shorter spans (days or weeks, depending on the species). Sampling over shorter spans can therefore treat the size and composition of a population as fixed: it is said to be ‘closed’. This greatly simplifies analysis. We assume closure except when considering <a href="#popnclosed">breaches of assumptions</a>. </p>
-<p>A ‘session’ in <strong>secr</strong> parlance is a set of samples from a closed population on one or more ‘occasions’ (possibly consecutive days).</p>
-<p>For trap-type detectors there must be multiple occasions within a session to obtain recaptures. For proximity-type detectors the role of ‘occasions’ is more subtle, and data may usually be collapsed to animal- and detector-specific counts. The spatial pattern of binary detections alone is sufficient to obtain an estimate of density <span class="citation" data-cites="edb09">(<a href="A99-references.html#ref-edb09" role="doc-biblioref">Efford et al., 2009</a>)</span>.</p>
+<p>For trap-type detectors there must be multiple occasions within a sampling session to obtain recaptures. For proximity-type detectors the role of ‘occasions’ is more subtle, and data may usually be collapsed to animal- and detector-specific counts. The spatial pattern of binary detections alone is sufficient to obtain an estimate of density <span class="citation" data-cites="edb09">(<a href="A99-references.html#ref-edb09" role="doc-biblioref">Efford et al., 2009</a>)</span>.</p>
 <p>It is not necessary for all detectors to be used on all occasions. Incomplete usage <span class="citation" data-cites="ebm13">(and other variation in effort per occasion – <a href="A99-references.html#ref-ebm13" role="doc-biblioref">Efford et al., 2013</a>)</span> may be recorded for each detector and allowed for in the analysis.</p>
 <p>Data collected across multiple sessions potentially include the loss of some individuals and recruitment of others. An open population model is the natural way to go <span class="citation" data-cites="es20">(e.g., <a href="A99-references.html#ref-es20" role="doc-biblioref">Efford &amp; Schofield, 2020</a>)</span>. However, the complexity of open-population models can be avoided if sessions are treated as independent in a ‘multi-session’ closed population analysis.</p>
 </section><section id="data-structure" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="data-structure">
@@ -561,7 +561,7 @@ Table&nbsp;1.1: Examples of SECR sampling devices
 <div class="cell-output-display">
 <div id="fig-example" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/example.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="figures/example.png" class="img-fluid figure-img" style="width:70.0%"></a>
+<a href="figures/example.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="figures/example.png" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.1: Distance-dependent detection of uniformly distributed activity centres (open circles; filled if captured)
@@ -571,12 +571,12 @@ Figure&nbsp;1.1: Distance-dependent detection of uniformly distributed activity 
 </div>
 <p></p>
 <p>The true locations of animals are not known, and therefore the distance-dependent probabilities cannot be calculated directly. The model is fitted by marginalising (integrating over) animal locations.</p>
-<p>Distance-dependent detection is represented by a ‘detection function’ with intercept, scale, and possibly shape, determined by parameters to be estimated<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>Distance-dependent detection is represented by a ‘detection function’ with intercept, scale, and possibly shape, determined by parameters to be estimated<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-detectionfunctions" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-detectionfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="img-fluid figure-img" style="width:75.0%"></a>
+<a href="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="img-fluid figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-detectionfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.2: Some detection functions
@@ -639,7 +639,7 @@ Table&nbsp;1.2: Link functions
 <div class="cell-output-display">
 <div id="fig-MLE" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-MLE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01-basics_files/figure-html/fig-MLE-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="01-basics_files/figure-html/fig-MLE-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="01-basics_files/figure-html/fig-MLE-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="01-basics_files/figure-html/fig-MLE-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MLE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.3: Numerical maximization of conditional likelihood by two methods; triangle – initial values; filled circle – estimates. Both converge on the same estimates (dashed lines). Newton-Raphson is the default method in secr.
@@ -717,7 +717,8 @@ Royle, J. A., &amp; Young, K. V. (2008). A hierarchical model for spatial captur
 </section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>In the <strong>secr</strong> software, type ‘proximity’ refers specifically to binary proximity detectors.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>All detection functions have intercept (<span class="math inline">g_0</span>, <span class="math inline">\lambda_0</span>) and scale (<span class="math inline">\sigma</span>) parameters; some such as the hazard rate function have a further parameter that controls some aspect of shape.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Confusingly, <strong>secr</strong> uses ‘traps’ as a generic name for R objects holding detector coordinates and other information. This software-specific jargon should be avoided in publications.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>All detection functions have intercept (<span class="math inline">g_0</span>, <span class="math inline">\lambda_0</span>) and scale (<span class="math inline">\sigma</span>) parameters; some such as the hazard rate function have a further parameter that controls some aspect of shape.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1138,7 +1139,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

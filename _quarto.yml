@@ -24,6 +24,7 @@ book:
   subtitle: |
     |
     | A handbook of spatially explicit capture--recapture methods
+    | 1st Edition
     | DRAFT only
     |  
     |   
@@ -41,7 +42,7 @@ book:
 
   # cover-image: images/Nickinsnow3.png
 
-  # favicon: images/Nickinsnow3.png
+  favicon: images/density6.png
 
   chapters:
     - index.qmd

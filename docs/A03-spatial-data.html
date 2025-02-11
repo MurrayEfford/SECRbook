@@ -82,6 +82,7 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./A04-polygondetectors.html" rel="next">
 <link href="./A02-speed.html" rel="prev">
+<link href="./images/density6.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -866,7 +867,7 @@ max value   : 916.6924 </code></pre>
 </h2>
 <section id="distances-computed-in-large-studies" class="level3" data-number="C.3.1"><h3 data-number="C.3.1" class="anchored" data-anchor-id="distances-computed-in-large-studies">
 <span class="header-section-number">C.3.1</span> Distances computed in large studies</h3>
-<p>Distances on the curved surface of the earth are not well represented by Euclidean distances when the study area is very large, as happens with large carnivores such as grizzly bears and wolverines. This has led some authors to use more rigorous distance algorithms (reference?). This is not possible in <strong>secr</strong> because there is no record of the projected coordinate reference system used for the detectors and habitat mask.</p>
+<p>Distances on the curved surface of the earth are not well represented by straight-line Euclidean distances when the study area is very large, as happens with large carnivores such as grizzly bears and wolverines. That has led some authors to use more rigorous (great-circle) distances. This is not possible in <strong>secr</strong> because there is no record of the projected coordinate reference system used for the detectors and habitat mask.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
@@ -1315,7 +1316,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
