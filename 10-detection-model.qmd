@@ -52,6 +52,7 @@ The 'hazard variable power' function is a 3-parameter function modelled on that 
 
 [^cumulative]: Technically this is the cumulative hazard rather than the instantaneous hazard, but we get tired of using the full term.
 
+\index{Link function!cloglog}
 ::: {.callout-tip}
 Using the 'complementary log-log' link function cloglog for a hazard detection function such as $\lambda(d) = \lambda_0 \exp[-d^2/(2\sigma^2)]$ is equivalent to modelling $\lambda$ with a log link, as $p = 1 - \exp(-\lambda)$ and $\lambda = -\log(1-p)$. For a halfnormal function, the quantity $y$ on the cloglog scale is then a linear function of $\exp(-d^2)$ with intercept $\alpha_0 = \log(\lambda_0)$ and slope $\alpha_1 = -1/(2\sigma^2)$ [e.g., @Royle2013].
 :::
@@ -204,7 +205,7 @@ In distance sampling, shape matters a lot. In particular, the estimate of densit
 
 In SECR, no special significance is attached to the intercept or the shape of the function. The detection function serves as a spatial filter for a modelled 2-dimensional point pattern of activity centres; the filter must 'explain' the frequency of recaptures and their spatial spread. These are the components of the effective sampling area.
 
-The hazard-rate function HR is recommended for distance sampling because it has a distinct 'shoulder' near zero distance, and distance sampling is not concerned with the tail (distant observations are often censored). SECR relies on the tail flattening to zero within the region of integration ([habitat mask](12-habitat.qmd#sec-habitat)). Otherwise, the population at risk of detection is determined by the choice of mask, which is usually arbitrary and *ad hoc*. The hazard-rate function has an extremely long tail (it is not convergent), so there is always a risk of mask-dependence. As an aside - in the snowshoe hare example with detection function HHR we suppressed the warning "predicted relative bias exceeds 0.01 with buffer = 250" that is due to truncation of the long tail.
+The hazard-rate function HR is recommended for distance sampling because it has a distinct 'shoulder' near zero distance, and distance sampling is not concerned with the tail (distant observations are often censored). SECR relies on the tail flattening to zero within the region of integration defined by the [habitat mask](12-habitat.qmd#sec-habitat). Otherwise, the population at risk of detection is determined by the choice of mask, which is usually arbitrary and *ad hoc*. The hazard-rate function has an extremely long tail (it is not convergent), so there is always a risk of mask-dependence. As an aside - in the snowshoe hare example with detection function HHR we suppressed the warning "predicted relative bias exceeds 0.01 with buffer = 250" that is due to truncation of the long tail.
 
 ### Why bother? {#sec-whybother1}
 

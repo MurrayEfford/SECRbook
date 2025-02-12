@@ -137,7 +137,7 @@ The counts depend on the detector configuration, the extent of habitat (buffer w
 
 ::: {.callout-note collapse=true}
 ## Spatial recaptures
-The term 'spatial recaptures' has been used and corresponds loosely to our *m*. Spatial recaptures are a *sine qua non* of SECR, but their role in determining precision can be overstated. They are a consequence of Requirements 2 and 3, not an independent effect. Furthermore, movements are ill-defined when detections are aggregated by time, as then we cannot distinguish the capture histories ABABA and AAABB at detectors A and B (both are 3A, 2B).
+The term 'spatial recaptures' corresponds loosely with our *m*. Spatial recaptures are a *sine qua non* of SECR, but their role in determining precision can be overstated. They are a consequence of Requirements 2 and 3, not an independent effect. Furthermore, movements are ill-defined when detections are aggregated by time, as then we cannot distinguish the capture histories ABABA and AAABB at detectors A and B (both are 3A, 2B).
 :::
 
 ## Array size in relation to home range {#sec-arraysize}
@@ -396,7 +396,7 @@ source('figures/cosa.R')
 
 ### Non-systematic designs
 
-Non-systematic designs arise from algorithms for the placement of detectors that do not impose a particular geometry. One candidate is a simple random sample of points in the region of interest (SRS). Various algorithms improve on SRS with respect to spatial balance and efficiency. We focus on the Generalized Random Tessellation Stratified algorithm implemented by @Dumelle2023 in the R package **spsurvey**, but there are other options [@Robertson2018].
+Non-systematic designs result from algorithms for the placement of detectors that do not impose a particular geometry. One candidate is a simple random sample of points in the region of interest (SRS). Various algorithms improve on SRS with respect to spatial balance and efficiency. We focus on the Generalized Random Tessellation Stratified algorithm implemented by @Dumelle2023 in the R package **spsurvey**, but there are other options [@Robertson2018].
 
 ```{r}
 #| label: srsgrts

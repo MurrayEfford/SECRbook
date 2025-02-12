@@ -139,6 +139,8 @@ The predictors 'group' and 'session' behave for D as they do for other real para
 
 ### Link function
 \index{Link function!density}
+\index{Link function!log}
+\index{Link function!identity}
 
 The default link for D is 'log'. It is equally feasible in most cases to choose 'identity' as the link (see the `secr.fit` argument 'link'), and for the null model D $\sim$ 1 the estimate will be the same to numerical accuracy, as will estimates involving only categorical variables (e.g., session). However, with an 'identity' link the usual (asymptotic) confidence limits will be symmetrical (unless truncated at zero) rather than asymmetrical. In models with continuous predictors, including spatial trend surfaces, the link function will affect the result, although the difference may be small when the amplitude of variation on the surface is small. Otherwise, serious thought is needed regarding which model is biologically more appropriate: logarithmic or linear.
 
@@ -442,7 +444,7 @@ The numerical algorithms for maximizing the likelihood work best when the absolu
 
 Scaling is not performed routinely by `secr.fit` for distance calculations. Sometimes, large numeric values in coordinates can cause loss of precision in distance calculations (there are a lot of them at each likelihood evaluation). The problem is serious in datasets that combine large coordinates with small detector spacing, such as the Lake Station `skink` dataset. Set `details = list(centred = TRUE)` to force scaling; this may become the default setting in a future version of **secr**.
 
-## This is not a density surface {#not-a-density-surface}
+## This is not a density surface {#sec-notadensitysurface}
 \index{Density surface!not a}
 
 The surfaces we have fitted involve inhomogeneous Poisson models for the distribution of animal home range centres. The models have parameters that determine the relationship of expected density to location or to habitat covariates. 
@@ -507,8 +509,10 @@ See @Durbach2024 for further critique.
 
 ## Relative density {#sec-relativedensity2}
 \index{Density surface!relative}
+\index{Link function!log}
+\index{Link function!identity}
 
-Theory for relative density models was given [earlier](03-theory.qmd#sec-relativedensity1) (see also [@Efford2025]). A spatial model for relative density is fitted in **secr** by setting `CL = TRUE` and providing a model for D in the call to `secr.fit` (**secr** $\ge$ 5.2.0). For example
+Theory for relative density models was given [earlier](05-theory-special-topics.qmd#sec-relativedensity1) (see also [@Efford2025]). A spatial model for relative density is fitted in **secr** by setting `CL = TRUE` and providing a model for D in the call to `secr.fit` (**secr** $\ge$ 5.2.0). For example
 
 ```{r}
 #| label: relativeD

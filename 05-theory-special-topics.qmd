@@ -35,7 +35,8 @@ This is a scalar *effective* area for which $\hat D = n / a(\hat \theta)$ is an 
 
 <!-- CHECK Royal and Dorazio 2008 effective sampling area cited as excellent  'approaches for estimating effective sample area...' by Hooten et al. 2024 p4. -->
 
-## Conditional estimation {#sec-conditional}
+## Conditional likelihood {#sec-conditional}
+\index{Likelihood!conditional}
 \index{Conditional estimation}
 
 The detection parameters ($\theta$) may be estimated by maximizing the likelihood conditional on $n$ (@eq-CL). When density is constant this reduces to  
@@ -206,7 +207,7 @@ f(\mathbf x | \omega_i; \hat \phi, \hat \theta) = \frac{ \mathrm{Pr} (\omega_i |
 $$ {#eq-fxi}
 This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See `fxi` and related functions in **secr**. For known $\theta$ and known $\phi$ (unless $D(\mathbf x; \phi)$ uniform) the modal location of the AC for animal $i$ may be estimated by maximizing $\mathrm{Pr} (\omega_i | \mathbf x; \theta)D(\mathbf x; \phi)$ with respect to $\mathbf x$. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.
 
-A later [section](11-density-model.qmd#not-a-density-surface) discusses the use and interpretation of $f(\mathbf x | \omega_i; \hat \phi, \hat \theta)$ [see also @Durbach2024].
+@sec-notadensitysurface discusses the use and interpretation of $f(\mathbf x | \omega_i; \hat \phi, \hat \theta)$ [see also @Durbach2024].
 
 <!-- ## Telemetry {#sec-telemetrylikelihood} -->
 

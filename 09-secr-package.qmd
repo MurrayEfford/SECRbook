@@ -209,7 +209,7 @@ Many minor or infrequently used arguments are grouped as 'details'. We mention o
 * fixedbeta
 * LLonly
 
-See the `details` [help page](https://www.otago.ac.nz/density/html/details.html) for a full list and description.
+See [?details](https://www.otago.ac.nz/density/html/details.html) for a full list and description.
 
 #### Distribution of $n$  
 \index{secr.fit!distribution}

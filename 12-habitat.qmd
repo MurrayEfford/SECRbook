@@ -16,7 +16,7 @@ Next we refine this intuitive explanation for each of the dominant methods for f
 
 The likelihood developed for SECR by @be08 allows for the unknown centres by numerically integrating them out of the likelihood (crudely, by summing over all possible locations of detected animals, weighting each by a detection probability). Although the integration might, in principle, have infinite spatial bounds, it is practical to restrict attention to a smaller region, the 'area of integration'. As long as the probability weights get close to zero before we reach the boundary, we don't need to worry too much about the size of the region.
 
-In **secr** the habitat mask equates to the area of integration: the likelihood is evaluated by summing values across a fine mesh of points. This is the primary function of the habitat mask; we consider other functions [later](#sec-maskwhatfor).
+In **secr** the habitat mask equates to the area of integration: the likelihood is evaluated by summing values across a fine mesh of points. This is the primary function of the habitat mask; we consider other functions in @sec-maskwhatfor.
 
 ### MCMC and the Bayesian 'state space'
 
@@ -155,7 +155,7 @@ The `suggest.buffer` function is an alternative to the $4\sigma_{HN}$ rule of th
 #| label: suggestbuffer
 suggest.buffer(captdata, detectfn = 'HN', RBtarget = 0.001)
 ```
-When the input is only a capthist object, the suggested buffer width relies on an estimate of $\sigma_{HN}$ that is itself biased  (RPSV(captdata, CC=TRUE)). We see [later](#sec-suggest) how the suggested changes given an unbiased estimate of $\sigma_{HN}$. Actual bias due to mask truncation will also exceed the target (RB = 0.1%) because of the limitations of the *ad hoc* algorithm, so that is not to be taken too literally. 
+When the input is only a capthist object, the suggested buffer width relies on an estimate of $\sigma_{HN}$ that is itself biased  (RPSV(captdata, CC=TRUE)). @sec-suggest shows how the suggested buffer width changes when we use a better estimate of $\sigma_{HN}$. Actual bias due to mask truncation will also exceed the target (RB = 0.1%) due to limitations of the *ad hoc* algorithm in `bias.D`. 
 
 ### Retrospective buffer checks {#sec-suggest}
 
@@ -167,7 +167,7 @@ Once a model has been fitted with a particular buffer width or mask, the estimat
 
 The check is performed by a cunning custom algorithm in function `bias.D`. This uses one-dimensional numerical integration of a polar approximation to site-specific detection probability, coupled to a 3-part linear approximation for the length of contours of distance-to-nearest-detector. The check cannot be performed for some detector types, and the embedded integration can give rise to cryptic error messages.
 
-\index{Bias check!`esaPlot`}
+\index{Bias check!esaPlot}
 
 2. `esaPlot` provides a quick visualisation of the change in estimated density as buffer width changes. It is a handy 
 check on any fitted model, and may also be used with pilot parameter values. The name of the function derives from its reliance on calculation of the [effective sampling area](05-theory-special-topics.qmd#sec-esa) (esa or $a(\hat \theta)$).

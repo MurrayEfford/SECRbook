@@ -56,7 +56,7 @@ We use notation and terminology from @be08, with minor variations and extensions
 
 ## Likelihood {#Likelihood}
 
-\index{Likelihood!SECR}
+\index{Likelihood!full}
 
 Parameters of the state model ($\phi$) and the detection model
 ($\theta$) are estimated jointly by maximizing the logarithm of the

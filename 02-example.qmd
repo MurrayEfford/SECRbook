@@ -53,7 +53,7 @@ displayLines("hareCH6capt.txt", 6, "...")
 The trap layout file "hareCH6trap.txt" has one row per trap and columns for the detector label and x- and y-coordinates. We display the first 6 lines. The detector label is used to link captures to trap sites. Coordinates can relate to any rectangular coordinate system; **secr** will assume distances are in metres. These coordinates simply describe a 10 $\times$ 10 square grid with spacing 61 m. 
 
 ::: {.callout-tip}
-Do not use unprojected geographic coordinates (latitude and longitude). Conversion of geographic coordinates to rectangular coordinates (e.g., UTM) is described in an [appendix](A03-spatial-data.qmd#sec-inputspatialdata).
+Do not use unprojected geographic coordinates (latitude and longitude). @sec-inputspatialdata shows how to transform geographic coordinates to rectangular coordinates (e.g., UTM).
 :::
 
 
@@ -86,7 +86,7 @@ The capthist object `hareCH6` now contains almost all the information needed to 
 
 ## Check data
 
-First review a summary of the data. See [here](https://www.otago.ac.nz/density/html/summary.capthist.html) for definitions of the summary statistics n, u, f etc.
+First review a summary of the data. See [?summary.capthist](https://www.otago.ac.nz/density/html/summary.capthist.html) for definitions of the summary statistics n, u, f etc.
 
 ```{r}
 summary(hareCH6)
@@ -136,7 +136,7 @@ Next we fit the simplest possible SECR model with function `secr.fit`. The `buff
 #| cache: true
 fit <- secr.fit (hareCH6, buffer = 250, trace = FALSE, ncores = 7)
 ```
-A warning is generated. The data are from single-catch traps, but there is no usable theory for likelihood-based estimation from single-catch traps. This is not the obstacle it might seem, because simulations seem to show that the alternative likelihood for multi-catch traps may be used without biasing the density estimates [@ebb09]. It is safe to ignore the warning for now. The issue arises later as a breach of the [independence assumption](06-assumptions.qmd#sec-independentindividuals). \index{Traps!single-catch} \index{Traps!multi-catch}
+A warning is generated. The data are from single-catch traps, but there is no usable theory for likelihood-based estimation from single-catch traps. This is not the obstacle it might seem, because simulations seem to show that the alternative likelihood for multi-catch traps may be used without biasing the density estimates [@ebb09]. It is safe to ignore the warning for now. The issue arises later as a breach of the [independence assumption](06-assumptions.qmd#sec-independence). \index{Traps!single-catch} \index{Traps!multi-catch}
 
 ## Output
 
