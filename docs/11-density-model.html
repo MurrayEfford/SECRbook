@@ -451,7 +451,7 @@ window.Quarto = {
   <li><a href="#using-the-model-argument" id="toc-using-the-model-argument" class="nav-link" data-scroll-target="#using-the-model-argument"><span class="header-section-number">11.3</span> Using the ‘model’ argument</a></li>
   <li><a href="#prediction-and-plotting" id="toc-prediction-and-plotting" class="nav-link" data-scroll-target="#prediction-and-plotting"><span class="header-section-number">11.4</span> Prediction and plotting</a></li>
   <li><a href="#sec-scaling" id="toc-sec-scaling" class="nav-link" data-scroll-target="#sec-scaling"><span class="header-section-number">11.5</span> Scaling</a></li>
-  <li><a href="#not-a-density-surface" id="toc-not-a-density-surface" class="nav-link" data-scroll-target="#not-a-density-surface"><span class="header-section-number">11.6</span> This is not a density surface</a></li>
+  <li><a href="#sec-notadensitysurface" id="toc-sec-notadensitysurface" class="nav-link" data-scroll-target="#sec-notadensitysurface"><span class="header-section-number">11.6</span> This is not a density surface</a></li>
   <li><a href="#sec-relativedensity2" id="toc-sec-relativedensity2" class="nav-link" data-scroll-target="#sec-relativedensity2"><span class="header-section-number">11.7</span> Relative density</a></li>
   </ul></nav>
     </div>
@@ -604,7 +604,7 @@ Figure&nbsp;11.2: Quadratic possum density surface
 <p>The predictors ‘group’ and ‘session’ behave for D as they do for other real parameters. They determine variation in the expected density for each group or session that is (by default) uniform across space, leading to a homogeneous Poisson model and a flat surface. No further explanation is therefore needed.</p>
 <section id="link-function" class="level3" data-number="11.3.1"><h3 data-number="11.3.1" class="anchored" data-anchor-id="link-function">
 <span class="header-section-number">11.3.1</span> Link function</h3>
-<p></p>
+<p> </p>
 <p>The default link for D is ‘log’. It is equally feasible in most cases to choose ‘identity’ as the link (see the <code>secr.fit</code> argument ‘link’), and for the null model D <span class="math inline">\sim</span> 1 the estimate will be the same to numerical accuracy, as will estimates involving only categorical variables (e.g., session). However, with an ‘identity’ link the usual (asymptotic) confidence limits will be symmetrical (unless truncated at zero) rather than asymmetrical. In models with continuous predictors, including spatial trend surfaces, the link function will affect the result, although the difference may be small when the amplitude of variation on the surface is small. Otherwise, serious thought is needed regarding which model is biologically more appropriate: logarithmic or linear.</p>
 <p>The ‘identity’ link may cause problems when density is very small or very large because, by default, the maximization method assumes all parameters have similar scale (e.g., <code>typsize = c(1,1,1)</code> for default constant models). Setting <code>typsize</code> manually in a call to <code>secr.fit</code> can fix the problem and speed up fitting. For example, if density is around 0.001/ha (10 per 100 km<span class="math inline">^2</span>) then call <code>secr.fit(..., typsize = c(0.001,1,1))</code> (<code>typsize</code> has one element for each beta parameter). Problems with the identity link mostly disappear when modelling relative density (<code>CL = TRUE</code>) because coefficients are automatically scaled by the intercept. See <a href="A09-densityappendix.html" class="quarto-xref"><span>Appendix I</span></a> for more on link functions.</p>
 <p>You may wonder why <code>secr.fit</code> is ambivalent regarding the link function: link functions have seemed a necessary part of the machinery for capture–recapture modelling since Lebreton et al.&nbsp;(1992). Their key role is to keep the ‘real’ parameter within feasible bounds (e.g., 0-1 for probabilities). In <code>secr.fit</code> any modelled value of D that falls below zero is truncated at zero (of course this condition will not arise with a log link).</p>
@@ -877,7 +877,7 @@ Figure&nbsp;11.6: Smoothed forest covariate (proportion ‘beech’: 0% dark gre
 <p>Scaling of covariates other than x and y is up to the user. It is not usually needed.</p>
 <p>The numerical algorithms for maximizing the likelihood work best when the absolute expected values are roughly similar for all parameters on their respective ‘link’ scales (i.e.&nbsp;all beta parameters) rather than varying by orders of magnitude. The default link function for D and sigma (log) places the values of these parameters on a scale that is not wildly different to the variation in g0 or lambda0, so this is seldom an issue. In extreme cases you may want to make allowance by setting the <code>typsize</code> argument of <code>nlm</code> or the <code>parscale</code> control argument of <code>optim</code> (via the … argument of <code>secr.fit</code>).</p>
 <p>Scaling is not performed routinely by <code>secr.fit</code> for distance calculations. Sometimes, large numeric values in coordinates can cause loss of precision in distance calculations (there are a lot of them at each likelihood evaluation). The problem is serious in datasets that combine large coordinates with small detector spacing, such as the Lake Station <code>skink</code> dataset. Set <code>details = list(centred = TRUE)</code> to force scaling; this may become the default setting in a future version of <strong>secr</strong>.</p>
-</section><section id="not-a-density-surface" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="not-a-density-surface">
+</section><section id="sec-notadensitysurface" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="sec-notadensitysurface">
 <span class="header-section-number">11.6</span> This is not a density surface</h2>
 <p></p>
 <p>The surfaces we have fitted involve inhomogeneous Poisson models for the distribution of animal home range centres. The models have parameters that determine the relationship of expected density to location or to habitat covariates.</p>
@@ -931,8 +931,8 @@ Figure&nbsp;11.8: Waitarere possum fx surface
 <p>See <span class="citation" data-cites="Durbach2024">Durbach et al. (<a href="A99-references.html#ref-Durbach2024" role="doc-biblioref">2024</a>)</span> for further critique.</p>
 </section><section id="sec-relativedensity2" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="sec-relativedensity2">
 <span class="header-section-number">11.7</span> Relative density</h2>
-<p></p>
-<p>Theory for relative density models was given <a href="./03-theory.html#sec-relativedensity1">earlier</a> (see also <span class="citation" data-cites="Efford2025">(<a href="A99-references.html#ref-Efford2025" role="doc-biblioref">Efford, 2025</a>)</span>). A spatial model for relative density is fitted in <strong>secr</strong> by setting <code>CL = TRUE</code> and providing a model for D in the call to <code>secr.fit</code> (<strong>secr</strong> <span class="math inline">\ge</span> 5.2.0). For example</p>
+<p> </p>
+<p>Theory for relative density models was given <a href="./05-theory-special-topics.html#sec-relativedensity1">earlier</a> (see also <span class="citation" data-cites="Efford2025">(<a href="A99-references.html#ref-Efford2025" role="doc-biblioref">Efford, 2025</a>)</span>). A spatial model for relative density is fitted in <strong>secr</strong> by setting <code>CL = TRUE</code> and providing a model for D in the call to <code>secr.fit</code> (<strong>secr</strong> <span class="math inline">\ge</span> 5.2.0). For example</p>
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitrd1</span> <span class="op">&lt;-</span> <span class="fu">secr.fit</span><span class="op">(</span>capthist <span class="op">=</span> <span class="va">OVpossumCH</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, mask <span class="op">=</span> <span class="va">ovmask</span>, </span>
 <span>    trace <span class="op">=</span> <span class="cn">FALSE</span>, model <span class="op">=</span> <span class="va">D</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span> <span class="op">+</span> <span class="va">x2</span> <span class="op">+</span> <span class="va">y2</span> <span class="op">+</span> <span class="va">xy</span>, CL <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -1475,7 +1475,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","openEffect":"zoom","loop":false,"closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

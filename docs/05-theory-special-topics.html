@@ -432,7 +432,7 @@ window.Quarto = {
   <li><a href="#multi-session-likelihood" id="toc-multi-session-likelihood" class="nav-link active" data-scroll-target="#multi-session-likelihood"><span class="header-section-number">5.1</span> Multi-session likelihood</a></li>
   <li><a href="#sec-groups" id="toc-sec-groups" class="nav-link" data-scroll-target="#sec-groups"><span class="header-section-number">5.2</span> Groups</a></li>
   <li><a href="#sec-esa" id="toc-sec-esa" class="nav-link" data-scroll-target="#sec-esa"><span class="header-section-number">5.3</span> Effective sampling area</a></li>
-  <li><a href="#sec-conditional" id="toc-sec-conditional" class="nav-link" data-scroll-target="#sec-conditional"><span class="header-section-number">5.4</span> Conditional estimation</a></li>
+  <li><a href="#sec-conditional" id="toc-sec-conditional" class="nav-link" data-scroll-target="#sec-conditional"><span class="header-section-number">5.4</span> Conditional likelihood</a></li>
   <li><a href="#sec-relativedensity1" id="toc-sec-relativedensity1" class="nav-link" data-scroll-target="#sec-relativedensity1"><span class="header-section-number">5.5</span> Relative density</a></li>
   <li><a href="#adjustment-for-spatially-selective-prior-marking" id="toc-adjustment-for-spatially-selective-prior-marking" class="nav-link" data-scroll-target="#adjustment-for-spatially-selective-prior-marking"><span class="header-section-number">5.6</span> Adjustment for spatially selective prior marking</a></li>
   <li><a href="#population-size-n" id="toc-population-size-n" class="nav-link" data-scroll-target="#population-size-n"><span class="header-section-number">5.7</span> Population size <span class="math inline">N</span></a></li>
@@ -491,8 +491,8 @@ a(\theta) \equiv \int_{R^2} p_\cdot(\mathbf x; \theta) \, d\mathbf x.
 <!-- CHECK Royal and Dorazio 2008 effective sampling area cited as excellent  'approaches for estimating effective sample area...' by Hooten et al. 2024 p4. -->
 </section>
 <section id="sec-conditional" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="sec-conditional"><span class="header-section-number">5.4</span> Conditional estimation</h2>
-<p></p>
+<h2 data-number="5.4" class="anchored" data-anchor-id="sec-conditional"><span class="header-section-number">5.4</span> Conditional likelihood</h2>
+<p> </p>
 <p>The detection parameters (<span class="math inline">\theta</span>) may be estimated by maximizing the likelihood conditional on <span class="math inline">n</span> (<a href="03-theory.html#eq-CL" class="quarto-xref">Eq.&nbsp;<span>3.3</span></a>). When density is constant this reduces to<br>
 <span class="math display">
 L_n (\theta| \Omega) \propto \prod_{i=1}^n \frac{\int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \theta) \; d\mathbf x}{a(\theta)}.
@@ -670,7 +670,7 @@ Table&nbsp;5.1: Parameterizations implementing three covariation models. The thi
 f(\mathbf x | \omega_i; \hat \phi, \hat \theta) = \frac{ \mathrm{Pr} (\omega_i | \mathbf x; \hat \theta) D(\mathbf x ; \hat \phi)}
 {\int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \hat \theta) D(\mathbf x ; \hat \phi) \, d \mathbf x}.
 \tag{5.6}</span></span> This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See <code>fxi</code> and related functions in <strong>secr</strong>. For known <span class="math inline">\theta</span> and known <span class="math inline">\phi</span> (unless <span class="math inline">D(\mathbf x; \phi)</span> uniform) the modal location of the AC for animal <span class="math inline">i</span> may be estimated by maximizing <span class="math inline">\mathrm{Pr} (\omega_i | \mathbf x; \theta)D(\mathbf x; \phi)</span> with respect to <span class="math inline">\mathbf x</span>. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.</p>
-<p>A later <a href="./11-density-model.html#not-a-density-surface">section</a> discusses the use and interpretation of <span class="math inline">f(\mathbf x | \omega_i; \hat \phi, \hat \theta)</span> <span class="citation" data-cites="Durbach2024">(see also <a href="A99-references.html#ref-Durbach2024" role="doc-biblioref">Durbach et al., 2024</a>)</span>.</p>
+<p><a href="11-density-model.html#sec-notadensitysurface" class="quarto-xref"><span>Section 11.6</span></a> discusses the use and interpretation of <span class="math inline">f(\mathbf x | \omega_i; \hat \phi, \hat \theta)</span> <span class="citation" data-cites="Durbach2024">(see also <a href="A99-references.html#ref-Durbach2024" role="doc-biblioref">Durbach et al., 2024</a>)</span>.</p>
 <!-- ## Telemetry {#sec-telemetrylikelihood} -->
 <!-- [to be added] -->
 

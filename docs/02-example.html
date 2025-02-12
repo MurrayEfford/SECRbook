@@ -521,7 +521,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Do not use unprojected geographic coordinates (latitude and longitude). Conversion of geographic coordinates to rectangular coordinates (e.g., UTM) is described in an <a href="./A03-spatial-data.html#sec-inputspatialdata">appendix</a>.</p>
+<p>Do not use unprojected geographic coordinates (latitude and longitude). <a href="A03-spatial-data.html#sec-inputspatialdata" class="quarto-xref"><span>Section C.2.1</span></a> shows how to transform geographic coordinates to rectangular coordinates (e.g., UTM).</p>
 </div>
 </div>
 <div class="cell">
@@ -546,7 +546,7 @@ Tip
 <p>The capthist object <code>hareCH6</code> now contains almost all the information needed to fit a model.</p>
 </section><section id="check-data" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="check-data">
 <span class="header-section-number">2.2</span> Check data</h2>
-<p>First review a summary of the data. See <a href="https://www.otago.ac.nz/density/html/summary.capthist.html">here</a> for definitions of the summary statistics n, u, f etc.</p>
+<p>First review a summary of the data. See <a href="https://www.otago.ac.nz/density/html/summary.capthist.html">?summary.capthist</a> for definitions of the summary statistics n, u, f etc.</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">hareCH6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -576,7 +576,7 @@ detectors used    100 100 100 100 100 100   600</code></pre>
 <div class="cell-output-display">
 <div id="fig-cap" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-cap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02-example_files/figure-html/fig-cap-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="02-example_files/figure-html/fig-cap-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="336"></a>
+<a href="02-example_files/figure-html/fig-cap-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="02-example_files/figure-html/fig-cap-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="336"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.1: Snowshoe hare spatial capture data. Trap sites (red crosses) are 61 m apart. Grid lines (grey) are 100 m apart (use arguments <code>gridlines</code> and <code>gridspace</code> to suppress the grid or vary its spacing). Colours help distinguish individuals, but some are recycled.
@@ -593,7 +593,7 @@ Figure&nbsp;2.1: Snowshoe hare spatial capture data. Trap sites (red crosses) ar
 </details><div class="cell-output-display">
 <div id="fig-moves" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-moves-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02-example_files/figure-html/fig-moves-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="02-example_files/figure-html/fig-moves-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="336"></a>
+<a href="02-example_files/figure-html/fig-moves-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="02-example_files/figure-html/fig-moves-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="336"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-moves-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.2: Trap-revealed movements of snowshoe hares
@@ -611,7 +611,7 @@ Figure&nbsp;2.2: Trap-revealed movements of snowshoe hares
 <pre><code>Warning: multi-catch likelihood used for single-catch traps</code></pre>
 </div>
 </div>
-<p>A warning is generated. The data are from single-catch traps, but there is no usable theory for likelihood-based estimation from single-catch traps. This is not the obstacle it might seem, because simulations seem to show that the alternative likelihood for multi-catch traps may be used without biasing the density estimates <span class="citation" data-cites="ebb09">(<a href="A99-references.html#ref-ebb09" role="doc-biblioref">Efford et al., 2009</a>)</span>. It is safe to ignore the warning for now. The issue arises later as a breach of the <a href="./06-assumptions.html#sec-independentindividuals">independence assumption</a>. </p>
+<p>A warning is generated. The data are from single-catch traps, but there is no usable theory for likelihood-based estimation from single-catch traps. This is not the obstacle it might seem, because simulations seem to show that the alternative likelihood for multi-catch traps may be used without biasing the density estimates <span class="citation" data-cites="ebb09">(<a href="A99-references.html#ref-ebb09" role="doc-biblioref">Efford et al., 2009</a>)</span>. It is safe to ignore the warning for now. The issue arises later as a breach of the <a href="./06-assumptions.html#sec-independence">independence assumption</a>. </p>
 </section><section id="output" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="output">
 <span class="header-section-number">2.4</span> Output</h2>
 <p>The output from <code>secr.fit</code> is an R object of class ‘secr’. If you investigate the structure of <code>fit</code> with <code>str(fit)</code> it will seem to be a mess: it is a list with more than 25 components, none of which contains the final estimates you are looking for.</p>
@@ -680,7 +680,7 @@ sigma   log 68.3457775  4.46931251 60.1324252 77.6809731</code></pre>
 <div class="cell-output-display">
 <div id="fig-plotfit" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plotfit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02-example_files/figure-html/fig-plotfit-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="02-example_files/figure-html/fig-plotfit-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="336"></a>
+<a href="02-example_files/figure-html/fig-plotfit-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="02-example_files/figure-html/fig-plotfit-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="336"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotfit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.3: Fitted halfnormal detection function, with 95% confidence limits
@@ -699,7 +699,7 @@ Figure&nbsp;2.3: Fitted halfnormal detection function, with 95% confidence limit
 <div class="cell-output-display">
 <div id="fig-esaplot" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-esaplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02-example_files/figure-html/fig-esaplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="02-example_files/figure-html/fig-esaplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="432"></a>
+<a href="02-example_files/figure-html/fig-esaplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="02-example_files/figure-html/fig-esaplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="432"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-esaplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.4: Post hoc evaluation of buffer width using <code><a href="https://rdrr.io/pkg/secr/man/esaPlot.html">esaPlot()</a></code>
@@ -728,7 +728,7 @@ Figure&nbsp;2.4: Post hoc evaluation of buffer width using <code><a href="https:
 </details><div class="cell-output-display">
 <div id="fig-pdot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pdot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02-example_files/figure-html/fig-pdot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="02-example_files/figure-html/fig-pdot-1.png" style="width:65.0%;height:60.0%" class="figure-img"></a>
+<a href="02-example_files/figure-html/fig-pdot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="02-example_files/figure-html/fig-pdot-1.png" style="width:65.0%;height:60.0%" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pdot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.5: Contour plot of overall detection probability <span class="math inline">p_\cdot(\mathbf x; \theta)</span>.
@@ -757,7 +757,7 @@ Figure&nbsp;2.5: Contour plot of overall detection probability <span class="math
 </details><div class="cell-output-display">
 <div id="fig-pdotdist" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pdotdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02-example_files/figure-html/fig-pdotdist-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8"><img src="02-example_files/figure-html/fig-pdotdist-1.png" style="width:65.0%;height:60.0%" class="figure-img"></a>
+<a href="02-example_files/figure-html/fig-pdotdist-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-8" data-gallery="quarto-lightbox-gallery-8"><img src="02-example_files/figure-html/fig-pdotdist-1.png" style="width:65.0%;height:60.0%" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pdotdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.6: Distribution of overall detection probability <span class="math inline">p_\cdot(\mathbf x; \theta)</span> for AC within the area of <a href="#fig-pdot" class="quarto-xref">Fig.&nbsp;<span>2.5</span></a>.
@@ -1212,7 +1212,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","loop":false,"closeEffect":"zoom","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
