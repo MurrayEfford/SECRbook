@@ -548,7 +548,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Not all detector types and options in <strong>secr</strong> will work with mark–resight data. See <a href="#MRlimitations">Limitations</a> for a list of known constraints (some will be mentioned along the way). See the <a href="#sec-appendix1">step-by-step guide</a> for a quick introduction.</p>
+<p>Not all detector types and options in <strong>secr</strong> will work with mark–resight data. See <a href="#sec-MRlimitations">Limitations</a> for a list of known constraints (some will be mentioned along the way). See the <a href="#sec-appendix1">step-by-step guide</a> for a quick introduction.</p>
 </div>
 </div>
 <div id="tbl-MRattributes" class="sm quarto-float anchored">
@@ -587,7 +587,7 @@ Table&nbsp;E.2: Special attributes of data objects for mark–resight analysis i
 <td style="text-align: left;">
 <code>marking</code><sup>1</sup>
 </td>
-<td style="text-align: left;">Distribution of pre-marked animals (<a href="#areaspecification">sighting-only data</a>; optional)</td>
+<td style="text-align: left;">Distribution of pre-marked animals (<a href="#sec-areaspecification">sighting-only data</a>; optional)</td>
 </tr>
 </tbody>
 </table>
@@ -692,7 +692,7 @@ Total     0 32 32 45 39   148</code></pre>
 <div class="cell-output-display">
 <div id="fig-plotMRCH" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plotMRCH-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="A05-mark-resight_files/figure-html/fig-plotMRCH-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="A05-mark-resight_files/figure-html/fig-plotMRCH-1.png" class="img-fluid figure-img" width="576"></a>
+<a href="A05-mark-resight_files/figure-html/fig-plotMRCH-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="A05-mark-resight_files/figure-html/fig-plotMRCH-1.png" class="img-fluid figure-img" width="576"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotMRCH-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;E.1: Two ways to plot sightings of unmarked animals. Petals in the lefthand plot indicate the number of sightings, except that marking occcasions are shown as a solid dot. <code>mean = FALSE</code> causes <code>sightingPlot</code> to use the total over all occasions rather than the mean. Other settings are used here only to customise the layout and colour of the plots.
@@ -874,7 +874,7 @@ sigma   log 26.896234   2.3280869 22.706517 31.859020</code></pre>
 <li>only ‘multi’, ‘proximity’ and ‘count’ detector types are allowed</li>
 <li>groups (g) are not allowed</li>
 <li>
-<a href="./05-theory-special-topics.html#sec-hybrid-mixtures">hybrid mixtures</a> with known class membership (‘hcov’) have not been implemented for mark-resight data</li>
+<a href="./05-theory-special-topics.html#sec-hybridmixtures">hybrid mixtures</a> with known class membership (‘hcov’) have not been implemented for mark-resight data</li>
 <li>some <strong>secr</strong> functions do not yet handle mark–resight data or models. These are mostly flagged with a Warning on their documentation page.</li>
 </ul>
 <p>If the sighting phase is an area or transect search then it may be possible to analyse the data by rasterizing the areas or transects (function <code>discretize</code>).</p>
@@ -1693,7 +1693,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

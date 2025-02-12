@@ -344,7 +344,7 @@ shown with intervals based on asymptotic variances. Similarly, the
 additional computation required by parametric bootstrap methods is not usually 
 warranted.
 
-## Varying effort {#varying-effort}
+## Varying effort {#sec-varyingeffort}
 
 \index{Varying effort}
 

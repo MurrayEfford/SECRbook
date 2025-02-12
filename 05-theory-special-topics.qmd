@@ -59,7 +59,7 @@ When $N(A)$ is fixed, $n$ is binomial and $s^2 = \sum_{i=1}^n [1 - a(\hat \theta
 
 The variance from @eq-varHT is on the natural scale, and the Wald confidence interval computed on this scale is symmetrical. Intervals that are symmetric on the log scale and asymmetric on the natural scale have better coverage properties. These are obtained as $(\hat D_{HT}/C, \hat D_{HT}C)$ where $C = \exp \{ z_{\alpha/2} \sqrt{\log[1 + \frac{\mathrm{var}(\hat D_{HT})}{\hat D_{HT}^2}]} \}$ [@Burnham1987; @Chao1989].
 
-## Relative density {#relativedensity1}
+## Relative density {#sec-relativedensity1}
 \index{Density surface!relative}
 
 Conditioning on $n$ *without* requiring uniform density as in the previous section leads to another result that is useful. We can estimate relative density, the distribution of AC in relation to habitat covariates, rather than absolute density. Conditioning allows individual covariates of detection $\mathbf z_i$ as before, and fitting is faster than for absolute density [@Efford2025]. 
@@ -106,7 +106,7 @@ $$
 $$
 The prediction variance of $\hat N(B)$ follows from Poisson assumptions regarding $D(\mathbf x)$ [@ef13].
 
-## Finite mixture models {#sec-finite-mixtures}
+## Finite mixture models {#sec-finitemixtures}
 \index{Likelihood!finite mixture}
 
 Finite mixture models for individual heterogeneity of capture probability were formalised for non-spatial capture--recapture by @p2000 and remain widely used [e.g., @cw]. These are essentially random-effect models in which the distribution of capture probability comprises two or more latent classes, each with a capture probability and probability of membership.
@@ -129,7 +129,7 @@ $$ {#eq-lambdau}
  
  <!-- A two-class finite mixture for a parameter $\theta$ is represented by three further parameters: the values $\theta_1$ and $\theta_2$ for the two classes and  $\pi_1$ for the probability of membership in class 1 ($\pi_2 = 1-\pi_1$ for the alternate class). The mean is $\bar \theta = \sum_i \pi_i \theta_i$. The CV is $\mathrm{CV}(\theta) = \sqrt{\sum_i \pi_i (\theta_i - \bar \theta)^2} / \bar \theta$. -->
   
-## Hybrid finite mixture models {#sec-hybrid-mixtures}
+## Hybrid finite mixture models {#sec-hybridmixtures}
 \index{Likelihood!hybrid mixture}
   
 We can modify the finite mixture likelihood for data in which the class membership of some or all individuals is known. Indicate the class membership of the $i$-th individual by a variable $u_i$ that may take values 0, 1, ..., $U$, where $u_i = 0$ indicates an individual of unknown class, and the class frequencies are $n_0$, $n_1$, ..., $n_U$ (not to be confused with $n_1$,...,$n_C$ in @eq-CL). We assume here that detection histories are sorted by class membership, starting with the unknowns.

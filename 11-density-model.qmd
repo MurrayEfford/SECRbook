@@ -356,7 +356,7 @@ strip.legend(c(2674460, 5982886), legend = seq(0,22,2), col = terrain.colors(11)
 
 Multiple predictors may be included in one 's' smooth term, implying interaction. This assumes isotropy -- equality of scales on the different predictors -- which is appropriate for geographic coordinates such as x and y in this example. In other cases, predictors may be measured on different scales (e.g., structural complexity of vegetation and elevation) and isotropy cannot be assumed. In these cases a tensor-product smooth (`te`) is appropriate because it is scale-invariant. For `te`, 'k' represents the order of the smooth on each axis, and we must fix the number of knots with 'fx = TRUE' to override automatic selection. 
 
-For more on the use of regression splines see the documentation for **mgcv**, the **secr** help page `?smooths', @w06, and @bk14.
+For more on the use of regression splines see the documentation for **mgcv**, the **secr** help page `?smooths', @w06, and @bk2014.
 
 ### Scale of effect {#sec-scaleofeffect}
 \index{Density surface!scale of effect}

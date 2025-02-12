@@ -52,9 +52,8 @@ knitr::include_graphics('figures/schematic3.png')
 - Any of the objects input to `secr.fit` (traps, capthist, mask) may include a dataframe of covariates  saved as an attribute. Covariate names may be used in model formulae; the `covariates` method is used to extract or replace covariates. Use `addCovariates` for trap or mask covariates from spatial data sources (e.g., shapefile or 'sf' object)
 - Fitted secr models may be manipulated with the methods shown on the right. 
 
-::: {.callout-note}
-## Subsets
-Avoid using '[' to extract subsets from mask, capthist and other **secr** objects. Use the provided `subset` methods. It is generally safe to use '[[' to extract one session from a multi-session capthist object. 
+::: {.callout-tip}
+Avoid using '[' to extract subsets from capthist, traps, mask and other **secr** objects. Use the provided `subset` methods. It is generally safe to use '[[' to extract one session from a multi-session capthist object. 
 :::
 
 ## Functions
@@ -170,7 +169,7 @@ Users may provide their own starting values. These may be a vector of coefficien
 ### `model` -- detection and density sub-models 
 \index{secr.fit!model}
 
-The core parameters are 'real' parameters in the terminology of MARK [@cw]. Three real parameters are commonly modelled in **secr**: 'D' (for density), and 'g0' and 'sigma' (for the detection function). Other 'real' parameters appear in particular contexts. 'z' is a shape parameter that is used only when the [detection function](10-detection-model.qmd#sec-detectfn) has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter 'lambda0' in place of 'g0'. A further 'real' parameter is the mixing proportion 'pmix', used in [finite mixture models](05-theory-special-topics#sec-finite-mixtures) and [hybrid mixture models](05-theory-special-topics#sec-hybrid-mixtures).
+The core parameters are 'real' parameters in the terminology of MARK [@cw]. Three real parameters are commonly modelled in **secr**: 'D' (for density), and 'g0' and 'sigma' (for the detection function). Other 'real' parameters appear in particular contexts. 'z' is a shape parameter that is used only when the [detection function](10-detection-model.qmd#sec-detectfn) has three parameters. Some detection functions primarily model the cumulative hazard of detection, rather than the probability of detection; these use the real parameter 'lambda0' in place of 'g0'. A further 'real' parameter is the mixing proportion 'pmix', used in [finite mixture models](05-theory-special-topics#sec-finitemixtures) and [hybrid mixture models](05-theory-special-topics#sec-hybridmixtures).
 
 By default, each 'real' parameter is assumed to be constant over time, space and individual. We specify more interesting, and often better-fitting, models with the 'model' argument of `secr.fit`.  Here  'model' refers to variation in a parameter that may be explained by known factors and covariates, perhaps better designated a 'sub-model' of the overarching SECR model (@sec-theory).
 
@@ -181,12 +180,12 @@ Sub-models are constructed differently for detection and density parameters as e
 ### `CL` -- conditional vs full likelihood {#CL}  
 \index{secr.fit!CL}
 
-'CL' switches between maximizing the likelihood conditional on $n$ (TRUE) or the full likelihood (FALSE). The conditional option is faster because it does not estimate absolute density. Uniform absolute density may be estimated from the conditional fit, or indeed any fit, with the `derived` method. For Poisson $n$ (the default), the estimate is identical within numerical error to that from the full likelihood. The alternative (binomial $n$) is obtained by setting the [details argument](#sec-details) 'distribution = "binomial"'. Relative density (density modelled as a function of covariates, without an intercept) may be modelled with `CL = TRUE` in recent versions (see sections on the [theory](05-theory-special-topics.qmd#relativedensity1) and [implementation](11-density-model#relativedensity2) of relative density).
+'CL' switches between maximizing the likelihood conditional on $n$ (TRUE) or the full likelihood (FALSE). The conditional option is faster because it does not estimate absolute density. Uniform absolute density may be estimated from the conditional fit, or indeed any fit, with the `derived` method. For Poisson $n$ (the default), the estimate is identical within numerical error to that from the full likelihood. The alternative (binomial $n$) is obtained by setting the [details argument](#sec-details) 'distribution = "binomial"'. Relative density (density modelled as a function of covariates, without an intercept) may be modelled with `CL = TRUE` in recent versions (see sections on the [theory](05-theory-special-topics.qmd#sec-relativedensity1) and [implementation](11-density-model.qmd#sec-relativedensity2) of relative density).
 
 ### `method` -- maximization algorithm 
 \index{secr.fit!method}
 
-Models are fitted in `secr.fit` by numerically maximizing the log-likelihood with functions from the **stats** package [@R-base]. The default method is 'Newton-Raphson' in the function `stats::nlm`. By default, all reported variances, covariances, standard errors and confidence limits are asymptotic and based on a numerical estimate of the information matrix, as described [here](03-theory.qmd#confidenceintervals). 
+Models are fitted in `secr.fit` by numerically maximizing the log-likelihood with functions from the **stats** package [@R-base]. The default method is 'Newton-Raphson' in the function `stats::nlm`. By default, all reported variances, covariances, standard errors and confidence limits are asymptotic and based on a numerical estimate of the information matrix, as described [here](03-theory.qmd#sec-confidenceintervals). 
 
 The Newton-Raphson algorithm is fast, but it sometimes fails to compute the information matrix correctly, causing some standard errors to be set to NA; see the 'method' argument of `secr.fit` for alternatives. Use `confint.secr` for profile likelihood intervals and `sim.secr` for parametric bootstrap intervals (both are slow).
 

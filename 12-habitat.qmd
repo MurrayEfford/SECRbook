@@ -352,7 +352,7 @@ Values are extracted for the point in the data source corresponding to the centr
 
 One or more input columns may be selected by name. The argument 'strict' generates a warning if points lie outside a mask used as a spatial data source. @sec-spatialdata has more about spatial data in **secr**.
 
-See @sec-density for further applications, including smooths to represent the [scale of effect](11-density-model.qmd#scaleofeffect).
+See @sec-density for further applications, including smooths to represent the [scale of effect](11-density-model.qmd#sec-scaleofeffect).
 
 ### Repairing missing values
 

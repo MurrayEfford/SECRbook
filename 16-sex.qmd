@@ -37,7 +37,7 @@ Parameters not explicitly modelled as session-specific are assumed to be shared.
 
 ### Groups
 
-[Groups](05-theory-special-topics.qmd#groups) were described earlier. Use full likelihood (`CL = FALSE`), define `groups = "sex"` or similar, and include a group term 'g' in relevant formulae (e.g., g0 $\sim$ g). 'CL' and 'groups' are arguments of `secr.fit`. The preceding Warning applies also to groups.
+[Groups](05-theory-special-topics.qmd#sec-groups) were described earlier. Use full likelihood (`CL = FALSE`), define `groups = "sex"` or similar, and include a group term 'g' in relevant formulae (e.g., g0 $\sim$ g). 'CL' and 'groups' are arguments of `secr.fit`. The preceding Warning applies also to groups.
 
 ## Demonstration {#sec-demonstration}
 

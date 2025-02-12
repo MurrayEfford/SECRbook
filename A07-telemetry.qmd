@@ -92,7 +92,7 @@ Here, telemetry data greatly improves the precision of the estimated scale of mo
 
 ## Standalone telemetry data 
 
-Telemetry data are stored in modified **secr** capthist objects. A capthist object may comprise telemetry fixes only ('standalone telemetry') or telemetry fixes in association with capture--recapture data (composite telemetry and capture--recapture). In this section I describe standalone telemetry data. A composite capthist is formed by combining a telemetry-only object and a standard capthist object with `addTelemetry`, as described in the [next section](#sec-composite).
+Telemetry data are stored in modified **secr** capthist objects. A capthist object may comprise telemetry fixes only ('standalone telemetry') or telemetry fixes in association with capture--recapture data (composite telemetry and capture--recapture). In this section I describe standalone telemetry data. A composite capthist is formed by combining a telemetry-only object and a standard capthist object with `addTelemetry`, as described in @sec-composite.
 
 ### The 'traps' object for telemetry data
 

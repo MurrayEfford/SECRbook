@@ -517,7 +517,7 @@ Warning
 </div>
 </section><section id="groups" class="level3" data-number="16.1.4"><h3 data-number="16.1.4" class="anchored" data-anchor-id="groups">
 <span class="header-section-number">16.1.4</span> Groups</h3>
-<p><a href="./05-theory-special-topics.html#groups">Groups</a> were described earlier. Use full likelihood (<code>CL = FALSE</code>), define <code>groups = "sex"</code> or similar, and include a group term ‘g’ in relevant formulae (e.g., g0 <span class="math inline">\sim</span> g). ‘CL’ and ‘groups’ are arguments of <code>secr.fit</code>. The preceding Warning applies also to groups.</p>
+<p><a href="./05-theory-special-topics.html#sec-groups">Groups</a> were described earlier. Use full likelihood (<code>CL = FALSE</code>), define <code>groups = "sex"</code> or similar, and include a group term ‘g’ in relevant formulae (e.g., g0 <span class="math inline">\sim</span> g). ‘CL’ and ‘groups’ are arguments of <code>secr.fit</code>. The preceding Warning applies also to groups.</p>
 </section></section><section id="sec-demonstration" class="level2" data-number="16.2"><h2 data-number="16.2" class="anchored" data-anchor-id="sec-demonstration">
 <span class="header-section-number">16.2</span> Demonstration</h2>
 <p>We re-analyse the morning house mouse data already analysed in <a href="15-finite-mixtures.html" class="quarto-xref"><span>Chapter 15</span></a>. For all methods except the hybrid mixture we have to discard one individual of unknown sex (hence capthist marked with ‘x’). Close inspection of the results shows that the methods are equivalent.</p>
@@ -667,7 +667,7 @@ sigma    log   2.05123    0.173552   1.73830   2.42050</code></pre>
 <div class="cell-output-display">
 <div id="fig-chart" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/chart.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="figures/chart.png" class="img-fluid figure-img" style="width:95.0%"></a>
+<a href="figures/chart.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="figures/chart.png" class="img-fluid figure-img" style="width:95.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16.1: Decision chart for including sex in detection model. `sexcov’ is a character value naming a 2-level character or factor individual covariate after some trial and error with out.width units etc.
@@ -1177,7 +1177,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

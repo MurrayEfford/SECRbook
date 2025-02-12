@@ -46,7 +46,7 @@ Mark--resight data are represented in **secr** by a capthist data object, with m
 [^countdetectors]:'Count' detectors most closely approximate sampling with replacement (McClintock and White 2012); sampling strictly without replacement implies detection at no more than one site per occasion (detector type 'multi') that has yet to be implemented for mark--resight data, and may prove difficult.
 
 ::: {.callout-warning}
-Not all detector types and options in **secr** will work with mark--resight data. See [Limitations](#MRlimitations) for a list of known constraints (some will be mentioned along the way). See the [step-by-step guide](#sec-appendix1) for a quick introduction.
+Not all detector types and options in **secr** will work with mark--resight data. See [Limitations](#sec-MRlimitations) for a list of known constraints (some will be mentioned along the way). See the [step-by-step guide](#sec-appendix1) for a quick introduction.
 :::
 
 | Object | Attribute  | Description |
@@ -55,7 +55,7 @@ Not all detector types and options in **secr** will work with mark--resight data
 | capthist| `Tu` | Counts of unmarked animals |
 | capthist| `Tm` | Counts of marked animals not identified |
 | capthist| `Tn` | Counts of sightings with unknown mark status (not modelled) |
-| mask    | `marking`^1^ | Distribution of pre-marked animals ([sighting-only data]( #areaspecification); optional) |
+| mask    | `marking`^1^ | Distribution of pre-marked animals ([sighting-only data]( #sec-areaspecification); optional) |
 
 : Special attributes of data objects for mark--resight analysis in **secr**.  {#tbl-MRattributes .sm}
 
@@ -330,7 +330,7 @@ These limitations apply when fitting mark--resight models in **secr**:
 
 * only 'multi', 'proximity' and 'count' detector types are allowed
 * groups (g) are not allowed
-* [hybrid mixtures](05-theory-special-topics.qmd#sec-hybrid-mixtures) with known class membership ('hcov') have not been implemented for mark-resight data
+* [hybrid mixtures](05-theory-special-topics.qmd#sec-hybridmixtures) with known class membership ('hcov') have not been implemented for mark-resight data
 * some **secr** functions do not yet handle mark--resight data or models. These are mostly flagged with a Warning on their documentation page.
 
 If the sighting phase is an area or transect search then it may be possible to analyse the data by rasterizing the areas or transects (function `discretize`). 

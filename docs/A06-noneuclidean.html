@@ -551,7 +551,7 @@ Figure&nbsp;F.1: (a) Central Selkirk grizzly bear hair snag locations, (b) Mask 
 </div>
 <p>Computation of the distances is entirely under the control of the user – here we indicate that by ‘…’. The calculations may use cell-specific values of two ‘real’ parameters ‘D’ and ‘noneuc’ that as needed are passed by <code>secr.fit</code> as covariates of the mask. ‘D’ is the usual cell-specific expected density in animals per hectare. ‘noneuc’ is a special cell-specific ‘real’ parameter used only here: it means whatever the user wants it to mean.</p>
 <p>Whether ‘noneuc’, ‘D’ or other mask covariates are needed by mydistfn is indicated by the character vector returned by mydistfn when it is called with no arguments. Thus, charactervector may be either a zero-length character vector or a vector of one or more parameter names (“noneuc”, “D”, c(“noneuc”, “D”)).</p>
-<p>‘noneuc’ has its own link scale (default ‘log’) on which it may be modelled as a linear function of any of the predictors available for density (x, y, x2, y2, xy, session, Session, g, or any mask covariate – see <a href="11-density-model.html" class="quarto-xref"><span>Chapter 11</span></a>. It may also, in principle, be modelled using regression splines <span class="citation" data-cites="bk14">(<a href="A99-references.html#ref-bk14" role="doc-biblioref">Borchers &amp; Kidney, 2014</a>)</span>, but this is untested. When the model is fitted by <code>secr.fit</code>, the beta parameters for the ‘noneuc’ sub-model are estimated along with all the others. To make noneuc available to userdist, ensure that it appears in the ‘model’ argument. Use the formula noneuc ~ 1 if noneuc is constant.</p>
+<p>‘noneuc’ has its own link scale (default ‘log’) on which it may be modelled as a linear function of any of the predictors available for density (x, y, x2, y2, xy, session, Session, g, or any mask covariate – see <a href="11-density-model.html" class="quarto-xref"><span>Chapter 11</span></a>. It may also, in principle, be modelled using regression splines <span class="citation" data-cites="bk2014">(<a href="A99-references.html#ref-bk2014" role="doc-biblioref">Borchers &amp; Kidney, 2014</a>)</span>, but this is untested. When the model is fitted by <code>secr.fit</code>, the beta parameters for the ‘noneuc’ sub-model are estimated along with all the others. To make noneuc available to userdist, ensure that it appears in the ‘model’ argument. Use the formula noneuc ~ 1 if noneuc is constant.</p>
 <p>The function may compute least-cost paths via intervening mask cells using the powerful <strong>igraph</strong> package <span class="citation" data-cites="cn06">(<a href="A99-references.html#ref-cn06" role="doc-biblioref">Csardi &amp; Nepusz, 2006</a>)</span>. This is most easily accessed with package <strong>gdistance</strong>, which in turn uses the RasterLayer S4 object class from the package <strong>raster</strong>. To facilitate this we include code in <strong>secr</strong> to treat the ‘mask’ S3 class as a virtual S4 class, and provide a method for the function ‘raster’ to convert a mask to a RasterLayer.</p>
 <p>If the function generates any bad distances (negative, infinite or missing) these will be replaced by 1e10, with a warning.</p>
 </section><section id="examples" class="level2" data-number="F.4"><h2 data-number="F.4" class="anchored" data-anchor-id="examples">
@@ -815,7 +815,7 @@ noneuc   log 27.23476   1.0319163 25.28619 29.33349</code></pre>
 </div>
 </div>
 <p>Note that we have re-used the userdist function fn2, and allowed both density and noneuc (sigma) to vary by forest type. Strictly, we should have identified “forest” as a required covariate in the (re)definition of fn2, but this is obviously not critical.</p>
-<p>A full analysis should also consider models with variation in lambda0. There is no simple way in <strong>secr</strong> to model continuous spatial variation in lambda0 as a function of home-range location (cf sigma in Example 1 above). However, variation in lambda0 at the point of detection may be modelled with detector-level covariates(<a href="https://www.otago.ac.nz/density/pdfs/secr-overview.pdf">secr-overview.pdf</a>).</p>
+<p>A full analysis should also consider models with variation in lambda0. There is no simple way in <strong>secr</strong> to model continuous spatial variation in lambda0 as a function of home-range location (cf sigma in Example 1 above). However, variation in lambda0 at the point of detection may be modelled with detector-level covariates (<a href="https://www.otago.ac.nz/density/pdfs/secr-overview.pdf">secr-overview.pdf</a>).</p>
 </section></section><section id="and-the-winner-is" class="level2" data-number="F.5"><h2 data-number="F.5" class="anchored" data-anchor-id="and-the-winner-is">
 <span class="header-section-number">F.5</span> And the winner is…</h2>
 <p>Now that we have a bunch of fitted models, let’s see which does the best:</p>
@@ -1085,8 +1085,8 @@ Figure&nbsp;F.4: Shaded plot of probability animal is detected at least once. An
 <span class="glightbox-desc lightbox-desc-4">Figure&nbsp;F.4: Shaded plot of probability animal is detected at least once. Animals living within the detector array and away from a river (about half the population within the array) stand very little chance of being detected because the model confines them to a small home range and lambda0 is constant.</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-bk14" class="csl-entry" role="listitem">
-Borchers, D. L., &amp; Kidney, D. J. (2014). <em>Flexible density surface estimation using regression splines with spatially explicit capture-recapture data</em>. In prep.
+<div id="ref-bk2014" class="csl-entry" role="listitem">
+Borchers, D. L., &amp; Kidney, D. (2014). <em>Flexible density surface estimation for spatially explicit capture–recapture surveys</em>. University of St Andrews. <a href="https://research-repository.st-andrews.ac.uk/bitstream/handle/10023/9147/secrgam_techrep.pdf?sequence=1">https://research-repository.st-andrews.ac.uk/bitstream/handle/10023/9147/secrgam_techrep.pdf?sequence=1</a>
 </div>
 <div id="ref-cn06" class="csl-entry" role="listitem">
 Csardi, G., &amp; Nepusz, T. (2006). The igraph software package for complex network research. <em>InterJournal</em>, <em>1695</em>. <a href="http://igraph.org">http://igraph.org</a>
@@ -1542,7 +1542,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

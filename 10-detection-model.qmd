@@ -241,7 +241,7 @@ In **secr** each detection parameter ($g_0, \lambda_0, \sigma, z$) is controlled
 | K | site transient response | site effectiveness depends on preceding occasion |
 | session | session factor | one level for each session |
 | Session | session trend | linear trend on link scale |
-| h2 | 2-class mixture | [finite mixture model](05-theory-special-topics.qmd#sec-finite-mixtures) with 2 latent classes |
+| h2 | 2-class mixture | [finite mixture model](05-theory-special-topics.qmd#sec-finitemixtures) with 2 latent classes |
 | ts | marking vs sighting | two levels (marking and sighting occasions) |
 
 : Automatically generated predictor variables for detection models {#tbl-predictors .sm}
@@ -296,7 +296,7 @@ Any name in a formula that is not listed as a variable in @tbl-predictors is ass
 of columns in the respective dataframes may be used in model formulae. 
 Time-varying detector covariates are a special case considered below. {#tbl-covariates .sm} 
     
-<!-- [Hybrid mixture models](05-theory-special-topics.qmd#sec-hybrid-mixtures) allow some or all individuals to be assigned permanently to a group (mixture class), while other individuals (ideally a minority) may be of unknown class. -->
+<!-- [Hybrid mixture models](05-theory-special-topics.qmd#sec-hybridmixtures) allow some or all individuals to be assigned permanently to a group (mixture class), while other individuals (ideally a minority) may be of unknown class. -->
 
 A continuous covariate that takes many unique values poses problems for the implementation in **secr**. A multiplicity of values inflates the size of internal lookup tables, both slowing down each likelihood evaluation and potentially exceeding the available memory[^CKM]. A binned covariate should do the job equally well, while saving time and space (see function [`binCovariate`](https://www.otago.ac.nz/density/html/binCovariate.html)).
 
@@ -315,7 +315,7 @@ A 'traps' object may have an attribute 'timevaryingcov' that is a list in which 
 [^linklinear]: We use 'link-linear' to describe a linear model on the link scale, where this may be log-linear, logit-linear etc.
 
 Modelling a link-linear[^linklinear] relationship between a covariate and a parameter may be too restrictive.  
-Regression splines are a very flexible way to represent non-linear responses in generalized additive models, implemented in the R package **mgcv** [@w06]. @bk14 showed how they may be used to model 2-dimensional trend in density. They used **mgcv** to construct regression spline basis functions from mask x- and y-coordinates, and possibly additional mask covariates, and then passed these as covariates to `secr.fit`. Smooth, semi-parametric responses are also useful for modelling variation in detection parameters such as $g_0$ and $\sigma$ over time, or in response to numeric individual- or detector-level covariates, when (1) a linear or other parametric response is arbitrary or implausible, and (2) sampling spans a range of times or levels of the covariate(s). 
+Regression splines are a very flexible way to represent non-linear responses in generalized additive models, implemented in the R package **mgcv** [@w06]. @bk2014 showed how they may be used to model 2-dimensional trend in density. They used **mgcv** to construct regression spline basis functions from mask x- and y-coordinates, and possibly additional mask covariates, and then passed these as covariates to `secr.fit`. Smooth, semi-parametric responses are also useful for modelling variation in detection parameters such as $g_0$ and $\sigma$ over time, or in response to numeric individual- or detector-level covariates, when (1) a linear or other parametric response is arbitrary or implausible, and (2) sampling spans a range of times or levels of the covariate(s). 
 
 Smooth terms may be used in **secr** model formulae for both density and detection parameters. The covariate is merely wrapped in a call to the smoother function `s()`. Smoothness is controlled by the argument 'k'.
 
@@ -384,7 +384,7 @@ The trap-facilitation model fitted to the deer mouse data results in a larger an
 ## Varying effort
 \index{Detection model!varying effort}
 
-Researchers are often painfully aware of glitches in their data gathering - traps that were not set, sampling occasions missed or delayed due to weather etc. Even when the actual estimates are robust, as in an example below, it is desirable (therapeutic and scientific) to allow for known irregularities in the data. This is the role of the 'usage' matrix as [described](03-theory.qmd#varying-effort) in @sec-theory.
+Researchers are often painfully aware of glitches in their data gathering - traps that were not set, sampling occasions missed or delayed due to weather etc. Even when the actual estimates are robust, as in an example below, it is desirable (therapeutic and scientific) to allow for known irregularities in the data. This is the role of the 'usage' matrix as [described](03-theory.qmd#sec-varyingeffort) in @sec-theory.
 
 The 'usage' attribute of a 'traps' object in **secr** is a $K$ x $S$ matrix recording the effort ($T_{sk}$) at each detector $k = 1...K$ and occasion $s = 1...S$. Effort may be binary (0/1) or continuous. If the attribute is missing (NULL) it will be treated as all ones. Extraction and replacement functions are provided (`usage` and `usage<-`, as demonstrated below). All detector types accept usage data in the same format[^polygonusage]. Binomial count detectors are a special case: when the `secr.fit` argument binomN = 1, or equivalently binomN = 'usage', usage is interpreted as the size of the binomial distribution.
 

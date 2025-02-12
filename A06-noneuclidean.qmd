@@ -186,7 +186,7 @@ is a special cell-specific 'real' parameter used only here: it means whatever th
 
 Whether 'noneuc', 'D' or other mask covariates are needed by mydistfn is indicated by the character vector returned by mydistfn when it is called with no arguments. Thus, charactervector may be either a zero-length character vector or a vector of one or more parameter names ("noneuc", "D", c("noneuc", "D")).
 
-'noneuc' has its own link scale (default 'log') on which it may be modelled as a linear function of any of the predictors available for density (x, y, x2, y2, xy, session, Session, g, or any mask covariate -- see @sec-density. It may also, in principle, be modelled using regression splines [@bk14], but this is untested. When the model is fitted by `secr.fit`, the beta parameters for the 'noneuc' sub-model are estimated along with all the others. To make noneuc available to userdist, ensure that it appears in the 'model' argument. Use the formula noneuc ~ 1 if noneuc is constant.
+'noneuc' has its own link scale (default 'log') on which it may be modelled as a linear function of any of the predictors available for density (x, y, x2, y2, xy, session, Session, g, or any mask covariate -- see @sec-density. It may also, in principle, be modelled using regression splines [@bk2014], but this is untested. When the model is fitted by `secr.fit`, the beta parameters for the 'noneuc' sub-model are estimated along with all the others. To make noneuc available to userdist, ensure that it appears in the 'model' argument. Use the formula noneuc ~ 1 if noneuc is constant.
 
 The function may compute least-cost paths via intervening mask cells using the powerful **igraph** package [@cn06]. This
 is most easily accessed with package **gdistance**, which in turn uses the RasterLayer S4 object class from the package **raster**. To facilitate this we include code in **secr** to treat the 'mask' S3 class as a virtual S4 class, and provide a method for the function 'raster' to convert a mask to a RasterLayer.
@@ -483,7 +483,7 @@ predict(fit5, newdata =
 ```
 Note that we have re-used the userdist function fn2, and allowed both density and noneuc (sigma) to vary by forest type. Strictly, we should have identified "forest" as a required covariate in the (re)definition of fn2, but this is obviously not critical.
 
-A full analysis should also consider models with variation in lambda0. There is no simple way in **secr** to model continuous spatial variation in lambda0 as a function of home-range location (cf sigma in Example 1 above). However, variation in lambda0 at the point of detection may be modelled with detector-level covariates([secr-overview.pdf]). 
+A full analysis should also consider models with variation in lambda0. There is no simple way in **secr** to model continuous spatial variation in lambda0 as a function of home-range location (cf sigma in Example 1 above). However, variation in lambda0 at the point of detection may be modelled with detector-level covariates ([secr-overview.pdf]). 
 
 ## And the winner is...
 

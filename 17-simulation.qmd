@@ -82,7 +82,7 @@ predict(fit)
 
 This is rather laborious and it's easy to slip up. We next outline the **secr** functions `sim.popn` and `sim.capthist` that conveniently wrap Steps 1 & 2, respectively, along with many extensions. 
 
-A further level of wrapping is provided by package [**secrdesign**](#sec-secrdesign) that manages simulation scenarios, their replicated execution (Steps 1--3), and the summarisation of results.
+A further level of wrapping is provided by package [secrdesign](#sec-secrdesign) that manages simulation scenarios, their replicated execution (Steps 1--3), and the summarisation of results.
 
 ### Simulating AC distributions with `sim.popn`
 \index{Simulation!population}
@@ -225,7 +225,7 @@ An inhomogeneous Poisson process (IHPP) is specified by setting 'model2D = "IHP"
 
 #### Cox Processes {#sec-LGCP}
 
-In a Cox process the expected density surface of the IHPP varies randomly between realisations (i.e. replicates). For example, **secr** has the function `randomDensity` that may be used in `sim.popn` to generate a new binary density mosaic at each call (see Examples on its help page).
+In a Cox process the expected density surface of the IHPP varies randomly between realisations (i.e. replicates). For example, **secr** has the function `randomDensity` that may be used in `sim.popn` to generate a new binary density mosaic at each call (see Examples on its [help](https://www.otago.ac.nz/density/html/sim.popn.html) page).
 
 A flexible model for continuous variation in density is the log-Gaussian Cox Process (LGCP) [@Johnson2010; @drns21; @Efford2024]. The IHPP log-intensity surface of a LGCP is Gaussian (normally distributed) at each point, but adjacent points co-vary; autocorrelation declines with distance. The notation and parameterisation can be confusing. The term 'Gaussian' refers to the marginal intensity, not the autocorrelation function which is commonly exponential. The Gaussian variance is on the log scale, so even a variance as low as 1.0 indicates substantial heterogeneity. The exponential scale parameter naturally has the same units as the SECR detection function, although @drns21 rescaled it as 6\% or 100\% of the width of the study area. **secr** uses the function `rLGCP` from **spatstat** [@Baddeley2015] which in turn depends on **RandomFields** [@Schlather2015]. 
 
