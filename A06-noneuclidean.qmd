@@ -198,7 +198,7 @@ leftbank <- read.table(paste0(datadir,"/leftbank.txt"))[21:195,]
 #| label: fit0
 #| echo: true
 #| eval: true
-#| warning: false
+#| warning: true
 #| cache: true
 fit0 <- secr.fit(ovposs, mask = ovmask, detectfn = "HHN", trace = FALSE)
 ```
