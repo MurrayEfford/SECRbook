@@ -571,7 +571,7 @@ Figure&nbsp;F.2: (a) Central Selkirk dry-path distances from an arbitrary point 
 </section><section id="dynamic-userdist" class="level2" data-number="F.3"><h2 data-number="F.3" class="anchored" data-anchor-id="dynamic-userdist">
 <span class="header-section-number">F.3</span> Dynamic userdist</h2>
 <p></p>
-<p>The userdist function takes three arguments. The first two are simply 2-column matrices with the coordinates of the detectors and animal locations (mask points) respectively. The third is a habitat mask (this may be the same as xy2). The function has this form:</p>
+<p>For dynamic non-Euclidean distances a function is passed to <code>secr.fit</code> in the ‘details’ argument ‘userdist’, rather than a matrix. The userdist function should take three arguments. The first two are simply 2-column matrices with the coordinates of the detectors and animal locations (mask points) respectively. The third is a habitat mask (this may be the same as xy2). The function has this form:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mydistfn</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">xy1</span>, <span class="va">xy2</span>, <span class="va">mask</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html">missing</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">charactervector</span><span class="op">)</span>  </span>
@@ -582,7 +582,7 @@ Figure&nbsp;F.2: (a) Central Selkirk dry-path distances from an arbitrary point 
 <p>Computation of the distances is entirely under the control of the user – here we indicate that by ‘…’. The calculations may use cell-specific values of two ‘real’ parameters ‘D’ and ‘noneuc’ that as needed are passed by <code>secr.fit</code> as covariates of the mask. ‘D’ is the usual cell-specific expected density in animals per hectare. ‘noneuc’ is a special cell-specific ‘real’ parameter used only here: it means whatever the user wants it to mean.</p>
 <p>Whether ‘noneuc’, ‘D’ or other mask covariates are needed by mydistfn is indicated by the character vector returned by mydistfn when it is called with no arguments. Thus, charactervector may be either a zero-length character vector or a vector of one or more parameter names (“noneuc”, “D”, c(“noneuc”, “D”)).</p>
 <p>‘noneuc’ has its own link scale (default ‘log’) on which it may be modelled as a linear function of any of the predictors available for density (x, y, x2, y2, xy, session, Session, g, or any mask covariate – see <a href="11-density-model.html" class="quarto-xref"><span>Chapter 11</span></a>. It may also, in principle, be modelled using regression splines <span class="citation" data-cites="bk2014">(<a href="A99-references.html#ref-bk2014" role="doc-biblioref">Borchers &amp; Kidney, 2014</a>)</span>, but this is untested. When the model is fitted by <code>secr.fit</code>, the beta parameters for the ‘noneuc’ sub-model are estimated along with all the others. To make noneuc available to userdist, ensure that it appears in the ‘model’ argument. Use the formula noneuc ~ 1 if noneuc is constant.</p>
-<p>The function may compute least-cost paths via intervening mask cells using the powerful <strong>igraph</strong> package <span class="citation" data-cites="cn06">(<a href="A99-references.html#ref-cn06" role="doc-biblioref">Csardi &amp; Nepusz, 2006</a>)</span>. This is most easily accessed with package <strong>gdistance</strong>, which in turn uses the RasterLayer S4 object class from the package <strong>raster</strong>. To facilitate this we include code in <strong>secr</strong> to treat the ‘mask’ S3 class as a virtual S4 class, and provide a method for the function ‘raster’ to convert a mask to a RasterLayer.</p>
+<p>The function may compute least-cost paths via intervening mask cells using the powerful <strong>igraph</strong> package <span class="citation" data-cites="cn06">(<a href="A99-references.html#ref-cn06" role="doc-biblioref">Csardi &amp; Nepusz, 2006</a>)</span>. This is most easily accessed with package <strong>gdistance</strong>, which in turn uses the RasterLayer S4 object class from the package <strong>raster</strong>. To facilitate this, <strong>secr</strong> includes code to treat the ‘mask’ S3 class as a virtual S4 class, and provides a method for the function ‘raster’ to convert a mask to a RasterLayer.</p>
 <p>If the function generates any bad distances (negative, infinite or missing) these will be replaced by 1e10, with a warning.</p>
 </section><section id="examples" class="level2" data-number="F.4"><h2 data-number="F.4" class="anchored" data-anchor-id="examples">
 <span class="header-section-number">F.4</span> Examples</h2>
@@ -843,7 +843,7 @@ noneuc   log 27.23476   1.0319163 25.28619 29.33349</code></pre>
 </div>
 </div>
 <p>Note that we have re-used the userdist function fn2, and allowed both density and noneuc (sigma) to vary by forest type. Strictly, we should have identified “forest” as a required covariate in the (re)definition of fn2, but this is obviously not critical.</p>
-<p>A full analysis should also consider models with variation in lambda0. There is no simple way in <strong>secr</strong> to model continuous spatial variation in lambda0 as a function of home-range location (cf sigma in Example 1 above). However, variation in lambda0 at the point of detection may be modelled with detector-level covariates (<a href="https://www.otago.ac.nz/density/pdfs/secr-overview.pdf">secr-overview.pdf</a>).</p>
+<p>A full analysis should also consider models with variation in lambda0. There is no simple way in <strong>secr</strong> to model continuous spatial variation in lambda0 as a function of home-range location (cf sigma in Example 1 above). However, variation in lambda0 at the point of detection may be modelled with detector-level covariates (<a href="10-detection-model.html#sec-detectioncovariates" class="quarto-xref"><span>Section 10.2.1</span></a>).</p>
 </section></section><section id="and-the-winner-is" class="level2" data-number="F.5"><h2 data-number="F.5" class="anchored" data-anchor-id="and-the-winner-is">
 <span class="header-section-number">F.5</span> And the winner is…</h2>
 <p>Now that we have a bunch of fitted models, let’s see which does the best:</p>
@@ -871,14 +871,14 @@ fit5           D~forest lambda0~1 noneuc~forest    5 3118.4 20.280 0.0000</code>
 <p>What if we want non-Euclidean distances, but do not want to estimate noneuc? This is a perfectly reasonable request if sigma is constant across space and the distance computation is determined entirely by the habitat geometry, with no need for an additional parameter. If ‘noneuc’ is not included in the character vector returned by your userdist function when it is called with no arguments then noneuc is not modelled at all. This is the default in <strong>secrlinear</strong>.</p>
 <p>Providing a suitable initial value for ‘noneuc’ can be a problem. The argument ‘start’ of <code>secr.fit</code> may be a named, and possibly incomplete, list of real parameter values, so a call such as this is valid:</p>
 <div class="cell">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">secr.fit</span> <span class="op">(</span><span class="va">captdata</span>, model <span class="op">=</span> <span class="va">noneuc</span><span class="op">~</span><span class="fl">1</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>userdist<span class="op">=</span><span class="va">fn2</span><span class="op">)</span>, </span>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">secr.fit</span> <span class="op">(</span><span class="va">captdata</span>, model <span class="op">=</span> <span class="va">noneuc</span><span class="op">~</span><span class="fl">1</span>, details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>userdist <span class="op">=</span> <span class="va">fn2</span><span class="op">)</span>, </span>
 <span>    trace <span class="op">=</span> <span class="cn">FALSE</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>noneuc <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>, fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 secr.fit(capthist = captdata, model = noneuc ~ 1, start = list(noneuc = 25), 
     fixed = list(sigma = 1), details = list(userdist = fn2), 
     trace = FALSE)
-secr 5.2.1, 18:45:35 04 Feb 2025
+secr 5.2.0, 20:24:43 13 Feb 2025
 
 Detector type      single 
 Detector number    100 
@@ -1569,7 +1569,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

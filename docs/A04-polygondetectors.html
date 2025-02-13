@@ -709,7 +709,7 @@ sigma    log 53.67901    2.321128 49.31908 58.42436</code></pre>
 <p>Another solution is to evaluate whether each point chosen dynamically by the integration code lies inside the polygon of interest. This is inevitably slower than the default algorithm that assumes all points between the lower and upper intersections lie within the polygon. Select the slower, more general option by setting <code>details = list(convexpolygon = FALSE)</code>.</p>
 </section></section><section id="sec-polygontechnotes" class="level2" data-number="D.9"><h2 data-number="D.9" class="anchored" data-anchor-id="sec-polygontechnotes">
 <span class="header-section-number">D.9</span> Technical notes</h2>
-<p>Fitting models for polygon detectors with <code>secr.fit</code> requires the hazard function to be integrated in two-dimensions many times. In <strong>secr</strong> &gt;= 4.4 this is done with repeated one-dimensional Gaussian quadrature using the C++ function ‘integrate’ in RcppNumerical [R-RcppNumerical].</p>
+<p>Fitting models for polygon detectors with <code>secr.fit</code> requires the hazard function to be integrated in two-dimensions many times. In <strong>secr</strong> &gt;= 4.4 this is done with repeated one-dimensional Gaussian quadrature using the C++ function ‘integrate’ in RcppNumerical <span class="citation" data-cites="R-RcppNumerical">(<a href="A99-references.html#ref-R-RcppNumerical" role="doc-biblioref">Qiu et al., 2023</a>)</span>.</p>
 <p>Polygon and transect SECR models seem to be prone to numerical problems in estimating the information matrix (negative Hessian), which flow on into poor variance estimates and missing values for the standard errors of ‘real’ parameters. At the time of writing these seem to be overcome by overriding the default maximization method (Newton-Raphson in ‘nlm’) and using, for example, “method = ‘BFGS’”. Another solution, perhaps more reliable, is to compute the information matrix independently by setting ‘details = list(hessian = ’fdhess’)’ in the call to <code>secr.fit</code>. Yet another approach is to apply <code>secr.fit</code> with “method = ‘none’” to a previously fitted model to compute the variances.</p>
 <p>The algorithm for finding a starting point in parameter space for the numerical maximization is not entirely reliable; it may be necessary to specify the ‘start’ argument of <code>secr.fit</code> manually, remembering that the values should be on the link scale (default log for D, lambda0 and sigma).</p>
 <p>Data for polygons and transects are unlike those from detectors such as traps in several respects:</p>
@@ -748,6 +748,9 @@ Milleret, C., Dupont, P., Brøseth, H., Kindberg, J., Royle, J. A., &amp; Bischo
 </div>
 <div id="ref-Paterson2019" class="csl-entry" role="listitem">
 Paterson, J. T., Proffitt, K., Jimenez, B., Rotella, J., &amp; Garrott, R. (2019). Simulation-based validation of spatial capture-recapture models: A case study using mountain lions. <em>PLOS ONE</em>, <em>14</em>(4), e0215458. <a href="https://doi.org/10.1371/journal.pone.0215458">https://doi.org/10.1371/journal.pone.0215458</a>
+</div>
+<div id="ref-R-RcppNumerical" class="csl-entry" role="listitem">
+Qiu, Y., Balan, S., Beall, M., Sauder, M., Okazaki, N., &amp; Hahn, T. (2023). <em>RcppNumerical: ’Rcpp’ integration for numerical computing libraries</em>. <a href="https://CRAN.R-project.org/package=RcppNumerical">https://CRAN.R-project.org/package=RcppNumerical</a>
 </div>
 <div id="ref-ry08" class="csl-entry" role="listitem">
 Royle, J. A., &amp; Young, K. V. (2008). A hierarchical model for spatial capture-recapture data. <em>Ecology</em>, <em>89</em>, 2281–2289.
@@ -1181,7 +1184,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

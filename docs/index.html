@@ -456,7 +456,7 @@ SECR allows density to be modelled as a function of continuous spatial covariate
 <p>This book provides both a gentle introduction, in the spirit of <span class="citation" data-cites="cw">Cooch &amp; White (<a href="A99-references.html#ref-cw" role="doc-biblioref">2023</a>)</span>, and more in-depth treatment of important topics. It is software oriented and therefore unashamedly partial and incomplete. Much of the content is drawn from earlier papers and the documentation of R <span class="citation" data-cites="R-base">(<a href="A99-references.html#ref-R-base" role="doc-biblioref">R Core Team, 2024</a>)</span> packages. Some topics are yet to be included (e.g., acoustic data) but documentation may be found on the <a href="https://www.otago.ac.nz/density/SECRinR.html">DENSITY</a> website. Others such as partial identity models <span class="citation" data-cites="Augustine2018">(<a href="A99-references.html#ref-Augustine2018" role="doc-biblioref">Augustine et al., 2018</a>)</span> have yet to be considered at all.</p>
 <p>SECR has become popular for the potential benefits noted above. But are the results reliable? Understanding the real-world performance of SECR is an active research area with its own questions. Are particular field data adequate? Are results robust when assumptions are not strictly met? How can we design better studies? We assemble the evidence in a form that we hope will be useful to practitioners.</p>
 </section><section id="organisation" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="organisation">Organisation</h2>
-<p>Part I introduces the concepts of SECR and walks the reader through a simple example. Part II establishes the necessary theory. Part III provides substantial new material on the performance of SECR: Which assumptions really matter? and How should studies be designed? Part IV is a practical guide to SECR modelling with the R package <strong>secr</strong>. Appendices provide detail on specialised topics such as area and transect searches, spatial mark-resight and non-euclidean distances.</p>
+<p>Part I introduces the concepts of SECR and walks the reader through a simple example. Part II establishes the necessary theory. Part III provides substantial new material on the performance of SECR: Which assumptions really matter? and How should studies be designed? Part IV is a practical guide to SECR modelling with the R package <strong>secr</strong>. Appendices provide detail on specialised topics such as area and transect searches, spatial mark-resight and non-Euclidean distances.</p>
 <p>We expect that most readers will start with Part I and thereafter jump to topics of interest. Cross-references are provided to fill in relevant detail that may have been missed.</p>
 </section><section id="software" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="software">Software</h2>
 <p> The R package <strong>secr</strong> <span class="citation" data-cites="R-secr">(<a href="A99-references.html#ref-R-secr" role="doc-biblioref">Efford, 2025</a>)</span> provides most of the functionality we will need. It performs maximum likelihood estimation for a range of closed-population SECR models. The Windows application <a href="https://www.otago.ac.nz/density/">DENSITY</a> <span class="citation" data-cites="edr04">(<a href="A99-references.html#ref-edr04" role="doc-biblioref">Efford et al., 2004</a>)</span> has been superceded, although its graphical interface can still come in handy.</p>
@@ -496,15 +496,15 @@ The Quarto source files, including R code, are at <a href="https://github.com/mu
 <p>Joanne Potts and Gurutzeta Guillera-Arroita gave helpful comments on early versions of some chapters. Matt Schofield provided encouragement, answered some theoretical questions, and reviewed several chapters. Thanks to John Boulanger for his collaboration on study design and analysis over many projects.</p>
 <p>Thanks for data -</p>
 <ul>
-<li>Ken Burnham snowshoe hares <a href="02-example.html" class="quarto-xref"><span>2&nbsp; Simple example</span></a>
+<li>Ken Burnham: snowshoe hares <a href="02-example.html" class="quarto-xref"><span>2&nbsp; Simple example</span></a>
 </li>
-<li>Jared Laufenburg et al.&nbsp;black bears <a href="12-habitat.html" class="quarto-xref"><span>12&nbsp; Habitat mask</span></a>
+<li>Jared Laufenburg et al.&nbsp;&amp; Great Smoky Mountains NP: black bears <a href="12-habitat.html" class="quarto-xref"><span>12&nbsp; Habitat mask</span></a>
 </li>
-<li>Kevin Young horned lizards <a href="A04-polygondetectors.html" class="quarto-xref"><span>Appendix D — Area and transect search</span></a>
+<li>Kevin Young: horned lizards <a href="A04-polygondetectors.html" class="quarto-xref"><span>Appendix D — Area and transect search</span></a>
 </li>
-<li>Garth Mowat Selkirk grizzly bears <a href="A06-noneuclidean.html" class="quarto-xref"><span>Appendix F — Non-Euclidean distances</span></a>
+<li>Garth Mowat: Selkirk grizzly bears <a href="A06-noneuclidean.html" class="quarto-xref"><span>Appendix F — Non-Euclidean distances</span></a>
 </li>
-<li>Chris Sutherland non-euclidean simulation <a href="A06-noneuclidean.html" class="quarto-xref"><span>Appendix F — Non-Euclidean distances</span></a>
+<li>Chris Sutherland: non-Euclidean simulation <a href="A06-noneuclidean.html" class="quarto-xref"><span>Appendix F — Non-Euclidean distances</span></a>
 </li>
 </ul>
 <p>See also the links in <a href="A12-datasets.html" class="quarto-xref"><span>Appendix L — Datasets</span></a>.</p>
@@ -989,7 +989,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

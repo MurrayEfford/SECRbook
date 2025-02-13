@@ -654,7 +654,7 @@ Figure&nbsp;12.3: Effect of varying buffer width on estimated density (y-axis). 
 </div>
 <p>which is coincidental, but encouraging!</p>
 </section><section id="buffer-using-non-euclidean-distances" class="level3" data-number="12.4.5"><h3 data-number="12.4.5" class="anchored" data-anchor-id="buffer-using-non-euclidean-distances">
-<span class="header-section-number">12.4.5</span> Buffer using non-euclidean distances</h3>
+<span class="header-section-number">12.4.5</span> Buffer using non-Euclidean distances</h3>
 <p>If you intend to use a non-Euclidean distance metric then it makes sense to use this also when defining the mask, specifically to drop mask points that are distant from any detector according to the metric. See <a href="A06-noneuclidean.html" class="quarto-xref"><span>Appendix F</span></a> for an example. Modelling with non-Euclidean distances also requires the user to provide <code>secr.fit</code> with a matrix of user-computed distances between detectors and mask points.</p>
 </section></section><section id="sec-maskspacing" class="level2" data-number="12.5"><h2 data-number="12.5" class="anchored" data-anchor-id="sec-maskspacing">
 <span class="header-section-number">12.5</span> Grid cell size</h2>
@@ -1389,7 +1389,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
