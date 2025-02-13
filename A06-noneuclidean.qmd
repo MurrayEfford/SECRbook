@@ -1,29 +1,16 @@
 # Non-Euclidean distances {#sec-noneuclidean}
-\index{Non-euclidean distances}
-
-<!-- More content in secr-noneuclidean.rmd -->
-
-<!-- ## Non-Euclidean distances -->
- 
- <!-- 'Distance' in SECR models usually, and by default, means the -->
- <!-- Euclidean distance $d = \sqrt{(x_1-x_2)^2 + (y_1 - y_2)^2}$. The -->
-  <!-- observation model can be customised by replacing the Euclidean -->
-  <!-- distance with one that 'warps' space in some ecologically meaningful -->
-  <!-- way. There are innumerable ways to do this. Royle et al. (2013) -->
-  <!-- envisioned an 'ecological distance' that is a function of landscape covariates. Redefining distance is a way to model spatial variation in the size of home ranges, and hence the spatial scale of movement $\sigma$; @edjq16 use this to model inverse covariation between density and home range size. Distances measured along a linear habitat network such as a river system are also non-Euclidean (see package **secrlinear**). -->
-  
-<!-- **secr** provides general tools for specifying and modelling non-Euclidean distance, via the `secr.fit` details component 'userdist'. This may be a user-specified function or a pre-computed matrix. -->
+\index{Non-Euclidean distances}
 
 Spatially explicit capture--recapture (SECR) entails a distance-dependent observation model: the expected number of
-detections ($\lambda$) or the probability of detection (g) declines with increasing distance between a detector and the home-range centre of a focal animal. 'Distance' here usually, and by default, means the Euclidean distance $d = \sqrt{(x_1-x_2)^2 + (y_1 - y_2)^2}$. The observation model can be customised by replacing the Euclidean distance with one that 'warps' space in some ecologically meaningful way. There are innumerable ways to do this. One is the a non-Euclidean 
-'ecological distance' envisioned by @rcgg13.
+detections ($\lambda$) or the probability of detection (g) declines with increasing distance between a detector and the home-range centre of a focal animal. 'Distance' here usually, and by default, means the Euclidean distance. The observation model can be customised by replacing the Euclidean distance with one that 'warps' space in some ecologically meaningful way. There are innumerable ways to do this. One is the non-Euclidean 
+'ecological distance' envisioned by @rcgg13. Redefining distance is a way to model spatial variation in the size of home ranges, and hence the spatial scale of movement $\sigma$; @edjq16 used this to model inverse covariation between density and home range size. Distances measured along a linear habitat network such as a river system are also non-Euclidean (see package **secrlinear**). 
 
 This document shows how to define and use non-Euclidean distances in **secr**. Code is included for the non-Euclidean SECR simulation of @sfr15.
 
 ## Basics
 
-Non-Euclidean distances are defined in **secr** by setting the 'userdist' component of the 'details' argument of `secr.fit`. The options are (i) to provide a static $K \times M$ matrix containing the distances between the $K$ detectors and each of the $M$ mask points, or (ii) to provide a function that computes the distances dynamically. A static distance matrix can allow for barriers to movement. Providing a function is more flexible and allows the estimation of a parameter
-for the distance model, but evaluating the function for each likelihood slows down model fitting.
+The Euclidean distance between points $(x_1,y_1)$ and $(x_2,y_2)$ is given by $d = \sqrt{(x_1-x_2)^2 + (y_1 - y_2)^2}$.
+Non-Euclidean distances are defined in **secr** by setting the 'userdist' component of the 'details' argument of `secr.fit`. The options are (i) to provide a static (pre-computed) $K \times M$ matrix containing the distances between the $K$ detectors and each of the $M$ mask points, or (ii) to provide a function that computes the distances dynamically. A static distance matrix can allow for barriers to movement. Providing a function is more flexible and allows the estimation of a parameter for the distance model, but evaluating the function for each likelihood slows down model fitting.
 
 ## Static userdist
 
@@ -34,67 +21,18 @@ for the distance model, but evaluating the function for each likelihood slows do
 #| message: false
 #| results: hide
 library(sp)
-```
-
-```{r}
-#| label: fig-static0
-#| echo: false
-#| eval: true
-#| cache: true
-#| message: false
-#| results: hide
-# code for nefig
 load("data/CS.Rdata")
 load("data/BLKS_BC.RData")
-png(file = "figures/nefig.png", width=800, height=800)
-
-par(mfrow=c(2,2), mar=c(1,4,1,4), cex=1.8, col="black")
-plot(CStraps, gridl=F, border = 30000)
-selectedlakes <- c(1730, 2513, 2514, 2769, 2686, 2749)
-plot(BLKS_BC[selectedlakes,], col="blue", add=T)
-text(1546000, 510000, "a.", xpd=T, col="black")
-
-CSmask2000 <- make.mask (CStraps, buffer = 30000, 
-    type = "trapbuffer", spacing = 2000, poly = BLKS_BC, 
-    poly.habitat = FALSE, keep.poly = FALSE)
-plot(CStraps, gridl = FALSE, border = 30000, hidetr = TRUE)
-plot(CSmask2000, dots = FALSE, add = TRUE)
-plot(CStraps, add = TRUE); par(col="black", cex=1.8)
-text(1537000, 510000, "b.", xpd = TRUE)
-
-CSmask500 <- make.mask (CStraps, buffer = 30000, type = "trapbuffer", 
-    spacing = 500, poly = BLKS_BC, poly.habitat = F, keep.poly = F)
-userd <- nedist(CStraps, CSmask2000, CSmask500)
-
-dmap <- function (traps, mask, userd, i = 1, ...) {
-    if (is.na(i)) i <- nearesttrap(unlist(locator(1)), traps)
-    covariates(mask) <- data.frame(d = userd[i,])
-    covariates(mask)$d[!is.finite(covariates(mask)$d)] <- NA  
-    plot(mask, covariate = "d", ...)  
-    points(traps[i,], pch = 3, col = "red")
-}
-par(cex=1.1, col = "black")
-dmap(CStraps, CSmask2000, userd, dots = F, scale = 0.001, title = "distance  km")
-par(cex = 1.8)
-text(1537000, 510000, "c.", xpd=T, col="black")
-
-OK <- apply(userd, 2, min) < 30000
-CSmask2000b <- subset(CSmask2000, OK)
-plot(CStraps, gridl=F, border = 30000, hidetr=T)
-plot(CSmask2000b, dots = F, add=T)
-plot(CStraps, add = T); par(col="black", cex=1.8)
-text(1537000, 510000, "d.", xpd=T, col="black")
-
-dev.off()
 ```
 
 A pre-computed non-Euclidean distance matrix may incorporate constraints on movement, particularly mapped barriers to movement, and this is the most obvious reason to employ a static userdist. The function `nedist` builds a suitable matrix.
 
 As an example, take the 1996 DNA survey of the grizzly bear population in the Central Selkirk mountains of British Columbia by @ms00. Their study area was partly bounded by lakes and reservoirs that we assume are rarely crossed by bears. To treat the lakes as barriers in a SECR model we need a matrix of hair snag -- mask point distances for the terrestrial (non-Euclidean) distance between each pair of points.
 
-We start with the hair snag locations `CStraps` and a SpatialPolygonsDataFrame object `BLKS_BC` representing the large lakes (@fig-nefig a). Buffering 30 km around the detectors gives a naive mask (@fig-nefig b); we use a 2-km pixel size and reject points centred in a lake. The shortest dry path from many points on the naive mask to the nearest detector is much longer than the straight line distance.
+We start with the hair snag locations `CStraps` and a SpatialPolygonsDataFrame object `BLKS_BC` representing the large lakes ([Fig. @fig-static1 a]). Buffering 30 km around the detectors gives a naive mask (@fig-static1 b); we use a 2-km pixel size and reject points centred in a lake. The shortest dry path from many points on the naive mask to the nearest detector is much longer than the straight line distance.
+
 ```{r}
-#| label: fig-static1
+#| label: static1
 #| eval: true
 #| cache: true
 CSmask2000 <- make.mask (CStraps, buffer = 30000, 
@@ -103,13 +41,31 @@ CSmask2000 <- make.mask (CStraps, buffer = 30000,
 ```
 
 ```{r}
-#| label: fig-nefig
-#| echo: false
+#| label: fig-static1
+#| code-fold: true
+#| code-summary: code to plot Central Selkirk naive mask
+#| echo: true
+#| eval: true
+#| cache: true
+#| message: false
+#| results: hide
+#| fig-width: 8
+#| fig-height: 4
 #| out-width: 95%
 #| fig-cap: (a) Central Selkirk grizzly bear hair snag locations, (b) Mask using naive
-#|   30-km buffer around hair snags, (c) Example map of dry-path distances from an arbitrary
-#|   point, and (d) Efficient mask rejecting dry-path distances >30km.
-knitr::include_graphics("figures/nefig.png")
+#|   30-km buffer around hair snags.
+
+par(mfrow = c(1,2), mar = c(1,4,1,4), cex = 1.6, col = "black")
+plot(CStraps, gridl = FALSE, border = 30000)
+selectedlakes <- c(1730, 2513, 2514, 2769, 2686, 2749)
+plot(BLKS_BC[selectedlakes,], col = "blue", add = TRUE)
+text(1546000, 510000, "a.", xpd = TRUE, col = "black")
+
+plot(CStraps, gridl = FALSE, border = 30000, hidetr = TRUE)
+plot(CSmask2000, dots = FALSE, add = TRUE)
+plot(CStraps, add = TRUE)
+par(col = "black", cex = 1.6)
+text(1537000, 510000, "b.", xpd = TRUE)
 ```
 
 We next calculate the matrix of all dry detector--mask distances by calling `nedist` that in turn uses functions from the R package **gdistance** [@R-gdistance]. Missing pixels in the mask represent barriers to movement when their combined width exceeds a threshold determined by the adjacency rule in **gdistance**. 
@@ -127,14 +83,11 @@ CSmask500 <- make.mask (CStraps, buffer = 30000, type =
      FALSE, keep.poly = FALSE)
 userd <- nedist(CStraps, CSmask2000, CSmask500)
 ```
-The first argument of `nedist` provides the rows of the distance matrix and the second argument the columns; the third (if present) defines an alternative mask on which to base the calculations. To verify the computation, map the distance from a chosen detector $i$ to every point in a mask. Here is a short function to do that; see @fig-nefig c for an example. 
-
-[^droppedcells]:Mixing 2-km and 0.5-km cells carries a slight penalty: the centres of a few 2-km cells (<1\%) do not lie in valid 0.5-km cells; these become inaccessible (infinite distance from all detectors) and are silently dropped in a later step.
+The first argument of `nedist` provides the rows of the distance matrix and the second argument the columns; the third (if present) defines an alternative mask on which to base the calculations. To verify the computation, map the distance from a chosen detector $i$ to every point in a mask. Here is a short function to do that (example in @fig-static2 a). 
 
 ```{r}
-#| label: fig-dmap
-#| eval: false
-#| cache: true
+# map non-Euclidean distance from detector i 
+# or arbitrary point on existing plot (i = NA)
 dmap <- function (traps, mask, userd, i = 1, ...) {
     if (is.na(i)) i <- nearesttrap(unlist(locator(1)), traps)
     covariates(mask) <- data.frame(d = userd[i,])
@@ -142,18 +95,46 @@ dmap <- function (traps, mask, userd, i = 1, ...) {
     plot(mask, covariate = "d", ...)  
     points(traps[i,], pch = 3, col = "red")
 }
-dmap(CStraps, CSmask2000, userd, dots = F, scale = 0.001, 
-    title = "distance  km")
 ```
 
-At this point we could simply use 'userd' as our userdist matrix. However, `CSmask2000` now includes a lot of points that are further than 30 km from any detector. It is better to drop these points and the associated columns of 'userd' (Fig. 1d):
+[^droppedcells]:Mixing 2-km and 0.5-km cells carries a slight penalty: the centres of a few 2-km cells (<1\%) do not lie in valid 0.5-km cells; these become inaccessible (infinite distance from all detectors) and are silently dropped in a later step.
+
+At this point we could simply use 'userd' as our userdist matrix. However, `CSmask2000` now includes a lot of points that are further than 30 km from any detector. It is better to drop these points and the associated columns of 'userd' (@fig-static2 b):
 ```{r}
 #| label: static3
-#| eval: false
+#| eval: true
 #| cache: true
 OK <- apply(userd, 2, min) < 30000
 CSmask2000b <- subset(CSmask2000, OK)
-userd <- userd[,OK]
+userdx <- userd[,OK]
+```
+
+```{r}
+#| label: fig-static2
+#| code-fold: true
+#| code-summary: code to plot Central Selkirk non-Euclidean distances and mask
+#| echo: true
+#| eval: true
+#| cache: true
+#| message: false
+#| results: hide
+#| fig-width: 8
+#| fig-height: 4
+#| out-width: 95%
+#| fig-cap: (a) Central Selkirk dry-path distances from an arbitrary
+#|   point (+), and (b) Efficient mask rejecting dry-path distances >30km.
+
+par(mfrow = c(1,2), mar = c(1,4,1,4), cex = 1.1, col = "black")
+
+dmap(CStraps, CSmask2000, userd, dots = FALSE, scale = 0.001, 
+     title = "km")
+par(cex = 1.6)
+text(1537000, 510000, "a.", xpd=T, col="black")
+
+plot(CStraps, gridl = FALSE, border = 30000, hidetr = TRUE)
+plot(CSmask2000b, dots = FALSE, add = TRUE)
+plot(CStraps, add = TRUE); par(col = "black", cex = 1.6)
+text(1537000, 510000, "b.", xpd = TRUE, col = "black")
 ```
 
 Finally, we can fit a model using the non-Euclidean distance matrix:
@@ -162,7 +143,7 @@ Finally, we can fit a model using the non-Euclidean distance matrix:
 #| eval: false
 #| cache: true
 CSa <- secr.fit(CS_sexcov_all, mask = CSmask2000b, 
-    details = list(userdist = userd))
+    details = list(userdist = userdx))
 predict(CSa)                
 ```
 
@@ -223,7 +204,7 @@ fit0 <- secr.fit(ovposs, mask = ovmask, detectfn = "HHN", trace = FALSE)
 ```
 The warning is routine: we will suppress it in later examples. The distance functions below are not specific to a particular study: each may be applied to other datasets. 
 
-### 1. Scale of movement $\sigma$ depends on location of home-range centre
+### Scale of movement $\sigma$ depends on location of home-range centre
 
 In this simple case we use the non-Euclidean distance function to model continuous spatial variation in $\sigma$. This cannot be done directly in **secr** because sigma is treated as part of the detection model, which does not allow for continuous spatial variation in its parameters. Instead we model spatial variation in 'noneuc' as a stand-in for 'sigma'
 ```{r}
@@ -294,7 +275,7 @@ predict(fit0a)
 ```
 Here, fitting noneuc as a constant while holding sigma fixed is exactly the same as fitting sigma alone.
 
-### 2. Scale of movement $\sigma$ depends on locations of both home-range centre and detector
+### Scale of movement $\sigma$ depends on locations of both home-range centre and detector
 
 Hypothetically, detections at xy1 of an animal centred at xy2 may depend on both locations (this may also be seen as a approximation to the following case of continuous variation along the path between xy1 and xy2). To model this we need to retrieve the value of noneuc for both locations. Within fn2 we use `addCovariates` to extract the covariates of the mask (and hence noneuc) for each point in xy1 and xy2. The call to `secr.fit` is identical except that it uses fn2 instead of fn1:
 
@@ -328,7 +309,7 @@ predict(fit2)
 The value of noneuc reported by `predict.secr` is the predicted value at the centroid of the mask, because the model uses standardised mask coordinates.
 :::
 
-### 3. Continuously varying $\sigma$ using gdistance
+### Continuously varying $\sigma$ using gdistance
 
 A more elegant but slower approach is to find the least-cost path across the network of cells between xy1 and xy2, using noneuc (i.e. sigma ) as the cell-specific cost weighting (large cell-specific sigma equates with greater 'conductance', the inverse of friction or cost). For this we use functions from the package **gdistance**, which in turn uses **igraph**.
 
@@ -374,7 +355,7 @@ The argument 'transitionFunction' determines how the conductance values of adjac
 
 Integrating along the path (fn3) takes about 3.6 times as long as the approximation (fn2) and gives quite similar results.
 
-### 4. Density-dependent $\sigma$
+### Density-dependent $\sigma$ {#sec-spatiallyvaryingsigma}
 
 A more interesting variation makes sigma a function of the cell-specific density, which may vary independently across space [@edjq16]. Specifically, $\sigma(x,y) = k / \sqrt{D(x,y)}$, where $k$ is the fitted parameter (noneuc).
 
@@ -431,36 +412,23 @@ predict(fit4a)
 ```
 
 ```{r}
-#| label: fig-pngfit4a
-#| eval: false
-#| echo: false
-#| cache: true
-png(file = "figures/surface4a.png", width=700, height=400)
-par(mar = c(1,4,1,6), cex=1.4)
-plot(predictDsurface(fit4a))
-plot(traps(ovposs), add=T)
-lines(leftbank)
-dev.off()
-```
-
-```{r}
-#| label: fig-plotfit4a
-#| eval: false
-#| cache: true
-plot(predictDsurface(fit4a))
-plot(traps(ovposs), add=T)
-lines(leftbank)
-```
-
-```{r}
 #| label: fig-surface4a
+#| code-fold: true
+#| code-summary: code to plot OV surface 4a
+#| eval: true
+#| cache: true
+#| fig-width: 7
+#| fig-height: 4
 #| out-width: 90%
 #| fig-cap: |
 #|   Surface 4a.
-knitr::include_graphics("figures/surface4a.png")
+par(mar = c(1,4,1,6), cex = 1.4)
+plot(predictDsurface(fit4a))
+plot(traps(ovposs), add = TRUE)
+lines(leftbank)
 ```
 
-### 5. Habitat model for connectivity
+### Habitat model for connectivity
 
 Yet another possibility, in the spirit of @rcgg13, is to model conductance as a function of habitat covariates. As usual in **secr** these are stored as one or more mask covariates. It is easy to add a covariate for forest type (*Nothofagus*-dominant 'beech' vs 'nonbeech') to our mask:
 
@@ -602,6 +570,7 @@ plot(rivers, add = TRUE, col = "blue")
 
 ```{r}
 #| label: fig-A1fig
+#| echo: false
 #| out-width: 95%
 #| fig-cap: |
 #|   Shaded plot of distance to water (d2w in km) with detector sites (red crosses)
@@ -715,6 +684,7 @@ plot(rivers, add = TRUE, col = "blue")
 
 ```{r}
 #| label: fig-predictedpdot
+#| echo: false
 #| out-width: 95%
 #| fig-cap: |
 #|   Shaded plot of probability animal is detected at least once. Animals living
