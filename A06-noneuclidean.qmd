@@ -497,7 +497,6 @@ You may be tempted to model 'noneuc' as a function of group - after all, D~g is 
 #| label: Chris0
 #| eval: true
 #| echo: false
-# load('d:/density communication/linear habitat/chris/connectivitySpace.RData')
 load('data/connectivitySpace.RData')
 ```
 
