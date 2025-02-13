@@ -176,7 +176,7 @@ If the function generates any bad distances (negative, infinite or missing) thes
 
 ## Examples
 
-We use annotated examples to show how the userdist function may be used to define different models. For illustration we use the Orongorongo Valley brushtail possum dataset from February 1996 ([OVpossum](https://www.otago.ac.nz/density/html/OVpossum.html))\index{Brushtail possum}. The data are captures of possums over 5 nights in single-catch traps at 30-m spacing. We start by extracting the data, defining a habitat mask, and fitting a null model: 
+We use annotated examples to show how the userdist function may be used to define different models. For illustration we use the Orongorongo Valley brushtail possum dataset from February 1996 ([OVpossumCH](https://www.otago.ac.nz/density/html/OVpossum.html))\index{Brushtail possum}. The data are captures of possums over 5 nights in single-catch traps at 30-m spacing. We start by extracting the data, defining a habitat mask, and fitting a null model: 
 ```{r}
 #| label: OVsetup
 #| echo: true
