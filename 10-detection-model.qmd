@@ -280,7 +280,7 @@ The common question of how to model sex differences can be answered in several w
 Linear sub-models for parameters are considered by @cw as a *constraint* on a more general model. Their default is for each parameter to be fully-time-specific e.g., a Cormack-Jolly-Seber open population survival model would fit a unique detection probability $p$ and survival rate $\phi$ at each time. Our default is for each parameter to be constant (i.e. maximally constrained), and for linear sub-models to introduce variation.
 :::
 
-### Covariates
+### Covariates {#sec-detectioncovariates}
 \index{Detection model!covariates}
 
 Any name in a formula that is not listed as a variable in @tbl-predictors is assumed to refer to a user-supplied covariate. `secr.fit` looks for user-supplied covariates in data frames embedded in the 'capthist' argument, or supplied in the 'timecov' and 'sessioncov' arguments, or named with the 'timevaryingcov' attribute of a traps object, using the first match (@tbl-covariates).
