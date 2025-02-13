@@ -287,7 +287,7 @@ Another solution is to evaluate whether each point chosen dynamically by the int
 ## Technical notes {#sec-polygontechnotes}
 
 Fitting models for polygon detectors with `secr.fit` requires the hazard function to be integrated in two-dimensions many
-times. In **secr** >= 4.4 this is done with repeated one-dimensional Gaussian quadrature using the C++ function 'integrate' in RcppNumerical [R-RcppNumerical].
+times. In **secr** >= 4.4 this is done with repeated one-dimensional Gaussian quadrature using the C++ function 'integrate' in RcppNumerical [@R-RcppNumerical].
 
 Polygon and transect SECR models seem to be prone to numerical problems in estimating the information matrix (negative Hessian), which flow on into poor variance estimates and missing values for the standard errors of 'real' parameters. At the time of writing these seem to be overcome by overriding the default maximization method (Newton-Raphson in 'nlm') and using, for example, "method = 'BFGS'". Another solution, perhaps more reliable, is to compute the information matrix independently by setting 'details = list(hessian = 'fdhess')' in the call to `secr.fit`. Yet another approach is to apply `secr.fit` with "method = 'none'" to a previously fitted model to compute the variances.
 
