@@ -83,11 +83,11 @@ Thanks to John Boulanger for his collaboration on study design and analysis over
 
 Thanks for data -
 
--   Ken Burnham snowshoe hares @sec-example
--   Jared Laufenburg et al. black bears @sec-habitat
--   Kevin Young horned lizards @sec-areaandtransectsearches
--   Garth Mowat Selkirk grizzly bears @sec-noneuclidean
--   Chris Sutherland non-Euclidean simulation @sec-noneuclidean
+-   Ken Burnham: snowshoe hares @sec-example
+-   Jared Laufenburg et al. \& Great Smoky Mountains NP: black bears @sec-habitat
+-   Kevin Young: horned lizards @sec-areaandtransectsearches
+-   Garth Mowat: Selkirk grizzly bears @sec-noneuclidean
+-   Chris Sutherland: non-Euclidean simulation @sec-noneuclidean
     
 See also the links in @sec-datasets.
 
