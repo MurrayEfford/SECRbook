@@ -29,7 +29,7 @@ SECR has become popular for the potential benefits noted above. But are the resu
 
 ## Organisation {.unnumbered}
 
-Part I introduces the concepts of SECR and walks the reader through a simple example. Part II establishes the necessary theory. Part III provides substantial new material on the performance of SECR: Which assumptions really matter? and How should studies be designed? Part IV is a practical guide to SECR modelling with the R package **secr**. Appendices provide detail on specialised topics such as area and transect searches, spatial mark-resight and non-euclidean distances.
+Part I introduces the concepts of SECR and walks the reader through a simple example. Part II establishes the necessary theory. Part III provides substantial new material on the performance of SECR: Which assumptions really matter? and How should studies be designed? Part IV is a practical guide to SECR modelling with the R package **secr**. Appendices provide detail on specialised topics such as area and transect searches, spatial mark-resight and non-Euclidean distances.
 
 We expect that most readers will start with Part I and thereafter jump to topics of interest. Cross-references are provided to fill in relevant detail that may have been missed.
 
@@ -87,7 +87,7 @@ Thanks for data -
 -   Jared Laufenburg et al. black bears @sec-habitat
 -   Kevin Young horned lizards @sec-areaandtransectsearches
 -   Garth Mowat Selkirk grizzly bears @sec-noneuclidean
--   Chris Sutherland non-euclidean simulation @sec-noneuclidean
+-   Chris Sutherland non-Euclidean simulation @sec-noneuclidean
     
 See also the links in @sec-datasets.
 

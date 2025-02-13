@@ -14,7 +14,7 @@ Non-Euclidean distances are defined in **secr** by setting the 'userdist' compon
 
 ## Static userdist
 
-\index{Non-euclidean distances!static}
+\index{Non-Euclidean distances!static}
 ```{r}
 #| label: setup
 #| echo: false
@@ -150,9 +150,9 @@ predict(CSa)
 For completeness, note that Euclidean distances may also be pre-calculated, using the function `edist`. By default, `secr.fit` uses that function internally, and there is usually little speed improvement when the calculation is done separately.
 
 ## Dynamic userdist
-\index{Non-euclidean distances!dynamic}
+\index{Non-Euclidean distances!dynamic}
 
-The userdist function takes three arguments. The first two are simply 2-column matrices with the coordinates of the detectors and animal locations (mask points) respectively. The third is a habitat mask (this may be the same as xy2). The function has this form:
+For dynamic non-Euclidean distances a function is passed to `secr.fit` in the 'details' argument 'userdist', rather than a matrix. The userdist function should take three arguments. The first two are simply 2-column matrices with the coordinates of the detectors and animal locations (mask points) respectively. The third is a habitat mask (this may be the same as xy2). The function has this form:
 ```{r}
 #| label: userdist
 #| eval: false
@@ -170,13 +170,13 @@ Whether 'noneuc', 'D' or other mask covariates are needed by mydistfn is indicat
 'noneuc' has its own link scale (default 'log') on which it may be modelled as a linear function of any of the predictors available for density (x, y, x2, y2, xy, session, Session, g, or any mask covariate -- see @sec-density. It may also, in principle, be modelled using regression splines [@bk2014], but this is untested. When the model is fitted by `secr.fit`, the beta parameters for the 'noneuc' sub-model are estimated along with all the others. To make noneuc available to userdist, ensure that it appears in the 'model' argument. Use the formula noneuc ~ 1 if noneuc is constant.
 
 The function may compute least-cost paths via intervening mask cells using the powerful **igraph** package [@cn06]. This
-is most easily accessed with package **gdistance**, which in turn uses the RasterLayer S4 object class from the package **raster**. To facilitate this we include code in **secr** to treat the 'mask' S3 class as a virtual S4 class, and provide a method for the function 'raster' to convert a mask to a RasterLayer.
+is most easily accessed with package **gdistance**, which in turn uses the RasterLayer S4 object class from the package **raster**. To facilitate this, **secr** includes code to treat the 'mask' S3 class as a virtual S4 class, and provides a method for the function 'raster' to convert a mask to a RasterLayer.
 
 If the function generates any bad distances (negative, infinite or missing) these will be replaced by 1e10, with a warning.
 
 ## Examples
 
-We use annotated examples to show how the userdist function may be used to define different models. For illustration we use the Orongorongo Valley brushtail possum dataset from February 1996 ([OVpossum])\index{Brushtail possum}. The data are captures of possums over 5 nights in single-catch traps at 30-m spacing. We start by extracting the data, defining a habitat mask, and fitting a null model: 
+We use annotated examples to show how the userdist function may be used to define different models. For illustration we use the Orongorongo Valley brushtail possum dataset from February 1996 ([OVpossum](https://www.otago.ac.nz/density/html/OVpossum.html))\index{Brushtail possum}. The data are captures of possums over 5 nights in single-catch traps at 30-m spacing. We start by extracting the data, defining a habitat mask, and fitting a null model: 
 ```{r}
 #| label: OVsetup
 #| echo: true
@@ -451,7 +451,7 @@ predict(fit5, newdata =
 ```
 Note that we have re-used the userdist function fn2, and allowed both density and noneuc (sigma) to vary by forest type. Strictly, we should have identified "forest" as a required covariate in the (re)definition of fn2, but this is obviously not critical.
 
-A full analysis should also consider models with variation in lambda0. There is no simple way in **secr** to model continuous spatial variation in lambda0 as a function of home-range location (cf sigma in Example 1 above). However, variation in lambda0 at the point of detection may be modelled with detector-level covariates ([secr-overview.pdf]). 
+A full analysis should also consider models with variation in lambda0. There is no simple way in **secr** to model continuous spatial variation in lambda0 as a function of home-range location (cf sigma in Example 1 above). However, variation in lambda0 at the point of detection may be modelled with detector-level covariates (@sec-detectioncovariates). 
 
 ## And the winner is...
 
@@ -478,7 +478,7 @@ Providing a suitable initial value for 'noneuc' can be a problem. The argument '
 #| eval: true
 #| cache: true
 #| warning: false
-secr.fit (captdata, model = noneuc~1, details = list(userdist=fn2), 
+secr.fit (captdata, model = noneuc~1, details = list(userdist = fn2), 
     trace = FALSE, start = list(noneuc = 25), fixed = list(sigma = 1))
 ```
 
@@ -489,7 +489,7 @@ It is intended that non-Euclidean distances should work with all relevant functi
 You may be tempted to model 'noneuc' as a function of group - after all, D~g is permitted, right? Unfortunately, this will not work. There is only one pre-computed distance matrix, not one matrix per group.
 
 ## Simulation after Sutherland et al. (2015)
-\index{Non-euclidean distances!simulation}
+\index{Non-Euclidean distances!simulation}
 
 @sfr15 simulated SECR data from a population of animals whose movement was channeled to varying extents along a dendritic network (river system). Their model treated the habitat as 2-dimensional and shrank distances for pixels close to water and expanded them for pixels further away. The authors kindly provided data for the network map and detector layout which we use here to emulate their simulations in **secr**. We assume an existing SpatialLinesDataFrame `sample.water` for the network, and a matrix of x-y coordinates for detector locations `gridTrapsXY`. `rivers` is a version of `sample.water` clipped to the habitat mask and used only for plotting.
 
@@ -693,6 +693,3 @@ plot(rivers, add = TRUE, col = "blue")
 #|   them to a small home range and lambda0 is constant.
 knitr::include_graphics("figures/predictedpdot.png")
 ```
-
-[secr-overview.pdf]: https://www.otago.ac.nz/density/pdfs/secr-overview.pdf
-[OVpossum]: https://www.otago.ac.nz/density/html/OVpossum.html

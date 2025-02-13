@@ -204,7 +204,7 @@ suggest.buffer(fit)
 ```
 which is coincidental, but encouraging!
 
-### Buffer using non-euclidean distances
+### Buffer using non-Euclidean distances
 
 If you intend to use a non-Euclidean distance metric then it makes sense to use this also when defining the mask, specifically to drop mask points that are distant from any detector according to the metric. See @sec-noneuclidean for an example. Modelling with non-Euclidean distances also requires the user to provide `secr.fit` with a matrix of user-computed distances between detectors and mask points.
 

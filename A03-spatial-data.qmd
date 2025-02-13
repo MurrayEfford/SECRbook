@@ -158,7 +158,7 @@ Some specialised spatial operations are out-sourced by **secr**:
 |-----------|--------------------------|------------------|---------------|
 | randomHabitat | simulated habitat | raster::adjacent | @R-raster |
 |  | | raster::clump | |
-| nedist | non-euclidean distances | gdistance::transition | @R-gdistance |
+| nedist | non-Euclidean distances | gdistance::transition | @R-gdistance |
 |  |  | gdistance::geoCorrection |  |
 |  |  | gdistance::costDistance |  |
 | discretize | cell overlap with polygon(s) | sf::st_intersection | @R-sf |
