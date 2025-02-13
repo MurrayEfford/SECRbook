@@ -37,7 +37,7 @@ We expect that most readers will start with Part I and thereafter jump to topics
 
 \index{R packages} The R package **secr** [@R-secr] provides most of the functionality we will need. It performs maximum likelihood estimation for a range of closed-population SECR models. The Windows application [DENSITY](https://www.otago.ac.nz/density/) [@edr04] has been superceded, although its graphical interface can still come in handy.
 
-Bayesian approaches using Markov chain Monte Carlo (MCMC) methods are a flexible alternative to maximum likelihood. The R package [nimbleSCR](https://CRAN.R-project.org/package=nimbleSCR) promises to make these methods more accessible.
+Bayesian approaches using Markov chain Monte Carlo (MCMC) methods are a flexible, but generally slower, alternative to maximum likelihood (@sec-estimation). The R package [nimbleSCR](https://CRAN.R-project.org/package=nimbleSCR) promises to make MCMC methods for SECR more accessible and faster.
 
 Add-on packages extend the capability of **secr**:
 
@@ -77,7 +77,7 @@ This is work in progress. If you find an error or would like to make a suggestio
 
 ## Acknowledgments {.unnumbered}
 
-Joanne Potts and Gurutzeta Guillera-Arroita gave helpful comments on early versions of some chapters. 
+Brian Gerber, Joanne Potts and Gurutzeta Guillera-Arroita gave helpful comments on early versions of some chapters. 
 Matt Schofield provided encouragement, answered some theoretical questions, and reviewed several chapters. 
 Thanks to John Boulanger for his collaboration on study design and analysis over many projects.
 

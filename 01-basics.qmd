@@ -50,20 +50,31 @@ sampled. Furthermore, the number of observed individuals increases indefinitely
 as more and more peripheral individuals are encountered.
 
 SECR cuts through this problem by modelling the spatial scale of detection
-to obtain an unbiased estimate of the stationary density of individuals.
+to obtain an unbiased estimate of the stationary density of individuals. 
+
+## State and observation models
+
+It helps to think of SECR in two parts: the state model and the observation model [@Borchers2002]. The state model describes the biological reality we wish to describe, the animal population. The observation model represents the sampling process by which we learn about the population. The observation model matters only as the lens through which we can achieve a clear view of the population. We treat the state model (spatial population) and observation model (detection process) independently, with rare exceptions (@sec-parameterizations).
 
 ## Spatial population
 
 \index{Activity centres} An animal population in SECR is a spatial point
 pattern. Each point represents the location of an animal's activity
-centre, often abbreviated AC\index{Activity centre}. Density is a property 
-of the spatial point process of which the pattern
-is one instance. The usual process model is a 2-dimensional Poisson
+centre, often abbreviated AC\index{Activity centre}. 
+
+Statistically, we think of a particular point pattern, a particular distribution 
+of AC, as just one possible outcome of a random process. Run the process again 
+and AC will land in different places and even differ in number. We equate the 
+*intensity* of the random process with the ecological parameter 'population density'. 
+This formulation is more challenging than the usual "density = number divided 
+by area", but it opens the door to rigorous statistical treatment. 
+
+The usual process model is a 2-dimensional Poisson
 process\index{Poisson process (2-D)} (@fig-example). By fitting the SECR
 model we can estimate the intensity surface of the Poisson process that
 we represent by $D(\mathbf x)$ where $\mathbf x$ stands for the x,y
 coordinates of a point. Density may be *homogeneous* (a flat surface,
-with constant $D(\mathbf x)$) or *inhomogeneous* (varying).
+with constant $D(\mathbf x)$) or *inhomogeneous* (spatially varying intensity).
 
 An inhomogeneous intensity surface is considered to depend on a vector
 of parameters $\phi$, hence $D(\mathbf x; \phi)$. For constant density
@@ -87,7 +98,7 @@ We need to recognise individuals whenever they are detected. The
 accumulated detections of each known individual are its 'detection
 history'. Device types differ according to how they affect animal
 behaviour and the data they collect; each type corresponds to a
-probability model, as covered later.
+probability model (@sec-pointdetectors).
 
 Detection may be entirely passive and non-invasive if individuals carry
 unique natural marks (e.g., pelage patterns) or their DNA can be
@@ -124,17 +135,27 @@ jargon should be avoided in publications.
 
 For most vertebrates we expect population turnover (births, deaths, AC
 movement) on a time scale of months or years. Population change is often
-negligible over shorter spans (days or weeks, depending on the species).
+negligible over shorter spans (days or weeks, depending on the species, time of year etc.).
 Sampling over shorter spans can therefore treat the size and composition
 of a population as fixed: it is said to be 'closed'. This greatly
 simplifies analysis. We assume closure except when considering [breaches
 of assumptions](06-assumptions.qmd#sec-popnclosed). \index{Population closure}
 
-For trap-type detectors there must be multiple occasions within a
+A set of samples from a closed population comprises a sampling 'session'.
+For trap-type detectors there must be multiple 'occasions' within a
 sampling session to obtain recaptures. For proximity-type detectors the role of
-'occasions' is more subtle, and data may usually be collapsed to animal-
+occasions is more subtle, and data may usually be collapsed to animal-
 and detector-specific counts. The spatial pattern of binary detections
 alone is sufficient to obtain an estimate of density [@edb09].
+
+::: {.callout-note}
+## Continuous time
+Some devices such as automatic cameras record data in continuous time. Detection 
+events are stamped with the clock time and date, rather than assigned to 
+discrete occasions. SECR models may be written for continuous time data, and 
+these models have mathematical elegance. They find practical application in some 
+niche cases [e.g. @Distiller2015].
+:::
 
 It is not necessary for all detectors to be used on all occasions.
 Incomplete usage [and other variation in effort per occasion -- @ebm13]
@@ -247,7 +268,7 @@ size are considered later.
 A simple SECR model has three parameters:
 density $D$, and the intercept $g_0$ and spatial scale $\sigma$ of the
 detection function. Valid values of each parameter are restricted to
-part of the number line (positive values for $D$ and $\sigma$, values
+part of the real number line (positive values for $D$ and $\sigma$, values
 between zero and one for $g_0$). A straightforward way to constrain
 estimates to valid values is to conduct maximization of the likelihood
 on a transformed ('link') scale: at each evaluation the parameter value
