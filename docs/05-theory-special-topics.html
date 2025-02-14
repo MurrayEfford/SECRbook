@@ -438,7 +438,7 @@ window.Quarto = {
   <li><a href="#population-size-n" id="toc-population-size-n" class="nav-link" data-scroll-target="#population-size-n"><span class="header-section-number">5.7</span> Population size <span class="math inline">N</span></a></li>
   <li><a href="#sec-finitemixtures" id="toc-sec-finitemixtures" class="nav-link" data-scroll-target="#sec-finitemixtures"><span class="header-section-number">5.8</span> Finite mixture models</a></li>
   <li><a href="#sec-hybridmixtures" id="toc-sec-hybridmixtures" class="nav-link" data-scroll-target="#sec-hybridmixtures"><span class="header-section-number">5.9</span> Hybrid finite mixture models</a></li>
-  <li><a href="#parameterizations" id="toc-parameterizations" class="nav-link" data-scroll-target="#parameterizations"><span class="header-section-number">5.10</span> Alternative parameterizations</a></li>
+  <li><a href="#sec-parameterizations" id="toc-sec-parameterizations" class="nav-link" data-scroll-target="#sec-parameterizations"><span class="header-section-number">5.10</span> Alternative parameterizations</a></li>
   <li><a href="#model-based-location-of-ac" id="toc-model-based-location-of-ac" class="nav-link" data-scroll-target="#model-based-location-of-ac"><span class="header-section-number">5.11</span> Model-based location of AC</a></li>
   </ul>
 </nav>
@@ -596,8 +596,8 @@ d\mathbf x
 </span></p>
 <p>where <span class="math inline">a(\theta_u) = \int p_\cdot(\mathbf x ; \theta_{u}) \; d\mathbf x</span>.</p>
 </section>
-<section id="parameterizations" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="parameterizations"><span class="header-section-number">5.10</span> Alternative parameterizations</h2>
+<section id="sec-parameterizations" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="sec-parameterizations"><span class="header-section-number">5.10</span> Alternative parameterizations</h2>
 <p></p>
 <p>The ‘real’ parameters in SECR are typically assumed to be independent (orthogonal). However, some parameter pairs co-vary in predictable ways owing to constraints on animal behaviour. Here it is more straightforward to work with the hazard detection functions. The intercept of the detection function <span class="math inline">\lambda_0</span> declines with increasing <span class="math inline">\sigma</span>, all else being equal <span class="citation" data-cites="em14">(<a href="A99-references.html#ref-em14" role="doc-biblioref">Efford &amp; Mowat, 2014</a>)</span>. This is inevitable if detection is strictly proportional to time spent near a point, given a bivariate home range utilisation model (pdf for activity). Also, home-range size and the SECR parameter <span class="math inline">\sigma</span> decline with population density <span class="citation" data-cites="edjq16">(<a href="A99-references.html#ref-edjq16" role="doc-biblioref">Efford et al., 2016</a>)</span>. Allowing for covariation may improve biological insight and lead to more parsimonious models.</p>
 <p>Covariation may be ‘hard-wired’ into SECR models by reparameterization. In each case a new ‘surrogate’ parameter is proportional to a combination of the co-varying parameters. One of the co-varying parameters is seen as driving variation, while the other is inferred from the surrogate and the driver. Deviations from the expected covariation are implied when the surrogate is found to vary (i.e.&nbsp;a model with varying surrogate is superior to a model with constant surrogate).</p>

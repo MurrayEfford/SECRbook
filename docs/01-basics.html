@@ -413,11 +413,12 @@ window.Quarto = {
    
   <ul class="collapse">
 <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation"><span class="header-section-number">1.1</span> Motivation</a></li>
-  <li><a href="#spatial-population" id="toc-spatial-population" class="nav-link" data-scroll-target="#spatial-population"><span class="header-section-number">1.2</span> Spatial population</a></li>
-  <li><a href="#detectors" id="toc-detectors" class="nav-link" data-scroll-target="#detectors"><span class="header-section-number">1.3</span> Detectors</a></li>
-  <li><a href="#sampling-across-time" id="toc-sampling-across-time" class="nav-link" data-scroll-target="#sampling-across-time"><span class="header-section-number">1.4</span> Sampling across time</a></li>
-  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure"><span class="header-section-number">1.5</span> Data structure</a></li>
-  <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting"><span class="header-section-number">1.6</span> Model fitting</a></li>
+  <li><a href="#state-and-observation-models" id="toc-state-and-observation-models" class="nav-link" data-scroll-target="#state-and-observation-models"><span class="header-section-number">1.2</span> State and observation models</a></li>
+  <li><a href="#spatial-population" id="toc-spatial-population" class="nav-link" data-scroll-target="#spatial-population"><span class="header-section-number">1.3</span> Spatial population</a></li>
+  <li><a href="#detectors" id="toc-detectors" class="nav-link" data-scroll-target="#detectors"><span class="header-section-number">1.4</span> Detectors</a></li>
+  <li><a href="#sampling-across-time" id="toc-sampling-across-time" class="nav-link" data-scroll-target="#sampling-across-time"><span class="header-section-number">1.5</span> Sampling across time</a></li>
+  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure"><span class="header-section-number">1.6</span> Data structure</a></li>
+  <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting"><span class="header-section-number">1.7</span> Model fitting</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -461,9 +462,14 @@ S. Charles Kendeigh (1944)</p>
 <p>Only a brave ecologist would make this claim today. Measuring animal populations is now justified in more practical terms - the urgent need for evidence to track biodiversity decline or to manage endangered or pest species or those we wish to harvest sustainably. But we rather like Kendeigh’s formulation, to which could be added the lure of the statistical challenges. This book has no more to say about the diverse reasons for measuring populations: we will focus instead on a particular toolkit.</p>
 <p>Populations of some animal species can be censused by direct observation, but many species are elusive or cryptic. Surveying these species requires indirect methods, often using passive devices such as traps or cameras that accumulate records over time. Passive devices encounter animals as they move around. The scale of that movement is unknown, which creates uncertainty regarding the population that is sampled. Furthermore, the number of observed individuals increases indefinitely as more and more peripheral individuals are encountered.</p>
 <p>SECR cuts through this problem by modelling the spatial scale of detection to obtain an unbiased estimate of the stationary density of individuals.</p>
-</section><section id="spatial-population" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="spatial-population">
-<span class="header-section-number">1.2</span> Spatial population</h2>
-<p> An animal population in SECR is a spatial point pattern. Each point represents the location of an animal’s activity centre, often abbreviated AC. Density is a property of the spatial point process of which the pattern is one instance. The usual process model is a 2-dimensional Poisson process (<a href="#fig-example" class="quarto-xref">Fig.&nbsp;<span>1.1</span></a>). By fitting the SECR model we can estimate the intensity surface of the Poisson process that we represent by <span class="math inline">D(\mathbf x)</span> where <span class="math inline">\mathbf x</span> stands for the x,y coordinates of a point. Density may be <em>homogeneous</em> (a flat surface, with constant <span class="math inline">D(\mathbf x)</span>) or <em>inhomogeneous</em> (varying).</p>
+</section><section id="state-and-observation-models" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="state-and-observation-models">
+<span class="header-section-number">1.2</span> State and observation models</h2>
+<p>It helps to think of SECR in two parts: the state model and the observation model <span class="citation" data-cites="Borchers2002">(<a href="A99-references.html#ref-Borchers2002" role="doc-biblioref">Borchers et al., 2002</a>)</span>. The state model describes the biological reality we wish to describe, the animal population. The observation model represents the sampling process by which we learn about the population. The observation model matters only as the lens through which we can achieve a clear view of the population. We treat the state model (spatial population) and observation model (detection process) independently, with rare exceptions (<a href="A08-parameterizations.html" class="quarto-xref"><span>Appendix H</span></a>).</p>
+</section><section id="spatial-population" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="spatial-population">
+<span class="header-section-number">1.3</span> Spatial population</h2>
+<p> An animal population in SECR is a spatial point pattern. Each point represents the location of an animal’s activity centre, often abbreviated AC.</p>
+<p>Statistically, we think of a particular point pattern, a particular distribution of AC, as just one possible outcome of a random process. Run the process again and AC will land in different places and even differ in number. We equate the <em>intensity</em> of the random process with the ecological parameter ‘population density’. This formulation is more challenging than the usual “density = number divided by area”, but it opens the door to rigorous statistical treatment.</p>
+<p>The usual process model is a 2-dimensional Poisson process (<a href="#fig-example" class="quarto-xref">Fig.&nbsp;<span>1.1</span></a>). By fitting the SECR model we can estimate the intensity surface of the Poisson process that we represent by <span class="math inline">D(\mathbf x)</span> where <span class="math inline">\mathbf x</span> stands for the x,y coordinates of a point. Density may be <em>homogeneous</em> (a flat surface, with constant <span class="math inline">D(\mathbf x)</span>) or <em>inhomogeneous</em> (spatially varying intensity).</p>
 <p>An inhomogeneous intensity surface is considered to depend on a vector of parameters <span class="math inline">\phi</span>, hence <span class="math inline">D(\mathbf x; \phi)</span>. For constant density <span class="math inline">\phi</span> is a single value.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -478,10 +484,10 @@ Activity centre vs home range centre
 <p>‘Activity centre’ is often used in preference to ‘home range centre’ because it appears more neutral. ‘Home range’ implies a particular pattern of behaviour: spatial familiarity and repeated use in contrast to nomadism. However, SECR assumes the very pattern of behaviour (persistent use) that distinguishes a home range, and it is safe to use ‘activity centre’ and ‘home range centre’ interchangeably in this context.</p>
 </div>
 </div>
-</section><section id="detectors" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="detectors">
-<span class="header-section-number">1.3</span> Detectors</h2>
+</section><section id="detectors" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="detectors">
+<span class="header-section-number">1.4</span> Detectors</h2>
 <p></p>
-<p>SECR uses sampling devices (‘detectors’) placed at known locations. We need to recognise individuals whenever they are detected. The accumulated detections of each known individual are its ‘detection history’. Device types differ according to how they affect animal behaviour and the data they collect; each type corresponds to a probability model, as covered later.</p>
+<p>SECR uses sampling devices (‘detectors’) placed at known locations. We need to recognise individuals whenever they are detected. The accumulated detections of each known individual are its ‘detection history’. Device types differ according to how they affect animal behaviour and the data they collect; each type corresponds to a probability model (<a href="03-theory.html#sec-pointdetectors" class="quarto-xref"><span>Section 3.4</span></a>).</p>
 <p>Detection may be entirely passive and non-invasive if individuals carry unique natural marks (e.g., pelage patterns) or their DNA can be sampled. Devices that record detections passively are “proximity detectors”. Proximity detectors may be split according to the distribution of the number of detections per animal per occasion (binary, Poisson, or binomial), with binary being the most common<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>Animals without natural marks must be marked individually on their first detection. This implies capture and handling. Only devices that hold an animal until it is released can truly be called ‘traps’.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The probability model for trapping must allow for exclusivity: an animal can be found at only one trap on any occasion, and some traps (‘single-catch’ traps) also exclude other individuals after the first. </p>
 <div id="tbl-deviceexamples" class="sm quarto-float anchored">
@@ -542,20 +548,33 @@ Table&nbsp;1.1: Examples of SECR sampling devices
 </div>
 </figure>
 </div>
-</section><section id="sampling-across-time" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="sampling-across-time">
-<span class="header-section-number">1.4</span> Sampling across time</h2>
-<p>For most vertebrates we expect population turnover (births, deaths, AC movement) on a time scale of months or years. Population change is often negligible over shorter spans (days or weeks, depending on the species). Sampling over shorter spans can therefore treat the size and composition of a population as fixed: it is said to be ‘closed’. This greatly simplifies analysis. We assume closure except when considering <a href="./06-assumptions.html#sec-popnclosed">breaches of assumptions</a>. </p>
-<p>For trap-type detectors there must be multiple occasions within a sampling session to obtain recaptures. For proximity-type detectors the role of ‘occasions’ is more subtle, and data may usually be collapsed to animal- and detector-specific counts. The spatial pattern of binary detections alone is sufficient to obtain an estimate of density <span class="citation" data-cites="edb09">(<a href="A99-references.html#ref-edb09" role="doc-biblioref">Efford et al., 2009</a>)</span>.</p>
+</section><section id="sampling-across-time" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="sampling-across-time">
+<span class="header-section-number">1.5</span> Sampling across time</h2>
+<p>For most vertebrates we expect population turnover (births, deaths, AC movement) on a time scale of months or years. Population change is often negligible over shorter spans (days or weeks, depending on the species, time of year etc.). Sampling over shorter spans can therefore treat the size and composition of a population as fixed: it is said to be ‘closed’. This greatly simplifies analysis. We assume closure except when considering <a href="./06-assumptions.html#sec-popnclosed">breaches of assumptions</a>. </p>
+<p>A set of samples from a closed population comprises a sampling ‘session’. For trap-type detectors there must be multiple ‘occasions’ within a sampling session to obtain recaptures. For proximity-type detectors the role of occasions is more subtle, and data may usually be collapsed to animal- and detector-specific counts. The spatial pattern of binary detections alone is sufficient to obtain an estimate of density <span class="citation" data-cites="edb09">(<a href="A99-references.html#ref-edb09" role="doc-biblioref">Efford et al., 2009</a>)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Continuous time
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some devices such as automatic cameras record data in continuous time. Detection events are stamped with the clock time and date, rather than assigned to discrete occasions. SECR models may be written for continuous time data, and these models have mathematical elegance. They find practical application in some niche cases <span class="citation" data-cites="Distiller2015">(e.g. <a href="A99-references.html#ref-Distiller2015" role="doc-biblioref">Distiller &amp; Borchers, 2015</a>)</span>.</p>
+</div>
+</div>
 <p>It is not necessary for all detectors to be used on all occasions. Incomplete usage <span class="citation" data-cites="ebm13">(and other variation in effort per occasion – <a href="A99-references.html#ref-ebm13" role="doc-biblioref">Efford et al., 2013</a>)</span> may be recorded for each detector and allowed for in the analysis.</p>
 <p>Data collected across multiple sessions potentially include the loss of some individuals and recruitment of others. An open population model is the natural way to go <span class="citation" data-cites="es20">(e.g., <a href="A99-references.html#ref-es20" role="doc-biblioref">Efford &amp; Schofield, 2020</a>)</span>. However, the complexity of open-population models can be avoided if sessions are treated as independent in a ‘multi-session’ closed population analysis.</p>
-</section><section id="data-structure" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="data-structure">
-<span class="header-section-number">1.5</span> Data structure</h2>
+</section><section id="data-structure" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="data-structure">
+<span class="header-section-number">1.6</span> Data structure</h2>
 <p> Data for a single SECR session comprise a 3-dimensional rectangular array with dimensions corresponding to known animals, sampling occasions, and detectors. Data in each cell of the array are usually binary (0/1) but may be integer counts &gt; 1 (e.g., if binary data have been collapsed by occasion). In <strong>secr</strong>, an R object of class ‘capthist’ holds data in this form, along with the coordinates of the detectors in its ‘traps’ attribute. The user constructs a capthist object from text or spreadsheet input using data entry functions described in <a href="09-secr-package.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
-</section><section id="model-fitting" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="model-fitting">
-<span class="header-section-number">1.6</span> Model fitting</h2>
+</section><section id="model-fitting" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="model-fitting">
+<span class="header-section-number">1.7</span> Model fitting</h2>
 <p>A SECR model combines a model for the point process (the state model) and a model for distance-dependent detection (the observation model). Unbiased estimates of population density (and other parameters) are obtained by jointly fitting the state and observation models.</p>
-<section id="distance-dependent-detection" class="level3" data-number="1.6.1"><h3 data-number="1.6.1" class="anchored" data-anchor-id="distance-dependent-detection">
-<span class="header-section-number">1.6.1</span> Distance-dependent detection</h3>
+<section id="distance-dependent-detection" class="level3" data-number="1.7.1"><h3 data-number="1.7.1" class="anchored" data-anchor-id="distance-dependent-detection">
+<span class="header-section-number">1.7.1</span> Distance-dependent detection</h3>
 <p>In order to estimate density from a sample we must account for the sampling process. The process is inherently spatial: each animal is more likely to be detected near its AC, and less likely to be detected far away. Sampling filters the geographic locations of animals as indicated in <a href="#fig-example" class="quarto-xref">Fig.&nbsp;<span>1.1</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -584,15 +603,15 @@ Figure&nbsp;1.2: Some detection functions
 </div>
 </div>
 </div>
-</section><section id="habitat" class="level3" data-number="1.6.2"><h3 data-number="1.6.2" class="anchored" data-anchor-id="habitat">
-<span class="header-section-number">1.6.2</span> Habitat</h3>
+</section><section id="habitat" class="level3" data-number="1.7.2"><h3 data-number="1.7.2" class="anchored" data-anchor-id="habitat">
+<span class="header-section-number">1.7.2</span> Habitat</h3>
 <p></p>
 <p>SECR models include a map of potential habitat near the detectors. Here ‘potential’ means ‘feasible locations for the AC of detected animals’. Excluded are sites that are known <em>a priori</em> to be unoccupied, and sites that are so distant that an animal centred there has negligible chance of detection.</p>
 <p>The habitat map is called a ‘habitat mask’ in <strong>secr</strong> and a ‘state space’ in the various Bayesian implementations. It is commonly formed by adding a constant-width buffer around the detectors. For computational convenience the map is discretized as many small pixels. Spatial covariates (vegetation type, elevation, etc.) may be attached to each pixel for use in density models. The choice of buffer width and pixel size are considered later.</p>
-</section><section id="sec-link" class="level3" data-number="1.6.3"><h3 data-number="1.6.3" class="anchored" data-anchor-id="sec-link">
-<span class="header-section-number">1.6.3</span> Link functions</h3>
+</section><section id="sec-link" class="level3" data-number="1.7.3"><h3 data-number="1.7.3" class="anchored" data-anchor-id="sec-link">
+<span class="header-section-number">1.7.3</span> Link functions</h3>
 <p> </p>
-<p>A simple SECR model has three parameters: density <span class="math inline">D</span>, and the intercept <span class="math inline">g_0</span> and spatial scale <span class="math inline">\sigma</span> of the detection function. Valid values of each parameter are restricted to part of the number line (positive values for <span class="math inline">D</span> and <span class="math inline">\sigma</span>, values between zero and one for <span class="math inline">g_0</span>). A straightforward way to constrain estimates to valid values is to conduct maximization of the likelihood on a transformed (‘link’) scale: at each evaluation the parameter value is back transformed to the natural scale. The link function for all commonly used parameters defaults to ‘log’ (for positive values) except for g0 which defaults to ‘logit’ (for values between zero and one).</p>
+<p>A simple SECR model has three parameters: density <span class="math inline">D</span>, and the intercept <span class="math inline">g_0</span> and spatial scale <span class="math inline">\sigma</span> of the detection function. Valid values of each parameter are restricted to part of the real number line (positive values for <span class="math inline">D</span> and <span class="math inline">\sigma</span>, values between zero and one for <span class="math inline">g_0</span>). A straightforward way to constrain estimates to valid values is to conduct maximization of the likelihood on a transformed (‘link’) scale: at each evaluation the parameter value is back transformed to the natural scale. The link function for all commonly used parameters defaults to ‘log’ (for positive values) except for g0 which defaults to ‘logit’ (for values between zero and one).</p>
 <div id="tbl-links" class="sm quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-links-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1.2: Link functions
@@ -631,8 +650,8 @@ Table&nbsp;1.2: Link functions
 </div>
 <p>Working on a link scale is especially useful when the parameter is itself a function of covariates. For example, <span class="math inline">\log (D) = \beta_0 + \beta_1 c \;</span> for a log-linear function of a spatially varying covariate <span class="math inline">c</span>. The coefficients <span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span> are estimated in place of <span class="math inline">D</span> per se.</p>
 <p>We sometimes follow MARK <span class="citation" data-cites="cw">(e.g., <a href="A99-references.html#ref-cw" role="doc-biblioref">Cooch &amp; White, 2023</a>)</span> and use ‘beta parameters’ for coefficients on the link scale and ‘real parameters’ for the core parameters (<span class="math inline">D, g_0, \lambda_0, \sigma</span>) on the natural scale.</p>
-</section><section id="sec-estimation" class="level3" data-number="1.6.4"><h3 data-number="1.6.4" class="anchored" data-anchor-id="sec-estimation">
-<span class="header-section-number">1.6.4</span> Estimation</h3>
+</section><section id="sec-estimation" class="level3" data-number="1.7.4"><h3 data-number="1.7.4" class="anchored" data-anchor-id="sec-estimation">
+<span class="header-section-number">1.7.4</span> Estimation</h3>
 <p></p>
 <p>There are several ways to estimate the parameters of the SECR probability model, all of them computer-intensive. We focus on numerical maximization of the log likelihood (<span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="A99-references.html#ref-be08" role="doc-biblioref">2008</a>)</span> and <a href="03-theory.html" class="quarto-xref"><span>Chapter 3</span></a>). The likelihood integrates over the unknown locations of the animals’ activity centres. This is achieved in practice by summing over cells in a discretized map of the <a href="./12-habitat.html">habitat</a>.</p>
 <p>In outline, a function to compute the log likelihood from a vector of beta parameters is passed, along with the data, to an optimization function. Optimization is iterative. For illustration, <a href="#fig-MLE" class="quarto-xref">Fig.&nbsp;<span>1.3</span></a> shows the sequence of likelihood evaluations with two maximization algorithms when the parameter vector consists of only the intercept and spatial scale of detection. Optimization returns the maximized log likelihood, a vector of parameter values at the maximum, and the Hessian matrix from which the variance-covariance matrix of the estimates may be obtained.</p>
@@ -666,11 +685,17 @@ Figure&nbsp;1.3: Numerical maximization of conditional likelihood by two methods
 <span class="glightbox-desc lightbox-desc-3">Figure&nbsp;1.3: Numerical maximization of conditional likelihood by two methods; triangle – initial values; filled circle – estimates. Both converge on the same estimates (dashed lines). Newton-Raphson is the default method in secr.</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-Borchers2002" class="csl-entry" role="listitem">
+Borchers, D. L., Buckland, S. T., &amp; Zucchini, W. (2002). Estimating animal abundance. In <em>Statistics for Biology and Health</em>. Springer London. <a href="https://doi.org/10.1007/978-1-4471-3708-5">https://doi.org/10.1007/978-1-4471-3708-5</a>
+</div>
 <div id="ref-be08" class="csl-entry" role="listitem">
 Borchers, D. L., &amp; Efford, M. G. (2008). Spatially explicit maximum likelihood methods for capture-recapture studies. <em>Biometrics</em>, <em>64</em>, 377–385.
 </div>
 <div id="ref-cw" class="csl-entry" role="listitem">
 Cooch, E., &amp; White, G. (Eds.). (2023). <em>Program MARK: A gentle introduction.</em> (23rd ed.). <a href="http://www.phidot.org/software/mark/docs/book/">http://www.phidot.org/software/mark/docs/book/</a>
+</div>
+<div id="ref-Distiller2015" class="csl-entry" role="listitem">
+Distiller, G., &amp; Borchers, D. L. (2015). A spatially explicit capture–recapture estimator for single‐catch traps. <em>Ecology and Evolution</em>, <em>5</em>(21), 5075–5087. <a href="https://doi.org/10.1002/ece3.1748">https://doi.org/10.1002/ece3.1748</a>
 </div>
 <div id="ref-Efford2023" class="csl-entry" role="listitem">
 Efford, M. G. (2023). <span class="nocase">ipsecr: An R package for awkward spatial capture–recapture data</span>. <em>Methods in Ecology and Evolution</em>, <em>14</em>(5), 1182–1189. <a href="https://doi.org/10.1111/2041-210x.14088">https://doi.org/10.1111/2041-210x.14088</a>
@@ -1140,7 +1165,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

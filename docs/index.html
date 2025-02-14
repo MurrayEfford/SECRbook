@@ -460,7 +460,7 @@ SECR allows density to be modelled as a function of continuous spatial covariate
 <p>We expect that most readers will start with Part I and thereafter jump to topics of interest. Cross-references are provided to fill in relevant detail that may have been missed.</p>
 </section><section id="software" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="software">Software</h2>
 <p> The R package <strong>secr</strong> <span class="citation" data-cites="R-secr">(<a href="A99-references.html#ref-R-secr" role="doc-biblioref">Efford, 2025</a>)</span> provides most of the functionality we will need. It performs maximum likelihood estimation for a range of closed-population SECR models. The Windows application <a href="https://www.otago.ac.nz/density/">DENSITY</a> <span class="citation" data-cites="edr04">(<a href="A99-references.html#ref-edr04" role="doc-biblioref">Efford et al., 2004</a>)</span> has been superceded, although its graphical interface can still come in handy.</p>
-<p>Bayesian approaches using Markov chain Monte Carlo (MCMC) methods are a flexible, but generally slower, alternative to maximum likelihood (<a href="01-basics.html#sec-estimation" class="quarto-xref"><span>1.6.4 Estimation</span></a>). The R package <a href="https://CRAN.R-project.org/package=nimbleSCR">nimbleSCR</a> promises to make MCMC methods for SECR more accessible and faster.</p>
+<p>Bayesian approaches using Markov chain Monte Carlo (MCMC) methods are a flexible, but generally slower, alternative to maximum likelihood (<a href="01-basics.html#sec-estimation" class="quarto-xref"><span>1.7.4 Estimation</span></a>). The R package <a href="https://CRAN.R-project.org/package=nimbleSCR">nimbleSCR</a> promises to make MCMC methods for SECR more accessible and faster.</p>
 <p>Add-on packages extend the capability of <strong>secr</strong>:</p>
 <p></p>
 <ul>
@@ -493,7 +493,7 @@ The Quarto source files, including R code, are at <a href="https://github.com/mu
 </section><section id="feedback" class="level2"><h2 class="anchored" data-anchor-id="feedback">Feedback</h2>
 <p>This is work in progress. If you find an error or would like to make a suggestion, please raise an issue on <a href="https://github.com/MurrayEfford/SECRbook">GitHub</a> or contact the author directly.</p>
 </section><section id="acknowledgments" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="acknowledgments">Acknowledgments</h2>
-<p>Joanne Potts and Gurutzeta Guillera-Arroita gave helpful comments on early versions of some chapters. Matt Schofield provided encouragement, answered some theoretical questions, and reviewed several chapters. Thanks to John Boulanger for his collaboration on study design and analysis over many projects.</p>
+<p>Brian Gerber, Joanne Potts and Gurutzeta Guillera-Arroita gave helpful comments on early versions of some chapters. Matt Schofield provided encouragement, answered some theoretical questions, and reviewed several chapters. Thanks to John Boulanger for his collaboration on study design and analysis over many projects.</p>
 <p>Thanks for data -</p>
 <ul>
 <li>Ken Burnham: snowshoe hares <a href="02-example.html" class="quarto-xref"><span>2&nbsp; Simple example</span></a>
@@ -989,7 +989,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
