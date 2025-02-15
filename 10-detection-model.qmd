@@ -53,6 +53,7 @@ The 'hazard variable power' function is a 3-parameter function modelled on that 
 [^cumulative]: Technically this is the cumulative hazard rather than the instantaneous hazard, but we get tired of using the full term.
 
 \index{Link function!cloglog}
+
 ::: {.callout-tip}
 Using the 'complementary log-log' link function cloglog for a hazard detection function such as $\lambda(d) = \lambda_0 \exp[-d^2/(2\sigma^2)]$ is equivalent to modelling $\lambda$ with a log link, as $p = 1 - \exp(-\lambda)$ and $\lambda = -\log(1-p)$. For a halfnormal function, the quantity $y$ on the cloglog scale is then a linear function of $\exp(-d^2)$ with intercept $\alpha_0 = \log(\lambda_0)$ and slope $\alpha_1 = -1/(2\sigma^2)$ [e.g., @Royle2013].
 :::

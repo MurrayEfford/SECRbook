@@ -577,7 +577,20 @@ Table&nbsp;10.2: Hazard detection functions.
 <li>Intuitively, there is a close proportionality between <span class="math inline">\lambda(d)</span> and the height of an individual’s utilization pdf.</li>
 </ol>
 <p>The ‘hazard variable power’ function is a 3-parameter function modelled on that of <span class="citation" data-cites="Ergon2013">Ergon &amp; Gardner (<a href="A99-references.html#ref-Ergon2013" role="doc-biblioref">2013</a>)</span>. The third parameter allows for smooth variation of shape, including both HHN (<span class="math inline">z = 2</span>) and HEX (<span class="math inline">z = 1</span>) as special cases.</p>
-<p> ::: {.callout-tip} Using the ‘complementary log-log’ link function cloglog for a hazard detection function such as <span class="math inline">\lambda(d) = \lambda_0 \exp[-d^2/(2\sigma^2)]</span> is equivalent to modelling <span class="math inline">\lambda</span> with a log link, as <span class="math inline">p = 1 - \exp(-\lambda)</span> and <span class="math inline">\lambda = -\log(1-p)</span>. For a halfnormal function, the quantity <span class="math inline">y</span> on the cloglog scale is then a linear function of <span class="math inline">\exp(-d^2)</span> with intercept <span class="math inline">\alpha_0 = \log(\lambda_0)</span> and slope <span class="math inline">\alpha_1 = -1/(2\sigma^2)</span> <span class="citation" data-cites="Royle2013">(e.g., <a href="A99-references.html#ref-Royle2013" role="doc-biblioref">Royle et al., 2013</a>)</span>. :::</p>
+<p></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using the ‘complementary log-log’ link function cloglog for a hazard detection function such as <span class="math inline">\lambda(d) = \lambda_0 \exp[-d^2/(2\sigma^2)]</span> is equivalent to modelling <span class="math inline">\lambda</span> with a log link, as <span class="math inline">p = 1 - \exp(-\lambda)</span> and <span class="math inline">\lambda = -\log(1-p)</span>. For a halfnormal function, the quantity <span class="math inline">y</span> on the cloglog scale is then a linear function of <span class="math inline">\exp(-d^2)</span> with intercept <span class="math inline">\alpha_0 = \log(\lambda_0)</span> and slope <span class="math inline">\alpha_1 = -1/(2\sigma^2)</span> <span class="citation" data-cites="Royle2013">(e.g., <a href="A99-references.html#ref-Royle2013" role="doc-biblioref">Royle et al., 2013</a>)</span>.</p>
+</div>
+</div>
 <section id="choice-of-detection-function-not-critical" class="level3" data-number="10.1.1"><h3 data-number="10.1.1" class="anchored" data-anchor-id="choice-of-detection-function-not-critical">
 <span class="header-section-number">10.1.1</span> Choice of detection function not critical</h3>
 <p>The variety of detection functions is daunting. You could try them all and select the “best” by AIC, but we do not recommend this. Fortunately, the choice of function is not critical. We illustrate this with the snowshoe hare dataset of <a href="02-example.html" class="quarto-xref"><span>Chapter 2</span></a>. The function <a href="https://www.otago.ac.nz/density/html/list.secr.fit.html"><code>list.secr.fit</code></a>) is used to fit a series of models. Warnings due to the use of a multi-catch likelihood for single-catch traps are suppressed both here and in other examples.</p>
@@ -590,7 +603,7 @@ Table&nbsp;10.2: Hazard detection functions.
 <div class="cell-output-display">
 <div id="fig-choicedfplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-choicedfplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="10-detection-model_files/figure-html/fig-choicedfplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="10-detection-model_files/figure-html/fig-choicedfplot-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+<a href="10-detection-model_files/figure-html/fig-choicedfplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="10-detection-model_files/figure-html/fig-choicedfplot-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-choicedfplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.1: Four detection functions fitted to snowshoe hare data.
@@ -611,7 +624,7 @@ Figure&nbsp;10.1: Four detection functions fitted to snowshoe hare data.
 <div class="cell-output-display">
 <div id="fig-choicedfparmplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-choicedfparmplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="10-detection-model_files/figure-html/fig-choicedfparmplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="10-detection-model_files/figure-html/fig-choicedfparmplot-1.png" class="img-fluid figure-img" width="720"></a>
+<a href="10-detection-model_files/figure-html/fig-choicedfparmplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="10-detection-model_files/figure-html/fig-choicedfparmplot-1.png" class="img-fluid figure-img" width="720"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-choicedfparmplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.2: Parameter estimates from four detection functions (95% CI).
@@ -625,7 +638,7 @@ Figure&nbsp;10.2: Parameter estimates from four detection functions (95% CI).
 <div class="cell-output-display">
 <div id="fig-HVPvaryzplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-HVPvaryzplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="10-detection-model_files/figure-html/fig-HVPvaryzplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="10-detection-model_files/figure-html/fig-HVPvaryzplot-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+<a href="10-detection-model_files/figure-html/fig-HVPvaryzplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="10-detection-model_files/figure-html/fig-HVPvaryzplot-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-HVPvaryzplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.3: HVP function fitted to snowshoe hare data with <span class="math inline">z</span> parameter fixed at four different values.
@@ -644,7 +657,7 @@ Figure&nbsp;10.3: HVP function fitted to snowshoe hare data with <span class="ma
 <div class="cell-output-display">
 <div id="fig-ellipseHVP" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ellipseHVP-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="10-detection-model_files/figure-html/fig-ellipseHVP-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="10-detection-model_files/figure-html/fig-ellipseHVP-1.png" class="img-fluid figure-img" width="576"></a>
+<a href="10-detection-model_files/figure-html/fig-ellipseHVP-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="10-detection-model_files/figure-html/fig-ellipseHVP-1.png" class="img-fluid figure-img" width="576"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ellipseHVP-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.4: Confidence ellipse for HVP detection parameters plotted on the link scale and back-transformed to natural scale. ‘+’ indicates MLE.
@@ -1580,7 +1593,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"openEffect":"zoom","selector":".lightbox","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -455,17 +455,17 @@ window.Quarto = {
 <span class="header-section-number">7.3</span> Rodents in New Mexico</h2>
 <p></p>
 <p>One major evaluation has questioned the reliability of SECR. <span class="citation" data-cites="Gerber2015">Gerber &amp; Parmenter (<a href="A99-references.html#ref-Gerber2015" role="doc-biblioref">2015</a>)</span> re-analysed live-trapping data for rodents of several taxa confined to pens in New Mexico <span class="citation" data-cites="Parmenter2003">(<a href="A99-references.html#ref-Parmenter2003" role="doc-biblioref">Parmenter et al., 2003</a>)</span>. Traps were arranged in either a central square grid or a star-shaped pattern, a ‘trapping web’. The main study was followed by intensive trapping across the full extent of each pen to enumerate each taxon.</p>
-<p>SECR provided instances of both over- and under-estimation, and its performance was “sometimes underwhelming”. The authors focussed on heterogeneity of detection and asymmetry of home ranges as possible explanations, although direct evidence of these effects was lacking.</p>
-<p>We suggest an alternative explanation. The main trap layouts did not sample the full extent of each pen, and the probability of detecting an individual in the periphery was quite low for species with small home ranges such as <em>Perognathus flavus</em> (<a href="#fig-sevilletafig" class="quarto-xref">Fig.&nbsp;<span>7.1</span></a>). Perfect correspondence with pen-wide exhaustive trapping is not to be expected if the density in the under-sampled peripheral zone differs from the central zone. This applies whether the difference is random or systematic. The peripheral zone (<span class="math inline">p_\cdot(\mathbf x) &lt; 0.25</span>) was a larger fraction of the pen for the grid (<span class="math inline">\approx 54\%</span>) than for the web (<span class="math inline">\approx 28\%</span>), which could explain why the grid estimates of <em>P. flavus</em> density were particularly poor <span class="citation" data-cites="Gerber2015">(<a href="A99-references.html#ref-Gerber2015" role="doc-biblioref">Gerber &amp; Parmenter, 2015, Figures 2a, 3a</a>))</span>.</p>
+<p>SECR provided instances of both over- and under-estimation, and its performance was “sometimes underwhelming”. The authors focussed on heterogeneity of detection and asymmetry of home ranges as possible explanations, although direct evidence of these effects was lacking. Asymmetry is not a significant source of bias in itself (<span class="citation" data-cites="Efford2019">Efford (<a href="A99-references.html#ref-Efford2019" role="doc-biblioref">2019</a>)</span>). Heterogeneity must be large to cause significant bias, and the bias is negative (e.g., <span class="citation" data-cites="em14">Efford &amp; Mowat (<a href="A99-references.html#ref-em14" role="doc-biblioref">2014</a>)</span>) <a href="06-assumptions.html" class="quarto-xref">see also&nbsp;<span>6</span></a>.</p>
+<p>We suggest an alternative explanation. The main trap layouts did not sample the full extent of each pen, and the probability of detecting an individual in the periphery was quite low for species with small home ranges such as <em>Perognathus flavus</em> (<a href="#fig-sevilletafig" class="quarto-xref">Fig.&nbsp;<span>7.1</span></a>). Perfect correspondence with pen-wide exhaustive trapping is not to be expected if the density in the under-sampled peripheral zone differs from the central zone. This applies whether the difference is random or systematic. The peripheral zone (<span class="math inline">p_\cdot(\mathbf x) &lt; 0.25</span>) was a larger fraction of the pen for the grid (<span class="math inline">\approx 54\%</span>) than for the web (<span class="math inline">\approx 28\%</span>), which could explain why the grid estimates of <em>P. flavus</em> density were particularly poor <span class="citation" data-cites="Gerber2015">(<a href="A99-references.html#ref-Gerber2015" role="doc-biblioref">Gerber &amp; Parmenter, 2015, Figures 2a, 3a</a>)</span>.</p>
 <p>The final exhaustive trapping might be used to test the hypothesis of spatial heterogeneity, but these data are not available. Some evidence of within-pen density variation may be gleaned from density models fitted to the capture–recapture data: in 50% of the populations a density model that included distance-to-wall as a covariate provided better fit than a null model in 50% of cases (likelihood ratio test <span class="math inline">P &lt; 0.05</span>; unpubl. results).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sevilletafig" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sevilletafig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="07-validation_files/figure-html/fig-sevilletafig-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="07-validation_files/figure-html/fig-sevilletafig-1.png" class="img-fluid figure-img" style="width:80.0%"></a>
+<a href="07-validation_files/figure-html/fig-sevilletafig-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="07-validation_files/figure-html/fig-sevilletafig-1.png" class="img-fluid figure-img" style="width:80.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sevilletafig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.1: <em>Peroganthus flavus</em> contours of overall 5-night detection probability <span class="math inline">p_\cdot(\mathbf{x})</span> within a ca. 4.2-ha pen (grey shading). a. Grid, b. Trapping web. Detection parameters from first <em>P. flavus</em> population in each case.
+Figure&nbsp;7.1: <em>Peroganthus flavus</em> contours of overall 5-night detection probability <span class="math inline">p_\cdot(\mathbf{x})</span> (0.1, 0.25, 0.5, 0.75) within a ca. 4.2-ha pen (grey shading). a. Grid, b. Trapping web. Detection parameters from first <em>P. flavus</em> population in each case.
 </figcaption></figure>
 </div>
 </div>
@@ -482,7 +482,7 @@ Figure&nbsp;7.1: <em>Peroganthus flavus</em> contours of overall 5-night detecti
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;7.1: <em>Peroganthus flavus</em> contours of overall 5-night detection probability <span class="math inline">p_\cdot(\mathbf{x})</span> within a ca. 4.2-ha pen (grey shading). a. Grid, b. Trapping web. Detection parameters from first <em>P. flavus</em> population in each case.</span>
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;7.1: <em>Peroganthus flavus</em> contours of overall 5-night detection probability <span class="math inline">p_\cdot(\mathbf{x})</span> (0.1, 0.25, 0.5, 0.75) within a ca. 4.2-ha pen (grey shading). a. Grid, b. Trapping web. Detection parameters from first <em>P. flavus</em> population in each case.</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-Boutin1984" class="csl-entry" role="listitem">
@@ -490,6 +490,12 @@ Boutin, S. (1984). Home range size and methods of estimating snowshoe hare densi
 </div>
 <div id="ref-DespresEinspenner2017" class="csl-entry" role="listitem">
 Després‐Einspenner, M., Howe, E. J., Drapeau, P., &amp; Kühl, H. S. (2017). An empirical evaluation of camera trapping and spatially explicit capture‐recapture models for estimating chimpanzee density. <em>American Journal of Primatology</em>, <em>79</em>(7). <a href="https://doi.org/10.1002/ajp.22647">https://doi.org/10.1002/ajp.22647</a>
+</div>
+<div id="ref-Efford2019" class="csl-entry" role="listitem">
+Efford, M. G. (2019). Non‐circular home ranges and the estimation of population density. <em>Ecology</em>, <em>100</em>(2). <a href="https://doi.org/10.1002/ecy.2580">https://doi.org/10.1002/ecy.2580</a>
+</div>
+<div id="ref-em14" class="csl-entry" role="listitem">
+Efford, M. G., &amp; Mowat, G. (2014). Compensatory heterogeneity in spatially explicit capture-recapture data. <em>Ecology</em>, <em>95</em>, 1341–1348.
 </div>
 <div id="ref-ewcb05" class="csl-entry" role="listitem">
 Efford, M. G., Warburton, B., Coleman, M. C., &amp; Barker, R. J. (2005). A field test of two methods for density estimation. <em>Wildlife Society Bulletin</em>, <em>33</em>, 731–738.
@@ -936,7 +942,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","loop":false});
+<script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
