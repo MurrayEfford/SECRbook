@@ -392,7 +392,7 @@ The 'usage' attribute of a 'traps' object in **secr** is a $K$ x $S$ matrix reco
 
 [^polygonusage]: The usage matrix for polygon and transect detectors has one row for each polygon or transect, rather than one row per vertex.
 
-Usage data may be input as extra columns in a file of detector coordinates (see `?read.traps` and [secr-datainput.pdf](https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf). 
+Usage data may be input as extra columns in a file of detector coordinates (see `?read.traps` and [secr-datainput.pdf](https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf)). 
 
 Usage data also may be added to an existing traps object, even after it has been included in a capthist object. For example, the traps object in the demonstration dataset 'captdata' starts with no usage attribute, but we can add one. Suppose that traps 14 and 15 were not set on occasions 1--3. We construct a binary usage matrix and assign it to the traps object like this:
 ```{r}
