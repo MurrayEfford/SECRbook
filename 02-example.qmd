@@ -3,10 +3,10 @@
 
 In this chapter we use the R package **secr** to fit an SECR model to the Alaskan snowshoe hare data of Burnham and Cushwa [@obwa78].
 
-::: {layout-ncol=2}
-![](figures/snowshoehare.png)
+::: {layout-ncol=2 style="min-height: 200px;"}
+<!-- ![](figures/snowshoehare.png) -->
 
-![](figures/otisetal.png)
+![](figures/otisetal3.png)
 
 :::
 
