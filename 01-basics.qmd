@@ -25,9 +25,10 @@ S. Charles Kendeigh (1944)
 &nbsp;&nbsp; <br>
 :::
 
-::: {#third-column style="font-size: 60%;"}
+::: {#third-column}
 ![](images/Kendeigh.png)  
-*Photo: L.L.Getz*
+<span style="font-size: 70%;"> *Photo: L.L.Getz* </span>
+
 :::
 
 ::::
