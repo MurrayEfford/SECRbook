@@ -1,13 +1,17 @@
 # Telemetry {#sec-telemetry}
 
-In some capture--recapture studies there are additional data from radiotelemetry of a sample of animals. Telemetry fixes provide an unbiased sample of animal activity, unlike detections at fixed points (traps, cameras or hair snares) or from searching circumscribed areas. Telemetry data therefore provide a direct estimate of the spatial scale of activity, which is represented in spatially explicit capture--recapture (SECR) by the parameter $\sigma$. Telemetry data also reduce uncertainty regarding the location of animals' centres relative to detectors, so detection histories of telemetered animals may improve estimates of other parameters.
+In some capture--recapture studies there are additional data from radiotelemetry of a sample of animals. Telemetry fixes provide an unbiased sample of animal activity, unlike detections at fixed points (traps, cameras or hair snares) or from searching circumscribed areas. Telemetry data therefore provide a direct estimate of the spatial scale of activity, which is represented in spatially explicit capture--recapture (SECR) by the parameter $\sigma$. Telemetry data also reduce uncertainty regarding the location of animals' centres relative to detectors, so detection histories of telemetered animals may improve estimates of other parameters. These are *potential* benefits -- we do not consider whether they are realised *in practice*.
 
 Previous examples are @sgpsmspo13, @whc18, @Linden2018. Combining data types has 
 been considered generally by @Gopalaswamy2012, @Chandler2021, @Ruprecht2021, @Margenau2022 and others.
 
 This chapter explains and demonstrates the use of telemetry data in the R package **secr**, particularly the use of the 'telemetry' detector type. 
 
-A word of warning. Telemetry is used in **secr** to augment SECR analyses, particularly the estimation of population density. **secr** is not intended for the detailed analysis of telemetry data *per se*. There is no provision in the data structure for recording the time of each fix, except as each relates to a discrete sampling occasion. Nor is there provision for associating behavioural or environmental covariates with each fix. 
+::: {.callout-warning}
+
+Telemetry is used in **secr** to augment SECR analyses, particularly the estimation of population density. **secr** is not intended for the detailed analysis of telemetry data *per se*. There is no provision in the data structure for recording the time of each fix, except as each relates to a discrete sampling occasion. Nor is there provision for associating behavioural or environmental covariates with each fix. 
+
+:::
 
 ## Example  {#sec-telemetryexample}
 
@@ -92,7 +96,7 @@ Here, telemetry data greatly improves the precision of the estimated scale of mo
 
 ## Standalone telemetry data 
 
-Telemetry data are stored in modified **secr** capthist objects. A capthist object may comprise telemetry fixes only ('standalone telemetry') or telemetry fixes in association with capture--recapture data (composite telemetry and capture--recapture). In this section I describe standalone telemetry data. A composite capthist is formed by combining a telemetry-only object and a standard capthist object with `addTelemetry`, as described in @sec-composite.
+Telemetry data are stored in modified **secr** capthist objects. A capthist object may comprise telemetry fixes only ('standalone telemetry') or telemetry fixes in association with capture--recapture data (composite telemetry and capture--recapture). This section describes standalone telemetry data. A composite capthist is formed by combining a telemetry-only object and a standard capthist object with `addTelemetry`, as described in @sec-composite.
 
 ### The 'traps' object for telemetry data
 
