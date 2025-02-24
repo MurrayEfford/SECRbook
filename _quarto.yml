@@ -18,14 +18,16 @@ citation:
   type: book
   url: https://www.otago.ac.nz/density
 
+metadata:
+  version: "0.0.0"
+  
 book: 
   title: The SECR book
 
   subtitle: |
     |
-    | A handbook of spatially explicit capture--recapture methods
-    | 1st Edition
-    | DRAFT only
+    | A handbook of spatially explicit capture--recapture methods  
+    | Version {{< meta version >}}
     |  
     |   
     | ![](images/Nickinsnow2.png){width=60%}
@@ -75,7 +77,7 @@ book:
       - 15-finite-mixtures.qmd
       - 16-sex.qmd
       - 17-simulation.qmd
-    
+
   appendices:
     - A01-troubleshooting.qmd
     - A02-speed.qmd
@@ -93,7 +95,6 @@ book:
     - A99-references.qmd
     
   repo-url: https://github.com/MurrayEfford/SECRbook
-
 
 bibliography: [SECRbook.bib]
 # csl: journal-of-the-royal-statistical-society.csl

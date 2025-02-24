@@ -472,10 +472,22 @@ window.Quarto = {
   
 
 
-</header><p>In some capture–recapture studies there are additional data from radiotelemetry of a sample of animals. Telemetry fixes provide an unbiased sample of animal activity, unlike detections at fixed points (traps, cameras or hair snares) or from searching circumscribed areas. Telemetry data therefore provide a direct estimate of the spatial scale of activity, which is represented in spatially explicit capture–recapture (SECR) by the parameter <span class="math inline">\sigma</span>. Telemetry data also reduce uncertainty regarding the location of animals’ centres relative to detectors, so detection histories of telemetered animals may improve estimates of other parameters.</p>
+</header><p>In some capture–recapture studies there are additional data from radiotelemetry of a sample of animals. Telemetry fixes provide an unbiased sample of animal activity, unlike detections at fixed points (traps, cameras or hair snares) or from searching circumscribed areas. Telemetry data therefore provide a direct estimate of the spatial scale of activity, which is represented in spatially explicit capture–recapture (SECR) by the parameter <span class="math inline">\sigma</span>. Telemetry data also reduce uncertainty regarding the location of animals’ centres relative to detectors, so detection histories of telemetered animals may improve estimates of other parameters. These are <em>potential</em> benefits – we do not consider whether they are realised <em>in practice</em>.</p>
 <p>Previous examples are <span class="citation" data-cites="sgpsmspo13">Sollmann et al. (<a href="A99-references.html#ref-sgpsmspo13" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="whc18">Whittington et al. (<a href="A99-references.html#ref-whc18" role="doc-biblioref">2018</a>)</span>, <span class="citation" data-cites="Linden2018">Linden et al. (<a href="A99-references.html#ref-Linden2018" role="doc-biblioref">2018</a>)</span>. Combining data types has been considered generally by <span class="citation" data-cites="Gopalaswamy2012">Gopalaswamy et al. (<a href="A99-references.html#ref-Gopalaswamy2012" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="Chandler2021">Chandler et al. (<a href="A99-references.html#ref-Chandler2021" role="doc-biblioref">2021</a>)</span>, <span class="citation" data-cites="Ruprecht2021">Ruprecht et al. (<a href="A99-references.html#ref-Ruprecht2021" role="doc-biblioref">2021</a>)</span>, <span class="citation" data-cites="Margenau2022">Margenau et al. (<a href="A99-references.html#ref-Margenau2022" role="doc-biblioref">2022</a>)</span> and others.</p>
 <p>This chapter explains and demonstrates the use of telemetry data in the R package <strong>secr</strong>, particularly the use of the ‘telemetry’ detector type.</p>
-<p>A word of warning. Telemetry is used in <strong>secr</strong> to augment SECR analyses, particularly the estimation of population density. <strong>secr</strong> is not intended for the detailed analysis of telemetry data <em>per se</em>. There is no provision in the data structure for recording the time of each fix, except as each relates to a discrete sampling occasion. Nor is there provision for associating behavioural or environmental covariates with each fix.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Telemetry is used in <strong>secr</strong> to augment SECR analyses, particularly the estimation of population density. <strong>secr</strong> is not intended for the detailed analysis of telemetry data <em>per se</em>. There is no provision in the data structure for recording the time of each fix, except as each relates to a discrete sampling occasion. Nor is there provision for associating behavioural or environmental covariates with each fix.</p>
+</div>
+</div>
 <section id="sec-telemetryexample" class="level2" data-number="G.1"><h2 data-number="G.1" class="anchored" data-anchor-id="sec-telemetryexample">
 <span class="header-section-number">G.1</span> Example</h2>
 <p>We start with a concrete example based on a simulated dataset.</p>
@@ -519,7 +531,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-telemetryfig" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-telemetryfig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="A07-telemetry_files/figure-html/fig-telemetryfig-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="A07-telemetry_files/figure-html/fig-telemetryfig-1.png" class="img-fluid figure-img" width="576"></a>
+<a href="A07-telemetry_files/figure-html/fig-telemetryfig-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="A07-telemetry_files/figure-html/fig-telemetryfig-1.png" class="img-fluid figure-img" width="576"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-telemetryfig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;G.1: Simulated trapping and telemetry data. The 5-day trapping study (left) yielded 29 recaptures. Telemetry data were obtained on 10 occasions for each of 12 animals (right). Points for animals that were both trapped and telemetered are ringed in black. Colours distinguish individuals.
@@ -558,7 +570,7 @@ combined   26.498      1.1295 24.375 28.806</code></pre>
 <p>Here, telemetry data greatly improves the precision of the estimated scale of movement <span class="math inline">\sigma</span>, but the effect on estimates of the other two parameters is small.</p>
 </section><section id="standalone-telemetry-data" class="level2" data-number="G.2"><h2 data-number="G.2" class="anchored" data-anchor-id="standalone-telemetry-data">
 <span class="header-section-number">G.2</span> Standalone telemetry data</h2>
-<p>Telemetry data are stored in modified <strong>secr</strong> capthist objects. A capthist object may comprise telemetry fixes only (‘standalone telemetry’) or telemetry fixes in association with capture–recapture data (composite telemetry and capture–recapture). In this section I describe standalone telemetry data. A composite capthist is formed by combining a telemetry-only object and a standard capthist object with <code>addTelemetry</code>, as described in <a href="#sec-composite" class="quarto-xref"><span>Section G.3</span></a>.</p>
+<p>Telemetry data are stored in modified <strong>secr</strong> capthist objects. A capthist object may comprise telemetry fixes only (‘standalone telemetry’) or telemetry fixes in association with capture–recapture data (composite telemetry and capture–recapture). This section describes standalone telemetry data. A composite capthist is formed by combining a telemetry-only object and a standard capthist object with <code>addTelemetry</code>, as described in <a href="#sec-composite" class="quarto-xref"><span>Section G.3</span></a>.</p>
 <section id="the-traps-object-for-telemetry-data" class="level3" data-number="G.2.1"><h3 data-number="G.2.1" class="anchored" data-anchor-id="the-traps-object-for-telemetry-data">
 <span class="header-section-number">G.2.1</span> The ‘traps’ object for telemetry data</h3>
 <p>Telemetry data differ from all other SECR data in that the detection process does not constrain where animals are detected (telemetry provides a spatially unbiased sample of each animal’s activity). That is clearly not the case for area-search and point detectors, which inevitably constrain where animals are detected. Nevertheless, for compatibility with the rest of <strong>secr</strong>, we associate telemetry data with a notional detector located at a point. The ‘traps’ object for telemetry data comprises the coordinates of this point plus the usual attributes of a ‘traps’ object in <strong>secr</strong> (detector type, usage, etc.). Remember that the point is only a ‘notional’ detector - it is never visited.</p>
@@ -681,7 +693,7 @@ Individual covariates
 <div class="cell-output-display">
 <div id="fig-telemetryschematic" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-telemetryschematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="A07-telemetry_files/figure-html/fig-telemetryschematic-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="A07-telemetry_files/figure-html/fig-telemetryschematic-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="A07-telemetry_files/figure-html/fig-telemetryschematic-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="A07-telemetry_files/figure-html/fig-telemetryschematic-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-telemetryschematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;G.2: Schematic relationship of capture–recapture data to three types of telemetry data. Vertical overlap indicates individuals that appear in both datasets.
@@ -789,7 +801,7 @@ sigma  log   23.638       1.044 21.679 25.774</code></pre>
 <div class="cell-output-display">
 <div id="fig-maskplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-maskplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="A07-telemetry_files/figure-html/fig-maskplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="A07-telemetry_files/figure-html/fig-maskplot-1.png" class="img-fluid figure-img" width="576"></a>
+<a href="A07-telemetry_files/figure-html/fig-maskplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="A07-telemetry_files/figure-html/fig-maskplot-1.png" class="img-fluid figure-img" width="576"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maskplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;G.3: Habitat masks prepared by buffering around telemetry sites (left) or both telemetry and detector sites (right).
@@ -984,7 +996,7 @@ Individual covariates
 <div class="cell-output-display">
 <div id="fig-plotsim" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plotsim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="A07-telemetry_files/figure-html/fig-plotsim-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="A07-telemetry_files/figure-html/fig-plotsim-1.png" class="img-fluid figure-img" width="576"></a>
+<a href="A07-telemetry_files/figure-html/fig-plotsim-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="A07-telemetry_files/figure-html/fig-plotsim-1.png" class="img-fluid figure-img" width="576"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotsim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;G.4: Simulated telemetry data in relation to a capture–recapture grid (red crosses). Independently telemetered individuals are not recognised if they are caught on the grid. Dependent telemetry is restricted to animals caught on the grid. Individuals telemetered concurrently may or may not be caught, but are recognised when they are.
@@ -1673,7 +1685,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

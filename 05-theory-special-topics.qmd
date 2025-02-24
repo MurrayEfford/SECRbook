@@ -170,7 +170,7 @@ $$
 
 where $a(\theta_u) = \int p_\cdot(\mathbf x ; \theta_{u}) \; d\mathbf x$.
 
-## Alternative parameterizations {#sec-parameterizations}
+## Alternative parameterizations {#sec-altparameterizations}
 \index{Parameterization}
 
 The 'real' parameters in SECR are typically assumed to be independent (orthogonal). However, some parameter pairs co-vary in predictable ways owing to constraints on animal behaviour. Here it is more straightforward to work with the hazard detection functions. The intercept of the detection function $\lambda_0$ declines with increasing $\sigma$, all else being equal [@em14]. This is inevitable if detection is strictly proportional to time spent near a point, given a bivariate home range utilisation model (pdf for activity). Also, home-range size and the SECR parameter $\sigma$ decline with population density [@edjq16]. Allowing for covariation may improve biological insight and lead to more parsimonious models. 

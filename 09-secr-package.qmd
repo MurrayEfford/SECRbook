@@ -20,7 +20,7 @@ An interactive graphic user interface to many features of **secr** is provided b
 R operates on *objects* each of which has a *class*. **secr** defines a set of R classes and methods for spatial capture--recapture data and models fitted to those data. To perform an SECR analysis you construct each of these objects in turn. @fig-schematic indicates the relationships among the classes. 
 
 ::: {.callout-note}
-## Classes
+## R classes
 A 'class' in R specifies a particular type of data object and the functions (methods) by which it is manipulated (computed, printed, plotted etc). Technically, **secr** uses old-fashioned 'S3' classes. See the R documentation `?class` for further explanation.
 :::
 

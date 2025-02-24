@@ -415,7 +415,7 @@ window.Quarto = {
 <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation"><span class="header-section-number">1.1</span> Motivation</a></li>
   <li><a href="#state-and-observation-models" id="toc-state-and-observation-models" class="nav-link" data-scroll-target="#state-and-observation-models"><span class="header-section-number">1.2</span> State and observation models</a></li>
   <li><a href="#spatial-population" id="toc-spatial-population" class="nav-link" data-scroll-target="#spatial-population"><span class="header-section-number">1.3</span> Spatial population</a></li>
-  <li><a href="#detectors" id="toc-detectors" class="nav-link" data-scroll-target="#detectors"><span class="header-section-number">1.4</span> Detectors</a></li>
+  <li><a href="#sec-detectors" id="toc-sec-detectors" class="nav-link" data-scroll-target="#sec-detectors"><span class="header-section-number">1.4</span> Detectors</a></li>
   <li><a href="#sampling-across-time" id="toc-sampling-across-time" class="nav-link" data-scroll-target="#sampling-across-time"><span class="header-section-number">1.5</span> Sampling across time</a></li>
   <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure"><span class="header-section-number">1.6</span> Data structure</a></li>
   <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting"><span class="header-section-number">1.7</span> Model fitting</a></li>
@@ -464,7 +464,7 @@ S. Charles Kendeigh (1944)</p>
 <p>SECR cuts through this problem by modelling the spatial scale of detection to obtain an unbiased estimate of the stationary density of individuals.</p>
 </section><section id="state-and-observation-models" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="state-and-observation-models">
 <span class="header-section-number">1.2</span> State and observation models</h2>
-<p>It helps to think of SECR in two parts: the state model and the observation model <span class="citation" data-cites="Borchers2002">(<a href="A99-references.html#ref-Borchers2002" role="doc-biblioref">Borchers et al., 2002</a>)</span>. The state model describes the biological reality we wish to describe, the animal population. The observation model represents the sampling process by which we learn about the population. The observation model matters only as the lens through which we can achieve a clear view of the population. We treat the state model (spatial population) and observation model (detection process) independently, with rare exceptions (<a href="A08-parameterizations.html" class="quarto-xref"><span>Appendix H</span></a>).</p>
+<p>It helps to think of SECR in two parts: the state model and the observation model <span class="citation" data-cites="Borchers2002">(<a href="A99-references.html#ref-Borchers2002" role="doc-biblioref">Borchers et al., 2002</a>)</span>. The state model describes the biological reality we wish to describe, the animal population. The observation model represents the sampling process by which we learn about the population. The observation model matters only as the lens through which we can achieve a clear view of the population. We treat the state model (spatial population) and observation model (detection process) independently, with rare exceptions (<a href="05-theory-special-topics.html#sec-altparameterizations" class="quarto-xref"><span>Section 5.10</span></a>).</p>
 </section><section id="spatial-population" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="spatial-population">
 <span class="header-section-number">1.3</span> Spatial population</h2>
 <p> An animal population in SECR is a spatial point pattern. Each point represents the location of an animal’s activity centre, often abbreviated AC.</p>
@@ -484,7 +484,7 @@ Activity centre vs home range centre
 <p>‘Activity centre’ is often used in preference to ‘home range centre’ because it appears more neutral. ‘Home range’ implies a particular pattern of behaviour: spatial familiarity and repeated use in contrast to nomadism. However, SECR assumes the very pattern of behaviour (persistent use) that distinguishes a home range, and it is safe to use ‘activity centre’ and ‘home range centre’ interchangeably in this context.</p>
 </div>
 </div>
-</section><section id="detectors" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="detectors">
+</section><section id="sec-detectors" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="sec-detectors">
 <span class="header-section-number">1.4</span> Detectors</h2>
 <p></p>
 <p>SECR uses sampling devices (‘detectors’) placed at known locations. We need to recognise individuals whenever they are detected. The accumulated detections of each known individual are its ‘detection history’. Device types differ according to how they affect animal behaviour and the data they collect; each type corresponds to a probability model (<a href="03-theory.html#sec-pointdetectors" class="quarto-xref"><span>Section 3.4</span></a>).</p>
@@ -580,7 +580,7 @@ Continuous time
 <div class="cell-output-display">
 <div id="fig-example" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/example.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="figures/example.png" class="img-fluid figure-img" style="width:70.0%"></a>
+<a href="figures/example.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="figures/example.png" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.1: Distance-dependent detection of uniformly distributed activity centres (open circles; filled if captured)
@@ -595,7 +595,7 @@ Figure&nbsp;1.1: Distance-dependent detection of uniformly distributed activity 
 <div class="cell-output-display">
 <div id="fig-detectionfunctions" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-detectionfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="img-fluid figure-img" style="width:75.0%"></a>
+<a href="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="01-basics_files/figure-html/fig-detectionfunctions-1.png" class="img-fluid figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-detectionfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.2: Some detection functions
@@ -659,7 +659,7 @@ Table&nbsp;1.2: Link functions
 <div class="cell-output-display">
 <div id="fig-MLE" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-MLE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01-basics_files/figure-html/fig-MLE-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="01-basics_files/figure-html/fig-MLE-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="01-basics_files/figure-html/fig-MLE-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="01-basics_files/figure-html/fig-MLE-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MLE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.3: Numerical maximization of conditional likelihood by two methods; triangle – initial values; filled circle – estimates. Both converge on the same estimates (dashed lines). Newton-Raphson is the default method in secr.
@@ -1165,7 +1165,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false,"closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

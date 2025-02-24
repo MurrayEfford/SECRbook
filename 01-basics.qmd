@@ -55,7 +55,7 @@ to obtain an unbiased estimate of the stationary density of individuals.
 
 ## State and observation models
 
-It helps to think of SECR in two parts: the state model and the observation model [@Borchers2002]. The state model describes the biological reality we wish to describe, the animal population. The observation model represents the sampling process by which we learn about the population. The observation model matters only as the lens through which we can achieve a clear view of the population. We treat the state model (spatial population) and observation model (detection process) independently, with rare exceptions (@sec-parameterizations).
+It helps to think of SECR in two parts: the state model and the observation model [@Borchers2002]. The state model describes the biological reality we wish to describe, the animal population. The observation model represents the sampling process by which we learn about the population. The observation model matters only as the lens through which we can achieve a clear view of the population. We treat the state model (spatial population) and observation model (detection process) independently, with rare exceptions (@sec-altparameterizations).
 
 ## Spatial population
 
@@ -91,7 +91,7 @@ use) that distinguishes a home range, and it is safe to use 'activity centre'
 and 'home range centre' interchangeably in this context.
 :::
 
-## Detectors
+## Detectors {#sec-detectors}
 \index{Detectors} 
 
 SECR uses sampling devices ('detectors') placed at known locations.
