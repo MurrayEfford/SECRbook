@@ -95,6 +95,11 @@ book:
     - A99-references.qmd
     
   repo-url: https://github.com/MurrayEfford/SECRbook
+  
+  page-footer:
+    center:
+      - text: "The SECR book. Version {{< meta version >}}.  "
+      - text: "&nbsp;&nbsp; Copyright © 2025"
 
 bibliography: [SECRbook.bib]
 # csl: journal-of-the-royal-statistical-society.csl
