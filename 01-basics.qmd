@@ -166,7 +166,7 @@ Data collected across multiple sessions potentially include the loss of
 some individuals and recruitment of others. An open population model is the
 natural way to go [e.g., @es20]. However, the complexity of
 open-population models can be avoided if sessions are treated as
-independent in a 'multi-session' closed population analysis.
+independent in a 'multi-session' closed population analysis (@sec-multisession).
 
 ## Data structure
 
