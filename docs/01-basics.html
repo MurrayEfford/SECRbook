@@ -566,7 +566,7 @@ Continuous time
 </div>
 </div>
 <p>It is not necessary for all detectors to be used on all occasions. Incomplete usage <span class="citation" data-cites="ebm13">(and other variation in effort per occasion – <a href="A99-references.html#ref-ebm13" role="doc-biblioref">Efford et al., 2013</a>)</span> may be recorded for each detector and allowed for in the analysis.</p>
-<p>Data collected across multiple sessions potentially include the loss of some individuals and recruitment of others. An open population model is the natural way to go <span class="citation" data-cites="es20">(e.g., <a href="A99-references.html#ref-es20" role="doc-biblioref">Efford &amp; Schofield, 2020</a>)</span>. However, the complexity of open-population models can be avoided if sessions are treated as independent in a ‘multi-session’ closed population analysis.</p>
+<p>Data collected across multiple sessions potentially include the loss of some individuals and recruitment of others. An open population model is the natural way to go <span class="citation" data-cites="es20">(e.g., <a href="A99-references.html#ref-es20" role="doc-biblioref">Efford &amp; Schofield, 2020</a>)</span>. However, the complexity of open-population models can be avoided if sessions are treated as independent in a ‘multi-session’ closed population analysis (<a href="14-multisession.html" class="quarto-xref"><span>Chapter 14</span></a>).</p>
 </section><section id="data-structure" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="data-structure">
 <span class="header-section-number">1.6</span> Data structure</h2>
 <p> Data for a single SECR session comprise a 3-dimensional rectangular array with dimensions corresponding to known animals, sampling occasions, and detectors. Data in each cell of the array are usually binary (0/1) but may be integer counts &gt; 1 (e.g., if binary data have been collapsed by occasion). In <strong>secr</strong>, an R object of class ‘capthist’ holds data in this form, along with the coordinates of the detectors in its ‘traps’ attribute. The user constructs a capthist object from text or spreadsheet input using data entry functions described in <a href="09-secr-package.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
@@ -1183,7 +1183,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
