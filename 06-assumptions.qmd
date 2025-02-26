@@ -669,7 +669,7 @@ Special care is needed when these effects may apply:
 * large individual heterogeneity
 * alignment of home ranges with detector array
 
-We have not considered in detail the potential for correlated variation in overall detection (measured as the [effective sampling area](05-theory-special-topics.qmd#sec-esa)) and density. This was advanced as a major issue by @McLellan2023.
+We have not considered in detail the potential for correlated variation in overall detection (measured as the [effective sampling area](05-theory-special-topics.qmd#sec-esa)) and density. Failure to model such correlated variation led to poor estimates in the simulations of @McLellan2023 (see also @sec-spatialvariation).
 
 Several breaches lead to underestimation of sampling variance and impaired coverage of confidence intervals. If the magnitude of the breach can be estimated then better confidence intervals may be achieved by simulating from the full model.
 
