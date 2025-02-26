@@ -505,7 +505,8 @@ For the preceding comparison we fixed the number of detectors in advance. More r
 source('figures/clusternumber.R')
 ```
 
-## Designing for spatial variation in parameters
+## Designing for spatial variation in parameters {#sec-spatialvariation}
+
 \index{Study design!spatial variation}
 
 We have so far treated the parameters of the SECR model as constant across space. How should designs be modified to allow for spatial variation? 
