@@ -796,7 +796,7 @@ Figure&nbsp;6.14: Relative bias of parameter estimates from null model when <spa
 <li>large individual heterogeneity</li>
 <li>alignment of home ranges with detector array</li>
 </ul>
-<p>We have not considered in detail the potential for correlated variation in overall detection (<span class="math inline">a</span>) and density. This was advanced as a major issue by <span class="citation" data-cites="McLellan2023">McLellan et al. (<a href="A99-references.html#ref-McLellan2023" role="doc-biblioref">2023</a>)</span>.</p>
+<p>We have not considered in detail the potential for correlated variation in overall detection (measured as the <a href="./05-theory-special-topics.html#sec-esa">effective sampling area</a>) and density. Failure to model such correlated variation led to poor estimates in the simulations of <span class="citation" data-cites="McLellan2023">McLellan et al. (<a href="A99-references.html#ref-McLellan2023" role="doc-biblioref">2023</a>)</span> (see also <a href="08-studydesign.html#sec-spatialvariation" class="quarto-xref"><span>Section 8.13</span></a>).</p>
 <p>Several breaches lead to underestimation of sampling variance and impaired coverage of confidence intervals. If the magnitude of the breach can be estimated then better confidence intervals may be achieved by simulating from the full model.</p>
 <p>Particular detection parameters may be estimated poorly even when density estimates are robust. A common example arises when a multi-catch model is used for single-catch data: the estimated intercept of the detection function is strongly biased while density estimates are generally unbiased.</p>
 <div id="tbl-robustness" class="sm quarto-float anchored">
@@ -1581,7 +1581,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
