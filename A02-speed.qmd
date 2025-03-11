@@ -90,7 +90,7 @@ See [?Parallel](https://www.otago.ac.nz/density/html/Parallel.html) for more.
 
 ## Reducing complexity (session- or group-specific models)
 
-Simultaneous estimation of many parameters can be painfully slow, but it can be completely avoided. If your model is fully session- or group-specific then it is much faster to analyse each group separately. For sessions this is can be done simply with `lapply` [above](#sec-variancefailed) and in @sec-multisession. For groups you may need to construct new capthist objects using `subset` to extract groups corresponding to the levels of one or more individual covariates.
+Simultaneous estimation of many parameters can be painfully slow, but it can be completely avoided. If your model is fully session- or group-specific then it is much faster to analyse each group separately. For sessions this is can be done simply with `lapply` (@sec-fasterfitting). For groups you may need to construct new capthist objects using `subset` to extract groups corresponding to the levels of one or more individual covariates.
     
 ## Reducing number of levels of detection covariates
 
@@ -148,7 +148,7 @@ without significant change in the density estimates.
 #| cache: true
 #| results: "hold"
 #| fig-cap: 
-#|   Sample of individual blackbear masks (red) with detection sites 
+#|   Sample of individual black bear masks (red) with detection sites 
 #|   overplotted in blue.
 #|   
 centr <- centroids(blackbearCH)
