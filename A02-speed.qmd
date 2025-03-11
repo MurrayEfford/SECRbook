@@ -195,7 +195,7 @@ The benefit from collapsing occasions has a spatial analogue: if there are many 
     
 ## "multi" detector type instead of "proximity"
     
-The type of the detectors is usually determined by the sampling reality. For example, if individuals can physically be detected at several sites on one occasion then the "proximity" detector type is preferred over "multi". However, if data are very sparse, so that individuals in practice are almost never observed at multiple sites on one occasion, then the detectors may as well by of type "multi", in the sense that there is no observable difference between the two types of detection process. "multi" models used to fit much more quickly than "proximity" models, and this is still true for elaborate or time-dependent models that cannot use the 'fastproximity' option.
+The type of the detectors is usually determined by the sampling reality. For example, if individuals can physically be detected at several sites on one occasion then the "proximity" detector type is preferred over "multi". However, if data are very sparse, so that individuals in practice are almost never observed at multiple sites on one occasion, then the detectors may as well be of type "multi", in the sense that there is no observable difference between the two types of detection process. "multi" models used to fit much more quickly than "proximity" models, and this is still true for elaborate or time-dependent models that cannot use the 'fastproximity' option.
     
 ## Some models are just slower than others
     
