@@ -546,7 +546,7 @@ D      1.466     0.19051 1.1376 1.8892 0.12127 0.046715 0.12995</code></pre>
 <p>See <a href="https://www.otago.ac.nz/density/html/Parallel.html">?Parallel</a> for more.</p>
 </section><section id="reducing-complexity-session--or-group-specific-models" class="level2" data-number="B.5"><h2 data-number="B.5" class="anchored" data-anchor-id="reducing-complexity-session--or-group-specific-models">
 <span class="header-section-number">B.5</span> Reducing complexity (session- or group-specific models)</h2>
-<p>Simultaneous estimation of many parameters can be painfully slow, but it can be completely avoided. If your model is fully session- or group-specific then it is much faster to analyse each group separately. For sessions this is can be done simply with <code>lapply</code> <a href="A01-troubleshooting.html#sec-variancefailed">above</a> and in <a href="14-multisession.html" class="quarto-xref"><span>Chapter 14</span></a>. For groups you may need to construct new capthist objects using <code>subset</code> to extract groups corresponding to the levels of one or more individual covariates.</p>
+<p>Simultaneous estimation of many parameters can be painfully slow, but it can be completely avoided. If your model is fully session- or group-specific then it is much faster to analyse each group separately. For sessions this is can be done simply with <code>lapply</code> (<a href="14-multisession.html#sec-fasterfitting" class="quarto-xref"><span>Section 14.6</span></a>). For groups you may need to construct new capthist objects using <code>subset</code> to extract groups corresponding to the levels of one or more individual covariates.</p>
 </section><section id="reducing-number-of-levels-of-detection-covariates" class="level2" data-number="B.6"><h2 data-number="B.6" class="anchored" data-anchor-id="reducing-number-of-levels-of-detection-covariates">
 <span class="header-section-number">B.6</span> Reducing number of levels of detection covariates</h2>
 <p><code>secr.fit</code> pre-computes a lookup table of values for detection parameters. The size of the table increases with the number of unique levels of any covariates. A continuous individual or detector covariate can have many similar levels. Binning covariate values can give a large saving in memory and time (see <a href="https://www.otago.ac.nz/density/html/binCovariate.html">?binCovariate</a>).</p>
@@ -607,10 +607,10 @@ Compare timing
 </details><div class="cell-output-display">
 <div id="fig-maxdistance" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-maxdistance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="A02-speed_files/figure-html/fig-maxdistance-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="A02-speed_files/figure-html/fig-maxdistance-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="A02-speed_files/figure-html/fig-maxdistance-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="A02-speed_files/figure-html/fig-maxdistance-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maxdistance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;B.1: Sample of individual blackbear masks (red) with detection sites overplotted in blue.
+Figure&nbsp;B.1: Sample of individual black bear masks (red) with detection sites overplotted in blue.
 </figcaption></figure>
 </div>
 </div>
@@ -647,14 +647,14 @@ Compare timing
 </blockquote>
 </section><section id="multi-detector-type-instead-of-proximity" class="level2" data-number="B.10"><h2 data-number="B.10" class="anchored" data-anchor-id="multi-detector-type-instead-of-proximity">
 <span class="header-section-number">B.10</span> “multi” detector type instead of “proximity”</h2>
-<p>The type of the detectors is usually determined by the sampling reality. For example, if individuals can physically be detected at several sites on one occasion then the “proximity” detector type is preferred over “multi”. However, if data are very sparse, so that individuals in practice are almost never observed at multiple sites on one occasion, then the detectors may as well by of type “multi”, in the sense that there is no observable difference between the two types of detection process. “multi” models used to fit much more quickly than “proximity” models, and this is still true for elaborate or time-dependent models that cannot use the ‘fastproximity’ option.</p>
+<p>The type of the detectors is usually determined by the sampling reality. For example, if individuals can physically be detected at several sites on one occasion then the “proximity” detector type is preferred over “multi”. However, if data are very sparse, so that individuals in practice are almost never observed at multiple sites on one occasion, then the detectors may as well be of type “multi”, in the sense that there is no observable difference between the two types of detection process. “multi” models used to fit much more quickly than “proximity” models, and this is still true for elaborate or time-dependent models that cannot use the ‘fastproximity’ option.</p>
 </section><section id="some-models-are-just-slower-than-others" class="level2" data-number="B.11"><h2 data-number="B.11" class="anchored" data-anchor-id="some-models-are-just-slower-than-others">
 <span class="header-section-number">B.11</span> Some models are just slower than others</h2>
 <p>Detector covariates pose a particular problem. Models with learned responses take slightly longer to fit.</p>
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;B.1: Sample of individual blackbear masks (red) with detection sites overplotted in blue.</span>
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;B.1: Sample of individual black bear masks (red) with detection sites overplotted in blue.</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-be07" class="csl-entry" role="listitem">
@@ -1105,7 +1105,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
