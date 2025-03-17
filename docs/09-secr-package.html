@@ -795,6 +795,10 @@ Table&nbsp;9.3: Basic detector types in secr. See the appendices for <a href="./
 </section><section id="single-likelihood-evaluation" class="level4" data-number="9.8.7.5"><h4 data-number="9.8.7.5" class="anchored" data-anchor-id="single-likelihood-evaluation">
 <span class="header-section-number">9.8.7.5</span> Single likelihood evaluation</h4>
 <p>Setting LLonly = TRUE returns a single evaluation of the likelihood at the parameter values specified in <code>start</code>.</p>
+</section><section id="sec-saveprogress" class="level4" data-number="9.8.7.6"><h4 data-number="9.8.7.6" class="anchored" data-anchor-id="sec-saveprogress">
+<span class="header-section-number">9.8.7.6</span> Saving progress</h4>
+<p></p>
+<p>If there is a risk of a run being terminated arbitrarily (e.g., because it exceeds system time limit) then it can be prudent to save intermediate steps in the likelihood maximisation. This is done by setting the details argument ‘saveprogress’. Positive values cause the current data and coefficients to be saved to a permanent RDS file (default ‘progress.RDS’) at the given frequency. Saving can be costly, so an interval &gt;1 is recommended. The name of the resulting file can passed to <code>secr.refit</code> to resume fitting.</p>
 
 
 <div class="hidden" aria-hidden="true">

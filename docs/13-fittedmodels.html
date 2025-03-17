@@ -453,6 +453,7 @@ window.Quarto = {
   <li><a href="#sec-regionN" id="toc-sec-regionN" class="nav-link" data-scroll-target="#sec-regionN"><span class="header-section-number">13.5</span> Population size</a></li>
   <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection"><span class="header-section-number">13.6</span> Model selection</a></li>
   <li><a href="#sec-modelfit" id="toc-sec-modelfit" class="nav-link" data-scroll-target="#sec-modelfit"><span class="header-section-number">13.7</span> Assessing model fit</a></li>
+  <li><a href="#sec-modelrefit" id="toc-sec-modelrefit" class="nav-link" data-scroll-target="#sec-modelrefit"><span class="header-section-number">13.8</span> Model re-fit</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -698,7 +699,11 @@ Warning
 </section><section id="implementation-in-secr" class="level3" data-number="13.7.4"><h3 data-number="13.7.4" class="anchored" data-anchor-id="implementation-in-secr">
 <span class="header-section-number">13.7.4</span> Implementation in <strong>secr</strong>
 </h3>
-<p>The parametric bootstrap is implemented in <code><a href="https://rdrr.io/pkg/secr/man/secr.test.html">secr::secr.test</a></code> and the <span class="citation" data-cites="Choo2024">Choo et al. (<a href="A99-references.html#ref-Choo2024" role="doc-biblioref">2024</a>)</span> emulation of Bayesian p-values is implemented in <code><a href="https://rdrr.io/pkg/secr/man/MCgof.html">secr::MCgof</a></code>. We have been unable to find a convincing application of goodness-of-fit to SECR data. Rather than promote either method we prefer to await developments.</p>
+<p>The parametric bootstrap is implemented in <a href="https://www.otago.ac.nz/density/html/secr.test.html"><code>secr.test</code></a> and the <span class="citation" data-cites="Choo2024">Choo et al. (<a href="A99-references.html#ref-Choo2024" role="doc-biblioref">2024</a>)</span> emulation of Bayesian p-values is implemented in <a href="https://www.otago.ac.nz/density/html/MCgof.html"><code>MCgof</code></a>. We have been unable to find a convincing application of goodness-of-fit to SECR data. Rather than promote either method we prefer to await developments.</p>
+</section></section><section id="sec-modelrefit" class="level2" data-number="13.8"><h2 data-number="13.8" class="anchored" data-anchor-id="sec-modelrefit">
+<span class="header-section-number">13.8</span> Model re-fit</h2>
+<p></p>
+<p>The fitting of a part-fitted model saved to a progress file may be resumed with <a href="https://www.otago.ac.nz/density/html/secr.refit.html"><code>secr.refit</code></a> (<a href="09-secr-package.html#sec-saveprogress" class="quarto-xref"><span>Section 9.8.7.6</span></a>). The function may also be used to re-fit a completed model, or to repeat just the variance estimation (Hessian) step.</p>
 <!-- ### Comparison of methods for Tennessee black bears -->
 <!-- We first fit two models to the Tennessee black bear dataset of J. Laufenberg et al. that is included in **secr**: -->
 <!-- ```{r} -->
@@ -827,7 +832,7 @@ McCrea, R. S., &amp; Morgan, B. J. T. (2011). Multistate mark-recapture model se
 Royle, J. A., Chandler, R. B., Sollmann, R., &amp; Gardner, B. (2014). <em>Spatial capture-recapture</em>. Academic Press.
 </div>
 </div>
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1265,7 +1270,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
