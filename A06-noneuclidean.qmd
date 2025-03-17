@@ -634,7 +634,7 @@ fitne1 <- secr.fit (CH, mask = sw2Dmask, detectfn = "HHN",
     userdist = dfn), start = list(D = 0.005, lambda0 = 0.3,
     sigma = 1000, noneuc = 100), trace = FALSE)
 ```
-The warning from nlm indicates a potential problem, but the standard errors and confidence limits below look plausible (they could be checked by running again with method = "none"). Fitting is slow (`r round(fitne1$proctime/60)` minutes on an aging PC). This is partly because the mask is large (32384 pixels) in order to maintain resolution in relation to the stream network. 
+The warning from nlm indicates a potential problem, but the standard errors and confidence limits below look plausible (they could be checked by running `secr.refit` with method = "none"). Fitting is slow (`r round(fitne1$proctime/60)` minutes on an aging PC). This is partly because the mask is large (32384 pixels) in order to maintain resolution in relation to the stream network. 
 
 ```{r}
 #| label: Chris11
