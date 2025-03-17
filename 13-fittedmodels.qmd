@@ -261,8 +261,17 @@ The explicit 'point of difference' of the @Choo2024 approach is the propagation 
 
 ### Implementation in **secr**
 
-The parametric bootstrap is implemented in `secr::secr.test` and the @Choo2024 emulation of Bayesian p-values is implemented in `secr::MCgof`.  We have been unable to find a 
+The parametric bootstrap is implemented in [`secr.test`] and the @Choo2024 emulation of Bayesian p-values is implemented in [`MCgof`].  We have been unable to find a 
 convincing application of goodness-of-fit to SECR data. Rather than promote either method we prefer to await developments.
+
+## Model re-fit {#sec-modelrefit}      
+
+\index{secr.refit}
+
+The fitting of a part-fitted model saved to a progress file may be resumed with 
+[`secr.refit`] (@sec-saveprogress). The function may also be used to re-fit 
+a completed model, or to repeat just the variance estimation (Hessian) step.
+
 
 <!-- ### Comparison of methods for Tennessee black bears -->
 
@@ -361,3 +370,6 @@ convincing application of goodness-of-fit to SECR data. Rather than promote eith
 
 <!-- Information on the spatial distribution of AC is provided only by the spatial pattern of detections. A straightforward test can therefore be performed by comparing the observed and expected counts of the number of individuals detected at each detector. Fletcher's c-hat is a suitable statistic, and its distribution under the model can be determined by a parametric bootstrap. -->
 
+[`secr.test`]: https://www.otago.ac.nz/density/html/secr.test.html
+[`MCgof`]: https://www.otago.ac.nz/density/html/MCgof.html
+[`secr.refit`]: https://www.otago.ac.nz/density/html/secr.refit.html

@@ -239,6 +239,11 @@ The 'details' component 'fixedbeta' provides control at a finer level: it may be
 
 Setting LLonly = TRUE returns a single evaluation of the likelihood at the parameter values specified in `start`.
 
+#### Saving progress {#sec-saveprogress}
+\index{secr.fit!saveprogress}
+
+If there is a risk of a run being terminated arbitrarily (e.g., because it exceeds system time limit) then it can be prudent to save intermediate steps in the likelihood maximisation. This is done by setting the details argument 'saveprogress'. Positive values cause the current data and coefficients to be saved to a permanent RDS file (default 'progress.RDS') at the given frequency. Saving can be costly, so an interval >1 is recommended. The name of the resulting file can passed to `secr.refit` to resume fitting.
+
 [secr-overview.pdf]: https://www.otago.ac.nz/density/pdfs/secr-overview.pdf
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
 [secr-sound.pdf]: https://www.otago.ac.nz/density/pdfs/secr-sound.pdf
@@ -272,4 +277,5 @@ Setting LLonly = TRUE returns a single evaluation of the likelihood at the param
 [`traps`]: https://www.otago.ac.nz/density/html/traps.html
 
 [`list.secr.fit`]: https://www.otago.ac.nz/density/html/list.secr.fit.html
+[`secr.refit`]: https://www.otago.ac.nz/density/html/secr.refit.html
 

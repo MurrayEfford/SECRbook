@@ -87,12 +87,12 @@ In secr.fit(infraCH, buffer = 25, details = list(autoini = 2), trace = FALSE) :\
 
 Examination of the output would reveal missing values for SE, lcl and ucl in both the coefficients and predicted values for g0.
 
-Failure to compute the variance can be a sign that the model is inherently non-identifiable or that the particular dataset is inadequate [e.g., @gvccm04]. However, here it is due to a weakness in the default algorithm. Call `secr.fit` with `method = "none"` to recompute the variance-covariance matrix using a more sophisticated approach:
+Failure to compute the variance can be a sign that the model is inherently non-identifiable or that the particular dataset is inadequate [e.g., @gvccm04]. However, here it is due to a weakness in the default algorithm. Call `secr.refit` with `method = "none"` to recompute the variance-covariance matrix using a more sophisticated approach:
 
 ```{r}
 #| label: infraCHrecompute
 #| cache: true
-fit2r <- secr.fit(infraCH, buffer = 25, start = fit2, method = "none")
+fit2r <- secr.refit(fit2, method = "none")
 predict(fit2r)
 ```
 
