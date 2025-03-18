@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>The SECR book - 6&nbsp; Assumptions and robustness</title>
+<title>6&nbsp; Assumptions and robustness – The SECR book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,7 +86,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
  for (var i = 0; i < mathElements.length; i++) {
@@ -99,7 +99,7 @@ div.csl-indent {
     fleqn: false
    });
 }}});
-  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -131,13 +131,13 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-assumptions.html">Performance</a></li><li class="breadcrumb-item"><a href="./06-assumptions.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Assumptions and robustness</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -171,9 +171,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Basics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -194,9 +194,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Theory</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -223,9 +223,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Performance</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -252,9 +252,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Practice</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -317,9 +317,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -447,7 +447,7 @@ window.Quarto = {
 </ul>
 <p></p>
 <p>The SECR probability models of <a href="03-theory.html" class="quarto-xref"><span>Chapter 3</span></a> that underlie the methods in this book incorporate certain assumptions. The validity and reliability of the methods therefore depend to an extent on how well the field data meet the assumptions. We list these before assessing their impact in practice - the topic of <a href="#sec-robustness">robustness</a>.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 17%">
 <col style="width: 83%">
@@ -500,9 +500,9 @@ window.Quarto = {
 <p>Additional simulations are shown in <a href="#fig-CLOfigure" class="quarto-xref">Fig.&nbsp;<span>6.1</span></a>. Turnover in a constant population resulted in positive bias equal to about 70% of the mortality over the duration of the sampling. Thus 50% annual mortality (~16% over 3 months) resulted in about +11% relative bias in a 3-month study, and coverage of nominal 95% confidence intervals dropped to about 82%. The new results are broadly consistent with those from the more complex scenarios of <span class="citation" data-cites="Dupont2019">Dupont et al. (<a href="A99-references.html#ref-Dupont2019" role="doc-biblioref">2019</a>)</span> for ‘slow’ and ‘intermediate’ life histories.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-CLOfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-CLOfigure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CLOfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="06-assumptions_files/figure-html/fig-CLOfigure-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="06-assumptions_files/figure-html/fig-CLOfigure-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
+<a href="06-assumptions_files/figure-html/fig-CLOfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;6.1: Simulated effect of study duration on relative bias of density estimates for three levels of annual survival \phi in a population with constant density. \phi = 1 corresponds to a closed population."><img src="06-assumptions_files/figure-html/fig-CLOfigure-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CLOfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.1: Simulated effect of study duration on relative bias of density estimates for three levels of annual survival <span class="math inline">\phi</span> in a population with constant density. <span class="math inline">\phi = 1</span> corresponds to a closed population.
@@ -523,9 +523,9 @@ Figure&nbsp;6.1: Simulated effect of study duration on relative bias of density 
 <p>Simulations in <a href="#fig-MID3figure" class="quarto-xref">Fig.&nbsp;<span>6.2</span></a> and <a href="#fig-MID4figure" class="quarto-xref">Fig.&nbsp;<span>6.3</span></a> illustrate the potential impact of shadow effects on SECR estimates. In a scenario with about 110 detected individuals, PI = <span class="math inline">10^{-3}</span> resulted in relative bias of <span class="math inline">-20\%</span> in density estimates. This is largely due to the inflated spatial footprint of each super individual, which causes positive bias in estimates of the spatial scale of detection <span class="math inline">\sigma</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-MID3figure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-MID3figure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-MID3figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="06-assumptions_files/figure-html/fig-MID3figure-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="06-assumptions_files/figure-html/fig-MID3figure-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+<a href="06-assumptions_files/figure-html/fig-MID3figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;6.2: Relative bias of parameter estimates from null model when some individuals cannot be distinguished (‘shadow effects’)."><img src="06-assumptions_files/figure-html/fig-MID3figure-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MID3figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.2: Relative bias of parameter estimates from null model when some individuals cannot be distinguished (‘shadow effects’).
@@ -535,9 +535,9 @@ Figure&nbsp;6.2: Relative bias of parameter estimates from null model when some 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-MID4figure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-MID4figure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-MID4figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="06-assumptions_files/figure-html/fig-MID4figure-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="06-assumptions_files/figure-html/fig-MID4figure-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
+<a href="06-assumptions_files/figure-html/fig-MID4figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;6.3: Relative bias of density estimates as function of PI for varying density. Density is expressed in units of animals per \sigma^2. At low density few individuals are detected, reducing the chance of mis-identification for given PI."><img src="06-assumptions_files/figure-html/fig-MID4figure-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MID4figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.3: Relative bias of density estimates as function of PI for varying density. Density is expressed in units of animals per <span class="math inline">\sigma^2</span>. At low density few individuals are detected, reducing the chance of mis-identification for given PI.
@@ -547,9 +547,9 @@ Figure&nbsp;6.3: Relative bias of density estimates as function of PI for varyin
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-MID4afigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-MID4afigure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-MID4afigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="06-assumptions_files/figure-html/fig-MID4afigure-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="06-assumptions_files/figure-html/fig-MID4afigure-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+<a href="06-assumptions_files/figure-html/fig-MID4afigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;6.4: Threshold of PI at which absolute relative bias of density estimates exceeded the threshold shown, as a function of the expected number of individuals detected."><img src="06-assumptions_files/figure-html/fig-MID4afigure-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MID4afigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.4: Threshold of PI at which absolute relative bias of density estimates exceeded the threshold shown, as a function of the expected number of individuals detected.
@@ -562,9 +562,9 @@ Figure&nbsp;6.4: Threshold of PI at which absolute relative bias of density esti
 <p>We measure the ghost effect by the probability a detection results in a ‘ghost’ individual. Unlike shadow effects, ghost individuals have almost no effect on <span class="math inline">\hat \sigma</span>. However, they do cause negative bias in <span class="math inline">\hat \lambda_0</span> and a reciprocal (positive) bias in density estimates <span class="math inline">\hat D</span> (<a href="#fig-MID2figure" class="quarto-xref">Fig.&nbsp;<span>6.5</span></a>). More extensive simulations were published by <span class="citation" data-cites="Kodi2024">Kodi et al. (<a href="A99-references.html#ref-Kodi2024" role="doc-biblioref">2024</a>)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-MID2figure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-MID2figure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-MID2figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="06-assumptions_files/figure-html/fig-MID2figure-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="06-assumptions_files/figure-html/fig-MID2figure-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+<a href="06-assumptions_files/figure-html/fig-MID2figure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;6.5: Relative bias of parameter estimates from null model when genotyping errors generate ‘ghost’ individuals."><img src="06-assumptions_files/figure-html/fig-MID2figure-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MID2figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.5: Relative bias of parameter estimates from null model when genotyping errors generate ‘ghost’ individuals.
@@ -591,9 +591,9 @@ Figure&nbsp;6.5: Relative bias of parameter estimates from null model when genot
 <p>Concerns were expressed by <span class="citation" data-cites="Ivan2013">Ivan et al. (<a href="A99-references.html#ref-Ivan2013" role="doc-biblioref">2013</a>)</span> about the effect of non-circularity of home ranges. Simulations by <span class="citation" data-cites="Efford2019">Efford (<a href="A99-references.html#ref-Efford2019" role="doc-biblioref">2019</a>)</span> generally defused those concerns, with an important caveat: estimates of the spatial scale of detection <span class="math inline">\sigma</span> and density are unreliable when elongated home ranges are sampled with a linear array of detectors. Simulations of randomly oriented elliptical ranges with an aspect ratio of 3:1 resulted in bias on the order of +13% for a linear array <span class="citation" data-cites="Efford2019">(<a href="A99-references.html#ref-Efford2019" role="doc-biblioref">Efford, 2019</a>: Fig. 2)</span>. Bias is extreme <span class="citation" data-cites="Efford2019">(often &gt;50%, <a href="A99-references.html#ref-Efford2019" role="doc-biblioref">Efford, 2019</a>: Table 1)</span> when home ranges are both elongated and have a common alignment to the array (<a href="#fig-alignment" class="quarto-xref">Fig.&nbsp;<span>6.6</span></a> c). Modelling the anisotropy can be beneficial when the alignment is predictable from the landscape <span class="citation" data-cites="Murphy2016 Efford2019 Murphy2025">(<a href="A99-references.html#ref-Efford2019" role="doc-biblioref">Efford, 2019</a>; <a href="A99-references.html#ref-Murphy2016" role="doc-biblioref">Murphy et al., 2016</a>; <a href="A99-references.html#ref-Murphy2025" role="doc-biblioref">Murphy &amp; Luja, 2025</a>)</span> and the array is not exactly linear, but the method is not universally applicable.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-alignment" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-alignment" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-alignment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/alignment.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="figures/alignment.png" class="img-fluid figure-img" style="width:70.0%"></a>
+<a href="figures/alignment.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;6.6: SECR models typically assume that home ranges are circular (a). Noncircularity of home ranges causes limited bias in density estimates when ranges are oriented at random with respect to a linear detector array (b). Systematic alignment of ranges to the array (c) causes large bias in \hat \sigma and \hat D."><img src="figures/alignment.png" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-alignment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.6: SECR models typically assume that home ranges are circular (a). Noncircularity of home ranges causes limited bias in density estimates when ranges are oriented at random with respect to a linear detector array (b). Systematic alignment of ranges to the array (c) causes large bias in <span class="math inline">\hat \sigma</span> and <span class="math inline">\hat D</span>.
@@ -612,9 +612,9 @@ Figure&nbsp;6.6: SECR models typically assume that home ranges are circular (a).
 <p><a href="#fig-demoOU1" class="quarto-xref">Fig.&nbsp;<span>6.7</span></a> illustrates OU movement tracks for individuals with increasing autocorrelation parameter <span class="math inline">\tau</span>. Detection is assumed here to happen when an individual is within some small threshold distance <span class="math inline">\epsilon</span> of a detector at the end of a time step. Other detection models are possible.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-demoOU1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-demoOU1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-demoOU1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="06-assumptions_files/figure-html/fig-demoOU1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="06-assumptions_files/figure-html/fig-demoOU1-1.png" class="img-fluid figure-img" style="width:80.0%"></a>
+<a href="06-assumptions_files/figure-html/fig-demoOU1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;6.7: Examples of correlated movement paths over 100 time steps (t = 100). Parameter ‘tau’ (\tau) controls autocorrelation. Red dot indicates activity centre; grey circle is 95% probability contour of distribution as t \to \infty or \tau \to 0."><img src="06-assumptions_files/figure-html/fig-demoOU1-1.png" class="img-fluid figure-img" style="width:80.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-demoOU1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.7: Examples of correlated movement paths over 100 time steps (<span class="math inline">t = 100</span>). Parameter ‘tau’ (<span class="math inline">\tau</span>) controls autocorrelation. Red dot indicates activity centre; grey circle is 95% probability contour of distribution as <span class="math inline">t \to \infty</span> or <span class="math inline">\tau \to 0</span>.
@@ -629,9 +629,9 @@ Figure&nbsp;6.7: Examples of correlated movement paths over 100 time steps (<spa
 <p>The analogy with SECR is close: we are concerned with unbiased estimation of the detection parameters <span class="math inline">\lambda_0, \sigma</span> that describe the detection process <em>over the time frame of sampling</em>. Extrapolation to other time frames would require knowledge of the correlation structure of the data, expressed in a model such as the bivariate Ornstein-Uhlenbeck distribution <span class="citation" data-cites="Dunn1977 Hooten2017">(e.g., <a href="A99-references.html#ref-Dunn1977" role="doc-biblioref">Dunn &amp; Gipson, 1977</a>; <a href="A99-references.html#ref-Hooten2017" role="doc-biblioref">Hooten et al., 2017</a>)</span>, but that is not relevant to inference for the chosen time frame.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-OUfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-OUfigure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-OUfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="06-assumptions_files/figure-html/fig-OUfigure-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-8" data-gallery="quarto-lightbox-gallery-8"><img src="06-assumptions_files/figure-html/fig-OUfigure-1.png" class="img-fluid figure-img" style="width:50.0%"></a>
+<a href="06-assumptions_files/figure-html/fig-OUfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;6.8: Relative bias RB of null-model density estimates of density D and spatial scale \sigma from Ornstein-Uhlenbeck model with autocorrelation parameter \tau."><img src="06-assumptions_files/figure-html/fig-OUfigure-1.png" class="img-fluid figure-img" style="width:50.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OUfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.8: Relative bias RB of null-model density estimates of density <span class="math inline">D</span> and spatial scale <span class="math inline">\sigma</span> from Ornstein-Uhlenbeck model with autocorrelation parameter <span class="math inline">\tau</span>.
@@ -646,9 +646,9 @@ Figure&nbsp;6.8: Relative bias RB of null-model density estimates of density <sp
 <p>We simulated detections over 100 ‘days’ during which each AC underwent a random walk governed by a Gaussian kernel with scale <span class="math inline">\sigma_m</span>. Details are given [elsewhere].</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-DNCfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-DNCfigure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-DNCfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="06-assumptions_files/figure-html/fig-DNCfigure-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-9" data-gallery="quarto-lightbox-gallery-9"><img src="06-assumptions_files/figure-html/fig-DNCfigure-1.png" class="img-fluid figure-img" style="width:50.0%"></a>
+<a href="06-assumptions_files/figure-html/fig-DNCfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;6.9: Relative bias of density estimates from studies with varying between-occasion movement. Both \hat \lambda_0 and \hat \sigma are biased by movement, but the net effect on \hat D is negligible."><img src="06-assumptions_files/figure-html/fig-DNCfigure-1.png" class="img-fluid figure-img" style="width:50.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-DNCfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.9: Relative bias of density estimates from studies with varying between-occasion movement. Both <span class="math inline">\hat \lambda_0</span> and <span class="math inline">\hat \sigma</span> are biased by movement, but the net effect on <span class="math inline">\hat D</span> is negligible.
@@ -666,9 +666,9 @@ Figure&nbsp;6.9: Relative bias of density estimates from studies with varying be
 <p>Further <a href="https://github.com/MurrayEfford/secr-simulations">simulations</a> confirm the lack of bias in <span class="math inline">\hat D</span>, but show that temporal variation in <span class="math inline">\sigma</span> causes significant bias in estimates of both <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span> under the null model (<a href="#fig-Mtfigure" class="quarto-xref">Fig.&nbsp;<span>6.10</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-Mtfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-Mtfigure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-Mtfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="06-assumptions_files/figure-html/fig-Mtfigure-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-10" data-gallery="quarto-lightbox-gallery-10"><img src="06-assumptions_files/figure-html/fig-Mtfigure-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="06-assumptions_files/figure-html/fig-Mtfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Figure&nbsp;6.10: Relative bias of parameter estimates from null model given temporal variation in \lambda_0 or \sigma."><img src="06-assumptions_files/figure-html/fig-Mtfigure-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Mtfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.10: Relative bias of parameter estimates from null model given temporal variation in <span class="math inline">\lambda_0</span> or <span class="math inline">\sigma</span>.
@@ -683,9 +683,9 @@ Figure&nbsp;6.10: Relative bias of parameter estimates from null model given tem
 <p>If a behavioural response is not modelled then it may cause a heavy bias in density estimates, positive for trap shyness and negative for trap happiness (<a href="#fig-Mbfigure" class="quarto-xref">Fig.&nbsp;<span>6.11</span></a>). In <a href="https://github.com/MurrayEfford/secr-simulations">simulations</a> we describe the magnitude of the behavioural response by a ‘recapture factor’ by which the initial (naive) hazard is multiplied after first capture. We simulated recapture factors between 0.25 and 2.0, where 1.0 represents no behavioural response. The bias is much reduced if the effect is detector-specific, but then <span class="math inline">\hat \sigma</span> is also biased. For the scenario used in these <a href="https://github.com/MurrayEfford/secr-simulations">simulations</a>, the relative bias of density estimates fell between -10% and +10% for recapture factors between 0.5 and 2. In <a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a> we estimated a much larger response by <a href="./10-detection-model.html#sec-behaviouralresponse">deermice</a> (about 10-fold, but with poor precision), although there was only a small difference in estimated density between the null and bk models. Behavioural responses are potentially important for SECR and deserve closer investigation.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-Mbfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-Mbfigure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-Mbfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="06-assumptions_files/figure-html/fig-Mbfigure-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-11" data-gallery="quarto-lightbox-gallery-11"><img src="06-assumptions_files/figure-html/fig-Mbfigure-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="06-assumptions_files/figure-html/fig-Mbfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Figure&nbsp;6.11: Relative bias of parameter estimates from null model given behavioural variation in lambda0. Relative bias of density was off-scale (+1.41) for recapture factor 0.25 with a general behavioural response."><img src="06-assumptions_files/figure-html/fig-Mbfigure-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Mbfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.11: Relative bias of parameter estimates from null model given behavioural variation in lambda0. Relative bias of density was off-scale (+1.41) for recapture factor 0.25 with a general behavioural response.
@@ -711,9 +711,9 @@ Note
 <p>Despite these appeals to robustness, <a href="#fig-Mhfigure" class="quarto-xref">Fig.&nbsp;<span>6.12</span></a> indicates a risk of significant bias in estimates of both density and detection parameters when individual heterogeneity is large.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-Mhfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-Mhfigure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-Mhfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="06-assumptions_files/figure-html/fig-Mhfigure-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-12" data-gallery="quarto-lightbox-gallery-12"><img src="06-assumptions_files/figure-html/fig-Mhfigure-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="06-assumptions_files/figure-html/fig-Mhfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Figure&nbsp;6.12: Relative bias of parameter estimates from null model given individual variation in \lambda_0 and \sigma^2."><img src="06-assumptions_files/figure-html/fig-Mhfigure-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Mhfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.12: Relative bias of parameter estimates from null model given individual variation in <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma^2</span>.
@@ -725,9 +725,9 @@ Figure&nbsp;6.12: Relative bias of parameter estimates from null model given ind
 <p>Spatial (detector-specific) variation in detection parameters is conceptually linked to individual heterogeneity. The location of each individual determines its detection probability via a particular set of AC-to-detector distances, as modelled automatically in SECR. Variation among detectors in efficiency (<span class="math inline">\lambda_{0_k}</span>) adds between-animal heterogeneity because the detectors near a particular AC differ in efficiency from the average (<a href="#fig-inducedhfigure" class="quarto-xref">Fig.&nbsp;<span>6.13</span></a>), and the variation is not modelled automatically.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-inducedhfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-inducedhfigure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-inducedhfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="06-assumptions_files/figure-html/fig-inducedhfigure-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-13" data-gallery="quarto-lightbox-gallery-13"><img src="06-assumptions_files/figure-html/fig-inducedhfigure-1.png" class="img-fluid figure-img" style="width:50.0%"></a>
+<a href="06-assumptions_files/figure-html/fig-inducedhfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure&nbsp;6.13: Variation in detector efficiency induces individual heterogeneity in overall detection probability p_\cdot(\vec x). AC 1–3 have similar exposure to detectors but experience respectively high, low and medium detection probability because of the neighbourhoods in which they are located."><img src="06-assumptions_files/figure-html/fig-inducedhfigure-1.png" class="img-fluid figure-img" style="width:50.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inducedhfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.13: Variation in detector efficiency induces individual heterogeneity in overall detection probability <span class="math inline">p_\cdot(\vec x)</span>. AC 1–3 have similar exposure to detectors but experience respectively high, low and medium detection probability because of the neighbourhoods in which they are located.
@@ -752,9 +752,9 @@ Figure&nbsp;6.13: Variation in detector efficiency induces individual heterogene
 <p>Bias in density estimates was small (<span class="math inline">\mathrm{RB}(\hat D) &lt; 5\%)</span>) for <span class="math inline">\alpha_2 &lt;0.5</span>, but could become worrying for large <span class="math inline">\alpha_2</span> (<a href="#fig-dethetfigure" class="quarto-xref">Fig.&nbsp;<span>6.14</span></a> a). But what value of <span class="math inline">\alpha_2</span> is realistic? <span class="citation" data-cites="Royle2013">Royle et al. (<a href="A99-references.html#ref-Royle2013" role="doc-biblioref">2013</a>)</span> estimated <span class="math inline">\alpha_2 = 0.2</span> for black bear data from DNA hair snares, or <span class="math inline">\alpha_2 = -0.3</span> for a combined hair-snare and telemetry model. </p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-dethetfigure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-dethetfigure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-dethetfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="06-assumptions_files/figure-html/fig-dethetfigure-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-14" data-gallery="quarto-lightbox-gallery-14"><img src="06-assumptions_files/figure-html/fig-dethetfigure-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="06-assumptions_files/figure-html/fig-dethetfigure-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Figure&nbsp;6.14: Relative bias of parameter estimates from null model when \lambda_0 varies among detectors according to (a) unnormalised model of @Royle2013, and (b) normalised model of @e14. The magnitude of variation depends on the coefficient \alpha_2 (Eq.&nbsp;eq-dethet)."><img src="06-assumptions_files/figure-html/fig-dethetfigure-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dethetfigure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.14: Relative bias of parameter estimates from null model when <span class="math inline">\lambda_0</span> varies among detectors according to (a) unnormalised model of <span class="citation" data-cites="Royle2013">Royle et al. (<a href="A99-references.html#ref-Royle2013" role="doc-biblioref">2013</a>)</span>, and (b) normalised model of <span class="citation" data-cites="e14">Efford (<a href="A99-references.html#ref-e14" role="doc-biblioref">2014</a>)</span>. The magnitude of variation depends on the coefficient <span class="math inline">\alpha_2</span> (<a href="#eq-dethet" class="quarto-xref">Eq.&nbsp;<span>6.1</span></a>).
@@ -799,11 +799,11 @@ Figure&nbsp;6.14: Relative bias of parameter estimates from null model when <spa
 <p>We have not considered in detail the potential for correlated variation in overall detection (measured as the <a href="./05-theory-special-topics.html#sec-esa">effective sampling area</a>) and density. Failure to model such correlated variation led to poor estimates in the simulations of <span class="citation" data-cites="McLellan2023">McLellan et al. (<a href="A99-references.html#ref-McLellan2023" role="doc-biblioref">2023</a>)</span> (see also <a href="08-studydesign.html#sec-spatialvariation" class="quarto-xref"><span>Section 8.13</span></a>).</p>
 <p>Several breaches lead to underestimation of sampling variance and impaired coverage of confidence intervals. If the magnitude of the breach can be estimated then better confidence intervals may be achieved by simulating from the full model.</p>
 <p>Particular detection parameters may be estimated poorly even when density estimates are robust. A common example arises when a multi-catch model is used for single-catch data: the estimated intercept of the detection function is strongly biased while density estimates are generally unbiased.</p>
-<div id="tbl-robustness" class="sm quarto-float anchored">
+<div id="tbl-robustness" class="sm quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[30,5,42,23]">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-robustness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.
 </figcaption><div aria-describedby="tbl-robustness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-sm small table">
+<table class="table-sm small caption-top table">
 <colgroup>
 <col style="width: 30%">
 <col style="width: 5%">
@@ -826,14 +826,14 @@ Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colo
 <tr class="even">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-popnclosed">1a. Births and deaths</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob52.png" class="lightbox" data-glightbox="description: .lightbox-desc-15" data-gallery="quarto-lightbox-gallery-15" title="*"><img src="figures/yob52.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob52.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob52.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;">RB(<span class="math inline">\hat D</span>) proportional turnover</td>
 <td style="text-align: left;">open population</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-popnclosed">1b. Dispersal</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-glightbox="description: .lightbox-desc-16" data-gallery="quarto-lightbox-gallery-16" title="."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">open population</td>
 </tr>
@@ -846,14 +846,14 @@ Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colo
 <tr class="odd">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-shadow">2a. Inadequate marks</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob54.png" class="lightbox" data-glightbox="description: .lightbox-desc-17" data-gallery="quarto-lightbox-gallery-17" title="**"><img src="figures/yob54.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob54.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob54.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;">-ve RB(<span class="math inline">\hat D</span>) when high probability of identity</td>
 <td style="text-align: left;"><span class="citation" data-cites="Augustine2020">Augustine et al. (<a href="A99-references.html#ref-Augustine2020" role="doc-biblioref">2020</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-ghost">2b. Marks corrupted</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob52.png" class="lightbox" data-glightbox="description: .lightbox-desc-18" data-gallery="quarto-lightbox-gallery-18" title="*"><img src="figures/yob52.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob52.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob52.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
@@ -866,28 +866,28 @@ Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colo
 <tr class="even">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-ACindependent">3a. AC not independent</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-glightbox="description: .lightbox-desc-19" data-gallery="quarto-lightbox-gallery-19" title="."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-hrcircular">3b. HR non-circular</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob5s14.png" class="lightbox" data-glightbox="description: .lightbox-desc-20" data-gallery="quarto-lightbox-gallery-20" title="*"><img src="figures/yob5s14.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob5s14.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob5s14.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;">severe RB(<span class="math inline">\hat D</span>) when HR align with detectors</td>
 <td style="text-align: left;">anisotropic model</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-independentwithinhr">3c. Location autocorrelated</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-glightbox="description: .lightbox-desc-21" data-gallery="quarto-lightbox-gallery-21" title="."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-hrstationary">3d. HR non-stationary</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-glightbox="description: .lightbox-desc-22" data-gallery="quarto-lightbox-gallery-22" title="."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
@@ -900,28 +900,28 @@ Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colo
 <tr class="odd">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-temporalvariation">4a. Temporal variation</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-glightbox="description: .lightbox-desc-23" data-gallery="quarto-lightbox-gallery-23" title="."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">covariate, time-specific</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-behaviour">4b. Behavioural responses</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob5s24.png" class="lightbox" data-glightbox="description: .lightbox-desc-24" data-gallery="quarto-lightbox-gallery-24" title="*"><img src="figures/yob5s24.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob5s24.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob5s24.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">learned response</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-individualheterogeneity">4c. Individual heterogeneity</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob52.png" class="lightbox" data-glightbox="description: .lightbox-desc-25" data-gallery="quarto-lightbox-gallery-25" title="*"><img src="figures/yob52.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob52.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob52.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;">RB(<span class="math inline">\hat D</span>) nonlinear on CV(a)</td>
 <td style="text-align: left;">covariate, finite mixture</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-homogeneityofdetectors">4d. Detector heterogeneity</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob5s13.png" class="lightbox" data-glightbox="description: .lightbox-desc-26" data-gallery="quarto-lightbox-gallery-26" title="*"><img src="figures/yob5s13.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob5s13.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob5s13.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">covariate, GRF</td>
 </tr>
@@ -934,14 +934,14 @@ Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colo
 <tr class="even">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-independentindividuals">5a. Individuals interact</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-glightbox="description: .lightbox-desc-27" data-gallery="quarto-lightbox-gallery-27" title="*"><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"><span class="citation" data-cites="Efford2023">Efford (<a href="A99-references.html#ref-Efford2023" role="doc-biblioref">2023</a>)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">&nbsp;&nbsp;&nbsp;<a href="#sec-serialindependence">5b. Serial dependence</a>
 </td>
-<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-glightbox="description: .lightbox-desc-28" data-gallery="quarto-lightbox-gallery-28" title="."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
+<td style="text-align: left;"><a href="figures/yob51.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28" title="Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled."><img src="figures/yob51.png" class="img-fluid figure-img"></a></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
@@ -950,7 +950,7 @@ Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colo
 </div>
 </figure>
 </div>
-<table class="table-borderless table-sm small table">
+<table class="table-borderless table-sm small caption-top table">
 <colgroup>
 <col style="width: 10%">
 <col style="width: 5%">
@@ -976,36 +976,6 @@ Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colo
 </table>
 <!-- ## Multiple observation processes --><!-- @Tourani2020 --><!-- cf mark-recapture, telemetry, acoustic tagging, harvest samples @Paterson2019 --><!-- cf historical advice on multiple methods for non-spatial capture-recapture to overcome individual heterogeneity; @lc24 --><!-- (desirability of crossover recaptures) --><!-- [Github]: https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/MID/secr-simulations-MID.html --><!-- ## Simulations --><!-- @ebb09  --><!-- @Theng2022 general robustness; mechanistic simulation --><!-- @McLellan2023: not robust when variation in density and detection are correlated; see also @Paterson2019; @Howe2022. --><!-- @Royle2013; @e14 RSF --><!-- @Royle2015 transience --><!-- @Paterson2019 mountain lions simulation --><!-- @Dey2022 misspecified detection function --><!-- @Dey2023 SARE --><!-- @Dupont2023 ungulates simulation vs chamois (*Rupicapra rupicapra*), red deer (*Cervus elaphus*), and wild boar (*Sus scrofa*) wrt group --><!-- @Smith2020 simulation scenarios "caution against the casual repurposing of non-spatial capture-recapture data using SCR" --><!-- @Efford2019 noncircular --><!-- @eb19 fast design --><!-- @ef13 --><!-- @em14 --><!-- @Efford2024 --><!-- @Bischof2020 --><!-- @c19 --><!-- @Distiller2015 --><!-- @Dupont2019 -->
 
-<div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;6.1: Simulated effect of study duration on relative bias of density estimates for three levels of annual survival <span class="math inline">\phi</span> in a population with constant density. <span class="math inline">\phi = 1</span> corresponds to a closed population.</span>
-<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;6.2: Relative bias of parameter estimates from null model when some individuals cannot be distinguished (‘shadow effects’).</span>
-<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;6.3: Relative bias of density estimates as function of PI for varying density. Density is expressed in units of animals per <span class="math inline">\sigma^2</span>. At low density few individuals are detected, reducing the chance of mis-identification for given PI.</span>
-<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;6.4: Threshold of PI at which absolute relative bias of density estimates exceeded the threshold shown, as a function of the expected number of individuals detected.</span>
-<span class="glightbox-desc lightbox-desc-5">Figure&nbsp;6.5: Relative bias of parameter estimates from null model when genotyping errors generate ‘ghost’ individuals.</span>
-<span class="glightbox-desc lightbox-desc-6">Figure&nbsp;6.6: SECR models typically assume that home ranges are circular (a). Noncircularity of home ranges causes limited bias in density estimates when ranges are oriented at random with respect to a linear detector array (b). Systematic alignment of ranges to the array (c) causes large bias in <span class="math inline">\hat \sigma</span> and <span class="math inline">\hat D</span>.</span>
-<span class="glightbox-desc lightbox-desc-7">Figure&nbsp;6.7: Examples of correlated movement paths over 100 time steps (<span class="math inline">t = 100</span>). Parameter ‘tau’ (<span class="math inline">\tau</span>) controls autocorrelation. Red dot indicates activity centre; grey circle is 95% probability contour of distribution as <span class="math inline">t \to \infty</span> or <span class="math inline">\tau \to 0</span>.</span>
-<span class="glightbox-desc lightbox-desc-8">Figure&nbsp;6.8: Relative bias RB of null-model density estimates of density <span class="math inline">D</span> and spatial scale <span class="math inline">\sigma</span> from Ornstein-Uhlenbeck model with autocorrelation parameter <span class="math inline">\tau</span>.</span>
-<span class="glightbox-desc lightbox-desc-9">Figure&nbsp;6.9: Relative bias of density estimates from studies with varying between-occasion movement. Both <span class="math inline">\hat \lambda_0</span> and <span class="math inline">\hat \sigma</span> are biased by movement, but the net effect on <span class="math inline">\hat D</span> is negligible.</span>
-<span class="glightbox-desc lightbox-desc-10">Figure&nbsp;6.10: Relative bias of parameter estimates from null model given temporal variation in <span class="math inline">\lambda_0</span> or <span class="math inline">\sigma</span>.</span>
-<span class="glightbox-desc lightbox-desc-11">Figure&nbsp;6.11: Relative bias of parameter estimates from null model given behavioural variation in lambda0. Relative bias of density was off-scale (+1.41) for recapture factor 0.25 with a general behavioural response.</span>
-<span class="glightbox-desc lightbox-desc-12">Figure&nbsp;6.12: Relative bias of parameter estimates from null model given individual variation in <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma^2</span>.</span>
-<span class="glightbox-desc lightbox-desc-13">Figure&nbsp;6.13: Variation in detector efficiency induces individual heterogeneity in overall detection probability <span class="math inline">p_\cdot(\vec x)</span>. AC 1–3 have similar exposure to detectors but experience respectively high, low and medium detection probability because of the neighbourhoods in which they are located.</span>
-<span class="glightbox-desc lightbox-desc-14">Figure&nbsp;6.14: Relative bias of parameter estimates from null model when <span class="math inline">\lambda_0</span> varies among detectors according to (a) unnormalised model of <span class="citation" data-cites="Royle2013">Royle et al. (<a href="A99-references.html#ref-Royle2013" role="doc-biblioref">2013</a>)</span>, and (b) normalised model of <span class="citation" data-cites="e14">Efford (<a href="A99-references.html#ref-e14" role="doc-biblioref">2014</a>)</span>. The magnitude of variation depends on the coefficient <span class="math inline">\alpha_2</span> (<a href="#eq-dethet" class="quarto-xref">Eq.&nbsp;<span>6.1</span></a>).</span>
-<span class="glightbox-desc lightbox-desc-15">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-<span class="glightbox-desc lightbox-desc-16">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-<span class="glightbox-desc lightbox-desc-17">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-<span class="glightbox-desc lightbox-desc-18">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-<span class="glightbox-desc lightbox-desc-19">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-<span class="glightbox-desc lightbox-desc-20">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-<span class="glightbox-desc lightbox-desc-21">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-<span class="glightbox-desc lightbox-desc-22">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-<span class="glightbox-desc lightbox-desc-23">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-<span class="glightbox-desc lightbox-desc-24">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-<span class="glightbox-desc lightbox-desc-25">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-<span class="glightbox-desc lightbox-desc-26">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-<span class="glightbox-desc lightbox-desc-27">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-<span class="glightbox-desc lightbox-desc-28">Table&nbsp;6.1: Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled.</span>
-</div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-Augustine2018" class="csl-entry" role="listitem">
 Augustine, B. C., Royle, J. A., Kelly, M. J., Satter, C. B., Alonso, R. S., Boydston, E. E., &amp; Crooks, K. R. (2018). Spatial capture–recapture with partial identity: An application to camera traps. <em>The Annals of Applied Statistics</em>, <em>12</em>(1). <a href="https://doi.org/10.1214/17-aoas1091">https://doi.org/10.1214/17-aoas1091</a>
@@ -1178,18 +1148,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1221,7 +1180,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1229,7 +1210,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1581,30 +1562,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom"});
-window.onload = () => {
-  lightboxQuarto.on('slide_before_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    const href = trigger.getAttribute('href');
-    if (href !== null) {
-      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-      if (imgEl !== null) {
-        const srcAttr = imgEl.getAttribute("src");
-        if (srcAttr && srcAttr.startsWith("data:")) {
-          slideConfig.href = srcAttr;
-        }
-      }
-    } 
-  });
-
-  lightboxQuarto.on('slide_after_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    if (window.Quarto?.typesetMath) {
-      window.Quarto.typesetMath(slideNode);
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
     }
-  });
-
-};
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
           </script>
 
 

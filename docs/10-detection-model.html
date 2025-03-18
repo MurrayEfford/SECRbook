@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>The SECR book - 10&nbsp; Detection model</title>
+<title>10&nbsp; Detection model – The SECR book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -120,7 +120,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
  for (var i = 0; i < mathElements.length; i++) {
@@ -133,7 +133,7 @@ div.csl-indent {
     fleqn: false
    });
 }}});
-  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -165,13 +165,13 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-secr-package.html">Practice</a></li><li class="breadcrumb-item"><a href="./10-detection-model.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Detection model</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -205,9 +205,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Basics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -228,9 +228,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Theory</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -257,9 +257,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Performance</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -286,9 +286,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Practice</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -351,9 +351,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -480,11 +480,11 @@ window.Quarto = {
 <p></p>
 <p>The probability of detection <span class="math inline">g(d)</span> at a detector distance <span class="math inline">d</span> from an activity centre may take one of the simple forms in <a href="#tbl-detectfn" class="quarto-xref">Table&nbsp;<span>10.1</span></a>. Alternatively, the probability of detection may be derived from <span class="math inline">g(d) = 1 - \exp[-\lambda(d)]</span> where <span class="math inline">\lambda(d)</span> is the hazard of detection, itself modelled with one of the simple parametric forms (<a href="#tbl-hazarddetectfn" class="quarto-xref">Table&nbsp;<span>10.2</span></a>)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Several further options are provided by <code>secr.fit</code> (see <code>? detectfn</code>), but only ‘HN’,‘HR’, and ‘EX’ or their ‘hazard’ equivalents are commonly used.</p>
 <p><br></p>
-<div id="tbl-detectfn" class="sm quarto-float anchored">
+<div id="tbl-detectfn" class="sm quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-detectfn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;10.1: Probability detection functions.
 </figcaption><div aria-describedby="tbl-detectfn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-sm small table">
+<table class="table-sm small caption-top table">
 <colgroup>
 <col style="width: 8%">
 <col style="width: 30%">
@@ -523,11 +523,11 @@ Table&nbsp;10.1: Probability detection functions.
 </figure>
 </div>
 <p><br></p>
-<div id="tbl-hazarddetectfn" class="sm quarto-float anchored">
+<div id="tbl-hazarddetectfn" class="sm quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hazarddetectfn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;10.2: Hazard detection functions.
 </figcaption><div aria-describedby="tbl-hazarddetectfn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-sm small table">
+<table class="table-sm small caption-top table">
 <colgroup>
 <col style="width: 8%">
 <col style="width: 33%">
@@ -601,9 +601,9 @@ Tip
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-choicedfplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-choicedfplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-choicedfplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="10-detection-model_files/figure-html/fig-choicedfplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="10-detection-model_files/figure-html/fig-choicedfplot-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+<a href="10-detection-model_files/figure-html/fig-choicedfplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;10.1: Four detection functions fitted to snowshoe hare data."><img src="10-detection-model_files/figure-html/fig-choicedfplot-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-choicedfplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.1: Four detection functions fitted to snowshoe hare data.
@@ -622,9 +622,9 @@ Figure&nbsp;10.1: Four detection functions fitted to snowshoe hare data.
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-choicedfparmplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-choicedfparmplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-choicedfparmplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="10-detection-model_files/figure-html/fig-choicedfparmplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="10-detection-model_files/figure-html/fig-choicedfparmplot-1.png" class="img-fluid figure-img" width="720"></a>
+<a href="10-detection-model_files/figure-html/fig-choicedfparmplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;10.2: Parameter estimates from four detection functions (95% CI)."><img src="10-detection-model_files/figure-html/fig-choicedfparmplot-1.png" class="img-fluid figure-img" width="720"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-choicedfparmplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.2: Parameter estimates from four detection functions (95% CI).
@@ -636,9 +636,9 @@ Figure&nbsp;10.2: Parameter estimates from four detection functions (95% CI).
 <p>Fitting the HVP function with <span class="math inline">z</span> fixed to different values is another way to examine the effect of shape (<a href="#fig-HVPvaryzplot" class="quarto-xref">Fig.&nbsp;<span>10.3</span></a>). Density estimates ranged only from 1.47 to 1.42.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-HVPvaryzplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-HVPvaryzplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-HVPvaryzplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="10-detection-model_files/figure-html/fig-HVPvaryzplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="10-detection-model_files/figure-html/fig-HVPvaryzplot-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+<a href="10-detection-model_files/figure-html/fig-HVPvaryzplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;10.3: HVP function fitted to snowshoe hare data with z parameter fixed at four different values."><img src="10-detection-model_files/figure-html/fig-HVPvaryzplot-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-HVPvaryzplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.3: HVP function fitted to snowshoe hare data with <span class="math inline">z</span> parameter fixed at four different values.
@@ -655,9 +655,9 @@ Figure&nbsp;10.3: HVP function fitted to snowshoe hare data with <span class="ma
 <p>Continuing the snowshoe hare example: the estimates of <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span> from HVP are surprisingly uncertain when considered on their own, yet the HVP estimate of density has about the same precision as other detection functions (<a href="#fig-choicedfparmplot" class="quarto-xref">Fig.&nbsp;<span>10.2</span></a>). How can this be? There is strong covariation in the sampling distributions of the two parameters that we plot using <code>ellipse.secr</code> in <a href="#fig-ellipseHVP" class="quarto-xref">Fig.&nbsp;<span>10.4</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ellipseHVP" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-ellipseHVP" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ellipseHVP-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="10-detection-model_files/figure-html/fig-ellipseHVP-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="10-detection-model_files/figure-html/fig-ellipseHVP-1.png" class="img-fluid figure-img" width="576"></a>
+<a href="10-detection-model_files/figure-html/fig-ellipseHVP-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;10.4: Confidence ellipse for HVP detection parameters plotted on the link scale and back-transformed to natural scale. ‘+’ indicates MLE."><img src="10-detection-model_files/figure-html/fig-ellipseHVP-1.png" class="img-fluid figure-img" width="576"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ellipseHVP-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.4: Confidence ellipse for HVP detection parameters plotted on the link scale and back-transformed to natural scale. ‘+’ indicates MLE.
@@ -684,11 +684,11 @@ Figure&nbsp;10.4: Confidence ellipse for HVP detection parameters plotted on the
 \tag{10.1}</span></span></p>
 <p>where <span class="math inline">\mathbf X</span> is the design matrix, <!-- rather than \pmb from amsmath, can use \boldsymbol for HTML, \symbf for pdf --> <span class="math inline">\pmb{\beta}</span> is a vector of coefficients, and <span class="math inline">\mathbf y</span> is the resulting vector of values on the link scale, one for each row of <span class="math inline">\mathbf X</span>. The first column of the design matrix is a column of 1’s for the intercept <span class="math inline">\beta_0</span>. Factor (categorical) predictors will usually be represented by several columns of indicator values (0’s and 1’s coding factor levels). See <span class="citation" data-cites="cw">Cooch &amp; White (<a href="A99-references.html#ref-cw" role="doc-biblioref">2023</a>)</span> Chapter 6 for an accessible introduction to linear models and design matrices.</p>
 <p>In <strong>secr</strong> each detection parameter (<span class="math inline">g_0, \lambda_0, \sigma, z</span>) is controlled by a linear sub-model on its link scale, i.e.&nbsp;each has its own design matrix. <em>Rows</em> of the design matrix correspond to combinations of session, individual, occasion, and detector, omitting any of these four that is constant (perhaps because there is only one level). Finite-mixture models add further rows to the design matrix that we leave aside for now. <em>Columns</em> after the first are either (i) indicators to represent effects that can be constructed automatically (<a href="#tbl-predictors" class="quarto-xref">Table&nbsp;<span>10.3</span></a>), or (ii) user-supplied covariates associated with sessions, individuals, occasions or detectors.</p>
-<div id="tbl-predictors" class="sm quarto-float anchored">
+<div id="tbl-predictors" class="sm quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-predictors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;10.3: Automatically generated predictor variables for detection models
 </figcaption><div aria-describedby="tbl-predictors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-sm small table">
+<table class="table-sm small caption-top table">
 <thead><tr class="header">
 <th style="text-align: left;">Variable</th>
 <th style="text-align: left;">Description</th>
@@ -782,11 +782,11 @@ Spatially varying detection
 </div>
 </div>
 <p>The formula may be constant (<span class="math inline">\sim</span> 1, the default) or some combination of terms in standard R formula notation (see <code><a href="https://rdrr.io/r/stats/formula.html">?formula</a></code>). For example, g0 <span class="math inline">\sim</span> b + T specifies a model with a learned response and a linear time trend in g0; the effects are additive on the link scale. <a href="#tbl-examples" class="quarto-xref">Table&nbsp;<span>10.4</span></a> has some examples.</p>
-<div id="tbl-examples" class="sm quarto-float anchored">
+<div id="tbl-examples" class="sm quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-examples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;10.4: Some examples of the ‘model’ argument in <code>secr.fit</code>
 </figcaption><div aria-describedby="tbl-examples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-sm small table">
+<table class="table-sm small caption-top table">
 <colgroup>
 <col style="width: 31%">
 <col style="width: 68%">
@@ -848,11 +848,11 @@ Note
 <span class="header-section-number">10.2.1</span> Covariates</h3>
 <p></p>
 <p>Any name in a formula that is not listed as a variable in <a href="#tbl-predictors" class="quarto-xref">Table&nbsp;<span>10.3</span></a> is assumed to refer to a user-supplied covariate. <code>secr.fit</code> looks for user-supplied covariates in data frames embedded in the ‘capthist’ argument, or supplied in the ‘timecov’ and ‘sessioncov’ arguments, or named with the ‘timevaryingcov’ attribute of a traps object, using the first match (<a href="#tbl-covariates" class="quarto-xref">Table&nbsp;<span>10.5</span></a>).</p>
-<div id="tbl-covariates" class="sm quarto-float anchored">
+<div id="tbl-covariates" class="sm quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-covariates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;10.5: Types of user-provided covariate for parameters of detection models. The names of columns in the respective dataframes may be used in model formulae. Time-varying detector covariates are a special case considered below.
 </figcaption><div aria-describedby="tbl-covariates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-sm small table">
+<table class="table-sm small caption-top table">
 <thead><tr class="header">
 <th style="text-align: left;">Covariate type</th>
 <th style="text-align: left;">Data source</th>
@@ -1102,12 +1102,6 @@ tnumeric   4.9698     0.84805 3.5656 6.9271</code></pre>
 </ol>
 
 
-<div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;10.1: Four detection functions fitted to snowshoe hare data.</span>
-<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;10.2: Parameter estimates from four detection functions (95% CI).</span>
-<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;10.3: HVP function fitted to snowshoe hare data with <span class="math inline">z</span> parameter fixed at four different values.</span>
-<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;10.4: Confidence ellipse for HVP detection parameters plotted on the link scale and back-transformed to natural scale. ‘+’ indicates MLE.</span>
-</div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-bk2014" class="csl-entry" role="listitem">
 Borchers, D. L., &amp; Kidney, D. (2014). <em>Flexible density surface estimation for spatially explicit capture–recapture surveys</em>. University of St Andrews. <a href="https://research-repository.st-andrews.ac.uk/bitstream/handle/10023/9147/secrgam_techrep.pdf?sequence=1">https://research-repository.st-andrews.ac.uk/bitstream/handle/10023/9147/secrgam_techrep.pdf?sequence=1</a>
@@ -1210,18 +1204,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1253,7 +1236,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1261,7 +1266,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1613,30 +1618,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false});
-window.onload = () => {
-  lightboxQuarto.on('slide_before_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    const href = trigger.getAttribute('href');
-    if (href !== null) {
-      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-      if (imgEl !== null) {
-        const srcAttr = imgEl.getAttribute("src");
-        if (srcAttr && srcAttr.startsWith("data:")) {
-          slideConfig.href = srcAttr;
-        }
-      }
-    } 
-  });
-
-  lightboxQuarto.on('slide_after_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    if (window.Quarto?.typesetMath) {
-      window.Quarto.typesetMath(slideNode);
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
     }
-  });
-
-};
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
           </script>
 
 
