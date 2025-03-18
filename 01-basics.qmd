@@ -369,11 +369,15 @@ Early anxiety about the suitability of MLE and asymptotic variances for
 SECR with small samples appears to have been mistaken. @Royle2009
 believed that "... the practical validity of these procedures cannot be
 asserted in most situations involving small samples". This has not been
-borne out by subsequent simulations. The concluding discussion of
-@Gerber2015 is pertinent. @Palmero2023 reported that Bayesian methods
+borne out by subsequent simulations. The final discussion of
+@Gerber2015 is pertinent: they give an even-handed summary of the 
+philosophical and practical issues, and suggest that "the asymptotic
+argument against likelihood methods for SCR is moot."
+@Palmero2023 reported that Bayesian methods
 provide more precise estimates of density, but this appears to be an
 artefact: it is a mistake to compare estimates from MLE models with
-random $N(A)$ with estimates from Bayesian models with fixed $N(A)$. 
+random $N(A)$ with estimates from Bayesian models with fixed $N(A)$ 
+(see @sec-fixedN for background on $N(A)$, the population in area $A$). 
 There is a further risk that the chosen Bayesian priors constrain the 
 estimates.
 

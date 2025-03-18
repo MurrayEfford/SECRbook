@@ -16,7 +16,7 @@ Failure of the independence assumption in a multi-session analysis results in un
 
 Users of MARK [@cw] will be familiar with the stratification of a population into 'groups', each with potentially different values for parameters such as survival probability. Grouping requires that each animal is assigned to a group on first detection, and that the assignment is permanent. Then density and any detection parameter may be modelled as a function of the grouping factor. Group models are available in **secr** only when maximizing the full likelihood. When maximizing the [conditional likelihood](05-theory-special-topics#sec-conditional) the model may specify an individual factor covariate directly, with the same effect as grouping. 
 
-The multinomial coefficient in **secr** is stratified by group.
+<!-- The multinomial coefficient in **secr** is stratified by group. -->
 
 ## Effective sampling area {#sec-esa}
 \index{Effective sampling area}
@@ -27,7 +27,7 @@ a(\theta) \equiv \int_{R^2} p_\cdot(\mathbf x; \theta) \, d\mathbf x.
 $$ {#eq-esa}
 
 
-This is a scalar *effective* area for which $\hat D = n / a(\hat \theta)$ is an unbiased estimate of density. It does not correspond to a geographic region or delimited polygon on the ground. It bears *no* relation to the traditional 'effective trapping area' $A_W$ [e.g., @obwa78] for which $\hat D = \hat N / A_W$, given a non-spatial population estimate $\hat N$ and boundary strip width $W$. Variation in $a(\theta)$ depends not only on obviously spatial quantities such as the extent of the detector array and the spatial scale of detection $\sigma$, but also on non-spatial quantities such as sampling effort (e.g., the number of days of trapping) and the intercept of the distance-dependent detection function ($g_0, \lambda_0$). 
+This is a scalar *effective* area for which $\hat D = n / a(\hat \theta)$ is an unbiased estimate of density as developed in @sec-conditional. It does not correspond to a geographic region or delimited polygon on the ground. It bears *no* relation to the traditional 'effective trapping area' $A_W$ [e.g., @obwa78] for which $\hat D = \hat N / A_W$, given a non-spatial population estimate $\hat N$ and boundary strip width $W$. Variation in $a(\theta)$ depends not only on obviously spatial quantities such as the extent of the detector array and the spatial scale of detection $\sigma$, but also on non-spatial quantities such as sampling effort (e.g., the number of days of trapping) and the intercept of the distance-dependent detection function ($g_0, \lambda_0$). 
 
 @grw09 and @rnug09 defined an 'effective trapping area' or 'effective sample area' $A_e$ somewhat differently, omitting the intercept of the detection function. To our knowledge their definition has not found further use. A version closer to ours appears in @rcsg14[Section 5.12].
 

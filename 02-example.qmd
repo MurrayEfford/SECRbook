@@ -26,7 +26,7 @@ url <- paste0('https://www.otago.ac.nz/density/examples/', fnames)
 download.file(url, fnames, method = "libcurl")
 ```
 
-The capture file "hareCH6capt.txt" has one line per capture and four columns (header lines are commented out and are not needed). Here we display the first 6 lines. The first column is a session label derived from the original study name; here there is only one session.
+The capture file "hareCH6capt.txt" has one line per capture and four columns (header lines are commented out and are not needed). Here we display the first 6 lines. The first column is a session label derived from the original study name; here there is only one session. The second column is an identifier unique to an individual (e.g., tag number). Sampling occasions are numbered 1, 2 etc. (in some studies there is only one). 
 
 ```{r}
 #| label: displaylines

@@ -130,7 +130,7 @@ Detection functions are covered in detail in @sec-detection.
 Either probability $g(d)$ or hazard $\lambda(d)$ may be modelled as a
 function of distance. A halfnormal form is commonly used (e.g.,
 $g(d) = g_0 \exp (-d^2/2/\sigma^2)$). The shapes of, e.g., halfnormal
-$g(d)$ and halfnormal $\lambda_0(d)$ are only subtly different, but
+$g(d)$ and halfnormal $\lambda(d)$ are only subtly different, but
 $\lambda(d)$ is preferred because it lends itself to mathematical
 manipulation and occurs more widely in the literature (often with
 different notation).
@@ -231,9 +231,15 @@ save space) {#tbl-pointdetectortypes tbl-colwidths="[20,45,35]" .sm}
 \index{Detectors!binary proximity}
 
 A proximity detector records the presence of an individual at or near a
-point without restricting its movement. The data are binary when any
-detections after the first are ignored (this avoids worries about the
-non-independence of repeated visits to a detector).
+point without restricting its movement. The data are binary when there can be 
+no more than one detection of an individual at a particular detector on a 
+particular occasion, or repeat detections are deliberately discarded. 
+
+::: {.callout-note}
+Discarding hard-won data may seem perverse, but it may be justified if the 
+fraction is small (e.g., repeat detections rare). Binary data are less prone to 
+problems from the non-independence of repeated visits to a detector, especially when a few individuals generate many repeat detections. Binary models also tend to be faster to fit and dodge the question of what distribution should be used for the counts.
+:::
 
 Assuming independence among detectors, the distance-detection model
 applies directly as the probability of detection in a particular
@@ -252,7 +258,7 @@ Hazard is the natural scale for the Poisson parameter.
 
 Binomial counts arise when there is a known, finite number of opportunities for
 detection within each occasion that we denote $B_s$. This is the result when 
-binary proximity data over many occasions are collapsed to a single occasion:
+binary proximity data over many occasions are collapsed to a count on single occasion:
 the initial number of occasions is known ($B_s = S$) and places an upper
 limit on the count. Collapsing is often efficient. It precludes
 modelling parameter variation or learned responses across occasions.
@@ -292,10 +298,13 @@ in density unless the time of detection has been recorded
 
 \index{Population size $N(A)$!fixed}
 
-The formulation of the state model as an inhomogeneous Poisson process
-(@sec-basics) does not refer to population size $N$. The state
-model may also be cast as a 'conditional' or 'binomial' Poisson process'
-[@illian08]. For an arbitrary area $A$ the number of AC is then
+The formulation of the state model as a Poisson process in two dimensions
+(@sec-basics) does not refer to population size $N$. Under that model, the 
+number of AC in an arbitrary area $A$ is a poisson-distributed random variable
+regardless of whether the 2-D process is homogeneous or inhomogeneous.
+
+The state model may also be cast as a 'conditional' or 'binomial' Poisson process'
+[@illian08]. For an arbitrary area $A$ the number of AC $N(A)$ is then
 considered fixed rather than Poisson.
 
 The distribution of $n$ is then binomial with size $N(A)$ and
