@@ -1,6 +1,7 @@
 # Datasets {#sec-datasets}
 
-These datasets are included in **secr**. See each linked help page for details. Code for model fitting is in [secr-version4.pdf](https://www.otago.ac.nz/density/pdfs/secr-version4.pdf).
+These datasets are included in **secr**. See each linked help page for details. Code for model fitting is in [secr-version4.pdf](https://www.otago.ac.nz/density/pdfs/secr-version4.pdf). 
+The CAPTURE software and datasets are available from a [USGS archive](https://eesc.usgs.gov/mbr/software/capture.shtml).
 
 | Dataset | Description |
  |:-------------------|:---------------------------------------------------------|
