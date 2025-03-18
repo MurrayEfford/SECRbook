@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>The SECR book - 11&nbsp; Density model</title>
+<title>11&nbsp; Density model – The SECR book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -120,7 +120,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
  for (var i = 0; i < mathElements.length; i++) {
@@ -133,7 +133,7 @@ div.csl-indent {
     fleqn: false
    });
 }}});
-  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -165,13 +165,13 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-secr-package.html">Practice</a></li><li class="breadcrumb-item"><a href="./11-density-model.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Density model</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -205,9 +205,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Basics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -228,9 +228,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Theory</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -257,9 +257,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Performance</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -286,9 +286,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Practice</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -351,9 +351,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -480,11 +480,11 @@ D(\mathbf x; \phi) = f^{-1}[\phi_0 + \sum_{v=1}^V c_v(\mathbf x) \, \phi_v],
 <p>Although <span class="math inline">D(\mathbf x;\phi)</span> is often a smooth function, in <strong>secr</strong> we evaluate it only at the fixed points of the habitat mask (<a href="12-habitat.html" class="quarto-xref"><span>Chapter 12</span></a>). A mask defines the region of habitat relevant to a particular study: in the simplest case it is a buffered zone inclusive of the detector locations. More complex masks may exclude interior areas of non-habitat or have an irregular outline.</p>
 <p>A density model <span class="math inline">D(\mathbf x;\phi)</span> is specified in the ‘model’ argument of <code>secr.fit</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Spatial covariates, if any, are needed for each mask point; they are stored in the ‘covariates’ attribute of the mask. Results from fitting the model (including the estimated coefficients <span class="math inline">\phi</span>) are saved in an object of class ‘secr’. To visualise a fitted density model we first evaluate it at each point on a mask with the function <code>predictDsurface</code>. This creates an object of class ‘Dsurface’. A Dsurface is a mask with added density data, and plotting a Dsurface is like plotting a mask covariate.</p>
 <p><br></p>
-<div id="tbl-Dexamples" class="sm quarto-float anchored">
+<div id="tbl-Dexamples" class="sm quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-Dexamples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;11.1: Some examples of models for density in <code>secr.fit</code>.
 </figcaption><div aria-describedby="tbl-Dexamples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-sm small table">
+<table class="table-sm small caption-top table">
 <colgroup>
 <col style="width: 28%">
 <col style="width: 71%">
@@ -546,9 +546,9 @@ Table&nbsp;11.1: Some examples of models for density in <code>secr.fit</code>.
 <span>    ticks <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/north.html">north</a></span><span class="op">(</span>xy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2674670</span>, <span class="fl">5982830</span><span class="op">)</span>, d <span class="op">=</span> <span class="fl">40</span>, label <span class="op">=</span> <span class="st">"N"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div id="fig-ovmaskplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-ovmaskplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ovmaskplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-ovmaskplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="11-density-model_files/figure-html/fig-ovmaskplot-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="11-density-model_files/figure-html/fig-ovmaskplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;11.1: Orongorongo Valley possum study area"><img src="11-density-model_files/figure-html/fig-ovmaskplot-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ovmaskplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.1: Orongorongo Valley possum study area
@@ -586,9 +586,9 @@ null       3 -1555.75 2.860 0.1060</code></pre>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">22</span>,<span class="fl">2</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">leftbank</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-OVsurface" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-OVsurface" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-OVsurface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-OVsurface-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="11-density-model_files/figure-html/fig-OVsurface-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="11-density-model_files/figure-html/fig-OVsurface-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;11.2: Quadratic possum density surface"><img src="11-density-model_files/figure-html/fig-OVsurface-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OVsurface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.2: Quadratic possum density surface
@@ -613,11 +613,11 @@ Figure&nbsp;11.2: Quadratic possum density surface
 <p></p>
 <p><code>secr.fit</code> automatically recognises the spatial variables x, y, x2, y2 and xy if they appear in the formula for D. These refer to the x-coordinate, y-coordinate, x-coordinate<sup>2</sup> etc. for each mask point, and will be constructed automatically as needed. The built-in spatial variables offer limited model possibilities (<a href="#tbl-builtin" class="quarto-xref">Table&nbsp;<span>11.2</span></a>).</p>
 <p>The formula for D may also include the non-spatial variables g (group), session (categorical), and Session (continuous), defined as for modelling g0 and sigma in <a href="10-detection-model.html" class="quarto-xref"><span>Chapter 10</span></a>.</p>
-<div id="tbl-builtin" class="sm quarto-float anchored">
+<div id="tbl-builtin" class="sm quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-builtin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;11.2: Examples of density models using built-in variables.
 </figcaption><div aria-describedby="tbl-builtin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-sm small table">
+<table class="table-sm small caption-top table">
 <thead><tr class="header">
 <th>Formula</th>
 <th>Interpretation</th>
@@ -707,9 +707,9 @@ Table&nbsp;11.2: Examples of density models using built-in variables.
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ovmask</span>, covariate <span class="op">=</span> <span class="st">"DTR"</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">500</span>,<span class="fl">50</span><span class="op">)</span>, </span>
 <span>     title <span class="op">=</span> <span class="st">"Distance to river m"</span>, dots <span class="op">=</span> <span class="cn">FALSE</span>, inset<span class="op">=</span> <span class="fl">0.07</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-dtrplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-dtrplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-dtrplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-dtrplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="11-density-model_files/figure-html/fig-dtrplot-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="11-density-model_files/figure-html/fig-dtrplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;11.3: Orongorongo Valley possum study: distance to river"><img src="11-density-model_files/figure-html/fig-dtrplot-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dtrplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.3: Orongorongo Valley possum study: distance to river
@@ -768,9 +768,9 @@ null       3 -1555.75 3.488 0.0466</code></pre>
 <span>    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">20</span><span class="op">)</span>, xlab <span class="op">=</span> <span class="st">"Distance from river (m)"</span>, </span>
 <span>    ylab <span class="op">=</span> <span class="st">"Density / ha"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-OVdtr" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-OVdtr" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-OVdtr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-OVdtr-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="11-density-model_files/figure-html/fig-OVdtr-1.png" class="img-fluid figure-img" style="width:75.0%"></a>
+<a href="11-density-model_files/figure-html/fig-OVdtr-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;11.4: Possum density vs distance to river: regression spline k = 3"><img src="11-density-model_files/figure-html/fig-OVdtr-1.png" class="img-fluid figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OVdtr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.4: Possum density vs distance to river: regression spline <em>k</em> = 3
@@ -798,9 +798,9 @@ Figure&nbsp;11.4: Possum density vs distance to river: regression spline <em>k</
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">leftbank</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span>side<span class="op">=</span><span class="fl">3</span>, line<span class="op">=</span><span class="op">-</span><span class="fl">1</span>, outer<span class="op">=</span><span class="cn">TRUE</span>, <span class="st">"s(DTR, k = 3) model"</span>, cex <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div id="fig-CIplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-CIplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CIplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-CIplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="11-density-model_files/figure-html/fig-CIplot-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
+<a href="11-density-model_files/figure-html/fig-CIplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;11.5: Confidence surfaces"><img src="11-density-model_files/figure-html/fig-CIplot-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CIplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.5: Confidence surfaces
@@ -850,9 +850,9 @@ strip.legend(c(2674460, 5982886), legend = seq(0,22,2), col = terrain.colors(11)
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ovtrap</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span> <span class="op">(</span><span class="fl">2674600</span>, <span class="fl">5982892</span>, <span class="st">'b.'</span>, cex <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div id="fig-focalplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-focalplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-focalplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-focalplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="11-density-model_files/figure-html/fig-focalplot-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
+<a href="11-density-model_files/figure-html/fig-focalplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;11.6: Smoothed forest covariate (proportion ‘beech’: 0% dark green, 100% white). (a) square window (5 \times 5 cells), (b) Gaussian smooth (\sigma = 50 m)."><img src="11-density-model_files/figure-html/fig-focalplot-1.png" class="img-fluid figure-img" style="width:95.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-focalplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.6: Smoothed forest covariate (proportion ‘beech’: 0% dark green, 100% white). (a) square window (5 <span class="math inline">\times</span> 5 cells), (b) Gaussian smooth (<span class="math inline">\sigma = 50</span> m).
@@ -891,9 +891,9 @@ Figure&nbsp;11.6: Smoothed forest covariate (proportion ‘beech’: 0% dark gre
 <span>     poly <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ovtrap</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-OVfxsurfaceplt" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-OVfxsurfaceplt" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-OVfxsurfaceplt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-OVfxsurfaceplt-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="11-density-model_files/figure-html/fig-OVfxsurfaceplt-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="11-density-model_files/figure-html/fig-OVfxsurfaceplt-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;11.7: Total fx surface"><img src="11-density-model_files/figure-html/fig-OVfxsurfaceplt-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OVfxsurfaceplt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.7: Total fx surface
@@ -918,9 +918,9 @@ Figure&nbsp;11.7: Total fx surface
 <span>     poly <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">traps</span><span class="op">(</span><span class="va">possumCH</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-fxsurfaceWplt" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-fxsurfaceWplt" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-fxsurfaceWplt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-fxsurfaceWplt-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-8" data-gallery="quarto-lightbox-gallery-8"><img src="11-density-model_files/figure-html/fig-fxsurfaceWplt-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="11-density-model_files/figure-html/fig-fxsurfaceWplt-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;11.8: Waitarere possum fx surface"><img src="11-density-model_files/figure-html/fig-fxsurfaceWplt-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fxsurfaceWplt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.8: Waitarere possum fx surface
@@ -988,9 +988,9 @@ sigma  3.3176747 0.0354359  3.2482216  3.3871277</code></pre>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">22</span>,<span class="fl">2</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">leftbank</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-relativeD" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-relativeD" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-relativeD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="11-density-model_files/figure-html/fig-relativeD-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-9" data-gallery="quarto-lightbox-gallery-9"><img src="11-density-model_files/figure-html/fig-relativeD-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="11-density-model_files/figure-html/fig-relativeD-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;11.9: Possum density derived from quadratic relative density surface. Contour lines are from the previous full fit."><img src="11-density-model_files/figure-html/fig-relativeD-1.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-relativeD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.9: Possum density derived from quadratic relative density surface. Contour lines are from the previous full fit.
@@ -1001,17 +1001,6 @@ Figure&nbsp;11.9: Possum density derived from quadratic relative density surface
 <p>The density in <a href="#fig-relativeD" class="quarto-xref">Fig.&nbsp;<span>11.9</span></a> nearly matches the absolute density in <a href="#fig-OVsurface" class="quarto-xref">Fig.&nbsp;<span>11.2</span></a>. This will not be the case if the relative density model is fitted to data from animals tagged elsewhere or on a subset of the area. Tagging then imposes differential spatial weighting that must be made explicit in the model to recover the correct pattern of density in relation to covariates. One scenario involves acoustic telemetry or other automated detection for which the only animals at risk of detection are those previously marked (cf resighting data, in which unmarked animals are detected and counted, but not identified).</p>
 
 
-<div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;11.1: Orongorongo Valley possum study area</span>
-<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;11.2: Quadratic possum density surface</span>
-<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;11.3: Orongorongo Valley possum study: distance to river</span>
-<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;11.4: Possum density vs distance to river: regression spline <em>k</em> = 3</span>
-<span class="glightbox-desc lightbox-desc-5">Figure&nbsp;11.5: Confidence surfaces</span>
-<span class="glightbox-desc lightbox-desc-6">Figure&nbsp;11.6: Smoothed forest covariate (proportion ‘beech’: 0% dark green, 100% white). (a) square window (5 <span class="math inline">\times</span> 5 cells), (b) Gaussian smooth (<span class="math inline">\sigma = 50</span> m).</span>
-<span class="glightbox-desc lightbox-desc-7">Figure&nbsp;11.7: Total fx surface</span>
-<span class="glightbox-desc lightbox-desc-8">Figure&nbsp;11.8: Waitarere possum fx surface</span>
-<span class="glightbox-desc lightbox-desc-9">Figure&nbsp;11.9: Possum density derived from quadratic relative density surface. Contour lines are from the previous full fit.</span>
-</div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-be08" class="csl-entry" role="listitem">
 Borchers, D. L., &amp; Efford, M. G. (2008). Spatially explicit maximum likelihood methods for capture-recapture studies. <em>Biometrics</em>, <em>64</em>, 377–385.
@@ -1090,18 +1079,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1133,7 +1111,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1141,7 +1141,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1493,30 +1493,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
-window.onload = () => {
-  lightboxQuarto.on('slide_before_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    const href = trigger.getAttribute('href');
-    if (href !== null) {
-      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-      if (imgEl !== null) {
-        const srcAttr = imgEl.getAttribute("src");
-        if (srcAttr && srcAttr.startsWith("data:")) {
-          slideConfig.href = srcAttr;
-        }
-      }
-    } 
-  });
-
-  lightboxQuarto.on('slide_after_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    if (window.Quarto?.typesetMath) {
-      window.Quarto.typesetMath(slideNode);
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
     }
-  });
-
-};
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
           </script>
 
 

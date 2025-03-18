@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>The SECR book - 12&nbsp; Habitat mask</title>
+<title>12&nbsp; Habitat mask – The SECR book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -120,7 +120,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
  for (var i = 0; i < mathElements.length; i++) {
@@ -133,7 +133,7 @@ div.csl-indent {
     fleqn: false
    });
 }}});
-  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -165,13 +165,13 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-secr-package.html">Practice</a></li><li class="breadcrumb-item"><a href="./12-habitat.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Habitat mask</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -205,9 +205,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Basics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -228,9 +228,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Theory</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -257,9 +257,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Performance</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -286,9 +286,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Practice</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -351,9 +351,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -519,9 +519,9 @@ window.Quarto = {
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">mask</span>, dots <span class="op">=</span> <span class="cn">FALSE</span>, mesh <span class="op">=</span> <span class="st">"grey"</span>, col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/traps.html">traps</a></span><span class="op">(</span><span class="va">captdata</span><span class="op">)</span>, detpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pch <span class="op">=</span> <span class="fl">16</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div id="fig-bufferplot" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-bufferplot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-bufferplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="12-habitat_files/figure-html/fig-bufferplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="12-habitat_files/figure-html/fig-bufferplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="336"></a>
+<a href="12-habitat_files/figure-html/fig-bufferplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;12.1: Mask (grey grid) generated automatically in secr.fit by buffering around the detectors (red dots) (80-m buffer, 30-m detector spacing)"><img src="12-habitat_files/figure-html/fig-bufferplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="336"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bufferplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.1: Mask (grey grid) generated automatically in <code>secr.fit</code> by buffering around the detectors (red dots) (80-m buffer, 30-m detector spacing)
@@ -543,9 +543,9 @@ Figure&nbsp;12.1: Mask (grey grid) generated automatically in <code>secr.fit</co
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">hollowmask</span>, dots <span class="op">=</span> <span class="cn">FALSE</span>, mesh <span class="op">=</span> <span class="st">"grey"</span>, col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">hollowgrid</span>, detpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pch <span class="op">=</span> <span class="fl">16</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div id="fig-simplemakemask" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-simplemakemask" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-simplemakemask-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="12-habitat_files/figure-html/fig-simplemakemask-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="12-habitat_files/figure-html/fig-simplemakemask-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="336"></a>
+<a href="12-habitat_files/figure-html/fig-simplemakemask-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;12.2: Mask (grey grid) generated with make.mask (80-m buffer, 30-m trap spacing, 15-m mask spacing). Grid cells in the centre were dropped because they were more than 80 m from any trap."><img src="12-habitat_files/figure-html/fig-simplemakemask-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="336"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simplemakemask-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.2: Mask (grey grid) generated with <code>make.mask</code> (80-m buffer, 30-m trap spacing, 15-m mask spacing). Grid cells in the centre were dropped because they were more than 80 m from any trap.
@@ -633,9 +633,9 @@ sigma   log  26.1801    3.241670 20.55772 33.34021</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/esaPlot.html">esaPlot</a></span><span class="op">(</span><span class="va">fit</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fl">4</span> <span class="op">*</span> <span class="fl">25.6</span>, col <span class="op">=</span> <span class="st">"red"</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-habitatesaplot" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-habitatesaplot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-habitatesaplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="12-habitat_files/figure-html/fig-habitatesaplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="12-habitat_files/figure-html/fig-habitatesaplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="336"></a>
+<a href="12-habitat_files/figure-html/fig-habitatesaplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;12.3: Effect of varying buffer width on estimated density (y-axis). Vertical line indicates rule-of-thumb buffer width."><img src="12-habitat_files/figure-html/fig-habitatesaplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="336"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-habitatesaplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.3: Effect of varying buffer width on estimated density (y-axis). Vertical line indicates rule-of-thumb buffer width.
@@ -664,9 +664,9 @@ Figure&nbsp;12.3: Effect of varying buffer width on estimated density (y-axis). 
 <p>The reference scale was <span class="math inline">\sigma</span> estimated earlier by fitting a half-normal detection model. In each case masks were constructed with constant buffer width <span class="math inline">4\sigma</span> and different spacings in the range <span class="math inline">0.2\sigma</span> to <span class="math inline">3\sigma</span>. This resulted in widely varying numbers of mask points (<a href="#fig-maskpoints" class="quarto-xref">Fig.&nbsp;<span>12.4</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-maskpoints" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-maskpoints" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-maskpoints-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/maskrows.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="figures/maskrows.png" class="img-fluid figure-img" style="width:60.0%"></a>
+<a href="figures/maskrows.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;12.4: Effect of mask spacing on number of mask points for four test datasets. Detector configurations varied: a single searched square (horned lizards), a single elongated hollow grid of mistnets (ovenbirds), multiple hollow grids of cage traps (Waitarere possums), hair snares along a dense irregular network of trails (black bears)."><img src="figures/maskrows.png" class="img-fluid figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maskpoints-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.4: Effect of mask spacing on number of mask points for four test datasets. Detector configurations varied: a single searched square (horned lizards), a single elongated hollow grid of mistnets (ovenbirds), multiple hollow grids of cage traps (Waitarere possums), hair snares along a dense irregular network of trails (black bears).
@@ -676,9 +676,9 @@ Figure&nbsp;12.4: Effect of mask spacing on number of mask points for four test 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-maskspacing" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-maskspacing" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-maskspacing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/maskspacing.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="figures/maskspacing.png" class="img-fluid figure-img" style="width:90.0%"></a>
+<a href="figures/maskspacing.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;12.5: Effect of mask spacing on estimates of density from null model. Bias is relative to the estimate using the narrowest spacing. The Arizona horned lizard data appeared especially robust to mask spacing, which may be due to the method (search of a large contiguous area) or duration (14 sampling occasions) [@ry08]."><img src="figures/maskspacing.png" class="img-fluid figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maskspacing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.5: Effect of mask spacing on estimates of density from null model. Bias is relative to the estimate using the narrowest spacing. The Arizona horned lizard data appeared especially robust to mask spacing, which may be due to the method (search of a large contiguous area) or duration (14 sampling occasions) <span class="citation" data-cites="ry08">(<a href="A99-references.html#ref-ry08" role="doc-biblioref">Royle &amp; Young, 2008</a>)</span>.
@@ -691,9 +691,9 @@ Figure&nbsp;12.5: Effect of mask spacing on estimates of density from null model
 <p>For completeness, we revisit the question of buffer width using the <code>esaPlot</code> function with each of the four test datasets (<a href="#fig-bufferbias" class="quarto-xref">Fig.&nbsp;<span>12.6</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-bufferbias" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-bufferbias" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-bufferbias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/maskesa.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="figures/maskesa.png" class="img-fluid figure-img" style="width:75.0%"></a>
+<a href="figures/maskesa.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;12.6: Approximate relative bias due to mask truncation for four datasets. Bias is relative to the estimate using the widest buffer."><img src="figures/maskesa.png" class="img-fluid figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bufferbias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.6: Approximate relative bias due to mask truncation for four datasets. Bias is relative to the estimate using the widest buffer.
@@ -707,9 +707,9 @@ Figure&nbsp;12.6: Approximate relative bias due to mask truncation for four data
 <p>Our focus so far has been on choosing a buffer width to set the outer boundary of a habitat mask, assuming that the actual boundary is arbitrary. We can call these ‘masks of convenience’ (<a href="#fig-masktypes" class="quarto-xref">Fig.&nbsp;<span>12.7</span></a> a); numerical accuracy and computation speed are the only constraints. At the other extreme, a mask may represent a natural island of habitat surrounded by non-habitat (<a href="#fig-masktypes" class="quarto-xref">Fig.&nbsp;<span>12.7</span></a> c). A geographical map, possibly in the form of an ESRI shapefile, is then sufficient to define the mask. Between these extremes there are may be a habitat mosaic including both some non-habitat near the detectors and some habitat further away, so neither the buffered mask of convenience nor the habitat island is a good match (<a href="#fig-masktypes" class="quarto-xref">Fig.&nbsp;<span>12.7</span></a> b).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-masktypes" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-masktypes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-masktypes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/masktypes.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="figures/masktypes.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="figures/masktypes.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;12.7: Types of habitat mask (grey mesh) defined in relation to habitat (green) and detectors (red dots). (a) mask of convenience defined by a buffer around detectors in continuous habitat, (b) mask of convenience excluding non-habitat (c) fully sampled habitat island."><img src="figures/masktypes.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-masktypes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.7: Types of habitat mask (grey mesh) defined in relation to habitat (green) and detectors (red dots). (a) mask of convenience defined by a buffer around detectors in continuous habitat, (b) mask of convenience excluding non-habitat (c) fully sampled habitat island.
@@ -732,9 +732,9 @@ Figure&nbsp;12.7: Types of habitat mask (grey mesh) defined in relation to habit
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/traps.html">traps</a></span><span class="op">(</span><span class="va">possumCH</span><span class="op">)</span>, detpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pch <span class="op">=</span> <span class="fl">16</span>, cex <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>, </span>
 <span>    add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div id="fig-plotpossummask" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-plotpossummask" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plotpossummask-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="12-habitat_files/figure-html/fig-plotpossummask-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-8" data-gallery="quarto-lightbox-gallery-8"><img src="12-habitat_files/figure-html/fig-plotpossummask-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></a>
+<a href="12-habitat_files/figure-html/fig-plotpossummask-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;12.8: Mask computed by clipping to a polygon – the shoreline of the ‘peninsula’ at Waitarere separating the Tasman Sea (left) from the estuary of the Manawatu River (right)."><img src="12-habitat_files/figure-html/fig-plotpossummask-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotpossummask-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.8: Mask computed by clipping to a polygon – the shoreline of the ‘peninsula’ at Waitarere separating the Tasman Sea (left) from the estuary of the Manawatu River (right).
@@ -826,9 +826,9 @@ Tip
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-fillindemo" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-fillindemo" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-fillindemo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="12-habitat_files/figure-html/fig-fillindemo-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-9" data-gallery="quarto-lightbox-gallery-9"><img src="12-habitat_files/figure-html/fig-fillindemo-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="624"></a>
+<a href="12-habitat_files/figure-html/fig-fillindemo-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;12.9: Interpolation of missing values in mask covariate (artificial example). (a) True coverage, (b) Swathe of missing values, (c) Repaired by linear interpolation. Cells in the west and east that lie outside the convex hull of non-missing points are not interpolated and remain missing, (d) repair completed by filling remaining NA cells with value from nearest non-missing cell."><img src="12-habitat_files/figure-html/fig-fillindemo-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="624"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fillindemo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.9: Interpolation of missing values in mask covariate (artificial example). (a) True coverage, (b) Swathe of missing values, (c) Repaired by linear interpolation. Cells in the west and east that lie outside the convex hull of non-missing points are not interpolated and remain missing, (d) repair completed by filling remaining NA cells with value from nearest non-missing cell.
@@ -851,9 +851,9 @@ Figure&nbsp;12.9: Interpolation of missing values in mask covariate (artificial 
 <span>    border<span class="op">=</span><span class="fl">100</span>, title <span class="op">=</span> <span class="st">'Distance to shore m'</span>, polycol <span class="op">=</span> <span class="st">'blue'</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/secr/man/plotmaskedge.html">plotMaskEdge</a></span><span class="op">(</span><span class="va">clippedmask</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plotmask" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-plotmask" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plotmask-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="12-habitat_files/figure-html/fig-plotmask-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-10" data-gallery="quarto-lightbox-gallery-10"><img src="12-habitat_files/figure-html/fig-plotmask-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="624"></a>
+<a href="12-habitat_files/figure-html/fig-plotmask-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Figure&nbsp;12.10: Plot of a computed continuous covariate across a clipped mask, with outer margin."><img src="12-habitat_files/figure-html/fig-plotmask-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="624"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotmask-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.10: Plot of a computed continuous covariate across a clipped mask, with outer margin.
@@ -922,18 +922,6 @@ Warning
 </div>
 
 
-<div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;12.1: Mask (grey grid) generated automatically in <code>secr.fit</code> by buffering around the detectors (red dots) (80-m buffer, 30-m detector spacing)</span>
-<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;12.2: Mask (grey grid) generated with <code>make.mask</code> (80-m buffer, 30-m trap spacing, 15-m mask spacing). Grid cells in the centre were dropped because they were more than 80 m from any trap.</span>
-<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;12.3: Effect of varying buffer width on estimated density (y-axis). Vertical line indicates rule-of-thumb buffer width.</span>
-<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;12.4: Effect of mask spacing on number of mask points for four test datasets. Detector configurations varied: a single searched square (horned lizards), a single elongated hollow grid of mistnets (ovenbirds), multiple hollow grids of cage traps (Waitarere possums), hair snares along a dense irregular network of trails (black bears).</span>
-<span class="glightbox-desc lightbox-desc-5">Figure&nbsp;12.5: Effect of mask spacing on estimates of density from null model. Bias is relative to the estimate using the narrowest spacing. The Arizona horned lizard data appeared especially robust to mask spacing, which may be due to the method (search of a large contiguous area) or duration (14 sampling occasions) <span class="citation" data-cites="ry08">(<a href="A99-references.html#ref-ry08" role="doc-biblioref">Royle &amp; Young, 2008</a>)</span>.</span>
-<span class="glightbox-desc lightbox-desc-6">Figure&nbsp;12.6: Approximate relative bias due to mask truncation for four datasets. Bias is relative to the estimate using the widest buffer.</span>
-<span class="glightbox-desc lightbox-desc-7">Figure&nbsp;12.7: Types of habitat mask (grey mesh) defined in relation to habitat (green) and detectors (red dots). (a) mask of convenience defined by a buffer around detectors in continuous habitat, (b) mask of convenience excluding non-habitat (c) fully sampled habitat island.</span>
-<span class="glightbox-desc lightbox-desc-8">Figure&nbsp;12.8: Mask computed by clipping to a polygon – the shoreline of the ‘peninsula’ at Waitarere separating the Tasman Sea (left) from the estuary of the Manawatu River (right).</span>
-<span class="glightbox-desc lightbox-desc-9">Figure&nbsp;12.9: Interpolation of missing values in mask covariate (artificial example). (a) True coverage, (b) Swathe of missing values, (c) Repaired by linear interpolation. Cells in the west and east that lie outside the convex hull of non-missing points are not interpolated and remain missing, (d) repair completed by filling remaining NA cells with value from nearest non-missing cell.</span>
-<span class="glightbox-desc lightbox-desc-10">Figure&nbsp;12.10: Plot of a computed continuous covariate across a clipped mask, with outer margin.</span>
-</div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-R-akima" class="csl-entry" role="listitem">
 Akima, H., &amp; Gebhardt, A. (2022). <em><span class="nocase">a</span>kima: Interpolation of irregularly and regularly spaced data</em>. <a href="https://CRAN.R-project.org/package=akima">https://CRAN.R-project.org/package=akima</a>
@@ -1004,18 +992,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1047,7 +1024,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1055,7 +1054,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1407,30 +1406,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":false,"descPosition":"bottom"});
-window.onload = () => {
-  lightboxQuarto.on('slide_before_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    const href = trigger.getAttribute('href');
-    if (href !== null) {
-      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-      if (imgEl !== null) {
-        const srcAttr = imgEl.getAttribute("src");
-        if (srcAttr && srcAttr.startsWith("data:")) {
-          slideConfig.href = srcAttr;
-        }
-      }
-    } 
-  });
-
-  lightboxQuarto.on('slide_after_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    if (window.Quarto?.typesetMath) {
-      window.Quarto.typesetMath(slideNode);
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
     }
-  });
-
-};
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
           </script>
 
 
