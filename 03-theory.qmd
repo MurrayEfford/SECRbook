@@ -237,8 +237,8 @@ particular occasion, or repeat detections are deliberately discarded.
 
 ::: {.callout-note}
 Discarding hard-won data may seem perverse, but it may be justified if the 
-fraction is small (e.g., repeat detections rare). Binary data are less prone to 
-problems from the non-independence of repeated visits to a detector, especially when a few individuals generate many repeat detections. Binary models also tend to be faster to fit and dodge the question of what distribution should be used for the counts.
+fraction is small (i.e. repeat detections rare). Binary data are less prone to 
+problems due to non-independence of repeated visits to a detector, especially when a few individuals generate many repeat detections. Binary models also tend to be faster to fit and dodge the question of what discrete distribution should be used for the counts.
 :::
 
 Assuming independence among detectors, the distance-detection model

@@ -12,7 +12,7 @@ estS <- estimateSummary(MIDsims2, 'sigma')[,-1]
 par(mfrow=c(1,1), mar=c(4,4,1,1), mgp=c(2.4,0.7,0), bty = 'o', bg = 'white', pty='s')
 x <- scenarios$pGhost
 leg <- c('D','lambda0','sigma')
-plot(0,0,type='n', xlim=c(0.0,0.2), log='', ylim=c(-1,1), xlab = 'Proportion ghosted', ylab='RB')
+plot(0,0,type='n', xlim=c(0.0,0.2), log='', ylim=c(-1,1), xlab = "Proportion of detections resulting in 'ghosts'", ylab='RB')
 shade(0.1)
 abline(h=0, lty=2)
 addRB(x, estL, type='o', pch=21, bg = 'white')

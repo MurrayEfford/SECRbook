@@ -58,7 +58,7 @@ Our simulations use a base scenario of sampling with a square grid of 64 binary 
 
 Births, deaths and dispersal result in population turnover. Over an extended period of turnover, more animals may be observed than were present at any instant, and density estimates will be biased upwards. Studies using automatic cameras often accumulate data slowly over many days, and study duration has triggered much angst [e.g., @Harihar2017]. How much does a little turnover matter? Conversely, How long can the sampling period be? Results for non-spatial models [@Kendall1999] cannot be transferred. We distinguish turnover due to movement of AC from *in situ* births and deaths, and consider it separately under [Assumption 3d](#sec-hrstationary).
 
-@Dupont2019 investigated the effect of increasing study duration on the precision and bias of population size estimates. Their results are complicated by an artifact that caused their Bayesian estimator to be positively biased for short durations [@Dupont2019, p. 669].
+@Dupont2019 investigated the effect of increasing study duration on the precision and bias of population size estimates in the presence of population turnover. Their results are complicated by an artifact that caused their Bayesian estimator to be positively biased for short durations [@Dupont2019, p. 669].
 
 <!-- Terrible! Unclear net population change during sampling. Use initial population as reference for RB. -->
 
@@ -109,7 +109,7 @@ This overlaps with Assumption 3 and is covered [later](#sec-hrstationary).
 
 \index{Assumptions!identification}
 
-We can generally assume accurate identification on recapture of animals trapped and marked by conventional methods such as numbered leg bands or ear tags. However, identification may be unreliable with modern methods for passive sampling using natural marks (DNA from hair or faecal samples, and images from motion-sensitive cameras). This is a major limitation.
+We can generally assume accurate identification on recapture of animals trapped and marked by conventional methods such as numbered leg bands or ear tags so long as these are not [lost](@sec-tagloss). However, identification may be unreliable with modern methods for passive sampling using natural marks (DNA from hair or faecal samples, and images from motion-sensitive cameras). This is a major limitation.
 
 In genetic sampling there are two possible reasons for mis-identification: (i) there is too little variation at the chosen loci to distinguish all individuals in the sampled population, and (ii) genotyping is subject to error. @Mills2000, @Lukacs2005, @Waits2005, and @Lampa2013 reviewed the early literature, and citations of those reviews are a good entry point to the voluminous recent literature. @Sethi2014 provide technical advice. @Augustine2020 provide a useful summary and a model framework that encompasses the various errors. @Kodi2024 is a recent SECR study.
 
@@ -121,7 +121,7 @@ A single camera may photograph only the left or right flank of a passing animal.
 
 The ability to distinguish individuals is measured by the probability of identity (PI). This is the probability that two individuals drawn at random from the population will appear the same, i.e. have the same genotype at the loci examined. Identity of genotypes was considered by @Mills2000 to cause a "shadow effect", as the existence of some individuals is concealed. The problem for SECR is even greater than in non-spatial capture--recapture. A group of two or more indistinguishable individuals becomes a 'super individual' whose detections spread over a larger area than each occupies individually.
 
-Simulations in @fig-MID3figure and @fig-MID4figure illustrate the potential impact of shadow effects on SECR estimates. In a scenario with about 110 detected individuals, PI = $10^{-3}$ resulted in relative bias of $-20\%$ in density estimates. This is largely due to the inflated spatial footprint of each super individual, which causes positive bias in estimates of the spatial scale of detection $\sigma$.
+Simulations in @fig-MID3figure and @fig-MID4figure illustrate the potential impact of shadow effects on SECR estimates. In a scenario with about 110 detected individuals, PI = $10^{-3}$ resulted in relative bias of $-20\%$ in density estimates. This is largely due to the inflated spatial footprint of each super individual, which causes positive bias in estimates of the spatial scale of detection $\sigma$. Bias was negligible for PI $<10^{-4}$ and that level was achieved in most of the field studies tabulated by @Lampa2013.
 
 ```{r}
 #| label: fig-MID3figure
@@ -170,9 +170,11 @@ source("figures/MID4afigure.R")
 
 ### Assumption 2b. Natural marks not corrupted {#sec-ghost .unnumbered}
 
-DNA samples degrade over time exposed to heat, moisture and UV light [e.g., @Woodruff2014]. This results in both a lower rate of successful DNA amplification, and increasing frequency of genotyping errors. A key genotyping error is the phenomenon of allelic dropout, when one allele at a heterozygous locus fails to amplify, resulting in an apparent homozygote. False alleles may also appear in the laboratory and give the appearance of a distinct genotype and individual. Either error is likely to result in a spurious 'ghost' individual that is never recaptured. 
+DNA samples degrade over time exposed to heat, moisture and UV light [e.g., @Woodruff2014]. This results in both a lower rate of successful DNA amplification, and increasing frequency of genotyping errors. A key genotyping error is the phenomenon of allelic dropout, when one allele at a heterozygous locus fails to amplify, resulting in an apparent homozygote. False alleles may also appear in the laboratory and give the appearance of a distinct genotype and individual. Either error is likely to result in a spurious so-called 'ghost' individual that is never recaptured. Mis-identification of photographs may also be common for some species. For example, @Johansson2020 found 12.5\% of photographs were mis-classified in a controlled study of snow leopards *Panthera uncia*, with most errors leading to ghost individuals.
 
-We measure the ghost effect by the probability a detection results in a 'ghost' individual. Unlike shadow effects, ghost individuals have almost no effect on $\hat \sigma$. However, they do cause negative bias in $\hat \lambda_0$ and a reciprocal (positive) bias in density estimates $\hat D$ (@fig-MID2figure). More extensive simulations were published by @Kodi2024.
+We measure the ghost effect by the probability a detection results in a ghost individual. Unlike shadow effects, ghost individuals have almost no effect on $\hat \sigma$. However, they do cause negative bias in $\hat \lambda_0$ and a reciprocal (positive) bias in density estimates $\hat D$ (@fig-MID2figure). 
+
+More extensive simulations were published by @Kodi2024 for scenarios intended to mimic automatic camera surveys of snow leopards (*Panthera uncia*). They expressed the ghost effect in terms of the proportion of ghost individuals in the dataset. The highest level of ghosting in our simulations (0.2 per occasion) resulted in 28\% of ghost individuals overall, which was close to the maximum considered by @Kodi2024 (30\%), and their low-encounter-rate scenarios gave simulated bias similar to that in @fig-MID2figure.
 
 ```{r}
 #| label: fig-MID2figure
@@ -200,9 +202,30 @@ source("figures/MID2figure.R")
 
 Given sufficient diversity at the chosen loci, culling of inadequate samples and intensive checking of doubtful genotypes is generally sufficient to ensure adequate data [@Paetkau2003]. @Lukacs2005 raised doubts about possible biases due to sample culling, but these have not been confirmed. Elimination of poor samples for which identity is uncertain tends to reduce sample size and precision. Precision can be improved by judiciously including samples with fewer loci in models that allow for uncertain identity [@Augustine2020].
 
-Unknown identity can be handled in SECR-like probability models. These generally lack power unless supplemented by detections of known individuals or telemetry (references in @sec-telemetry). Bias due to ghost individuals may be reduced in some circumstances by modelling only detection histories with more than one detection [@Kodi2024].
+Unknown identity can be handled in SECR-like probability models. These generally lack power unless supplemented by detections of known individuals or telemetry (references in @sec-telemetry). Bias due to ghost individuals may be reduced in some circumstances by modelling only detection histories with more than one detection by a straightforward modification to the likelihood [@Kodi2024] or by inverse prediction (see vignette for **ipsecr** $\ge$ 1.4.3).
 
 <!-- [@cr13; @rcr15; @vanDamBates2024; @Ruprecht2021] -->
+
+### Assumption 2c: Tags not lost {#sec-tagloss .unnumbered}
+
+Tag loss is a well-documented source of bias in non-spatial capture--recapture [e.g., @MalcolmWhite2020], particularly in open population studies [@Seber2019], but it has not to our knowledge been addressed specifically for SECR.
+
+Loss of a tag may leave a trace such as a ripped ear, generating a class of 'previously tagged, identity unknown' individuals. Probability models may be developed in the future to cover this case [cf @Augustine2018].
+
+We simulated the simpler case that tag loss leads to an apparently new 'recycled' individual. Unsurprisingly, this causes positive bias in $\hat D$ that increases with the rate of loss and the duration of the study ([Github](https://github.com/MurrayEfford/secr-simulations) and @fig-MID6figure).
+
+```{r}
+#| label: fig-MID6figure
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-width: 5
+#| fig-height: 5
+#| out-width: 60%
+#| fig-cap: |
+#|   Relative bias of parameter estimates from null model when tags are lost at a constant per-occasion rate. 10 occasions, multi-catch traps.
+source("figures/MID6figure.R")
+```
 
 ## Assumption 3: Detection declines radially from randomly located, fixed AC {-}
 
@@ -365,7 +388,7 @@ legend(1.2, -0.39, legend=c('D','sigma'), pch=c(21,21), pt.bg= c(yob5[3],'white'
 
 Robustness of SECR to movement of home ranges (dispersal) was demonstrated by @Royle2015. @Harihar2017 expressed a further concern that movement over a long sampling duration would breach Assumption 1 (closure). 
 
-We simulated detections over 100 'days' during which each AC underwent a random walk governed by a Gaussian kernel with scale $\sigma_m$. Details are given [elsewhere].
+We simulated detections over 100 'days' during which each AC underwent a random walk governed by a Gaussian kernel with scale $\sigma_m$. Details are given on [GitHub](https://github.com/MurrayEfford/secr-simulations).
 
 ```{r} 
 #| label: DNC results1
@@ -463,7 +486,9 @@ We introduced behavioural responses in @sec-detection. Behavioural responses may
 
 The discovery of a detector and experience of capture may result in either a positive (trap-happy) or negative (trap-shy) change in detection probability. The response may persist for the duration of sampling or be transient (Markovian) and apply only at the next sampling occasion. In SECR there is the further complication that the response may be general, applying across all detectors, or localised to the initial detector.  
 
-Each of these responses is readily modelled if the sequence of detections is known. This is generally not the case with proximity detectors, for which an animal may visit multiple detectors on one sampling occasion. We therefore restrict consideration of learned responses to trapping data (single-catch and multi-catch traps). This is not a great loss, as proximity detectors are typically non-invasive and less likely than traps to affect behaviour.
+Each of these responses is readily modelled if the sequence of detections is known. This is generally not the case with proximity detectors, for which an animal may visit multiple detectors on one sampling occasion[^footnote1]. We therefore restrict consideration of learned responses to trapping data (single-catch and multi-catch traps). This is not a great loss, as proximity detectors are typically non-invasive and less likely than traps to affect behaviour, except when they are baited (the Great Smoky Mountains National Park [black bear dataset](https://www.otago.ac.nz/density/html/blackbear.html) is a good example).
+
+[^footnote1]: A reviewer points out that the data are sufficient to model a detector-specific response at binary proximity detectors.
 
 If a behavioural response is not modelled then it may cause a heavy bias in density estimates, positive for trap shyness and negative for trap happiness (@fig-Mbfigure). In [simulations] we describe the magnitude of the behavioural response by a 'recapture factor' by which the initial (naive) hazard is multiplied after first capture. We simulated recapture factors between 0.25 and 2.0, where 1.0 represents no behavioural response.  The bias is much reduced if the effect is detector-specific, but then $\hat \sigma$ is also biased. For the scenario used in these [simulations], the relative bias of density estimates fell between -10\% and +10\% for recapture factors between 0.5 and 2. In @sec-detection we estimated a much larger response by [deermice](10-detection-model.qmd#sec-behaviouralresponse) (about 10-fold, but with poor precision), although there was only a small difference in estimated density between the null and bk models. Behavioural responses are potentially important for SECR and deserve closer investigation.
 
@@ -680,11 +705,12 @@ Particular detection parameters may be estimated poorly even when density estima
 | Breach of assumption | | Effect | Mitigating models |
 |:-----------------------|:-|:-----------------|:--------------------|
 1. Closure |||
-&nbsp;&nbsp;&nbsp;[1a. Births and deaths](#sec-popnclosed)     |![*](figures/yob52.png)| RB($\hat D$) proportional turnover| open population |
+&nbsp;&nbsp;&nbsp;[1a. Births and deaths](#sec-popnclosed)     |![*](figures/yob52.png)| +ve RB($\hat D$) proportional turnover| open population |
 &nbsp;&nbsp;&nbsp;[1b. Dispersal](#sec-popnclosed)             |![.](figures/yob51.png)| | open population |
 2. Identification |||
-&nbsp;&nbsp;&nbsp;[2a. Inadequate marks](#sec-shadow)          |![**](figures/yob54.png)| -ve RB($\hat D$) when high probability of identity| @Augustine2020 |
-&nbsp;&nbsp;&nbsp;[2b. Marks corrupted](#sec-ghost)            |![*](figures/yob52.png)|  | |
+&nbsp;&nbsp;&nbsp;[2a. Inadequate marks](#sec-shadow)          |![**](figures/yob52.png)| -ve RB($\hat D$) when high probability of identity| @Augustine2020 |
+&nbsp;&nbsp;&nbsp;[2b. Marks corrupted](#sec-ghost)            |![*](figures/yob53.png)|  | |
+&nbsp;&nbsp;&nbsp;[2c. Tags lost](#sec-tagloss)            |![*](figures/yob52.png)| +ve RB($\hat D$) when high rate or long study | @Kodi2024 |
 3. Home range HR |||
 &nbsp;&nbsp;&nbsp;[3a. AC not independent](#sec-ACindependent) |![.](figures/yob51.png)||
 &nbsp;&nbsp;&nbsp;[3b. HR non-circular](#sec-hrcircular)       |![*](figures/yob5s14.png)| severe RB($\hat D$) when HR align with detectors| anisotropic model |
@@ -719,8 +745,9 @@ Particular detection parameters may be estimated poorly even when density estima
 &nbsp;&nbsp;&nbsp;[1b. Dispersal](#sec-popnclosed)             |![.](figures/yob51.png)| | open population |
 |||||
 2. Identification |||
-&nbsp;&nbsp;&nbsp;[2a. Inadequate marks](#sec-shadow)          |![**](figures/yob54.png)| -ve RB($\hat D$) when high probability of identity | @Augustine2020 |
-&nbsp;&nbsp;&nbsp;[2b. Marks corrupted](#sec-ghost)            |![*](figures/yob52.png)|  | |
+&nbsp;&nbsp;&nbsp;[2a. Inadequate marks](#sec-shadow)          |![**](figures/yob52.png)| -ve RB($\hat D$) when high probability of identity | @Augustine2020 |
+&nbsp;&nbsp;&nbsp;[2b. Marks corrupted](#sec-ghost)            |![*](figures/yob52.png)| +ve RB($\hat D$) when high rate or long study | @Kodi2024 |
+&nbsp;&nbsp;&nbsp;[2c. Tags lost](#sec-tagloss)            |![*](figures/yob52.png)| +ve RB($\hat D$) when high rate or long study | |
 |||||
 3. Home range HR |||
 &nbsp;&nbsp;&nbsp;[3a. AC not independent](#sec-ACindependent) |![.](figures/yob51.png)||
