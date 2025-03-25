@@ -48,7 +48,11 @@ devices such as traps or cameras that accumulate records over time.
 Passive devices encounter animals as they move around. The scale of that 
 movement is unknown, which creates uncertainty regarding the population that is
 sampled. Furthermore, the number of observed individuals increases indefinitely 
-as more and more peripheral individuals are encountered.
+as more and more peripheral individuals are encountered[^footnote0].
+
+[^footnote0]: For a bounded population the number of observed individuals has 
+a natural limit, the true population size. Even when it exists, this is not 
+usually the number that would be estimated by non-spatial capture--recapture [@obwa78].
 
 SECR cuts through this problem by modelling the spatial scale of detection
 to obtain an unbiased estimate of the stationary density of individuals. 

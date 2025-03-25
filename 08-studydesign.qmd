@@ -54,7 +54,7 @@ Adequate spread is achieved by matching the size and spacing of a detector array
 source('figures/goldilocks.R')
 ```
 
-Some qualification is needed here. We require only that *some* individuals are detected at more than one detector, and that the detector array is large enough to differentiate points in the middle and edge of *some* home ranges. Failure to meet the 'spread' requirement may be addressed, at least in principle, by combining SECR and [telemetry](A07-telemetry.qmd#sec-telemetry), but improved study design is a better solution. 
+Some qualification is needed here. We require only that *some* individuals, a representative sample, are detected at more than one detector, and that the detector array is large enough to differentiate points in the middle and edge of *some* home ranges. Failure to meet the 'spread' requirement may be addressed, at least in principle, by combining SECR and [telemetry](A07-telemetry.qmd#sec-telemetry), but improved study design is a better solution. 
 
 A poorly designed detector array may give data that cannot be analysed by SECR, or provide highly biased estimates of low precision. Such designs were described by @eb19 as 'pathological'. We seek a non-pathological and representative design that gives the most precise estimates possible for a given cost. 
 
@@ -65,7 +65,7 @@ Precise estimates have narrow confidence intervals and high power to detect chan
 
 Precision is conveniently measured by its inverse, the relative standard error (RSE) where $\mathrm{RSE}(\hat \theta) = \widehat{\mathrm{SE}}(\hat \theta) / {\hat \theta}$ for estimate $\hat \theta$ of parameter $\theta$. In statistics, the standard error is the square root of the sampling variance, estimated for MLE as described in @sec-confidenceintervals. Wildlife papers often use 'CV' for the RSE of estimates, but this confuses relative standard error and relative standard deviation.
 
-The question 'What precision do I need?' requires clarity on the purpose of the study. If the purpose is to compare density estimates from different times or places then the power to detect change of a given magnitude is a direct function of the initial $\mathrm{RSE}(\hat D)$ (@fig-power). Although RSE = 0.2 is often touted as adequate "for management purposes", estimates with RSE = 0.2 have low ($\le$ 50\%) power to detect a change in density of even $\pm$ 50\% at the usual $\alpha = 0.05$. If reliable estimates are vital for population management, as claimed routinely in methodological papers, then surely greater precision is required. RSE = 0.1 is a better general target.
+The question 'What precision do I need?' requires clarity on the purpose of the study. If the purpose is to compare density estimates from different times or places then the power to detect change of a given magnitude is a direct function of the initial $\mathrm{RSE}(\hat D)$ (@fig-power). Although RSE = 0.2 is often touted as adequate "for management purposes", estimates with RSE = 0.2 have low ($\le$ 50\%) power to detect a change in density of even $\pm$ 50\% at the usual $\alpha = 0.05$ (@fig-power). If reliable estimates are vital for population management, as claimed routinely in methodological papers, then surely greater precision is required. RSE = 0.1 is a better general target.
 
 ```{r}
 #| label: fig-power
@@ -86,7 +86,7 @@ source('figures/power.R')
 
 We lack a clear guide to required RSE in other studies, for which the effect size may be ill-defined. We have observed fitted models with $\mathrm{RSE}(\hat D) \gg 0.2$ to behave erratically with respect to AIC model selection, presumably because of sampling variance in the AIC values themselves.
 
-## Pilot parameter values
+## Pilot parameter values {#sec-pilotvalues}
 \index{Study design!pilot parameter values}
 
 To evaluate a potential study design we must know something about the target population. Here we describe the population and the behaviour of individuals by a simple SECR model and its parameters: uniform density $D$ and the parameters $\lambda_0$ and $\sigma$ of a hazard half-normal [detection function](10-detection-model.qmd#sec-detectfn). Predictions regarding the suitability and performance of any design then depend on the values of *D*, $\lambda_0$ and $\sigma$. This seems like a catch-22 -- impossible until we have estimates -- but for design purposes we can call on approximate values from multiple sources
@@ -117,6 +117,10 @@ knitr::include_graphics('figures/kplot.png')
 We can use the close analogy between the detection function and a home-range utilisation distribution to extract a pilot value of $\sigma$ from home range data. Most directly, a circular bivariate normal (BVN) model can be fitted to telemetry data; we then use the dispersion parameter directly as a pilot value of $\sigma$ for hazard half-normal detection. If the home range data have been summarised as the area $a$ within a notional 95\% activity contour then the spatial scale parameter of the hazard half-normal is close to $\sigma = \sqrt \frac{a}{6 \pi}$ [@Jennrich1969 Eq. 13][^jennrich]. 
 
 [^jennrich]: More generally, $\sigma = \sqrt \frac{a}{\pi \log [(1-p)^{-2}]}$ where $p$ is the probability contour e.g., $p = 0.95$.  [@Jennrich1969 Eq. 12].
+
+::: {.callout-warning}
+Simulation to compare study designs commonly rests on the assumption that the underlying detection process is constant. If parameters vary between layouts in a way not captured by the model (see example in @sec-salamanders) then extrapolation to novel layouts is unreliable. There is an analogous problem when locations are [serially correlated](06-assumptions.qmd#sec-independentwithinhr): estimates of detection parameters (especially $\sigma$) are then specific to the duration of the pilot study and cannot safely be extrapolated to other durations.
+:::
 
 <!-- #### lambda0 from n -->
 
@@ -242,7 +246,7 @@ The curves in @fig-spacingvocc are given by $R_{opt} = 2 \sqrt{\lambda_0 S}$ whe
 
 Increasing imprecision of $\hat D$ and failure of estimation in many cases (indicated by white crosses in @fig-spacingplot2) place a limit on the size of region $A$ that can be sampled with a uniform grid of $K$ detectors. At the optimum spacing (i.e. about $2\sigma\sqrt{\lambda_0 S}$) we require $K >  A / (4\sigma^2\lambda_0 S)$. 
 
-A region of interest with area $A \gg 4K\sigma^2 \lambda_0 S$ cannot be covered adequately with a uniform grid of $K$ detectors. Thus with $\lambda_0 = 0.1$ and $\sigma = 50$ m, sampling with 100 detectors for $S = 5$ occasions covers 50 ha at 71-m spacing[^arraycalc]. Alternatively, with $\lambda_0 = 0.1$ and $\sigma = 1000$ m, sampling with 100 detectors for $S = 5$ occasions covers 200 km^2^.
+A region of interest with area $A \gg 4K\sigma^2 \lambda_0 S$ cannot be covered adequately with a uniform grid of $K$ detectors. Thus with $\lambda_0 = 0.1$ and $\sigma = 50$ m, sampling with 100 detectors for $S = 5$ occasions covers 50 ha at 71-m spacing[^arraycalc]. If $\lambda_0 = 0.1$ and $\sigma = 1$ km (implying larger home range and lower density), then sampling with 100 detectors for $S = 5$ occasions covers 200 km^2^ at 1.4-km spacing.
 
 ```{r}
 #| label: verify Amax
@@ -517,7 +521,7 @@ Some aspects of sampling intensity are under the control of the experimenter: th
 
 Other variation in sampling intensity may be due to behavioural or habitat factors that drive spatial variation in detection parameters (e.g., $\lambda_0, \sigma$) unknown to the experimenter.
 
-We illustrate six scenarios for the interaction between spatial variation in density and effort, and between density and detection in @fig-spatialeffort. The estimate of overall density is unbiased when effort and detection are homogeneous (@fig-spatialeffort a,d). Uncorrelated variation in effort does not bias $\hat D$ (@fig-spatialeffort b). Selectively reducing effort in low-density areas (@fig-spatialeffort c) causes significant bias, although this may be eliminated by including an area effect in the density model. 
+We illustrate six scenarios for the interaction between spatial variation in density and effort, and between density and detection in @fig-spatialeffort. The estimate of overall density ($\hat D$ from the null model $D\sim 1$) is unbiased when effort and detection are homogeneous (@fig-spatialeffort a,d). Uncorrelated variation in effort does not bias $\hat D$ (@fig-spatialeffort b). Selectively reducing effort in low-density areas (@fig-spatialeffort c) causes significant bias, although this may be eliminated by including an area effect in the density model, e.g., $D\sim \mathrm{area}$. 
 
 Variation in detection parameters causes bias even when not correlated with density (@fig-spatialeffort e). This is the effect of [inhomogeneous detection](06-assumptions.qmd#sec-homogeneityofdetectors) noted previously. The effect is large when density and detection are correlated (@fig-spatialeffort f and @McLellan2023).
 
@@ -534,7 +538,7 @@ Variation in detection parameters causes bias even when not correlated with dens
 #| out-width: 100%
 #| fig-cap: |
 #|   Effect of spatially varying effort (grid size 6 x 6 vs 8 x 8) and detection 
-#|   ($\lambda_0$ orange low vs red high) on estimate of overall density when 
+#|   ($\lambda_0$ orange low vs red high) on null-model estimate of overall density when 
 #|   density of AC (white dots) varies spatially between low (light green) and
 #|   high (light blue). See [GitHub](https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/STR/secr-simulations-STR.html) 
 #|   for simulation results.

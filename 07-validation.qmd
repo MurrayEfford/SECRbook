@@ -5,12 +5,12 @@ There have been few attempts to validate empirically the estimates of density fr
 
 We describe four attempts at empirical validation of density estimates, each with a different approach. The evidence from empirical validation studies tends to be weak, owing to the wide confidence intervals and methodological constraints. None is entirely convincing, as we shall see. 
 
-A fifth study suggests that detection parameters may vary between detector layouts. This limits the value of simulation to compare study designs.
+A fifth study suggests that detection parameters may vary between detector layouts. This raises a caveat for simulation (@sec-pilotvalues). 
 
 ## Brushtail possums in New Zealand {#sec-brushtailpossum}
 \index{Brushtail possum}
 
-@ewcb05 live-trapped brushtail possums (*Trichosurus vulpecula*) on a coastal peninsula and compared the results to an attempted total removal by leg-hold trapping and acute poisoning. SECR estimates of density from five hollow grids were consistent with the removal estimate. 
+@ewcb05 live-trapped brushtail possums (*Trichosurus vulpecula*) on a coastal peninsula and compared the results to an attempted total removal by leg-hold trapping and acute poisoning. SECR estimates of density from five hollow grids (36 traps around the perimeter of a square) were consistent with the removal estimate. 
 
 Although broadly reassuring, the brushtail possum study had weaknesses. The live-trapping data were compromised by tag loss (documented in **secr**), the landward boundary of the removal area was somewhat arbitrary, and sampling may have been inadequate to represent density variation across the peninsula (see also [Rodents in New Mexico](#sec-newmexico)).
 

@@ -258,10 +258,10 @@ Hazard is the natural scale for the Poisson parameter.
 
 Binomial counts arise when there is a known, finite number of opportunities for
 detection within each occasion that we denote $B_s$. This is the result when 
-binary proximity data over many occasions are collapsed to a count on single occasion:
-the initial number of occasions is known ($B_s = S$) and places an upper
-limit on the count. Collapsing is often efficient. It precludes
-modelling parameter variation or learned responses across occasions.
+binary proximity data over many occasions are collapsed to a count on single 
+occasion [e.g., @edb09]. The initial number of occasions is known ($B_s = S$) 
+and places an upper limit on the count. Collapsing is often efficient. 
+It precludes modelling parameter variation or learned responses across occasions.
 
 Each count is binomial with size $B_s$ and probability equal to the
 per-occasion detection probability.

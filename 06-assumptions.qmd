@@ -8,7 +8,9 @@ The three chapters in this part address questions we group under the heading of 
 
 \index{Assumptions}
 
-The SECR probability models of @sec-theory that underlie the methods in this book incorporate certain assumptions. The validity and reliability of the methods therefore depend to an extent on how well the field data meet the assumptions. We list these before assessing their impact in practice - the topic of [robustness](#sec-robustness). 
+The SECR probability models of @sec-theory that underlie the methods in this book incorporate certain assumptions. The validity and reliability of the methods therefore depend to an extent on how well the field data meet the assumptions. The assumptions include those of non-spatial capture--recapture [@obwa78]. In addition, SECR rests on quite specific spatial models for the population and for detection (@sec-theory).
+
+We list the assumptions before assessing their impact in practice - the topic of [robustness](#sec-robustness). 
 
 | | |
 |:-------------|:---------------------------------------------------------------|
@@ -16,7 +18,7 @@ The SECR probability models of @sec-theory that underlie the methods in this boo
 | Assumption 2. | Individuals are identified without error.  |
 | Assumption 3. | The probability of detecting an animal at a particular detector declines radially from a fixed point, its activity centre (AC). |
 | Assumption 4. | The probability of detection is constant across individuals, detectors and times, conditional on the AC. |
-| Assumption 5. | Detections of different individuals are independent, as are sequential detections of a single individual. |
+| Assumption 5. | AC locations are independent, as are detections of different individuals and sequential detections of a single individual. |
 
 :  {tbl-colwidths="[17,83]"}
 
@@ -56,7 +58,7 @@ Our simulations use a base scenario of sampling with a square grid of 64 binary 
 ## Assumption 1: Population closed  {#sec-popnclosed .unnumbered}
 \index{Assumptions!population closure}
 
-Births, deaths and dispersal result in population turnover. Over an extended period of turnover, more animals may be observed than were present at any instant, and density estimates will be biased upwards. Studies using automatic cameras often accumulate data slowly over many days, and study duration has triggered much angst [e.g., @Harihar2017]. How much does a little turnover matter? Conversely, How long can the sampling period be? Results for non-spatial models [@Kendall1999] cannot be transferred. We distinguish turnover due to movement of AC from *in situ* births and deaths, and consider it separately under [Assumption 3d](#sec-hrstationary).
+Births, deaths and dispersal result in population turnover. Over an extended period of turnover, more animals may be observed than were present at any instant, and density estimates will be biased upwards. Studies using automatic cameras often accumulate data slowly over many days, and study duration has triggered much angst [e.g., @Harihar2017]. How much does a little turnover matter? Conversely, How long can the sampling period be? Results for non-spatial models [@Kendall1999] cannot be transferred. We distinguish turnover due to movement of AC from *in situ* births and deaths, and consider movement of AC separately under [Assumption 3b](#sec-hrstationary).
 
 @Dupont2019 investigated the effect of increasing study duration on the precision and bias of population size estimates in the presence of population turnover. Their results are complicated by an artifact that caused their Bayesian estimator to be positively biased for short durations [@Dupont2019, p. 669].
 
@@ -74,8 +76,8 @@ Additional simulations are shown in @fig-CLOfigure. Turnover in a constant popul
 #| out-width: 70%
 #| fig-cap: |
 #|   Simulated effect of study duration on relative bias of density estimates for 
-#|   three levels of annual survival $\phi$ in a population with constant density. 
-#|   $\phi = 1$ corresponds to a closed population.
+#|   three levels of annual survival $\phi$ in a population with constant density 
+#|   (recruitment = mortality). $\phi = 1$ corresponds to a closed population.
 CLOsims <- readRDS("data/CLOsims.RDS")
 source (file = 'figures/setup.R')
 estD <- estimateSummary(CLOsims)
@@ -229,15 +231,9 @@ source("figures/MID6figure.R")
 
 ## Assumption 3: Detection declines radially from randomly located, fixed AC {-}
 
-The spatial component of spatially explicit capture--recapture rests on quite specific spatial models for the population (a 2-D distribution of activity centres AC) and for detection (a declining function of distance from the AC). These follow from a  biological model in which detection hazard is proportional to each animal's utilisation distribution i.e., its home range conceived as a stationary 2-dimensional probability density function [@Winkle1975].
+SECR treats detection as a declining function of distance from the activity centre. This follows from a  biological model in which detection hazard is proportional to each animal's utilisation distribution (its home range conceived as a stationary 2-dimensional probability density function [@Winkle1975]), and the utilisation distribution is unimodal.
 
-### Assumption 3a: AC locations independent {#sec-ACindependent .unnumbered}
-
-\index{Assumptions!AC independent}
-
-The SECR model of @be08 treats activity centres as distributed independently according to an inhomogeneous Poisson point process. This allows local density to vary according to habitat or other persistent effects. It does not allow for the spacing behaviour of the animals themselves, which can lead to either contagion or repulsion of AC. Several authors have ventured into this area [@Russell2012; @Reich2014; @LopezBao2018; @Bischof2020; @McLaughlin2020; @Efford2024]. The general conclusion is that point estimates of density from SECR are robust to clustering of AC due to social behaviour, but the implied overdispersion leads to confidence limits that are too narrow. Non-independence of detection is a distinct issue ([Assumption 4](#sec-independentindividuals)).
-
-### Assumption 3b: Home ranges circular {#sec-hrcircular .unnumbered}
+### Assumption 3a: Home ranges circular {#sec-hrcircular .unnumbered}
 
 \index{Assumptions!circular home range}
 
@@ -257,132 +253,7 @@ Concerns were expressed by @Ivan2013 about the effect of non-circularity of home
 knitr::include_graphics("figures/alignment.png")
 ```
 
-### Assumption 3c: Locations independent within home range {#sec-independentwithinhr .unnumbered}
-
-\index{Assumptions!uncorrelated locations}
-
-It is entirely likely that animals use their home ranges in a nested fashion (i.e., activity during any sub-interval localised in part of the range) or that some AC move during sampling. This may be viewed as a subset of Assumption 5 because if AC are not fixed during sampling then successive locations of an individual will be autocorrelated.
-
-@Royle2015 modelled movement patterns they called "transience" (a Gaussian random walk) and "dispersal" (discrete shift of AC). They concluded
-
-> ... while estimators of density are extremely robust, even to pathological levels of movement (e.g., complete transience), the estimator of the spatial scale parameter of the encounter probability model is confounded with the dispersal/transience scale parameter. 
-
-We extend their simulations by considering a model in which the overall home range is stationary but locations within the home range are autocorrelated. The bivariate Ornstein-Uhlenbeck (OU) distribution is a convenient model with these properties [@Dunn1977; @Johnson2008; @Hooten2017]. The home range as a whole is bivariate normal; we simulate the uncorrelated, circular case with equal variance on both axes. R code and details of the simulations are provided [on GitHub](https://github.com/MurrayEfford/secr-simulations).
-
-@fig-demoOU1 illustrates OU movement tracks for individuals with increasing autocorrelation parameter $\tau$. Detection is assumed here to happen when an individual is within some small threshold distance $\epsilon$ of a detector at the end of a time step. Other detection models are possible.
-
-```{r}
-#| label: OU
-#| echo: false
-# OU algorithm adapted from Supplements of Ben Stevenson 2021 Biometrics paper
-simOU.capthist <- function (
-        traps,
-        popn,
-        detectpar = list(),
-        noccasions = 100,    # effective "duration"
-        epsilon = 10,        # proximity threshold for detection
-        output = c('capthist', 'locations'),
-        ...)
-{
-    sim.ou <- function(mu, tau, sigma, n.steps){
-        mu <- as.numeric(mu)   # dodge issue with dataframe
-        start <- mvtnorm::rmvnorm(1, mu, sigma^2*diag(2))
-        b <- -1/tau
-        v <- sigma^2
-        out <- matrix(0, nrow = n.steps, ncol = 2)
-        out[1, ] <- start
-        for (i in 2:n.steps){
-            out[i, ] <- mvtnorm::rmvnorm(1, mu + exp(b)*(out[i - 1, ] - mu),
-                                         v*(1 - exp(2*b))*diag(2))
-        }
-        out
-    }
-    captfn <- function (xy) {
-        loc.capt <- secr::edist(xy,traps) <= epsilon
-        apply(loc.capt, 2, sum)
-    }   
-    output <- match.arg(output)
-    N <- nrow(popn)
-    tau <- detectpar$lambda0
-    sigma <- detectpar$sigma
-    n.steps <- noccasions
-    locs <- apply(popn, 1, sim.ou, tau, sigma, n.steps, simplify = FALSE)
-    if (output == 'locations') {
-        return(locs)
-    }
-    else {
-        capt <- t(sapply(locs, captfn))
-        capt <- capt[apply(capt, 1, sum) > 0, ]   # drop null histories
-        n <- nrow(capt)
-        ch <- array(capt, dim = c(n,1,ncol(capt)), dimnames = list(1:n,NULL,NULL))
-        class(ch) <- 'capthist'
-        traps(ch) <- traps
-        return(ch)
-    }
-}
-```
-
-```{r}
-#| label: fig-demoOU1
-#| echo: false
-#| eval: true
-#| cache: true
-#| results: hide
-#| fig-width: 7
-#| fig-height: 7
-#| out-width: 80%
-#| fig-cap: |
-#|   Examples of correlated movement paths over 100 time steps ($t = 100$).
-#|   Parameter 'tau' ($\tau$) controls autocorrelation. Red dot indicates 
-#|   activity centre; grey circle is 95% probability contour of distribution 
-#|   as $t \to \infty$ or $\tau \to 0$.
-
-par(mfrow=c(2,2), mar = c(1,1,2,1), pty='s')
-set.seed(123)
-for (tau in c(1,10,50,100)) {
-    locs <- simOU.capthist(grid, matrix(c(0,0), nrow=1), detectpar = list(lambda0 = tau, sigma = 100), 
-                           noccasions = 100, epsilon=10, output = 'locations')
-    plot (locs[[1]], type='o', xlim=c(-350,350), ylim = c(-350,350), axes=F, xlab='', ylab='')
-    mtext(side = 3, paste('tau = ', tau))
-    points(0,0, pch = 16, col='red', cex = 1.2)
-    box()
-    symbols(0,0,circles=245,inches=FALSE, add = TRUE, fg = grey(0.8))
-}
-```
-
-One consequence of autocorrelated movement is that the overall spatial scale increases with the duration and decreases with autocorrelation. With respect to telemetry, @Otis1999 concluded that autocorrelation *per se* did not bias inference so long as summary statistics were not generalized beyond the temporal sampling frame: 
-
-> Sampling designs that predefine a time frame of interest, and that generate representative samples of an animal's movement during this time frame, should not be affected by length of the sampling interval and autocorrelation.
-
-The analogy with SECR is close: we are concerned with unbiased estimation of the detection parameters $\lambda_0, \sigma$ that describe the detection process *over the time frame of sampling*. Extrapolation to other time frames would require knowledge of the correlation structure of the data, expressed in a model such as the bivariate Ornstein-Uhlenbeck distribution [e.g., @Dunn1977; @Hooten2017], but that is not relevant to inference for the chosen time frame.
-
-```{r}
-#| label: fig-OUfigure
-#| echo: false
-#| message: false
-#| fig-height: 4
-#| fig-width: 4
-#| out-width: 50%
-#| fig-cap: |
-#|   Relative bias RB of null-model density estimates of density $D$ and spatial 
-#|   scale $\sigma$ from Ornstein-Uhlenbeck model with autocorrelation parameter $\tau$.
-source (file = 'figures/setup.R')
-OUsims <- readRDS(file = 'data/OUsims.RDS')
-estD <- estimateSummary(OUsims)[,-1]
-estS <- estimateSummary(OUsims, 'sigma')[,-1]
-taulevels <- c(0.1, 1, 5, 10, 20, 50, 100)[-1]
-par(mfrow=c(1,1), mar=c(4,4,1,1), mgp=c(2.4,0.7,0), bty = 'o', pty='s')
-plot(0.1,0,type='n', xlim=c(1,100), log='x', ylim=c(-0.6,0.3), xlab = expression(tau), ylab='RB')
-shade(0.1)
-abline(h=0, lty=2)
-addRB(taulevels, estD[-1,], type='o', pch=21, bg = yob5[3], cex=1.1)
-addRB(taulevels, estS[-1,], type='o', pch=21, cex = 1.1, bg = 'white')
-legend(1.2, -0.39, legend=c('D','sigma'), pch=c(21,21), pt.bg= c(yob5[3],'white'),  pt.cex=1.1)
-```
-
-@fig-OUfigure confirms the robustness of SECR null-model density estimates to serial correlation of location over a broad range of values ($0 \le \tau \le 50$). Bias is apparent in estimates of the global $\sigma$, as expected from the reduced extent of movements in a given time frame. Note here that autocorrelation induces negative bias in $\hat \sigma$. There is no direct analogue of $\lambda_0$ in the OU generating model, so we cannot determine the bias in $\hat \lambda_0$.
-
-### Assumption 3d. Home ranges stationary {#sec-hrstationary .unnumbered}
+### Assumption 3b. Home ranges stationary {#sec-hrstationary .unnumbered}
 
 \index{Assumptions!AC stationary}
 
@@ -665,23 +536,158 @@ Further complexity is possible. @Stevenson2021 suggested modelling a latent Gaus
 
 ## Assumption 5: Independence {#sec-independence .unnumbered}
 
-\index{Assumptions!individuals independent}
+'Non-independence' covers a diverse set of possible deviations from the basic SECR model. Broadly, these may be due either to interactions among individuals (5a, 5b below) or to serial correlation in the detection histories of individuals considered separately (5c, 5d below).
 
-### 5a. Individuals are detected independently {#sec-independentindividuals .unnumbered}
+\index{Assumptions!individuals independent}
+\index{Assumptions!detections independent}
+
+### Assumption 5a: AC locations independent {#sec-ACindependent .unnumbered}
+
+\index{Assumptions!AC independent}
+
+The SECR model of @be08 treats activity centres as distributed independently according to an inhomogeneous Poisson point process. This allows local density to vary according to habitat or other persistent effects. It does not allow for the spacing behaviour of the animals themselves, which can lead to either contagion or repulsion of AC. Several authors have ventured into this area [@Russell2012; @Reich2014; @LopezBao2018; @Bischof2020; @McLaughlin2020; @Efford2024]. The general conclusion is that point estimates of density from SECR are robust to clustering of AC due to social behaviour, but the implied overdispersion leads to confidence limits that are too narrow. 
+<!-- Non-independence of detection is a distinct issue ([Assumption 5c](#sec-independentindividuals)). -->
+
+### 5b. Individuals are detected independently of each other {#sec-independentindividuals .unnumbered}
 
 Animals that move in groups are unlikely to be detected independently. @Bischof2020 labelled the phenomenon "cohesion". The primary result is overdispersion and underestimation of the sampling variance. Confidence intervals will be too narrow, resulting in less-than-nominal coverage. Earlier optimism [@Bischof2020] that a measure of overdispersion would correct for the underestimation appears to be unwarranted [@Efford2024].
 
 @McLaughlin2020 modelled random associations between adjacent neighbours; the method has yet to find general application.
 
-Animals are not detected independently in single-catch traps. Maximizing the multi-catch likelihood provides unbiased estimates of density and spatial scale in most cases (see @Distiller2015 for an exception), but estimates of the intercept of the detection function ($g_0$, $\lambda_0$) may be strongly biased. The coverage of confidence intervals based on the multi-catch likelihood has yet to be assessed. An algorithm combining simulation and inverse prediction allows unbiased estimation of all parameters [@e04; @Efford2023], but lacks the flexibility of MLE. \index{Traps!single-catch}
+Animals are not detected independently in single-catch traps because capture of one closes a trap to others. Maximizing the multi-catch likelihood provides unbiased estimates of density and spatial scale in most cases (see @Distiller2015 for an exception), but estimates of the intercept of the detection function ($g_0$, $\lambda_0$) may be strongly biased. The coverage of confidence intervals based on the multi-catch likelihood has yet to be assessed. An algorithm combining simulation and inverse prediction allows unbiased estimation of all parameters [@e04; @Efford2023], but lacks the flexibility of MLE. \index{Traps!single-catch}
 
-### 5b. Detections of an individual are independent {#sec-serialindependence .unnumbered}
+### 5c. Detections of an individual are independent {#sec-serialindependence .unnumbered}
 
 Trapping by definition causes non-independence of detection events: an animal that is captured cannot be caught anywhere else until released. The non-independence of detections in multi-catch traps is readily modelled as competing risk, as we saw in @sec-theory. 
 
-A more problematic form of dependence arises when a single visit to a passive detector results in multiple observations. This can happen when DNA is amplified from multiple hair samples left at a hair snag, or when a camera takes multiple photographs of an animal on a single visit. Analysing such data as if they were independent events results in overdispersion and accompanying underestimation of sampling variance. A simple solution is to collapse counts to binary observations.
+Behavioural response to detection is a further form of non-independence that we have covered [already](#sec-behaviour).
 
-In the basic SECR model of @sec-theory the next detection of an individual may happen anywhere in its home range, regardless of where it was last detected. More biologically realistic patterns of movement lead to sequential dependence of locations.
+A more problematic form of dependence arises when a single visit to a passive detector results in multiple observations. This can happen when DNA is amplified from multiple hair samples left at a hair snag, or when a camera takes multiple photographs of an animal on a single visit. Analysing such data as if they were independent events results in overdispersion and accompanying underestimation of sampling variance. A simple solution is to collapse each individual $\times$ occasion $\times$ detector count to a binary observation. An alternative is to fit an overdispersed (negative binomial) model for the counts; this method has yet to be critically evaluated.
+
+### Assumption 5d: Locations independent within stationary home range {#sec-independentwithinhr .unnumbered}
+
+\index{Assumptions!uncorrelated locations}
+
+In the basic SECR model of @sec-theory the next detection of an individual may happen anywhere in its home range, regardless of where it was last detected. More biologically realistic patterns of movement lead to sequential dependence of locations. It is entirely likely that animals use their home ranges in a nested fashion so that activity during any sub-interval is localised in part of the range. Animals also may shift their AC during sampling, with similar consequences for data and models. 
+
+@Royle2015 modelled movement patterns they called "transience" (a Gaussian random walk) and "dispersal" (discrete shift of AC). They concluded
+
+> ... while estimators of density are extremely robust, even to pathological levels of movement (e.g., complete transience), the estimator of the spatial scale parameter of the encounter probability model is confounded with the dispersal/transience scale parameter. 
+
+We extend their simulations by considering a model in which the overall home range is stationary but locations within the home range are autocorrelated. The bivariate Ornstein-Uhlenbeck (OU) distribution is a convenient model with these properties [@Dunn1977; @Johnson2008; @Hooten2017]. The home range as a whole is bivariate normal; we simulate the uncorrelated, circular case with equal variance on both axes. R code and details of the simulations are provided [on GitHub](https://github.com/MurrayEfford/secr-simulations).
+
+@fig-demoOU1 illustrates OU movement tracks for individuals with increasing autocorrelation parameter $\tau$. Detection is assumed here to happen when an individual is within some small threshold distance $\epsilon$ of a detector at the end of a time step. Other detection models are possible.
+
+```{r}
+#| label: OU
+#| echo: false
+# OU algorithm adapted from Supplements of Ben Stevenson 2021 Biometrics paper
+simOU.capthist <- function (
+        traps,
+        popn,
+        detectpar = list(),
+        noccasions = 100,    # effective "duration"
+        epsilon = 10,        # proximity threshold for detection
+        output = c('capthist', 'locations'),
+        ...)
+{
+    sim.ou <- function(mu, tau, sigma, n.steps){
+        mu <- as.numeric(mu)   # dodge issue with dataframe
+        start <- mvtnorm::rmvnorm(1, mu, sigma^2*diag(2))
+        b <- -1/tau
+        v <- sigma^2
+        out <- matrix(0, nrow = n.steps, ncol = 2)
+        out[1, ] <- start
+        for (i in 2:n.steps){
+            out[i, ] <- mvtnorm::rmvnorm(1, mu + exp(b)*(out[i - 1, ] - mu),
+                                         v*(1 - exp(2*b))*diag(2))
+        }
+        out
+    }
+    captfn <- function (xy) {
+        loc.capt <- secr::edist(xy,traps) <= epsilon
+        apply(loc.capt, 2, sum)
+    }   
+    output <- match.arg(output)
+    N <- nrow(popn)
+    tau <- detectpar$lambda0
+    sigma <- detectpar$sigma
+    n.steps <- noccasions
+    locs <- apply(popn, 1, sim.ou, tau, sigma, n.steps, simplify = FALSE)
+    if (output == 'locations') {
+        return(locs)
+    }
+    else {
+        capt <- t(sapply(locs, captfn))
+        capt <- capt[apply(capt, 1, sum) > 0, ]   # drop null histories
+        n <- nrow(capt)
+        ch <- array(capt, dim = c(n,1,ncol(capt)), dimnames = list(1:n,NULL,NULL))
+        class(ch) <- 'capthist'
+        traps(ch) <- traps
+        return(ch)
+    }
+}
+```
+
+```{r}
+#| label: fig-demoOU1
+#| echo: false
+#| eval: true
+#| cache: true
+#| results: hide
+#| fig-width: 7
+#| fig-height: 7
+#| out-width: 80%
+#| fig-cap: |
+#|   Examples of correlated movement paths over 100 time steps ($t = 100$).
+#|   Parameter 'tau' ($\tau$) controls autocorrelation. Red dot indicates 
+#|   activity centre; grey circle is 95% probability contour of distribution 
+#|   as $t \to \infty$ or $\tau \to 0$.
+
+par(mfrow=c(2,2), mar = c(1,1,2,1), pty='s')
+set.seed(123)
+for (tau in c(1,10,50,100)) {
+    locs <- simOU.capthist(grid, matrix(c(0,0), nrow=1), detectpar = list(lambda0 = tau, sigma = 100), 
+                           noccasions = 100, epsilon=10, output = 'locations')
+    plot (locs[[1]], type='o', xlim=c(-350,350), ylim = c(-350,350), axes=F, xlab='', ylab='')
+    mtext(side = 3, paste('tau = ', tau))
+    points(0,0, pch = 16, col='red', cex = 1.2)
+    box()
+    symbols(0,0,circles=245,inches=FALSE, add = TRUE, fg = grey(0.8))
+}
+```
+
+One consequence of autocorrelated movement is that the overall spatial scale increases with the duration and decreases with autocorrelation. With respect to telemetry, @Otis1999 concluded that autocorrelation *per se* did not bias inference so long as summary statistics were not generalized beyond the temporal sampling frame: 
+
+> Sampling designs that predefine a time frame of interest, and that generate representative samples of an animal's movement during this time frame, should not be affected by length of the sampling interval and autocorrelation.
+
+The analogy with SECR is close: we are concerned with unbiased estimation of the detection parameters $\lambda_0, \sigma$ that describe the detection process *over the time frame of sampling*. Extrapolation to other time frames would require knowledge of the correlation structure of the data, expressed in a model such as the bivariate Ornstein-Uhlenbeck distribution [e.g., @Dunn1977; @Hooten2017], but that is not relevant to inference for the chosen time frame.
+
+```{r}
+#| label: fig-OUfigure
+#| echo: false
+#| message: false
+#| fig-height: 4
+#| fig-width: 4
+#| out-width: 50%
+#| fig-cap: |
+#|   Relative bias RB of null-model density estimates of density $D$ and spatial 
+#|   scale $\sigma$ from Ornstein-Uhlenbeck model with autocorrelation parameter $\tau$.
+source (file = 'figures/setup.R')
+OUsims <- readRDS(file = 'data/OUsims.RDS')
+estD <- estimateSummary(OUsims)[,-1]
+estS <- estimateSummary(OUsims, 'sigma')[,-1]
+taulevels <- c(0.1, 1, 5, 10, 20, 50, 100)[-1]
+par(mfrow=c(1,1), mar=c(4,4,1,1), mgp=c(2.4,0.7,0), bty = 'o', pty='s')
+plot(0.1,0,type='n', xlim=c(1,100), log='x', ylim=c(-0.6,0.3), xlab = expression(tau), ylab='RB')
+shade(0.1)
+abline(h=0, lty=2)
+addRB(taulevels, estD[-1,], type='o', pch=21, bg = yob5[3], cex=1.1)
+addRB(taulevels, estS[-1,], type='o', pch=21, cex = 1.1, bg = 'white')
+legend(1.2, -0.39, legend=c('D','sigma'), pch=c(21,21), pt.bg= c(yob5[3],'white'),  pt.cex=1.1)
+```
+
+@fig-OUfigure confirms the robustness of SECR null-model density estimates to serial correlation of location over a broad range of values ($0 \le \tau \le 50$). Bias is apparent in estimates of the global $\sigma$, as expected from the reduced extent of movements in a given time frame. Note here that autocorrelation induces negative bias in $\hat \sigma$. There is no direct analogue of $\lambda_0$ in the OU generating model, so we cannot determine the bias in $\hat \lambda_0$.
 
 ## Summary {#sec-robustnesssummary}
 
@@ -696,7 +702,7 @@ Special care is needed when these effects may apply:
 
 We have not considered in detail the potential for correlated variation in overall detection (measured as the [effective sampling area](05-theory-special-topics.qmd#sec-esa)) and density. Failure to model such correlated variation led to poor estimates in the simulations of @McLellan2023 (see also @sec-spatialvariation).
 
-Several breaches lead to underestimation of sampling variance and impaired coverage of confidence intervals. If the magnitude of the breach can be estimated then better confidence intervals may be achieved by simulating from the full model.
+Several breaches lead to underestimation of sampling variance and impaired coverage of confidence intervals. If the magnitude of the breach can be estimated then better confidence intervals may be achieved by applying a variance inflation factor ($\hat c$) as in MARK [@cw]. Computing $\hat c$ is not straightforward and simulation may help. Further research is needed to quantify overdispersion, and consequently $\hat c$, under the various non-independence scenarios. @efford2024 suggested a route for density estimates when the AC have known clustering. @eh18 applied simulation to the special case of mark--resight counts (@sec-mark-resight).
 
 Particular detection parameters may be estimated poorly even when density estimates are robust. A common example arises when a multi-catch model is used for single-catch data: the estimated intercept of the detection function is strongly biased while density estimates are generally unbiased.
 
@@ -709,21 +715,21 @@ Particular detection parameters may be estimated poorly even when density estima
 &nbsp;&nbsp;&nbsp;[1b. Dispersal](#sec-popnclosed)             |![.](figures/yob51.png)| | open population |
 2. Identification |||
 &nbsp;&nbsp;&nbsp;[2a. Inadequate marks](#sec-shadow)          |![**](figures/yob52.png)| -ve RB($\hat D$) when high probability of identity| @Augustine2020 |
-&nbsp;&nbsp;&nbsp;[2b. Marks corrupted](#sec-ghost)            |![*](figures/yob53.png)|  | |
-&nbsp;&nbsp;&nbsp;[2c. Tags lost](#sec-tagloss)            |![*](figures/yob52.png)| +ve RB($\hat D$) when high rate or long study | @Kodi2024 |
+&nbsp;&nbsp;&nbsp;[2b. Marks mis-read](#sec-ghost)            |![*](figures/yob53.png)| +ve RB($\hat D$) increases with proportion ghosts | @Kodi2024 |
+&nbsp;&nbsp;&nbsp;[2c. Tags lost](#sec-tagloss)                |![*](figures/yob52.png)| +ve RB($\hat D$) when high rate or long study |  |
 3. Home range HR |||
-&nbsp;&nbsp;&nbsp;[3a. AC not independent](#sec-ACindependent) |![.](figures/yob51.png)||
-&nbsp;&nbsp;&nbsp;[3b. HR non-circular](#sec-hrcircular)       |![*](figures/yob5s14.png)| severe RB($\hat D$) when HR align with detectors| anisotropic model |
-&nbsp;&nbsp;&nbsp;[3c. Location autocorrelated](#sec-independentwithinhr)      |![.](figures/yob51.png)||
-&nbsp;&nbsp;&nbsp;[3d. HR non-stationary](#sec-hrstationary)   |![.](figures/yob51.png)|||
+&nbsp;&nbsp;&nbsp;[3a. HR non-circular](#sec-hrcircular)       |![*](figures/yob5s14.png)| severe RB($\hat D$) when HR align with detectors| anisotropic model |
+&nbsp;&nbsp;&nbsp;[3b. HR non-stationary](#sec-hrstationary)   |![.](figures/yob51.png)|||
 4. Constant parameters |||
 &nbsp;&nbsp;&nbsp;[4a. Temporal variation](#sec-temporalvariation) |![.](figures/yob51.png)| | covariate, time-specific |
 &nbsp;&nbsp;&nbsp;[4b. Behavioural responses](#sec-behaviour)      |![*](figures/yob5s24.png)| | learned response |
-&nbsp;&nbsp;&nbsp;[4c. Individual heterogeneity](#sec-individualheterogeneity) |![*](figures/yob52.png)| RB($\hat D$) nonlinear on CV(a) | covariate, finite mixture | 
+&nbsp;&nbsp;&nbsp;[4c. Individual heterogeneity](#sec-individualheterogeneity) |![*](figures/yob52.png)| -ve RB($\hat D$) nonlinear on CV(a) | covariate, finite mixture | 
 &nbsp;&nbsp;&nbsp;[4d. Detector heterogeneity](#sec-homogeneityofdetectors)    |![*](figures/yob5s13.png)| | covariate, GRF |
 5. Independence |||
-&nbsp;&nbsp;&nbsp;[5a. Individuals interact](#sec-independentindividuals)      |![*](figures/yob51.png)| | @Efford2023 |
-&nbsp;&nbsp;&nbsp;[5b. Serial dependence](#sec-serialindependence)             |![.](figures/yob51.png) | ||
+&nbsp;&nbsp;&nbsp;[5a. AC not independent](#sec-ACindependent)                 |![.](figures/yob51.png)||
+&nbsp;&nbsp;&nbsp;[5b. Individuals interact](#sec-independentindividuals)      |![*](figures/yob51.png)| | @Efford2023 |
+&nbsp;&nbsp;&nbsp;[5c. Serial dependence](#sec-serialindependence)             |![.](figures/yob51.png) | ||
+&nbsp;&nbsp;&nbsp;[5d. Location autocorrelated](#sec-independentwithinhr)      |![.](figures/yob51.png)||
 
 : Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled. {#tbl-robustness tbl-colwidths="[30,5,42,23]" .sm}
 
@@ -746,24 +752,24 @@ Particular detection parameters may be estimated poorly even when density estima
 |||||
 2. Identification |||
 &nbsp;&nbsp;&nbsp;[2a. Inadequate marks](#sec-shadow)          |![**](figures/yob52.png)| -ve RB($\hat D$) when high probability of identity | @Augustine2020 |
-&nbsp;&nbsp;&nbsp;[2b. Marks corrupted](#sec-ghost)            |![*](figures/yob52.png)| +ve RB($\hat D$) when high rate or long study | @Kodi2024 |
+&nbsp;&nbsp;&nbsp;[2b. Marks mis-read](#sec-ghost)            |![*](figures/yob52.png)| +ve RB($\hat D$) increases with proportion ghosts | @Kodi2024 |
 &nbsp;&nbsp;&nbsp;[2c. Tags lost](#sec-tagloss)            |![*](figures/yob52.png)| +ve RB($\hat D$) when high rate or long study | |
 |||||
 3. Home range HR |||
-&nbsp;&nbsp;&nbsp;[3a. AC not independent](#sec-ACindependent) |![.](figures/yob51.png)||
-&nbsp;&nbsp;&nbsp;[3b. HR non-circular](#sec-hrcircular)       |![*](figures/yob5s14.png)| severe RB($\hat D$) when HR align with detectors| anisotropic model |
-&nbsp;&nbsp;&nbsp;[3c. Location autocorrelated](#sec-independentwithinhr)      |![.](figures/yob51.png)||
-&nbsp;&nbsp;&nbsp;[3d. HR non-stationary](#sec-hrstationary)   |![.](figures/yob51.png)|||
+&nbsp;&nbsp;&nbsp;[3a. HR non-circular](#sec-hrcircular)       |![*](figures/yob5s14.png)| severe RB($\hat D$) when HR align with detectors| anisotropic model |
+&nbsp;&nbsp;&nbsp;[3b. HR non-stationary](#sec-hrstationary)   |![.](figures/yob51.png)|||
 |||||
 4. Constant parameters |||
 &nbsp;&nbsp;&nbsp;[4a. Temporal variation](#sec-temporalvariation) |![.](figures/yob51.png)| | covariate, time-specific |
 &nbsp;&nbsp;&nbsp;[4b. Behavioural responses](#sec-behaviour)      |![*](figures/yob5s24.png)| | learned response |
-&nbsp;&nbsp;&nbsp;[4c. Individual heterogeneity](#sec-individualheterogeneity) |![*](figures/yob52.png)| RB($\hat D$) nonlinear on CV(a) | covariate, finite mixture | 
+&nbsp;&nbsp;&nbsp;[4c. Individual heterogeneity](#sec-individualheterogeneity) |![*](figures/yob52.png)| -ve RB($\hat D$) nonlinear on CV(a) | covariate, finite mixture | 
 &nbsp;&nbsp;&nbsp;[4d. Detector heterogeneity](#sec-homogeneityofdetectors)    |![*](figures/yob5s13.png)| | covariate, GRF |
 |||||
 5. Independence ||
-&nbsp;&nbsp;&nbsp;[5a. Individuals interact](#sec-independentindividuals)      |![*](figures/yob51.png)| | @Efford2023 |
-&nbsp;&nbsp;&nbsp;[5b. Serial dependence](#sec-serialindependence)             |![.](figures/yob51.png) | ||
+&nbsp;&nbsp;&nbsp;[5a. AC not independent](#sec-ACindependent) |![.](figures/yob51.png)||
+&nbsp;&nbsp;&nbsp;[5b. Individuals interact](#sec-independentindividuals)      |![*](figures/yob51.png)| | @Efford2023 |
+&nbsp;&nbsp;&nbsp;[5c. Serial dependence](#sec-serialindependence)             |![.](figures/yob51.png) | ||
+&nbsp;&nbsp;&nbsp;[5d. Location autocorrelated](#sec-independentwithinhr)      |![.](figures/yob51.png)||
 
 : Robustness of SECR models to breaches of assumptions. Split colours indicate that the effect is generally weak or ignorable, but may be damaging in some circumstances if not modelled. {#tbl-robustness tbl-colwidths="[35,5,37,23]" .sm}
 
