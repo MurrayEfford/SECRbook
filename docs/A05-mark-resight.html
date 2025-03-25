@@ -490,7 +490,7 @@ window.Quarto = {
 <li>the population is assumed to follow a (possibly inhomogeneous) Poisson distribution in space</li>
 <li>detection histories of marked animals are modelled as usual in SECR</li>
 <li>counts of unmarked sightings are modelled with a Poisson distribution</li>
-<li>overdispersion in the counts (relative to a Poisson distribution) is estimated by simulation and used in a pseudo-likelihood addressed; this has minimal effect on the estimates themselves, but improves coverage of confidence intervals</li>
+<li>overdispersion in the counts (relative to a Poisson distribution) is estimated by simulation and used in a pseudo-likelihood estimate. The adjustment has minimal effect on the estimates themselves, but improves coverage of confidence intervals</li>
 </ul>
 <p>Unidentified sightings of marked animals are treated as independent of identified sightings. This is an approximation, but its effect on estimates is believed to be negligible.</p>
 <p>The core models are listed in <a href="#tbl-MRclassification" class="quarto-xref">Table&nbsp;<span>E.1</span></a>. These may be customized in various ways, particularly by specifying the assumed distribution of marked animals for sighting-only models. Each model may be fitted with or without a parameter for incomplete identification of marked animals when they are resighted (<a href="#sec-pID"><code>pID</code></a>).</p>
@@ -1719,7 +1719,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
