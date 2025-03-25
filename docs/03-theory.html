@@ -464,7 +464,7 @@ window.Quarto = {
 <p>Part II provides background on the theory of SECR that is mostly for reference. This chapter covers general notation and theory for point detectors. <a href="04-theory-area-search.html" class="quarto-xref"><span>Chapter 4</span></a> describes theory for area and transect searches. <a href="05-theory-special-topics.html" class="quarto-xref"><span>Chapter 5</span></a> has extensions for multiple sessions, groups, effective sampling area, conditional estimation, relative density, population size, finite mixtures, hybrid mixture models, alternative parameterizations and model-based location of activity centres (‘fxi’). These chapters aim to be independent of any particular implementation, although some cross-references to <strong>secr</strong> creep in.</p>
 <section id="notation" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="notation"><span class="header-section-number">3.1</span> Notation</h2>
-<p>We use notation and terminology from <span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="A99-references.html#ref-be08" role="doc-biblioref">2008</a>)</span>, with minor variations and extensions from <span class="citation" data-cites="ebb09">Efford et al. (<a href="A99-references.html#ref-ebb09" role="doc-biblioref">2009</a>)</span>, <span class="citation" data-cites="e11">Efford (<a href="A99-references.html#ref-e11" role="doc-biblioref">2011</a>)</span> and elsewhere (<a href="#tbl-notation" class="quarto-xref">Table&nbsp;<span>3.1</span></a>).</p>
+<p>We use notation and terminology from <span class="citation" data-cites="be08">Borchers &amp; Efford (<a href="A99-references.html#ref-be08" role="doc-biblioref">2008</a>)</span>, with minor variations and extensions from <span class="citation" data-cites="ebb09">Efford, Borchers, et al. (<a href="A99-references.html#ref-ebb09" role="doc-biblioref">2009</a>)</span>, <span class="citation" data-cites="e11">Efford (<a href="A99-references.html#ref-e11" role="doc-biblioref">2011</a>)</span> and elsewhere (<a href="#tbl-notation" class="quarto-xref">Table&nbsp;<span>3.1</span></a>).</p>
 <p></p>
 <div id="tbl-notation" class="sm quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[15,10,75]">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -852,7 +852,7 @@ Note
 <section id="binomial-count-proximity-detector" class="level3" data-number="3.4.3">
 <h3 data-number="3.4.3" class="anchored" data-anchor-id="binomial-count-proximity-detector"><span class="header-section-number">3.4.3</span> Binomial count proximity detector</h3>
 <p></p>
-<p>Binomial counts arise when there is a known, finite number of opportunities for detection within each occasion that we denote <span class="math inline">B_s</span>. This is the result when binary proximity data over many occasions are collapsed to a count on single occasion: the initial number of occasions is known (<span class="math inline">B_s = S</span>) and places an upper limit on the count. Collapsing is often efficient. It precludes modelling parameter variation or learned responses across occasions.</p>
+<p>Binomial counts arise when there is a known, finite number of opportunities for detection within each occasion that we denote <span class="math inline">B_s</span>. This is the result when binary proximity data over many occasions are collapsed to a count on single occasion <span class="citation" data-cites="edb09">(e.g., <a href="A99-references.html#ref-edb09" role="doc-biblioref">Efford, Dawson, et al., 2009</a>)</span>. The initial number of occasions is known (<span class="math inline">B_s = S</span>) and places an upper limit on the count. Collapsing is often efficient. It precludes modelling parameter variation or learned responses across occasions.</p>
 <p>Each count is binomial with size <span class="math inline">B_s</span> and probability equal to the per-occasion detection probability.</p>
 </section>
 <section id="multi-catch-trap" class="level3" data-number="3.4.4">
@@ -981,6 +981,9 @@ Efford, M. G., Borchers, D. L., &amp; Mowat, G. (2013). Varying effort in captur
 </div>
 <div id="ref-eb19" class="csl-entry" role="listitem">
 Efford, M. G., &amp; Boulanger, J. (2019). Fast evaluation of study designs for spatially explicit capture-recapture. <em>Methods in Ecology and Evolution</em>, <em>10</em>, 1529–1535. <a href="https://doi.org/10.1111/2041-210X.13239">https://doi.org/10.1111/2041-210X.13239</a>
+</div>
+<div id="ref-edb09" class="csl-entry" role="listitem">
+Efford, M. G., Dawson, D. K., &amp; Borchers, D. L. (2009). Population density estimated from locations of individuals on a passive detector array. <em>Ecology</em>, <em>90</em>, 2676–2682.
 </div>
 <div id="ref-Evans1996" class="csl-entry" role="listitem">
 Evans, M. A., Kim, H.-M., &amp; O’Brien, T. E. (1996). An application of profile-likelihood based confidence interval to capture: Recapture estimators. <em>Journal of Agricultural, Biological, and Environmental Statistics</em>, <em>1</em>(1), 131. <a href="https://doi.org/10.2307/1400565">https://doi.org/10.2307/1400565</a>

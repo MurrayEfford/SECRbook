@@ -439,11 +439,11 @@ window.Quarto = {
 </header><p></p>
 <p>There have been few attempts to validate empirically the estimates of density from SECR: critical evaluations have relied overwhelmingly on simulation. Empirical validation requires a reliable estimate of the true density, usually from counting the individuals with activity centres in a known area. Enumeration may be by intensive observation of conspicuous diurnal species or by sampling until no new individual is found. Delineation of the relevant area is straightforward when the habitat is a natural island or fenced area. We exclude studies such as <span class="citation" data-cites="Twining2022">Twining et al. (<a href="A99-references.html#ref-Twining2022" role="doc-biblioref">2022</a>)</span> that evaluated SECR by comparing density estimates among methods, as these are vulnerable to shared biases.</p>
 <p>We describe four attempts at empirical validation of density estimates, each with a different approach. The evidence from empirical validation studies tends to be weak, owing to the wide confidence intervals and methodological constraints. None is entirely convincing, as we shall see.</p>
-<p>A fifth study suggests that detection parameters may vary between detector layouts. This limits the value of simulation to compare study designs.</p>
+<p>A fifth study suggests that detection parameters may vary between detector layouts. This raises a caveat for simulation (<a href="08-studydesign.html#sec-pilotvalues" class="quarto-xref"><span>Section 8.4</span></a>).</p>
 <section id="sec-brushtailpossum" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="sec-brushtailpossum">
 <span class="header-section-number">7.1</span> Brushtail possums in New Zealand</h2>
 <p></p>
-<p><span class="citation" data-cites="ewcb05">Efford et al. (<a href="A99-references.html#ref-ewcb05" role="doc-biblioref">2005</a>)</span> live-trapped brushtail possums (<em>Trichosurus vulpecula</em>) on a coastal peninsula and compared the results to an attempted total removal by leg-hold trapping and acute poisoning. SECR estimates of density from five hollow grids were consistent with the removal estimate.</p>
+<p><span class="citation" data-cites="ewcb05">Efford et al. (<a href="A99-references.html#ref-ewcb05" role="doc-biblioref">2005</a>)</span> live-trapped brushtail possums (<em>Trichosurus vulpecula</em>) on a coastal peninsula and compared the results to an attempted total removal by leg-hold trapping and acute poisoning. SECR estimates of density from five hollow grids (36 traps around the perimeter of a square) were consistent with the removal estimate.</p>
 <p>Although broadly reassuring, the brushtail possum study had weaknesses. The live-trapping data were compromised by tag loss (documented in <strong>secr</strong>), the landward boundary of the removal area was somewhat arbitrary, and sampling may have been inadequate to represent density variation across the peninsula (see also <a href="#sec-newmexico">Rodents in New Mexico</a>).</p>
 </section><section id="sec-redsquirrel" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="sec-redsquirrel">
 <span class="header-section-number">7.2</span> Red squirrels in the Yukon</h2>
@@ -968,7 +968,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
