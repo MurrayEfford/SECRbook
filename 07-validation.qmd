@@ -62,3 +62,4 @@ source("figures/sevilleta.R")
 ## Summary
 
 None of these field studies fully validates SECR methods, but there is at least no strong counter evidence. We encourage field researchers to test SECR further. Where discrepancies are found it is important to investigate the cause. The assumption of independence among detectors underpins the compounding of single-detector distance-detection functions to predict array-level detection probability. Evidence supporting this assumption might relieve the need for elaborate models such as @Stevenson2021.
+

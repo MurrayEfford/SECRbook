@@ -238,7 +238,10 @@ particular occasion, or repeat detections are deliberately discarded.
 ::: {.callout-note}
 Discarding hard-won data may seem perverse, but it may be justified if the 
 fraction is small (i.e. repeat detections rare). Binary data are less prone to 
-problems due to non-independence of repeated visits to a detector, especially when a few individuals generate many repeat detections. Binary models also tend to be faster to fit and dodge the question of what discrete distribution should be used for the counts.
+problems due to non-independence of repeated visits to a detector, especially 
+when a few individuals generate many repeat detections. Binary models also tend 
+to be faster to fit and dodge the question of what discrete distribution should 
+be used for the counts.
 :::
 
 Assuming independence among detectors, the distance-detection model
@@ -246,13 +249,30 @@ applies directly as the probability of detection in a particular
 detector, and the overall probability of detection is the complement of
 the product of probabilities of non-detection in all detectors.
 
-### Poisson count proximity detector
+### Count proximity detectors
+
+Some devices count visits by each individual: each datum is then a non-negative 
+integer rather than binary. Automatic cameras ('camera traps') are a common example. 
+Modelling depends on the distribution of the counts, for which the primary options 
+are Poisson and binomial. 
+
+#### Poisson count proximity detector
 
 \index{Detectors!Poisson proximity}
 
-Hazard is the natural scale for the Poisson parameter.
+If each visit by an individual is independent of other visits in a given interval
+(occasion) then the number of visits has a Poisson distribution. The sole parameter 
+of the discrete Poisson distribution is the expected number of visits.
 
-### Binomial count proximity detector
+Independence may seem implausible, but it is commonly indistinguishable from 
+non-independence when the expected number is small. However, it is not uncommon for 
+one or two individuals to be photographed many times by one camera, and the Poisson
+is then unsuitable. The negative binomial is an alternative that models the 
+overdispersion that results from non-independence, while requiring an additional parameter. 
+There do not yet seem to be convincing applications of the negative binomial 
+in SECR, and collapsing data to binary is recommended.
+
+#### Binomial count proximity detector
 
 \index{Detectors!Binomial proximity}
 
@@ -292,23 +312,36 @@ competition both among traps for animals and among animals for traps. No
 simple likelihood is available. Simulation-based methods [@e04;
 @Efford2023] must be used for unbiased estimation of $\theta$ and trend
 in density unless the time of detection has been recorded
-[@Distiller2015].
+[@Distiller2015]. The multi-catch likelihood provides nearly unbiased estimates 
+of uniform density.
 
 ## Fixed $N$ {#sec-fixedN}
 
 \index{Population size $N(A)$!fixed}
 
+The number of individuals of the target species (population size or $N$) is the 
+parameter of primary interest in non-spatial closed population capture--recapture. 
+This is seldom true in spatial capture--recapture. It is nevertheless the 
+source of considerable confusion for two related reasons: 
+
+1. The population size depends on the extent of the modelled habitat ('habitat mask' 
+or 'state space', area $A$) which is usually arbitrary, and 
+2. Having defined an arbitrary extent for numerical convenience (@sec-habitat) the results, 
+particularly the variance of $\hat D$ or $\hat N(A)$,  depend on whether the enclosed 
+population is assumed to be a random variable or fixed.
+
+We expand here on the consequences of treating $N$ as fixed.
+
 The formulation of the state model as a Poisson process in two dimensions
-(@sec-basics) does not refer to population size $N$. Under that model, the 
+(@sec-basics) does not refer to population size. Under that model, the 
 number of AC in an arbitrary area $A$ is a poisson-distributed random variable
 regardless of whether the 2-D process is homogeneous or inhomogeneous.
 
 The state model may also be cast as a 'conditional' or 'binomial' Poisson process'
 [@illian08]. For an arbitrary area $A$ the number of AC $N(A)$ is then
-considered fixed rather than Poisson.
-
-The distribution of $n$ is then binomial with size $N(A)$ and
-probability
+considered fixed rather than Poisson. This is implicit in the Bayesian 
+formulation of @rcsg14. The distribution of $n$ in the conditional model is binomial 
+with size $N(A)$ and probability
 $p_c(\phi, \theta) = \int_A p_\cdot(\mathbf x; \theta) f(\mathbf x; \phi) d\mathbf x$,
 where
 $f(\mathbf x; \phi) = D(\mathbf x; \phi) / \int_A D(\mathbf x; \phi) d\mathbf x$.

@@ -14,7 +14,7 @@ Failure of the independence assumption in a multi-session analysis results in un
 ## Groups {#sec-groups}
 \index{Groups}
 
-Users of MARK [@cw] will be familiar with the stratification of a population into 'groups', each with potentially different values for parameters such as survival probability. Grouping requires that each animal is assigned to a group on first detection, and that the assignment is permanent. Then density and any detection parameter may be modelled as a function of the grouping factor. Group models are available in **secr** only when maximizing the full likelihood. When maximizing the [conditional likelihood](05-theory-special-topics#sec-conditional) the model may specify an individual factor covariate directly, with the same effect as grouping. 
+Users of MARK [@cw] will be familiar with the stratification of a population into 'groups', each with potentially different values for parameters such as survival probability. Grouping requires that each animal is assigned to a group on first detection, and that the assignment is permanent. Then density and any detection parameter may be modelled as a function of the grouping factor. It seems natural to treat females and males as two groups as their movement behaviour and hence detection parameters may differ greatly, but in @sec-sex we suggest other ways to model sex differences. Group models are available in **secr** only when maximizing the full likelihood. When maximizing the [conditional likelihood](05-theory-special-topics#sec-conditional) the model may specify an individual factor covariate directly, with the same effect as grouping. 
 
 <!-- The multinomial coefficient in **secr** is stratified by group. -->
 

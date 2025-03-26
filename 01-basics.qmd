@@ -79,11 +79,15 @@ process\index{Poisson process (2-D)} (@fig-example). By fitting the SECR
 model we can estimate the intensity surface of the Poisson process that
 we represent by $D(\mathbf x)$ where $\mathbf x$ stands for the x,y
 coordinates of a point. Density may be *homogeneous* (a flat surface,
-with constant $D(\mathbf x)$) or *inhomogeneous* (spatially varying intensity).
+with constant $D(\mathbf x)$) or *inhomogeneous* (spatially varying intensity). 
+Inhomogeneous density may differ discretely, between habitats, or continuously 
+in response to mapped covariates.
 
 An inhomogeneous intensity surface is considered to depend on a vector
 of parameters $\phi$, hence $D(\mathbf x; \phi)$. For constant density
-$\phi$ is a single value.
+$\phi$ is a single value. If there are two habitats $\phi$ provides a 
+value for each one. If density varies linearly with a covariate then $\phi$ 
+comprises the intercept and slope.
 
 ::: {.callout-note}
 ## Activity centre vs home range centre
@@ -98,8 +102,9 @@ and 'home range centre' interchangeably in this context.
 ## Detectors {#sec-detectors}
 \index{Detectors} 
 
-SECR uses sampling devices ('detectors') placed at known locations.
-We need to recognise individuals whenever they are detected. The
+Basic SECR uses sampling devices ('detectors') placed at known locations.
+We need to recognise individuals whenever they are detected. At least some of the 
+individuals should be detected at multiple locations. The
 accumulated detections of each known individual are its 'detection
 history'. Device types differ according to how they affect animal
 behaviour and the data they collect; each type corresponds to a
@@ -135,6 +140,16 @@ jargon should be avoided in publications.
 | Mist net         | numbered leg band                        | multi-catch trap   | red-eyed vireo, @be08     |
 
 : Examples of SECR sampling devices {#tbl-deviceexamples tbl-colwidths="[15,23,20,42]" .sm}
+
+## Area search
+
+The preceding description assumes sampling at discrete points in space. Searches 
+may also be conducted across space, yielding a possibly unique location for each 
+detection. There are parallel SECR models for such data (@sec-areasearches, 
+@sec-areaandtransectsearches). Searched areas are somewhat analogous to detectors, and may or may not allow only 
+one detection per occasion, like true traps. Data from area searches may be easier 
+to analyse if they are [discretized](A04-polygondetectors.qmd#sec-discretize) and 
+treated as coming from many point detectors.
 
 ## Sampling across time
 
@@ -205,7 +220,7 @@ in @fig-example.
 #| echo: false
 #| out-width: 70%
 #| fig-cap: Distance-dependent detection of uniformly distributed activity centres (open
-#|   circles; filled if captured)
+#|   circles; filled if detected)
 knitr::include_graphics('figures/example.png')
 ```
 
@@ -257,8 +272,9 @@ in the various Bayesian implementations. It is commonly formed by adding
 a constant-width buffer around the detectors. For computational
 convenience the map is discretized as many small pixels. Spatial
 covariates (vegetation type, elevation, etc.) may be attached to each
-pixel for use in density models. The choice of buffer width and pixel
-size are considered later.
+pixel for use in density models. Buffer width and pixel
+size are considered in @sec-habitat. The scale at which spatial covariates affect 
+density is considered [separately](11-density-model.qmd#sec-scaleofeffect).
 
 ### Link functions {#sec-link}
 

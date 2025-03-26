@@ -657,7 +657,9 @@ for (tau in c(1,10,50,100)) {
 }
 ```
 
-One consequence of autocorrelated movement is that the overall spatial scale increases with the duration and decreases with autocorrelation. With respect to telemetry, @Otis1999 concluded that autocorrelation *per se* did not bias inference so long as summary statistics were not generalized beyond the temporal sampling frame: 
+One consequence of autocorrelated movement is that the overall spatial scale increases with the duration and decreases with autocorrelation. With respect to telemetry, @Otis1999[^footnote2] concluded that autocorrelation *per se* did not bias inference so long as summary statistics were not generalized beyond the temporal sampling frame: 
+
+[^footnote2]: This interpretation was endorsed by @Fieberg2007, but disputed by @Noonan2019.
 
 > Sampling designs that predefine a time frame of interest, and that generate representative samples of an animal's movement during this time frame, should not be affected by length of the sampling interval and autocorrelation.
 
@@ -702,7 +704,7 @@ Special care is needed when these effects may apply:
 
 We have not considered in detail the potential for correlated variation in overall detection (measured as the [effective sampling area](05-theory-special-topics.qmd#sec-esa)) and density. Failure to model such correlated variation led to poor estimates in the simulations of @McLellan2023 (see also @sec-spatialvariation).
 
-Several breaches lead to underestimation of sampling variance and impaired coverage of confidence intervals. If the magnitude of the breach can be estimated then better confidence intervals may be achieved by applying a variance inflation factor ($\hat c$) as in MARK [@cw]. Computing $\hat c$ is not straightforward and simulation may help. Further research is needed to quantify overdispersion, and consequently $\hat c$, under the various non-independence scenarios. @efford2024 suggested a route for density estimates when the AC have known clustering. @eh18 applied simulation to the special case of mark--resight counts (@sec-mark-resight).
+Several breaches lead to underestimation of sampling variance and impaired coverage of confidence intervals. If the magnitude of the breach can be estimated then better confidence intervals may be achieved by applying a variance inflation factor ($\hat c$) as in MARK [@cw]. Computing $\hat c$ is not straightforward and simulation may help. Further research is needed to quantify overdispersion, and consequently $\hat c$, under the various non-independence scenarios. @Efford2024 suggested a route for density estimates when the AC have known clustering. @eh18 applied simulation to the special case of mark--resight counts (@sec-mark-resight).
 
 Particular detection parameters may be estimated poorly even when density estimates are robust. A common example arises when a multi-catch model is used for single-catch data: the estimated intercept of the detection function is strongly biased while density estimates are generally unbiased.
 
