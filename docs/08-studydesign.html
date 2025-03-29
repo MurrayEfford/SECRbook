@@ -417,15 +417,16 @@ window.Quarto = {
   <li><a href="#precision-and-power" id="toc-precision-and-power" class="nav-link" data-scroll-target="#precision-and-power"><span class="header-section-number">8.3</span> Precision and power</a></li>
   <li><a href="#sec-pilotvalues" id="toc-sec-pilotvalues" class="nav-link" data-scroll-target="#sec-pilotvalues"><span class="header-section-number">8.4</span> Pilot parameter values</a></li>
   <li><a href="#sec-Enr" id="toc-sec-Enr" class="nav-link" data-scroll-target="#sec-Enr"><span class="header-section-number">8.5</span> Expected sample size</a></li>
-  <li><a href="#sec-arraysize" id="toc-sec-arraysize" class="nav-link" data-scroll-target="#sec-arraysize"><span class="header-section-number">8.6</span> Array size in relation to home range</a></li>
-  <li><a href="#the-n-r-tradeoff" id="toc-the-n-r-tradeoff" class="nav-link" data-scroll-target="#the-n-r-tradeoff"><span class="header-section-number">8.7</span> The <span class="math inline">n-r</span> tradeoff</a></li>
-  <li><a href="#sec-spacing" id="toc-sec-spacing" class="nav-link" data-scroll-target="#sec-spacing"><span class="header-section-number">8.8</span> Spacing and precision</a></li>
-  <li><a href="#sec-Amax" id="toc-sec-Amax" class="nav-link" data-scroll-target="#sec-Amax"><span class="header-section-number">8.9</span> Detectors required for uniform array</a></li>
-  <li><a href="#number-of-detectors-in-fixed-region" id="toc-number-of-detectors-in-fixed-region" class="nav-link" data-scroll-target="#number-of-detectors-in-fixed-region"><span class="header-section-number">8.10</span> Number of detectors in fixed region</a></li>
-  <li><a href="#clustered-designs" id="toc-clustered-designs" class="nav-link" data-scroll-target="#clustered-designs"><span class="header-section-number">8.11</span> Clustered designs</a></li>
-  <li><a href="#how-many-clusters" id="toc-how-many-clusters" class="nav-link" data-scroll-target="#how-many-clusters"><span class="header-section-number">8.12</span> How many clusters?</a></li>
-  <li><a href="#sec-spatialvariation" id="toc-sec-spatialvariation" class="nav-link" data-scroll-target="#sec-spatialvariation"><span class="header-section-number">8.13</span> Designing for spatial variation in parameters</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.14</span> Summary</a></li>
+  <li><a href="#a-useful-approximation" id="toc-a-useful-approximation" class="nav-link" data-scroll-target="#a-useful-approximation"><span class="header-section-number">8.6</span> A useful approximation</a></li>
+  <li><a href="#sec-arraysize" id="toc-sec-arraysize" class="nav-link" data-scroll-target="#sec-arraysize"><span class="header-section-number">8.7</span> Array size versus home range</a></li>
+  <li><a href="#sec-tradeoff" id="toc-sec-tradeoff" class="nav-link" data-scroll-target="#sec-tradeoff"><span class="header-section-number">8.8</span> The <span class="math inline">n-r</span> tradeoff</a></li>
+  <li><a href="#sec-spacing" id="toc-sec-spacing" class="nav-link" data-scroll-target="#sec-spacing"><span class="header-section-number">8.9</span> Spacing and precision</a></li>
+  <li><a href="#sec-Amax" id="toc-sec-Amax" class="nav-link" data-scroll-target="#sec-Amax"><span class="header-section-number">8.10</span> Detectors required for uniform array</a></li>
+  <li><a href="#number-of-detectors-in-fixed-region" id="toc-number-of-detectors-in-fixed-region" class="nav-link" data-scroll-target="#number-of-detectors-in-fixed-region"><span class="header-section-number">8.11</span> Number of detectors in fixed region</a></li>
+  <li><a href="#clustered-designs" id="toc-clustered-designs" class="nav-link" data-scroll-target="#clustered-designs"><span class="header-section-number">8.12</span> Clustered designs</a></li>
+  <li><a href="#how-many-clusters" id="toc-how-many-clusters" class="nav-link" data-scroll-target="#how-many-clusters"><span class="header-section-number">8.13</span> How many clusters?</a></li>
+  <li><a href="#sec-spatialvariation" id="toc-sec-spatialvariation" class="nav-link" data-scroll-target="#sec-spatialvariation"><span class="header-section-number">8.14</span> Designing for spatial variation in parameters</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.15</span> Summary</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -446,7 +447,8 @@ window.Quarto = {
 
 </header><p></p>
 <p>Study design for SECR brings together many disparate considerations, some external to SECR itself (goals, cost, logistics). In this chapter we hope to build an understanding of the working properties of SECR and integrate the external considerations into a strategy for effective study design.</p>
-<p>The key variables are the choice of methods for detection and individual identification, the number and placement of detectors, and the duration of sampling. The available detection and identification methods vary from taxon to taxon, and we do not consider them in detail. Cost is an ever-present constraint on the remaining variables, but we leave it to the end.</p>
+<p>Defining the area of interest is a necessary first step towards rational study design. By ‘area of interest’ we mean the geographic region for which an estimate of population density or population size is required. When the goal is to characterise the density of a species in a particular habitat it is tempting to think that “any patch will do”, but defining the area, and hence the scope of inference, is an important discipline. Even when the primary goal is to infer the relationship between density and habitat covariates, rather than to estimate average density or population size, defining a region ties the model to particular patterns of variation in the covariates. Goals, cost, logistics, and tradeoffs among these factors, will determine the area of interest: we cannot say much more.</p>
+<p>The key design variables are the choice of methods for detection and individual identification, the number and placement of detectors, and the duration of sampling. The available detection and identification methods vary from taxon to taxon, and we do not consider them in detail. Cost is an ever-present constraint on the remaining variables, but we leave it to the end.</p>
 <p>Tools for study design are provided in the R package <strong>secrdesign</strong> and its online interface <a href="https://www.stats.otago.ac.nz/secrdesignapp/">secrdesignapp</a>. Simulation of candidate designs is a central method, but for clarity we defer instruction on that until <a href="17-simulation.html" class="quarto-xref"><span>Chapter 17</span></a>.</p>
 <section id="studies-focussing-on-design" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="studies-focussing-on-design">
 <span class="header-section-number">8.1</span> Studies focussing on design</h2>
@@ -458,6 +460,28 @@ window.Quarto = {
 <p>We list here some minimum data requirements that might be labelled “assumptions” but are more fundamental. They should be addressed by appropriate study design.</p>
 <p><strong>Requirement 1. Sampling representative of the area of interest</strong></p>
 <p>This requirement is important and easy to overlook. The problem takes care of itself when detectors are placed evenly throughout the area of interest, exposing all individuals to a similar probability of detection. This is usually too costly when the area of interest is large. Sub-sampling is then called for, and we consider the options later.</p>
+<p>Deliberate, statistically non-representative, placement of detectors may be justified in certain studies, specifically when the goal is to infer the relationship between density and habitat variables. It is then optimal to sample along the environmental gradients of interest. We do not address study design for this case.</p>
+<div id="note-modelalternative" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+More on modelling as an alternative to representative sampling
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Our emphasis on representative sampling may seem over-the-top. SECR is model-based and the variance estimates make no assumptions regarding the sampling design. Sampling deliberately across environmental gradients may well provide the best information on particular covariate effects, and a fitted model with these covariates may be extrapolated across the area of interest to estimate average density. Nevertheless, we advocate representative sampling because it protects against vulnerabilities of a purely model-based approach:</p>
+<ul>
+<li>density may be non-uniform for reasons not related to any observable covariate (e.g., historical disease outbreaks)</li>
+<li>covariates are not causal, and different correlations may apply in unsampled parts of the region</li>
+<li>extrapolation to values of the covariate(s) that are rare or absent in the data is risky, especially with the log-linear models commonly used.</li>
+</ul>
+</div>
+</div>
+</div>
 <p><strong>Requirement 2. Many individuals detected more than once </strong></p>
 <p>This requirement is common to all capture–recapture methods. Estimation of detection parameters conditions on the first detection, and detections after the first are needed to estimate a non-zero detection rate. The question ‘How many is enough?’ is addressed later.</p>
 <p><strong>Requirement 3. Spread adequate to estimate spatial scale of detection</strong></p>
@@ -484,7 +508,7 @@ Figure&nbsp;8.1: Three scenarios for array size in relation to home range size. 
 <p></p>
 <p>Precise estimates have narrow confidence intervals and high power to detect change. Precision and bias jointly determine the accuracy of estimates, measured by the root-mean-square error (the difference between estimates and the true value). Bias is typically a minor component, and for now we assume it is negligible.</p>
 <p>Precision is conveniently measured by its inverse, the relative standard error (RSE) where <span class="math inline">\mathrm{RSE}(\hat \theta) = \widehat{\mathrm{SE}}(\hat \theta) / {\hat \theta}</span> for estimate <span class="math inline">\hat \theta</span> of parameter <span class="math inline">\theta</span>. In statistics, the standard error is the square root of the sampling variance, estimated for MLE as described in <a href="03-theory.html#sec-confidenceintervals" class="quarto-xref"><span>Section 3.6</span></a>. Wildlife papers often use ‘CV’ for the RSE of estimates, but this confuses relative standard error and relative standard deviation.</p>
-<p>The question ‘What precision do I need?’ requires clarity on the purpose of the study. If the purpose is to compare density estimates from different times or places then the power to detect change of a given magnitude is a direct function of the initial <span class="math inline">\mathrm{RSE}(\hat D)</span> (<a href="#fig-power" class="quarto-xref">Fig.&nbsp;<span>8.2</span></a>). Although RSE = 0.2 is often touted as adequate “for management purposes”, estimates with RSE = 0.2 have low (<span class="math inline">\le</span> 50%) power to detect a change in density of even <span class="math inline">\pm</span> 50% at the usual <span class="math inline">\alpha = 0.05</span> (<a href="#fig-power" class="quarto-xref">Fig.&nbsp;<span>8.2</span></a>). If reliable estimates are vital for population management, as claimed routinely in methodological papers, then surely greater precision is required. RSE = 0.1 is a better general target.</p>
+<p>The question ‘What precision do I need?’ requires clarity on the purpose of the study. If the purpose is to compare density estimates from different times or places with the same effort then the power to detect change of a given magnitude is a direct function of the initial <span class="math inline">\mathrm{RSE}(\hat D)</span> (<a href="#fig-power" class="quarto-xref">Fig.&nbsp;<span>8.2</span></a>). Although RSE = 0.2 is often touted as adequate “for management purposes”, estimates with RSE = 0.2 have low (<span class="math inline">\le</span> 50%) power to detect a change in density of even <span class="math inline">\pm</span> 50% at the usual <span class="math inline">\alpha = 0.05</span> (<a href="#fig-power" class="quarto-xref">Fig.&nbsp;<span>8.2</span></a>). If reliable estimates are vital for population management, as claimed routinely in methodological papers, then surely greater precision is required. RSE = 0.1 is a better general target.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-power" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -497,7 +521,7 @@ Figure&nbsp;8.2: Power of a 2-sided test (<span class="math inline">\alpha = 0.0
 </div>
 </div>
 </div>
-<p>We lack a clear guide to required RSE in other studies, for which the effect size may be ill-defined. We have observed fitted models with <span class="math inline">\mathrm{RSE}(\hat D) \gg 0.2</span> to behave erratically with respect to AIC model selection, presumably because of sampling variance in the AIC values themselves.</p>
+<p>We lack a clear guide to required RSE in other studies, for which the effect size may be ill-defined. We have observed that fitted models with <span class="math inline">\mathrm{RSE}(\hat D) \gg 0.2</span> behave erratically with respect to AIC model selection, presumably because of sampling variance in the AIC values themselves.</p>
 </section><section id="sec-pilotvalues" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="sec-pilotvalues">
 <span class="header-section-number">8.4</span> Pilot parameter values</h2>
 <p></p>
@@ -508,8 +532,23 @@ Figure&nbsp;8.2: Power of a 2-sided test (<span class="math inline">\alpha = 0.0
 <li>indirect inference.</li>
 </ul>
 <p>Reviews of SECR studies are a useful source of pilot estimates <span class="citation" data-cites="Palmero2023">(e.g., <a href="A99-references.html#ref-Palmero2023" role="doc-biblioref">Palmero et al., 2023</a>)</span>. The hardest parameter to pin down is <span class="math inline">\lambda_0</span>, as this is very study-specific. The good news is that it has only a secondary effect on the relative merits of different array designs.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+hazard <span class="math inline">\lambda_0</span> vs probability <span class="math inline">g_0</span>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We emphasise <em>hazard</em> detection functions (intercept <span class="math inline">\lambda_0</span>) over <em>probability</em> detection functions (intercept <span class="math inline">g_0</span>) because the formulae for expected counts are straightforward (<a href="A11-expected-counts.html" class="quarto-xref"><span>Appendix K</span></a>). However, pilot values of the probability parameters are more commonly available. Note that the fitted <span class="math inline">\sigma</span> also differs. For design purposes, the parameters of the probability detection function (<span class="math inline">g_0, \sigma</span>) may be substituted for the corresponding parameters of the hazard detection functions (<span class="math inline">\lambda_0, \sigma</span>). If desired, the internal function <code>dfcast</code> of <strong>secrdesign</strong> provides a more precise match e.g., <code>secrdesign:::dfcast(detectfn = 'HN', detectpar=list(g0 = 0.2, sigma = 25))</code></p>
+</div>
+</div>
+</div>
 <p>Indirect inference is a murky option, but better than nothing, and there are some constraints. The quantity <span class="math inline">k = \sigma \sqrt D</span> (loosely described by <span class="citation" data-cites="edjq16">Efford et al. (<a href="A99-references.html#ref-edjq16" role="doc-biblioref">2016</a>)</span> as an index of home range overlap) usually falls in the range 0.3–1.3 for solitary species (M. Efford unpubl.). <strong>secr</strong> expresses <span class="math inline">D</span> in animals / ha and <span class="math inline">\sigma</span> in metres, so a factor of 100 is needed, and <span class="math inline">\sigma = \frac{100}{\sqrt{2D}}</span> is a good start (<span class="math inline">k \approx 0.707</span>).</p>
-<p>The intercept and spatial scale parameters of the <em>hazard</em> detection functions (<span class="math inline">\lambda_0, \sigma</span>) may be substituted for design purposes by the parameters of the corresponding <em>probability</em> detection function (<span class="math inline">g_0, \sigma</span>)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-kplot" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -522,7 +561,7 @@ Figure&nbsp;8.3: Relationship between density and the spatial scale parameter <s
 </div>
 </div>
 </div>
-<p>We can use the close analogy between the detection function and a home-range utilisation distribution to extract a pilot value of <span class="math inline">\sigma</span> from home range data. Most directly, a circular bivariate normal (BVN) model can be fitted to telemetry data; we then use the dispersion parameter directly as a pilot value of <span class="math inline">\sigma</span> for hazard half-normal detection. If the home range data have been summarised as the area <span class="math inline">a</span> within a notional 95% activity contour then the spatial scale parameter of the hazard half-normal is close to <span class="math inline">\sigma = \sqrt \frac{a}{6 \pi}</span> <span class="citation" data-cites="Jennrich1969">(<a href="A99-references.html#ref-Jennrich1969" role="doc-biblioref">Jennrich &amp; Turner, 1969</a> Eq. 13)</span><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>We can use the close analogy between the detection function and a home-range utilisation distribution to extract a pilot value of <span class="math inline">\sigma</span> from home range data. Most directly, a circular bivariate normal (BVN) model can be fitted to telemetry data; we then use the dispersion parameter directly as a pilot value of <span class="math inline">\sigma</span> for hazard half-normal detection. If the home range data have been summarised as the area <span class="math inline">a</span> within a notional 95% activity contour then the spatial scale parameter of the hazard half-normal is close to <span class="math inline">\sigma = \sqrt \frac{a}{6 \pi}</span> <span class="citation" data-cites="Jennrich1969">(<a href="A99-references.html#ref-Jennrich1969" role="doc-biblioref">Jennrich &amp; Turner, 1969</a> Eq. 13)</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -533,10 +572,10 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Simulation to compare study designs commonly rests on the assumption that the underlying detection process is constant. If parameters vary between layouts in a way not captured by the model (see example in <a href="07-validation.html#sec-salamanders" class="quarto-xref"><span>Section 7.5</span></a>) then extrapolation to novel layouts is unreliable. There is an analogous problem when locations are <a href="./06-assumptions.html#sec-independentwithinhr">serially correlated</a>: estimates of detection parameters (especially <span class="math inline">\sigma</span>) are then specific to the duration of the pilot study and cannot safely be extrapolated to other durations.</p>
+<p>Simulation to compare study designs commonly rests on the assumption that the underlying detection process is constant. If parameters vary between layouts in a way not captured by the model (see <a href="./07-validation.html#sec-salamanders">salamander</a> example) then extrapolation to novel layouts is unreliable. There is an analogous problem when locations are <a href="./06-assumptions.html#sec-independentwithinhr">serially correlated</a>: estimates of detection parameters (especially <span class="math inline">\sigma</span>) are then specific to the duration of the pilot study and cannot safely be extrapolated to other durations.</p>
 </div>
 </div>
-<!-- #### lambda0 from n -->
+<!-- #### lambda0 from n ? -->
 </section><section id="sec-Enr" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="sec-Enr">
 <span class="header-section-number">8.5</span> Expected sample size</h2>
 <p></p>
@@ -551,9 +590,8 @@ Warning
 <em>m</em> &nbsp; the total number of movements (re-detections at a detector different to the preceding one).</li>
 </ul>
 <p>The counts depend on the detector configuration, the extent of habitat (buffer width), and the type of detector (trap, proximity detector etc.) in addition to the parameter values. Formulae are given in <a href="A11-expected-counts.html" class="quarto-xref"><span>Appendix K</span></a>. Calculation is fast and the counts give insight on whether the data generated by a design are likely to be adequate. E(<em>r</em>) is a direct measure of Requirement 2 above. E(<em>m</em>) addresses Requirement 3a (‘Spacing too large’ in <a href="#fig-goldilocks3" class="quarto-xref">Fig.&nbsp;<span>8.1</span></a>).</p>
-<p><span class="citation" data-cites="eb19">Efford &amp; Boulanger (<a href="A99-references.html#ref-eb19" role="doc-biblioref">2019</a>)</span> found that E(<em>n</em>) and E(<em>r</em>) alone were often sufficient to predict the precision of SECR density estimates, and maximum precision was achieved when E(<em>n</em>) <span class="math inline">\approx</span> E(<em>r</em>).</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -562,14 +600,18 @@ Spatial recaptures
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The term ‘spatial recaptures’ corresponds loosely with our <em>m</em>. Spatial recaptures are a <em>sine qua non</em> of SECR, but their role in determining precision can be overstated. They are a consequence of Requirements 2 and 3, not an independent effect. Furthermore, movements are ill-defined when detections are aggregated by time, as then we cannot distinguish the capture histories ABABA and AAABB at detectors A and B (both are 3A, 2B).</p>
 </div>
 </div>
 </div>
-</section><section id="sec-arraysize" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="sec-arraysize">
-<span class="header-section-number">8.6</span> Array size in relation to home range</h2>
+</section><section id="a-useful-approximation" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="a-useful-approximation">
+<span class="header-section-number">8.6</span> A useful approximation</h2>
+<p><span class="citation" data-cites="eb19">Efford &amp; Boulanger (<a href="A99-references.html#ref-eb19" role="doc-biblioref">2019</a>)</span> found that E(<em>n</em>) and E(<em>r</em>) alone were often sufficient to predict the precision of SECR density estimates. The relationship is</p>
+<p><span class="math display"> \mathrm{RSE}(\hat D) \approx 1 / \sqrt{\mathrm{min} \{ \mathrm{E}(n), \mathrm{E}(r)\} }.</span> This formula supports intuition regarding the effect of particular designs on precision, especially the <a href="#sec-tradeoff">‘<em>n</em>–<em>r</em> tradeoff’</a> described later. Computation is much faster than estimating <span class="math inline">\hat D</span>. The approximation is used in the interactive Shiny application <a href="https://www.stats.otago.ac.nz/secrdesignapp/">secrdesignapp</a> and for <a href="#sec-algopt">algorithmic optimisation</a> <span class="citation" data-cites="dbss21">(<a href="A99-references.html#ref-dbss21" role="doc-biblioref">Durbach et al., 2021</a>)</span>. Limitations and refinements are discussed in the papers cited.</p>
+</section><section id="sec-arraysize" class="level2" data-number="8.7"><h2 data-number="8.7" class="anchored" data-anchor-id="sec-arraysize">
+<span class="header-section-number">8.7</span> Array size versus home range</h2>
 <p></p>
 <p>We lack a count statistic matching the second part of Requirement 3 (‘Array too small’ in <a href="#fig-goldilocks3" class="quarto-xref">Fig.&nbsp;<span>8.1</span></a>). We therefore define an <em>ad hoc</em> measure of sampling scale that we call the ‘extent ratio’: this is the diameter of the array (the distance between the most extreme detectors) divided by the nominal diameter of a 95% home range. The 95% home-range radius is <span class="math inline">r_{0.95} \approx 2.45 \sigma</span> for a BVN utilisation distribution (from the previous formula).</p>
 <div class="cell">
@@ -588,8 +630,8 @@ Figure&nbsp;8.4: Effect of array size on relative bias (RB) and relative root-me
 <p><span class="citation" data-cites="e11">Efford (<a href="A99-references.html#ref-e11" role="doc-biblioref">2011</a>)</span> simulated area-search data for a range of area sizes. Plotting those results with the extent ratio as the x-axis shows a similar pattern to <a href="#fig-ARRplot" class="quarto-xref">Fig.&nbsp;<span>8.4</span></a> (see <a href="https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/ARR/secr-simulations-ARR.html">GitHub</a>).</p>
 <!-- Other sources -->
 <p>The extent ratio does not provide a precise criterion because it combines two somewhat arbitrary measures (array diameter, 95% home range diameter). What the simulations reveal about array size can be summed up in a simple rule: the grid or searched area should be at least the size of the home range, and larger arrays provide greater robustness and accuracy.</p>
-</section><section id="the-n-r-tradeoff" class="level2" data-number="8.7"><h2 data-number="8.7" class="anchored" data-anchor-id="the-n-r-tradeoff">
-<span class="header-section-number">8.7</span> The <span class="math inline">n-r</span> tradeoff</h2>
+</section><section id="sec-tradeoff" class="level2" data-number="8.8"><h2 data-number="8.8" class="anchored" data-anchor-id="sec-tradeoff">
+<span class="header-section-number">8.8</span> The <span class="math inline">n-r</span> tradeoff</h2>
 <p></p>
 <p>The performance of the SECR density estimator depends on both the number of individuals <span class="math inline">n</span> and the number of re-detections <span class="math inline">r</span>. However, we cannot maximise their expected values simultaneously. E(<em>n</em>) is greatest when detectors are far apart and each detector samples a different set of individuals (AC). For binary proximity detectors E(<em>r</em>) is greatest when detectors are clumped together and declines monotonically with spacing; for multi-catch traps, E(<em>r</em>) increases and then declines (<a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>).</p>
 <div class="cell">
@@ -605,8 +647,8 @@ Figure&nbsp;8.5: Sample size as a function of detector spacing for two detector 
 </div>
 </div>
 <p>To maximise the sample size we seek a satisfactory compromise, an intermediate spacing of detectors that yields both high E(<em>n</em>) and high E(<em>r</em>). There is so far no evidence for weighting one more than the other; later simulations suggest aiming for E(<em>n</em>) <span class="math inline">\approx</span> E(<em>r</em>), as indicated by the vertical lines in <a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>. The number of movement recaptures <span class="math inline">m</span> follows the pattern of total recaptures <span class="math inline">r</span> and need not be considered separately.</p>
-</section><section id="sec-spacing" class="level2" data-number="8.8"><h2 data-number="8.8" class="anchored" data-anchor-id="sec-spacing">
-<span class="header-section-number">8.8</span> Spacing and precision</h2>
+</section><section id="sec-spacing" class="level2" data-number="8.9"><h2 data-number="8.9" class="anchored" data-anchor-id="sec-spacing">
+<span class="header-section-number">8.9</span> Spacing and precision</h2>
 <p></p>
 <p>We expect precision to improve with sample size. From the last section we understand that sample size depends somewhat subtly on detector spacing: wider spacing increases <span class="math inline">n</span> because a larger area is sampled, but it ultimately reduces <span class="math inline">r</span>. We next use simulation to demonstrate the effect on the precision. We measure precision by the relative standard error of density estimates <span class="math inline">\mathrm{RSE} (\hat D)</span>. In the following examples we assume a Poisson distribution for <span class="math inline">n</span> rather than the binomial distribution that results when <span class="math inline">N(A)</span> is <a href="./03-theory.html#sec-fixedN">fixed</a>.</p>
 <div class="cell">
@@ -627,45 +669,49 @@ Figure&nbsp;8.6: Relationship between precision and detector spacing for scenari
 <div class="cell-output-display">
 <div id="fig-spacingvocc" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-spacingvocc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="08-studydesign_files/figure-html/fig-spacingvocc-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;8.7: Effect of sampling intensity (number of occasions and \lambda_0) on optimal detector spacing from simulations. Base scenario as in Fig.&nbsp;fig-nrmplot."><img src="08-studydesign_files/figure-html/fig-spacingvocc-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
+<a href="08-studydesign_files/figure-html/fig-spacingvocc-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;8.7: Effect of sampling intensity (number of occasions and \lambda_0) on optimal detector spacing from simulations. Base scenario as for binary proximity detectors in Fig.&nbsp;fig-nrmplot."><img src="08-studydesign_files/figure-html/fig-spacingvocc-1.png" class="img-fluid figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spacingvocc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8.7: Effect of sampling intensity (number of occasions and <span class="math inline">\lambda_0</span>) on optimal detector spacing from simulations. Base scenario as in <a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>.
+Figure&nbsp;8.7: Effect of sampling intensity (number of occasions and <span class="math inline">\lambda_0</span>) on optimal detector spacing from simulations. Base scenario as for binary proximity detectors in <a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>.
 </figcaption></figure>
 </div>
 </div>
 </div>
 <p>The curves in <a href="#fig-spacingvocc" class="quarto-xref">Fig.&nbsp;<span>8.7</span></a> are given by <span class="math inline">R_{opt} = 2 \sqrt{\lambda_0 S}</span> where <span class="math inline">R_{opt}</span> is the optimal spacing in <span class="math inline">\sigma</span> units and <span class="math inline">S</span> is the number of occasions. The reason for this apparently tight relationship has yet to be determined, and it is unreliable for intensive sampling (large <span class="math inline">S\lambda_0</span>), as indicated by the simulations for <span class="math inline">\lambda_0 = 0.2</span> and <span class="math inline">S \ge 10</span>.</p>
 <!-- What if noccasions larger? lambda_0 * noccasions-->
-</section><section id="sec-Amax" class="level2" data-number="8.9"><h2 data-number="8.9" class="anchored" data-anchor-id="sec-Amax">
-<span class="header-section-number">8.9</span> Detectors required for uniform array</h2>
+</section><section id="sec-Amax" class="level2" data-number="8.10"><h2 data-number="8.10" class="anchored" data-anchor-id="sec-Amax">
+<span class="header-section-number">8.10</span> Detectors required for uniform array</h2>
 <p>Increasing imprecision of <span class="math inline">\hat D</span> and failure of estimation in many cases (indicated by white crosses in <a href="#fig-spacingplot2" class="quarto-xref">Fig.&nbsp;<span>8.6</span></a>) place a limit on the size of region <span class="math inline">A</span> that can be sampled with a uniform grid of <span class="math inline">K</span> detectors. At the optimum spacing (i.e.&nbsp;about <span class="math inline">2\sigma\sqrt{\lambda_0 S}</span>) we require <span class="math inline">K &gt;  A / (4\sigma^2\lambda_0 S)</span>.</p>
-<p>A region of interest with area <span class="math inline">A \gg 4K\sigma^2 \lambda_0 S</span> cannot be covered adequately with a uniform grid of <span class="math inline">K</span> detectors. Thus with <span class="math inline">\lambda_0 = 0.1</span> and <span class="math inline">\sigma = 50</span> m, sampling with 100 detectors for <span class="math inline">S = 5</span> occasions covers 50 ha at 71-m spacing<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. If <span class="math inline">\lambda_0 = 0.1</span> and <span class="math inline">\sigma = 1</span> km (implying larger home range and lower density), then sampling with 100 detectors for <span class="math inline">S = 5</span> occasions covers 200 km<sup>2</sup> at 1.4-km spacing.</p>
+<p>A region of interest with area <span class="math inline">A \gg 4K\sigma^2 \lambda_0 S</span> cannot be covered adequately with a uniform grid of <span class="math inline">K</span> detectors. Thus for binary proximity detectors and hazard half-normal detection with <span class="math inline">\lambda_0 = 0.1</span>,</p>
+<ul>
+<li>when <span class="math inline">\sigma = 50</span> m, sampling with 100 detectors for <span class="math inline">S = 5</span> occasions covers 50 ha at 71-m spacing</li>
+<li>when <span class="math inline">\sigma = 1</span> km (implying larger home range and lower density), then sampling with 100 detectors for <span class="math inline">S = 5</span> occasions covers 200 km<sup>2</sup> at 1.4-km spacing.</li>
+</ul>
 <p>The spacing may be stretched somewhat from the optimum if we are willing to accept suboptimal precision, but increasing spacing by more than 50% also runs the risk of bias (<a href="#fig-spacingplot2" class="quarto-xref">Fig.&nbsp;<span>8.6</span></a>).</p>
 <p>The ratio <span class="math inline">R_K = 4\sigma^2K/A</span> is a useful guide for planning, where <span class="math inline">K</span> is the number of detectors that can be deployed. <span class="math inline">R_K \ge 1.0</span> allows for a uniform grid, whereas for <span class="math inline">R_K \ll 1.0</span> there are too few detectors for an efficient uniform grid. Here we assume <span class="math inline">\sqrt{\lambda_0 S}\approx 1.0</span>.</p>
 <!-- Exercise: find out for yourself how n,r vary with number of occasions -->
 <!-- Contingent robustness: robust when the data are good -->
 <!-- Minimum data? What can I get away with? When should I not even try? -->
 <!-- ## Grid square -->
-</section><section id="number-of-detectors-in-fixed-region" class="level2" data-number="8.10"><h2 data-number="8.10" class="anchored" data-anchor-id="number-of-detectors-in-fixed-region">
-<span class="header-section-number">8.10</span> Number of detectors in fixed region</h2>
+</section><section id="number-of-detectors-in-fixed-region" class="level2" data-number="8.11"><h2 data-number="8.11" class="anchored" data-anchor-id="number-of-detectors-in-fixed-region">
+<span class="header-section-number">8.11</span> Number of detectors in fixed region</h2>
 <p>We have referred to <span class="math inline">2\sigma\sqrt{\lambda_0 S}</span> as an ‘optimum’ spacing for the scenario that the number of detectors is fixed. Increasing the number of detectors in an area of interest can be expected to increase sample sizes, particularly <span class="math inline">\mathrm E(r)</span>, and hence to improve on precision beyond the ‘optimum’. For a non-arbitrary area <span class="math inline">R_K &gt; 1.0</span> is entirely appropriate, and cost becomes the decider. The benefit from increasing the density of detectors may be small; for example, trebling the number of detectors in a 10-ha area from <span class="math inline">K_0 =  A / (4\sigma^2\lambda_0 S) = 62.5</span> resulted in only a 27% reduction in <span class="math inline">\mathrm{RSE}(\hat D)</span> for the base parameter values of <a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>.</p>
-</section><section id="clustered-designs" class="level2" data-number="8.11"><h2 data-number="8.11" class="anchored" data-anchor-id="clustered-designs">
-<span class="header-section-number">8.11</span> Clustered designs</h2>
+</section><section id="clustered-designs" class="level2" data-number="8.12"><h2 data-number="8.12" class="anchored" data-anchor-id="clustered-designs">
+<span class="header-section-number">8.12</span> Clustered designs</h2>
 <p></p>
 <p>We have assumed a regular grid of detectors with constant spacing. Regular grids have an almost mystical status in small mammal trapping <span class="citation" data-cites="obwa78">(<a href="A99-references.html#ref-obwa78" role="doc-biblioref">Otis et al., 1978</a>)</span> that can be justified, for non-spatial capture–recapture, by the need to expose every individual to the same probability of capture. Checking traps laid in straight lines is also easier than navigating on foot to random points.</p>
 <p>SECR removes the strict requirement for equal exposure, and large-scale studies often use vehicular transport and navigation by GPS, removing the advantage of straight lines. We use the term ‘clustered design’ for any layout of detectors that departs from a simple grid. Clustering may be geometrical, as in a systematic layout of regular subgrids, or incidental, as when detectors are placed at a simple random sample of sites or according to some other non-geometrical rule such as <a href="#sec-algopt">algorithmic optimisation</a>.</p>
-<section id="rationale" class="level3" data-number="8.11.1"><h3 data-number="8.11.1" class="anchored" data-anchor-id="rationale">
-<span class="header-section-number">8.11.1</span> Rationale</h3>
+<section id="rationale" class="level3" data-number="8.12.1"><h3 data-number="8.12.1" class="anchored" data-anchor-id="rationale">
+<span class="header-section-number">8.12.1</span> Rationale</h3>
 <p>The primary use for a clustered design is to survey a large region of interest with a limited number of detectors, while ensuring some close spacings to allow recaptures (<em>r, m</em>). It is impossible to meet Requirement 3a in this scenario without clustering. The threshold of area for a region to be considered ‘large’ was addressed <a href="#sec-Amax">above</a>.</p>
 <p>Local density almost certainly varies across any large region of interest. Clustering of detectors implies patchy sampling, with the risk that selective placement of detectors in either high- or low-density areas leads to biased estimates. Spatial variation in detection from excessive clustering also adds to the variance of estimates. The risks are minimised by selecting a widely distributed and spatially representative sample. This can be achieved with a randomly located systematic array of small subgrids <span class="citation" data-cites="c19">(e.g., <a href="A99-references.html#ref-c19" role="doc-biblioref">Clark, 2019</a>)</span>, and some other methods to be discussed.</p>
 <p>A secondary application of clustered designs is to encompass heterogeneous <span class="math inline">\sigma</span> (e.g., sex differences) by providing a range of spacings. <span class="citation" data-cites="drns21">Dupont et al. (<a href="A99-references.html#ref-drns21" role="doc-biblioref">2021, p. 8</a>)</span> supposed a general benefit of irregularity “to gain better resolution of movement distances for estimating <span class="math inline">\sigma</span>”, but this has yet to be demonstrated.</p>
 <p>Clustering of detectors can reduce the total distance that must be traveled to visit all detectors. If travel is a major cost then clustering may allow more detectors to be used. This applies regardless of the size of region. <!-- Kitikmeot example --></p>
-</section><section id="systematic-clustered-designs" class="level3" data-number="8.11.2"><h3 data-number="8.11.2" class="anchored" data-anchor-id="systematic-clustered-designs">
-<span class="header-section-number">8.11.2</span> Systematic clustered designs</h3>
+</section><section id="systematic-clustered-designs" class="level3" data-number="8.12.2"><h3 data-number="8.12.2" class="anchored" data-anchor-id="systematic-clustered-designs">
+<span class="header-section-number">8.12.2</span> Systematic clustered designs</h3>
 <section id="sec-subgrids" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="sec-subgrids">Subgrids</h4>
 <p>Random systematic designs usually provide a representative sample with lower sampling variance than a simple random sample <span class="citation" data-cites="c77 Thompson2012">(<a href="A99-references.html#ref-c77" role="doc-biblioref">Cochran, 1977</a>; <a href="A99-references.html#ref-Thompson2012" role="doc-biblioref">Thompson, 2012</a>)</span>. Any systematic design should have a random origin. For SECR each point on the systematic grid is the location of a subgrid. Subgrids may be any shape. We focus on square and hollow grids (<a href="#fig-cluster3x3" class="quarto-xref">Fig.&nbsp;<span>8.8</span></a>), but circles, hexagons, and straight lines are also possible.</p>
-<p>If subgrids are far apart then few individuals will be caught on more than one subgrid, and they can be designed and analysed as independent units <span class="citation" data-cites="c19">(e.g., <a href="A99-references.html#ref-c19" role="doc-biblioref">Clark, 2019</a>)</span>. For design this means that the spacing of detectors on each subgrid should be optimised according to the considerations already raised in <a href="#sec-Enr" class="quarto-xref"><span>Section 8.5</span></a> to <a href="#sec-spacing" class="quarto-xref"><span>Section 8.8</span></a>. For analysis it means that a homogeneous density model may be fitted to aggregated (‘mashed’) data from <span class="math inline">j</span> subgrids as if they were collected from a single subgrid with the shared geometry and <span class="math inline">j</span> times the density.</p>
+<p>If subgrids are far apart then few individuals will be caught on more than one subgrid, and they can be designed and analysed as independent units <span class="citation" data-cites="c19">(e.g., <a href="A99-references.html#ref-c19" role="doc-biblioref">Clark, 2019</a>)</span>. For design this means that the spacing of detectors on each subgrid should be optimised according to the considerations already raised in <a href="#sec-Enr" class="quarto-xref"><span>Section 8.5</span></a> to <a href="#sec-spacing" class="quarto-xref"><span>Section 8.9</span></a>. For analysis it means that a homogeneous density model may be fitted to aggregated (‘mashed’) data from <span class="math inline">j</span> subgrids as if they were collected from a single subgrid with the shared geometry and <span class="math inline">j</span> times the density.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-cluster3x3" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -710,8 +756,8 @@ Figure&nbsp;8.10: Spatial coverage design with 5 randomly oriented subgrids of 2
 </div>
 </div>
 </div>
-</section></section><section id="non-systematic-designs" class="level3" data-number="8.11.3"><h3 data-number="8.11.3" class="anchored" data-anchor-id="non-systematic-designs">
-<span class="header-section-number">8.11.3</span> Non-systematic designs</h3>
+</section></section><section id="non-systematic-designs" class="level3" data-number="8.12.3"><h3 data-number="8.12.3" class="anchored" data-anchor-id="non-systematic-designs">
+<span class="header-section-number">8.12.3</span> Non-systematic designs</h3>
 <p>Non-systematic designs result from algorithms for the placement of detectors that do not impose a particular geometry. One candidate is a simple random sample of points in the region of interest (SRS). Various algorithms improve on SRS with respect to spatial balance and efficiency. We focus on the Generalized Random Tessellation Stratified algorithm implemented by <span class="citation" data-cites="Dumelle2023">Dumelle et al. (<a href="A99-references.html#ref-Dumelle2023" role="doc-biblioref">2023</a>)</span> in the R package <strong>spsurvey</strong>, but there are other options <span class="citation" data-cites="Robertson2018">(<a href="A99-references.html#ref-Robertson2018" role="doc-biblioref">Robertson et al., 2018</a>)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -739,8 +785,8 @@ Figure&nbsp;8.11: Algorithmic optimisation of layout. (a) 2498 potential detecto
 </div>
 </div>
 <!-- This is not necessarily beneficial: estimates from a regular array with near-optimal spacing (@fig-spacingvocc) are usually more precise (e.g., @drns21 Appendix S5). However, for a large region, algorithmic optimisation provides an automated, hands-off alternative to deliberate (geometrical) clustering of detectors (1).  -->
-</section></section><section id="comparison-of-clustered-layouts" class="level3" data-number="8.11.4"><h3 data-number="8.11.4" class="anchored" data-anchor-id="comparison-of-clustered-layouts">
-<span class="header-section-number">8.11.4</span> Comparison of clustered layouts</h3>
+</section></section><section id="comparison-of-clustered-layouts" class="level3" data-number="8.12.4"><h3 data-number="8.12.4" class="anchored" data-anchor-id="comparison-of-clustered-layouts">
+<span class="header-section-number">8.12.4</span> Comparison of clustered layouts</h3>
 <p>There is no general way to navigate the multiplicity of clustered designs. As an example, we compare the preceding clustered designs for a particular scenario: 100 binary proximity detectors in a 1-km<sup>2</sup> region of interest for a species with <span class="math inline">\sigma = 0.02</span> km (<em>R<sub>K</sub></em> = 0.16) keeping other parameters as in <a href="#fig-nrmplot" class="quarto-xref">Fig.&nbsp;<span>8.5</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -868,8 +914,8 @@ Table&nbsp;8.1: Performance of seven sampling designs (<em>K</em> <span class="m
 </div>
 </figure>
 </div>
-</section></section><section id="how-many-clusters" class="level2" data-number="8.12"><h2 data-number="8.12" class="anchored" data-anchor-id="how-many-clusters">
-<span class="header-section-number">8.12</span> How many clusters?</h2>
+</section></section><section id="how-many-clusters" class="level2" data-number="8.13"><h2 data-number="8.13" class="anchored" data-anchor-id="how-many-clusters">
+<span class="header-section-number">8.13</span> How many clusters?</h2>
 <p>For the preceding comparison we fixed the number of detectors in advance. More realistically, we might set a target <span class="math inline">\mathrm{RSE}(\hat D)</span> and ask how many clusters (i.e.&nbsp;subgrids) are required. <span class="citation" data-cites="eb19">Efford &amp; Boulanger (<a href="A99-references.html#ref-eb19" role="doc-biblioref">2019</a>)</span> observed that if clusters are independent (widely spaced) then E(<em>n</em>) and E(<em>r</em>) both scale with the number of clusters <em>c</em>, and <span class="math inline">\mathrm{RSE}(\hat D)</span> scales with <span class="math inline">1/ \sqrt c</span>. Thus we can predict the precision for a single cluster and extrapolate to assemblages of clusters (<a href="#fig-clusternumber" class="quarto-xref">Fig.&nbsp;<span>8.13</span></a>). Having determined the required number of clusters we can decide on a systematic spacing or apply the <a href="#sec-spcosa">spatial coverage</a> method.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -883,8 +929,8 @@ Figure&nbsp;8.13: Overall <span class="math inline">\mathrm{RSE}(\hat D)</span> 
 </div>
 </div>
 </div>
-</section><section id="sec-spatialvariation" class="level2" data-number="8.13"><h2 data-number="8.13" class="anchored" data-anchor-id="sec-spatialvariation">
-<span class="header-section-number">8.13</span> Designing for spatial variation in parameters</h2>
+</section><section id="sec-spatialvariation" class="level2" data-number="8.14"><h2 data-number="8.14" class="anchored" data-anchor-id="sec-spatialvariation">
+<span class="header-section-number">8.14</span> Designing for spatial variation in parameters</h2>
 <p></p>
 <p>We have so far treated the parameters of the SECR model as constant across space. How should designs be modified to allow for spatial variation?</p>
 <p>We must first understand the interaction between spatial variation in density and sampling intensity. Variation in density alone is not a source of significant bias in SECR. However, when sampling is more intensive in areas of high density, or areas of low density, a model that assumes homogeneous density and sampling produces biased estimates.</p>
@@ -904,7 +950,7 @@ Figure&nbsp;8.14: Effect of spatially varying effort (grid size 6 x 6 vs 8 x 8) 
 </div>
 </div>
 </div>
-<p>Spatially representative sampling aims to avoid correlation between density and effort (<a href="#fig-spatialeffort" class="quarto-xref">Fig.&nbsp;<span>8.14</span></a> c). A strong spatial model for density overcomes the problem, but it cannot usually be guaranteed that suitable covariates will be found, and representative sampling insures against failure.</p>
+<p>Spatially representative sampling aims to avoid correlation between density and effort (<a href="#fig-spatialeffort" class="quarto-xref">Fig.&nbsp;<span>8.14</span></a> c). A strong spatial model for density overcomes the problem, but it cannot usually be guaranteed that suitable covariates will be found, and representative sampling insures against <a href="#note-modelalternative">model failure</a>.</p>
 <section id="stratified-sampling" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="stratified-sampling">Stratified sampling</h3>
 <p></p>
 <p>Deliberate stratification of effort is a special case. Stratification is used in conventional sampling to increase the precision of estimates for a given effort <span class="citation" data-cites="c77 Thompson2012">(e.g., <a href="A99-references.html#ref-c77" role="doc-biblioref">Cochran, 1977</a>; <a href="A99-references.html#ref-Thompson2012" role="doc-biblioref">Thompson, 2012</a>)</span>. We note that in SECR only detected individuals and their re-detections contribute to the estimation of detection parameters and, in this respect, effort in low-density areas is mostly wasted. Greater precision may therefore be achieved in some studies by concentrating effort where high density is expected. This requires care. A stratified analysis combines stratum-specific density estimates as follows.</p>
@@ -912,7 +958,7 @@ Figure&nbsp;8.14: Effect of spatially varying effort (grid size 6 x 6 vs 8 x 8) 
 <p>Then an estimate of overall density is <span class="math inline">\hat D = \sum_h W_h \hat D_h</span> and an estimate of the sampling variance is <span class="math inline">\widehat {\mathrm{var}} (\hat D) = \sum_{h=1}^H W_h^2 \widehat {\mathrm{var}} (D_h)</span>.</p>
 <p>The benefits of stratification for SECR have yet to be fully analysed. They are likely to be greatest when strata of contrasting density are easily distinguished, and when uncertainty regarding detection parameters (and hence the effective sampling area) dominates <span class="math inline">\mathrm{var}(n) = s^2</span> in the <a href="./05-theory-special-topics.html#sec-conditional">combined variance</a>.</p>
 <p>We conducted a simulation experiment with two density strata (40% and 160% of the overall average) and a constant total effort allocated differentially (<a href="#fig-stratifiedeffort" class="quarto-xref">Fig.&nbsp;<span>8.15</span></a>). Details are on <a href="https://htmlpreview.github.io/?https://github.com/MurrayEfford/secr-simulations/blob/main/STR/secr-simulations-STR.html">GitHub</a>. For this example precision was best when about 70% of detectors were placed in the high-density stratum, but the improvement over equal allocation was tiny (<span class="math inline">\Delta\mathrm{RSE} \approx 0.005</span>) for 10 occasions and small (<span class="math inline">\Delta\mathrm{RSE} \approx 0.013</span>) for 4 occasions. Effort may also be stratified by varying the number of sampling occasions.</p>
-<p>It may help to assume that detection parameters are uniform throughout (i.e.&nbsp;shared among strata); a formal test of detection homogeneity is likely have low power.</p>
+<p>It may help to assume that detection parameters are uniform throughout (i.e.&nbsp;shared among strata); a formal test of detection homogeneity is likely to have low power.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-stratifiedeffort" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -937,33 +983,30 @@ Figure&nbsp;8.16: Precision of overall density estimated with stratified effort.
 </div>
 </div>
 </div>
-<section id="density-model-as-alternative-to-representative-sampling" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="density-model-as-alternative-to-representative-sampling">Density model as alternative to representative sampling</h4>
-<p>Our emphasis on representative sampling may seem over the top. SECR is model-based and variance estimates do not depend on the design. Sampling deliberately across environmental gradients may well provide the best information on particular covariate effects, and a fitted model with these covariates may be extrapolated across the region of interest to estimate average density. We advocate representative sampling because it protects against vulnerabilities of a purely model-based approach: the reliance on a particular model, the assumption that it applies in unsampled parts of the region, and the hazard from extrapolation to unobserved values of the covariate(s).</p>
-<p>However, modelling is our only tool for handling heterogeneous detection.</p>
 <!-- ## Other topics -->
 <!-- ### Site selection -->
 <!-- Constraints on detector location may require deviation from a regular grid. Exactly how constraints should be included is an open question.  @drns21 and @dbss21 simply removed infeasible sites from the set of candidate sites for algorithmic optimisation. -->
 <!-- Often in context of random-within-grid-square designs that are convenient for planning, maintaining consistent intensity across surveys (given equal duration) -->
 <!-- Guidance from @Palmero2023 camera trapping: Their workflow Fig. 4 does not mention representativeness. Advocate "...increasing detection probability by focussing camera deployments at highly used sites (Sollmann et al. 2012, Green et al. 2020, Harmsen et al. 2020)"
 @DespresEinspenner2017 also promote selective placement Acknowledge biology?-->
-</section></section></section><section id="summary" class="level2" data-number="8.14"><h2 data-number="8.14" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">8.14</span> Summary</h2>
+</section></section><section id="summary" class="level2" data-number="8.15"><h2 data-number="8.15" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">8.15</span> Summary</h2>
 <p>The SECR method is very flexible, within limits. Our approach to study design for SECR is not prescriptive. Users should bear in mind these principles:</p>
 <ul>
-<li>sampling should be representative of the region of interest</li>
+<li>sampling should be representative of the area of interest</li>
 <li>without large samples a study may lack the statistical power to answer real-world questions (this is not unique to SECR)</li>
-<li>two scales are important - the size of the region of interest and the scale of movement/detection</li>
-<li>robustness to model misspecification is greatest when the sampling scale is well-matched to the scale of detection</li>
+<li>two scales are important - the size of the area of interest and the scale of movement/detection</li>
+<li>robustness to model misspecification is greatest when the detector array spans several home ranges (<a href="#fig-ARRplot" class="quarto-xref">Fig.&nbsp;<span>8.4</span></a>)</li>
 <li>precise estimation of density requires both many individuals (<em>n</em>) and many recaptures (<em>r</em>) and these aspects of sample size often entail a design tradeoff</li>
 <li>large areas may be sampled with clustered detectors in various configurations</li>
 <li>logistic feasibility and cost considerations may override power in deciding among designs</li>
-<li>spatially heterogeneous density is not problematic in itself, but becomes so when confounded with spatially heterogeneous detection</li>
+<li>unmodelled spatial heterogeneity of density is not problematic in itself, but becomes so when confounded with spatially heterogeneous detection, due either to known variation in effort or to unseen factors</li>
 <li>stratified sampling (concentrating sampling effort where density is predicted to be greater) has the potential to increase precision, but in our exploratory simulation the gains were minimal.</li>
 </ul>
 <p>It should be stressed that our simulation results (e.g., <a href="#fig-ARRplot" class="quarto-xref">Fig.&nbsp;<span>8.4</span></a>, <a href="#fig-spacingplot2" class="quarto-xref">Fig.&nbsp;<span>8.6</span></a>, <a href="#fig-spacingvocc" class="quarto-xref">Fig.&nbsp;<span>8.7</span></a>, <a href="#fig-stratifiedRSE" class="quarto-xref">Fig.&nbsp;<span>8.16</span></a>, and <a href="#tbl-designcomparison" class="quarto-xref">Table&nbsp;<span>8.1</span></a>) relate to particular scenarios, and the conclusions we draw may be reversed in other scenarios.</p>
 <!-- Design flowchart? -->
 <!-- Select marking and detection method -->
-<!-- Region of interest small enough to be  covered by uniform grid? -->
+<!-- area of interest small enough to be  covered by uniform grid? -->
 <!-- Access difficult or local habitat patchy, militating against arbitrary detector placement? -->
 <!--   Within-grid-square option -->
 <!-- What if marking extraordinarily expensive and sightings cheap? Needs more study. -->
@@ -1048,9 +1091,7 @@ Wolters, M. A. (2015). A genetic algorithm for selection of fixed-size subsets w
 </div>
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>The internal function <code>dfcast</code> of <strong>secrdesign</strong> provides a more precise match e.g., <code>secrdesign:::dfcast(detectfn = 'HN', detectpar=list(g0 = 0.2, sigma = 25))</code><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>More generally, <span class="math inline">\sigma = \sqrt \frac{a}{\pi \log [(1-p)^{-2}]}</span> where <span class="math inline">p</span> is the probability contour e.g., <span class="math inline">p = 0.95</span>. <span class="citation" data-cites="Jennrich1969">(<a href="A99-references.html#ref-Jennrich1969" role="doc-biblioref">Jennrich &amp; Turner, 1969</a> Eq. 12)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Calculations for binary proximity detectors and a hazard half-normal detection function.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>More generally, <span class="math inline">\sigma = \sqrt \frac{a}{\pi \log [(1-p)^{-2}]}</span> where <span class="math inline">p</span> is the probability contour <span class="citation" data-cites="Jennrich1969">(<a href="A99-references.html#ref-Jennrich1969" role="doc-biblioref">Jennrich &amp; Turner, 1969</a> Eq. 12)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1500,7 +1541,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
