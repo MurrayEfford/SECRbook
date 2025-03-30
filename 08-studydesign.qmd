@@ -4,7 +4,7 @@
 
 Study design for SECR brings together many disparate considerations, some external to SECR itself (goals, cost, logistics). In this chapter we hope to build an understanding of the working properties of SECR and integrate the external considerations into a strategy for effective study design. 
 
-Defining the **area of interest** is a necessary first step towards rational study design. By 'area of interest' we mean the geographic region for which an estimate of population density or population size is required. When the goal is to characterise the density of a species in a particular habitat it is tempting to think that "any patch will do", but defining the area, and hence the scope of inference, is an important discipline. Even when the primary goal is to infer the relationship between density and habitat covariates, rather than to estimate average density or population size, defining a region ties the model to particular patterns of variation in the covariates. Goals, cost, logistics, and tradeoffs among these factors, will determine the area of interest: we cannot say much more.
+Defining the **area of interest** is a necessary first step towards rational study design. By 'area of interest' we mean the geographic region for which an estimate of population density or population size is required. When the goal is to characterise the density of a species in a particular habitat it is tempting to think that "any patch will do", but defining the area, and hence the scope of inference, is an important discipline. Even when the primary goal is to infer the relationship between density and habitat covariates, rather than to estimate average density or population size, defining a region ties the model to particular patterns of variation in the covariates. Goals, cost, logistics, and tradeoffs among these factors, will determine the area of interest. These are study-specific, so we cannot say much more here.
 
 The key design variables are the choice of methods for detection and individual identification, the number and placement of detectors, and the duration of sampling. The available detection and identification methods vary from taxon to taxon, and we do not consider them in detail. Cost is an ever-present constraint on the remaining variables, but we leave it to the end.
 
@@ -31,9 +31,10 @@ Deliberate, statistically non-representative, placement of detectors may be just
 ::: {#note-modelalternative .callout-note  collapse=true}
 ## More on modelling as an alternative to representative sampling
 
-Our emphasis on representative sampling may seem over-the-top. SECR is model-based and the variance estimates make no assumptions regarding the sampling design. Sampling deliberately across environmental gradients may well provide the best information on particular covariate effects, and a fitted model with these covariates may be extrapolated across the area of interest to estimate average density. Nevertheless, we advocate representative sampling because it protects against vulnerabilities of a purely model-based approach:
+Our emphasis on representative and spatially balanced sampling may seem over-the-top. SECR is model-based and the variance estimates make no assumptions regarding the sampling design. Sampling deliberately across environmental gradients may well provide the best information on particular covariate effects, and a fitted model with these covariates may be extrapolated across the area of interest to estimate average density. Nevertheless, we advocate representative sampling because it protects against vulnerabilities of a purely model-based approach:
 
 * density may be non-uniform for reasons not related to any observable covariate (e.g., historical disease outbreaks)
+* spatial variation in detection parameters ($\lambda_0, \sigma$) is often omitted from models
 * covariates are not causal, and different correlations may apply in unsampled parts of the region
 * extrapolation to values of the covariate(s) that are rare or absent in the data is risky, especially with the log-linear models commonly used.
 :::
@@ -139,6 +140,7 @@ We can use the close analogy between the detection function and a home-range uti
 \index{Study design!scalability}
 
 ::: {.callout-warning}
+## Scalability
 Simulation to compare study designs commonly rests on the assumption that the underlying detection process is constant. If parameters vary between layouts in a way not captured by the model (see [salamander](07-validation.qmd#sec-salamanders) example) then extrapolation to novel layouts is unreliable. There is an analogous problem when locations are [serially correlated](06-assumptions.qmd#sec-independentwithinhr): estimates of detection parameters (especially $\sigma$) are then specific to the duration of the pilot study and cannot safely be extrapolated to other durations.
 :::
 

@@ -447,7 +447,7 @@ window.Quarto = {
 
 </header><p> </p>
 <p>Study design for SECR brings together many disparate considerations, some external to SECR itself (goals, cost, logistics). In this chapter we hope to build an understanding of the working properties of SECR and integrate the external considerations into a strategy for effective study design.</p>
-<p>Defining the <strong>area of interest</strong> is a necessary first step towards rational study design. By ‘area of interest’ we mean the geographic region for which an estimate of population density or population size is required. When the goal is to characterise the density of a species in a particular habitat it is tempting to think that “any patch will do”, but defining the area, and hence the scope of inference, is an important discipline. Even when the primary goal is to infer the relationship between density and habitat covariates, rather than to estimate average density or population size, defining a region ties the model to particular patterns of variation in the covariates. Goals, cost, logistics, and tradeoffs among these factors, will determine the area of interest: we cannot say much more.</p>
+<p>Defining the <strong>area of interest</strong> is a necessary first step towards rational study design. By ‘area of interest’ we mean the geographic region for which an estimate of population density or population size is required. When the goal is to characterise the density of a species in a particular habitat it is tempting to think that “any patch will do”, but defining the area, and hence the scope of inference, is an important discipline. Even when the primary goal is to infer the relationship between density and habitat covariates, rather than to estimate average density or population size, defining a region ties the model to particular patterns of variation in the covariates. Goals, cost, logistics, and tradeoffs among these factors, will determine the area of interest. These are study-specific, so we cannot say much more here.</p>
 <p>The key design variables are the choice of methods for detection and individual identification, the number and placement of detectors, and the duration of sampling. The available detection and identification methods vary from taxon to taxon, and we do not consider them in detail. Cost is an ever-present constraint on the remaining variables, but we leave it to the end.</p>
 <p>Tools for study design are provided in the R package <strong>secrdesign</strong> and its online interface <a href="https://www.stats.otago.ac.nz/secrdesignapp/">secrdesignapp</a>. Simulation of candidate designs is a central method, but for clarity we defer instruction on that until <a href="17-simulation.html" class="quarto-xref"><span>Chapter 17</span></a>.</p>
 <section id="studies-focussing-on-design" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="studies-focussing-on-design">
@@ -473,9 +473,10 @@ More on modelling as an alternative to representative sampling
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Our emphasis on representative sampling may seem over-the-top. SECR is model-based and the variance estimates make no assumptions regarding the sampling design. Sampling deliberately across environmental gradients may well provide the best information on particular covariate effects, and a fitted model with these covariates may be extrapolated across the area of interest to estimate average density. Nevertheless, we advocate representative sampling because it protects against vulnerabilities of a purely model-based approach:</p>
+<p>Our emphasis on representative and spatially balanced sampling may seem over-the-top. SECR is model-based and the variance estimates make no assumptions regarding the sampling design. Sampling deliberately across environmental gradients may well provide the best information on particular covariate effects, and a fitted model with these covariates may be extrapolated across the area of interest to estimate average density. Nevertheless, we advocate representative sampling because it protects against vulnerabilities of a purely model-based approach:</p>
 <ul>
 <li>density may be non-uniform for reasons not related to any observable covariate (e.g., historical disease outbreaks)</li>
+<li>spatial variation in detection parameters (<span class="math inline">\lambda_0, \sigma</span>) is often omitted from models</li>
 <li>covariates are not causal, and different correlations may apply in unsampled parts of the region</li>
 <li>extrapolation to values of the covariate(s) that are rare or absent in the data is risky, especially with the log-linear models commonly used.</li>
 </ul>
@@ -569,7 +570,7 @@ Figure&nbsp;8.3: Relationship between density and the spatial scale parameter <s
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+Scalability
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1542,7 +1543,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
