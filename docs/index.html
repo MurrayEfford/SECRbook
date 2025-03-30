@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Murray Efford">
-<meta name="dcterms.date" content="2025-03-26">
+<meta name="dcterms.date" content="2025-03-30">
 <title>The SECR book</title>
 <style>
 code{white-space: pre-wrap;}
@@ -420,7 +420,7 @@ Version 0.0.0<br><br><br><img src="images/Nickinsnow2.png" class="img-fluid" sty
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 26, 2025</p>
+      <p class="date">March 30, 2025</p>
     </div>
   </div>
   
@@ -442,7 +442,7 @@ Estimation of density with non-spatial capture–recapture is dogged by uncertai
 <em>Reduced individual heterogeneity</em><br>
 Unmodelled individual heterogeneity of detection is a universal source of bias in capture–recapture <span class="citation" data-cites="lc24">(e.g., <a href="A99-references.html#ref-lc24" role="doc-biblioref">Laake &amp; Collier, 2024</a>)</span>. Spatial sampling is a potent source of heterogeneity, due to differential access to detectors. SECR models this component of heterogeneity, which then ceases to be a problem.</li>
 <li>
-<em>Scaleable detection model</em><br>
+<em>Scalable detection model</em><br>
 The detection model in SECR is built from components describing the interaction between a single individual and a single detector. Parameter estimates can therefore be used to simulate sampling with novel detector configurations, which is key to designing better studies.</li>
 <li>
 <em>Coherent adjustment for effort</em><br>
@@ -492,7 +492,7 @@ The Quarto source files, including R code, are at <a href="https://github.com/mu
 </section><section id="feedback" class="level2"><h2 class="anchored" data-anchor-id="feedback">Feedback</h2>
 <p>This is work in progress. If you find an error or would like to make a suggestion, please raise an issue on <a href="https://github.com/MurrayEfford/SECRbook">GitHub</a> or contact the author directly.</p>
 </section><section id="acknowledgments" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="acknowledgments">Acknowledgments</h2>
-<p>Brian Gerber, Rahel Sollmann, Cyril Milleret, and Joanne Potts gave helpful comments on early versions of some chapters. Rahel Sollmann contributed significantly to <a href="06-assumptions.html" class="quarto-xref"><span>6&nbsp; Assumptions and robustness</span></a>. Errors remain my own. Matt Schofield provided encouragement, answered some theoretical questions, and reviewed several chapters. Thanks to John Boulanger for his collaboration on study design and analysis over many projects, and to Alice Kenney for her snowshoe hare photograph.</p>
+<p>Ian Durbach, Brian Gerber, Dan Linden, Cyril Milleret, Joanne Potts, and Rahel Sollmann gave helpful comments on earlier versions of some chapters. For help with particular chapters I especially thank Rahel (<a href="06-assumptions.html" class="quarto-xref"><span>6&nbsp; Assumptions and robustness</span></a>) and Ian (<a href="08-studydesign.html" class="quarto-xref"><span>8&nbsp; Study design</span></a>). Errors remain my own. Matt Schofield provided encouragement, answered some theoretical questions, and reviewed several chapters. Thanks to John Boulanger for his collaboration on study design and analysis over many projects, and to Alice Kenney for her snowshoe hare photograph.</p>
 <p>Thanks for data -</p>
 <ul>
 <li>Ken Burnham: snowshoe hares <a href="02-example.html" class="quarto-xref"><span>2&nbsp; Simple example</span></a>
@@ -525,7 +525,7 @@ Dunedin, March 2025</p>
 Augustine, B. C., Royle, J. A., Kelly, M. J., Satter, C. B., Alonso, R. S., Boydston, E. E., &amp; Crooks, K. R. (2018). Spatial capture–recapture with partial identity: An application to camera traps. <em>The Annals of Applied Statistics</em>, <em>12</em>(1). <a href="https://doi.org/10.1214/17-aoas1091">https://doi.org/10.1214/17-aoas1091</a>
 </div>
 <div id="ref-be08" class="csl-entry" role="listitem">
-Borchers, D. L., &amp; Efford, M. G. (2008). Spatially explicit maximum likelihood methods for capture-recapture studies. <em>Biometrics</em>, <em>64</em>, 377–385.
+Borchers, D. L., &amp; Efford, M. G. (2008). Spatially explicit maximum likelihood methods for capture-recapture studies. <em>Biometrics</em>, <em>64</em>, 377–385. <a href="https://doi.org/10.1111/j.1541-0420.2007.00927.x">https://doi.org/10.1111/j.1541-0420.2007.00927.x</a>
 </div>
 <div id="ref-bf16" class="csl-entry" role="listitem">
 Borchers, D. L., &amp; Fewster, R. (2016). Spatial capture–recapture models. <em>Statistical Science</em>, <em>31</em>(2). <a href="https://doi.org/10.1214/16-sts557">https://doi.org/10.1214/16-sts557</a>
@@ -1016,7 +1016,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","openEffect":"zoom","loop":false,"closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
