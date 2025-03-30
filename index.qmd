@@ -12,7 +12,8 @@ Non-spatial capture--recapture methods are highly developed and powerful [@obwa7
     Estimation of density with non-spatial capture--recapture is dogged by uncertain edge effects. SECR explicitly accounts for edge effects so density estimates are unbiased.
 2.  *Reduced individual heterogeneity*\
     Unmodelled individual heterogeneity of detection is a universal source of bias in capture--recapture [e.g., @lc24]. Spatial sampling is a potent source of heterogeneity, due to differential access to detectors. SECR models this component of heterogeneity, which then ceases to be a problem.
-3.  *Scaleable detection model*\
+3.  *Scalable detection model*\
+\index{Study design!scalability}
     The detection model in SECR is built from components describing the interaction between a single individual and a single detector. Parameter estimates can therefore be used to simulate sampling with novel detector configurations, which is key to designing better studies.
 4.  *Coherent adjustment for effort*\
     Known variation in effort, including incomplete use of a detector array, is included directly in the model, without additional covariates or parameters.
@@ -77,7 +78,7 @@ This is work in progress. If you find an error or would like to make a suggestio
 
 ## Acknowledgments {.unnumbered}
 
-Brian Gerber, Rahel Sollmann, Cyril Milleret, and Joanne Potts gave helpful comments on early versions of some chapters. Rahel Sollmann contributed significantly to @sec-assumptions. Errors remain my own.
+Ian Durbach, Brian Gerber, Dan Linden, Cyril Milleret, Joanne Potts, and Rahel Sollmann gave helpful comments on earlier versions of some chapters. For help with particular chapters I especially thank Rahel (@sec-assumptions) and Ian (@sec-studydesign). Errors remain my own.
 Matt Schofield provided encouragement, answered some theoretical questions, and reviewed several chapters. 
 Thanks to John Boulanger for his collaboration on study design and analysis over many projects, and to Alice Kenney for her snowshoe hare photograph.
 
