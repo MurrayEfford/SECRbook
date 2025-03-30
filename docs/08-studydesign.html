@@ -445,9 +445,9 @@ window.Quarto = {
   
 
 
-</header><p></p>
+</header><p> </p>
 <p>Study design for SECR brings together many disparate considerations, some external to SECR itself (goals, cost, logistics). In this chapter we hope to build an understanding of the working properties of SECR and integrate the external considerations into a strategy for effective study design.</p>
-<p>Defining the area of interest is a necessary first step towards rational study design. By ‘area of interest’ we mean the geographic region for which an estimate of population density or population size is required. When the goal is to characterise the density of a species in a particular habitat it is tempting to think that “any patch will do”, but defining the area, and hence the scope of inference, is an important discipline. Even when the primary goal is to infer the relationship between density and habitat covariates, rather than to estimate average density or population size, defining a region ties the model to particular patterns of variation in the covariates. Goals, cost, logistics, and tradeoffs among these factors, will determine the area of interest: we cannot say much more.</p>
+<p>Defining the <strong>area of interest</strong> is a necessary first step towards rational study design. By ‘area of interest’ we mean the geographic region for which an estimate of population density or population size is required. When the goal is to characterise the density of a species in a particular habitat it is tempting to think that “any patch will do”, but defining the area, and hence the scope of inference, is an important discipline. Even when the primary goal is to infer the relationship between density and habitat covariates, rather than to estimate average density or population size, defining a region ties the model to particular patterns of variation in the covariates. Goals, cost, logistics, and tradeoffs among these factors, will determine the area of interest: we cannot say much more.</p>
 <p>The key design variables are the choice of methods for detection and individual identification, the number and placement of detectors, and the duration of sampling. The available detection and identification methods vary from taxon to taxon, and we do not consider them in detail. Cost is an ever-present constraint on the remaining variables, but we leave it to the end.</p>
 <p>Tools for study design are provided in the R package <strong>secrdesign</strong> and its online interface <a href="https://www.stats.otago.ac.nz/secrdesignapp/">secrdesignapp</a>. Simulation of candidate designs is a central method, but for clarity we defer instruction on that until <a href="17-simulation.html" class="quarto-xref"><span>Chapter 17</span></a>.</p>
 <section id="studies-focussing-on-design" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="studies-focussing-on-design">
@@ -458,7 +458,7 @@ window.Quarto = {
 <span class="header-section-number">8.2</span> Data requirements for SECR</h2>
 <p></p>
 <p>We list here some minimum data requirements that might be labelled “assumptions” but are more fundamental. They should be addressed by appropriate study design.</p>
-<p><strong>Requirement 1. Sampling representative of the area of interest</strong></p>
+<p><strong>Requirement 1. Sampling representative of the area of interest</strong> </p>
 <p>This requirement is important and easy to overlook. The problem takes care of itself when detectors are placed evenly throughout the area of interest, exposing all individuals to a similar probability of detection. This is usually too costly when the area of interest is large. Sub-sampling is then called for, and we consider the options later.</p>
 <p>Deliberate, statistically non-representative, placement of detectors may be justified in certain studies, specifically when the goal is to infer the relationship between density and habitat variables. It is then optimal to sample along the environmental gradients of interest. We do not address study design for this case.</p>
 <div id="note-modelalternative" class="callout callout-style-default callout-note callout-titled">
@@ -562,6 +562,7 @@ Figure&nbsp;8.3: Relationship between density and the spatial scale parameter <s
 </div>
 </div>
 <p>We can use the close analogy between the detection function and a home-range utilisation distribution to extract a pilot value of <span class="math inline">\sigma</span> from home range data. Most directly, a circular bivariate normal (BVN) model can be fitted to telemetry data; we then use the dispersion parameter directly as a pilot value of <span class="math inline">\sigma</span> for hazard half-normal detection. If the home range data have been summarised as the area <span class="math inline">a</span> within a notional 95% activity contour then the spatial scale parameter of the hazard half-normal is close to <span class="math inline">\sigma = \sqrt \frac{a}{6 \pi}</span> <span class="citation" data-cites="Jennrich1969">(<a href="A99-references.html#ref-Jennrich1969" role="doc-biblioref">Jennrich &amp; Turner, 1969</a> Eq. 13)</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p></p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1541,7 +1542,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
