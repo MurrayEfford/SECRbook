@@ -18,7 +18,7 @@ website:
   site-url: https://MurrayEfford.github.io/SECRbook/
   
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   
 book: 
   title: The SECR book
