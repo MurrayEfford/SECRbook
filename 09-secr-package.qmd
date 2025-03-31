@@ -121,7 +121,7 @@ The primary documentation for **secr** is in the help pages that accompany the p
 
 The consolidated help pages are in the [manual](https://CRAN.R-project.org/package=secr/secr.pdf). Searching this pdf is a powerful way to locate a function for a particular task. 
 
-Other documentation has traditionally been in the form of pdf vignettes built with **knitr** and available at https://otago.ac.nz/density/SECRinR. That content has been included in this book.
+Other documentation has traditionally been in the form of pdf vignettes built with **knitr** and available at https://otago.ac.nz/density/SECRinR.html. That content has been included in this book.
 
 The  [GitHub repository](https://github.com/MurrayEfford/secr) holds the development version, and bugs may be reported there by raising an Issue. New versions will be posted on [CRAN] and noted on https://www.otago.ac.nz/density/, but there may be a delay. For information on changes in each version, type at the R prompt:
 
@@ -196,7 +196,7 @@ Numerical maximization has some implications for the user. Computation may be sl
 \index{Multi-threading}
 \index{R packages!RcppParallel}
 
-On processors with multiple cores it is possible to speed up computation by using cores in parallel. In  this happens automatically in `secr.fit` and a few other functions using the multi-threading paradigm of **RcppParallel** [@R-RcppParallel]. The number of threads may be set directly with the 'ncores' argument or with the separate function `setNumThreads`. Either way, the number of threads is stored in the environment variable RCPP_PARALLEL_NUM_THREADS.
+On processors with multiple cores it is possible to speed up computation by using cores in parallel. This happens automatically in `secr.fit` and a few other functions using the multi-threading paradigm of **RcppParallel** [@R-RcppParallel]. The number of threads may be set directly with the 'ncores' argument or with the separate function `setNumThreads`. Either way, the number of threads is stored in the environment variable RCPP_PARALLEL_NUM_THREADS.
 
 ### `details` -- miscellaneous arguments  {#sec-details}
 \index{secr.fit!details} 

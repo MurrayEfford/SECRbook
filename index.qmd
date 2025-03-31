@@ -60,17 +60,13 @@ Add-on packages extend the capability of **secr**:
 
 These packages are available from the [CRAN](https://cran.r-project.org/) repository -- just open R and type `install.packages('xxxx')` where xxxx is the package name.
 
-Other R packages for SECR may be found outside CRAN. A distinct maximum-likelihood implementation by @srl19 is available on GitHub (https://github.com/jaroyle/oSCR). An open-population package by Richard Glennie ([openpopscr](https://github.com/r-glennie/openpopscr)) is also available on GitHub.
+Other R packages for SECR may be found outside CRAN. A distinct maximum-likelihood implementation by @srl19 is available on GitHub (https://github.com/jaroyle/oSCR).
 
 ## Recommended citation {.unnumbered}
 
-(yet to be finalised)
+Efford, M. G. (2025) The SECR book. A handbook of spatially explicit capture--recapture methods. Version 1.0.0. *Zenodo* https://doi.org/10.5281/zenodo.15109938.  [pdf](https://doi.org/10.5281/zenodo.15109938)
 
-Efford, M. G. (2025) The SECR book. A handbook of spatially explicit capture--recapture methods. Version 1.0.0. *Zenodo* https://doi.org/10.5281/zenodo.XXXX
-
-The book is available online at <https://murrayefford.github.io/SECRbook/>.  
-See [here](https://github.com/MurrayEfford/SECRbook/blob/main/docs/The-SECR-book.pdf) for the most recent pdf.  
-The Quarto source files, including R code, are at <https://github.com/murrayefford/SECRbook>.
+The book is available online at <https://murrayefford.github.io/SECRbook/>. See [here](https://github.com/MurrayEfford/SECRbook/blob/main/docs/The-SECR-book.pdf) for the most recent pdf. The Quarto source files, including R code, are at <https://github.com/murrayefford/SECRbook>.
 
 ## Feedback
 
@@ -78,7 +74,7 @@ This is work in progress. If you find an error or would like to make a suggestio
 
 ## Acknowledgments {.unnumbered}
 
-Ian Durbach, Brian Gerber, Dan Linden, Cyril Milleret, Joanne Potts, and Rahel Sollmann gave helpful comments on earlier versions of some chapters. For help with particular chapters I especially thank Rahel (@sec-assumptions) and Ian (@sec-studydesign). Errors remain my own.
+Ian Durbach, Brian Gerber, Dan Linden, Cyril Milleret, Joanne Potts, and Rahel Sollmann gave helpful comments on earlier versions of some chapters. For help with particular chapters I especially thank Rahel (Chapter 6) and Ian (Chapter 8). Errors remain my own.
 Matt Schofield provided encouragement, answered some theoretical questions, and reviewed several chapters. 
 Thanks to John Boulanger for his collaboration on study design and analysis over many projects, and to Alice Kenney for her snowshoe hare photograph.
 

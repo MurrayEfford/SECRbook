@@ -86,6 +86,12 @@ $\mathrm{Pr}(n | \phi, \theta) = \Lambda^n \exp (-\Lambda) / n!$.
 If the population size in a defined area $A$ is considered to be [fixed](#sec-fixedN) 
 rather than Poisson then the distribution of $n$ is binomial with size $N(A)$.
 
+::: {.callout-note collapse=true}
+## Why $R^2$ ?
+The region of integration $R^2$ refers to the entire plane, an infinite extent in two dimensions. Why use this when we know animal populations do not go on forever, 
+and we later restrict integration to just part of the plane for computational reasons? The reason is that the integration over $R^2$ is a clear, model-based benchmark; restriction to a finite region $A$ is arbitrary and must be done deliberately, with awareness of the consequences. Restriction intrudes distractions such as whether $N(A)$ is fixed or Poisson.
+:::
+
 ### Detection histories {#Pr-omega}
 
 In general we have $$

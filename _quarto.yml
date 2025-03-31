@@ -14,12 +14,11 @@ crossref:
 nocite: |
   @Kendeigh1944
 
-citation:
-  type: book
-  url: https://www.otago.ac.nz/density
-
+website:
+  site-url: https://MurrayEfford.github.io/SECRbook/
+  
 metadata:
-  version: "0.0.0"
+  version: "1.0.0"
   
 book: 
   title: The SECR book

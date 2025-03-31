@@ -173,11 +173,11 @@ esaest <- sapply(lapply(fits, esa),mean)
 
 How can different functions produce nearly the same estimates? Remember that [$\hat D = n/a(\hat \theta)$](05-theory-special-topics.qmd#esa), and $n$ is the same for all models. Constant $\hat D$ therefore implies constant effective sampling area $a(\hat \theta)$. In other words, variation in $\hat \lambda_0$ and $\hat \sigma$ 'washes out' when they are combined in $a(\hat \theta)$. Under the four models $a(\hat \theta)$ is estimated as `r round(esaest[1:3],1)` and `r round(esaest[4],1)` ha. 
 
-### Detection parameters are nuisance parameters (mostly)
+### Detection parameters are mostly nuisance parameters
 
 The detection model and its parameters ($g_0$, $\lambda_0$, $\sigma$ etc.) provide the link between our observations and the state of the animal population represented by the parameter $D$ (density, distribution in space, trend etc.). Sub-models for $D$ are considered in @sec-density. But what interpretation should we attach to the detection parameters themselves? 
 
-The intercept $g_0$ is in a sense the probability of that an animal will be detected at the centre of its home range. The spatial scale of detection $\sigma$ relates to the size of the home range. These attributed meanings can aid intuitive understanding. However, we advise against a literal reading. The estimates have meaning only for a specified detection function and cannot meaningfully be compared across functions. Observe the 
+The intercept $g_0$ is in a sense the probability that an animal will be detected at the centre of its home range. The spatial scale of detection $\sigma$ relates to the size of the home range. These attributed meanings can aid intuitive understanding. However, we advise against a literal reading. The estimates have meaning only for a specified detection function and cannot meaningfully be compared across functions. Observe the different intercepts of the functions in @fig-choicedfparmplot.
 
 The halfnormal function is closest to a standard reference, but estimates of halfnormal $\sigma$ are sensitive to infrequent large movements. Care is also needed because some early writers omitted the factor 2 from the denominator, increasing estimates of $\sigma$ by $\sqrt 2$[^omitted2].
 

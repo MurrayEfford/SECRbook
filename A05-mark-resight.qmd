@@ -62,9 +62,9 @@ Not all detector types and options in **secr** will work with mark--resight data
 1. `marking` is the name of a special mask covariate, accessed like other covariates.
 
 ### Marking and sighting occasions
-Sampling occasions (intervals) are either marking occasions or sighting occasions. On marking occasions any recaptured animals are also recorded[^footnote4]. On sighting occasions newly caught animals are released unmarked. The body of the capthist object has one row for each individual detected on at least one marking occasion, and one column for each occasion, whether marking or sighting. 
+Sampling occasions (intervals) are either marking occasions or sighting occasions. On marking occasions any recaptured animals are also recorded[^footnoteA05a]. On sighting occasions newly caught animals are released unmarked. The body of the capthist object has one row for each individual detected on at least one marking occasion, and one column for each occasion, whether marking or sighting. 
 
-[^footnote4]: There may also be marking occasions on which recaptures are ignored, but this possibility has yet to be modelled.
+[^footnoteA05a]: There may also be marking occasions on which recaptures are ignored, but this possibility has yet to be modelled.
 
 The 'traps' object, a required attribute of any capthist object, has its own optional attribute `markocc` to distinguish marking occasions (1) from sighting occasions (0) (e.g., c(1,0,0,0,0) for marking on one occasion followed by four resighting occasions). A capthist object is recognised as a mark--resight dataset if its `traps` has a `markocc` attribute with at least one sighting occasion (i.e. `!all(markocc)`). Marking occasions and sighting occasions may be interspersed.
 
@@ -189,9 +189,9 @@ For sighting-only data we postulate that the marked animals are a random sample 
 
 ## Model fitting
 
-Properly prepared, a capthist object includes all the data for fitting a mark--resight model[^footnote8]. It is only necessary to call `secr.fit`. Here is an example in which we use a coarse mask (`nx = 32` instead of the default `nx = 64`) to speed things up. The predictor 'ts' and the new 'real' parameter [`pID`](#sec-pID) are explained in following sections.
+Properly prepared, a capthist object includes all the data for fitting a mark--resight model[^footnoteA05b]. It is only necessary to call `secr.fit`. Here is an example in which we use a coarse mask (`nx = 32` instead of the default `nx = 64`) to speed things up. The predictor 'ts' and the new 'real' parameter [`pID`](#sec-pID) are explained in following sections.
 
-[^footnote8]: A slight exception is the optional [`marking`]( #sec-areaspecification) mask covariate used for sighting-only data.
+[^footnoteA05b]: A slight exception is the optional [`marking`]( #sec-areaspecification) mask covariate used for sighting-only data.
 
 ```{r}
 #| label: fitMRCH
@@ -238,9 +238,9 @@ CAVEAT: the multi-threaded simulation code does not allow for potential non-inde
 
 ### Different parameter values on marking and sighting occasions {#sec-ts}
 
-Marking and sighting occasions share parameters by default. This may make sense for the spatial scale parameter (sigma ~ 1), but it is unlikely to hold for the baseline rate (intercept) g0 or lambda0. *Density estimates can be very biased if the difference is ignored*[^footnote9]. A new canned predictor 'ts' is introduced to distinguish marking and sighting occasions. For example g0 ~ ts will fit two levels of g0, one for marking occasions and one for sighting occasions. The same can be achieved with `g0 ~ tcov, timecov = factor(2-markocc)`. 
+Marking and sighting occasions share parameters by default. This may make sense for the spatial scale parameter (sigma ~ 1), but it is unlikely to hold for the baseline rate (intercept) g0 or lambda0. *Density estimates can be very biased if the difference is ignored*[^footnoteA05c]. A new canned predictor 'ts' is introduced to distinguish marking and sighting occasions. For example g0 ~ ts will fit two levels of g0, one for marking occasions and one for sighting occasions. The same can be achieved with `g0 ~ tcov, timecov = factor(2-markocc)`. 
 
-[^footnote9]: This is not an issue for sighting-only models as the marked fraction is not modelled.
+[^footnoteA05c]: This is not an issue for sighting-only models as the marked fraction is not modelled.
 
 To see the values associated with each level of 'ts' (i.e., marking and sighting occasions) we specify the `newdata` argument of `predict.secr`, as in [Adjustment for overdispersion](#sec-adjustoverdispersion).
 
@@ -287,9 +287,9 @@ It is possible in principle that the marked animals are distributed over an area
 
 Sighting-only datasets may entail the further complication that the number of marked animals in the population at the time of resighting is unknown (Model 3). This can happen if enough time has passed for some marked animals to have died or emigrated. It also arises if individuation relies on unique natural marks, but these are missing from some individuals (Rich et al. 2014).
 
-The resighting data do not include any all-zero detection histories, as the only way to know for certain that a marked animal is still present is to sight it at least once. The theory nevertheless allows a spatial model to be fitted[^footnote10]. 
+The resighting data do not include any all-zero detection histories, as the only way to know for certain that a marked animal is still present is to sight it at least once. The theory nevertheless allows a spatial model to be fitted[^footnoteA05d]. 
 
-[^footnote10]: The number of marked individuals may be estimated as a derived parameter if required.
+[^footnoteA05d]: The number of marked individuals may be estimated as a derived parameter if required.
 
 Data preparation is exactly as for sighting-only models with known number of marks, except that there are no all-zero histories. The unknown-marks model is fitted by setting the `secr.fit` argument `details = list(knownmarks = FALSE)`, (possibly along with other `details` components).
 

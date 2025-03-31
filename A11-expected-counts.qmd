@@ -2,13 +2,13 @@
 
 It can be useful to predict various count statistics from a fitted model or from hypothetical parameter values or from a design that has been altered without changing parameter values. Here we repeat and extend formulae from @eb19. See **secrdesign** and [secrdesign-Enrm.pdf] for an implementation.
 
-For convenience we formulate the detection process in terms of hazard $\lambda(d_k(\mathbf x))$ rather than probability $g(d_k(\mathbf x))$, but the two are interchangeable[^footnote4i]. The overall detection rate on occasion $s$ of an AC at location $\mathbf x$ is 
+For convenience we formulate the detection process in terms of hazard $\lambda(d_k(\mathbf x))$ rather than probability $g(d_k(\mathbf x))$, but the two are interchangeable[^footnoteA11a]. The overall detection rate on occasion $s$ of an AC at location $\mathbf x$ is 
 \begin{equation}
  \Lambda_s(\mathbf x) = \sum_K \lambda(d_k(\mathbf x)),
 \end{equation}
 and aggregating over occasions gives $\Lambda(\mathbf x) = \sum_s \Lambda_s(\mathbf x)$.
 
-[^footnote4i]: $\lambda(d_k(\mathbf x)) = -\log[1 - g(d_k(\mathbf x))]$.
+[^footnoteA11a]: $\lambda(d_k(\mathbf x)) = -\log[1 - g(d_k(\mathbf x))]$.
 
 If all potential detections are recorded then $\Lambda_s(\mathbf x)$ is the expected total number of detections on one occasion for an animal centred at $\mathbf x$. Only Poisson proximity detectors are assumed to act like this. Other detector types collect binary data (e.g. binary proximity detectors record only whether an individual appeared at least once or not at all at a detector on a certain occasion). Nevertheless, $\Lambda_s(\mathbf x)$ is useful for predicting the outcome for binary detector types as shown later. Single-catch traps are a special case for which there are not closed-form expressions for $\mathrm{E} (n)$ and $\mathrm{E} (r)$.
 

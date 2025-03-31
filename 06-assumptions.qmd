@@ -111,7 +111,7 @@ This overlaps with Assumption 3 and is covered [later](#sec-hrstationary).
 
 \index{Assumptions!identification}
 
-We can generally assume accurate identification on recapture of animals trapped and marked by conventional methods such as numbered leg bands or ear tags so long as these are not [lost](@sec-tagloss). However, identification may be unreliable with modern methods for passive sampling using natural marks (DNA from hair or faecal samples, and images from motion-sensitive cameras). This is a major limitation.
+We can generally assume accurate identification on recapture of animals trapped and marked by conventional methods such as numbered leg bands or ear tags so long as these are not [lost](#sec-tagloss). However, identification may be unreliable with modern methods for passive sampling using natural marks (DNA from hair or faecal samples, and images from motion-sensitive cameras). This is a major limitation.
 
 In genetic sampling there are two possible reasons for mis-identification: (i) there is too little variation at the chosen loci to distinguish all individuals in the sampled population, and (ii) genotyping is subject to error. @Mills2000, @Lukacs2005, @Waits2005, and @Lampa2013 reviewed the early literature, and citations of those reviews are a good entry point to the voluminous recent literature. @Sethi2014 provide technical advice. @Augustine2020 provide a useful summary and a model framework that encompasses the various errors. @Kodi2024 is a recent SECR study.
 
@@ -357,9 +357,9 @@ We introduced behavioural responses in @sec-detection. Behavioural responses may
 
 The discovery of a detector and experience of capture may result in either a positive (trap-happy) or negative (trap-shy) change in detection probability. The response may persist for the duration of sampling or be transient (Markovian) and apply only at the next sampling occasion. In SECR there is the further complication that the response may be general, applying across all detectors, or localised to the initial detector.  
 
-Each of these responses is readily modelled if the sequence of detections is known. This is generally not the case with proximity detectors, for which an animal may visit multiple detectors on one sampling occasion[^footnote1]. We therefore restrict consideration of learned responses to trapping data (single-catch and multi-catch traps). This is not a great loss, as proximity detectors are typically non-invasive and less likely than traps to affect behaviour, except when they are baited (the Great Smoky Mountains National Park [black bear dataset](https://www.otago.ac.nz/density/html/blackbear.html) is a good example).
+Each of these responses is readily modelled if the sequence of detections is known. This is generally not the case with proximity detectors, for which an animal may visit multiple detectors on one sampling occasion[^footnote6a]. We therefore restrict consideration of learned responses to trapping data (single-catch and multi-catch traps). This is not a great loss, as proximity detectors are typically non-invasive and less likely than traps to affect behaviour, except when they are baited (the Great Smoky Mountains National Park [black bear dataset](https://www.otago.ac.nz/density/html/blackbear.html) is a good example).
 
-[^footnote1]: A reviewer points out that the data are sufficient to model a detector-specific response at binary proximity detectors.
+[^footnote6a]: A reviewer points out that the data are sufficient to model a detector-specific response at binary proximity detectors.
 
 If a behavioural response is not modelled then it may cause a heavy bias in density estimates, positive for trap shyness and negative for trap happiness (@fig-Mbfigure). In [simulations] we describe the magnitude of the behavioural response by a 'recapture factor' by which the initial (naive) hazard is multiplied after first capture. We simulated recapture factors between 0.25 and 2.0, where 1.0 represents no behavioural response.  The bias is much reduced if the effect is detector-specific, but then $\hat \sigma$ is also biased. For the scenario used in these [simulations], the relative bias of density estimates fell between -10\% and +10\% for recapture factors between 0.5 and 2. In @sec-detection we estimated a much larger response by [deermice](10-detection-model.qmd#sec-behaviouralresponse) (about 10-fold, but with poor precision), although there was only a small difference in estimated density between the null and bk models. Behavioural responses are potentially important for SECR and deserve closer investigation.
 
@@ -657,9 +657,9 @@ for (tau in c(1,10,50,100)) {
 }
 ```
 
-One consequence of autocorrelated movement is that the overall spatial scale increases with the duration and decreases with autocorrelation. With respect to telemetry, @Otis1999[^footnote2] concluded that autocorrelation *per se* did not bias inference so long as summary statistics were not generalized beyond the temporal sampling frame: 
+One consequence of autocorrelated movement is that the overall spatial scale increases with the duration and decreases with autocorrelation. With respect to telemetry, @Otis1999[^footnote6b] concluded that autocorrelation *per se* did not bias inference so long as summary statistics were not generalized beyond the temporal sampling frame: 
 
-[^footnote2]: This interpretation was endorsed by @Fieberg2007, but disputed by @Noonan2019.
+[^footnote6b]: This interpretation was endorsed by @Fieberg2007, but disputed by @Noonan2019.
 
 > Sampling designs that predefine a time frame of interest, and that generate representative samples of an animal's movement during this time frame, should not be affected by length of the sampling interval and autocorrelation.
 

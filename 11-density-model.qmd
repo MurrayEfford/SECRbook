@@ -14,7 +14,7 @@ where $c_v(\mathbf x)$ is the value of the $v$-th covariate at point $\mathbf x$
 
 Although $D(\mathbf x;\phi)$ is often a smooth function, in **secr** we evaluate it only at the fixed points of the habitat mask (@sec-habitat). A mask defines the region of habitat relevant to a particular study: in the simplest case it is a buffered zone inclusive of the detector locations. More complex masks may exclude interior areas of non-habitat or have an irregular outline.
 
-A density model $D(\mathbf x;\phi)$ is specified in the 'model' argument of `secr.fit`[^footnote6a]. Spatial covariates, if any, are needed for each mask point; they are stored in the 'covariates' attribute of the mask. Results from fitting the model (including the estimated coefficients $\phi$) are saved in an object of class 'secr'. To visualise a fitted
+A density model $D(\mathbf x;\phi)$ is specified in the 'model' argument of `secr.fit`[^footnote11a]. Spatial covariates, if any, are needed for each mask point; they are stored in the 'covariates' attribute of the mask. Results from fitting the model (including the estimated coefficients $\phi$) are saved in an object of class 'secr'. To visualise a fitted
 density model we first evaluate it at each point on a mask with the function `predictDsurface`. This creates an object of class 'Dsurface'. A Dsurface is a mask with added density data, and plotting a Dsurface is like plotting a mask covariate.
 
 <br>
@@ -31,7 +31,7 @@ density model we first evaluate it at each point on a mask with the function `pr
 
 The conventional approach to density surfaces is to fit a model of absolute density by maximizing the 'full' likelihood. Until recently, maximizing the likelihood [conditional on $n$](05-theory-special-topics.qmd#sec-conditional), the number detected, was thought to work only when density was assumed to be uniform (homogeneous), placing it outside the scope of this chapter. However, recent extensions to **secr** allow models of *relative* density to be fitted by maximizing the conditional likelihood (`CL = TRUE` in `secr.fit`), and this has some advantages [@Efford2025]. Relative density differs from absolute density by a constant factor. This chapter stresses modelling absolute density and keeps [relative density](#sec-relativedensity2) for a section at the end.
 
-[^footnote6a]: It may also be specified in a user-written function supplied to
+[^footnote11a]: It may also be specified in a user-written function supplied to
 `secr.fit` (see @sec-densityappendix), but you are unlikely to need this.
 <br>
 
@@ -261,7 +261,7 @@ plot(ovmask, covariate = "DTR", breaks = seq(0,500,50),
 
 A resource selection function (RSF) was defined by @bvns02 as "any model that yields values proportional to the probability of use of a resource unit". An RSF combines habitat information from multiple sources in a single variable. Typically the function is estimated from telemetry data on marked individuals, and primarily describes individual-level behaviour [3rd-order habitat selection of @j80]. 
 
-However, the individual-level RSF is also a plausible hypothesis for 2nd-order habitat selection i.e. for modelling the relationship between habitat and population density. Then we interpret the RSF as a single variable that is believed to be proportional to the expected population density in each cell of a habitat mask.  
+However, the individual-level RSF is also a plausible hypothesis for 2nd-order habitat selection i.e. for modelling the relationship between habitat and population density. Then we interpret the RSF as a single variable that is believed to be proportional to the expected population density in each cell of a habitat mask. For example, @Proffitt2015 used an RSF developed independently from telemetry data on utilisation in relation to terrain and land cover to model spatial variation in the density of mountain lions *Puma concolor* in Montana.
 
 Suppose, for example, in folder datadir we have a polygon shapefile (RSF.shp, RSF.dbf etc.) with the attribute "rsf" defined for each polygon. Given mask and capthist objects "habmask" and "myCH", this code fits a SECR model that calibrates the RSF in terms of population density: 
 ```{r}
@@ -270,12 +270,14 @@ Suppose, for example, in folder datadir we have a polygon shapefile (RSF.shp, RS
 rsfshape <- sf::st_read(paste0(datadir, "/RSF.shp"))
 habmask <- addCovariates(habmask, rsfshape, columns = "rsf")
 secr.fit (myCH, mask = habmask, model = D ~ rsf - 1)
+# alternatively, fit a relative density model 
+secr.fit (myCH, mask = habmask, CL = TRUE, model = D ~ rsf)
 ```
 
 - "rsf" must be known for every pixel in the habitat mask 
 - Usually it make sense to fit the density model through the origin (rsf = 0 implies D = 0). This is not true of habitat suitability indices in general.
 
-This is a quite different approach to fitting multiple habitat covariates within **secr**, and one that should be considered. There are usually too few individuals in a SECR study to usefully fit models with multiple covariates of density, even given a large dataset such as our possum example. However, 3rd-order and 2nd-order habitat selection are conceptually distinct, and their relationship is an interesting research topic.
+This is a quite different approach to fitting multiple habitat covariates within **secr**, and one that should be considered. There are usually too few individuals in a SECR study to usefully fit models with multiple covariates of density, even given a large dataset such as our possum example. However, 3rd-order and 2nd-order habitat selection are conceptually distinct, and their relationship is an interesting research topic [e.g., @Linden2018].
 
 ### Regression splines
 \index{Regression spline!density}
@@ -421,9 +423,9 @@ Fitting a model provides estimates of its coefficients or 'beta parameters'; use
 
 The output from `predictDsurface` is a specialised mask object called a Dsurface (class "c('Dsurface', 'mask', 'data.frame')"). The covariate dataframe of a Dsurface has columns for the predicted density of each group (D.0 if there is only one). Usually when you print a mask you see only the x- and y-coordinates. The `print` method for Dsurface objects displays both the coordinates and the density values as one dataframe, as also do the `head` and `tail` methods.
 
-Use the arguments 'se.D' and 'cl.D' to request computation of the estimated standard error and/or upper and lower confidence limits for each mask point[^footnote6c]. If requested, values are saved as additional covariates of the output Dsurface (SE.0, lcl.0, and ucl.0 if there is only one group).
+Use the arguments 'se.D' and 'cl.D' to request computation of the estimated standard error and/or upper and lower confidence limits for each mask point[^footnote11b]. If requested, values are saved as additional covariates of the output Dsurface (SE.0, lcl.0, and ucl.0 if there is only one group).
 
-[^footnote6c]: Option available only for models specified in generalized linear model form with the 'model' argument of secr.fit, not for user-defined functions.
+[^footnote11b]: Option available only for models specified in generalized linear model form with the 'model' argument of secr.fit, not for user-defined functions.
 
 The plot method for a Dsurface object has arguments `(x, covariate = "D", group = NULL, plottype = "shaded", scale = 1, ...)`. `covariate` may either be a prefix (one of "D", "SE", "lcl", "ucl") or any full covariate name. 'plottype' may be one of "shaded", "dots", "persp", or "contour". A coloured legend is displayed centre-right (see ?plot.mask and ?strip.legend for options). 
 
