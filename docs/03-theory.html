@@ -651,6 +651,22 @@ L(\phi, \theta | \Omega ) = \mathrm{Pr}(n| \phi, \theta) \; \mathrm{Pr}(\Omega |
 \Lambda(\phi, \theta) = \int_{R^2} D(\mathbf x; \phi) \, p_\cdot(\mathbf x;\theta) \, d\mathbf x,
 \tag{3.2}</span></span> where <span class="math inline">D(\mathbf x; \phi)</span> is the density at <span class="math inline">\mathbf x</span> and <span class="math inline">p_\cdot(\mathbf x|\theta)</span> is the overall probability of detecting an AC at <span class="math inline">\mathbf x</span> (see <a href="#sec-pointdetectors" class="quarto-xref"><span>Section 3.4</span></a> and <a href="04-theory-area-search.html" class="quarto-xref"><span>Chapter 4</span></a>). Thus <span class="math inline">\mathrm{Pr}(n | \phi, \theta) = \Lambda^n \exp (-\Lambda) / n!</span>.</p>
 <p>If the population size in a defined area <span class="math inline">A</span> is considered to be <a href="#sec-fixedN">fixed</a> rather than Poisson then the distribution of <span class="math inline">n</span> is binomial with size <span class="math inline">N(A)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why <span class="math inline">R^2</span> ?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The region of integration <span class="math inline">R^2</span> refers to the entire plane, an infinite extent in two dimensions. Why use this when we know animal populations do not go on forever, and we later restrict integration to just part of the plane for computational reasons? The reason is that the integration over <span class="math inline">R^2</span> is a clear, model-based benchmark; restriction to a finite region <span class="math inline">A</span> is arbitrary and must be done deliberately, with awareness of the consequences. Restriction intrudes distractions such as whether <span class="math inline">N(A)</span> is fixed or Poisson.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="Pr-omega" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="Pr-omega"><span class="header-section-number">3.2.2</span> Detection histories</h3>
@@ -1466,7 +1482,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
- The SECR book. Version 0.0.0.  
+ The SECR book. Version 1.0.0.  
   </li>  
     <li class="nav-item">
  &nbsp;&nbsp; Copyright © 2025

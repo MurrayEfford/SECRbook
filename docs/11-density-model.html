@@ -721,18 +721,20 @@ Figure&nbsp;11.3: Orongorongo Valley possum study: distance to river
 <span class="header-section-number">11.3.5</span> Pre-computed resource selection functions</h3>
 <p></p>
 <p>A resource selection function (RSF) was defined by <span class="citation" data-cites="bvns02">Boyce et al. (<a href="A99-references.html#ref-bvns02" role="doc-biblioref">2002</a>)</span> as “any model that yields values proportional to the probability of use of a resource unit”. An RSF combines habitat information from multiple sources in a single variable. Typically the function is estimated from telemetry data on marked individuals, and primarily describes individual-level behaviour <span class="citation" data-cites="j80">(3rd-order habitat selection of <a href="A99-references.html#ref-j80" role="doc-biblioref">Johnson, 1980</a>)</span>.</p>
-<p>However, the individual-level RSF is also a plausible hypothesis for 2nd-order habitat selection i.e.&nbsp;for modelling the relationship between habitat and population density. Then we interpret the RSF as a single variable that is believed to be proportional to the expected population density in each cell of a habitat mask.</p>
+<p>However, the individual-level RSF is also a plausible hypothesis for 2nd-order habitat selection i.e.&nbsp;for modelling the relationship between habitat and population density. Then we interpret the RSF as a single variable that is believed to be proportional to the expected population density in each cell of a habitat mask. For example, <span class="citation" data-cites="Proffitt2015">Proffitt et al. (<a href="A99-references.html#ref-Proffitt2015" role="doc-biblioref">2015</a>)</span> used an RSF developed independently from telemetry data on utilisation in relation to terrain and land cover to model spatial variation in the density of mountain lions <em>Puma concolor</em> in Montana.</p>
 <p>Suppose, for example, in folder datadir we have a polygon shapefile (RSF.shp, RSF.dbf etc.) with the attribute “rsf” defined for each polygon. Given mask and capthist objects “habmask” and “myCH”, this code fits a SECR model that calibrates the RSF in terms of population density:</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rsfshape</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">datadir</span>, <span class="st">"/RSF.shp"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">habmask</span> <span class="op">&lt;-</span> <span class="fu">addCovariates</span><span class="op">(</span><span class="va">habmask</span>, <span class="va">rsfshape</span>, columns <span class="op">=</span> <span class="st">"rsf"</span><span class="op">)</span></span>
-<span><span class="fu">secr.fit</span> <span class="op">(</span><span class="va">myCH</span>, mask <span class="op">=</span> <span class="va">habmask</span>, model <span class="op">=</span> <span class="va">D</span> <span class="op">~</span> <span class="va">rsf</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">secr.fit</span> <span class="op">(</span><span class="va">myCH</span>, mask <span class="op">=</span> <span class="va">habmask</span>, model <span class="op">=</span> <span class="va">D</span> <span class="op">~</span> <span class="va">rsf</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co"># alternatively, fit a relative density model </span></span>
+<span><span class="fu">secr.fit</span> <span class="op">(</span><span class="va">myCH</span>, mask <span class="op">=</span> <span class="va">habmask</span>, CL <span class="op">=</span> <span class="cn">TRUE</span>, model <span class="op">=</span> <span class="va">D</span> <span class="op">~</span> <span class="va">rsf</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>“rsf” must be known for every pixel in the habitat mask</li>
 <li>Usually it make sense to fit the density model through the origin (rsf = 0 implies D = 0). This is not true of habitat suitability indices in general.</li>
 </ul>
-<p>This is a quite different approach to fitting multiple habitat covariates within <strong>secr</strong>, and one that should be considered. There are usually too few individuals in a SECR study to usefully fit models with multiple covariates of density, even given a large dataset such as our possum example. However, 3rd-order and 2nd-order habitat selection are conceptually distinct, and their relationship is an interesting research topic.</p>
+<p>This is a quite different approach to fitting multiple habitat covariates within <strong>secr</strong>, and one that should be considered. There are usually too few individuals in a SECR study to usefully fit models with multiple covariates of density, even given a large dataset such as our possum example. However, 3rd-order and 2nd-order habitat selection are conceptually distinct, and their relationship is an interesting research topic <span class="citation" data-cites="Linden2018">(e.g., <a href="A99-references.html#ref-Linden2018" role="doc-biblioref">Linden et al., 2018</a>)</span>.</p>
 </section><section id="regression-splines" class="level3" data-number="11.3.6"><h3 data-number="11.3.6" class="anchored" data-anchor-id="regression-splines">
 <span class="header-section-number">11.3.6</span> Regression splines</h3>
 <p></p>
@@ -1034,6 +1036,12 @@ Johnson, D. H. (1980). The comparison of usage and availability measurements for
 </div>
 <div id="ref-Kendeigh1944" class="csl-entry" role="listitem">
 Kendeigh, S. C. (1944). Measurement of bird populations. <em>Ecological Monographs</em>, <em>14</em>, 67–106. <a href="https://doi.org/10.2307/1961632">https://doi.org/10.2307/1961632</a>
+</div>
+<div id="ref-Linden2018" class="csl-entry" role="listitem">
+Linden, D. W., Sirén, A. P. K., &amp; Pekins, P. J. (2018). Integrating telemetry data into spatial capture–recapture modifies inferences on multi‐scale resource selection. <em>Ecosphere</em>, <em>9</em>(4). <a href="https://doi.org/10.1002/ecs2.2203">https://doi.org/10.1002/ecs2.2203</a>
+</div>
+<div id="ref-Proffitt2015" class="csl-entry" role="listitem">
+Proffitt, K. M., Goldberg, J. F., Hebblewhite, M., Russell, R., Jimenez, B. S., Robinson, H. S., Pilgrim, K., &amp; Schwartz, M. K. (2015). Integrating resource selection into spatial capture‐recapture models for large carnivores. <em>Ecosphere</em>, <em>6</em>, 1–15. <a href="https://doi.org/10.1890/es15-00001.1">https://doi.org/10.1890/es15-00001.1</a>
 </div>
 <div id="ref-w06" class="csl-entry" role="listitem">
 Wood, S. N. (2006). <em>Generalized additive models: An introduction with <span>R</span></em>. Chapman; Hall/CRC.
@@ -1482,7 +1490,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
 <li class="nav-item">
- The SECR book. Version 0.0.0.  
+ The SECR book. Version 1.0.0.  
   </li>  
     <li class="nav-item">
  &nbsp;&nbsp; Copyright © 2025
@@ -1493,7 +1501,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

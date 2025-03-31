@@ -710,7 +710,7 @@ Table&nbsp;9.3: Basic detector types in secr. See the appendices for <a href="./
 <p></p>
 <p>The primary documentation for <strong>secr</strong> is in the help pages that accompany the package. Help for a function is obtained in the usual way by typing a question mark at the R prompt, followed by the function name. Note the ‘Index’ link at the bottom of each help page – you will probably need to scroll down to find it. The index may also be accessed with <code><a href="https://rdrr.io/pkg/secr/man">help(package = secr)</a></code>. Static and potentially outdated versions of the help pages are available <a href="https://www.otago.ac.nz/density/html/">here</a>.</p>
 <p>The consolidated help pages are in the <a href="https://CRAN.R-project.org/package=secr/secr.pdf">manual</a>. Searching this pdf is a powerful way to locate a function for a particular task.</p>
-<p>Other documentation has traditionally been in the form of pdf vignettes built with <strong>knitr</strong> and available at https://otago.ac.nz/density/SECRinR. That content has been included in this book.</p>
+<p>Other documentation has traditionally been in the form of pdf vignettes built with <strong>knitr</strong> and available at https://otago.ac.nz/density/SECRinR.html. That content has been included in this book.</p>
 <p>The <a href="https://github.com/MurrayEfford/secr">GitHub repository</a> holds the development version, and bugs may be reported there by raising an Issue. New versions will be posted on <a href="https://cran.r-project.org/package=secr">CRAN</a> and noted on https://www.otago.ac.nz/density/, but there may be a delay. For information on changes in each version, type at the R prompt:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/news.html">news</a></span> <span class="op">(</span>package <span class="op">=</span> <span class="st">"secr"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -761,7 +761,7 @@ Table&nbsp;9.3: Basic detector types in secr. See the appendices for <a href="./
 </section><section id="ncores-multi-threading" class="level3" data-number="9.8.6"><h3 data-number="9.8.6" class="anchored" data-anchor-id="ncores-multi-threading">
 <span class="header-section-number">9.8.6</span> <code>ncores</code> – multi-threading</h3>
 <p> </p>
-<p>On processors with multiple cores it is possible to speed up computation by using cores in parallel. In this happens automatically in <code>secr.fit</code> and a few other functions using the multi-threading paradigm of <strong>RcppParallel</strong> <span class="citation" data-cites="R-RcppParallel">(<a href="A99-references.html#ref-R-RcppParallel" role="doc-biblioref">Allaire et al., 2023</a>)</span>. The number of threads may be set directly with the ‘ncores’ argument or with the separate function <code>setNumThreads</code>. Either way, the number of threads is stored in the environment variable RCPP_PARALLEL_NUM_THREADS.</p>
+<p>On processors with multiple cores it is possible to speed up computation by using cores in parallel. This happens automatically in <code>secr.fit</code> and a few other functions using the multi-threading paradigm of <strong>RcppParallel</strong> <span class="citation" data-cites="R-RcppParallel">(<a href="A99-references.html#ref-R-RcppParallel" role="doc-biblioref">Allaire et al., 2023</a>)</span>. The number of threads may be set directly with the ‘ncores’ argument or with the separate function <code>setNumThreads</code>. Either way, the number of threads is stored in the environment variable RCPP_PARALLEL_NUM_THREADS.</p>
 </section><section id="sec-details" class="level3" data-number="9.8.7"><h3 data-number="9.8.7" class="anchored" data-anchor-id="sec-details">
 <span class="header-section-number">9.8.7</span> <code>details</code> – miscellaneous arguments</h3>
 <p></p>
@@ -1295,7 +1295,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
 <li class="nav-item">
- The SECR book. Version 0.0.0.  
+ The SECR book. Version 1.0.0.  
   </li>  
     <li class="nav-item">
  &nbsp;&nbsp; Copyright © 2025
@@ -1306,7 +1306,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom"});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

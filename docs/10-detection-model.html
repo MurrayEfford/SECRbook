@@ -647,10 +647,10 @@ Figure&nbsp;10.3: HVP function fitted to snowshoe hare data with <span class="ma
 </div>
 </div>
 <p>How can different functions produce nearly the same estimates? Remember that <a href="./05-theory-special-topics.html#esa"><span class="math inline">\hat D = n/a(\hat \theta)</span></a>, and <span class="math inline">n</span> is the same for all models. Constant <span class="math inline">\hat D</span> therefore implies constant effective sampling area <span class="math inline">a(\hat \theta)</span>. In other words, variation in <span class="math inline">\hat \lambda_0</span> and <span class="math inline">\hat \sigma</span> ‘washes out’ when they are combined in <span class="math inline">a(\hat \theta)</span>. Under the four models <span class="math inline">a(\hat \theta)</span> is estimated as 46.4, 48.4, 45.9 and 46.7 ha.</p>
-</section><section id="detection-parameters-are-nuisance-parameters-mostly" class="level3" data-number="10.1.2"><h3 data-number="10.1.2" class="anchored" data-anchor-id="detection-parameters-are-nuisance-parameters-mostly">
-<span class="header-section-number">10.1.2</span> Detection parameters are nuisance parameters (mostly)</h3>
+</section><section id="detection-parameters-are-mostly-nuisance-parameters" class="level3" data-number="10.1.2"><h3 data-number="10.1.2" class="anchored" data-anchor-id="detection-parameters-are-mostly-nuisance-parameters">
+<span class="header-section-number">10.1.2</span> Detection parameters are mostly nuisance parameters</h3>
 <p>The detection model and its parameters (<span class="math inline">g_0</span>, <span class="math inline">\lambda_0</span>, <span class="math inline">\sigma</span> etc.) provide the link between our observations and the state of the animal population represented by the parameter <span class="math inline">D</span> (density, distribution in space, trend etc.). Sub-models for <span class="math inline">D</span> are considered in <a href="11-density-model.html" class="quarto-xref"><span>Chapter 11</span></a>. But what interpretation should we attach to the detection parameters themselves?</p>
-<p>The intercept <span class="math inline">g_0</span> is in a sense the probability of that an animal will be detected at the centre of its home range. The spatial scale of detection <span class="math inline">\sigma</span> relates to the size of the home range. These attributed meanings can aid intuitive understanding. However, we advise against a literal reading. The estimates have meaning only for a specified detection function and cannot meaningfully be compared across functions. Observe the</p>
+<p>The intercept <span class="math inline">g_0</span> is in a sense the probability that an animal will be detected at the centre of its home range. The spatial scale of detection <span class="math inline">\sigma</span> relates to the size of the home range. These attributed meanings can aid intuitive understanding. However, we advise against a literal reading. The estimates have meaning only for a specified detection function and cannot meaningfully be compared across functions. Observe the different intercepts of the functions in <a href="#fig-choicedfparmplot" class="quarto-xref">Fig.&nbsp;<span>10.2</span></a>.</p>
 <p>The halfnormal function is closest to a standard reference, but estimates of halfnormal <span class="math inline">\sigma</span> are sensitive to infrequent large movements. Care is also needed because some early writers omitted the factor 2 from the denominator, increasing estimates of <span class="math inline">\sigma</span> by <span class="math inline">\sqrt 2</span><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 <p>Continuing the snowshoe hare example: the estimates of <span class="math inline">\lambda_0</span> and <span class="math inline">\sigma</span> from HVP are surprisingly uncertain when considered on their own, yet the HVP estimate of density has about the same precision as other detection functions (<a href="#fig-choicedfparmplot" class="quarto-xref">Fig.&nbsp;<span>10.2</span></a>). How can this be? There is strong covariation in the sampling distributions of the two parameters that we plot using <code>ellipse.secr</code> in <a href="#fig-ellipseHVP" class="quarto-xref">Fig.&nbsp;<span>10.4</span></a>.</p>
 <div class="cell">
@@ -1607,7 +1607,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
 <li class="nav-item">
- The SECR book. Version 0.0.0.  
+ The SECR book. Version 1.0.0.  
   </li>  
     <li class="nav-item">
  &nbsp;&nbsp; Copyright © 2025
@@ -1618,7 +1618,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","loop":false,"selector":".lightbox"});
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
