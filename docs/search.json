@@ -54,7 +54,7 @@
     "href": "index.html#recommended-citation",
     "title": "The SECR book",
     "section": "Recommended citation",
-    "text": "Recommended citation\nEfford, M. G. (2025) The SECR book. A handbook of spatially explicit capture–recapture methods. Version 1.0.0. Zenodo https://doi.org/10.5281/zenodo.15109938. pdf\nThe book is available online at https://murrayefford.github.io/SECRbook/. See here for the most recent pdf. The Quarto source files, including R code, are at https://github.com/murrayefford/SECRbook.",
+    "text": "Recommended citation\nEfford, M. G. (2025) The SECR book. A handbook of spatially explicit capture–recapture methods. Version 1.0.0. Zenodo https://doi.org/10.5281/zenodo.15109938. pdf\nThe book is available online at https://murrayefford.github.io/SECRbook/. The Quarto source files, including R code, are at https://github.com/murrayefford/SECRbook. See the docs folder for the most recent pdf.",
     "crumbs": [
       "Foreword"
     ]
