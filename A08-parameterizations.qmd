@@ -78,7 +78,7 @@ expected $D = (k / r)^2$ or $r = k / \sqrt D$, where $r$ is a linear
 measure of home-range size (e.g., grid cell width) and $k$ is a constant
 of proportionality. In reality, the home-range model that underlies SECR
 detection functions does not require a hard edge, so the language of
-'partitioning' and @Huxley1934 ['s] 'elastic discs' does not quite fit.
+'partitioning' and 'elastic discs' [@Huxley1934] does not quite fit.
 However, the inverse-square relationship is empirically useful, and we
 conjecture that it may also arise from simple models for constant
 overlap of home ranges when density varies -- a topic for future
