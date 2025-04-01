@@ -837,3 +837,6 @@ Particular detection parameters may be estimated poorly even when density estima
 <!-- @Distiller2015 -->
 
 <!-- @Dupont2019 -->
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

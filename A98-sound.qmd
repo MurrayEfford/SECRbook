@@ -285,3 +285,6 @@ conditions).
 Time delays and bearings can readily be included in the likelihood, but models for these data types are not provided in **secr**. Ben Stevenson's package **ascr** is recommended for fitting such models (https://github.com/b-steve/ascr/). Some questions remain. In a sense, models using times and bearings are less elegant than those based on signal strength because an additional component is needed to
 explain detection and nondetection as a function of distance (the signal strength model serves both purposes). The ease with which time and bearing data may be collected varies with the recording technology and quality, as well as the study species.
 
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

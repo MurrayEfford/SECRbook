@@ -85,3 +85,6 @@ $$E(m) = \int \{ \Lambda(\mathbf x) - a(\mathbf x)\} \times b(\mathbf x) \times 
   
 [secrdesign-vignette.pdf]: https://www.otago.ac.nz/density/pdfs/secrdesign-vignette.pdf
 [secrdesign-Enrm.pdf]: https://www.otago.ac.nz/density/pdfs/secrdesign-Enrm.pdf
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

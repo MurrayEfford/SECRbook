@@ -297,3 +297,6 @@ Output from `predict.secr` for a multi-session model is automatically stratified
 [secr-trend.pdf]: https://www.otago.ac.nz/density/pdfs/secr-trend.pdf
 [secr-noneuclidean.pdf]: https://www.otago.ac.nz/density/pdfs/secr-noneuclidean.pdf
 [secr-multisession.pdf]: https://www.otago.ac.nz/density/pdfs/secr-multisession.pdf
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

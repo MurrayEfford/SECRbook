@@ -692,3 +692,6 @@ plot(rivers, add = TRUE, col = "blue")
 #|   them to a small home range and lambda0 is constant.
 knitr::include_graphics("figures/predictedpdot.png")
 ```
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

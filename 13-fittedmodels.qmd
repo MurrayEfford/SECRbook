@@ -373,3 +373,6 @@ a completed model, or to repeat just the variance estimation (Hessian) step.
 [`secr.test`]: https://www.otago.ac.nz/density/html/secr.test.html
 [`MCgof`]: https://www.otago.ac.nz/density/html/MCgof.html
 [`secr.refit`]: https://www.otago.ac.nz/density/html/secr.refit.html
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

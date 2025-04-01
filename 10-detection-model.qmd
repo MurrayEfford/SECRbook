@@ -484,3 +484,6 @@ The density estimates themselves are almost entirely unaffected by the choice of
 4. The function [`usagePlot`](https://www.otago.ac.nz/density/html/usagePlot.html) displays a bubble plot of spatially varying detector usage on one occasion. The arguments 'markused' and 'markvarying' of `plot.traps` may also be useful.
 5. Absolute duration does not always equate with effort. Animal activity may be concentrated in part of the day, or older DNA samples from hair snares may fail to amplify [@ebm13].
 6. Binary or count data from searches of polygons or transects [@e11] do not raise any new issues for including effort, at least when effort is homogeneous across each polygon or transect. Effects of varying polygon or transect size are automatically accommodated in the models of @sec-areasearches. Models for varying effort within polygons or transects have not been needed for problems encountered to date. Such variation might in any case be accommodated by splitting the searched areas or transects into smaller units that were more nearly homogeneous (see the [`snip`](https://www.otago.ac.nz/density/html/snip.html) function for splitting transects).
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

@@ -30,3 +30,6 @@ The CAPTURE software and datasets are available from a [USGS archive](https://ee
 [captdata]: https://www.otago.ac.nz/density/html/secrdemo.html
 [skink]: https://www.otago.ac.nz/density/html/skink.html
 [stoatDNA]: https://www.otago.ac.nz/density/html/stoatDNA.html
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

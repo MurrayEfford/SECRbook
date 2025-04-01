@@ -201,3 +201,6 @@ The type of the detectors is usually determined by the sampling reality. For exa
     
 Detector covariates pose a particular problem. Models with learned responses take slightly longer to fit.
     
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

@@ -212,3 +212,6 @@ This is equivalent to the posterior distribution of each latent AC in Bayesian a
 <!-- ## Telemetry {#sec-telemetrylikelihood} -->
 
 <!-- [to be added] -->
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

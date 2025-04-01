@@ -192,3 +192,6 @@ We note
 Sex differences in home-range size (and hence $\sigma$) may be mitigated by compensatory variation in $g_0$ or $\lambda_0$ [@em14] (see also [Mitigating factors](15-finite-mixtures.qmd#sec-mitigation) in @sec-individual-heterogeneity).
 
 <!-- cf Greg Distiller post -->
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

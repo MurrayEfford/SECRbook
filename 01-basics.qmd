@@ -420,3 +420,6 @@ Bayesian priors are usually chosen to be 'uninformative', and under these condit
 
 A further method, simulation and inverse prediction, has a niche use for
 data from single-catch traps [@edr04; @Efford2023]. \index{Traps!single-catch}
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

@@ -652,3 +652,6 @@ It should be stressed that our simulation results (e.g., @fig-ARRplot, @fig-spac
 <!--   Within-grid-square option -->
 <!-- What if marking extraordinarily expensive and sightings cheap? Needs more study. -->
 
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

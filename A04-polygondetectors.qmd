@@ -308,3 +308,6 @@ coordinates use the function `xy`. Detections are ordered by occasion, animal, a
 
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
 [secrlinear]: https://cran.r-project.org/package=secrlinear/vignettes/secrlinear-vignette.pdf
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

@@ -518,3 +518,6 @@ A mask object may also be exported as a SpatRaster using the `rast` method defin
 Inappropriate mask spacing is a common source of problems. Model fitting can be painfully slow if the mask has too many cells. Choose the spacing (cell size) as described in [Grid cell size](#sec-maskspacing). A single mask for widely scattered clusters of traps should drop cells from wide inter-cluster spaces  (set 'type = trapbuffer').
 
 :::
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

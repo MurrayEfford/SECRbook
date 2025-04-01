@@ -181,3 +181,6 @@ fit.h <- secr.fit(morning, model = list(lambda0~h2, sigma~h2),
 predict(fit.h)
 ```
 
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

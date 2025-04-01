@@ -393,3 +393,6 @@ of an area $A$.
 @sec-trend considers an alternative parameterization of multi-session
 density in terms of the initial density $D_1$ and session-to-session
 trend $\lambda_t$.
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

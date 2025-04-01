@@ -454,3 +454,6 @@ For binomial count detectors we use a formulation not based directly on
 instantaneous hazard, as explained by @ebm13. For these detectors
 $T_{sk}$ (assumed integer) is taken as the size of the binomial (maximum
 possible detections) and $p_{sk}(\mathbf x)$ is unchanged.
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

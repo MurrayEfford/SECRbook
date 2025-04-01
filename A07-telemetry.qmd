@@ -541,3 +541,6 @@ Non-Euclidean distance methods cannot be used with telemetry data at present (a 
 : General functions  not ready for telemetry.  {#tbl-telemetrynonfunctions .sm}
 
 [secr-datainput.pdf]: https://www.otago.ac.nz/density/pdfs/secr-datainput.pdf
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

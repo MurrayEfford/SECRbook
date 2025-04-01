@@ -279,3 +279,6 @@ If there is a risk of a run being terminated arbitrarily (e.g., because it excee
 [`list.secr.fit`]: https://www.otago.ac.nz/density/html/list.secr.fit.html
 [`secr.refit`]: https://www.otago.ac.nz/density/html/secr.refit.html
 
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

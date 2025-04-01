@@ -118,3 +118,6 @@ Inserted in @eq-CL, along with $f(\mathbf x | \omega_i>0; \phi, \theta)$ from @e
    
    Transect detectors are the linear equivalent of polygons. Cues may be observed only along the searched zero-width transect. Transect detectors, like polygon detectors, may be independent or exclusive. See @sec-areaandtransectsearches for more.
    
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

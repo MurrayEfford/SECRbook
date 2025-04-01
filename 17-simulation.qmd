@@ -296,3 +296,6 @@ There are more arcane options for simulating AC-centric variation in detection:
 <!-- * @Hooten2024   -->
 
 [secrdesign-vignette.pdf]: https://www.otago.ac.nz/density/pdfs/secrdesign-vignette.pdf
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```

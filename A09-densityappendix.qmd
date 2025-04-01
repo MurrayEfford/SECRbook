@@ -155,3 +155,6 @@ Going further, you can even define your own *ad hoc* link function. To do this, 
 
 Following this example, you would call `secr.fit(..., link = list(D = 'i100'))`.
 To see the internal transformations for the standard link functions, type `secr:::transform`, `secr:::untransform`, `secr:::se.untransform` or `secr:::se.transform`.
+```{=html}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+```
