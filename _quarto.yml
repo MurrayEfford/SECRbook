@@ -114,8 +114,7 @@ format:
     code-overflow: wrap
     html-math-method: katex
     page-layout: full
-    include-in-body: simpleanalytics.html
-  
+
   pdf:
     documentclass: scrreprt
     papersize: A4
