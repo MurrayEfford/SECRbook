@@ -1,6 +1,6 @@
-# Spatially explicit capture--recapture
+# Spatially explicit capture-recapture
 
-Spatially explicit capture--recapture has opened new possibilities for analysing 
+Spatially explicit capture-recapture has opened new possibilities for analysing 
 data from wildlife surveys over the last 20 years. Theory and software have advanced 
 hand-in-hand with new field techniques. The expanding possibilities are a challenge 
 for biologists. 
