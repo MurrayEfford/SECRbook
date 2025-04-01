@@ -104,7 +104,7 @@ bibliography: [SECRbook.bib]
 csl: methods-in-ecology-and-evolution.csl
 
 github-repo: MurrayEfford/SECRbook
-  
+
 format: 
   html:
     toc: true
@@ -114,6 +114,7 @@ format:
     code-overflow: wrap
     html-math-method: katex
     page-layout: full
+    include-in-body: simpleanalytics.html
   
   pdf:
     documentclass: scrreprt
