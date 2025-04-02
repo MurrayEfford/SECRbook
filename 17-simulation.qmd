@@ -215,7 +215,7 @@ Simulation quite often results in data that are too sparse for analysis, and oth
 
 ### Inhomogeneous populations {#sec-inhomogeneous}
 
-Variations on a uniform distribution of AC are selected with the `sim.popn` argument 'model2D'. This may be done directly, as when we first introduced `sim.popn`, or indirectly via the 'pop.args' argument of `run.scenarios`. While almost any process may be used to generate data, only the parameters of an inhomogeneous Poisson process may be estimated by fitting models in **secr**. Alternative methods are available for some other generating models [e.g., @Stevenson2021; @Dey2023].
+Variations on a uniform distribution of AC are selected with the `sim.popn` argument 'model2D'. This may be done directly, as when we first introduced `sim.popn`, or indirectly via the 'pop.args' argument of `run.scenarios`. While almost any process may be used to generate data, only the parameters of an inhomogeneous Poisson process may be estimated by fitting models in **secr**. Alternative methods are available for some other generating models [@Stevenson2021; @Dey2023].
 
 We next consider three types of point process that may be used to simulate inhomogeneous distributions of activity centres in `sim.popn`. 
 
@@ -227,7 +227,7 @@ An inhomogeneous Poisson process (IHPP) is specified by setting 'model2D = "IHP"
 
 In a Cox process the expected density surface of the IHPP varies randomly between realisations (i.e. replicates). For example, **secr** has the function `randomDensity` that may be used in `sim.popn` to generate a new binary density mosaic at each call (see Examples on its [help](https://www.otago.ac.nz/density/html/sim.popn.html) page).
 
-A flexible model for continuous variation in density is the log-Gaussian Cox Process (LGCP) [@Johnson2010; @drns21; @Efford2024]. The IHPP log-intensity surface of a LGCP is Gaussian (normally distributed) at each point, but adjacent points co-vary; autocorrelation declines with distance. The notation and parameterisation can be confusing. The term 'Gaussian' refers to the marginal intensity, not the autocorrelation function which is commonly exponential. The Gaussian variance is on the log scale, so even a variance as low as 1.0 indicates substantial heterogeneity. The exponential scale parameter naturally has the same units as the SECR detection function, although @drns21 rescaled it as 6\% or 100\% of the width of the study area. **secr** uses the function `rLGCP` from **spatstat** [@Baddeley2015] which in turn depends on **RandomFields** [@Schlather2015]. 
+A flexible model for continuous variation in density is the log-Gaussian Cox Process (LGCP) [@Johnson2010; @drns21; @Efford2024]. The IHPP log-intensity surface of a LGCP is Gaussian (normally distributed) at each point, but adjacent points co-vary; autocorrelation declines with distance. The notation and parameterisation can be confusing. The term 'Gaussian' refers to the marginal intensity, not the autocorrelation function which is commonly exponential. The Gaussian variance is on the log scale, so even a variance as low as 1.0 indicates substantial heterogeneity. The exponential scale parameter naturally has the same units as the SECR detection function, although @drns21 rescaled it as 6\% or 100\% of the width of the study area. **secr** uses the function `rLGCP` from **spatstat** [@Baddeley2015]. 
 
 <!-- GRF parameters for inhomogeneous Poisson process i.e. LGCP -->
 <!-- (i) mean density -->
@@ -237,7 +237,7 @@ A flexible model for continuous variation in density is the log-Gaussian Cox Pro
 
 #### Cluster Processes {#sec-cluster}
 
-The points in a 2-D cluster process are no longer independent, as in an IHPP. Each belongs to a cluster. For the Thomas process that has been applied in SECR [e.g., ebb09] there is a Poisson distribution of 'parents' and a bivariate-normal scatter of offspring points about each parent. Both the number of parents and the number of offspring per parent are Poisson variables, and hence some clusters may be empty. Thomas processes belong to the broader class of Neyman-Scott cluster processes. **secr** implements an interface to the function `rThomas` from **spatstat** [@Baddeley2015] ('model2D = "rThomas"').
+The points in a 2-D cluster process are no longer independent, as in an IHPP. Each belongs to a cluster. For the Thomas process that has been applied in SECR [e.g., @ebb09] there is a Poisson distribution of 'parents' and a bivariate-normal scatter of offspring points about each parent. Both the number of parents and the number of offspring per parent are Poisson variables, and hence some clusters may be empty. Thomas processes belong to the broader class of Neyman-Scott cluster processes. **secr** implements an interface to the function `rThomas` from **spatstat** [@Baddeley2015] ('model2D = "rThomas"').
 
 ### Summary of inhomogeneous options
 
