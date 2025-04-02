@@ -161,7 +161,9 @@ The counts depend on the detector configuration, the extent of habitat (buffer w
 
 ::: {.callout-note collapse=true}
 ## Spatial recaptures
-The term 'spatial recaptures' corresponds loosely with our *m*. Spatial recaptures are a *sine qua non* of SECR, but their role in determining precision can be overstated. They are a consequence of Requirements 2 and 3, not an independent effect. Furthermore, movements are ill-defined when detections are aggregated by time, as then we cannot distinguish the capture histories ABABA and AAABB at detectors A and B (both are 3A, 2B).
+The term 'spatial recaptures' corresponds loosely with our *m*. Spatial recaptures are a *sine qua non* of SECR, but their role in determining precision can be overstated. They are a consequence of Requirements 2 and 3, not an independent effect. Furthermore: \
+i. Movements are ill-defined when detections are aggregated by time, as then we cannot distinguish the capture histories ABABA and AAABB at detectors A and B (both are (3A, 2B), but one implies 4 movements and the other one).\
+ii. Spatial and non-spatial recaptures have barely distinguishable effects when detectors are very close; a profusion of close spatial recaptures is not very useful [e.g., @Durbach2020].
 :::
 
 ## A useful approximation
