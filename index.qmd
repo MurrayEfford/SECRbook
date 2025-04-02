@@ -64,7 +64,7 @@ Other R packages for SECR may be found outside CRAN. A distinct maximum-likeliho
 
 ## Recommended citation {.unnumbered}
 
-Efford, M. G. (2025) The SECR book. A handbook of spatially explicit capture--recapture methods. Version 1.0.0. *Zenodo* https://doi.org/10.5281/zenodo.15109938.  [pdf](https://doi.org/10.5281/zenodo.15109938)
+Efford, M. G. (2025) The SECR book. A handbook of spatially explicit capture--recapture methods. Version 1.0.0. *Zenodo* <https://doi.org/10.5281/zenodo.15109938>. 
 
 The book is available online at <https://murrayefford.github.io/SECRbook/>. The Quarto source files, including R code, are at <https://github.com/murrayefford/SECRbook>. See the [docs folder](https://raw.githubusercontent.com/MurrayEfford/SECRbook/main/docs/The-SECR-book.pdf) for the most recent pdf. 
 
