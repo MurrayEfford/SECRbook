@@ -205,7 +205,7 @@ $$
 f(\mathbf x | \omega_i; \hat \phi, \hat \theta) = \frac{ \mathrm{Pr} (\omega_i | \mathbf x; \hat \theta) D(\mathbf x ; \hat \phi)} 
 {\int_{R^2} \mathrm{Pr}(\omega_i | \mathbf x; \hat \theta) D(\mathbf x ; \hat \phi) \, d \mathbf x}.
 $$ {#eq-fxi}
-This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See `fxi` and related functions in **secr**. For known $\theta$ and known $\phi$ (unless $D(\mathbf x; \phi)$ uniform) the modal location of the AC for animal $i$ may be estimated by maximizing $\mathrm{Pr} (\omega_i | \mathbf x; \theta)D(\mathbf x; \phi)$ with respect to $\mathbf x$. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.
+This is equivalent to the posterior distribution of each latent AC in Bayesian applications. See [`fxi`](https://www.otago.ac.nz/density/html/fxi.html) and related functions in **secr**. For known $\theta$ and known $\phi$ (unless $D(\mathbf x; \phi)$ uniform) the modal location of the AC for animal $i$ may be estimated by maximizing $\mathrm{Pr} (\omega_i | \mathbf x; \theta)D(\mathbf x; \phi)$ with respect to $\mathbf x$. The distribution often has more than one mode for animals at the edge of a detector array or searched area. It should not be confused with the home range utilisation pdf.
 
 @sec-notadensitysurface discusses the use and interpretation of $f(\mathbf x | \omega_i; \hat \phi, \hat \theta)$ [see also @Durbach2024].
 
