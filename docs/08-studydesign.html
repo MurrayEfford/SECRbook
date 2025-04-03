@@ -604,7 +604,9 @@ Spatial recaptures
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The term ‘spatial recaptures’ corresponds loosely with our <em>m</em>. Spatial recaptures are a <em>sine qua non</em> of SECR, but their role in determining precision can be overstated. They are a consequence of Requirements 2 and 3, not an independent effect. Furthermore, movements are ill-defined when detections are aggregated by time, as then we cannot distinguish the capture histories ABABA and AAABB at detectors A and B (both are 3A, 2B).</p>
+<p>The term ‘spatial recaptures’ corresponds loosely with our <em>m</em>. Spatial recaptures are a <em>sine qua non</em> of SECR, but their role in determining precision can be overstated. They are a consequence of Requirements 2 and 3, not an independent effect. Furthermore:<br>
+i. Movements are ill-defined when detections are aggregated by time, as then we cannot distinguish the capture histories ABABA and AAABB at detectors A and B (both are (3A, 2B), but one implies 4 movements and the other one).<br>
+ii. Spatial and non-spatial recaptures have barely distinguishable effects when detectors are very close; a profusion of close spatial recaptures is not very useful <span class="citation" data-cites="dbss21">(e.g., <a href="A99-references.html#ref-dbss21" role="doc-biblioref">Durbach et al., 2021</a>)</span>.</p>
 </div>
 </div>
 </div>
@@ -1543,7 +1545,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"descPosition":"bottom","openEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
