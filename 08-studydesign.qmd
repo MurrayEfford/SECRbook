@@ -552,7 +552,9 @@ Some aspects of sampling intensity are under the control of the experimenter: th
 
 Other variation in sampling intensity may be due to behavioural or habitat factors that drive spatial variation in detection parameters (e.g., $\lambda_0, \sigma$) unknown to the experimenter.
 
-We illustrate six scenarios for the interaction between spatial variation in density and effort, and between density and detection in @fig-spatialeffort. The estimate of overall density ($\hat D$ from the null model $D\sim 1$) is unbiased when effort and detection are homogeneous (@fig-spatialeffort a,d). Uncorrelated variation in effort does not bias $\hat D$ (@fig-spatialeffort b). Selectively reducing effort in low-density areas (@fig-spatialeffort c) causes significant bias, although this may be eliminated by including an area effect in the density model, e.g., $D\sim \mathrm{area}$. 
+We illustrate six scenarios for the interaction between spatial variation in density and effort, and between density and detection in @fig-spatialeffort. The estimate of overall density ($\hat D$ from the null model D $\sim$ 1) is unbiased when effort and detection are homogeneous (@fig-spatialeffort a,d). Uncorrelated variation in effort does not bias $\hat D$ (@fig-spatialeffort b). 
+
+Selectively reducing effort in low-density areas (@fig-spatialeffort c) causes significant bias that may be reduced or eliminated by modelling the variation in density. In the simple scenario of @fig-spatialeffort c, a binary variable 'habitat' distinguishing between known low-density and high-density areas could be used in a model (D $\sim$ habitat). 
 
 Variation in detection parameters causes bias even when not correlated with density (@fig-spatialeffort e). This is the effect of [inhomogeneous detection](06-assumptions.qmd#sec-homogeneityofdetectors) noted previously. The effect is large when density and detection are correlated (@fig-spatialeffort f and @McLellan2023).
 
