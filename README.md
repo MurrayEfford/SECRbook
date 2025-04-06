@@ -12,7 +12,7 @@ on study design, a topic of great practical concern. The focus is on
 frequentist models for closed populations fitted in the R package 'secr', but 
 much of the material applies equally in a Bayesian context.
 
-A citable [pdf version](https://zenodo.org/records/15109938) has been archived on Zenodo.
+A citable [pdf version](https://zenodo.org/records/15109937) has been archived on Zenodo.
 This repository contains Quarto files for the working version that may differ 
 from the archived version; significant changes will be noted in the 
 [NEWS](NEWS) file.
