@@ -64,9 +64,9 @@ Other R packages for SECR may be found outside CRAN. A distinct maximum-likeliho
 
 ## Recommended citation {.unnumbered}
 
-Efford, M. G. (2025) The SECR book. A handbook of spatially explicit capture--recapture methods. Version 1.0. *Zenodo* https://doi.org/10.5281/zenodo.15109937. 
+Efford, M. G. (2025) The SECR book. A handbook of spatially explicit capture--recapture methods. Version 1.0.0. *Zenodo* <https://doi.org/10.5281/zenodo.15109938>. 
 
-The book is available online at <https://murrayefford.github.io/SECRbook/>. This is the most recent version and may include corrections and additions not yet archived on Zenodo. The Quarto source files, including R code, are at <https://github.com/murrayefford/SECRbook>. See the [docs folder](https://raw.githubusercontent.com/MurrayEfford/SECRbook/main/docs/The-SECR-book.pdf) for the most recent pdf. 
+The book is available online at <https://murrayefford.github.io/SECRbook/>. The Quarto source files, including R code, are at <https://github.com/murrayefford/SECRbook>. See the [docs folder](https://raw.githubusercontent.com/MurrayEfford/SECRbook/main/docs/The-SECR-book.pdf) for the most recent pdf. 
 
 ## Feedback
 
@@ -77,6 +77,8 @@ This is work in progress. If you find an error or would like to make a suggestio
 Ian Durbach, Brian Gerber, Dan Linden, Cyril Milleret, Joanne Potts, and Rahel Sollmann gave helpful comments on earlier versions of some chapters. For help with particular chapters I especially thank Rahel (Chapter 6) and Ian (Chapter 8). Errors remain my own.
 Matt Schofield provided encouragement, answered some theoretical questions, and reviewed several chapters. 
 Thanks to John Boulanger for his collaboration on study design and analysis over many projects, and to Alice Kenney for her snowshoe hare photograph.
+
+The simulations in Chapter 6 used the New Zealand eScience Infrastructure (NeSI) high performance computing facilities URL <https://www.nesi.org.nz/>. 
 
 Thanks for data -
 
