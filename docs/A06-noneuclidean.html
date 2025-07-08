@@ -988,7 +988,7 @@ Figure&nbsp;F.4: Shaded plot of distance to water (d2w in km) with detector site
 <span>    <span class="fu"><a href="https://AgrDataSci.github.io/gdistance/reference/costDistance-methods.html">costDistance</a></span><span class="op">(</span><span class="va">trans</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">xy1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">xy2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <span class="citation" data-cites="rcgg13">Royle et al. (<a href="A99-references.html#ref-rcgg13" role="doc-biblioref">2013</a>)</span> and <span class="citation" data-cites="sfr15">Sutherland et al. (<a href="A99-references.html#ref-sfr15" role="doc-biblioref">2015</a>)</span> models use an (<span class="math inline">\alpha_0</span>, <span class="math inline">\alpha_1</span>) parameterisation instead of (<span class="math inline">\lambda_0</span>, <span class="math inline">\sigma</span>). Their <span class="math inline">\alpha_2</span> translates directly to a coefficient in the <strong>secr</strong> model, as we’ll see. We consider just one realisation of one scenario (the package <strong>secrdesign</strong> <span class="citation" data-cites="R-secrdesign">Efford (<a href="A99-references.html#ref-R-secrdesign" role="doc-biblioref">2023</a>)</span> manages replicated simulations of multiple scenarios).</p>
+<p>The <span class="citation" data-cites="rcgg13">Royle et al. (<a href="A99-references.html#ref-rcgg13" role="doc-biblioref">2013</a>)</span> and <span class="citation" data-cites="sfr15">Sutherland et al. (<a href="A99-references.html#ref-sfr15" role="doc-biblioref">2015</a>)</span> models use an (<span class="math inline">\alpha_0</span>, <span class="math inline">\alpha_1</span>) parameterisation instead of (<span class="math inline">\lambda_0</span>, <span class="math inline">\sigma</span>). Their <span class="math inline">\alpha_2</span> translates directly to a coefficient in the <strong>secr</strong> model, as we’ll see. We consider just one realisation of one scenario (the package <strong>secrdesign</strong> <span class="citation" data-cites="R-secrdesign">Efford (<a href="A99-references.html#ref-R-secrdesign" role="doc-biblioref">2025</a>)</span> manages replicated simulations of multiple scenarios).</p>
 <div class="cell">
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># parameter values from Sutherland et al. 2014</span></span>
 <span><span class="va">alpha0</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span>   <span class="co"># implies lambda0 = invlogit(-1) = 0.2689414</span></span>
@@ -1118,7 +1118,7 @@ Csardi, G., &amp; Nepusz, T. (2006). The igraph software package for complex net
 Efford, M. G. (2014). Bias from heterogeneous usage of space in spatially explicit capture-recapture analyses. <em>Methods in Ecology and Evolution</em>, <em>5</em>, 599–602.
 </div>
 <div id="ref-R-secrdesign" class="csl-entry" role="listitem">
-Efford, M. G. (2023). <em><span class="nocase">secrdesign: Sampling Design for Spatially Explicit Capture-Recapture</span></em>. <a href="https://CRAN.R-project.org/package=secrdesign">https://CRAN.R-project.org/package=secrdesign</a>
+Efford, M. G. (2025). <em><span class="nocase">secrdesign: Sampling design for spatially explicit capture–recapture</span></em>. <a href="https://doi.org/10.32614/CRAN.package.secrdesign">https://doi.org/10.32614/CRAN.package.secrdesign</a>
 </div>
 <div id="ref-edjq16" class="csl-entry" role="listitem">
 Efford, M. G., Dawson, D. K., Jhala, Y. V., &amp; Qureshi, Q. (2016). Density-dependent home-range size revealed by spatially explicit capture-recapture. <em>Ecography</em>, <em>39</em>, 676–688.
@@ -1583,7 +1583,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
 <li class="nav-item">
- The SECR book. Version 1.0.1.  
+ The SECR book. Version 1.0.2.  
   </li>  
     <li class="nav-item">
  &nbsp;&nbsp; Copyright © 2025
@@ -1594,7 +1594,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
